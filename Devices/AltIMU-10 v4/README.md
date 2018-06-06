@@ -1,4 +1,4 @@
-# Project Title
+# HOW TO USE THE ALTIMU IN AN OPEN-FPGA
 
 One Paragraph of project description goes here
 
