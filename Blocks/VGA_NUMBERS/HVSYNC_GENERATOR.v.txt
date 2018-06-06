@@ -1,0 +1,49 @@
+
+//Nosotros tenemos 640 x 480, necesitamos saber cuando hemos llegado al final del conteo
+wire counterXmaxed = (CounterX == 10'd799); //si se cumple counterXmaxed sera 1 binario
+wire counterYmaxed = (CounterY == 10'd524);
+
+localparam [9:0] Hsync = 10'd96;
+localparam [9:0] HBack = 10'd144;
+localparam [9:0] Hfront = 10'd784;
+localparam [9:0] Vsync = 10'd2;
+localparam [9:0] YBack = 10'd35;
+localparam [9:0] Yfront = 10'd515;
+
+//Contadores para X y para Y
+always @(posedge clk)
+begin
+  if (counterXmaxed == 1'b1 || rst == 1'b1)
+    CounterX <= 0;
+  else
+    CounterX <= CounterX + 10'd1;
+end
+// Cuando la linea horizontal termina, la vertical tiene que aumentar uno, obvio
+always @(posedge clk)
+begin
+  if (counterXmaxed == 1'b1 )
+    CounterY <= CounterY + 11'd1;
+  else
+    begin
+      if (rst == 1'b1 || counterYmaxed == 1'b1)
+        CounterY <= 11'd0 // es decir, su máximo
+    end
+end
+
+
+//ahora evaluamos las señales de sincronizacion, si estan o no en la zona de sincronizacion
+
+
+reg vga_HS, vga_VS;
+always @(posedge CounterX, CounterY)    //evalua cada pixel, solo son uno si se encuntran dentro de la señal de sincronizacion,
+ //de lo contrario, cero
+  begin
+   vga_HS <= !(CounterX[9:0]>Hsync);
+   vga_VS <= !(CounterY[9:0]>Vsync);
+  end
+
+  assign vga_h_sync = vga_HS;     // Asignación de los valores para las señales
+
+  //de output tipo wire
+
+  assign vga_v_sync = vga_VS;
