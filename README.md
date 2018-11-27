@@ -1,2 +1,2 @@
-# Ice4Robots
+# FPGA-for-Robots
 

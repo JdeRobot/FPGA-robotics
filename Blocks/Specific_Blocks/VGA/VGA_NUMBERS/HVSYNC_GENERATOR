@@ -1,0 +1,26 @@
+
+//Nosotros tenemos 640 x 480, necesitamos saber cuando hemos llegado al final del conteo
+wire counterXmaxed = (CounterX == 10'd639); //si se cumple counterXmaxed sera 1 binario
+wire counterYmaxed = (CounterY == 10'd479);
+
+//Contadores para X y para Y
+always @(posedge clk)
+begin
+  if (counterXmaxed == 1'b1 || rst == 1'b1)
+    CounterX <= 0;
+  else
+    CounterX <= CounterX + 10'd1;
+end
+// Cuando la linea horizontal termina, la vertical tiene que aumentar uno, obvio
+always @(posedge clk)
+begin
+  if (counterXmaxed == 1'b1 )
+    CounterY <= CounterY + 11'd1;
+  else
+    begin
+      if (rst == 1'b1 || counterYmaxed == 1'b1)
+        CounterY <= 11'd0 // es decir, su máximo
+      end
+  end
+
+  //
