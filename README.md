@@ -1,4 +1,4 @@
-# FPGA-for-Robots
+# FPGA-Robots
 
 ## Blocks
 
