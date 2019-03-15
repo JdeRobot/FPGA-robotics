@@ -1,22 +1,22 @@
-//la resolucion son 640 columnas y 480 filas. 
-//la resolucion son 640 columnas y 480 filas. 
+//la resolucion son 640 columnas y 480 filas.
+//la resolucion son 640 columnas y 480 filas.
 localparam BYTE1 = 1'b0;
 localparam BYTE2 = 1'b1;
 reg [4:0] RED_reg = 5'd0;
 reg [2:0] GREEN_prev = 3'd0;
-reg [5:0] GREEN_reg = 6'd0; 
-reg [4:0] BLUE_reg = 5'd0; 
+reg [5:0] GREEN_reg = 6'd0;
+reg [4:0] BLUE_reg = 5'd0;
 reg state = BYTE1;
 reg ready_color_reg = 1'b0;
 reg ready_byte_reg = 1'b0;
 reg debug_reg = 1'b0;
 
-always @(posedge PCLK) 
+always @(posedge clk)
 begin
-    if( (HREF === 1'b1) && (VSYNC === 1'b0) &&(START == 1'b1))
+    if( (PXCLK == 1'b1) &&& (HREF === 1'b1) && (VSYNC === 1'b0) && (START == 1'b1))
     begin
       case(state)
-        BYTE1: 
+        BYTE1:
         begin
           RED_reg<= {D7,D6,D5,D4,D3};
           GREEN_prev<= {D2,D1,D0};
@@ -40,13 +40,13 @@ begin
 end
 assign BLUE = BLUE_reg;
 assign GREEN = GREEN_reg;
-assign RED = RED_reg; 
+assign RED = RED_reg;
 assign ready_color = ready_color_reg;
 assign debug = debug_reg;
 
 /******************************************************************************************************************
 En una fila tarda 0.21333ms y en un byte 0.166668us (periodo). Podemos decir entonces que en 0.21333ms se aportan
-0.21333ms/0.16668us = 1280 bytes. 
+0.21333ms/0.16668us = 1280 bytes.
 Teniendo en cuenta que teóricamente una una línea (fila) tiene 640 píxeles, tiene sentido, ya que:
 
 640 pixeles*2byte cada pixel = 1280bytes.
@@ -58,7 +58,7 @@ Para ponerlo en modo RGB, registro 12(COM7) escribimos el valor:
 
 Valores mas elevados de RED:32 GREEN:64 BLUE:32
 /*********************************************************************************************************************/
-localparam anchura = 640; 
+localparam anchura = 640;
 localparam altura = 480;
 localparam Rmin = 5'd25;
 localparam Rmax = 5'd31;
@@ -82,7 +82,7 @@ begin
       begin
         led_reg[0] <= 1'b1;
         //sum_reg <= sum_reg + 18'd1;  //se suma uno al contador de pixeles buenos
-        //debug_reg <= !debug_reg;      
+        //debug_reg <= !debug_reg;
       end
     else
       begin
@@ -93,7 +93,7 @@ begin
   /////////////////////////////////////////////////////////////////////////////////////////////
   if(VSYNC == 1'b1)
   begin
-    sum_reg <= 18'd0; 
+    sum_reg <= 18'd0;
   end
   led_reg[7:3] <= BLUE;
 
@@ -127,16 +127,16 @@ BEHAVIOUR:
   La señal de sensibilidad será la subida de la señal de reloj, ya que todas se basan en esta.
 ESTADOS:
   VSYNC1: en este estado se mantendrá mientras el bus de VSYNC sea 1, que es lo que avisa de este estado
-          Aquí, el contador de filas se reseteará a 0, pues hay una nueva imagen y se pasará al siguiente estado 
+          Aquí, el contador de filas se reseteará a 0, pues hay una nueva imagen y se pasará al siguiente estado
           donde se empezará el contador de filas.
   HREF_HIGH_1: en este estado se mantendrá hasta que HREF sea 1, es decir, se está iniciando una nueva fila.
              Hay que tener cuidado porque el la cuenta solo se puede hacer una vez, por eso que haya un 1 y un
              2
-  HREF_HIGH_2: ya ha sumado la cuenta, ahora se mantendrá en este estado hasta que pase a la segunda fila y no 
-              este en alta. 
+  HREF_HIGH_2: ya ha sumado la cuenta, ahora se mantendrá en este estado hasta que pase a la segunda fila y no
+              este en alta.
   HREF_LOW: ahora, esta a low, hay que esperar hasta que vuelva estar a HIGH para que pase a HREF_HIGH_1.
             Especial cuidado ya que llega un momento en el que lo que se pone a 1 es VSYNC.
-/*************************************************************************************/ 
+/*************************************************************************************/
 
 localparam VSYNC1 = 2'd0;
 localparam HREF_HIGH_1 = 2'd1;
@@ -158,18 +158,18 @@ begin
           state <= HREF_HIGH_1;
           debug_reg <= !debug_reg;
         end
-      else 
+      else
         begin
           state <= VSYNC1;
         end
-      
+
     HREF_HIGH_1:
       if(HREF == 1'b1)
         begin
           pixel_fila_reg <= pixel_fila_reg + 9'd1;
           state <= HREF_HIGH_2;
         end
-      else 
+      else
         begin
           state <= HREF_HIGH_1;
         end
@@ -179,7 +179,7 @@ begin
         begin
           state <= HREF_HIGH_2;
         end
-      else 
+      else
         begin
           state <= HREF_LOW;
         end
@@ -214,7 +214,7 @@ reg debug_reg = 1'b0;
 
 reg [1:0] state = BYTE1_START;
 
-always @(posedge PXCLK) 
+always @(posedge PXCLK)
 begin
     if( (HREF === 1'b1) && (VSYNC === 1'b0) && (start ===1'b1))
     begin
@@ -224,7 +224,7 @@ begin
           pixel_columna_reg <= 10'd0;
           state <=BYTE2;
         end
-        BYTE1: 
+        BYTE1:
         begin
           state <= BYTE2;
         end

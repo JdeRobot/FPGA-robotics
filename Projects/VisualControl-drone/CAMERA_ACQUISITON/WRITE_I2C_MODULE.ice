@@ -490,85 +490,6 @@
           }
         },
         {
-          "id": "ddf7f3d8-4552-4226-9038-bea0d048916f",
-          "type": "basic.code",
-          "data": {
-            "code": "//la resolucion son 640 columnas y 480 filas. \r\nlocalparam BYTE1 = 1'b0;\r\nlocalparam BYTE2 = 1'b1;\r\nreg [4:0] RED_reg = 5'd0;\r\nreg [2:0] GREEN_prev = 3'd0;\r\nreg [5:0] GREEN_reg = 6'd0; \r\nreg [4:0] BLUE_reg = 5'd0; \r\nreg state = BYTE1;\r\nreg ready_color_reg = 1'b0;\r\nreg ready_byte_reg = 1'b0;\r\nreg debug_reg = 1'b0;\r\n\r\nalways @(posedge PCLK) \r\nbegin\r\n    if( (HREF === 1'b1) && (VSYNC === 1'b0) &&(START == 1'b1))\r\n    begin\r\n      case(state)\r\n        BYTE1: \r\n        begin\r\n          RED_reg<= {D7,D6,D5,D4,D3};\r\n          GREEN_prev<= {D2,D1,D0};\r\n          ready_color_reg <= 1'b0;\r\n          state<= BYTE2;\r\n          debug_reg<= !debug_reg;\r\n        end\r\n        BYTE2:\r\n        begin\r\n          GREEN_reg<={GREEN_prev,D7,D6,D5};\r\n          BLUE_reg<={D4,D3,D2,D1,D0};\r\n          ready_color_reg <= 1'b1;\r\n          state<= BYTE1;\r\n          debug_reg<= !debug_reg;\r\n        end\r\n      endcase\r\n    end\r\n    else begin\r\n        ready_color_reg <= 1'b0;\r\n    end\r\nend\r\nassign BLUE = BLUE_reg;\r\nassign GREEN = GREEN_reg;\r\nassign RED = RED_reg; \r\nassign ready_color = ready_color_reg;\r\nassign debug = debug_reg;",
-            "params": [],
-            "ports": {
-              "in": [
-                {
-                  "name": "D7"
-                },
-                {
-                  "name": "D6"
-                },
-                {
-                  "name": "D5"
-                },
-                {
-                  "name": "D4"
-                },
-                {
-                  "name": "D3"
-                },
-                {
-                  "name": "D2"
-                },
-                {
-                  "name": "D1"
-                },
-                {
-                  "name": "D0"
-                },
-                {
-                  "name": "VSYNC"
-                },
-                {
-                  "name": "HREF"
-                },
-                {
-                  "name": "PCLK"
-                },
-                {
-                  "name": "START"
-                }
-              ],
-              "out": [
-                {
-                  "name": "ready_color"
-                },
-                {
-                  "name": "RED",
-                  "range": "[4:0]",
-                  "size": 5
-                },
-                {
-                  "name": "GREEN",
-                  "range": "[5:0]",
-                  "size": 6
-                },
-                {
-                  "name": "BLUE",
-                  "range": "[4:0]",
-                  "size": 5
-                },
-                {
-                  "name": "debug"
-                }
-              ]
-            }
-          },
-          "position": {
-            "x": -1312,
-            "y": -552
-          },
-          "size": {
-            "width": 880,
-            "height": 528
-          }
-        },
-        {
           "id": "5344251f-c3ec-4628-938c-e7b9e217f089",
           "type": "basic.code",
           "data": {
@@ -702,6 +623,88 @@
           }
         },
         {
+          "id": "ddf7f3d8-4552-4226-9038-bea0d048916f",
+          "type": "basic.code",
+          "data": {
+            "code": "//la resolucion son 640 columnas y 480 filas. \r\nlocalparam BYTE1 = 1'b0;\r\nlocalparam BYTE2 = 1'b1;\r\nreg [4:0] RED_reg = 5'd0;\r\nreg [2:0] GREEN_prev = 3'd0;\r\nreg [5:0] GREEN_reg = 6'd0; \r\nreg [4:0] BLUE_reg = 5'd0; \r\nreg state = BYTE1;\r\nreg ready_color_reg = 1'b0;\r\nreg ready_byte_reg = 1'b0;\r\nreg debug_reg = 1'b0;\r\n\r\nalways @(posedge PCLK) \r\nbegin\r\n    if( (HREF === 1'b1) && (VSYNC === 1'b0) &&(START == 1'b1))\r\n    begin\r\n      case(state)\r\n        BYTE1: \r\n        begin\r\n          RED_reg<= {D7,D6,D5,D4,D3};\r\n          GREEN_prev<= {D2,D1,D0};\r\n          ready_color_reg <= 1'b0;\r\n          state<= BYTE2;\r\n          debug_reg<= !debug_reg;\r\n        end\r\n        BYTE2:\r\n        begin\r\n          GREEN_reg<={GREEN_prev,D7,D6,D5};\r\n          BLUE_reg<={D4,D3,D2,D1,D0};\r\n          ready_color_reg <= 1'b1;\r\n          state<= BYTE1;\r\n          debug_reg<= !debug_reg;\r\n        end\r\n      endcase\r\n    end\r\n    else begin\r\n        ready_color_reg <= 1'b0;\r\n    end\r\nend\r\nassign BLUE = BLUE_reg;\r\nassign GREEN = GREEN_reg;\r\nassign RED = RED_reg; \r\nassign ready_color = ready_color_reg;\r\nassign debug = debug_reg;",
+            "params": [],
+            "ports": {
+              "in": [
+                {
+                  "name": "clk"
+                },
+                {
+                  "name": "D7"
+                },
+                {
+                  "name": "D6"
+                },
+                {
+                  "name": "D5"
+                },
+                {
+                  "name": "D4"
+                },
+                {
+                  "name": "D3"
+                },
+                {
+                  "name": "D2"
+                },
+                {
+                  "name": "D1"
+                },
+                {
+                  "name": "D0"
+                },
+                {
+                  "name": "VSYNC"
+                },
+                {
+                  "name": "HREF"
+                },
+                {
+                  "name": "PCLK"
+                },
+                {
+                  "name": "START"
+                }
+              ],
+              "out": [
+                {
+                  "name": "ready_color"
+                },
+                {
+                  "name": "RED",
+                  "range": "[4:0]",
+                  "size": 5
+                },
+                {
+                  "name": "GREEN",
+                  "range": "[5:0]",
+                  "size": 6
+                },
+                {
+                  "name": "BLUE",
+                  "range": "[4:0]",
+                  "size": 5
+                },
+                {
+                  "name": "debug"
+                }
+              ]
+            }
+          },
+          "position": {
+            "x": -1312,
+            "y": -552
+          },
+          "size": {
+            "width": 880,
+            "height": 528
+          }
+        },
+        {
           "id": "68e078c2-8c10-4d43-a010-24a1e21efbaf",
           "type": "basic.code",
           "data": {
@@ -709,6 +712,9 @@
             "params": [],
             "ports": {
               "in": [
+                {
+                  "name": "clk"
+                },
                 {
                   "name": "ready_color"
                 },
