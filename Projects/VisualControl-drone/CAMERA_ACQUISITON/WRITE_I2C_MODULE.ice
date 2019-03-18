@@ -31,26 +31,6 @@
           }
         },
         {
-          "id": "c2324d71-d1a4-4cc6-a147-2233ad76944b",
-          "type": "basic.input",
-          "data": {
-            "name": "D7",
-            "pins": [
-              {
-                "index": "0",
-                "name": "D12",
-                "value": "63"
-              }
-            ],
-            "virtual": false,
-            "clock": false
-          },
-          "position": {
-            "x": -1904,
-            "y": -816
-          }
-        },
-        {
           "id": "bcb585e3-0ba2-41a0-a9f2-a1caf8a48e7b",
           "type": "basic.output",
           "data": {
@@ -91,43 +71,59 @@
           }
         },
         {
-          "id": "a9f46104-0ec6-44e4-8ccf-acec74e8424e",
+          "id": "37af2866-e5c6-451c-af7c-a76e64823607",
           "type": "basic.input",
           "data": {
-            "name": "D6",
+            "name": "D",
+            "range": "[7:0]",
             "pins": [
               {
-                "index": "0",
-                "name": "D8",
-                "value": "20"
-              }
-            ],
-            "virtual": false,
-            "clock": false
-          },
-          "position": {
-            "x": -1904,
-            "y": -744
-          }
-        },
-        {
-          "id": "58c49fb6-0cd1-4e88-8458-886c5da6c587",
-          "type": "basic.input",
-          "data": {
-            "name": "D5",
-            "pins": [
+                "index": "7",
+                "name": "D12",
+                "value": "63"
+              },
               {
-                "index": "0",
+                "index": "6",
+                "name": "D6",
+                "value": "10"
+              },
+              {
+                "index": "5",
                 "name": "D13",
                 "value": "64"
+              },
+              {
+                "index": "4",
+                "name": "D7",
+                "value": "9"
+              },
+              {
+                "index": "3",
+                "name": "DD1",
+                "value": "115"
+              },
+              {
+                "index": "2",
+                "name": "D6",
+                "value": "10"
+              },
+              {
+                "index": "1",
+                "name": "DD0",
+                "value": "114"
+              },
+              {
+                "index": "0",
+                "name": "D5",
+                "value": "7"
               }
             ],
             "virtual": false,
             "clock": false
           },
           "position": {
-            "x": -1896,
-            "y": -656
+            "x": -1776,
+            "y": -664
           }
         },
         {
@@ -150,26 +146,6 @@
           }
         },
         {
-          "id": "b24743ef-28fc-427d-84ee-9098efbbc5d8",
-          "type": "basic.input",
-          "data": {
-            "name": "D4",
-            "pins": [
-              {
-                "index": "0",
-                "name": "D7",
-                "value": "9"
-              }
-            ],
-            "virtual": false,
-            "clock": false
-          },
-          "position": {
-            "x": -1896,
-            "y": -592
-          }
-        },
-        {
           "id": "bfbc16e8-a180-4ffc-bd28-aa6525406e30",
           "type": "basic.input",
           "data": {
@@ -187,86 +163,6 @@
           "position": {
             "x": 1472,
             "y": -584
-          }
-        },
-        {
-          "id": "ef5138a2-5a1f-4a7d-9da3-3029138ac30c",
-          "type": "basic.input",
-          "data": {
-            "name": "D3",
-            "pins": [
-              {
-                "index": "0",
-                "name": "DD1",
-                "value": "115"
-              }
-            ],
-            "virtual": false,
-            "clock": false
-          },
-          "position": {
-            "x": -1896,
-            "y": -528
-          }
-        },
-        {
-          "id": "74fa773b-cc82-4472-821e-5a5ad1305e7e",
-          "type": "basic.input",
-          "data": {
-            "name": "D2",
-            "pins": [
-              {
-                "index": "0",
-                "name": "D6",
-                "value": "10"
-              }
-            ],
-            "virtual": false,
-            "clock": false
-          },
-          "position": {
-            "x": -1896,
-            "y": -464
-          }
-        },
-        {
-          "id": "003ee9f3-55f6-4c1c-94ec-d821b0126df1",
-          "type": "basic.input",
-          "data": {
-            "name": "D1",
-            "pins": [
-              {
-                "index": "0",
-                "name": "DD0",
-                "value": "114"
-              }
-            ],
-            "virtual": false,
-            "clock": false
-          },
-          "position": {
-            "x": -1896,
-            "y": -400
-          }
-        },
-        {
-          "id": "5ed08677-7bc7-4b2e-8e6c-716663892384",
-          "type": "basic.input",
-          "data": {
-            "name": "D0",
-            "pins": [
-              {
-                "index": "0",
-                "name": "D5",
-                "value": "7"
-              }
-            ],
-            "virtual": false,
-            "clock": false
-          },
-          "position": {
-            "x": -1896,
-            "y": -336
           }
         },
         {
@@ -516,7 +412,7 @@
             "y": 576
           },
           "size": {
-            "width": 360,
+            "width": 464,
             "height": 184
           }
         },
@@ -623,88 +519,6 @@
           }
         },
         {
-          "id": "ddf7f3d8-4552-4226-9038-bea0d048916f",
-          "type": "basic.code",
-          "data": {
-            "code": "//la resolucion son 640 columnas y 480 filas. \r\nlocalparam BYTE1 = 1'b0;\r\nlocalparam BYTE2 = 1'b1;\r\nreg [4:0] RED_reg = 5'd0;\r\nreg [2:0] GREEN_prev = 3'd0;\r\nreg [5:0] GREEN_reg = 6'd0; \r\nreg [4:0] BLUE_reg = 5'd0; \r\nreg state = BYTE1;\r\nreg ready_color_reg = 1'b0;\r\nreg ready_byte_reg = 1'b0;\r\nreg debug_reg = 1'b0;\r\n\r\nalways @(posedge PCLK) \r\nbegin\r\n    if( (HREF === 1'b1) && (VSYNC === 1'b0) &&(START == 1'b1))\r\n    begin\r\n      case(state)\r\n        BYTE1: \r\n        begin\r\n          RED_reg<= {D7,D6,D5,D4,D3};\r\n          GREEN_prev<= {D2,D1,D0};\r\n          ready_color_reg <= 1'b0;\r\n          state<= BYTE2;\r\n          debug_reg<= !debug_reg;\r\n        end\r\n        BYTE2:\r\n        begin\r\n          GREEN_reg<={GREEN_prev,D7,D6,D5};\r\n          BLUE_reg<={D4,D3,D2,D1,D0};\r\n          ready_color_reg <= 1'b1;\r\n          state<= BYTE1;\r\n          debug_reg<= !debug_reg;\r\n        end\r\n      endcase\r\n    end\r\n    else begin\r\n        ready_color_reg <= 1'b0;\r\n    end\r\nend\r\nassign BLUE = BLUE_reg;\r\nassign GREEN = GREEN_reg;\r\nassign RED = RED_reg; \r\nassign ready_color = ready_color_reg;\r\nassign debug = debug_reg;",
-            "params": [],
-            "ports": {
-              "in": [
-                {
-                  "name": "clk"
-                },
-                {
-                  "name": "D7"
-                },
-                {
-                  "name": "D6"
-                },
-                {
-                  "name": "D5"
-                },
-                {
-                  "name": "D4"
-                },
-                {
-                  "name": "D3"
-                },
-                {
-                  "name": "D2"
-                },
-                {
-                  "name": "D1"
-                },
-                {
-                  "name": "D0"
-                },
-                {
-                  "name": "VSYNC"
-                },
-                {
-                  "name": "HREF"
-                },
-                {
-                  "name": "PCLK"
-                },
-                {
-                  "name": "START"
-                }
-              ],
-              "out": [
-                {
-                  "name": "ready_color"
-                },
-                {
-                  "name": "RED",
-                  "range": "[4:0]",
-                  "size": 5
-                },
-                {
-                  "name": "GREEN",
-                  "range": "[5:0]",
-                  "size": 6
-                },
-                {
-                  "name": "BLUE",
-                  "range": "[4:0]",
-                  "size": 5
-                },
-                {
-                  "name": "debug"
-                }
-              ]
-            }
-          },
-          "position": {
-            "x": -1312,
-            "y": -552
-          },
-          "size": {
-            "width": 880,
-            "height": 528
-          }
-        },
-        {
           "id": "68e078c2-8c10-4d43-a010-24a1e21efbaf",
           "type": "basic.code",
           "data": {
@@ -795,6 +609,69 @@
             "width": 680,
             "height": 488
           }
+        },
+        {
+          "id": "ddf7f3d8-4552-4226-9038-bea0d048916f",
+          "type": "basic.code",
+          "data": {
+            "code": "//la resolucion son 640 columnas y 480 filas. \r\nlocalparam BYTE1 = 1'b0;\r\nlocalparam BYTE2 = 1'b1;\r\nreg [4:0] RED_reg = 5'd0;\r\nreg [2:0] GREEN_prev = 3'd0;\r\nreg [5:0] GREEN_reg = 6'd0; \r\nreg [4:0] BLUE_reg = 5'd0; \r\nreg state = BYTE1;\r\nreg ready_color_reg = 1'b0;\r\nreg ready_byte_reg = 1'b0;\r\nreg debug_reg = 1'b0;\r\n\r\nalways @(posedge PCLK) \r\nbegin\r\n    if( (HREF === 1'b1) && (VSYNC === 1'b0) &&(START == 1'b1))\r\n    begin\r\n      case(state)\r\n        BYTE1: \r\n        begin\r\n          RED_reg<= {D7,D6,D5,D4,D3};\r\n          GREEN_prev<= {D2,D1,D0};\r\n          ready_color_reg <= 1'b0;\r\n          state<= BYTE2;\r\n          debug_reg<= !debug_reg;\r\n        end\r\n        BYTE2:\r\n        begin\r\n          GREEN_reg<={GREEN_prev,D7,D6,D5};\r\n          BLUE_reg<={D4,D3,D2,D1,D0};\r\n          ready_color_reg <= 1'b1;\r\n          state<= BYTE1;\r\n          debug_reg<= !debug_reg;\r\n        end\r\n      endcase\r\n    end\r\n    else begin\r\n        ready_color_reg <= 1'b0;\r\n    end\r\nend\r\nassign BLUE = BLUE_reg;\r\nassign GREEN = GREEN_reg;\r\nassign RED = RED_reg; \r\nassign ready_color = ready_color_reg;\r\nassign debug = debug_reg;",
+            "params": [],
+            "ports": {
+              "in": [
+                {
+                  "name": "clk"
+                },
+                {
+                  "name": "D",
+                  "range": "[7:0]",
+                  "size": 8
+                },
+                {
+                  "name": "VSYNC"
+                },
+                {
+                  "name": "HREF"
+                },
+                {
+                  "name": "PCLK"
+                },
+                {
+                  "name": "START"
+                }
+              ],
+              "out": [
+                {
+                  "name": "ready_color"
+                },
+                {
+                  "name": "RED",
+                  "range": "[4:0]",
+                  "size": 5
+                },
+                {
+                  "name": "GREEN",
+                  "range": "[5:0]",
+                  "size": 6
+                },
+                {
+                  "name": "BLUE",
+                  "range": "[4:0]",
+                  "size": 5
+                },
+                {
+                  "name": "debug"
+                }
+              ]
+            }
+          },
+          "position": {
+            "x": -1312,
+            "y": -552
+          },
+          "size": {
+            "width": 880,
+            "height": 528
+          }
         }
       ],
       "wires": [
@@ -836,86 +713,6 @@
           "target": {
             "block": "f181fc6c-177c-423c-9de3-b5ab8d42e162",
             "port": "5bc0374a-1a1b-4418-97d3-276d74ecc31b"
-          }
-        },
-        {
-          "source": {
-            "block": "c2324d71-d1a4-4cc6-a147-2233ad76944b",
-            "port": "out"
-          },
-          "target": {
-            "block": "ddf7f3d8-4552-4226-9038-bea0d048916f",
-            "port": "D7"
-          }
-        },
-        {
-          "source": {
-            "block": "a9f46104-0ec6-44e4-8ccf-acec74e8424e",
-            "port": "out"
-          },
-          "target": {
-            "block": "ddf7f3d8-4552-4226-9038-bea0d048916f",
-            "port": "D6"
-          }
-        },
-        {
-          "source": {
-            "block": "58c49fb6-0cd1-4e88-8458-886c5da6c587",
-            "port": "out"
-          },
-          "target": {
-            "block": "ddf7f3d8-4552-4226-9038-bea0d048916f",
-            "port": "D5"
-          }
-        },
-        {
-          "source": {
-            "block": "b24743ef-28fc-427d-84ee-9098efbbc5d8",
-            "port": "out"
-          },
-          "target": {
-            "block": "ddf7f3d8-4552-4226-9038-bea0d048916f",
-            "port": "D4"
-          }
-        },
-        {
-          "source": {
-            "block": "ef5138a2-5a1f-4a7d-9da3-3029138ac30c",
-            "port": "out"
-          },
-          "target": {
-            "block": "ddf7f3d8-4552-4226-9038-bea0d048916f",
-            "port": "D3"
-          }
-        },
-        {
-          "source": {
-            "block": "74fa773b-cc82-4472-821e-5a5ad1305e7e",
-            "port": "out"
-          },
-          "target": {
-            "block": "ddf7f3d8-4552-4226-9038-bea0d048916f",
-            "port": "D2"
-          }
-        },
-        {
-          "source": {
-            "block": "003ee9f3-55f6-4c1c-94ec-d821b0126df1",
-            "port": "out"
-          },
-          "target": {
-            "block": "ddf7f3d8-4552-4226-9038-bea0d048916f",
-            "port": "D1"
-          }
-        },
-        {
-          "source": {
-            "block": "5ed08677-7bc7-4b2e-8e6c-716663892384",
-            "port": "out"
-          },
-          "target": {
-            "block": "ddf7f3d8-4552-4226-9038-bea0d048916f",
-            "port": "D0"
           }
         },
         {
@@ -1337,6 +1134,17 @@
             "port": "in"
           },
           "size": 5
+        },
+        {
+          "source": {
+            "block": "37af2866-e5c6-451c-af7c-a76e64823607",
+            "port": "out"
+          },
+          "target": {
+            "block": "ddf7f3d8-4552-4226-9038-bea0d048916f",
+            "port": "D"
+          },
+          "size": 8
         }
       ]
     }

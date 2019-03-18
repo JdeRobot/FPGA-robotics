@@ -2,18 +2,38 @@
 //la resolucion son 640 columnas y 480 filas.
 localparam BYTE1 = 1'b0;
 localparam BYTE2 = 1'b1;
+reg state = BYTE1;
+reg ready_color_reg = 1'b0;
+reg debug_reg = 1'b0;
+
 reg [4:0] RED_reg = 5'd0;
 reg [2:0] GREEN_prev = 3'd0;
 reg [5:0] GREEN_reg = 6'd0;
 reg [4:0] BLUE_reg = 5'd0;
-reg state = BYTE1;
-reg ready_color_reg = 1'b0;
-reg ready_byte_reg = 1'b0;
-reg debug_reg = 1'b0;
+
+
+/**************PULSES DELAY TO RECOGNIZE LEVEL'S CHANGES***************************/
+always @(posedge CLK)
+begin
+  VSYNC_1xdelay <= VSYNC;
+end
+always @(posedge CLK)
+begin
+  HREF_1xdelay <= HREF;
+end
+always @(posedge CLK)
+begin
+  PXCLK_1xdelay <= PXCLK;
+end
+/**************************************************************************/
+assign PXCLK_pulse_high = ( PXCLK_1xdelay == 0 and PXCLK == 1) ? 1:0;
+assign HSYNC_constant_high = ( HSYNC == 1 and HSYNC_1xdelay == 1) ? 1:0;
+assign HSYNC_constant_low = ( HSYNC == 0 and HSYNC_1xdelay == 0) ? 1:0;
+/**************************************************************************/
 
 always @(posedge clk)
 begin
-    if( (PXCLK == 1'b1) &&& (HREF === 1'b1) && (VSYNC === 1'b0) && (START == 1'b1))
+    if( START and PXCLK_pulse_high and HSYNC_constant_high )
     begin
       case(state)
         BYTE1:
@@ -34,8 +54,10 @@ begin
         end
       endcase
     end
-    else begin
-        ready_color_reg <= 1'b0;
+    else if ( HSYNC_constant_low )
+    begin
+      ready_color_reg <= 1'b0;
+      state <= BYTE1;
     end
 end
 assign BLUE = BLUE_reg;
@@ -73,10 +95,28 @@ reg debug_reg = 1'b0;
 reg [17:0] acumX_reg = 18'd0;
 reg [16:0] acumY_reg =17'd0;
 
-always @(posedge PXCLK)
+/**************PULSES DELAY TO RECOGNIZE LEVEL'S CHANGES***************************/
+always @(posedge CLK)
 begin
+  VSYNC_1xdelay <= VSYNC;
+end
+always @(posedge CLK)
+begin
+  HREF_1xdelay <= HREF;
+end
+always @(posedge CLK)
+begin
+  PXCLK_1xdelay <= PXCLK;
+end
+/**************************************************************************/
+assign PXCLK_pulse_high = ( PXCLK_1xdelay == 0 and PXCLK == 1) ? 1:0;
+assign HSYNC_constant_high = ( HSYNC == 1 and HSYNC_1xdelay == 1) ? 1:0;
+assign HSYNC_constant_low = ( HSYNC == 0 and HSYNC_1xdelay == 0) ? 1:0;
+/**************************************************************************/
 
-  if(ready_color == 1'b1)
+always @(posedge CLK)
+begin
+  if(ready_color and PXCLK_pulse_high )
   begin
     if( RED>=Rmin && RED<=Rmax && GREEN>=Gmin && GREEN<= Gmax && BLUE>=Bmin && BLUE<=Bmax )//ha pasado el filtro
       begin
@@ -91,154 +131,111 @@ begin
     sum_reg <= sum_reg + 18'd1;
   end
   /////////////////////////////////////////////////////////////////////////////////////////////
-  if(VSYNC == 1'b1)
-  begin
-    sum_reg <= 18'd0;
-  end
-  led_reg[7:3] <= BLUE;
-
 end
-
-/*always @(posedge ready_color) //para acumuladoX y acumuladoY max en x= 205120 y max en y=115440
-begin
-  if(RED>=Rmin && RED<=Rmax && GREEN>=Gmin && GREEN<= Gmax && BLUE>=Bmin && BLUE<=Bmax ) //ha pasado el filtro
-  begin
-    acumX_reg <= acumX_reg + pixel_columna;
-    acumY_reg <= acumY_reg + pixel_fila;
-  end
-end*/
-
 
 assign led = led_reg;
 assign debug = debug_reg;
 assign sum_signal = sum_reg;
-/************************************************************************************
-**********************************CONTADOR DE FILAS**********************************
-*************************************************************************************
-INPUT:
-  VSYNC(cuando cambia la imagen)
-  HREF(señal que nos dice cuando se cambian las filas, debe haber 480)
-  CLK(señal de reloj de la cuál parten las demás por eso nos guiaremos por ella)
-OUTPUT:
-  pixel_fila. Por aquí se mostrara siempre el número de fila
-BEHAVIOUR:
-  Solo comenzará cuando el protocolo i2c haya terminado, pues sino no será efectivo el contador.
-  Maquina de estados, no hay otra manera de hacer esto.
-  La señal de sensibilidad será la subida de la señal de reloj, ya que todas se basan en esta.
-ESTADOS:
-  VSYNC1: en este estado se mantendrá mientras el bus de VSYNC sea 1, que es lo que avisa de este estado
-          Aquí, el contador de filas se reseteará a 0, pues hay una nueva imagen y se pasará al siguiente estado
-          donde se empezará el contador de filas.
-  HREF_HIGH_1: en este estado se mantendrá hasta que HREF sea 1, es decir, se está iniciando una nueva fila.
-             Hay que tener cuidado porque el la cuenta solo se puede hacer una vez, por eso que haya un 1 y un
-             2
-  HREF_HIGH_2: ya ha sumado la cuenta, ahora se mantendrá en este estado hasta que pase a la segunda fila y no
-              este en alta.
-  HREF_LOW: ahora, esta a low, hay que esperar hasta que vuelva estar a HIGH para que pase a HREF_HIGH_1.
-            Especial cuidado ya que llega un momento en el que lo que se pone a 1 es VSYNC.
-/*************************************************************************************/
 
-localparam VSYNC1 = 2'd0;
-localparam HREF_HIGH_1 = 2'd1;
-localparam HREF_HIGH_2 = 2'd2;
-localparam HREF_LOW = 2'd3;
+/************************************************************************************
+*************************************************************************************
+**********************************CONTADOR DE FILAS**********************************
+*************************************************************************************.
+/*************************************************************************************/
 reg [8:0] pixel_fila_reg = 9'd0;
 reg debug_reg = 1'b0;
+reg HREF_pulse_high;
+reg VSYNC_1xdelay;
+reg HREF_1xdelay;
+reg VSYNC_constant_high;
+reg VSYNC_constant_low;
 
-reg [1:0] state = VSYNC1;
+/**************PULSES DELAY TO RECOGNIZE LEVEL'S CHANGES***************************/
+always @(posedge CLK)
+begin
+  VSYNC_1xdelay <= VSYNC;
+end
 
 always @(posedge CLK)
 begin
-  case(state)
+  HREF_1xdelay <= HREF;
+end
+/**************************************************************************/
+assign VSYNC_constant_high = ( VSYNC == 1 and VSYNC_1xdelay == 1) ? 1:0;
+assign VSYNC_constant_low = ( VSYNC == 0 and VSYNC_1xdelay == 0) ? 1:0;
+assign HREF_pulse_high = ( HREF == 1 and HREF_1xdelay == 0) ? 1:0;
+/**************************************************************************/
+always @(posedge CLK)
+begin
 
-    VSYNC1:
-      if(start == 1'b1 && VSYNC == 1'b1)
-        begin
-          pixel_fila_reg <= 9'd0;
-          state <= HREF_HIGH_1;
-          debug_reg <= !debug_reg;
-        end
-      else
-        begin
-          state <= VSYNC1;
-        end
-
-    HREF_HIGH_1:
-      if(HREF == 1'b1)
-        begin
-          pixel_fila_reg <= pixel_fila_reg + 9'd1;
-          state <= HREF_HIGH_2;
-        end
-      else
-        begin
-          state <= HREF_HIGH_1;
-        end
-
-    HREF_HIGH_2:
-      if(HREF == 1'b1)
-        begin
-          state <= HREF_HIGH_2;
-        end
-      else
-        begin
-          state <= HREF_LOW;
-        end
-
-    HREF_LOW:
-      if(HREF == 1'b0 && VSYNC == 1'b0)
-        begin
-          state<= HREF_LOW;
-        end
-      else if(HREF == 1'b0 && VSYNC == 1'b1)
-        begin
-          state<= VSYNC1;
-        end
-      else if(HREF == 1'b1 && VSYNC == 1'b0)
-        begin
-          state<= HREF_HIGH_1;
-        end
-  endcase
+  if ( VSYNC_constant_low and START)
+    begin
+      if( HREF_pulse_high )
+      begin
+        pixel_fila_reg <= pixel_fila_reg + 9'd1;
+      end
+    end
+  else if ( VSYNC_pulse_high )
+    begin
+      pixel_fila_reg <= 9'd0;
+    end
 end
 
 assign pixel_fila = pixel_fila_reg;
 assign debug = debug_reg;
 /************************************************************************************
+*************************************************************************************
 **********************************CONTADOR DE COLUMNAS*******************************
+*************************************************************************************
+*************************************************************************************
 *************************************************************************************/
-
-localparam BYTE1_START = 2'd0;
-localparam BYTE1 = 2'd1;
-localparam BYTE2 = 2'd2;
 reg [9:0] pixel_columna_reg = 10'd0;
 reg debug_reg = 1'b0;
-
-reg [1:0] state = BYTE1_START;
-
-always @(posedge PXCLK)
+reg PXCLK_1xdelay;
+reg PXCLK_pulse_high;
+reg HSYNC_constant_high;
+reg HSYNC_constant_low;
+localparam BYTE1 = 1'b0;
+localparam BYTE2 = 1'b1;
+reg state = BYTE1;
+/**************PULSES DELAY TO RECOGNIZE LEVEL'S CHANGES***************************/
+always @(posedge CLK)
 begin
-    if( (HREF === 1'b1) && (VSYNC === 1'b0) && (start ===1'b1))
-    begin
-      case(state)
-        BYTE1_START:
-        begin
-          pixel_columna_reg <= 10'd0;
-          state <=BYTE2;
-        end
-        BYTE1:
-        begin
-          state <= BYTE2;
-        end
-        BYTE2:
-        begin
-          pixel_columna_reg <= pixel_columna_reg + 10'd1;
-          state <= BYTE1;
-          debug_reg <= !debug_reg;
-        end
-      endcase
-    end
-    else begin
-         pixel_columna_reg <= 10'd0;
-    end
+  VSYNC_1xdelay <= VSYNC;
+end
+always @(posedge CLK)
+begin
+  HREF_1xdelay <= HREF;
+end
+always @(posedge CLK)
+begin
+  PXCLK_1xdelay <= PXCLK;
+end
+/**************************************************************************/
+assign PXCLK_pulse_high = ( PXCLK_1xdelay == 0 and PXCLK == 1) ? 1:0;
+assign HSYNC_constant_high = ( HSYNC == 1 and HSYNC_1xdelay == 1) ? 1:0;
+assign HSYNC_constant_low = ( HSYNC == 0 and HSYNC_1xdelay == 0) ? 1:0;
+/**************************************************************************/
+
+always @(posedge CLK)
+begin
+  if ( START and PXCLK_pulse_high and HSYNC_constant_high )
+  begin
+    case ( state )
+      BYTE1: state <= BYTE2;
+
+      BYTE2:
+      begin
+        pixel_columna_reg <= pixel_columna_reg + 10'd1;
+        state <= BYTE1;
+      end
+     endcase
+  end
+  else if ( HSYNC_constant_low )
+  begin
+    pixel_columna_reg <= 10'd0;
+    state <= BYTE1;
+  end
 end
 
 assign pixel_columna = pixel_columna_reg;
