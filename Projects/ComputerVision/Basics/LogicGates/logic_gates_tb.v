@@ -1,3 +1,5 @@
+//simulated with Icarus verilog 0.9.7
+
 module logic_gates_tb;
   	reg A,B;
   	wire O;
@@ -14,7 +16,7 @@ module logic_gates_tb;
  
     // Dump waves
     $dumpfile("dump.vcd");
-    $dumpvars(1, test_basic_op);
+    $dumpvars(1, logic_gates_tb);
       
       
      	assign A=0;
