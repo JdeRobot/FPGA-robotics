@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<DeviceUsageSummary rev="7">
+<DesignStatistics TimeStamp="Tue Mar 26 20:21:05 2019"><group name="NetStatistics">
+<item name="NumNets_Active" rev="4">
+<attrib name="value" value="6"/></item>
+<item name="NumNets_Vcc" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="NumNodesOfType_Active_CLKPIN" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="NumNodesOfType_Active_CNTRLPIN" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="NumNodesOfType_Active_DOUBLE" rev="4">
+<attrib name="value" value="3"/></item>
+<item name="NumNodesOfType_Active_DUMMY" rev="4">
+<attrib name="value" value="2"/></item>
+<item name="NumNodesOfType_Active_DUMMYESC" rev="4">
+<attrib name="value" value="2"/></item>
+<item name="NumNodesOfType_Active_GLOBAL" rev="4">
+<attrib name="value" value="5"/></item>
+<item name="NumNodesOfType_Active_INPUT" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="NumNodesOfType_Active_IOBOUTPUT" rev="4">
+<attrib name="value" value="2"/></item>
+<item name="NumNodesOfType_Active_OUTPUT" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="NumNodesOfType_Vcc_CNTRLPIN" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="NumNodesOfType_Vcc_INPUT" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="NumNodesOfType_Vcc_VCCOUT" rev="4">
+<attrib name="value" value="2"/></item>
+</group>
+<group name="SiteStatistics">
+<item name="IBUF-DIFFM" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="IBUF-DIFFSI" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="IOB-DIFFS" rev="4">
+<attrib name="value" value="1"/></item>
+</group>
+<group name="MiscellaneousStatistics">
+<item name="AGG_BONDED_IO" rev="7">
+<attrib name="value" value="24"/></item>
+<item name="AGG_IO" rev="7">
+<attrib name="value" value="24"/></item>
+<item name="AGG_SLICE" rev="7">
+<attrib name="value" value="27"/></item>
+<item name="NUM_4_INPUT_LUT" rev="7">
+<attrib name="value" value="43"/></item>
+<item name="NUM_BONDED_IBUF" rev="7">
+<attrib name="value" value="4"/></item>
+<item name="NUM_BONDED_IOB" rev="7">
+<attrib name="value" value="20"/></item>
+<item name="NUM_BUFGMUX" rev="7">
+<attrib name="value" value="1"/></item>
+<item name="NUM_CYMUX" rev="7">
+<attrib name="value" value="17"/></item>
+<item name="NUM_LUT_RT" rev="7">
+<attrib name="value" value="17"/></item>
+<item name="NUM_SLICEL" rev="7">
+<attrib name="value" value="27"/></item>
+<item name="NUM_SLICE_FF" rev="7">
+<attrib name="value" value="24"/></item>
+<item name="NUM_XOR" rev="7">
+<attrib name="value" value="19"/></item>
+</group>
+</DesignStatistics>
+<ReportConfigData TimeStamp="Mon Mar 25 10:42:00 2019"><group name="IBUF_PAD">
+<item name="IOATTRBOX" rev="4">
+<attrib name="LVCMOS25" value="2"/></item>
+</group>
+<group name="IOB_OFF1">
+<item name="CK" rev="4">
+<attrib name="CK" value="1"/><attrib name="CK_INV" value="0"/></item>
+<item name="D" rev="4">
+<attrib name="D" value="1"/><attrib name="D_INV" value="0"/></item>
+<item name="LATCH_OR_FF" rev="4">
+<attrib name="FF" value="1"/></item>
+<item name="OFF1_INIT_ATTR" rev="4">
+<attrib name="INIT0" value="1"/></item>
+<item name="OFF1_SR_ATTR" rev="4">
+<attrib name="SRLOW" value="1"/></item>
+<item name="OFFATTRBOX" rev="4">
+<attrib name="SYNC" value="1"/></item>
+<item name="SR" rev="4">
+<attrib name="SR" value="0"/><attrib name="SR_INV" value="1"/></item>
+</group>
+<group name="IOB_OUTBUF">
+<item name="IN" rev="4">
+<attrib name="IN_INV" value="0"/><attrib name="IN" value="1"/></item>
+</group>
+<group name="BUFGMUX_GCLKMUX">
+<item name="DISABLE_ATTR" rev="4">
+<attrib name="LOW" value="1"/></item>
+<item name="S" rev="4">
+<attrib name="S_INV" value="1"/><attrib name="S" value="0"/></item>
+</group>
+<group name="IOB_PAD">
+<item name="DRIVEATTRBOX" rev="4">
+<attrib name="12" value="1"/></item>
+<item name="IOATTRBOX" rev="4">
+<attrib name="LVCMOS25" value="1"/></item>
+<item name="SLEW" rev="4">
+<attrib name="SLOW" value="1"/></item>
+</group>
+<group name="IOB">
+<item name="O1" rev="4">
+<attrib name="O1_INV" value="0"/><attrib name="O1" value="1"/></item>
+<item name="OTCLK1" rev="4">
+<attrib name="OTCLK1_INV" value="0"/><attrib name="OTCLK1" value="1"/></item>
+<item name="SR" rev="4">
+<attrib name="SR" value="0"/><attrib name="SR_INV" value="1"/></item>
+</group>
+<group name="BUFGMUX">
+<item name="S" rev="4">
+<attrib name="S_INV" value="1"/><attrib name="S" value="0"/></item>
+</group>
+</ReportConfigData>
+<ReportPinData TimeStamp="Mon Mar 25 10:42:00 2019"><group name="IBUF_PAD">
+<item name="PAD" rev="4">
+<attrib name="value" value="2"/></item>
+</group>
+<group name="IBUF_INBUF">
+<item name="IN" rev="4">
+<attrib name="value" value="2"/></item>
+<item name="OUT" rev="4">
+<attrib name="value" value="2"/></item>
+</group>
+<group name="BUFGMUX_GCLK_BUFFER">
+<item name="IN" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="OUT" rev="4">
+<attrib name="value" value="1"/></item>
+</group>
+<group name="IOB_OFF1">
+<item name="CK" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="D" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="Q" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="SR" rev="4">
+<attrib name="value" value="1"/></item>
+</group>
+<group name="IOB_OUTBUF">
+<item name="IN" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="OUT" rev="4">
+<attrib name="value" value="1"/></item>
+</group>
+<group name="IBUF">
+<item name="I" rev="4">
+<attrib name="value" value="2"/></item>
+<item name="PAD" rev="4">
+<attrib name="value" value="2"/></item>
+</group>
+<group name="BUFGMUX_GCLKMUX">
+<item name="I0" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="OUT" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="S" rev="4">
+<attrib name="value" value="1"/></item>
+</group>
+<group name="IOB_PAD">
+<item name="PAD" rev="4">
+<attrib name="value" value="1"/></item>
+</group>
+<group name="IOB">
+<item name="O1" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="OTCLK1" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="PAD" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="SR" rev="4">
+<attrib name="value" value="1"/></item>
+</group>
+<group name="BUFGMUX">
+<item name="I0" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="O" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="S" rev="4">
+<attrib name="value" value="1"/></item>
+</group>
+</ReportPinData>
+<CmdHistory>
+</CmdHistory>
+</DeviceUsageSummary>

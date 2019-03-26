@@ -1,0 +1,221 @@
+Release 14.4 par P.49d (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+JORDONEZ10::  Tue Mar 26 20:21:10 2019
+
+par -w -intstyle ise -ol high -t 1 camera_map.ncd camera.ncd camera.pcf 
+
+
+Constraints file: camera.pcf.
+Loading device for application Rf_Device from file '3s500e.nph' in environment C:\Xilinx\14.4\ISE_DS\ISE\.
+   "camera" is an NCD, version 3.2, device xc3s500e, package vq100, speed -5
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.
+INFO:Security:52 - The LM_LICENSE_FILE environment variable is set to '2100@senna.ugr.es'.
+INFO:Security:54 - 'xc3s500e' is a WebPack part.
+WARNING:Security:43 - No license file was found in the standard Xilinx license directory.
+WARNING:Security:44 - Since no license file was found,
+       please run the Xilinx License Configuration Manager
+       (xlcm or "Manage Xilinx Licenses")
+       to assist in obtaining a license.
+WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue
+to function, but you no longer qualify for Xilinx software updates or new releases.
+
+----------------------------------------------------------------------
+
+Initializing temperature to 85.000 Celsius. (default - Range: -40.000 to 100.000 Celsius)
+Initializing voltage to 1.140 Volts. (default - Range: 1.140 to 1.320 Volts)
+
+INFO:Par:282 - No user timing constraints were detected or you have set the option to ignore timing constraints ("par
+   -x"). Place and Route will run in "Performance Evaluation Mode" to automatically improve the performance of all
+   internal clocks in this design. Because there are not defined timing requirements, a timing score will not be
+   reported in the PAR report in this mode. The PAR timing summary will list the performance achieved for each clock.
+   Note: For the fastest runtime, set the effort level to "std".  For best performance, set the effort level to "high".
+
+Device speed data version:  "PRODUCTION 1.27 2012-12-04".
+
+
+Design Summary Report:
+
+ Number of External IOBs                          24 out of 66     36%
+
+   Number of External Input IOBs                  4
+
+      Number of External Input IBUFs              4
+
+   Number of External Output IOBs                20
+
+      Number of External Output IOBs             20
+
+   Number of External Bidir IOBs                  0
+
+
+   Number of BUFGMUXs                        1 out of 24      4%
+   Number of Slices                         27 out of 4656    1%
+      Number of SLICEMs                      0 out of 2328    0%
+
+
+
+Overall effort level (-ol):   High 
+Placer effort level (-pl):    High 
+Placer cost table entry (-t): 1
+Router effort level (-rl):    High 
+
+Starting initial Timing Analysis.  REAL time: 6 secs 
+Finished initial Timing Analysis.  REAL time: 6 secs 
+
+
+Starting Placer
+Total REAL time at the beginning of Placer: 6 secs 
+Total CPU  time at the beginning of Placer: 2 secs 
+
+Phase 1.1  Initial Placement Analysis
+Phase 1.1  Initial Placement Analysis (Checksum:533) REAL time: 6 secs 
+
+Phase 2.7  Design Feasibility Check
+Phase 2.7  Design Feasibility Check (Checksum:533) REAL time: 6 secs 
+
+Phase 3.31  Local Placement Optimization
+Phase 3.31  Local Placement Optimization (Checksum:533) REAL time: 6 secs 
+
+Phase 4.2  Initial Clock and IO Placement
+........
+Phase 4.2  Initial Clock and IO Placement (Checksum:3e95fccd) REAL time: 6 secs 
+
+Phase 5.30  Global Clock Region Assignment
+Phase 5.30  Global Clock Region Assignment (Checksum:3e95fccd) REAL time: 6 secs 
+
+Phase 6.36  Local Placement Optimization
+Phase 6.36  Local Placement Optimization (Checksum:3e95fccd) REAL time: 6 secs 
+
+Phase 7.3  Local Placement Optimization
+........
+Phase 7.3  Local Placement Optimization (Checksum:b84476) REAL time: 7 secs 
+
+Phase 8.5  Local Placement Optimization
+Phase 8.5  Local Placement Optimization (Checksum:b84476) REAL time: 7 secs 
+
+Phase 9.8  Global Placement
+...
+....
+Phase 9.8  Global Placement (Checksum:d7c2535) REAL time: 10 secs 
+
+Phase 10.5  Local Placement Optimization
+Phase 10.5  Local Placement Optimization (Checksum:d7c2535) REAL time: 10 secs 
+
+Phase 11.18  Placement Optimization
+Phase 11.18  Placement Optimization (Checksum:eb3436e9) REAL time: 10 secs 
+
+Phase 12.5  Local Placement Optimization
+Phase 12.5  Local Placement Optimization (Checksum:eb3436e9) REAL time: 10 secs 
+
+Total REAL time to Placer completion: 10 secs 
+Total CPU  time to Placer completion: 5 secs 
+Writing design to file camera.ncd
+
+
+
+Starting Router
+
+
+Phase  1  : 147 unrouted;      REAL time: 18 secs 
+
+Phase  2  : 131 unrouted;      REAL time: 18 secs 
+
+Phase  3  : 12 unrouted;      REAL time: 18 secs 
+
+Phase  4  : 14 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
+
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
+
+Updating file: camera.ncd with current fully routed design.
+
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
+
+Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+
+Updating file: camera.ncd with current fully routed design.
+
+Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+
+Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+
+Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+
+Phase 11  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+
+Phase 12  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+
+Total REAL time to Router completion: 20 secs 
+Total CPU time to Router completion: 13 secs 
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|           CLK_BUFGP | BUFGMUX_X2Y10| No   |   15 |  0.027     |  0.163      |
++---------------------+--------------+------+------+------------+-------------+
+
+* Net Skew is the difference between the minimum and maximum routing
+only delays for the net. Note this is different from Clock Skew which
+is reported in TRCE timing report. Clock Skew is the difference between
+the minimum and maximum path delays which includes logic delays.
+
+* The fanout is the number of component pins not the individual BEL loads,
+for example SLICE loads not FF loads.
+
+Timing Score: 0 (Setup: 0, Hold: 0)
+
+Asterisk (*) preceding a constraint indicates it was not met.
+   This may be due to a setup or hold violation.
+
+----------------------------------------------------------------------------------------------------------
+  Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
+                                            |             |    Slack   | Achievable | Errors |    Score   
+----------------------------------------------------------------------------------------------------------
+  Autotimespec constraint for clock net CLK | SETUP       |         N/A|     3.847ns|     N/A|           0
+  _BUFGP                                    | HOLD        |     0.892ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+
+
+All constraints were met.
+INFO:Timing:2761 - N/A entries in the Constraints List may indicate that the 
+   constraint is not analyzed due to the following: No paths covered by this 
+   constraint; Other constraints intersect with this constraint; or This 
+   constraint was disabled by a Path Tracing Control. Please run the Timespec 
+   Interaction Report (TSI) via command line (trce tsi) or Timing Analyzer GUI.
+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 21 secs 
+Total CPU time to PAR completion: 13 secs 
+
+Peak Memory Usage:  4512 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 0
+Number of info messages: 1
+
+Writing design to file camera.ncd
+
+
+
+PAR done!

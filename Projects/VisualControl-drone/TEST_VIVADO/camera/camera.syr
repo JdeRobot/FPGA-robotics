@@ -1,0 +1,429 @@
+Release 14.4 - xst P.49d (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.40 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.40 secs
+ 
+--> Reading design: camera.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "camera.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "camera"
+Output Format                      : NGC
+Target Device                      : xc3s500e-5-vq100
+
+---- Source Options
+Top Module Name                    : camera
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "counter_columns.v" in library work
+Compiling verilog file "camera.v" in library work
+Module <counter_columns> compiled
+Module <camera> compiled
+No errors in compilation
+Analysis of file <"camera.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <camera> in library <work>.
+
+Analyzing hierarchy for module <counter_rows> in library <work>.
+
+Analyzing hierarchy for module <counter_columns> in library <work> with parameters.
+	BYTE1 = "0"
+	BYTE2 = "1"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <camera>.
+Module <camera> is correct for synthesis.
+ 
+Analyzing module <counter_rows> in library <work>.
+Module <counter_rows> is correct for synthesis.
+ 
+Analyzing module <counter_columns> in library <work>.
+	BYTE1 = 1'b0
+	BYTE2 = 1'b1
+Module <counter_columns> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <counter_rows>.
+    Related source file is "counter_rows.v".
+WARNING:Xst:647 - Input <PCLK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:653 - Signal <VSYNC_pulse_high> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:646 - Signal <VSYNC_constant_high> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <debug_reg>.
+    Found 1-bit register for signal <HREF_1xdelay>.
+    Found 9-bit register for signal <pixel_fila_reg>.
+    Found 9-bit adder for signal <pixel_fila_reg$addsub0000> created at line 46.
+    Found 1-bit register for signal <VSYNC_1xdelay>.
+    Summary:
+	inferred  12 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <counter_rows> synthesized.
+
+
+Synthesizing Unit <counter_columns>.
+    Related source file is "counter_columns.v".
+WARNING:Xst:1780 - Signal <debug_reg> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <VSYNC_1xdelay> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <PXCLK_pulse_high> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <PXCLK_1xdelay> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <HREF_1xdelay>.
+    Found 1-bit register for signal <PCLK_1xdelay>.
+    Found 10-bit register for signal <pixel_columna_reg>.
+    Found 10-bit adder for signal <pixel_columna_reg$addsub0000> created at line 55.
+    Found 1-bit register for signal <state>.
+    Summary:
+	inferred  13 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <counter_columns> synthesized.
+
+
+Synthesizing Unit <camera>.
+    Related source file is "camera.v".
+WARNING:Xst:647 - Input <START_I2C> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:653 - Signal <START> is used but never assigned. This sourceless signal will be automatically connected to value 1.
+Unit <camera> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 2
+ 10-bit adder                                          : 1
+ 9-bit adder                                           : 1
+# Registers                                            : 8
+ 1-bit register                                        : 6
+ 10-bit register                                       : 1
+ 9-bit register                                        : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 2
+ 10-bit adder                                          : 1
+ 9-bit adder                                           : 1
+# Registers                                            : 25
+ Flip-Flops                                            : 25
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <camera> ...
+
+Optimizing unit <counter_rows> ...
+
+Optimizing unit <counter_columns> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+INFO:Xst:2261 - The FF/Latch <counter_rows_0/HREF_1xdelay> in Unit <camera> is equivalent to the following FF/Latch, which will be removed : <counter_columns_0/HREF_1xdelay> 
+Found area constraint ratio of 100 (+ 5) on block camera, actual ratio is 0.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 24
+ Flip-Flops                                            : 24
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : camera.ngr
+Top Level Output File Name         : camera
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 25
+
+Cell Usage :
+# BELS                             : 82
+#      GND                         : 1
+#      INV                         : 3
+#      LUT1                        : 17
+#      LUT2                        : 11
+#      LUT3                        : 9
+#      LUT4                        : 3
+#      LUT4_D                      : 1
+#      MUXCY                       : 17
+#      VCC                         : 1
+#      XORCY                       : 19
+# FlipFlops/Latches                : 24
+#      FD                          : 3
+#      FDE                         : 21
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 23
+#      IBUF                        : 3
+#      OBUF                        : 20
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s500evq100-5 
+
+ Number of Slices:                       25  out of   4656     0%  
+ Number of Slice Flip Flops:             24  out of   9312     0%  
+ Number of 4 input LUTs:                 44  out of   9312     0%  
+ Number of IOs:                          25
+ Number of bonded IOBs:                  24  out of     66    36%  
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK                                | BUFGP                  | 24    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 4.427ns (Maximum Frequency: 225.864MHz)
+   Minimum input arrival time before clock: 4.356ns
+   Maximum output required time after clock: 4.063ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK'
+  Clock period: 4.427ns (frequency: 225.864MHz)
+  Total number of paths / destination ports: 195 / 42
+-------------------------------------------------------------------------
+Delay:               4.427ns (Levels of Logic = 11)
+  Source:            counter_columns_0/pixel_columna_reg_1 (FF)
+  Destination:       counter_columns_0/pixel_columna_reg_9 (FF)
+  Source Clock:      CLK rising
+  Destination Clock: CLK rising
+
+  Data Path: counter_columns_0/pixel_columna_reg_1 to counter_columns_0/pixel_columna_reg_9
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              2   0.514   0.532  counter_columns_0/pixel_columna_reg_1 (counter_columns_0/pixel_columna_reg_1)
+     LUT1:I0->O            1   0.612   0.000  counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<1>_rt (counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<1>_rt)
+     MUXCY:S->O            1   0.404   0.000  counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<1> (counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.052   0.000  counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<2> (counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.052   0.000  counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<3> (counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<3>)
+     MUXCY:CI->O           1   0.052   0.000  counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<4> (counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.052   0.000  counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<5> (counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.052   0.000  counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<6> (counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.052   0.000  counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<7> (counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<7>)
+     MUXCY:CI->O           0   0.052   0.000  counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<8> (counter_columns_0/Madd_pixel_columna_reg_addsub0000_cy<8>)
+     XORCY:CI->O           1   0.699   0.426  counter_columns_0/Madd_pixel_columna_reg_addsub0000_xor<9> (counter_columns_0/pixel_columna_reg_addsub0000<9>)
+     LUT2:I1->O            1   0.612   0.000  counter_columns_0/pixel_columna_reg_mux0000<9>1 (counter_columns_0/pixel_columna_reg_mux0000<9>)
+     FDE:D                     0.268          counter_columns_0/pixel_columna_reg_9
+    ----------------------------------------
+    Total                      4.427ns (3.470ns logic, 0.958ns route)
+                                       (78.4% logic, 21.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
+  Total number of paths / destination ports: 86 / 44
+-------------------------------------------------------------------------
+Offset:              4.356ns (Levels of Logic = 3)
+  Source:            HREF (PAD)
+  Destination:       counter_columns_0/pixel_columna_reg_9 (FF)
+  Destination Clock: CLK rising
+
+  Data Path: HREF to counter_columns_0/pixel_columna_reg_9
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             5   1.106   0.690  HREF_IBUF (HREF_IBUF)
+     LUT4_D:I0->LO         1   0.612   0.103  counter_columns_0/pixel_columna_reg_not000111 (N2)
+     LUT4:I3->O           10   0.612   0.750  counter_columns_0/pixel_columna_reg_not00011 (counter_columns_0/pixel_columna_reg_not0001)
+     FDE:CE                    0.483          counter_columns_0/pixel_columna_reg_0
+    ----------------------------------------
+    Total                      4.356ns (2.813ns logic, 1.543ns route)
+                                       (64.6% logic, 35.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
+  Total number of paths / destination ports: 20 / 20
+-------------------------------------------------------------------------
+Offset:              4.063ns (Levels of Logic = 1)
+  Source:            counter_rows_0/debug_reg (FF)
+  Destination:       DEBUG (PAD)
+  Source Clock:      CLK rising
+
+  Data Path: counter_rows_0/debug_reg to DEBUG
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              2   0.514   0.380  counter_rows_0/debug_reg (counter_rows_0/debug_reg)
+     OBUF:I->O                 3.169          DEBUG_OBUF (DEBUG)
+    ----------------------------------------
+    Total                      4.063ns (3.683ns logic, 0.380ns route)
+                                       (90.6% logic, 9.4% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 9.00 secs
+Total CPU time to Xst completion: 9.28 secs
+ 
+--> 
+
+Total memory usage is 4553372 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    9 (   0 filtered)
+Number of infos    :    1 (   0 filtered)
+

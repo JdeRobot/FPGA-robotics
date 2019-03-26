@@ -1,0 +1,3 @@
+verilog isim_temp "start.v"
+verilog isim_temp "camera.v"
+verilog isim_temp "C:/Xilinx/14.4/ISE_DS/ISE//verilog/src/glbl.v"

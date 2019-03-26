@@ -1,0 +1,131 @@
+#Release 14.4 - par P.49d (nt64)
+#Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+#Tue Mar 26 20:21:31 2019
+
+#
+## NOTE: This file is designed to be imported into a spreadsheet program
+# such as Microsoft Excel for viewing, printing and sorting. The |
+# character is used as the data field separator. This file is also designed
+# to support parsing.
+#
+#INPUT FILE:       camera_map.ncd
+#OUTPUT FILE:      camera_pad.csv
+#PART TYPE:        xc3s500e
+#SPEED GRADE:      -5
+#PACKAGE:          vq100
+#
+# Pinout by Pin Number:
+# 
+# -----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,
+Pin Number,Signal Name,Pin Usage,Pin Name,Direction,IO Standard,IO Bank Number,Drive (mA),Slew Rate,Termination,IOB Delay,Voltage,Constraint,IO Register,Signal Integrity,
+P1,,,PROG_B,,,,,,,,,,,,
+P2,DEBUG,IOB,IO_L01P_3,OUTPUT,LVCMOS25*,3,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P3,,DIFFS,IO_L01N_3,UNUSED,,3,,,,,,,,,
+P4,PCLK,IBUF,IO_L02P_3,INPUT,LVCMOS25*,3,,,,NONE,,UNLOCATED,NO,NONE,
+P5,HREF,IBUF,IO_L02N_3/VREF_3,INPUT,LVCMOS25*,3,,,,NONE,,UNLOCATED,NO,NONE,
+P6,,,VCCINT,,,,,,,,1.2,,,,
+P7,,,GND,,,,,,,,,,,,
+P8,,,VCCO_3,,,3,,,,,2.50,,,,
+P9,PIXEL_COLUMN<6>,IOB,IO_L03P_3/LHCLK0,OUTPUT,LVCMOS25*,3,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P10,PIXEL_COLUMN<4>,IOB,IO_L03N_3/LHCLK1,OUTPUT,LVCMOS25*,3,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P11,PIXEL_COLUMN<2>,IOB,IO_L04P_3/LHCLK2,OUTPUT,LVCMOS25*,3,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P12,PIXEL_COLUMN<3>,IOB,IO_L04N_3/LHCLK3/IRDY2,OUTPUT,LVCMOS25*,3,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P13,,IBUF,IP,UNUSED,,3,,,,,,,,,
+P14,,,GND,,,,,,,,,,,,
+P15,PIXEL_COLUMN<1>,IOB,IO_L05P_3/LHCLK4/TRDY2,OUTPUT,LVCMOS25*,3,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P16,PIXEL_COLUMN<5>,IOB,IO_L05N_3/LHCLK5,OUTPUT,LVCMOS25*,3,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P17,PIXEL_COLUMN<0>,IOB,IO_L06P_3/LHCLK6,OUTPUT,LVCMOS25*,3,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P18,PIXEL_COLUMN<7>,IOB,IO_L06N_3/LHCLK7,OUTPUT,LVCMOS25*,3,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P19,,,GND,,,,,,,,,,,,
+P20,,,VCCO_3,,,3,,,,,2.50,,,,
+P21,,,VCCAUX,,,,,,,,2.5,,,,
+P22,PIXEL_COLUMN<8>,IOB,IO_L07P_3,OUTPUT,LVCMOS25*,3,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P23,PIXEL_COLUMN<9>,IOB,IO_L07N_3,OUTPUT,LVCMOS25*,3,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P24,,DIFFM,IO_L01P_2/CSO_B,UNUSED,,2,,,,,,,,,
+P25,,DIFFS,IO_L01N_2/INIT_B,UNUSED,,2,,,,,,,,,
+P26,,DIFFM,IO_L02P_2/DOUT/BUSY,UNUSED,,2,,,,,,,,,
+P27,,DIFFS,IO_L02N_2/MOSI/CSI_B,UNUSED,,2,,,,,,,,,
+P28,,,VCCINT,,,,,,,,1.2,,,,
+P29,,,GND,,,,,,,,,,,,
+P30,,DIFFSI,IP/VREF_2,UNUSED,,2,,,,,,,,,
+P31,,,VCCO_2,,,2,,,,,any******,,,,
+P32,,DIFFM,IO_L03P_2/D7/GCLK12,UNUSED,,2,,,,,,,,,
+P33,,DIFFS,IO_L03N_2/D6/GCLK13,UNUSED,,2,,,,,,,,,
+P34,,IOB,IO/D5,UNUSED,,2,,,,,,,,,
+P35,,DIFFM,IO_L04P_2/D4/GCLK14,UNUSED,,2,,,,,,,,,
+P36,,DIFFS,IO_L04N_2/D3/GCLK15,UNUSED,,2,,,,,,,,,
+P37,,,GND,,,,,,,,,,,,
+P38,,DIFFMI,IP_L05P_2/RDWR_B/GCLK0,UNUSED,,2,,,,,,,,,
+P39,,DIFFSI,IP_L05N_2/M2/GCLK1,UNUSED,,2,,,,,,,,,
+P40,,DIFFM,IO_L06P_2/D2/GCLK2,UNUSED,,2,,,,,,,,,
+P41,,DIFFS,IO_L06N_2/D1/GCLK3,UNUSED,,2,,,,,,,,,
+P42,,IOB,IO/M1,UNUSED,,2,,,,,,,,,
+P43,,DIFFM,IO_L07P_2/M0,UNUSED,,2,,,,,,,,,
+P44,,DIFFS,IO_L07N_2/DIN/D0,UNUSED,,2,,,,,,,,,
+P45,,,VCCO_2,,,2,,,,,any******,,,,
+P46,,,VCCAUX,,,,,,,,2.5,,,,
+P47,,DIFFM,IO_L08P_2/VS2,UNUSED,,2,,,,,,,,,
+P48,,DIFFS,IO_L08N_2/VS1,UNUSED,,2,,,,,,,,,
+P49,,DIFFM,IO_L09P_2/VS0,UNUSED,,2,,,,,,,,,
+P50,,DIFFS,IO_L09N_2/CCLK,UNUSED,,2,,,,,,,,,
+P51,,,DONE,,,,,,,,,,,,
+P52,,,GND,,,,,,,,,,,,
+P53,,DIFFM,IO_L01P_1,UNUSED,,1,,,,,,,,,
+P54,,DIFFS,IO_L01N_1,UNUSED,,1,,,,,,,,,
+P55,,,VCCO_1,,,1,,,,,any******,,,,
+P56,,,VCCINT,,,,,,,,1.2,,,,
+P57,,DIFFM,IO_L02P_1,UNUSED,,1,,,,,,,,,
+P58,,DIFFS,IO_L02N_1,UNUSED,,1,,,,,,,,,
+P59,,,GND,,,,,,,,,,,,
+P60,,DIFFM,IO_L03P_1/RHCLK0,UNUSED,,1,,,,,,,,,
+P61,,DIFFS,IO_L03N_1/RHCLK1,UNUSED,,1,,,,,,,,,
+P62,,DIFFM,IO_L04P_1/RHCLK2,UNUSED,,1,,,,,,,,,
+P63,,DIFFS,IO_L04N_1/RHCLK3/TRDY1,UNUSED,,1,,,,,,,,,
+P64,,,GND,,,,,,,,,,,,
+P65,,DIFFM,IO_L05P_1/RHCLK4/IRDY1,UNUSED,,1,,,,,,,,,
+P66,,DIFFS,IO_L05N_1/RHCLK5,UNUSED,,1,,,,,,,,,
+P67,,DIFFM,IO_L06P_1/RHCLK6,UNUSED,,1,,,,,,,,,
+P68,,DIFFS,IO_L06N_1/RHCLK7,UNUSED,,1,,,,,,,,,
+P69,,IBUF,IP/VREF_1,UNUSED,,1,,,,,,,,,
+P70,,DIFFM,IO_L07P_1,UNUSED,,1,,,,,,,,,
+P71,,DIFFS,IO_L07N_1,UNUSED,,1,,,,,,,,,
+P72,,,GND,,,,,,,,,,,,
+P73,,,VCCO_1,,,1,,,,,any******,,,,
+P74,,,VCCAUX,,,,,,,,2.5,,,,
+P75,,,TMS,,,,,,,,,,,,
+P76,,,TDO,,,,,,,,,,,,
+P77,,,TCK,,,,,,,,,,,,
+P78,PIXEL_ROW<0>,IOB,IO_L01P_0,OUTPUT,LVCMOS25*,0,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P79,VSYNC,IBUF,IO_L01N_0,INPUT,LVCMOS25*,0,,,,NONE,,UNLOCATED,NO,NONE,
+P80,,,VCCINT,,,,,,,,1.2,,,,
+P81,,,GND,,,,,,,,,,,,
+P82,,,VCCO_0,,,0,,,,,2.50,,,,
+P83,PIXEL_ROW<1>,IOB,IO_L02P_0/GCLK4,OUTPUT,LVCMOS25*,0,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P84,,DIFFS,IO_L02N_0/GCLK5,UNUSED,,0,,,,,,,,,
+P85,PIXEL_ROW<2>,IOB,IO_L03P_0/GCLK6,OUTPUT,LVCMOS25*,0,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P86,PIXEL_ROW<5>,IOB,IO_L03N_0/GCLK7,OUTPUT,LVCMOS25*,0,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P87,,,GND,,,,,,,,,,,,
+P88,,DIFFMI,IP_L04P_0/GCLK8,UNUSED,,0,,,,,,,,,
+P89,CLK,IBUF,IP_L04N_0/GCLK9,INPUT,LVCMOS25*,0,,,,NONE,,UNLOCATED,NO,NONE,
+P90,PIXEL_ROW<6>,IOB,IO_L05P_0/GCLK10,OUTPUT,LVCMOS25*,0,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P91,PIXEL_ROW<7>,IOB,IO_L05N_0/GCLK11,OUTPUT,LVCMOS25*,0,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P92,PIXEL_ROW<8>,IOB,IO,OUTPUT,LVCMOS25*,0,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P93,,,GND,,,,,,,,,,,,
+P94,PIXEL_ROW<4>,IOB,IO_L06P_0,OUTPUT,LVCMOS25*,0,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P95,PIXEL_ROW<3>,IOB,IO_L06N_0/VREF_0,OUTPUT,LVCMOS25*,0,12,SLOW,NONE**,,,UNLOCATED,NO,NONE,
+P96,,,VCCAUX,,,,,,,,2.5,,,,
+P97,,,VCCO_0,,,0,,,,,2.50,,,,
+P98,,DIFFM,IO_L07P_0,UNUSED,,0,,,,,,,,,
+P99,,DIFFS,IO_L07N_0/HSWAP,UNUSED,,0,,,,,,,,,
+P100,,,TDI,,,,,,,,,,,,
+
+# -----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,-----,
+# 
+#* Default value.
+#** This default Pullup/Pulldown value can be overridden in Bitgen. 
+#****** Special VCCO requirements may apply. Please consult the device 
+#       family datasheet for specific guideline on VCCO requirements. 
+#
+#
+#

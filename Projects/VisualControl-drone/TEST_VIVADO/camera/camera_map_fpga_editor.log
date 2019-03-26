@@ -1,0 +1,17 @@
+#:C0     
+#Xilinx FPGA Editor Command Log File
+#Editor Version:
+#:V   NT M2.1 P.49d
+#Current Working Directory:
+#:D   D:\FPGA-robotics\Projects\VisualControl-drone\TEST_VIVADO\camera
+#Date/Time:
+#:T   Mon Mar 25 10:45:33 2019
+#------------------------------
+	#Reading camera_map.ncd...
+	#Loading device for application Rf_Device from file '3s500e.nph' in environment C:\Xilinx\14.4\ISE_DS\ISE\.
+	#   "camera" is an NCD, version 3.2, device xc3s500e, package vq100, speed -5
+	#Design creation date: 2019.03.25.07.52.41
+	#Building chip graphics...
+	#Loading speed info...
+	#1
+setattr main edit-mode no-logic-changes
