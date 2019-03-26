@@ -37,7 +37,7 @@ endmodule
 /* 
  * RGB RAM Read
  */
-module ram_rgb_write (clk_read, address_read, data_r_R, data_r_G, data_r_B);
+module ram_rgb_read (clk_read, address_read, data_r_R, data_r_G, data_r_B);
   
   parameter DATA_WIDTH = 8; //8 bit 
   parameter ADD_WIDTH = 4;
@@ -69,8 +69,6 @@ module ram_rgb_write (clk_read, address_read, data_r_R, data_r_G, data_r_B);
   end
 
 endmodule
-
-
 
 
 
