@@ -48,12 +48,16 @@ begin
   if ( START && PCLK_pulse_high && HREF_constant_high )
   begin
     case ( state )
-      BYTE1: state <= BYTE2;
-
+      BYTE1:
+      begin
+      state <= BYTE2;
+      debug_reg <= !debug_reg;
+      end
       BYTE2:
       begin
         pixel_columna_reg <= pixel_columna_reg + 10'd1;
         state <= BYTE1;
+        debug_reg <= !debug_reg;
       end
      endcase
   end
@@ -65,7 +69,7 @@ begin
 end
 
 assign PIXEL_COLUMN = pixel_columna_reg;
-//assign debug = debug_reg;
+//assign DEBUG = debug_reg;
 
 
 endmodule

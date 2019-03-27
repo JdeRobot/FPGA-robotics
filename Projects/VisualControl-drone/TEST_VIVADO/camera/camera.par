@@ -1,7 +1,7 @@
 Release 14.4 par P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-JORDONEZ10::  Tue Mar 26 20:21:10 2019
+JORDONEZ10::  Wed Mar 27 13:45:25 2019
 
 par -w -intstyle ise -ol high -t 1 camera_map.ncd camera.ncd camera.pcf 
 
@@ -70,23 +70,23 @@ Total REAL time at the beginning of Placer: 6 secs
 Total CPU  time at the beginning of Placer: 2 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:533) REAL time: 6 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:533) REAL time: 7 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:533) REAL time: 6 secs 
+Phase 2.7  Design Feasibility Check (Checksum:533) REAL time: 7 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:533) REAL time: 6 secs 
+Phase 3.31  Local Placement Optimization (Checksum:533) REAL time: 7 secs 
 
 Phase 4.2  Initial Clock and IO Placement
 ........
-Phase 4.2  Initial Clock and IO Placement (Checksum:3e95fccd) REAL time: 6 secs 
+Phase 4.2  Initial Clock and IO Placement (Checksum:3e95fccd) REAL time: 7 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:3e95fccd) REAL time: 6 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:3e95fccd) REAL time: 7 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:3e95fccd) REAL time: 6 secs 
+Phase 6.36  Local Placement Optimization (Checksum:3e95fccd) REAL time: 7 secs 
 
 Phase 7.3  Local Placement Optimization
 ........
@@ -118,35 +118,35 @@ Writing design to file camera.ncd
 Starting Router
 
 
-Phase  1  : 147 unrouted;      REAL time: 18 secs 
+Phase  1  : 147 unrouted;      REAL time: 16 secs 
 
-Phase  2  : 131 unrouted;      REAL time: 18 secs 
+Phase  2  : 131 unrouted;      REAL time: 16 secs 
 
-Phase  3  : 12 unrouted;      REAL time: 18 secs 
+Phase  3  : 12 unrouted;      REAL time: 16 secs 
 
-Phase  4  : 14 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
+Phase  4  : 14 unrouted; (Par is working to improve performance)     REAL time: 17 secs 
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
-
-Updating file: camera.ncd with current fully routed design.
-
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
-
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 17 secs 
 
 Updating file: camera.ncd with current fully routed design.
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 17 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
 
-Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+Updating file: camera.ncd with current fully routed design.
 
-Phase 11  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
 
-Phase 12  : 0 unrouted; (Par is working to improve performance)     REAL time: 20 secs 
+Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
 
-Total REAL time to Router completion: 20 secs 
+Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
+
+Phase 11  : 0 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
+
+Phase 12  : 0 unrouted; (Par is working to improve performance)     REAL time: 19 secs 
+
+Total REAL time to Router completion: 19 secs 
 Total CPU time to Router completion: 13 secs 
 
 Partition Implementation Status
@@ -202,8 +202,8 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 21 secs 
-Total CPU time to PAR completion: 13 secs 
+Total REAL time to PAR completion: 20 secs 
+Total CPU time to PAR completion: 14 secs 
 
 Peak Memory Usage:  4512 MB
 

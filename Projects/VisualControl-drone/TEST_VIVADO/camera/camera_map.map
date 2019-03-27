@@ -9,7 +9,7 @@ Target Device  : xc3s500e
 Target Package : vq100
 Target Speed   : -5
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Tue Mar 26 20:20:58 2019
+Mapped Date    : Wed Mar 27 13:45:13 2019
 
 vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.
@@ -59,7 +59,7 @@ Logic Distribution:
 Average Fanout of Non-Clock Nets:                2.36
 
 Peak Memory Usage:  4498 MB
-Total REAL time to MAP completion:  6 secs 
+Total REAL time to MAP completion:  7 secs 
 Total CPU time to MAP completion:   2 secs 
 
 NOTES:

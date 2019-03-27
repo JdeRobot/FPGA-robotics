@@ -3,14 +3,14 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.40 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.44 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.40 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.45 secs
  
 --> Reading design: camera.prj
 
@@ -105,8 +105,10 @@ Slice Utilization Ratio Delta      : 5
 *                          HDL Compilation                              *
 =========================================================================
 Compiling verilog file "counter_columns.v" in library work
-Compiling verilog file "camera.v" in library work
+Compiling verilog file "capture_color.v" in library work
 Module <counter_columns> compiled
+Compiling verilog file "camera.v" in library work
+Module <capture_color> compiled
 Module <camera> compiled
 No errors in compilation
 Analysis of file <"camera.prj"> succeeded.
@@ -120,6 +122,10 @@ Analyzing hierarchy for module <camera> in library <work>.
 Analyzing hierarchy for module <counter_rows> in library <work>.
 
 Analyzing hierarchy for module <counter_columns> in library <work> with parameters.
+	BYTE1 = "0"
+	BYTE2 = "1"
+
+Analyzing hierarchy for module <capture_color> in library <work> with parameters.
 	BYTE1 = "0"
 	BYTE2 = "1"
 
@@ -137,6 +143,11 @@ Analyzing module <counter_columns> in library <work>.
 	BYTE1 = 1'b0
 	BYTE2 = 1'b1
 Module <counter_columns> is correct for synthesis.
+ 
+Analyzing module <capture_color> in library <work>.
+	BYTE1 = 1'b0
+	BYTE2 = 1'b1
+Module <capture_color> is correct for synthesis.
  
 
 =========================================================================
@@ -163,25 +174,46 @@ Unit <counter_rows> synthesized.
 
 Synthesizing Unit <counter_columns>.
     Related source file is "counter_columns.v".
-WARNING:Xst:1780 - Signal <debug_reg> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <VSYNC_1xdelay> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <PXCLK_pulse_high> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <PXCLK_1xdelay> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <debug_reg>.
     Found 1-bit register for signal <HREF_1xdelay>.
     Found 1-bit register for signal <PCLK_1xdelay>.
     Found 10-bit register for signal <pixel_columna_reg>.
-    Found 10-bit adder for signal <pixel_columna_reg$addsub0000> created at line 55.
+    Found 10-bit adder for signal <pixel_columna_reg$addsub0000> created at line 58.
     Found 1-bit register for signal <state>.
     Summary:
-	inferred  13 D-type flip-flop(s).
+	inferred  14 D-type flip-flop(s).
 	inferred   1 Adder/Subtractor(s).
 Unit <counter_columns> synthesized.
+
+
+Synthesizing Unit <capture_color>.
+    Related source file is "capture_color.v".
+WARNING:Xst:646 - Signal <VSYNC_1xdelay> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 5-bit register for signal <BLUE_reg>.
+    Found 1-bit register for signal <debug_reg>.
+    Found 3-bit register for signal <GREEN_prev>.
+    Found 6-bit register for signal <GREEN_reg>.
+    Found 1-bit register for signal <HREF_1xdelay>.
+    Found 1-bit register for signal <PCLK_1xdelay>.
+    Found 1-bit register for signal <ready_color_reg>.
+    Found 5-bit register for signal <RED_reg>.
+    Found 1-bit register for signal <state>.
+    Summary:
+	inferred  24 D-type flip-flop(s).
+Unit <capture_color> synthesized.
 
 
 Synthesizing Unit <camera>.
     Related source file is "camera.v".
 WARNING:Xst:647 - Input <START_I2C> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:653 - Signal <START> is used but never assigned. This sourceless signal will be automatically connected to value 1.
+WARNING:Xst:646 - Signal <RED> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <READY_COLOR> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <GREEN> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <BLUE> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <camera> synthesized.
 
 
@@ -192,9 +224,12 @@ Macro Statistics
 # Adders/Subtractors                                   : 2
  10-bit adder                                          : 1
  9-bit adder                                           : 1
-# Registers                                            : 8
- 1-bit register                                        : 6
+# Registers                                            : 16
+ 1-bit register                                        : 10
  10-bit register                                       : 1
+ 3-bit register                                        : 1
+ 5-bit register                                        : 2
+ 6-bit register                                        : 1
  9-bit register                                        : 1
 
 =========================================================================
@@ -203,6 +238,8 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
+WARNING:Xst:1290 - Hierarchical block <capture_color_0> is unconnected in block <camera>.
+   It will be removed from the design.
 
 =========================================================================
 Advanced HDL Synthesis Report
@@ -211,8 +248,8 @@ Macro Statistics
 # Adders/Subtractors                                   : 2
  10-bit adder                                          : 1
  9-bit adder                                           : 1
-# Registers                                            : 25
- Flip-Flops                                            : 25
+# Registers                                            : 48
+ Flip-Flops                                            : 48
 
 =========================================================================
 
@@ -225,6 +262,31 @@ Optimizing unit <camera> ...
 Optimizing unit <counter_rows> ...
 
 Optimizing unit <counter_columns> ...
+
+Optimizing unit <capture_color> ...
+WARNING:Xst:2677 - Node <capture_color_0/GREEN_reg_5> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/GREEN_reg_4> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/GREEN_reg_3> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/GREEN_reg_2> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/GREEN_reg_1> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/GREEN_reg_0> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/BLUE_reg_4> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/BLUE_reg_3> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/BLUE_reg_2> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/BLUE_reg_1> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/BLUE_reg_0> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/state> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/ready_color_reg> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/GREEN_prev_2> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/GREEN_prev_1> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/GREEN_prev_0> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/RED_reg_4> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/RED_reg_3> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/RED_reg_2> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/RED_reg_1> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/RED_reg_0> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/PCLK_1xdelay> of sequential type is unconnected in block <camera>.
+WARNING:Xst:2677 - Node <capture_color_0/HREF_1xdelay> of sequential type is unconnected in block <camera>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
@@ -264,7 +326,7 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 25
+# IOs                              : 33
 
 Cell Usage :
 # BELS                             : 82
@@ -296,7 +358,7 @@ Selected Device : 3s500evq100-5
  Number of Slices:                       25  out of   4656     0%  
  Number of Slice Flip Flops:             24  out of   9312     0%  
  Number of 4 input LUTs:                 44  out of   9312     0%  
- Number of IOs:                          25
+ Number of IOs:                          33
  Number of bonded IOBs:                  24  out of     66    36%  
  Number of GCLKs:                         1  out of     24     4%  
 
@@ -333,7 +395,7 @@ Timing Summary:
 Speed Grade: -5
 
    Minimum period: 4.427ns (Maximum Frequency: 225.864MHz)
-   Minimum input arrival time before clock: 4.356ns
+   Minimum input arrival time before clock: 4.273ns
    Maximum output required time after clock: 4.063ns
    Maximum combinational path delay: No path found
 
@@ -377,7 +439,7 @@ Delay:               4.427ns (Levels of Logic = 11)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
   Total number of paths / destination ports: 86 / 44
 -------------------------------------------------------------------------
-Offset:              4.356ns (Levels of Logic = 3)
+Offset:              4.273ns (Levels of Logic = 3)
   Source:            HREF (PAD)
   Destination:       counter_columns_0/pixel_columna_reg_9 (FF)
   Destination Clock: CLK rising
@@ -386,13 +448,13 @@ Offset:              4.356ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             5   1.106   0.690  HREF_IBUF (HREF_IBUF)
-     LUT4_D:I0->LO         1   0.612   0.103  counter_columns_0/pixel_columna_reg_not000111 (N2)
+     IBUF:I->O             5   1.106   0.607  HREF_IBUF (HREF_IBUF)
+     LUT4_D:I1->LO         1   0.612   0.103  counter_columns_0/pixel_columna_reg_not000111 (N2)
      LUT4:I3->O           10   0.612   0.750  counter_columns_0/pixel_columna_reg_not00011 (counter_columns_0/pixel_columna_reg_not0001)
      FDE:CE                    0.483          counter_columns_0/pixel_columna_reg_0
     ----------------------------------------
-    Total                      4.356ns (2.813ns logic, 1.543ns route)
-                                       (64.6% logic, 35.4% route)
+    Total                      4.273ns (2.813ns logic, 1.460ns route)
+                                       (65.8% logic, 34.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
@@ -416,14 +478,14 @@ Offset:              4.063ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 9.28 secs
+Total REAL time to Xst completion: 14.00 secs
+Total CPU time to Xst completion: 14.51 secs
  
 --> 
 
-Total memory usage is 4553372 kilobytes
+Total memory usage is 4585244 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    9 (   0 filtered)
+Number of warnings :   37 (   0 filtered)
 Number of infos    :    1 (   0 filtered)
 

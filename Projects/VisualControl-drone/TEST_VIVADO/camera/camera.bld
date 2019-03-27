@@ -29,10 +29,10 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   0
 
-Total memory usage is 4424412 kilobytes
+Total memory usage is 4424444 kilobytes
 
 Writing NGD file "camera.ngd" ...
-Total REAL time to NGDBUILD completion:  6 sec
-Total CPU time to NGDBUILD completion:   4 sec
+Total REAL time to NGDBUILD completion:  8 sec
+Total CPU time to NGDBUILD completion:   7 sec
 
 Writing NGDBUILD log file "camera.bld"...

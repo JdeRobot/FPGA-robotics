@@ -22,10 +22,10 @@
 #define alloca _alloca
 #endif
 static const char *ng0 = "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_rows.v";
-static unsigned int ng1[] = {1U, 0U};
-static unsigned int ng2[] = {0U, 0U};
-static int ng3[] = {0, 0};
-static int ng4[] = {1, 0};
+static int ng1[] = {1, 0};
+static int ng2[] = {0, 0};
+static unsigned int ng3[] = {1U, 0U};
+static unsigned int ng4[] = {0U, 0U};
 
 
 
@@ -464,7 +464,7 @@ LAB30:    t105 = ((char*)((ng1)));
 LAB32:    t110 = ((char*)((ng2)));
     goto LAB33;
 
-LAB34:    xsi_vlog_unsigned_bit_combine(t3, 1, t105, 1, t110, 1);
+LAB34:    xsi_vlog_unsigned_bit_combine(t3, 32, t105, 32, t110, 32);
     goto LAB38;
 
 LAB36:    memcpy(t3, t105, 8);
@@ -609,7 +609,7 @@ LAB3:    goto *t2;
 LAB2:    xsi_set_current_line(36, ng0);
     t2 = (t0 + 1048U);
     t5 = *((char **)t2);
-    t2 = ((char*)((ng3)));
+    t2 = ((char*)((ng2)));
     memset(t6, 0, 8);
     t7 = (t5 + 4);
     t8 = (t2 + 4);
@@ -729,7 +729,7 @@ LAB10:    t29 = (t22 + 4);
 LAB12:    t34 = (t0 + 3368);
     t35 = (t34 + 56U);
     t36 = *((char **)t35);
-    t37 = ((char*)((ng3)));
+    t37 = ((char*)((ng2)));
     memset(t38, 0, 8);
     t39 = (t36 + 4);
     t40 = (t37 + 4);
@@ -833,10 +833,10 @@ LAB28:    t100 = (t4 + 4);
     *((unsigned int *)t100) = 1;
     goto LAB29;
 
-LAB30:    t105 = ((char*)((ng4)));
+LAB30:    t105 = ((char*)((ng1)));
     goto LAB31;
 
-LAB32:    t110 = ((char*)((ng3)));
+LAB32:    t110 = ((char*)((ng2)));
     goto LAB33;
 
 LAB34:    xsi_vlog_unsigned_bit_combine(t3, 32, t105, 32, t110, 32);
@@ -984,7 +984,7 @@ LAB3:    goto *t2;
 LAB2:    xsi_set_current_line(37, ng0);
     t2 = (t0 + 1208U);
     t5 = *((char **)t2);
-    t2 = ((char*)((ng4)));
+    t2 = ((char*)((ng1)));
     memset(t6, 0, 8);
     t7 = (t5 + 4);
     t8 = (t2 + 4);
@@ -1104,7 +1104,7 @@ LAB10:    t29 = (t22 + 4);
 LAB12:    t34 = (t0 + 3528);
     t35 = (t34 + 56U);
     t36 = *((char **)t35);
-    t37 = ((char*)((ng3)));
+    t37 = ((char*)((ng2)));
     memset(t38, 0, 8);
     t39 = (t36 + 4);
     t40 = (t37 + 4);
@@ -1208,10 +1208,10 @@ LAB28:    t100 = (t4 + 4);
     *((unsigned int *)t100) = 1;
     goto LAB29;
 
-LAB30:    t105 = ((char*)((ng4)));
+LAB30:    t105 = ((char*)((ng1)));
     goto LAB31;
 
-LAB32:    t110 = ((char*)((ng3)));
+LAB32:    t110 = ((char*)((ng2)));
     goto LAB33;
 
 LAB34:    xsi_vlog_unsigned_bit_combine(t3, 32, t105, 32, t110, 32);
@@ -1468,7 +1468,7 @@ LAB27:    xsi_set_current_line(46, ng0);
     t71 = (t0 + 3048);
     t72 = (t71 + 56U);
     t73 = *((char **)t72);
-    t74 = ((char*)((ng1)));
+    t74 = ((char*)((ng3)));
     memset(t75, 0, 8);
     xsi_vlog_unsigned_add(t75, 9, t73, 9, t74, 9);
     t76 = (t0 + 3048);
@@ -1504,7 +1504,7 @@ LAB28:    *((unsigned int *)t6) = 1;
 LAB32:    xsi_set_current_line(51, ng0);
 
 LAB35:    xsi_set_current_line(52, ng0);
-    t4 = ((char*)((ng2)));
+    t4 = ((char*)((ng4)));
     t5 = (t0 + 3048);
     xsi_vlogvar_wait_assign_value(t5, t4, 0, 0, 9, 0LL);
     goto LAB34;
