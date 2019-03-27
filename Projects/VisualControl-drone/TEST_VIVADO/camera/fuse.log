@@ -22,5 +22,5 @@ Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
 Compiled 6 Verilog Units
 Built simulation executable D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench_isim_beh.exe
-Fuse Memory Usage: 29280 KB
-Fuse CPU Usage: 733 ms
+Fuse Memory Usage: 29240 KB
+Fuse CPU Usage: 687 ms

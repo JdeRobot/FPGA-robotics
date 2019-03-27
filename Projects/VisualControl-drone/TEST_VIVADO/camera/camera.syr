@@ -4,13 +4,13 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.44 secs
+Total CPU time to Xst completion: 0.49 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.45 secs
+Total CPU time to Xst completion: 0.49 secs
  
 --> Reading design: camera.prj
 
@@ -208,6 +208,7 @@ Unit <capture_color> synthesized.
 
 Synthesizing Unit <camera>.
     Related source file is "camera.v".
+WARNING:Xst:1306 - Output <DEBUG> is never assigned.
 WARNING:Xst:647 - Input <START_I2C> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:653 - Signal <START> is used but never assigned. This sourceless signal will be automatically connected to value 1.
 WARNING:Xst:646 - Signal <RED> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
@@ -264,6 +265,7 @@ Optimizing unit <counter_rows> ...
 Optimizing unit <counter_columns> ...
 
 Optimizing unit <capture_color> ...
+WARNING:Xst:2677 - Node <counter_rows_0/debug_reg> of sequential type is unconnected in block <camera>.
 WARNING:Xst:2677 - Node <capture_color_0/GREEN_reg_5> of sequential type is unconnected in block <camera>.
 WARNING:Xst:2677 - Node <capture_color_0/GREEN_reg_4> of sequential type is unconnected in block <camera>.
 WARNING:Xst:2677 - Node <capture_color_0/GREEN_reg_3> of sequential type is unconnected in block <camera>.
@@ -299,8 +301,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 24
- Flip-Flops                                            : 24
+# Registers                                            : 23
+ Flip-Flops                                            : 23
 
 =========================================================================
 
@@ -329,9 +331,9 @@ Design Statistics
 # IOs                              : 33
 
 Cell Usage :
-# BELS                             : 82
+# BELS                             : 81
 #      GND                         : 1
-#      INV                         : 3
+#      INV                         : 2
 #      LUT1                        : 17
 #      LUT2                        : 11
 #      LUT3                        : 9
@@ -340,14 +342,14 @@ Cell Usage :
 #      MUXCY                       : 17
 #      VCC                         : 1
 #      XORCY                       : 19
-# FlipFlops/Latches                : 24
+# FlipFlops/Latches                : 23
 #      FD                          : 3
-#      FDE                         : 21
+#      FDE                         : 20
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 23
+# IO Buffers                       : 22
 #      IBUF                        : 3
-#      OBUF                        : 20
+#      OBUF                        : 19
 =========================================================================
 
 Device utilization summary:
@@ -355,11 +357,11 @@ Device utilization summary:
 
 Selected Device : 3s500evq100-5 
 
- Number of Slices:                       25  out of   4656     0%  
- Number of Slice Flip Flops:             24  out of   9312     0%  
- Number of 4 input LUTs:                 44  out of   9312     0%  
+ Number of Slices:                       24  out of   4656     0%  
+ Number of Slice Flip Flops:             23  out of   9312     0%  
+ Number of 4 input LUTs:                 43  out of   9312     0%  
  Number of IOs:                          33
- Number of bonded IOBs:                  24  out of     66    36%  
+ Number of bonded IOBs:                  23  out of     66    34%  
  Number of GCLKs:                         1  out of     24     4%  
 
 ---------------------------
@@ -383,7 +385,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-CLK                                | BUFGP                  | 24    |
+CLK                                | BUFGP                  | 23    |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -406,7 +408,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK'
   Clock period: 4.427ns (frequency: 225.864MHz)
-  Total number of paths / destination ports: 195 / 42
+  Total number of paths / destination ports: 192 / 40
 -------------------------------------------------------------------------
 Delay:               4.427ns (Levels of Logic = 11)
   Source:            counter_columns_0/pixel_columna_reg_1 (FF)
@@ -437,7 +439,7 @@ Delay:               4.427ns (Levels of Logic = 11)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
-  Total number of paths / destination ports: 86 / 44
+  Total number of paths / destination ports: 84 / 43
 -------------------------------------------------------------------------
 Offset:              4.273ns (Levels of Logic = 3)
   Source:            HREF (PAD)
@@ -458,19 +460,19 @@ Offset:              4.273ns (Levels of Logic = 3)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
-  Total number of paths / destination ports: 20 / 20
+  Total number of paths / destination ports: 19 / 19
 -------------------------------------------------------------------------
 Offset:              4.063ns (Levels of Logic = 1)
-  Source:            counter_rows_0/debug_reg (FF)
-  Destination:       DEBUG (PAD)
+  Source:            counter_rows_0/pixel_fila_reg_8 (FF)
+  Destination:       PIXEL_ROW<8> (PAD)
   Source Clock:      CLK rising
 
-  Data Path: counter_rows_0/debug_reg to DEBUG
+  Data Path: counter_rows_0/pixel_fila_reg_8 to PIXEL_ROW<8>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              2   0.514   0.380  counter_rows_0/debug_reg (counter_rows_0/debug_reg)
-     OBUF:I->O                 3.169          DEBUG_OBUF (DEBUG)
+     FDE:C->Q              2   0.514   0.380  counter_rows_0/pixel_fila_reg_8 (counter_rows_0/pixel_fila_reg_8)
+     OBUF:I->O                 3.169          PIXEL_ROW_8_OBUF (PIXEL_ROW<8>)
     ----------------------------------------
     Total                      4.063ns (3.683ns logic, 0.380ns route)
                                        (90.6% logic, 9.4% route)
@@ -478,14 +480,14 @@ Offset:              4.063ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 14.00 secs
-Total CPU time to Xst completion: 14.51 secs
+Total REAL time to Xst completion: 10.00 secs
+Total CPU time to Xst completion: 10.21 secs
  
 --> 
 
-Total memory usage is 4585244 kilobytes
+Total memory usage is 4585236 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   37 (   0 filtered)
+Number of warnings :   39 (   0 filtered)
 Number of infos    :    1 (   0 filtered)
 

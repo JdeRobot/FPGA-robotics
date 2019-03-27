@@ -5,15 +5,15 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="info" file="LIT" num="243" delta="old" >Logical network <arg fmt="%s" index="1">START_I2C</arg> has no load.
+<msg type="info" file="LIT" num="243" delta="new" >Logical network <arg fmt="%s" index="1">DEBUG</arg> has no load.
 </msg>
 
-<msg type="info" file="LIT" num="395" delta="old" >The above <arg fmt="%s" index="1">info</arg> message is repeated <arg fmt="%d" index="2">8</arg> more times for the following (max. 5 shown):
-<arg fmt="%s" index="3">D&lt;7&gt;,
+<msg type="info" file="LIT" num="395" delta="new" >The above <arg fmt="%s" index="1">info</arg> message is repeated <arg fmt="%d" index="2">9</arg> more times for the following (max. 5 shown):
+<arg fmt="%s" index="3">START_I2C,
+D&lt;7&gt;,
 D&lt;6&gt;,
 D&lt;5&gt;,
-D&lt;4&gt;,
-D&lt;3&gt;</arg>
+D&lt;4&gt;</arg>
 To see the details of these <arg fmt="%s" index="4">info</arg> messages, please use the -detail switch.
 </msg>
 

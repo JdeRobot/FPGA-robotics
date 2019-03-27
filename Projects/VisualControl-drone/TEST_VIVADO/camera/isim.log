@@ -20,7 +20,5 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# run 3s
-Stopped at time : 12811931 ns : File "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench.v" Line 73
-# run all
-Stopped at time : 354324388 ns : File "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench.v" Line 74
+# run 90ms
+# run 95ms

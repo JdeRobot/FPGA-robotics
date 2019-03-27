@@ -11,9 +11,6 @@
 <msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v&quot; into library work</arg>
 </msg>
 
-<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_columns.v&quot; into library work</arg>
-</msg>
-
 <msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_rows.v&quot; into library work</arg>
 </msg>
 

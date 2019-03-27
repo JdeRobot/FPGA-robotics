@@ -26,6 +26,9 @@
 <msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">VSYNC_1xdelay</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
+<msg type="warning" file="Xst" num="1306" delta="new" >Output &lt;<arg fmt="%s" index="1">DEBUG</arg>&gt; is never assigned.
+</msg>
+
 <msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">START_I2C</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
@@ -46,6 +49,9 @@
 
 <msg type="warning" file="Xst" num="1290" delta="old" >Hierarchical block &lt;<arg fmt="%s" index="1">capture_color_0</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">camera</arg>&gt;.
 It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">counter_rows_0/debug_reg</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">camera</arg>&gt;.
 </msg>
 
 <msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">capture_color_0/GREEN_reg_5</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">camera</arg>&gt;.

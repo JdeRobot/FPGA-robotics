@@ -5,7 +5,7 @@ module counter_rows(
     input PCLK,
     input CLK,
     input START,
-    output DEBUG,
+    //output DEBUG,
     output [8:0] PIXEL_ROW
     );
 
@@ -35,6 +35,7 @@ end
 assign VSYNC_constant_high = ( VSYNC == 1 && VSYNC_1xdelay == 1) ? 1:0;
 assign VSYNC_constant_low = ( VSYNC == 0 && VSYNC_1xdelay == 0) ? 1:0;
 assign HREF_pulse_high = ( HREF == 1 && HREF_1xdelay == 0) ? 1:0;
+assign VSYNC_pulse_high = ( VSYNC ==1 && VSYNC_1xdelay == 0) ? 1:0;
 /**************************************************************************/
 always @(posedge CLK)
 begin
@@ -44,17 +45,17 @@ begin
       if( HREF_pulse_high )
       begin
         pixel_fila_reg <= pixel_fila_reg + 9'd1;
-		    debug_reg <= !debug_reg;
       end
     end
   else if ( VSYNC_pulse_high )
     begin
       pixel_fila_reg <= 9'd0;
+      debug_reg <= !debug_reg;
     end
 end
 
 assign PIXEL_ROW = pixel_fila_reg;
-assign DEBUG = debug_reg;
+//assign DEBUG = debug_reg;
 
 
 endmodule

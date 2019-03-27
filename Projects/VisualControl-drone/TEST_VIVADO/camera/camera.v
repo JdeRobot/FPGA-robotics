@@ -53,7 +53,7 @@ counter_rows counter_rows_0(
     .CLK(CLK),
     //.START(start_0.START),
 	 .START(START),
-    .DEBUG(DEBUG),
+    //.DEBUG(DEBUG),
     .PIXEL_ROW(PIXEL_ROW)
 
 );

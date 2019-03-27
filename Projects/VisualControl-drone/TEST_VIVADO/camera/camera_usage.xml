@@ -4,8 +4,8 @@
      changes made to this file may result in unpredictable
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
-<DeviceUsageSummary rev="9">
-<DesignStatistics TimeStamp="Wed Mar 27 13:45:20 2019"><group name="NetStatistics">
+<DeviceUsageSummary rev="10">
+<DesignStatistics TimeStamp="Wed Mar 27 17:50:55 2019"><group name="NetStatistics">
 <item name="NumNets_Active" rev="4">
 <attrib name="value" value="6"/></item>
 <item name="NumNets_Vcc" rev="4">
@@ -44,29 +44,29 @@
 <attrib name="value" value="1"/></item>
 </group>
 <group name="MiscellaneousStatistics">
-<item name="AGG_BONDED_IO" rev="9">
-<attrib name="value" value="24"/></item>
-<item name="AGG_IO" rev="9">
-<attrib name="value" value="24"/></item>
-<item name="AGG_SLICE" rev="9">
-<attrib name="value" value="27"/></item>
-<item name="NUM_4_INPUT_LUT" rev="9">
+<item name="AGG_BONDED_IO" rev="10">
+<attrib name="value" value="23"/></item>
+<item name="AGG_IO" rev="10">
+<attrib name="value" value="23"/></item>
+<item name="AGG_SLICE" rev="10">
+<attrib name="value" value="26"/></item>
+<item name="NUM_4_INPUT_LUT" rev="10">
 <attrib name="value" value="43"/></item>
-<item name="NUM_BONDED_IBUF" rev="9">
+<item name="NUM_BONDED_IBUF" rev="10">
 <attrib name="value" value="4"/></item>
-<item name="NUM_BONDED_IOB" rev="9">
-<attrib name="value" value="20"/></item>
-<item name="NUM_BUFGMUX" rev="9">
+<item name="NUM_BONDED_IOB" rev="10">
+<attrib name="value" value="19"/></item>
+<item name="NUM_BUFGMUX" rev="10">
 <attrib name="value" value="1"/></item>
-<item name="NUM_CYMUX" rev="9">
+<item name="NUM_CYMUX" rev="10">
 <attrib name="value" value="17"/></item>
-<item name="NUM_LUT_RT" rev="9">
+<item name="NUM_LUT_RT" rev="10">
 <attrib name="value" value="17"/></item>
-<item name="NUM_SLICEL" rev="9">
-<attrib name="value" value="27"/></item>
-<item name="NUM_SLICE_FF" rev="9">
-<attrib name="value" value="24"/></item>
-<item name="NUM_XOR" rev="9">
+<item name="NUM_SLICEL" rev="10">
+<attrib name="value" value="26"/></item>
+<item name="NUM_SLICE_FF" rev="10">
+<attrib name="value" value="23"/></item>
+<item name="NUM_XOR" rev="10">
 <attrib name="value" value="19"/></item>
 </group>
 </DesignStatistics>

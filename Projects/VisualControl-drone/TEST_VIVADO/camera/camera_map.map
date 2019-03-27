@@ -9,7 +9,7 @@ Target Device  : xc3s500e
 Target Package : vq100
 Target Speed   : -5
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Wed Mar 27 13:45:13 2019
+Mapped Date    : Wed Mar 27 17:50:49 2019
 
 vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.
@@ -39,12 +39,12 @@ Design Summary:
 Number of errors:      0
 Number of warnings:    0
 Logic Utilization:
-  Number of Slice Flip Flops:            24 out of   9,312    1%
+  Number of Slice Flip Flops:            23 out of   9,312    1%
   Number of 4 input LUTs:                26 out of   9,312    1%
 Logic Distribution:
-  Number of occupied Slices:             27 out of   4,656    1%
-    Number of Slices containing only related logic:      27 out of      27 100%
-    Number of Slices containing unrelated logic:          0 out of      27   0%
+  Number of occupied Slices:             26 out of   4,656    1%
+    Number of Slices containing only related logic:      26 out of      26 100%
+    Number of Slices containing unrelated logic:          0 out of      26   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
   Total Number of 4 input LUTs:          43 out of   9,312    1%
     Number used as logic:                26
@@ -53,13 +53,13 @@ Logic Distribution:
   The Slice Logic Distribution report is not meaningful if the design is
   over-mapped for a non-slice resource or if Placement fails.
 
-  Number of bonded IOBs:                 24 out of      66   36%
+  Number of bonded IOBs:                 23 out of      66   34%
   Number of BUFGMUXs:                     1 out of      24    4%
 
-Average Fanout of Non-Clock Nets:                2.36
+Average Fanout of Non-Clock Nets:                2.35
 
-Peak Memory Usage:  4498 MB
-Total REAL time to MAP completion:  7 secs 
+Peak Memory Usage:  4497 MB
+Total REAL time to MAP completion:  6 secs 
 Total CPU time to MAP completion:   2 secs 
 
 NOTES:

@@ -45,9 +45,9 @@ Setup/Hold to clock CLK
             |Max Setup to|Max Hold to |                  | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 ------------+------------+------------+------------------+--------+
-HREF        |    2.840(R)|    0.598(R)|CLK_BUFGP         |   0.000|
-PCLK        |    2.626(R)|    0.420(R)|CLK_BUFGP         |   0.000|
-VSYNC       |    2.473(R)|    0.008(R)|CLK_BUFGP         |   0.000|
+HREF        |    3.673(R)|    1.014(R)|CLK_BUFGP         |   0.000|
+PCLK        |    2.257(R)|    1.039(R)|CLK_BUFGP         |   0.000|
+VSYNC       |    1.903(R)|    0.466(R)|CLK_BUFGP         |   0.000|
 ------------+------------+------------+------------------+--------+
 
 Clock CLK to Pad
@@ -55,26 +55,25 @@ Clock CLK to Pad
                | clk (edge) |                  | Clock  |
 Destination    |   to PAD   |Internal Clock(s) | Phase  |
 ---------------+------------+------------------+--------+
-DEBUG          |    7.401(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<0>|    7.261(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<1>|    6.989(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<2>|    7.051(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<3>|    6.774(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<4>|    6.808(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<5>|    7.045(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<6>|    6.833(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<7>|    7.210(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<8>|    8.025(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<9>|    7.967(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<0>   |    7.761(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<1>   |    7.079(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<2>   |    7.449(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<3>   |    7.188(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<4>   |    7.046(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<5>   |    7.321(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<6>   |    7.238(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<7>   |    7.278(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<8>   |    7.320(R)|CLK_BUFGP         |   0.000|
+PIXEL_COLUMN<0>|    7.608(R)|CLK_BUFGP         |   0.000|
+PIXEL_COLUMN<1>|    7.388(R)|CLK_BUFGP         |   0.000|
+PIXEL_COLUMN<2>|    7.447(R)|CLK_BUFGP         |   0.000|
+PIXEL_COLUMN<3>|    7.261(R)|CLK_BUFGP         |   0.000|
+PIXEL_COLUMN<4>|    7.324(R)|CLK_BUFGP         |   0.000|
+PIXEL_COLUMN<5>|    7.244(R)|CLK_BUFGP         |   0.000|
+PIXEL_COLUMN<6>|    7.052(R)|CLK_BUFGP         |   0.000|
+PIXEL_COLUMN<7>|    7.445(R)|CLK_BUFGP         |   0.000|
+PIXEL_COLUMN<8>|    7.685(R)|CLK_BUFGP         |   0.000|
+PIXEL_COLUMN<9>|    7.618(R)|CLK_BUFGP         |   0.000|
+PIXEL_ROW<0>   |    7.001(R)|CLK_BUFGP         |   0.000|
+PIXEL_ROW<1>   |    6.994(R)|CLK_BUFGP         |   0.000|
+PIXEL_ROW<2>   |    7.650(R)|CLK_BUFGP         |   0.000|
+PIXEL_ROW<3>   |    8.237(R)|CLK_BUFGP         |   0.000|
+PIXEL_ROW<4>   |    7.509(R)|CLK_BUFGP         |   0.000|
+PIXEL_ROW<5>   |    6.753(R)|CLK_BUFGP         |   0.000|
+PIXEL_ROW<6>   |    6.964(R)|CLK_BUFGP         |   0.000|
+PIXEL_ROW<7>   |    6.765(R)|CLK_BUFGP         |   0.000|
+PIXEL_ROW<8>   |    7.610(R)|CLK_BUFGP         |   0.000|
 ---------------+------------+------------------+--------+
 
 Clock to Setup on destination clock CLK
@@ -82,11 +81,11 @@ Clock to Setup on destination clock CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLK            |    3.847|         |         |         |
+CLK            |    4.278|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Wed Mar 27 13:45:51 2019 
+Analysis completed Wed Mar 27 17:51:22 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:

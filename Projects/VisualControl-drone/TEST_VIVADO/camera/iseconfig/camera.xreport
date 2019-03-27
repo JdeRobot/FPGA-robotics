@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2019-03-27T13:17:35</DateModified>
+  <DateModified>2019-03-27T14:25:08</DateModified>
   <ModuleName>camera</ModuleName>
   <SummaryTimeStamp>2019-03-26T06:11:47</SummaryTimeStamp>
   <SavedFilePath>D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/iseconfig/camera.xreport</SavedFilePath>
