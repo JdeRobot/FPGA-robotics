@@ -1,26 +1,27 @@
-Running: C:\Xilinx\14.4\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench_isim_beh.exe -prj D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench_beh.prj work.TestBench work.glbl 
+Running: C:\Xilinx\14.4\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench2_isim_beh.exe -prj D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench2_beh.prj work.TestBench2 work.glbl 
 ISim P.49d (signature 0x7708f090)
 Number of CPUs detected in this system: 4
 Turning on mult-threading, number of parallel sub-compilation jobs: 8 
 Determining compilation order of HDL files
+Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v" into library work
 Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_rows.v" into library work
 Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_columns.v" into library work
 Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/capture_color.v" into library work
 Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v" into library work
-Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench.v" into library work
+Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench2.v" into library work
 Analyzing Verilog file "C:/Xilinx/14.4/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
-WARNING:HDLCompiler:1016 - "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench.v" Line 41: Port D is not connected to this instance
 Completed static elaboration
 Compiling module counter_rows
 Compiling module counter_columns
 Compiling module capture_color
+Compiling module process_color
 Compiling module camera
-Compiling module TestBench
+Compiling module TestBench2
 Compiling module glbl
 Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
-Compiled 6 Verilog Units
-Built simulation executable D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench_isim_beh.exe
-Fuse Memory Usage: 29240 KB
-Fuse CPU Usage: 687 ms
+Compiled 7 Verilog Units
+Built simulation executable D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench2_isim_beh.exe
+Fuse Memory Usage: 29332 KB
+Fuse CPU Usage: 671 ms

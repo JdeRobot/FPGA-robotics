@@ -45,47 +45,36 @@ Setup/Hold to clock CLK
             |Max Setup to|Max Hold to |                  | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 ------------+------------+------------+------------------+--------+
-HREF        |    3.673(R)|    1.014(R)|CLK_BUFGP         |   0.000|
-PCLK        |    2.257(R)|    1.039(R)|CLK_BUFGP         |   0.000|
-VSYNC       |    1.903(R)|    0.466(R)|CLK_BUFGP         |   0.000|
+D<0>        |    0.768(R)|    0.517(R)|CLK_BUFGP         |   0.000|
+D<1>        |    1.112(R)|    0.349(R)|CLK_BUFGP         |   0.000|
+D<2>        |    0.815(R)|    1.079(R)|CLK_BUFGP         |   0.000|
+D<3>        |    0.335(R)|    1.021(R)|CLK_BUFGP         |   0.000|
+D<4>        |    0.473(R)|    1.184(R)|CLK_BUFGP         |   0.000|
+D<5>        |   -0.201(R)|    1.292(R)|CLK_BUFGP         |   0.000|
+D<6>        |    0.022(R)|    1.475(R)|CLK_BUFGP         |   0.000|
+D<7>        |   -0.218(R)|    1.339(R)|CLK_BUFGP         |   0.000|
+HREF        |    2.363(R)|    1.181(R)|CLK_BUFGP         |   0.000|
+PCLK        |    2.580(R)|    0.983(R)|CLK_BUFGP         |   0.000|
 ------------+------------+------------+------------------+--------+
 
 Clock CLK to Pad
----------------+------------+------------------+--------+
-               | clk (edge) |                  | Clock  |
-Destination    |   to PAD   |Internal Clock(s) | Phase  |
----------------+------------+------------------+--------+
-PIXEL_COLUMN<0>|    7.608(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<1>|    7.388(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<2>|    7.447(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<3>|    7.261(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<4>|    7.324(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<5>|    7.244(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<6>|    7.052(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<7>|    7.445(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<8>|    7.685(R)|CLK_BUFGP         |   0.000|
-PIXEL_COLUMN<9>|    7.618(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<0>   |    7.001(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<1>   |    6.994(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<2>   |    7.650(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<3>   |    8.237(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<4>   |    7.509(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<5>   |    6.753(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<6>   |    6.964(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<7>   |    6.765(R)|CLK_BUFGP         |   0.000|
-PIXEL_ROW<8>   |    7.610(R)|CLK_BUFGP         |   0.000|
----------------+------------+------------------+--------+
+------------+------------+------------------+--------+
+            | clk (edge) |                  | Clock  |
+Destination |   to PAD   |Internal Clock(s) | Phase  |
+------------+------------+------------------+--------+
+DEBUG       |    6.949(R)|CLK_BUFGP         |   0.000|
+------------+------------+------------------+--------+
 
 Clock to Setup on destination clock CLK
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLK            |    4.278|         |         |         |
+CLK            |    3.124|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Wed Mar 27 17:51:22 2019 
+Analysis completed Wed Mar 27 21:51:05 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:

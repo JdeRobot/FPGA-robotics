@@ -1,0 +1,14 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../process_color.v" \
+"../../../../../counter_columns.v" \
+"../../../../../capture_color.v" \
+"../../../../../camera.v" \
+"../../../../../counter_rows.v" \
+"../../../../../TestBench2.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,3 +1,4 @@
+verilog work "process_color.v"
 verilog work "counter_columns.v"
 verilog work "capture_color.v"
 verilog work "camera.v"

@@ -1,6 +1,0 @@
-verilog work "counter_rows.v"
-verilog work "counter_columns.v"
-verilog work "capture_color.v"
-verilog work "camera.v"
-verilog work "TestBench.v"
-verilog work "C:/Xilinx/14.4/ISE_DS/ISE//verilog/src/glbl.v"

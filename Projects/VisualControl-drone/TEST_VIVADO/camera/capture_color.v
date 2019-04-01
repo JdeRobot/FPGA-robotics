@@ -28,8 +28,8 @@ module capture_color(
     output [4:0] RED,
     output [5:0] GREEN,
     output [4:0] BLUE,
-	  output READY_COLOR
-    //output DEBUG
+	  output READY_COLOR,
+    output DEBUG
     );
 
 localparam BYTE1 = 1'b0;
@@ -75,7 +75,7 @@ begin
           GREEN_prev<= {D[2],D[1],D[0]};
           ready_color_reg <= 1'b0;
           state<= BYTE2;
-          debug_reg<= !debug_reg;
+          debug_reg<= 1'b0;
         end
         BYTE2:
         begin
@@ -83,13 +83,14 @@ begin
           BLUE_reg<={D[4],D[3],D[2],D[1],D[0]};
           ready_color_reg <= 1'b1;
           state<= BYTE1;
-          debug_reg<= !debug_reg;
+          debug_reg<= 1'b1;
         end
       endcase
     end
     else if ( HREF_constant_low )
     begin
       ready_color_reg <= 1'b0;
+      debug_reg<= 1'b0;
       state <= BYTE1;
     end
 end
@@ -98,5 +99,5 @@ assign BLUE = BLUE_reg;
 assign GREEN = GREEN_reg;
 assign RED = RED_reg;
 assign READY_COLOR = ready_color_reg;
-//assign DEBUG = debug_reg;
+assign DEBUG = debug_reg;
 endmodule

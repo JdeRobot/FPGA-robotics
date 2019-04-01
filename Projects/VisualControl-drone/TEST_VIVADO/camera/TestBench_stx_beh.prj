@@ -1,3 +1,4 @@
+verilog isim_temp "process_color.v"
 verilog isim_temp "counter_rows.v"
 verilog isim_temp "counter_columns.v"
 verilog isim_temp "capture_color.v"

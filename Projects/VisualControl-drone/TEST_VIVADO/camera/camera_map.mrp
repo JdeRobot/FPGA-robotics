@@ -9,31 +9,25 @@ Target Device  : xc3s500e
 Target Package : vq100
 Target Speed   : -5
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Wed Mar 27 17:50:49 2019
+Mapped Date    : Wed Mar 27 21:50:30 2019
 
 Design Summary
 --------------
 Number of errors:      0
 Number of warnings:    0
 Logic Utilization:
-  Number of Slice Flip Flops:            23 out of   9,312    1%
-  Number of 4 input LUTs:                26 out of   9,312    1%
+  Number of Slice Flip Flops:            22 out of   9,312    1%
+  Number of 4 input LUTs:                11 out of   9,312    1%
 Logic Distribution:
-  Number of occupied Slices:             26 out of   4,656    1%
-    Number of Slices containing only related logic:      26 out of      26 100%
-    Number of Slices containing unrelated logic:          0 out of      26   0%
+  Number of occupied Slices:             19 out of   4,656    1%
+    Number of Slices containing only related logic:      19 out of      19 100%
+    Number of Slices containing unrelated logic:          0 out of      19   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:          43 out of   9,312    1%
-    Number used as logic:                26
-    Number used as a route-thru:         17
-
-  The Slice Logic Distribution report is not meaningful if the design is
-  over-mapped for a non-slice resource or if Placement fails.
-
-  Number of bonded IOBs:                 23 out of      66   34%
+  Total Number of 4 input LUTs:          11 out of   9,312    1%
+  Number of bonded IOBs:                 12 out of      66   18%
   Number of BUFGMUXs:                     1 out of      24    4%
 
-Average Fanout of Non-Clock Nets:                2.35
+Average Fanout of Non-Clock Nets:                1.83
 
 Peak Memory Usage:  4497 MB
 Total REAL time to MAP completion:  6 secs 
@@ -91,14 +85,10 @@ INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.
 INFO:Security:52 - The LM_LICENSE_FILE environment variable is set to
 '2100@senna.ugr.es'.
 INFO:Security:54 - 'xc3s500e' is a WebPack part.
-INFO:LIT:243 - Logical network DEBUG has no load.
-INFO:LIT:395 - The above info message is repeated 9 more times for the following
+INFO:LIT:243 - Logical network VSYNC has no load.
+INFO:LIT:395 - The above info message is repeated 1 more times for the following
    (max. 5 shown):
-   START_I2C,
-   D<7>,
-   D<6>,
-   D<5>,
-   D<4>
+   START_I2C
    To see the details of these info messages, please use the -detail switch.
 INFO:MapLib:562 - No environment variables are currently set.
 INFO:LIT:244 - All of the single ended outputs in this design are using slew
@@ -107,15 +97,9 @@ INFO:LIT:244 - All of the single ended outputs in this design are using slew
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-   2 block(s) optimized away
 
 Section 5 - Removed Logic
 -------------------------
-
-Optimized Block(s):
-TYPE 		BLOCK
-GND 		XST_GND
-VCC 		XST_VCC
 
 To enable printing of redundant blocks removed and signals merged, set the
 detailed map report option and rerun map.
@@ -128,28 +112,17 @@ Section 6 - IOB Properties
 |                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
 | CLK                                | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
+| D<0>                               | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
+| D<1>                               | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
+| D<2>                               | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
+| D<3>                               | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
+| D<4>                               | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
+| D<5>                               | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
+| D<6>                               | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
+| D<7>                               | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
+| DEBUG                              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
 | HREF                               | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
 | PCLK                               | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
-| PIXEL_COLUMN<0>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_COLUMN<1>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_COLUMN<2>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_COLUMN<3>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_COLUMN<4>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_COLUMN<5>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_COLUMN<6>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_COLUMN<7>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_COLUMN<8>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_COLUMN<9>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_ROW<0>                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_ROW<1>                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_ROW<2>                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_ROW<3>                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_ROW<4>                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_ROW<5>                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_ROW<6>                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_ROW<7>                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| PIXEL_ROW<8>                       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
-| VSYNC                              | IBUF             | INPUT     | LVCMOS25             |       |          |      |              |          | 0 / 0    |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Section 7 - RPMs

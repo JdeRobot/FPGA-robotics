@@ -78,3 +78,25 @@ ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc constraints_file.ucf -p xc3s50
 map -intstyle ise -p xc3s500e-vq100-5 -cm area -ir off -pr off -c 100 -o camera_map.ncd camera.ngd camera.pcf 
 par -w -intstyle ise -ol high -t 1 camera_map.ncd camera.ncd camera.pcf 
 trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml camera.twx camera.ncd -o camera.twr camera.pcf -ucf constraints_file.ucf 
+xst -intstyle ise -ifn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xst" -ofn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.syr" 
+xst -intstyle ise -ifn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xst" -ofn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc constraints_file.ucf -p xc3s500e-vq100-5 camera.ngc camera.ngd  
+map -intstyle ise -p xc3s500e-vq100-5 -cm area -ir off -pr off -c 100 -o camera_map.ncd camera.ngd camera.pcf 
+par -w -intstyle ise -ol high -t 1 camera_map.ncd camera.ncd camera.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml camera.twx camera.ncd -o camera.twr camera.pcf -ucf constraints_file.ucf 
+xst -intstyle ise -ifn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xst" -ofn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc constraints_file.ucf -p xc3s500e-vq100-5 camera.ngc camera.ngd  
+map -intstyle ise -p xc3s500e-vq100-5 -cm area -ir off -pr off -c 100 -o camera_map.ncd camera.ngd camera.pcf 
+par -w -intstyle ise -ol high -t 1 camera_map.ncd camera.ncd camera.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml camera.twx camera.ncd -o camera.twr camera.pcf -ucf constraints_file.ucf 
+xst -intstyle ise -ifn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xst" -ofn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.syr" 
+xst -intstyle ise -ifn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xst" -ofn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.syr" 
+xst -intstyle ise -ifn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xst" -ofn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.syr" 
+xst -intstyle ise -ifn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xst" -ofn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.syr" 
+xst -intstyle ise -ifn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xst" -ofn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.syr" 
+xst -intstyle ise -ifn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xst" -ofn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.syr" 
+xst -intstyle ise -ifn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xst" -ofn "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc constraints_file.ucf -p xc3s500e-vq100-5 camera.ngc camera.ngd  
+map -intstyle ise -p xc3s500e-vq100-5 -cm area -ir off -pr off -c 100 -o camera_map.ncd camera.ngd camera.pcf 
+par -w -intstyle ise -ol high -t 1 camera_map.ncd camera.ncd camera.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml camera.twx camera.ncd -o camera.twr camera.pcf -ucf constraints_file.ucf 

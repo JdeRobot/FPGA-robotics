@@ -1,0 +1,14 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module process_color
+WARNING: [VRFC 10-986] literal value truncated to fit in 8 bits [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v:80]
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_columns.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module counter_columns
+INFO: [VRFC 10-2458] undeclared symbol PCLK_pulse_high, assumed default net type wire [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_columns.v:42]
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/capture_color.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module capture_color
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module camera
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_rows.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module counter_rows
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TestBench2

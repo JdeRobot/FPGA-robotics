@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="TestBench2_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="TestBench2" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="7270000001fs"></ZoomEndTime>
+      <Cursor1Time time="120000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="245"></NameColumnWidth>
+      <ValueColumnWidth column_width="177"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="17" />
+   <wvobject fp_name="/TestBench2/START_I2C" type="logic">
+      <obj_property name="ElementShortName">START_I2C</obj_property>
+      <obj_property name="ObjectShortName">START_I2C</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/VSYNC" type="logic">
+      <obj_property name="ElementShortName">VSYNC</obj_property>
+      <obj_property name="ObjectShortName">VSYNC</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/HREF" type="logic">
+      <obj_property name="ElementShortName">HREF</obj_property>
+      <obj_property name="ObjectShortName">HREF</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/CLK" type="logic">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/PCLK" type="logic">
+      <obj_property name="ElementShortName">PCLK</obj_property>
+      <obj_property name="ObjectShortName">PCLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/D" type="array">
+      <obj_property name="ElementShortName">D[7:0]</obj_property>
+      <obj_property name="ObjectShortName">D[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/COLUMN_SUM_DEBUG" type="logic">
+      <obj_property name="ElementShortName">COLUMN_SUM_DEBUG</obj_property>
+      <obj_property name="ObjectShortName">COLUMN_SUM_DEBUG</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/ROW_SUM_DEBUG" type="logic">
+      <obj_property name="ElementShortName">ROW_SUM_DEBUG</obj_property>
+      <obj_property name="ObjectShortName">ROW_SUM_DEBUG</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/READY_COLOR_CAPTURE_COLOR" type="logic">
+      <obj_property name="ElementShortName">READY_COLOR_CAPTURE_COLOR</obj_property>
+      <obj_property name="ObjectShortName">READY_COLOR_CAPTURE_COLOR</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/READY_COLOR_PROCESS_COLOR" type="logic">
+      <obj_property name="ElementShortName">READY_COLOR_PROCESS_COLOR</obj_property>
+      <obj_property name="ObjectShortName">READY_COLOR_PROCESS_COLOR</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/DEBUG4" type="logic">
+      <obj_property name="ElementShortName">DEBUG4</obj_property>
+      <obj_property name="ObjectShortName">DEBUG4</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/DEBUG5" type="logic">
+      <obj_property name="ElementShortName">DEBUG5</obj_property>
+      <obj_property name="ObjectShortName">DEBUG5</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/DEBUG6" type="logic">
+      <obj_property name="ElementShortName">DEBUG6</obj_property>
+      <obj_property name="ObjectShortName">DEBUG6</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/DEBUG7" type="logic">
+      <obj_property name="ElementShortName">DEBUG7</obj_property>
+      <obj_property name="ObjectShortName">DEBUG7</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/i" type="array">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/j" type="array">
+      <obj_property name="ElementShortName">j[31:0]</obj_property>
+      <obj_property name="ObjectShortName">j[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestBench2/k" type="array">
+      <obj_property name="ElementShortName">k[31:0]</obj_property>
+      <obj_property name="ObjectShortName">k[31:0]</obj_property>
+   </wvobject>
+</wave_config>

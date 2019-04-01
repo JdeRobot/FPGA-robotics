@@ -1,11 +1,12 @@
 `timescale 1ns / 1ps
+
 module counter_rows(
     input VSYNC,
     input HREF,
     input PCLK,
     input CLK,
     input START,
-    //output DEBUG,
+    output DEBUG,
     output [8:0] PIXEL_ROW
     );
 
@@ -45,17 +46,18 @@ begin
       if( HREF_pulse_high )
       begin
         pixel_fila_reg <= pixel_fila_reg + 9'd1;
+        debug_reg <= !debug_reg;
       end
     end
   else if ( VSYNC_pulse_high )
     begin
       pixel_fila_reg <= 9'd0;
-      debug_reg <= !debug_reg;
+      //debug_reg <= !debug_reg;
     end
 end
 
 assign PIXEL_ROW = pixel_fila_reg;
-//assign DEBUG = debug_reg;
+assign DEBUG = debug_reg;
 
 
 endmodule

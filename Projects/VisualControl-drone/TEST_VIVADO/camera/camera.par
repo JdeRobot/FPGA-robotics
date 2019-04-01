@@ -1,7 +1,7 @@
 Release 14.4 par P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-JORDONEZ10::  Wed Mar 27 17:50:59 2019
+JORDONEZ10::  Wed Mar 27 21:50:42 2019
 
 par -w -intstyle ise -ol high -t 1 camera_map.ncd camera.ncd camera.pcf 
 
@@ -37,21 +37,21 @@ Device speed data version:  "PRODUCTION 1.27 2012-12-04".
 
 Design Summary Report:
 
- Number of External IOBs                          23 out of 66     34%
+ Number of External IOBs                          12 out of 66     18%
 
-   Number of External Input IOBs                  4
+   Number of External Input IOBs                 11
 
-      Number of External Input IBUFs              4
+      Number of External Input IBUFs             11
 
-   Number of External Output IOBs                19
+   Number of External Output IOBs                 1
 
-      Number of External Output IOBs             19
+      Number of External Output IOBs              1
 
    Number of External Bidir IOBs                  0
 
 
    Number of BUFGMUXs                        1 out of 24      4%
-   Number of Slices                         26 out of 4656    1%
+   Number of Slices                         19 out of 4656    1%
       Number of SLICEMs                      0 out of 2328    0%
 
 
@@ -70,47 +70,46 @@ Total REAL time at the beginning of Placer: 5 secs
 Total CPU  time at the beginning of Placer: 2 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:4ce) REAL time: 6 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:1f5) REAL time: 6 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:4ce) REAL time: 6 secs 
+Phase 2.7  Design Feasibility Check (Checksum:1f5) REAL time: 6 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:4ce) REAL time: 6 secs 
+Phase 3.31  Local Placement Optimization (Checksum:1f5) REAL time: 6 secs 
 
 Phase 4.2  Initial Clock and IO Placement
-.........
-Phase 4.2  Initial Clock and IO Placement (Checksum:3ca29285) REAL time: 6 secs 
+..............
+Phase 4.2  Initial Clock and IO Placement (Checksum:16797276) REAL time: 6 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:3ca29285) REAL time: 6 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:16797276) REAL time: 6 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:3ca29285) REAL time: 6 secs 
+Phase 6.36  Local Placement Optimization (Checksum:16797276) REAL time: 6 secs 
 
 Phase 7.3  Local Placement Optimization
-........
-Phase 7.3  Local Placement Optimization (Checksum:9596d8cd) REAL time: 6 secs 
+..........
+Phase 7.3  Local Placement Optimization (Checksum:f0971716) REAL time: 6 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:9596d8cd) REAL time: 6 secs 
+Phase 8.5  Local Placement Optimization (Checksum:f0971716) REAL time: 6 secs 
 
 Phase 9.8  Global Placement
-...
 ..
-Phase 9.8  Global Placement (Checksum:23718c7f) REAL time: 8 secs 
+Phase 9.8  Global Placement (Checksum:94558518) REAL time: 8 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:23718c7f) REAL time: 8 secs 
+Phase 10.5  Local Placement Optimization (Checksum:94558518) REAL time: 8 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:c884a0f9) REAL time: 9 secs 
+Phase 11.18  Placement Optimization (Checksum:a636fbca) REAL time: 8 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:c884a0f9) REAL time: 9 secs 
+Phase 12.5  Local Placement Optimization (Checksum:a636fbca) REAL time: 8 secs 
 
-Total REAL time to Placer completion: 9 secs 
-Total CPU  time to Placer completion: 5 secs 
+Total REAL time to Placer completion: 8 secs 
+Total CPU  time to Placer completion: 4 secs 
 Writing design to file camera.ncd
 
 
@@ -118,19 +117,19 @@ Writing design to file camera.ncd
 Starting Router
 
 
-Phase  1  : 143 unrouted;      REAL time: 14 secs 
+Phase  1  : 87 unrouted;      REAL time: 13 secs 
 
-Phase  2  : 128 unrouted;      REAL time: 14 secs 
+Phase  2  : 71 unrouted;      REAL time: 13 secs 
 
-Phase  3  : 27 unrouted;      REAL time: 14 secs 
+Phase  3  : 17 unrouted;      REAL time: 13 secs 
 
-Phase  4  : 32 unrouted; (Par is working to improve performance)     REAL time: 14 secs 
+Phase  4  : 31 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 14 secs 
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
 
 Updating file: camera.ncd with current fully routed design.
 
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 15 secs 
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 13 secs 
 
 Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 15 secs 
 
@@ -138,10 +137,10 @@ Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 1
 
 Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 15 secs 
 
-Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 16 secs 
+Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 15 secs 
 
-Total REAL time to Router completion: 16 secs 
-Total CPU time to Router completion: 11 secs 
+Total REAL time to Router completion: 15 secs 
+Total CPU time to Router completion: 10 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -159,7 +158,7 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|           CLK_BUFGP | BUFGMUX_X2Y10| No   |   14 |  0.019     |  0.158      |
+|           CLK_BUFGP | BUFGMUX_X2Y10| No   |   15 |  0.007     |  0.161      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -179,8 +178,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net CLK | SETUP       |         N/A|     4.278ns|     N/A|           0
-  _BUFGP                                    | HOLD        |     1.279ns|            |       0|           0
+  Autotimespec constraint for clock net CLK | SETUP       |         N/A|     3.124ns|     N/A|           0
+  _BUFGP                                    | HOLD        |     1.017ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -199,7 +198,7 @@ All signals are completely routed.
 Total REAL time to PAR completion: 16 secs 
 Total CPU time to PAR completion: 11 secs 
 
-Peak Memory Usage:  4512 MB
+Peak Memory Usage:  4496 MB
 
 Placement: Completed - No errors found.
 Routing: Completed - No errors found.

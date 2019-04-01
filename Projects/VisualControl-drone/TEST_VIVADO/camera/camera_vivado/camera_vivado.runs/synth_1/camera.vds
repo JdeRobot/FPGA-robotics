@@ -1,0 +1,337 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Sat Mar 30 18:29:46 2019
+# Process ID: 55704
+# Current directory: D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera_vivado/camera_vivado.runs/synth_1
+# Command line: vivado.exe -log camera.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source camera.tcl
+# Log file: D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera_vivado/camera_vivado.runs/synth_1/camera.vds
+# Journal file: D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera_vivado/camera_vivado.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source camera.tcl -notrace
+Command: synth_design -top camera -part xc7k70tfbv676-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7k70t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k70t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 71700 
+WARNING: [Synth 8-2292] literal value truncated to fit in 8 bits [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v:80]
+WARNING: [Synth 8-2292] literal value truncated to fit in 9 bits [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v:80]
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 376.480 ; gain = 113.527
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'camera' [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v:21]
+INFO: [Synth 8-6157] synthesizing module 'counter_rows' [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_rows.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'counter_rows' (1#1) [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_rows.v:3]
+INFO: [Synth 8-6157] synthesizing module 'counter_columns' [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_columns.v:2]
+	Parameter BYTE1 bound to: 1'b0 
+	Parameter BYTE2 bound to: 1'b1 
+WARNING: [Synth 8-6014] Unused sequential element VSYNC_1xdelay_reg was removed.  [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_columns.v:31]
+INFO: [Synth 8-6155] done synthesizing module 'counter_columns' (2#1) [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_columns.v:2]
+INFO: [Synth 8-6157] synthesizing module 'capture_color' [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/capture_color.v:21]
+	Parameter BYTE1 bound to: 1'b0 
+	Parameter BYTE2 bound to: 1'b1 
+WARNING: [Synth 8-6014] Unused sequential element VSYNC_1xdelay_reg was removed.  [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/capture_color.v:51]
+INFO: [Synth 8-6155] done synthesizing module 'capture_color' (3#1) [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/capture_color.v:21]
+INFO: [Synth 8-6157] synthesizing module 'process_color' [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v:21]
+	Parameter anchura bound to: 640 - type: integer 
+	Parameter altura bound to: 480 - type: integer 
+	Parameter Rmin bound to: 5'b11001 
+	Parameter Rmax bound to: 5'b11111 
+	Parameter Gmin bound to: 6'b000000 
+	Parameter Gmax bound to: 6'b000101 
+	Parameter Bmin bound to: 5'b00000 
+	Parameter Bmax bound to: 5'b00101 
+WARNING: [Synth 8-6014] Unused sequential element VSYNC_1xdelay_reg was removed.  [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v:61]
+WARNING: [Synth 8-6014] Unused sequential element HREF_1xdelay_reg was removed.  [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v:65]
+WARNING: [Synth 8-6014] Unused sequential element PCLK_1xdelay_reg was removed.  [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v:69]
+INFO: [Synth 8-6155] done synthesizing module 'process_color' (4#1) [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v:21]
+WARNING: [Synth 8-3848] Net DEBUG4 in module/entity camera does not have driver. [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v:35]
+WARNING: [Synth 8-3848] Net DEBUG5 in module/entity camera does not have driver. [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v:36]
+WARNING: [Synth 8-3848] Net DEBUG6 in module/entity camera does not have driver. [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v:37]
+WARNING: [Synth 8-3848] Net DEBUG7 in module/entity camera does not have driver. [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'camera' (5#1) [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v:21]
+WARNING: [Synth 8-3331] design process_color has unconnected port GREEN[5]
+WARNING: [Synth 8-3331] design process_color has unconnected port GREEN[4]
+WARNING: [Synth 8-3331] design process_color has unconnected port GREEN[3]
+WARNING: [Synth 8-3331] design process_color has unconnected port GREEN[2]
+WARNING: [Synth 8-3331] design process_color has unconnected port GREEN[1]
+WARNING: [Synth 8-3331] design process_color has unconnected port GREEN[0]
+WARNING: [Synth 8-3331] design process_color has unconnected port BLUE[4]
+WARNING: [Synth 8-3331] design process_color has unconnected port BLUE[3]
+WARNING: [Synth 8-3331] design process_color has unconnected port BLUE[2]
+WARNING: [Synth 8-3331] design process_color has unconnected port BLUE[1]
+WARNING: [Synth 8-3331] design process_color has unconnected port BLUE[0]
+WARNING: [Synth 8-3331] design process_color has unconnected port HREF
+WARNING: [Synth 8-3331] design process_color has unconnected port VSYNC
+WARNING: [Synth 8-3331] design process_color has unconnected port PCLK
+WARNING: [Synth 8-3331] design process_color has unconnected port START
+WARNING: [Synth 8-3331] design capture_color has unconnected port VSYNC
+WARNING: [Synth 8-3331] design counter_columns has unconnected port VSYNC
+WARNING: [Synth 8-3331] design counter_rows has unconnected port PCLK
+WARNING: [Synth 8-3331] design camera has unconnected port DEBUG4
+WARNING: [Synth 8-3331] design camera has unconnected port DEBUG5
+WARNING: [Synth 8-3331] design camera has unconnected port DEBUG6
+WARNING: [Synth 8-3331] design camera has unconnected port DEBUG7
+WARNING: [Synth 8-3331] design camera has unconnected port START_I2C
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 410.734 ; gain = 147.781
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 410.734 ; gain = 147.781
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7k70tfbv676-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 410.734 ; gain = 147.781
+INFO: [Device 21-403] Loading part xc7k70tfbv676-1
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4471] merging register 'debug_reg_reg' into 'ready_color_reg_reg' [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/capture_color.v:78]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 410.734 ; gain = 147.781
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 1     
++---Registers : 
+	               10 Bit    Registers := 1     
+	                9 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 13    
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module counter_rows 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      9 Bit       Adders := 1     
++---Registers : 
+	                9 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
+Module counter_columns 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
++---Registers : 
+	               10 Bit    Registers := 1     
+	                1 Bit    Registers := 4     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module capture_color 
+Detailed RTL Component Info : 
++---Registers : 
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 4     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module process_color 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-4471] merging register 'counter_columns_0/HREF_1xdelay_reg' into 'counter_rows_0/HREF_1xdelay_reg' [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_columns.v:35]
+INFO: [Synth 8-4471] merging register 'capture_color_0/HREF_1xdelay_reg' into 'counter_rows_0/HREF_1xdelay_reg' [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/capture_color.v:55]
+INFO: [Synth 8-4471] merging register 'capture_color_0/PCLK_1xdelay_reg' into 'counter_columns_0/PCLK_1xdelay_reg' [D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/capture_color.v:59]
+WARNING: [Synth 8-3331] design camera has unconnected port DEBUG4
+WARNING: [Synth 8-3331] design camera has unconnected port DEBUG5
+WARNING: [Synth 8-3331] design camera has unconnected port DEBUG6
+WARNING: [Synth 8-3331] design camera has unconnected port DEBUG7
+WARNING: [Synth 8-3331] design camera has unconnected port START_I2C
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 559.340 ; gain = 296.387
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 559.340 ; gain = 296.387
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 560.727 ; gain = 297.773
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 560.727 ; gain = 297.773
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 560.727 ; gain = 297.773
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 560.727 ; gain = 297.773
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 560.727 ; gain = 297.773
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 560.727 ; gain = 297.773
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 560.727 ; gain = 297.773
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |     5|
+|3     |LUT1   |     3|
+|4     |LUT2   |     7|
+|5     |LUT3   |     8|
+|6     |LUT4   |     5|
+|7     |LUT5   |     9|
+|8     |LUT6   |    11|
+|9     |FDRE   |    66|
+|10    |IBUF   |    12|
+|11    |OBUF   |    41|
+|12    |OBUFT  |     4|
++------+-------+------+
+
+Report Instance Areas: 
++------+--------------------+----------------+------+
+|      |Instance            |Module          |Cells |
++------+--------------------+----------------+------+
+|1     |top                 |                |   172|
+|2     |  capture_color_0   |capture_color   |    26|
+|3     |  counter_columns_0 |counter_columns |    29|
+|4     |  counter_rows_0    |counter_rows    |    26|
+|5     |  process_color_0   |process_color   |    33|
++------+--------------------+----------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 560.727 ; gain = 297.773
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 39 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 560.727 ; gain = 297.773
+Synthesis Optimization Complete : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 560.727 ; gain = 297.773
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 5 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 658.129 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+23 Infos, 39 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:28 . Memory (MB): peak = 658.129 ; gain = 408.184
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 658.129 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera_vivado/camera_vivado.runs/synth_1/camera.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file camera_utilization_synth.rpt -pb camera_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Mar 30 18:30:22 2019...

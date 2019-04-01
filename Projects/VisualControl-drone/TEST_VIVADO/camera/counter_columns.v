@@ -5,7 +5,7 @@ module counter_columns(
     input PCLK,
     input CLK,
     input START,
-    //output DEBUG,
+    output DEBUG,
     output [9:0] PIXEL_COLUMN
     );
 
@@ -51,7 +51,7 @@ begin
       BYTE1:
       begin
       state <= BYTE2;
-      debug_reg <= !debug_reg;
+      //debug_reg <= !debug_reg;
       end
       BYTE2:
       begin
@@ -68,8 +68,16 @@ begin
   end
 end
 
+/*always @(posedge CLK)
+begin
+  if( START && HREF_constant_high)
+  begin
+    debug_reg <= !debug_reg;
+  end
+end*/
+
 assign PIXEL_COLUMN = pixel_columna_reg;
-//assign DEBUG = debug_reg;
+assign DEBUG = debug_reg;
 
 
 endmodule

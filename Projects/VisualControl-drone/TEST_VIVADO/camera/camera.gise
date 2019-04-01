@@ -22,11 +22,14 @@
   <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="camera.xise"/>
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
-    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="TestBench_beh.prj"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="TestBench2_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="TestBench2_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="TestBench2_isim_beh.wdb"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="TestBench2_stx_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="TestBench_isim_beh.exe"/>
-    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="TestBench_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="TestBench_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/bitgen.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/map.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
@@ -73,6 +76,8 @@
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="camera_summary.xml"/>
     <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="camera_usage.xml"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="camera_xst.xrpt"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="capture_color_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="capture_color_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
@@ -89,14 +94,11 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1553693834" xil_pn:in_ck="-4796291094537300500" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1553693834">
+    <transform xil_pn:end_ts="1553720677" xil_pn:in_ck="8174218976610100578" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1553720677">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="TestBench.v"/>
+      <outfile xil_pn:name="TestBench2.v"/>
       <outfile xil_pn:name="camera.v"/>
       <outfile xil_pn:name="capture_color.v"/>
       <outfile xil_pn:name="counter_columns.v"/>
@@ -104,11 +106,11 @@
       <outfile xil_pn:name="process_color.v"/>
       <outfile xil_pn:name="start.v"/>
     </transform>
-    <transform xil_pn:end_ts="1553510036" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="7994251461958826743" xil_pn:start_ts="1553510036">
+    <transform xil_pn:end_ts="1553720682" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-1418431245682131351" xil_pn:start_ts="1553720682">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1553510036" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-2970766352505828615" xil_pn:start_ts="1553510036">
+    <transform xil_pn:end_ts="1553720682" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-7552879466195544341" xil_pn:start_ts="1553720682">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
@@ -116,15 +118,11 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1553693838" xil_pn:in_ck="-4796291094537300500" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1553693838">
+    <transform xil_pn:end_ts="1553720682" xil_pn:in_ck="8174218976610100578" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1553720682">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="TestBench.v"/>
+      <outfile xil_pn:name="TestBench2.v"/>
       <outfile xil_pn:name="camera.v"/>
       <outfile xil_pn:name="capture_color.v"/>
       <outfile xil_pn:name="counter_columns.v"/>
@@ -132,30 +130,24 @@
       <outfile xil_pn:name="process_color.v"/>
       <outfile xil_pn:name="start.v"/>
     </transform>
-    <transform xil_pn:end_ts="1553693843" xil_pn:in_ck="-4796291094537300500" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="4248203717376029071" xil_pn:start_ts="1553693838">
+    <transform xil_pn:end_ts="1553720689" xil_pn:in_ck="8174218976610100578" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="7910993834039564723" xil_pn:start_ts="1553720682">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="TestBench_beh.prj"/>
-      <outfile xil_pn:name="TestBench_isim_beh.exe"/>
+      <outfile xil_pn:name="TestBench2_beh.prj"/>
+      <outfile xil_pn:name="TestBench2_isim_beh.exe"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1553693843" xil_pn:in_ck="5300617378505395492" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-3913207672986833550" xil_pn:start_ts="1553693843">
+    <transform xil_pn:end_ts="1553720689" xil_pn:in_ck="2915308945407405734" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-6689519649464677706" xil_pn:start_ts="1553720689">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="TestBench_isim_beh.wdb"/>
+      <outfile xil_pn:name="TestBench2_isim_beh.wdb"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>
     </transform>
@@ -187,7 +179,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1553705426" xil_pn:in_ck="4245187234666119546" xil_pn:name="TRANEXT_xstsynthesize_spartan3e" xil_pn:prop_ck="8985796965355170994" xil_pn:start_ts="1553705411">
+    <transform xil_pn:end_ts="1553719816" xil_pn:in_ck="4245187234666119546" xil_pn:name="TRANEXT_xstsynthesize_spartan3e" xil_pn:prop_ck="8985796965355170994" xil_pn:start_ts="1553719801">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -210,7 +202,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1553705447" xil_pn:in_ck="-3669397182906062702" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-152709450679892350" xil_pn:start_ts="1553705438">
+    <transform xil_pn:end_ts="1553719828" xil_pn:in_ck="-3669397182906062702" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-152709450679892350" xil_pn:start_ts="1553719818">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_ngo"/>
@@ -219,7 +211,7 @@
       <outfile xil_pn:name="camera.ngd"/>
       <outfile xil_pn:name="camera_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1553705457" xil_pn:in_ck="-7792250414847646957" xil_pn:name="TRANEXT_map_spartan3" xil_pn:prop_ck="2842458847540838050" xil_pn:start_ts="1553705447">
+    <transform xil_pn:end_ts="1553719839" xil_pn:in_ck="-7792250414847646957" xil_pn:name="TRANEXT_map_spartan3" xil_pn:prop_ck="2842458847540838050" xil_pn:start_ts="1553719828">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -233,7 +225,7 @@
       <outfile xil_pn:name="camera_summary.xml"/>
       <outfile xil_pn:name="camera_usage.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1553705484" xil_pn:in_ck="-6702072730988756820" xil_pn:name="TRANEXT_par_spartan3" xil_pn:prop_ck="-5563652517805085498" xil_pn:start_ts="1553705457">
+    <transform xil_pn:end_ts="1553719866" xil_pn:in_ck="-6702072730988756820" xil_pn:name="TRANEXT_par_spartan3" xil_pn:prop_ck="-5563652517805085498" xil_pn:start_ts="1553719839">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
@@ -258,7 +250,7 @@
       <status xil_pn:value="OutputChanged"/>
       <status xil_pn:value="OutputRemoved"/>
     </transform>
-    <transform xil_pn:end_ts="1553705484" xil_pn:in_ck="1468798063864477839" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416187" xil_pn:start_ts="1553705478">
+    <transform xil_pn:end_ts="1553719866" xil_pn:in_ck="1468798063864477839" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416187" xil_pn:start_ts="1553719860">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>

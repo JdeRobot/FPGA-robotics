@@ -3,10 +3,10 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pn" timeStamp="Wed Mar 27 17:50:58 2019">
+<application name="pn" timeStamp="Wed Mar 27 21:50:40 2019">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="C4ACCA250D124C30AA6EF3835BBE4DF7" type="project"/>
-<property name="ProjectIteration" value="9" type="project"/>
+<property name="ProjectIteration" value="12" type="project"/>
 <property name="ProjectFile" value="D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xise" type="project"/>
 <property name="ProjectCreationTimestamp" value="2019-03-20T12:46:32" type="project"/>
 </section>
@@ -18,7 +18,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="PROP_LastAppliedStrategy" value="Xilinx Default (unlocked)" type="design"/>
 <property name="PROP_ManualCompileOrderImp" value="false" type="design"/>
 <property name="PROP_PropSpecInProjFile" value="Store all values" type="design"/>
-<property name="PROP_SelectedInstanceHierarchicalPath" value="/TestBench/uut/capture_color_0" type="process"/>
+<property name="PROP_SelectedInstanceHierarchicalPath" value="/TestBench" type="process"/>
 <property name="PROP_Simulator" value="ISim (VHDL/Verilog)" type="design"/>
 <property name="PROP_SynthTopFile" value="changed" type="process"/>
 <property name="PROP_Top_Level_Module_Type" value="HDL" type="design"/>
@@ -26,11 +26,11 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="PROP_UserConstraintEditorPreference" value="Text Editor" type="process"/>
 <property name="PROP_intProjectCreationTimestamp" value="2019-03-20T12:46:32" type="design"/>
 <property name="PROP_intWbtProjectID" value="C4ACCA250D124C30AA6EF3835BBE4DF7" type="design"/>
-<property name="PROP_intWbtProjectIteration" value="9" type="process"/>
+<property name="PROP_intWbtProjectIteration" value="12" type="process"/>
 <property name="PROP_intWorkingDirLocWRTProjDir" value="Same" type="design"/>
 <property name="PROP_intWorkingDirUsed" value="No" type="design"/>
 <property name="PROP_lockPinsUcfFile" value="changed" type="process"/>
-<property name="PROP_selectedSimRootSourceNode_behav" value="work.capture_color" type="process"/>
+<property name="PROP_selectedSimRootSourceNode_behav" value="work.TestBench" type="process"/>
 <property name="PROP_xilxBitgStart_IntDone" value="true" type="process"/>
 <property name="PROP_AutoTop" value="false" type="design"/>
 <property name="PROP_DevFamily" value="Spartan3E" type="design"/>

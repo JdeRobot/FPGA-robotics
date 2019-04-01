@@ -1,0 +1,344 @@
+*******************************************************************************
+*
+*                      IMPORT XISE SUMMARY REPORT
+*
+*                       (import_ise_summary.txt)
+*
+*  PLEASE READ THIS REPORT TO GET THE DETAILED INFORMATION ON THE DATA THAT
+*  WAS PARSED FROM THE ISE PROJECT AND IMPORTED INTO THE CURRENT PROJECT.
+*
+*
+* The report is divided into following three sections:-
+*
+* Section (1) - ISE PROJECT INFORMATION
+*
+*  This section provides the details of the ISE project that was imported
+*
+* Section (2) - EXCEPTIONS
+*
+*  This section summarizes the ISE project data that was either not imported or
+*  not mapped into the current project
+*
+* Section (3) - MAPPED DATA
+*
+*  This section summarizes the Vivado project information that was imported
+*  from the ISE project data
+*
+*******************************************************************************
+
+Section (1) - ISE PROJECT INFORMATION
+-------------------------------------
+
+The following items describes the information about the ISE project that was imported:-
+
+Project Name    = camera
+Project File    = D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.xise
+Project Version = 14.4
+Device Family   = Spartan3E
+Part Name       = xc3s500e-5-vq100*
+
+*This part is not supported in Vivado and is replaced with the default part in the new project.
+ Please see Section (3.1) - "Target Device" below for more details.
+
+
+Section (2) - EXCEPTIONS
+------------------------
+
+The following sub-sections describes the list of items that were NOT mapped from the
+XISE file contents into the current project:-
+
+Section (2.1) - Missing Sources
+-------------------------------
+None
+
+
+Section (2.2) - Unknown Sources
+-------------------------------
+None
+
+
+Section (2.3) - IP Import Issues
+--------------------------------
+None
+
+
+Section (2.4) - Unknown Properties
+----------------------------------
+
+The following ISE properties were not mapped into the current project:-
+
+
+<ISE Property Name>                                   <ISE Property Value>
+"Allow SelectMAP Pins to Persist"                     'false'
+"Analysis Effort Level"                               'Standard'
+"Asynchronous To Synchronous"                         'false'
+"Automatically Insert glbl Module in the Netlist"     'true'
+"Automatically Run Generate Target PROM/ACE File"     'false'
+"BRAM Utilization Ratio"                              '100'
+"Bring Out Global Set/Reset Net as a Port"            'false'
+"Bring Out Global Tristate Net as a Port"             'false'
+"Bus Delimiter"                                       '<>'
+"CLB Pack Factor Percentage"                          '100'
+"Case"                                                'Maintain'
+"Case Implementation Style"                           'None'
+"Change Device Speed To"                              '-5'
+"Change Device Speed To Post Trace"                   '-5'
+"Configuration Clk (Configuration Pins)"              'Pull Up'
+"Configuration Pin Done"                              'Pull Up'
+"Configuration Pin M0"                                'Pull Up'
+"Configuration Pin M1"                                'Pull Up'
+"Configuration Pin M2"                                'Pull Up'
+"Configuration Pin Program"                           'Pull Up'
+"Configuration Rate"                                  'Default (1)'
+"Correlate Output to Input Design"                    'false'
+"Create Binary Configuration File"                    'false'
+"Create IEEE 1532 Configuration File"                 'false'
+"Create ReadBack Data Files"                          'false'
+"Cross Clock Analysis"                                'false'
+"DCI Update Mode"                                     'As Required'
+"DSP Utilization Ratio"                               '100'
+"Decoder Extraction"                                  'true'
+"Device Speed Grade/Select ABS Minimum"               '-5'
+"Disable Detailed Package Model Insertion"            'false'
+"Do Not Escape Signal and Instance Names in Netlist"  'false'
+"Done (Output Events)"                                'Default (4)'
+"Drive Done Pin High"                                 'false'
+"Enable BitStream Compression"                        'false'
+"Enable Cyclic Redundancy Checking (CRC)"             'true'
+"Enable Debugging of Serial Mode BitStream"           'false'
+"Enable Internal Done Pipe"                           'true'
+"Enable Message Filtering"                            'false'
+"Enable Outputs (Output Events)"                      'Default (5)'
+"Evaluation Development Board"                        'None Specified'
+"Extra Effort"                                        'None'
+"FPGA Start-Up Clock"                                 'CCLK'
+"FSM Style"                                           'LUT'
+"Flatten Output Netlist"                              'false'
+"Functional Model Target Language ArchWiz"            'Verilog'
+"Functional Model Target Language Coregen"            'Verilog'
+"Functional Model Target Language Schematic"          'Verilog'
+"Generate Asynchronous Delay Report"                  'false'
+"Generate Clock Region Report"                        'false'
+"Generate Constraints Interaction Report"             'false'
+"Generate Constraints Interaction Report Post Trace"  'false'
+"Generate Datasheet Section"                          'true'
+"Generate Detailed MAP Report"                        'false'
+"Generate Multiple Hierarchical Netlist Files"        'false'
+"Generate Post-Place & Route Power Report"            'false'
+"Generate Post-Place & Route Simulation Model"        'false'
+"Generate RTL Schematic"                              'Yes'
+"Generate Testbench File"                             'false'
+"Generate Timegroups Section"                         'false'
+"Generate Timegroups Section Post Trace"              'false'
+"Global Optimization Goal"                            'AllClockNets'
+"Global Set/Reset Port Name"                          'GSR_PORT'
+"Global Tristate Port Name"                           'GTS_PORT'
+"Hierarchy Separator"                                 '/'
+"Ignore User Timing Constraints Map"                  'false'
+"Include 'uselib Directive in Verilog File"           'false'
+"Include SIMPRIM Models in Verilog File"              'false'
+"Include UNISIM Models in Verilog File"               'false'
+"Include sdf_annotate task in Verilog File"           'true'
+"Insert Buffers to Prevent Pulse Swallowing"          'true'
+"JTAG Pin TCK"                                        'Pull Up'
+"JTAG Pin TDI"                                        'Pull Up'
+"JTAG Pin TDO"                                        'Pull Up'
+"JTAG Pin TMS"                                        'Pull Up'
+"Keep Hierarchy"                                      'No'
+"Last Unlock Status"                                  'false'
+"Library for Verilog Sources"                         ''
+"Logical Shifter Extraction"                          'true'
+"Map Effort Level"                                    'High'
+"Max Fanout"                                          '100000'
+"Maximum Number of Lines in Report"                   '1000'
+"Maximum Signal Name Length"                          '20'
+"Move First Flip-Flop Stage"                          'true'
+"Move Last Flip-Flop Stage"                           'true'
+"Multiplier Style"                                    'Auto'
+"Mux Extraction"                                      'Yes'
+"Mux Style"                                           'Auto'
+"Netlist Translation Type"                            'Timestamp'
+"Number of Paths in Error/Verbose Report"             '3'
+"Optimize Instantiated Primitives"                    'false'
+"Other XPWR Command Line Options"                     ''
+"Output Extended Identifiers"                         'false'
+"Output File Name"                                    'camera'
+"Perform Advanced Analysis"                           'false'
+"Perform Advanced Analysis Post Trace"                'false'
+"Place And Route Mode"                                'Normal Place and Route'
+"Port to be used"                                     'Auto - default'
+"Post Map Simulation Model Name"                      'camera_map.v'
+"Post Place & Route Simulation Model Name"            'camera_timesim.v'
+"Post Synthesis Simulation Model Name"                'camera_synthesis.v'
+"Post Translate Simulation Model Name"                'camera_translate.v'
+"Priority Encoder Extraction"                         'Yes'
+"Produce Verbose Report"                              'false'
+"RAM Extraction"                                      'true'
+"ROM Extraction"                                      'true'
+"ROM Style"                                           'Auto'
+"Read Cores"                                          'true'
+"Regenerate Core"                                     'Under Current Project Setting'
+"Register Duplication Xst"                            'true'
+"Release Write Enable (Output Events)"                'Default (6)'
+"Rename Design Instance in Testbench File to"         'UUT'
+"Rename Top Level Architecture To"                    'Structure'
+"Rename Top Level Entity to"                          ''
+"Report Paths by Endpoint"                            '3'
+"Report Paths by Endpoint Post Trace"                 '3'
+"Report Type"                                         'Verbose Report'
+"Report Type Post Trace"                              'Verbose Report'
+"Reset DCM if SHUTDOWN & AGHIGH performed"            'false'
+"Reset On Configuration Pulse Width"                  '100'
+"Revision Select"                                     '00'
+"Revision Select Tristate"                            'Disable'
+"Safe Implementation"                                 'No'
+"Security"                                            'Enable Readback and Reconfiguration'
+"Shift Register Extraction"                           'true'
+"Show All Models"                                     'false'
+"Slice Packing"                                       'true'
+"Slice Utilization Ratio"                             '100'
+"Target UCF File Name"                                'constraints_file.ucf'
+"Top-Level Module Name in Output Netlist"             ''
+"Tristate On Configuration Pulse Width"               '0'
+"Unused IOB Pins"                                     'Pull Down'
+"Use Clock Enable"                                    'Yes'
+"Use Smart Guide"                                     'false'
+"Use Synchronous Reset"                               'Yes'
+"Use Synchronous Set"                                 'Yes'
+"Use Synthesis Constraints File"                      'true'
+"UserID Code (8 Digit Hexadecimal)"                   '0xFFFFFFFF'
+"VHDL Source Analysis Standard"                       'VHDL-93'
+"Verilog 2001 Xst"                                    'true'
+"Wait for DLL Lock (Output Events)"                   'Default (NoWait)'
+"Write Timing Constraints"                            'false'
+"XOR Collapsing"                                      'true'
+
+
+Section (3) - MAPPED DATA
+-------------------------
+
+The following sub-sections describes the list of items that were imported from the
+ISE properties and sources and mapped into the current project:-
+
+Section (3.1) - Target Device
+-----------------------------
+
+Default Part = xc7k70tfbv676-1
+Family       = kintex7
+Package      = fbv676
+Speed Grade  = -1
+
+
+Section (3.2) - Filesets
+------------------------
+
+<sources_1>
+FILESET_TYPE   = DesignSrcs
+TOP            = camera
+DESIGN_MODE    = RTL
+VERILOG_DIR    = 
+VERILOG_DEFINE = 
+VHDL_GENERICS  = 
+
+File(s):-
+NAME      = start.v
+FILE PATH = D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/start.v
+FILE_TYPE = Verilog
+LIBRARY   = xil_defaultlib
+
+NAME      = process_color.v
+FILE PATH = D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v
+FILE_TYPE = Verilog
+LIBRARY   = xil_defaultlib
+
+NAME      = counter_columns.v
+FILE PATH = D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_columns.v
+FILE_TYPE = Verilog
+LIBRARY   = xil_defaultlib
+
+NAME      = capture_color.v
+FILE PATH = D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/capture_color.v
+FILE_TYPE = Verilog
+LIBRARY   = xil_defaultlib
+
+NAME      = camera.v
+FILE PATH = D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v
+FILE_TYPE = Verilog
+LIBRARY   = xil_defaultlib
+
+
+<constrs_1>
+FILESET_TYPE   = Constrs
+
+Note: During the import operation, any constraint file(s) that are found in the ISE project will be added to the current Vivado project.
+      However, please note that none of these files will be automatically marked as a "Target Constraint File". To set a constraint file
+      as target, select the file in the GUI "Sources" window, right-click on this file and then select "Set Target UCF". Alternatively,
+      the target constraint file can be set using the "set_property target_constrs_file <filename> <fileset>" Tcl command.
+
+File(s):-
+NAME      = constraints_file.ucf
+FILE PATH = D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/constraints_file.ucf
+FILE_TYPE = Unknown
+
+
+<sim_1>
+FILESET_TYPE   = SimulationSrcs
+
+File(s):-
+NAME      = counter_rows.v
+FILE PATH = D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_rows.v
+FILE_TYPE = Verilog
+LIBRARY   = xil_defaultlib
+
+NAME      = TestBench.v
+FILE PATH = D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench.v
+FILE_TYPE = Verilog
+LIBRARY   = xil_defaultlib
+
+NAME      = TestBench2.v
+FILE PATH = D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench2.v
+FILE_TYPE = Verilog
+LIBRARY   = xil_defaultlib
+
+
+<utils_1>
+FILESET_TYPE   = Utils
+
+File(s):-
+None
+
+Section (3.3) - Design Runs(s)
+------------------------------
+
+<synth_1>
+FLOW      = Vivado Synthesis 2018
+PART      = xc7k70tfbv676-1
+SRCSET    = sources_1
+CONSTRSET = constrs_1
+STRATEGY  = Vivado Synthesis Defaults
+
+Options:-
+
+Note: The current run uses Vivado Strategies; hence no ISE run options will be mapped to this run during the import operation.
+
+
+
+<impl_1>
+FLOW      = Vivado Implementation 2018
+PART      = xc7k70tfbv676-1
+SRCSET    = sources_1
+CONSTRSET = constrs_1
+STRATEGY  = Vivado Implementation Defaults
+
+Options:-
+
+Note: The current run uses Vivado Strategies; hence no ISE run options will be mapped to this run during the import operation.
+
+
+
+<sim_1>
+TOP  = TestBench2
+SOURCE_SET  = sources_1
+
+Options:-
+        

@@ -5,8 +5,5 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench.v" Line 41: Port <arg fmt="%s" index="1">D</arg> is not connected to this instance
-</msg>
-
 </messages>
 

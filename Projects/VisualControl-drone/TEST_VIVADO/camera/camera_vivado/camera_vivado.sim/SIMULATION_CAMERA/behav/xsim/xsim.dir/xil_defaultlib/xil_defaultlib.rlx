@@ -1,0 +1,11 @@
+0.6
+2018.3
+Dec  7 2018
+00:33:28
+D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench2.v,1554057190,verilog,,,,TestBench2,,,,,,,,
+D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v,1553945187,verilog,,D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_rows.v,,camera,,,,,,,,
+D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera_vivado/camera_vivado.sim/SIMULATION_CAMERA/behav/xsim/glbl.v,1544155481,verilog,,,,glbl,,,,,,,,
+D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/capture_color.v,1553776552,verilog,,D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/camera.v,,capture_color,,,,,,,,
+D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_columns.v,1553841892,verilog,,D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/capture_color.v,,counter_columns,,,,,,,,
+D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_rows.v,1553846645,verilog,,D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench2.v,,counter_rows,,,,,,,,
+D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/process_color.v,1553966974,verilog,,D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/counter_columns.v,,process_color,,,,,,,,

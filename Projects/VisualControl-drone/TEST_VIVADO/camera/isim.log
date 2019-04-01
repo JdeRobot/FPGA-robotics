@@ -1,5 +1,5 @@
 ISim log file
-Running: D:\FPGA-robotics\Projects\VisualControl-drone\TEST_VIVADO\camera\TestBench_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench_isim_beh.wdb 
+Running: D:\FPGA-robotics\Projects\VisualControl-drone\TEST_VIVADO\camera\TestBench2_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb D:/FPGA-robotics/Projects/VisualControl-drone/TEST_VIVADO/camera/TestBench2_isim_beh.wdb 
 ISim P.49d (signature 0x7708f090)
 ----------------------------------------------------------------------
 INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.
@@ -20,5 +20,3 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# run 90ms
-# run 95ms
