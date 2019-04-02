@@ -1,3 +1,7 @@
+// Code your testbench here
+// or browse Examples
+// Code your testbench here
+// or browse Examples
 module test_bench;
 
   reg        clk_write;
@@ -12,13 +16,13 @@ module test_bench;
   wire [7:0] data_r_R;
   wire [7:0] data_r_G;
   wire [7:0] data_r_B;
-  
+  integer f;
   
   //  ram #(X,Y,Z) to instantiate design under test to
   // DATA_WIDTH = X
   // ADD_WIDTH = Y
   // A_MAX = 2^ADD_WIDTH = Z
-  ram_rgb_rw #(8, 10, 1024) RAM (
+  ram_rgb_rw #(8, 12, 4096) RAM (
     .clk_write(clk_write),
     .address_write(address_write),
     .data_w_R(data_w_R),
@@ -42,50 +46,43 @@ module test_bench;
     // Dump waves
     $dumpfile("dump.vcd");
     $dumpvars(1, test_bench);
+    f = $fopen("output.txt","w"); 
     
     clk_write = 0;
     clk_read = 0;
     write_enable = 0;
-    address_read = 12'd2;
+    address_read = 12'd1;
     address_write = address_read;
 
-    $display("Read initial data.");
-    toggle_clk_read;
-    $display("dataR[%0h]: %0h",
-      address_read, data_r_R);
-    $display("dataG[%0h]: %0h",
-      address_read, data_r_G);
-    $display("dataB[%0h]: %0h",
-      address_read, data_r_B);
 
-    $display("Write new data.");
     write_enable = 1;
-     toggle_clk_write;
-   	write_enable = 0;
+    toggle_clk_rw;
+    write_enable = 0;
     
-    $display("Read new data.");
-    toggle_clk_read;
-    $display("data[%0h]: %0h",
-      address_read, data_r_R);
-    $display("data[%0h]: %0h",
-      address_read, data_r_G);
-    $display("data[%0h]: %0h",
-      address_read, data_r_B);
+    $fclose(f);  
   end
   
-  task toggle_clk_write;
-    begin
-      #10 clk_write = ~clk_write;
-      #10 clk_write = ~clk_write;
-      #10 clk_write = ~clk_write;
-    end
-  endtask
 
-  task toggle_clk_read;
-    begin
-      #10 clk_read = ~clk_read;
-      #10 clk_read = ~clk_read;
-    end
-  endtask
 
+ task toggle_clk_rw;
+
+   for (int i = 0; i < 1024; i++) begin
+    
+
+      #10 clk_write = ~clk_write;
+           #10 clk_write = ~clk_write;
+      #10 clk_read = ~clk_read;
+           #10 clk_read = ~clk_read;
+     $display("data[%0h]RGB: %0h,%0h,%0h",address_read, data_r_R,data_r_G,data_r_B);
+
+     
+     $fwrite(f,"%0h\n%0h\n%0h\n",data_r_R,data_r_G,data_r_B);
+
+    address_read= address_read +1;
+    address_write = address_read;
+
+    end
+
+endtask
+  
 endmodule

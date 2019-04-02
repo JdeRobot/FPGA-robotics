@@ -1,7 +1,6 @@
+
 module hex_to_rgb (
                 input  wire clk,            // System clock.
-      //          input  wire [9:0] x_img,    // X position in image.
-      //          input  wire [9:0] y_img,    // Y position in image.
                 output reg  [7:0] Rp,             // Pixel (R) in x and y positon.
                 output reg  [7:0] Gp,             // Pixel (G) in x and y positon.
                 output reg  [7:0] Bp             // Pixel (B) in x and y positon.
@@ -14,7 +13,7 @@ module hex_to_rgb (
     parameter WIDTH = 32;
     parameter HEIGHT = 32;
     parameter sizeOfLengthReal = 3073;   // image data : bytes: 3073 32 * 32 * 3
-   	//parameter sizeOfLengthReal = 12288;   // image data : 1179648 bytes: 64 * 64 *3 
+    //parameter sizeOfLengthReal = 12288;   // image data : 1179648 bytes: 64 * 64 *3 
 
 
   reg [8:0] x_img; // counter for vsync
@@ -30,8 +29,8 @@ module hex_to_rgb (
     initial
     begin
         $readmemh(IMG, img_storage, 0,sizeOfLengthReal-1);
-      	x_img =0;
-      	y_img =0;
+        x_img =0;
+        y_img =0;
     end
 
 
@@ -39,15 +38,15 @@ module hex_to_rgb (
     always @(posedge clk) begin
       $display("Leemos X,Y[%d;%d]",x_img,y_img);
 
+      
         if ((x_img >= 0) && (x_img < WIDTH ) && (y_img >= 0) && (y_img < HEIGHT))
-          Rp = img_storage[WIDTH*3*(HEIGHT-y_img-1)+3*x_img+0];
-      $display("Rp[%d]=%b",(WIDTH*3*(HEIGHT-y_img-1)+3*x_img+0),Rp);
+          Rp = img_storage[WIDTH*3*(x_img)+3*y_img+0];
+      $display("Rp[%d]=%b",(WIDTH*3*(x_img)+3*y_img+0),Rp);
 
-      $display("Rp=%b",Rp);
-          Gp = img_storage[WIDTH*3*(HEIGHT-y_img-1)+3*x_img+1];
-      $display("Rp=%b",Gp);
-          Bp = img_storage[WIDTH*3*(HEIGHT-y_img-1)+3*x_img+2];
-      $display("Rp=%b",Bp);
+      Gp = img_storage[WIDTH*3*(x_img)+3*y_img+1];
+      $display("Gp[%d]=%b",(WIDTH*3*(x_img)+3*y_img+1),Gp);
+      Bp = img_storage[WIDTH*3*(x_img)+3*y_img+2];
+      $display("Bp[%d]=%b",(WIDTH*3*(x_img)+3*y_img+2),Bp);
 
 
     end
@@ -55,7 +54,7 @@ module hex_to_rgb (
   // counters for vsync, hsync
   always@(posedge clk)
     begin
-      if(y_img==WIDTH) begin
+      if(y_img==WIDTH-1) begin
         y_img <= 0;
         x_img <= x_img + 1;
 
@@ -67,4 +66,3 @@ module hex_to_rgb (
 
   
 endmodule
-
