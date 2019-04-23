@@ -9,3 +9,8 @@ The goal of this project is to perform image processing inside FPGAs, different 
 -Basics/HexImageFilter:
 
   ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/Basics/HexImageFilter/Untitled%20Diagram.png)
+
+
+-HexToVGA:
+
+  ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/HexToVGA/Untitled%20Diagram.png)
