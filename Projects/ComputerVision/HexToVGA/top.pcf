@@ -1,0 +1,12 @@
+set_io   clk               21
+#set_io   clr               11
+set_io   hsync             37
+set_io   vsync             39
+set_io   red_monitor       38
+set_io   green_monitor     41
+set_io   blue_monitor      43
+set_io   inc_vel           10
+set_io   dec_vel           11
+set_io   code_sound[1]     104
+set_io   code_sound[0]     102
+set_io   sound             119
