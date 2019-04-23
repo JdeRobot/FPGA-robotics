@@ -44,8 +44,8 @@ module top (
     image (
             .clk (px_clk),                     // Input clock: 12MHz
             .clr (clr),                     // Asynchronous reset
-            .x_px(x_px),                    // Position x actual pixel.
-            .y_px(y_px),                    // Position y actual pixel.
+            .x_img(x_px),                    // Position x actual pixel.
+            .y_img(y_px),                    // Position y actual pixel.
             .Rp (R_px),     
             .Gp (G_px),  
             .Bp (B_px)
