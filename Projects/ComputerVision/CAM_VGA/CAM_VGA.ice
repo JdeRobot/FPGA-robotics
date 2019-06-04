@@ -476,15 +476,39 @@
           }
         },
         {
+          "id": "9f36afef-c175-47cf-b6e6-722ece428e09",
+          "type": "0100f982073978613da66996176d91bf3dd013f9",
+          "position": {
+            "x": -2696,
+            "y": 1440
+          },
+          "size": {
+            "width": 96,
+            "height": 96
+          }
+        },
+        {
+          "id": "46f57318-9e61-46a7-b8d6-edbf81561ca7",
+          "type": "1374ebd258036ea0ace53cbfce7f63fbf69e9c18",
+          "position": {
+            "x": -2392,
+            "y": 888
+          },
+          "size": {
+            "width": 96,
+            "height": 64
+          }
+        },
+        {
           "id": "2254e59b-872d-4ee8-ac7d-075aff628a37",
           "type": "basic.code",
           "data": {
-            "code": "\r\nlocalparam BYTE1 = 1'b0;\r\nlocalparam BYTE2 = 1'b1;\r\nreg state = BYTE1;\r\nreg ready_color_reg = 1'b0;\r\nreg debug_reg = 1'b0;\r\n\r\nreg [5:0] RED_reg = 6'd0;\r\nreg [2:0] GREEN_prev = 3'd0;\r\nreg [5:0] GREEN_reg = 6'd0;\r\nreg [5:0] BLUE_reg = 6'd0;\r\nreg VSYNC_1xdelay;\r\nreg HREF_1xdelay;\r\nreg PCLK_1xdelay;\r\nwire PCLK_pulse_high;\r\nwire HREF_constant_high;\r\nwire HREF_constant_low;\r\n/**************PULSES DELAY TO RECOGNIZE LEVEL'S CHANGES***************************/\r\nalways @(posedge CLK)\r\nbegin\r\n  VSYNC_1xdelay <= VSYNC;\r\nend\r\nalways @(posedge CLK)\r\nbegin\r\n  HREF_1xdelay <= HREF;\r\nend\r\nalways @(posedge CLK)\r\nbegin\r\n  PCLK_1xdelay <= PCLK;\r\nend\r\n/**************************************************************************/\r\nassign PCLK_pulse_high = ( PCLK_1xdelay == 0 && PCLK == 1) ? 1:0;\r\nassign HREF_constant_high = ( HREF == 1 && HREF_1xdelay == 1) ? 1:0;\r\nassign HREF_constant_low = ( HREF == 0 && HREF_1xdelay == 0) ? 1:0;\r\n/**************************************************************************/\r\n\r\nalways @(posedge CLK)\r\nbegin\r\n    if( START && PCLK_pulse_high && HREF_constant_high )\r\n    begin\r\n      case(state)\r\n        BYTE1:\r\n        begin\r\n          RED_reg<= {0,D[7],D[6],D[5],D[4],D[3]};\r\n          GREEN_prev<= {D[2],D[1],D[0]};\r\n          ready_color_reg <= 1'b0;\r\n          state<= BYTE2;\r\n          debug_reg<= 1'b0;\r\n        end\r\n        BYTE2:\r\n        begin\r\n          GREEN_reg<={GREEN_prev,D[7],D[6],D[5]};\r\n          BLUE_reg<={0,D[4],D[3],D[2],D[1],D[0]};\r\n          ready_color_reg <= 1'b1;\r\n          state<= BYTE1;\r\n          debug_reg<= 1'b1;\r\n        end\r\n      endcase\r\n    end\r\n    else if ( HREF_constant_low )\r\n    begin\r\n      ready_color_reg <= 1'b0;\r\n      debug_reg<= 1'b0;\r\n      state <= BYTE1;\r\n    end\r\nend\r\n\r\nassign BLUE = BLUE_reg;\r\nassign GREEN = GREEN_reg;\r\nassign RED = RED_reg;\r\nassign READY_COLOR = ready_color_reg;\r\nassign DEBUG = debug_reg;\r\n\r\n\r\n",
+            "code": "\r\nlocalparam BYTE1 = 1'b0;\r\nlocalparam BYTE2 = 1'b1;\r\nreg state = BYTE1;\r\nreg ready_color_reg = 1'b0;\r\nreg debug_reg = 1'b0;\r\n\r\nreg [5:0] RED_reg = 6'd0;\r\nreg [2:0] GREEN_prev = 3'd0;\r\nreg [5:0] GREEN_reg = 6'd0;\r\nreg [5:0] BLUE_reg = 6'd0;\r\nreg VSYNC_1xdelay;\r\nreg HREF_1xdelay;\r\nreg PCLK_1xdelay;\r\nwire PCLK_pulse_high;\r\nwire HREF_constant_high;\r\nwire HREF_constant_low;\r\n/**************PULSES DELAY TO RECOGNIZE LEVEL'S CHANGES***************************/\r\nalways @(posedge CLK)\r\nbegin\r\n  VSYNC_1xdelay <= VSYNC;\r\nend\r\nalways @(posedge CLK)\r\nbegin\r\n  HREF_1xdelay <= HREF;\r\nend\r\nalways @(posedge CLK)\r\nbegin\r\n  PCLK_1xdelay <= PCLK;\r\nend\r\n/**************************************************************************/\r\nassign PCLK_pulse_high = ( PCLK_1xdelay == 0 && PCLK == 1) ? 1:0;\r\nassign HREF_constant_high = ( HREF == 1 && HREF_1xdelay == 1) ? 1:0;\r\nassign HREF_constant_low = ( HREF == 0 && HREF_1xdelay == 0) ? 1:0;\r\n/**************************************************************************/\r\n\r\nalways @(posedge CLK)\r\nbegin\r\n    if( START && PCLK_pulse_high && HREF_constant_high )\r\n    begin\r\n      case(state)\r\n        BYTE1:\r\n        begin\r\n          RED_reg<= {1'b0,D[7],D[6],D[5],D[4],D[3]};\r\n          GREEN_prev<= {D[2],D[1],D[0]};\r\n          ready_color_reg <= 1'b0;\r\n          state<= BYTE2;\r\n          debug_reg<= 1'b0;\r\n        end\r\n        BYTE2:\r\n        begin\r\n          GREEN_reg<={GREEN_prev,D[7],D[6],D[5]};\r\n          BLUE_reg<={1'b0,D[4],D[3],D[2],D[1],D[0]};\r\n          ready_color_reg <= 1'b1;\r\n          state<= BYTE1;\r\n          debug_reg<= 1'b1;\r\n        end\r\n      endcase\r\n    end\r\n    else if ( HREF_constant_low )\r\n    begin\r\n      ready_color_reg <= 1'b0;\r\n      debug_reg<= 1'b0;\r\n      state <= BYTE1;\r\n    end\r\nend\r\n\r\nassign BLUE = BLUE_reg;\r\nassign GREEN = GREEN_reg;\r\nassign RED = RED_reg;\r\n//assign READY_COLOR = ready_color_reg;\r\n\r\n\r\n\r\n",
             "params": [],
             "ports": {
               "in": [
                 {
-                  "name": "clk"
+                  "name": "CLK"
                 },
                 {
                   "name": "START"
@@ -530,30 +554,6 @@
           "size": {
             "width": 1168,
             "height": 872
-          }
-        },
-        {
-          "id": "9f36afef-c175-47cf-b6e6-722ece428e09",
-          "type": "0100f982073978613da66996176d91bf3dd013f9",
-          "position": {
-            "x": -2696,
-            "y": 1440
-          },
-          "size": {
-            "width": 96,
-            "height": 96
-          }
-        },
-        {
-          "id": "46f57318-9e61-46a7-b8d6-edbf81561ca7",
-          "type": "1374ebd258036ea0ace53cbfce7f63fbf69e9c18",
-          "position": {
-            "x": -2392,
-            "y": 888
-          },
-          "size": {
-            "width": 96,
-            "height": 64
           }
         }
       ],
@@ -926,6 +926,16 @@
           "target": {
             "block": "071e4c9c-a2ae-4c6a-8d68-2b89f62dcb28",
             "port": "in"
+          }
+        },
+        {
+          "source": {
+            "block": "7bb307c6-c555-491d-8757-710dbee36788",
+            "port": "out"
+          },
+          "target": {
+            "block": "9f36afef-c175-47cf-b6e6-722ece428e09",
+            "port": "e69b33a9-c1e8-422b-8401-586f1e345cf1"
           }
         }
       ]
