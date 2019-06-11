@@ -500,7 +500,7 @@
           "id": "486eab05-3331-4488-9101-b61f3477ab6c",
           "type": "basic.code",
           "data": {
-            "code": "parameter DATA_WIDTH = 6; //6 bit \nparameter ADD_WIDTH = 12;\nparameter A_MAX = 4096; // 2^ADD_WIDTH\n//   \tparameter sizeOfLengthReal = 3072;   // image data : 1179648 bytes: 32 * 32 *3 \n\n\n\n\n\n\n  // Memory \n  reg [DATA_WIDTH-1:0] img_storage [A_MAX-1:0];\n\n\n\n  // Write data to memory\n  always @(posedge clk_w) begin\n    if (write_enable) begin\n      img_storage[address_write] <= data_w_R;\n      img_storage[address_write+1] <= data_w_G;\n      img_storage[address_write+2] <= data_w_B;\n    end\n  end\n\n  \n  \n    // Read data from memory\n  always @(posedge clk_r) begin\n    data_r_R <= img_storage[address_read];\n    data_r_G <= img_storage[address_read+1];\n    data_r_B <= img_storage[address_read+2];\n  end\n",
+            "code": "parameter DATA_WIDTH = 6; //6 bit \nparameter ADD_WIDTH = 12;\nparameter A_MAX = 4096; // 2^ADD_WIDTH\n//   \tparameter sizeOfLengthReal = 3072;   // image data : 1179648 bytes: 32 * 32 *3 \n\n\n\n\n\n\n  // Memory \n  reg [DATA_WIDTH-1:0] img_storage [A_MAX-1:0];\n\n\n\n  // Write data to memory\n  always @(posedge clk_w) begin\n    if (write_enable) begin\n      img_storage[add_w] <= data_w_R;\n      img_storage[add_w+1] <= data_w_G;\n      img_storage[add_w+2] <= data_w_B;\n    end\n  end\n\n  \n/*\n    // Read data from memory\n  always @(posedge clk_r) begin\n    data_r_R <= img_storage[add_r];\n    data_r_G <= img_storage[add_r+1];\n    data_r_B <= img_storage[add_r+2];\n  end\n*/\n\nassign data_r_R = img_storage[add_r];\nassign data_r_G = img_storage[add_r+1];\nassign data_r_B = img_storage[add_r+2];\n",
             "params": [],
             "ports": {
               "in": [
@@ -560,11 +560,11 @@
           },
           "position": {
             "x": 336,
-            "y": 176
+            "y": 136
           },
           "size": {
-            "width": 808,
-            "height": 616
+            "width": 800,
+            "height": 712
           }
         }
       ],
