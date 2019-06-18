@@ -1,6 +1,6 @@
 {
   "version": "1.2",
-  "package": {
+  "packags": {
     "name": "",
     "version": "",
     "description": "",
@@ -133,8 +133,8 @@
             "pins": [
               {
                 "index": "0",
-                "name": "SW1",
-                "value": "10"
+                "name": "SW2",
+                "value": "11"
               }
             ],
             "virtual": false,
@@ -321,6 +321,25 @@
           }
         },
         {
+          "id": "8e07304c-3ffb-435d-8af4-1a5ca16c07f4",
+          "type": "basic.output",
+          "data": {
+            "name": "CLK_OUT",
+            "pins": [
+              {
+                "index": "0",
+                "name": "D0",
+                "value": "119"
+              }
+            ],
+            "virtual": false
+          },
+          "position": {
+            "x": -3328,
+            "y": 2288
+          }
+        },
+        {
           "id": "9f58b658-78b6-41d6-8429-43c6718a7b2b",
           "type": "basic.code",
           "data": {
@@ -400,7 +419,7 @@
           "id": "81e6dc90-362d-4dda-afdc-9e3de76b3402",
           "type": "basic.code",
           "data": {
-            "code": "//Color filter 0-64\nparameter Rmin = 25;\nparameter Gmin = 25;\nparameter Bmin = 25;\n\n\nparameter width = 32; \nparameter height = 32;  \n\n    //Px Coords\n    wire [9:0] x_img;\n    wire [9:0] y_img;\n    wire [5:0] R;\n    wire [5:0] G;\n    wire [5:0] B;\n    reg [2:0] pixel;\n    \n    assign addr_read = x_img*y_img;\n    \n    \n        // Read memory.\n    always @(posedge clk) begin\n\n   \t    pixel[0] = 1;\n\t    pixel[1] = 1;\n\t    pixel[2] = 1;  \n \n        if ((x_img >= 0) && (x_img < width ) && (y_img >= 0) && (y_img < height))\n        begin\n        \n\n            if(R < Rmin)\n             \tpixel[0] = 0;\n            if(G < Gmin)\n               \tpixel[1] = 0;          \n            if(B < Bmin)\n               \tpixel[2] = 0;                  \n\n       end\n        else\n        begin\n            //rest of the screen\n\t\t\tpixel = 3'b111;\n\n        end\n\n    end",
+            "code": "//Color filter 0-64\nparameter Rmin = 6'd25;\nparameter Gmin = 6'd25;\nparameter Bmin = 6'd25;\n\n\nparameter width = 32; \nparameter height = 32;  \n\n    //Px Coords\n    wire [9:0] x_img;\n    wire [9:0] y_img;\n    wire [5:0] R;\n    wire [5:0] G;\n    wire [5:0] B;\n    reg [2:0] pixel;\n    \n    assign addr_read = x_img*y_img;\n    \n    \n        // Read memory.\n    always @(posedge clk) begin\n\n   \t    pixel[0] = 1;\n\t    pixel[1] = 1;\n\t    pixel[2] = 1;  \n \n        if ((x_img >= 0) && (x_img < width ) && (y_img >= 0) && (y_img < height))\n        begin\n        \n\n            if(R < Rmin)\n             \tpixel[0] = 0;\n            if(G < Gmin)\n               \tpixel[1] = 0;          \n            if(B < Bmin)\n               \tpixel[2] = 0;                  \n\n       end\n        else\n        begin\n            //rest of the screen\n\t\t\tpixel = 3'b111;\n\n        end\n\n    end",
             "params": [],
             "ports": {
               "in": [
@@ -520,10 +539,34 @@
           }
         },
         {
+          "id": "a09f928a-6dc6-4e11-ba77-b1d0c391fea3",
+          "type": "fa0ae03923882c502a6cca803384ba215433a441",
+          "position": {
+            "x": -2960,
+            "y": 2192
+          },
+          "size": {
+            "width": 96,
+            "height": 160
+          }
+        },
+        {
+          "id": "7a3abfc0-7ba6-4951-8502-a5f39df48ee4",
+          "type": "081c46637622022b64dc3e9568c52e6cfea92401",
+          "position": {
+            "x": -904,
+            "y": 1672
+          },
+          "size": {
+            "width": 96,
+            "height": 256
+          }
+        },
+        {
           "id": "2254e59b-872d-4ee8-ac7d-075aff628a37",
           "type": "basic.code",
           "data": {
-            "code": "\r\nlocalparam BYTE1 = 1'b0;\r\nlocalparam BYTE2 = 1'b1;\r\nreg state = BYTE1;\r\nreg ready_color_reg = 1'b0;\r\nreg debug_reg = 1'b0;\r\n\r\nreg [5:0] RED_reg = 6'd0;\r\nreg [2:0] GREEN_prev = 3'd0;\r\nreg [5:0] GREEN_reg = 6'd0;\r\nreg [5:0] BLUE_reg = 6'd0;\r\nreg VSYNC_1xdelay;\r\nreg HREF_1xdelay;\r\nreg PCLK_1xdelay;\r\nwire PCLK_pulse_high;\r\nwire HREF_constant_high;\r\nwire HREF_constant_low;\r\n/**************PULSES DELAY TO RECOGNIZE LEVEL'S CHANGES***************************/\r\nalways @(posedge CLK)\r\nbegin\r\n  VSYNC_1xdelay <= VSYNC;\r\nend\r\nalways @(posedge CLK)\r\nbegin\r\n  HREF_1xdelay <= HREF;\r\nend\r\nalways @(posedge CLK)\r\nbegin\r\n  PCLK_1xdelay <= PCLK;\r\nend\r\n/**************************************************************************/\r\nassign PCLK_pulse_high = ( PCLK_1xdelay == 0 && PCLK == 1) ? 1:0;\r\nassign HREF_constant_high = ( HREF == 1 && HREF_1xdelay == 1) ? 1:0;\r\nassign HREF_constant_low = ( HREF == 0 && HREF_1xdelay == 0) ? 1:0;\r\n/**************************************************************************/\r\n\r\nalways @(posedge CLK)\r\nbegin\r\n    if( START && PCLK_pulse_high && HREF_constant_high )\r\n    begin\r\n      case(state)\r\n        BYTE1:\r\n        begin\r\n          RED_reg<= {1'b0,D[7],D[6],D[5],D[4],D[3]};\r\n          GREEN_prev<= {D[2],D[1],D[0]};\r\n          ready_color_reg <= 1'b0;\r\n          state<= BYTE2;\r\n          debug_reg<= 1'b0;\r\n        end\r\n        BYTE2:\r\n        begin\r\n          GREEN_reg<={GREEN_prev,D[7],D[6],D[5]};\r\n          BLUE_reg<={1'b0,D[4],D[3],D[2],D[1],D[0]};\r\n          ready_color_reg <= 1'b1;\r\n          state<= BYTE1;\r\n          debug_reg<= 1'b1;\r\n        end\r\n      endcase\r\n    end\r\n    else if ( HREF_constant_low )\r\n    begin\r\n      ready_color_reg <= 1'b0;\r\n      debug_reg<= 1'b0;\r\n      state <= BYTE1;\r\n    end\r\nend\r\n\r\nassign BLUE = BLUE_reg;\r\nassign GREEN = GREEN_reg;\r\nassign RED = RED_reg;\r\n//assign READY_COLOR = ready_color_reg;\r\n\r\n\r\n\r\n",
+            "code": "\nlocalparam BYTE1 = 1'b0;\nlocalparam BYTE2 = 1'b1;\nreg state = BYTE1;\nreg ready_color_reg = 1'b0;\nreg debug_reg = 1'b0;\n\nreg [5:0] RED_reg = 6'd0;\nreg [2:0] GREEN_prev = 3'd0;\nreg [5:0] GREEN_reg = 6'd0;\nreg [5:0] BLUE_reg = 6'd0;\nreg enable_write_reg = 1'd0;\nreg [11:0] add_w_reg = 12'd0;\n\nreg VSYNC_1xdelay;\nreg HREF_1xdelay;\nreg PCLK_1xdelay;\nwire PCLK_pulse_high;\nwire HREF_constant_high;\nwire HREF_constant_low;\n/**************PULSES DELAY TO RECOGNIZE LEVEL'S CHANGES***************************/\nalways @(posedge CLK)\nbegin\n  VSYNC_1xdelay <= VSYNC;\nend\nalways @(posedge CLK)\nbegin\n  HREF_1xdelay <= HREF;\nend\nalways @(posedge CLK)\nbegin\n  PCLK_1xdelay <= PCLK;\nend\n/**************************************************************************/\nassign PCLK_pulse_high = ( PCLK_1xdelay == 0 && PCLK == 1) ? 1:0;\nassign HREF_constant_high = ( HREF == 1 && HREF_1xdelay == 1) ? 1:0;\nassign HREF_constant_low = ( HREF == 0 && HREF_1xdelay == 0) ? 1:0;\n/**************************************************************************/\n\nalways @(posedge CLK)\nbegin\n    if( START && PCLK_pulse_high && HREF_constant_high )\n    begin\n      case(state)\n        BYTE1:\n        begin\n          RED_reg<= {1'b0,D[7],D[6],D[5],D[4],D[3]};\n          GREEN_prev<= {D[2],D[1],D[0]};\n          ready_color_reg <= 1'b0;\n          state<= BYTE2;\n          debug_reg<= 1'b0;\n        end\n        BYTE2:\n        begin\n          GREEN_reg<={GREEN_prev,D[7],D[6],D[5]};\n          BLUE_reg<={1'b0,D[4],D[3],D[2],D[1],D[0]};\n          ready_color_reg <= 1'b1;\n          state<= BYTE1;\n          debug_reg<= 1'b1;\n        end\n      endcase\n    end\n    else if ( HREF_constant_low )\n    begin\n      ready_color_reg <= 1'b0;\n      debug_reg<= 1'b0;\n      state <= BYTE1;\n    end\n\n    if( PIXEL_COLUMN <= 10'd32 && PIXEL_ROW <= 10'd32 )\n    begin\n      add_w_reg <= (PIXEL_ROW-1) * 32 + PIXEL_COLUMN;\n      enable_write_reg <= 1'b1;\n    end\nend\n\nassign BLUE = BLUE_reg;\nassign GREEN = GREEN_reg;\nassign RED = RED_reg;\nassign write_enable = enable_write_reg;\nassign add_w = add_w_reg;\n//assign READY_COLOR = ready_color_reg;\n\n\n\n",
             "params": [],
             "ports": {
               "in": [
@@ -573,6 +616,14 @@
                   "name": "BLUE",
                   "range": "[5:0]",
                   "size": 6
+                },
+                {
+                  "name": "write_enable"
+                },
+                {
+                  "name": "add_w",
+                  "range": "[11:0]",
+                  "size": 12
                 }
               ]
             }
@@ -584,30 +635,6 @@
           "size": {
             "width": 1168,
             "height": 872
-          }
-        },
-        {
-          "id": "a09f928a-6dc6-4e11-ba77-b1d0c391fea3",
-          "type": "fa0ae03923882c502a6cca803384ba215433a441",
-          "position": {
-            "x": -2960,
-            "y": 2192
-          },
-          "size": {
-            "width": 96,
-            "height": 160
-          }
-        },
-        {
-          "id": "7a3abfc0-7ba6-4951-8502-a5f39df48ee4",
-          "type": "081c46637622022b64dc3e9568c52e6cfea92401",
-          "position": {
-            "x": -904,
-            "y": 1672
-          },
-          "size": {
-            "width": 96,
-            "height": 256
           }
         }
       ],
@@ -1159,6 +1186,53 @@
               "y": 1328
             }
           ]
+        },
+        {
+          "source": {
+            "block": "2254e59b-872d-4ee8-ac7d-075aff628a37",
+            "port": "write_enable"
+          },
+          "target": {
+            "block": "7a3abfc0-7ba6-4951-8502-a5f39df48ee4",
+            "port": "61608cee-89bc-4b3c-872d-4c8a30d03ddc"
+          }
+        },
+        {
+          "source": {
+            "block": "2254e59b-872d-4ee8-ac7d-075aff628a37",
+            "port": "add_w"
+          },
+          "target": {
+            "block": "7a3abfc0-7ba6-4951-8502-a5f39df48ee4",
+            "port": "474f6be3-222c-4cf3-95f1-64095b651795"
+          },
+          "vertices": [
+            {
+              "x": -1168,
+              "y": 2048
+            }
+          ],
+          "size": 12
+        },
+        {
+          "source": {
+            "block": "f26982bb-af03-4c86-ae21-283e0ce0e319",
+            "port": "out"
+          },
+          "target": {
+            "block": "8e07304c-3ffb-435d-8af4-1a5ca16c07f4",
+            "port": "in"
+          }
+        },
+        {
+          "source": {
+            "block": "f26982bb-af03-4c86-ae21-283e0ce0e319",
+            "port": "out"
+          },
+          "target": {
+            "block": "9f36afef-c175-47cf-b6e6-722ece428e09",
+            "port": "cfbec1ee-c383-4b21-a630-d8fc17f4a8d7"
+          }
         }
       ]
     }
