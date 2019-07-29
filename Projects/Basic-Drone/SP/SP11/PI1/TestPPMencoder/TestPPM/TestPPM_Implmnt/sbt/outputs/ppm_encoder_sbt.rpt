@@ -1,0 +1,115 @@
+* ******************************************************************************
+
+* iCEcube Report
+
+* Version:            2017.08.27940
+
+* Build Date:         Sep 11 2017 16:52:36
+
+* File Generated:     Mar 10 2019 17:06:07
+
+* Purpose:            General info of design implementation
+
+* Copyright (C) 2006-2010 by Lattice Semiconductor Corp. All rights reserved.
+
+* ******************************************************************************
+
+Synthesis/Placement Summary:
+----------------------------
+    Status:  Successful
+    Runtime: 1 seconds
+
+Device Info:
+------------
+    Device Family: iCE40UP
+    Device:        iCE40UP5K
+    Package:       SG48
+
+Design statistics:
+------------------
+    FFs:                  83
+    LUTs:                 150
+    RAMs:                 0
+    IOBs:                 3
+    GBs:                  3
+    PLLs:                 0
+    Warm Boots:           0
+    SPIs:                 0
+    I2Cs:                 0
+    HFOSCs:               0
+    LFOSCs:               0
+    RGBA_DRVs:            0
+    LEDDA_IPs:            0
+    DSPs:                 0
+    SPRAMs:               0
+    FILTER_50NSs:         0
+
+Logic Resource Utilization:
+---------------------------
+    Total Logic Cells: 161/5280
+        Combinational Logic Cells: 78       out of   5280      1.47727%
+        Sequential Logic Cells:    83       out of   5280      1.57197%
+        Logic Tiles:               34       out of   660       5.15152%
+    Registers: 
+        Logic Registers:           83       out of   5280      1.57197%
+        IO Registers:              0        out of   480       0
+    Block RAMs:                    0        out of   30        0%
+    Warm Boots:                    0        out of   1         0%
+    SPIs:                          0        out of   2         0%
+    I2Cs:                          0        out of   2         0%
+    HFOSCs:                        0        out of   1         0%
+    LFOSCs:                        0        out of   1         0%
+    RGBA_DRVs:                     0        out of   1         0%
+    LEDDA_IPs:                     0        out of   1         0%
+    DSPs:                          0        out of   8         0%
+    SPRAMs:                        0        out of   4         0%
+    FILTER_50NSs:                  0        out of   2         0%
+    Pins:
+        Input Pins:                1        out of   39        2.5641%
+        Output Pins:               2        out of   39        5.12821%
+        InOut Pins:                0        out of   39        0%
+    Global Buffers:                3        out of   8         37.5%
+    PLLs:                          0        out of   1         0%
+
+IO Bank Utilization:
+--------------------
+    Bank 3: 0        out of   0         0%
+    Bank 1: 0        out of   0         0%
+    Bank 0: 2        out of   17        11.7647%
+    Bank 2: 1        out of   22        4.54545%
+
+Detailed I/O Info:
+------------------
+    Input Pins: 
+    Pin Number  Direction  IO Standard  Pull Up  IO Bank  IO Function    Signal Name 
+    ----------  ---------  -----------  -------  -------  -----------    ----------- 
+    35          Input      SB_LVCMOS    No       0        Simple Input   clk         
+
+    Output Pins: 
+    Pin Number  Direction  IO Standard  Pull Up  IO Bank  IO Function    Signal Name 
+    ----------  ---------  -----------  -------  -------  -----------    ----------- 
+    6           Output     SB_LVCMOS    No       2        Simple Output  test_led    
+    34          Output     SB_LVCMOS    No       0        Simple Output  ppm_output  
+
+Detailed Global Buffer Info:
+----------------------------
+    Buffer Number  IO Bank  Driven By  Fanout  Signal Name                   
+    -------------  -------  ---------  ------  -----------                   
+    7              0        IO         83      clk_c_g                       
+    5              2                   27      N_30_i_g                      
+    4              0                   19      un1_PPM_STATE_0_sqmuxa_0_i_g  
+
+
+Router Summary:
+---------------
+    Status:  Successful
+    Runtime: 16 seconds
+
+Routing Resource Utilization:
+-----------------------------
+              Local line of tile     1087 out of 110555      0.983221%
+                          Span 4      112 out of  23008      0.486787%
+                         Span 12       15 out of   4464      0.336022%
+                  Global network        3 out of      8      37.5%
+      Vertical Inter-LUT Connect       14 out of   4620      0.30303%
+

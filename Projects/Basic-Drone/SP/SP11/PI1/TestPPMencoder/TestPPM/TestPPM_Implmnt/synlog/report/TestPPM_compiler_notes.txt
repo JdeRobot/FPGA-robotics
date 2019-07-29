@@ -1,0 +1,40 @@
+@N|Running in 64-bit mode
+@N|Running in 64-bit mode
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":1:7:1:17|Synthesizing module ppm_encoder in library work.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":134:28:134:35|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":135:27:135:33|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":136:28:136:35|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":137:26:137:31|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":244:33:244:43|Removing redundant assignment.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[14] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[15] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[16] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[17] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[18] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[19] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[20] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[21] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[22] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[23] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[24] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[25] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[26] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[27] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[28] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[29] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[30] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":63:0:63:5|Register bit count[31] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":78:0:78:5|Register bit aileron[4] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":78:0:78:5|Register bit rudder[4] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":78:0:78:5|Register bit elevator[0] is always 1.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":78:0:78:5|Register bit elevator[1] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":78:0:78:5|Register bit throttle[0] is always 1.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":78:0:78:5|Register bit throttle[1] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":78:0:78:5|Register bit aileron[0] is always 1.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":78:0:78:5|Register bit rudder[0] is always 1.
+@N: CL201 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":142:0:142:5|Trying to extract state machine for register CHOOSE_CHANNEL.
+@N: CL201 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":142:0:142:5|Trying to extract state machine for register PPM_STATE.
+@N|Running in 64-bit mode
+@N: NF107 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":1:7:1:17|Selected library: work cell: ppm_encoder view verilog as top level
+@N: NF107 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\ppm_encoder.v":1:7:1:17|Selected library: work cell: ppm_encoder view verilog as top level
+

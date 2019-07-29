@@ -1,0 +1,1 @@
+@W: MT529 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi2\pc2drone\uart_rx.v":98:0:98:5|Found inferred clock Pc2Drone|clk_system which controls 33 sequential elements including uart.state[4:0]. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 

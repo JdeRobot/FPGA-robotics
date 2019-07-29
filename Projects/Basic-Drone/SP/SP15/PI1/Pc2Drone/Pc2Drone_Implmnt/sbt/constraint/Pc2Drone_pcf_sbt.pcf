@@ -1,0 +1,21 @@
+# ##############################################################################
+
+# iCEcube PCF
+
+# Version:            2017.08.27940
+
+# File Generated:     May 16 2019 21:15:25
+
+# Family & Device:    iCE40UP5K
+
+# Package:            SG48
+
+# ##############################################################################
+
+###IOSet List 5
+set_io clk_system 35 -io_std SB_LVCMOS
+set_io frame_decoder_dv 11 -io_std SB_LVCMOS
+set_io uart_input 4 -io_std SB_LVCMOS
+set_io uart_input_debug 10 -io_std SB_LVCMOS
+set_io ppm_output 6 -io_std SB_LVCMOS
+

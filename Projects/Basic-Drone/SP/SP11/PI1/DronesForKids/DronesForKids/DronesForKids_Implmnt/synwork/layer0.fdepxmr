@@ -1,0 +1,3 @@
+#XMR Information
+xmrdecl work uart 2 0 
+xmruse work drones_kids 0 2 

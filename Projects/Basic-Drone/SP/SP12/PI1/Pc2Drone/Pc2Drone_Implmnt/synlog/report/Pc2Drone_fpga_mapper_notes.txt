@@ -1,0 +1,15 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: MT206 |Auto Constrain mode is enabled
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp12\pi1\pc2drone\reset_module.v":36:0:36:5|Replicating instance reset_module_System.reset (in view: work.Pc2Drone(verilog)) with 24 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp12\pi1\pc2drone\uart_rx.v":98:0:98:5|Replicating instance uart.timer_Count[3] (in view: work.Pc2Drone(verilog)) with 11 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp12\pi1\pc2drone\uart_rx.v":98:0:98:5|Replicating instance uart.timer_Count[2] (in view: work.Pc2Drone(verilog)) with 13 loads 2 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp12\pi1\pc2drone\uart_rx.v":98:0:98:5|Replicating instance uart.timer_Count[4] (in view: work.Pc2Drone(verilog)) with 12 loads 2 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp12\pi1\pc2drone\reset_module.v":36:0:36:5|Replicating instance reset_module_System.reset (in view: work.Pc2Drone(verilog)) with 16 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp12\pi1\pc2drone\reset_module.v":36:0:36:5|Replicating instance reset_module_System.reset6_i (in view: work.Pc2Drone(verilog)) with 3 loads 2 time(s) to improve timing.
+@N: FX1016 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp12\pi1\pc2drone\pc2drone.v":18:7:18:16|SB_GB_IO inserted on the port clk_system.
+@N: BW103 |The default time unit for the Synopsys Constraint File (SDC or FDC) is 1ns.
+@N: BW107 |Synopsys Constraint File capacitance units using default value of 1pF 
+@N: FX1056 |Writing EDF file: C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP12\PI1\Pc2Drone\Pc2Drone_Implmnt\Pc2Drone.edf
+@N: MT320 |This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report.
+@N: MT322 |Clock constraints include only register-to-register paths associated with each individual clock.

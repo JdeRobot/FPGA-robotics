@@ -1,0 +1,11 @@
+INPUT  uart_input 	 location (9, 0, 0) 	 4 	 SB_LVCMOS
+OUTPUT debug_state_output[4] 	 location (8, 31, 0) 	 42 	 
+OUTPUT debug_state_output[0] 	 location (8, 0, 0) 	 2 	 SB_LVCMOS
+OUTPUT uart_data_rdy 	 location (6, 0, 0) 	 47 	 SB_LVCMOS
+OUTPUT debug_state_output[3] 	 location (16, 0, 0) 	 10 	 SB_LVCMOS
+OUTPUT debug_state_output[1] 	 location (15, 0, 0) 	 9 	 SB_LVCMOS
+OUTPUT debug_sinkdatavalid_output 	 location (7, 0, 1) 	 45 	 SB_LVCMOS
+OUTPUT uart_input_debug 	 location (13, 0, 1) 	 6 	 SB_LVCMOS
+OUTPUT frame_decoder_dv 	 location (22, 0, 1) 	 18 	 SB_LVCMOS
+OUTPUT debug_state_output[2] 	 location (5, 0, 0) 	 46 	 SB_LVCMOS
+INPUT  clk_system 	 location (12, 31, 1) 	 35 	 SB_LVCMOS

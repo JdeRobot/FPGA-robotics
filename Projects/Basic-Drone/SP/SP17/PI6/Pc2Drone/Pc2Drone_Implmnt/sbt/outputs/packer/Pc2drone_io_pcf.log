@@ -1,0 +1,11 @@
+INPUT  uart_input_pc 	 location (9, 0, 0) 	 4 	 SB_LVCMOS
+OUTPUT debug_CH5_31B 	 location (22, 0, 1) 	 18 	 SB_LVCMOS
+OUTPUT debug_CH3_20A 	 location (17, 0, 0) 	 11 	 SB_LVCMOS
+OUTPUT debug_CH0_16A 	 location (15, 0, 0) 	 9 	 SB_LVCMOS
+INPUT  uart_input_drone 	 location (8, 0, 0) 	 2 	 SB_LVCMOS
+OUTPUT ppm_output 	 location (13, 0, 1) 	 6 	 SB_LVCMOS
+OUTPUT debug_CH6_5B 	 location (7, 0, 1) 	 45 	 SB_LVCMOS
+OUTPUT debug_CH2_18A 	 location (16, 0, 0) 	 10 	 SB_LVCMOS
+OUTPUT debug_CH4_2A 	 location (6, 0, 0) 	 47 	 SB_LVCMOS
+OUTPUT debug_CH1_0A 	 location (5, 0, 0) 	 46 	 SB_LVCMOS
+INPUT  clk_system 	 location (12, 31, 1) 	 35 	 SB_LVCMOS

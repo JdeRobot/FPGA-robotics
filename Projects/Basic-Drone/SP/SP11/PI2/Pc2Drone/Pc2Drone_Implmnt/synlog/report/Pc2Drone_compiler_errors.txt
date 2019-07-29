@@ -1,0 +1,6 @@
+@E: CG254 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\Pc2Drone.v":27:0:27:5|Redeclaration of ports. Cannot mix styles.
+@E: CG254 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\Pc2Drone.v":28:0:28:5|Redeclaration of ports. Cannot mix styles.
+@E: CG254 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\Pc2Drone.v":29:0:29:5|Redeclaration of ports. Cannot mix styles.
+@E: CG485 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\Pc2Drone.v":36:0:36:2|Expecting semicolon or comma delimiter
+@E: CS187 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\Pc2Drone.v":68:0:68:8|Expecting endmodule
+

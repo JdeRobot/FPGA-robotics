@@ -1,0 +1,3 @@
+@W: CL169 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP12\PI1\Pc2Drone\frame_decoder.v":79:0:79:5|Pruning unused register count[31:0]. Make sure that there are no unused intermediate registers.
+@W: CL279 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP12\PI1\Pc2Drone\uart_rx.v":98:0:98:5|Pruning register bits 31 to 8 of timer_Count[31:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+

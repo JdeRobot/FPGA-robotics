@@ -1,0 +1,53 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/altera/15.1
+vframe_decoder
+!s10a 1552335526
+!s110 1552335529
+!i10b 1
+!s100 2Cab_Ozc;:Uk3QPz@W2Z12
+IInmEjRITR]o91]MNEVYY50
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+Z1 dC:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP13/PI1
+w1552335526
+8frame_decoder.v
+Fframe_decoder.v
+L0 16
+Z2 OV;L;10.4b;61
+r1
+!s85 0
+31
+!s108 1552335529.000000
+!s107 frame_decoder.v|
+!s90 -reportprogress|300|+incdir+../hdl|-work|work|-incr|frame_decoder.v|
+!i113 1
+Z3 o-work work
+Z4 !s92 +incdir+../hdl -work work
+vframe_decoder_tb
+!s110 1552336728
+!i10b 1
+!s100 KnLV1hl_g4PQ65b]jhhLS2
+IW_EYCooa70`8ZdH:a]?442
+R0
+R1
+w1552336726
+8frame_decoder_tb.v
+Fframe_decoder_tb.v
+L0 4
+R2
+r1
+!s85 0
+31
+!s108 1552336728.000000
+!s107 frame_decoder_tb.v|
+!s90 -reportprogress|300|+incdir+../hdl|-work|work|-incr|frame_decoder_tb.v|
+!i113 1
+R3
+R4

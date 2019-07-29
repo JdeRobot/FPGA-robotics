@@ -1,0 +1,45 @@
+Selecting top level module Pc2Drone
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":14:7:14:13|Synthesizing module uart_rx in library work.
+
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":63:9:63:12|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":164:18:164:25|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":167:18:167:26|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":185:17:185:24|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":207:17:207:25|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":208:16:208:23|Removing redundant assignment.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\Pc2Drone.v":14:7:14:14|Synthesizing module Pc2Drone in library work.
+
+@W: CG133 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\Pc2Drone.v":34:11:34:15|Object count is declared but not assigned. Either assign a value or remove the declaration.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[8] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[9] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[10] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[11] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[12] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[13] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[14] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[15] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[16] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[17] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[18] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[19] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[20] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[21] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[22] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[23] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[24] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[25] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[26] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[27] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[28] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[29] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[30] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[31] is always 0.
+@W: CL279 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Pruning register bits 31 to 8 of timer_Count[31:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@N: CL201 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Trying to extract state machine for register state.
+Extracted state machine for register state
+State machine has 5 reachable states with original encodings of:
+   000
+   001
+   010
+   011
+   100

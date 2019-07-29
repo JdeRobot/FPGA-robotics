@@ -1,0 +1,105 @@
+#### START OF AREA REPORT #####[
+
+Part:			ICE40UP5KSG48 (Lattice)
+
+---------------------------------------------------------------------------
+########   Utilization report for  Top level view:   drones_kids   ########
+===========================================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     98                 100 %                
+==================================================
+Total SEQUENTIAL ELEMENTS in the block drones_kids:	98 (27.68 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name       Total elements     Utilization     Notes
+---------------------------------------------------
+LUTS       180                100 %                
+CARRYS     54                 100 %                
+===================================================
+Total COMBINATIONAL LOGIC in the block drones_kids:	234 (66.10 % Utilization)
+
+
+IO PADS
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     14                 100 %                
+=================================================
+Total IO PADS in the block drones_kids:	14 (3.95 % Utilization)
+
+--------------------------------------------------------------
+########   Utilization report for  cell:   KeyPress   ########
+Instance path:   drones_kids.KeyPress                         
+==============================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     5                  5.1 %                
+==================================================
+Total SEQUENTIAL ELEMENTS in the block drones_kids.KeyPress:	5 (1.41 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+LUTS     11                 6.11 %               
+=================================================
+Total COMBINATIONAL LOGIC in the block drones_kids.KeyPress:	11 (3.11 % Utilization)
+
+-----------------------------------------------------------------
+########   Utilization report for  cell:   ppm_encoder   ########
+Instance path:   drones_kids.ppm_encoder                         
+=================================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     68                 69.4 %               
+==================================================
+Total SEQUENTIAL ELEMENTS in the block drones_kids.ppm_encoder:	68 (19.21 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name       Total elements     Utilization     Notes
+---------------------------------------------------
+LUTS       129                71.7 %               
+CARRYS     46                 85.2 %               
+===================================================
+Total COMBINATIONAL LOGIC in the block drones_kids.ppm_encoder:	175 (49.44 % Utilization)
+
+
+IO PADS
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     2                  14.3 %               
+=================================================
+Total IO PADS in the block drones_kids.ppm_encoder:	2 (0.56 % Utilization)
+
+---------------------------------------------------------------
+########   Utilization report for  cell:   uart_xmr0   ########
+Instance path:   drones_kids.uart_xmr0                         
+===============================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     25                 25.5 %               
+==================================================
+Total SEQUENTIAL ELEMENTS in the block drones_kids.uart_xmr0:	25 (7.06 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name       Total elements     Utilization     Notes
+---------------------------------------------------
+LUTS       40                 22.2 %               
+CARRYS     8                  14.8 %               
+===================================================
+Total COMBINATIONAL LOGIC in the block drones_kids.uart_xmr0:	48 (13.56 % Utilization)
+
+
+##### END OF AREA REPORT #####]
+

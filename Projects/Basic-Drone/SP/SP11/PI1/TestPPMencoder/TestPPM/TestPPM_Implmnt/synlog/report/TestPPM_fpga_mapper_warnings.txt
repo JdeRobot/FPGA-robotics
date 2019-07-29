@@ -1,0 +1,9 @@
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance init_pulses[18:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance counter[18:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance PPM_STATE[1:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance pulses2count[18:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance CHOOSE_CHANNEL[3:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance ppm_output_reg is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":63:0:63:5|User-specified initial value defined for instance count[13:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":63:0:63:5|User-specified initial value defined for instance test_led is being ignored. 
+@W: MT420 |Found inferred clock ppm_encoder|clk with period 13.47ns. Please declare a user-defined clock on object "p:clk"

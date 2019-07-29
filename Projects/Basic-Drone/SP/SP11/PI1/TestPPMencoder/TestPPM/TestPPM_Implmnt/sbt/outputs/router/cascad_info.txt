@@ -1,0 +1,15 @@
+[VIC]
+N_153_1_cascade_=ltout:in0
+N_43_cascade_=ltout:in0
+PPM_STATE_0_sqmuxa_1_12_cascade_=ltout:in1
+PPM_STATE_0_sqmuxa_1_cascade_=ltout:in0
+PPM_STATE_r_1_1_cascade_=ltout:in3
+count6_0_cascade_=ltout:in0
+count6lt11_cascade_=ltout:in0
+count6lto11_1_cascade_=ltout:in1
+init_pulses39_0_cascade_=ltout:in1
+init_pulses_0_sqmuxa_cascade_=ltout:in1
+init_pulses_2_sqmuxa_0_cascade_=ltout:in2
+init_pulses_RNO_0Z0Z_18_cascade_=ltout:in3
+un15_0_12_cascade_=ltout:in0
+un15_0_i_0_0_cascade_=ltout:in0

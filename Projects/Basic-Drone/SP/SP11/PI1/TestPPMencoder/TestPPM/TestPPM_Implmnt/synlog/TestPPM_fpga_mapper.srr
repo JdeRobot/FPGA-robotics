@@ -1,0 +1,756 @@
+# Sun Mar 10 17:05:26 2019
+
+Synopsys Lattice Technology Mapper, Version maplat, Build 1612R, Built Dec  5 2016 10:31:39
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+Product Version L-2016.09L+ice40
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 100MB)
+
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 101MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 101MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 101MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 101MB peak: 103MB)
+
+
+
+Starting Optimization and Mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+@N: MT206 |Auto Constrain mode is enabled
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance init_pulses[18:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance counter[18:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance PPM_STATE[1:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance pulses2count[18:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance CHOOSE_CHANNEL[3:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|User-specified initial value defined for instance ppm_output_reg is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":63:0:63:5|User-specified initial value defined for instance count[13:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":63:0:63:5|User-specified initial value defined for instance test_led is being ignored. 
+
+Finished RTL optimizations (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+@N: MF179 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":234:17:234:40|Found 19 by 19 bit equality operator ('==') counter11 (in view: work.ppm_encoder(verilog))
+
+Starting factoring (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 132MB peak: 133MB)
+
+
+Finished factoring (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 133MB peak: 134MB)
+
+
+Finished gated-clock and generated-clock conversion (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 132MB peak: 134MB)
+
+
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 133MB peak: 134MB)
+
+
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:00s; Memory used current: 133MB peak: 134MB)
+
+
+Finished Early Timing Optimization (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:00s; Memory used current: 133MB peak: 134MB)
+
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:00s; Memory used current: 133MB peak: 134MB)
+
+
+Finished preparing to map (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:00s; Memory used current: 133MB peak: 134MB)
+
+
+Finished technology mapping (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:00s; Memory used current: 132MB peak: 134MB)
+
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+   1		0h:00m:01s		    -3.14ns		 140 /        79
+   2		0h:00m:01s		    -3.14ns		 140 /        79
+   3		0h:00m:01s		    -1.91ns		 140 /        79
+   4		0h:00m:01s		    -1.91ns		 140 /        79
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":64:5:64:22|Replicating instance count6lto13 (in view: work.ppm_encoder(verilog)) with 15 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|Replicating instance CHOOSE_CHANNEL[0] (in view: work.ppm_encoder(verilog)) with 14 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|Replicating instance CHOOSE_CHANNEL[1] (in view: work.ppm_encoder(verilog)) with 13 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|Replicating instance CHOOSE_CHANNEL[3] (in view: work.ppm_encoder(verilog)) with 13 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":142:0:142:5|Replicating instance CHOOSE_CHANNEL[2] (in view: work.ppm_encoder(verilog)) with 15 loads 1 time to improve timing.
+Timing driven replication report
+Added 4 Registers via timing driven replication
+Added 5 LUTs via timing driven replication
+
+   5		0h:00m:01s		    -1.91ns		 145 /        83
+
+
+   6		0h:00m:01s		    -1.91ns		 145 /        83
+@N: FX1016 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi1\ppm_encoder.v":9:6:9:8|SB_GB_IO inserted on the port clk.
+@N: FX1017 :|SB_GB inserted on the net N_30_i.
+@N: FX1017 :|SB_GB inserted on the net un1_PPM_STATE_0_sqmuxa_0_i.
+
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:01s; Memory used current: 132MB peak: 134MB)
+
+
+Finished restoring hierarchy (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:01s; Memory used current: 132MB peak: 134MB)
+
+
+
+@S |Clock Optimization Summary
+
+
+#### START OF CLOCK OPTIMIZATION REPORT #####[
+
+1 non-gated/non-generated clock tree(s) driving 83 clock pin(s) of sequential element(s)
+0 gated/generated clock tree(s) driving 0 clock pin(s) of sequential element(s)
+0 instances converted, 0 sequential instances remain driven by gated/generated clocks
+
+=========================== Non-Gated/Non-Generated Clocks ============================
+Clock Tree ID     Driving Element     Drive Element Type     Fanout     Sample Instance
+---------------------------------------------------------------------------------------
+@K:CKID0001       clk_ibuf_gb_io      SB_GB_IO               83         count[0]       
+=======================================================================================
+
+
+##### END OF CLOCK OPTIMIZATION REPORT ######]
+
+
+Start Writing Netlists (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:01s; Memory used current: 108MB peak: 134MB)
+
+Writing Analyst data base C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\TestPPMencoder\TestPPM\TestPPM_Implmnt\synwork\TestPPM_m.srm
+
+Finished Writing Netlist Databases (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:01s; Memory used current: 132MB peak: 134MB)
+
+Writing EDIF Netlist and constraint files
+@N: BW103 |The default time unit for the Synopsys Constraint File (SDC or FDC) is 1ns.
+@N: BW107 |Synopsys Constraint File capacitance units using default value of 1pF 
+@N: FX1056 |Writing EDF file: C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\TestPPMencoder\TestPPM\TestPPM_Implmnt\TestPPM.edf
+L-2016.09L+ice40
+
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:01s; Memory used current: 133MB peak: 135MB)
+
+
+Start final timing analysis (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:02s; Memory used current: 133MB peak: 135MB)
+
+@W: MT420 |Found inferred clock ppm_encoder|clk with period 13.47ns. Please declare a user-defined clock on object "p:clk"
+
+
+##### START OF TIMING REPORT #####[
+# Timing Report written on Sun Mar 10 17:05:30 2019
+#
+
+
+Top view:               ppm_encoder
+Requested Frequency:    74.2 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N: MT320 |This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report.
+
+@N: MT322 |Clock constraints include only register-to-register paths associated with each individual clock.
+
+
+
+Performance Summary
+*******************
+
+
+Worst slack in design: -2.378
+
+                    Requested     Estimated     Requested     Estimated                Clock        Clock                
+Starting Clock      Frequency     Frequency     Period        Period        Slack      Type         Group                
+-------------------------------------------------------------------------------------------------------------------------
+ppm_encoder|clk     74.2 MHz      63.1 MHz      13.474        15.852        -2.378     inferred     Autoconstr_clkgroup_0
+=========================================================================================================================
+
+
+
+
+
+Clock Relationships
+*******************
+
+Clocks                            |    rise  to  rise    |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+-------------------------------------------------------------------------------------------------------------------------
+Starting         Ending           |  constraint  slack   |  constraint  slack  |  constraint  slack  |  constraint  slack
+-------------------------------------------------------------------------------------------------------------------------
+ppm_encoder|clk  ppm_encoder|clk  |  13.474      -2.378  |  No paths    -      |  No paths    -      |  No paths    -    
+=========================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: ppm_encoder|clk
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                           Starting                                                            Arrival           
+Instance                   Reference           Type         Pin     Net                        Time        Slack 
+                           Clock                                                                                 
+-----------------------------------------------------------------------------------------------------------------
+CHOOSE_CHANNEL_fast[0]     ppm_encoder|clk     SB_DFFE      Q       CHOOSE_CHANNEL_fast[0]     0.796       -2.378
+CHOOSE_CHANNEL_fast[1]     ppm_encoder|clk     SB_DFFE      Q       CHOOSE_CHANNEL_fast[1]     0.796       -2.305
+CHOOSE_CHANNEL_fast[3]     ppm_encoder|clk     SB_DFFE      Q       CHOOSE_CHANNEL_fast[3]     0.796       -2.274
+CHOOSE_CHANNEL_fast[2]     ppm_encoder|clk     SB_DFFE      Q       CHOOSE_CHANNEL_fast[2]     0.796       -2.244
+PPM_STATE[0]               ppm_encoder|clk     SB_DFFSS     Q       PPM_STATE[0]               0.796       -2.233
+PPM_STATE[1]               ppm_encoder|clk     SB_DFF       Q       PPM_STATE[1]               0.796       -2.140
+counter[4]                 ppm_encoder|clk     SB_DFFSR     Q       counter[4]                 0.796       2.854 
+counter[12]                ppm_encoder|clk     SB_DFFSR     Q       counter[12]                0.796       2.865 
+counter[0]                 ppm_encoder|clk     SB_DFFSR     Q       counter[0]                 0.796       2.891 
+counter[5]                 ppm_encoder|clk     SB_DFFSR     Q       counter[5]                 0.796       2.927 
+=================================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                    Starting                                                      Required           
+Instance            Reference           Type       Pin     Net                    Time         Slack 
+                    Clock                                                                            
+-----------------------------------------------------------------------------------------------------
+init_pulses[18]     ppm_encoder|clk     SB_DFF     D       init_pulses_16[18]     13.319       -2.378
+init_pulses[17]     ppm_encoder|clk     SB_DFF     D       init_pulses_16[17]     13.319       -2.178
+init_pulses[16]     ppm_encoder|clk     SB_DFF     D       init_pulses_16[16]     13.319       -1.978
+init_pulses[15]     ppm_encoder|clk     SB_DFF     D       init_pulses_16[15]     13.319       -1.778
+init_pulses[14]     ppm_encoder|clk     SB_DFF     D       init_pulses_16[14]     13.319       -1.578
+init_pulses[13]     ppm_encoder|clk     SB_DFF     D       init_pulses_16[13]     13.319       -1.378
+init_pulses[12]     ppm_encoder|clk     SB_DFF     D       init_pulses_16[12]     13.319       -1.178
+init_pulses[11]     ppm_encoder|clk     SB_DFF     D       init_pulses_16[11]     13.319       -0.978
+init_pulses[10]     ppm_encoder|clk     SB_DFF     D       init_pulses_16[10]     13.319       -0.778
+init_pulses[9]      ppm_encoder|clk     SB_DFF     D       init_pulses_16[9]      13.319       -0.578
+=====================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      13.474
+    - Setup time:                            0.155
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         13.319
+
+    - Propagation time:                      15.697
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -2.378
+
+    Number of logic level(s):                22
+    Starting point:                          CHOOSE_CHANNEL_fast[0] / Q
+    Ending point:                            init_pulses[18] / D
+    The start point is clocked by            ppm_encoder|clk [rising] on pin C
+    The end   point is clocked by            ppm_encoder|clk [rising] on pin C
+
+Instance / Net                                     Pin      Pin               Arrival     No. of    
+Name                                  Type         Name     Dir     Delay     Time        Fan Out(s)
+----------------------------------------------------------------------------------------------------
+CHOOSE_CHANNEL_fast[0]                SB_DFFE      Q        Out     0.796     0.796       -         
+CHOOSE_CHANNEL_fast[0]                Net          -        -       1.599     -           5         
+CHOOSE_CHANNEL_fast_RNIEQVB1[0]       SB_LUT4      I0       In      -         2.395       -         
+CHOOSE_CHANNEL_fast_RNIEQVB1[0]       SB_LUT4      O        Out     0.661     3.056       -         
+N_51                                  Net          -        -       1.371     -           3         
+CHOOSE_CHANNEL_fast_RNIIG2M4[2]       SB_LUT4      I1       In      -         4.427       -         
+CHOOSE_CHANNEL_fast_RNIIG2M4[2]       SB_LUT4      O        Out     0.558     4.986       -         
+un15_0[12]                            Net          -        -       1.371     -           3         
+CHOOSE_CHANNEL_fast_RNIIG2M4_0[2]     SB_LUT4      I0       In      -         6.356       -         
+CHOOSE_CHANNEL_fast_RNIIG2M4_0[2]     SB_LUT4      O        Out     0.661     7.018       -         
+N_323_i                               Net          -        -       0.905     -           8         
+un1_init_pulses_cry_1_c               SB_CARRY     I0       In      -         7.923       -         
+un1_init_pulses_cry_1_c               SB_CARRY     CO       Out     0.380     8.303       -         
+un1_init_pulses_cry_1                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_2_0_c             SB_CARRY     CI       In      -         8.316       -         
+un1_init_pulses_cry_2_0_c             SB_CARRY     CO       Out     0.186     8.502       -         
+un1_init_pulses_cry_2                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_3_c               SB_CARRY     CI       In      -         8.517       -         
+un1_init_pulses_cry_3_c               SB_CARRY     CO       Out     0.186     8.703       -         
+un1_init_pulses_cry_3                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_4_c               SB_CARRY     CI       In      -         8.716       -         
+un1_init_pulses_cry_4_c               SB_CARRY     CO       Out     0.186     8.902       -         
+un1_init_pulses_cry_4                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_5_c               SB_CARRY     CI       In      -         8.916       -         
+un1_init_pulses_cry_5_c               SB_CARRY     CO       Out     0.186     9.102       -         
+un1_init_pulses_cry_5                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_6_c               SB_CARRY     CI       In      -         9.117       -         
+un1_init_pulses_cry_6_c               SB_CARRY     CO       Out     0.186     9.303       -         
+un1_init_pulses_cry_6                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_7_c               SB_CARRY     CI       In      -         9.316       -         
+un1_init_pulses_cry_7_c               SB_CARRY     CO       Out     0.186     9.502       -         
+un1_init_pulses_cry_7                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_8_c               SB_CARRY     CI       In      -         9.517       -         
+un1_init_pulses_cry_8_c               SB_CARRY     CO       Out     0.186     9.703       -         
+un1_init_pulses_cry_8                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_9_c               SB_CARRY     CI       In      -         9.716       -         
+un1_init_pulses_cry_9_c               SB_CARRY     CO       Out     0.186     9.902       -         
+un1_init_pulses_cry_9                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_10_c              SB_CARRY     CI       In      -         9.916       -         
+un1_init_pulses_cry_10_c              SB_CARRY     CO       Out     0.186     10.102      -         
+un1_init_pulses_cry_10                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_11_c              SB_CARRY     CI       In      -         10.117      -         
+un1_init_pulses_cry_11_c              SB_CARRY     CO       Out     0.186     10.303      -         
+un1_init_pulses_cry_11                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_12_c              SB_CARRY     CI       In      -         10.317      -         
+un1_init_pulses_cry_12_c              SB_CARRY     CO       Out     0.186     10.503      -         
+un1_init_pulses_cry_12                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_13_0_c            SB_CARRY     CI       In      -         10.517      -         
+un1_init_pulses_cry_13_0_c            SB_CARRY     CO       Out     0.186     10.703      -         
+un1_init_pulses_cry_13                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_14_c              SB_CARRY     CI       In      -         10.717      -         
+un1_init_pulses_cry_14_c              SB_CARRY     CO       Out     0.186     10.903      -         
+un1_init_pulses_cry_14                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_15_c              SB_CARRY     CI       In      -         10.916      -         
+un1_init_pulses_cry_15_c              SB_CARRY     CO       Out     0.186     11.102      -         
+un1_init_pulses_cry_15                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_16_c              SB_CARRY     CI       In      -         11.117      -         
+un1_init_pulses_cry_16_c              SB_CARRY     CO       Out     0.186     11.303      -         
+un1_init_pulses_cry_16                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_17_c              SB_CARRY     CI       In      -         11.317      -         
+un1_init_pulses_cry_17_c              SB_CARRY     CO       Out     0.186     11.503      -         
+un1_init_pulses_cry_17                Net          -        -       0.386     -           1         
+init_pulses_RNO_0[18]                 SB_LUT4      I3       In      -         11.889      -         
+init_pulses_RNO_0[18]                 SB_LUT4      O        Out     0.465     12.354      -         
+init_pulses_RNO_0[18]                 Net          -        -       1.371     -           1         
+init_pulses_RNO[18]                   SB_LUT4      I3       In      -         13.725      -         
+init_pulses_RNO[18]                   SB_LUT4      O        Out     0.465     14.190      -         
+init_pulses_16[18]                    Net          -        -       1.507     -           1         
+init_pulses[18]                       SB_DFF       D        In      -         15.697      -         
+====================================================================================================
+Total path delay (propagation time + setup) of 15.852 is 7.118(44.9%) logic and 8.734(55.1%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 2: 
+      Requested Period:                      13.474
+    - Setup time:                            0.155
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         13.319
+
+    - Propagation time:                      15.655
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -2.337
+
+    Number of logic level(s):                22
+    Starting point:                          CHOOSE_CHANNEL_fast[0] / Q
+    Ending point:                            init_pulses[18] / D
+    The start point is clocked by            ppm_encoder|clk [rising] on pin C
+    The end   point is clocked by            ppm_encoder|clk [rising] on pin C
+
+Instance / Net                                     Pin      Pin               Arrival     No. of    
+Name                                  Type         Name     Dir     Delay     Time        Fan Out(s)
+----------------------------------------------------------------------------------------------------
+CHOOSE_CHANNEL_fast[0]                SB_DFFE      Q        Out     0.796     0.796       -         
+CHOOSE_CHANNEL_fast[0]                Net          -        -       1.599     -           5         
+CHOOSE_CHANNEL_fast_RNI8KMD1[0]       SB_LUT4      I0       In      -         2.395       -         
+CHOOSE_CHANNEL_fast_RNI8KMD1[0]       SB_LUT4      O        Out     0.661     3.056       -         
+init_pulses_2_sqmuxa_0                Net          -        -       1.371     -           1         
+CHOOSE_CHANNEL_fast_RNIIG2M4[2]       SB_LUT4      I2       In      -         4.427       -         
+CHOOSE_CHANNEL_fast_RNIIG2M4[2]       SB_LUT4      O        Out     0.517     4.944       -         
+un15_0[12]                            Net          -        -       1.371     -           3         
+CHOOSE_CHANNEL_fast_RNIIG2M4_0[2]     SB_LUT4      I0       In      -         6.315       -         
+CHOOSE_CHANNEL_fast_RNIIG2M4_0[2]     SB_LUT4      O        Out     0.661     6.977       -         
+N_323_i                               Net          -        -       0.905     -           8         
+un1_init_pulses_cry_1_c               SB_CARRY     I0       In      -         7.882       -         
+un1_init_pulses_cry_1_c               SB_CARRY     CO       Out     0.380     8.261       -         
+un1_init_pulses_cry_1                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_2_0_c             SB_CARRY     CI       In      -         8.275       -         
+un1_init_pulses_cry_2_0_c             SB_CARRY     CO       Out     0.186     8.461       -         
+un1_init_pulses_cry_2                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_3_c               SB_CARRY     CI       In      -         8.475       -         
+un1_init_pulses_cry_3_c               SB_CARRY     CO       Out     0.186     8.661       -         
+un1_init_pulses_cry_3                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_4_c               SB_CARRY     CI       In      -         8.675       -         
+un1_init_pulses_cry_4_c               SB_CARRY     CO       Out     0.186     8.861       -         
+un1_init_pulses_cry_4                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_5_c               SB_CARRY     CI       In      -         8.875       -         
+un1_init_pulses_cry_5_c               SB_CARRY     CO       Out     0.186     9.061       -         
+un1_init_pulses_cry_5                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_6_c               SB_CARRY     CI       In      -         9.075       -         
+un1_init_pulses_cry_6_c               SB_CARRY     CO       Out     0.186     9.261       -         
+un1_init_pulses_cry_6                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_7_c               SB_CARRY     CI       In      -         9.275       -         
+un1_init_pulses_cry_7_c               SB_CARRY     CO       Out     0.186     9.461       -         
+un1_init_pulses_cry_7                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_8_c               SB_CARRY     CI       In      -         9.475       -         
+un1_init_pulses_cry_8_c               SB_CARRY     CO       Out     0.186     9.661       -         
+un1_init_pulses_cry_8                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_9_c               SB_CARRY     CI       In      -         9.675       -         
+un1_init_pulses_cry_9_c               SB_CARRY     CO       Out     0.186     9.861       -         
+un1_init_pulses_cry_9                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_10_c              SB_CARRY     CI       In      -         9.875       -         
+un1_init_pulses_cry_10_c              SB_CARRY     CO       Out     0.186     10.061      -         
+un1_init_pulses_cry_10                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_11_c              SB_CARRY     CI       In      -         10.075      -         
+un1_init_pulses_cry_11_c              SB_CARRY     CO       Out     0.186     10.261      -         
+un1_init_pulses_cry_11                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_12_c              SB_CARRY     CI       In      -         10.275      -         
+un1_init_pulses_cry_12_c              SB_CARRY     CO       Out     0.186     10.461      -         
+un1_init_pulses_cry_12                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_13_0_c            SB_CARRY     CI       In      -         10.475      -         
+un1_init_pulses_cry_13_0_c            SB_CARRY     CO       Out     0.186     10.661      -         
+un1_init_pulses_cry_13                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_14_c              SB_CARRY     CI       In      -         10.675      -         
+un1_init_pulses_cry_14_c              SB_CARRY     CO       Out     0.186     10.861      -         
+un1_init_pulses_cry_14                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_15_c              SB_CARRY     CI       In      -         10.875      -         
+un1_init_pulses_cry_15_c              SB_CARRY     CO       Out     0.186     11.061      -         
+un1_init_pulses_cry_15                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_16_c              SB_CARRY     CI       In      -         11.075      -         
+un1_init_pulses_cry_16_c              SB_CARRY     CO       Out     0.186     11.261      -         
+un1_init_pulses_cry_16                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_17_c              SB_CARRY     CI       In      -         11.275      -         
+un1_init_pulses_cry_17_c              SB_CARRY     CO       Out     0.186     11.461      -         
+un1_init_pulses_cry_17                Net          -        -       0.386     -           1         
+init_pulses_RNO_0[18]                 SB_LUT4      I3       In      -         11.847      -         
+init_pulses_RNO_0[18]                 SB_LUT4      O        Out     0.465     12.312      -         
+init_pulses_RNO_0[18]                 Net          -        -       1.371     -           1         
+init_pulses_RNO[18]                   SB_LUT4      I3       In      -         13.683      -         
+init_pulses_RNO[18]                   SB_LUT4      O        Out     0.465     14.148      -         
+init_pulses_16[18]                    Net          -        -       1.507     -           1         
+init_pulses[18]                       SB_DFF       D        In      -         15.655      -         
+====================================================================================================
+Total path delay (propagation time + setup) of 15.810 is 7.076(44.8%) logic and 8.734(55.2%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 3: 
+      Requested Period:                      13.474
+    - Setup time:                            0.155
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         13.319
+
+    - Propagation time:                      15.624
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -2.306
+
+    Number of logic level(s):                22
+    Starting point:                          CHOOSE_CHANNEL_fast[1] / Q
+    Ending point:                            init_pulses[18] / D
+    The start point is clocked by            ppm_encoder|clk [rising] on pin C
+    The end   point is clocked by            ppm_encoder|clk [rising] on pin C
+
+Instance / Net                                     Pin      Pin               Arrival     No. of    
+Name                                  Type         Name     Dir     Delay     Time        Fan Out(s)
+----------------------------------------------------------------------------------------------------
+CHOOSE_CHANNEL_fast[1]                SB_DFFE      Q        Out     0.796     0.796       -         
+CHOOSE_CHANNEL_fast[1]                Net          -        -       1.599     -           5         
+CHOOSE_CHANNEL_fast_RNIEQVB1[0]       SB_LUT4      I1       In      -         2.395       -         
+CHOOSE_CHANNEL_fast_RNIEQVB1[0]       SB_LUT4      O        Out     0.589     2.984       -         
+N_51                                  Net          -        -       1.371     -           3         
+CHOOSE_CHANNEL_fast_RNIIG2M4[2]       SB_LUT4      I1       In      -         4.355       -         
+CHOOSE_CHANNEL_fast_RNIIG2M4[2]       SB_LUT4      O        Out     0.558     4.913       -         
+un15_0[12]                            Net          -        -       1.371     -           3         
+CHOOSE_CHANNEL_fast_RNIIG2M4_0[2]     SB_LUT4      I0       In      -         6.284       -         
+CHOOSE_CHANNEL_fast_RNIIG2M4_0[2]     SB_LUT4      O        Out     0.661     6.946       -         
+N_323_i                               Net          -        -       0.905     -           8         
+un1_init_pulses_cry_1_c               SB_CARRY     I0       In      -         7.851       -         
+un1_init_pulses_cry_1_c               SB_CARRY     CO       Out     0.380     8.230       -         
+un1_init_pulses_cry_1                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_2_0_c             SB_CARRY     CI       In      -         8.244       -         
+un1_init_pulses_cry_2_0_c             SB_CARRY     CO       Out     0.186     8.430       -         
+un1_init_pulses_cry_2                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_3_c               SB_CARRY     CI       In      -         8.444       -         
+un1_init_pulses_cry_3_c               SB_CARRY     CO       Out     0.186     8.630       -         
+un1_init_pulses_cry_3                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_4_c               SB_CARRY     CI       In      -         8.644       -         
+un1_init_pulses_cry_4_c               SB_CARRY     CO       Out     0.186     8.830       -         
+un1_init_pulses_cry_4                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_5_c               SB_CARRY     CI       In      -         8.844       -         
+un1_init_pulses_cry_5_c               SB_CARRY     CO       Out     0.186     9.030       -         
+un1_init_pulses_cry_5                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_6_c               SB_CARRY     CI       In      -         9.044       -         
+un1_init_pulses_cry_6_c               SB_CARRY     CO       Out     0.186     9.230       -         
+un1_init_pulses_cry_6                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_7_c               SB_CARRY     CI       In      -         9.244       -         
+un1_init_pulses_cry_7_c               SB_CARRY     CO       Out     0.186     9.430       -         
+un1_init_pulses_cry_7                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_8_c               SB_CARRY     CI       In      -         9.444       -         
+un1_init_pulses_cry_8_c               SB_CARRY     CO       Out     0.186     9.630       -         
+un1_init_pulses_cry_8                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_9_c               SB_CARRY     CI       In      -         9.644       -         
+un1_init_pulses_cry_9_c               SB_CARRY     CO       Out     0.186     9.830       -         
+un1_init_pulses_cry_9                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_10_c              SB_CARRY     CI       In      -         9.844       -         
+un1_init_pulses_cry_10_c              SB_CARRY     CO       Out     0.186     10.030      -         
+un1_init_pulses_cry_10                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_11_c              SB_CARRY     CI       In      -         10.044      -         
+un1_init_pulses_cry_11_c              SB_CARRY     CO       Out     0.186     10.230      -         
+un1_init_pulses_cry_11                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_12_c              SB_CARRY     CI       In      -         10.244      -         
+un1_init_pulses_cry_12_c              SB_CARRY     CO       Out     0.186     10.430      -         
+un1_init_pulses_cry_12                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_13_0_c            SB_CARRY     CI       In      -         10.444      -         
+un1_init_pulses_cry_13_0_c            SB_CARRY     CO       Out     0.186     10.630      -         
+un1_init_pulses_cry_13                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_14_c              SB_CARRY     CI       In      -         10.644      -         
+un1_init_pulses_cry_14_c              SB_CARRY     CO       Out     0.186     10.830      -         
+un1_init_pulses_cry_14                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_15_c              SB_CARRY     CI       In      -         10.844      -         
+un1_init_pulses_cry_15_c              SB_CARRY     CO       Out     0.186     11.030      -         
+un1_init_pulses_cry_15                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_16_c              SB_CARRY     CI       In      -         11.044      -         
+un1_init_pulses_cry_16_c              SB_CARRY     CO       Out     0.186     11.230      -         
+un1_init_pulses_cry_16                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_17_c              SB_CARRY     CI       In      -         11.244      -         
+un1_init_pulses_cry_17_c              SB_CARRY     CO       Out     0.186     11.430      -         
+un1_init_pulses_cry_17                Net          -        -       0.386     -           1         
+init_pulses_RNO_0[18]                 SB_LUT4      I3       In      -         11.816      -         
+init_pulses_RNO_0[18]                 SB_LUT4      O        Out     0.465     12.281      -         
+init_pulses_RNO_0[18]                 Net          -        -       1.371     -           1         
+init_pulses_RNO[18]                   SB_LUT4      I3       In      -         13.652      -         
+init_pulses_RNO[18]                   SB_LUT4      O        Out     0.465     14.117      -         
+init_pulses_16[18]                    Net          -        -       1.507     -           1         
+init_pulses[18]                       SB_DFF       D        In      -         15.624      -         
+====================================================================================================
+Total path delay (propagation time + setup) of 15.779 is 7.045(44.6%) logic and 8.734(55.4%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 4: 
+      Requested Period:                      13.474
+    - Setup time:                            0.155
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         13.319
+
+    - Propagation time:                      15.593
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -2.274
+
+    Number of logic level(s):                22
+    Starting point:                          CHOOSE_CHANNEL_fast[3] / Q
+    Ending point:                            init_pulses[18] / D
+    The start point is clocked by            ppm_encoder|clk [rising] on pin C
+    The end   point is clocked by            ppm_encoder|clk [rising] on pin C
+
+Instance / Net                                     Pin      Pin               Arrival     No. of    
+Name                                  Type         Name     Dir     Delay     Time        Fan Out(s)
+----------------------------------------------------------------------------------------------------
+CHOOSE_CHANNEL_fast[3]                SB_DFFE      Q        Out     0.796     0.796       -         
+CHOOSE_CHANNEL_fast[3]                Net          -        -       1.599     -           5         
+CHOOSE_CHANNEL_fast_RNIEQVB1[0]       SB_LUT4      I2       In      -         2.395       -         
+CHOOSE_CHANNEL_fast_RNIEQVB1[0]       SB_LUT4      O        Out     0.558     2.953       -         
+N_51                                  Net          -        -       1.371     -           3         
+CHOOSE_CHANNEL_fast_RNIIG2M4[2]       SB_LUT4      I1       In      -         4.324       -         
+CHOOSE_CHANNEL_fast_RNIIG2M4[2]       SB_LUT4      O        Out     0.558     4.882       -         
+un15_0[12]                            Net          -        -       1.371     -           3         
+CHOOSE_CHANNEL_fast_RNIIG2M4_0[2]     SB_LUT4      I0       In      -         6.253       -         
+CHOOSE_CHANNEL_fast_RNIIG2M4_0[2]     SB_LUT4      O        Out     0.661     6.915       -         
+N_323_i                               Net          -        -       0.905     -           8         
+un1_init_pulses_cry_1_c               SB_CARRY     I0       In      -         7.820       -         
+un1_init_pulses_cry_1_c               SB_CARRY     CO       Out     0.380     8.199       -         
+un1_init_pulses_cry_1                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_2_0_c             SB_CARRY     CI       In      -         8.213       -         
+un1_init_pulses_cry_2_0_c             SB_CARRY     CO       Out     0.186     8.399       -         
+un1_init_pulses_cry_2                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_3_c               SB_CARRY     CI       In      -         8.413       -         
+un1_init_pulses_cry_3_c               SB_CARRY     CO       Out     0.186     8.599       -         
+un1_init_pulses_cry_3                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_4_c               SB_CARRY     CI       In      -         8.613       -         
+un1_init_pulses_cry_4_c               SB_CARRY     CO       Out     0.186     8.799       -         
+un1_init_pulses_cry_4                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_5_c               SB_CARRY     CI       In      -         8.813       -         
+un1_init_pulses_cry_5_c               SB_CARRY     CO       Out     0.186     8.999       -         
+un1_init_pulses_cry_5                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_6_c               SB_CARRY     CI       In      -         9.013       -         
+un1_init_pulses_cry_6_c               SB_CARRY     CO       Out     0.186     9.199       -         
+un1_init_pulses_cry_6                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_7_c               SB_CARRY     CI       In      -         9.213       -         
+un1_init_pulses_cry_7_c               SB_CARRY     CO       Out     0.186     9.399       -         
+un1_init_pulses_cry_7                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_8_c               SB_CARRY     CI       In      -         9.413       -         
+un1_init_pulses_cry_8_c               SB_CARRY     CO       Out     0.186     9.599       -         
+un1_init_pulses_cry_8                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_9_c               SB_CARRY     CI       In      -         9.613       -         
+un1_init_pulses_cry_9_c               SB_CARRY     CO       Out     0.186     9.799       -         
+un1_init_pulses_cry_9                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_10_c              SB_CARRY     CI       In      -         9.813       -         
+un1_init_pulses_cry_10_c              SB_CARRY     CO       Out     0.186     9.999       -         
+un1_init_pulses_cry_10                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_11_c              SB_CARRY     CI       In      -         10.013      -         
+un1_init_pulses_cry_11_c              SB_CARRY     CO       Out     0.186     10.199      -         
+un1_init_pulses_cry_11                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_12_c              SB_CARRY     CI       In      -         10.213      -         
+un1_init_pulses_cry_12_c              SB_CARRY     CO       Out     0.186     10.399      -         
+un1_init_pulses_cry_12                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_13_0_c            SB_CARRY     CI       In      -         10.413      -         
+un1_init_pulses_cry_13_0_c            SB_CARRY     CO       Out     0.186     10.599      -         
+un1_init_pulses_cry_13                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_14_c              SB_CARRY     CI       In      -         10.613      -         
+un1_init_pulses_cry_14_c              SB_CARRY     CO       Out     0.186     10.799      -         
+un1_init_pulses_cry_14                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_15_c              SB_CARRY     CI       In      -         10.813      -         
+un1_init_pulses_cry_15_c              SB_CARRY     CO       Out     0.186     10.999      -         
+un1_init_pulses_cry_15                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_16_c              SB_CARRY     CI       In      -         11.013      -         
+un1_init_pulses_cry_16_c              SB_CARRY     CO       Out     0.186     11.199      -         
+un1_init_pulses_cry_16                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_17_c              SB_CARRY     CI       In      -         11.213      -         
+un1_init_pulses_cry_17_c              SB_CARRY     CO       Out     0.186     11.399      -         
+un1_init_pulses_cry_17                Net          -        -       0.386     -           1         
+init_pulses_RNO_0[18]                 SB_LUT4      I3       In      -         11.785      -         
+init_pulses_RNO_0[18]                 SB_LUT4      O        Out     0.465     12.250      -         
+init_pulses_RNO_0[18]                 Net          -        -       1.371     -           1         
+init_pulses_RNO[18]                   SB_LUT4      I3       In      -         13.621      -         
+init_pulses_RNO[18]                   SB_LUT4      O        Out     0.465     14.086      -         
+init_pulses_16[18]                    Net          -        -       1.507     -           1         
+init_pulses[18]                       SB_DFF       D        In      -         15.593      -         
+====================================================================================================
+Total path delay (propagation time + setup) of 15.748 is 7.014(44.5%) logic and 8.734(55.5%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 5: 
+      Requested Period:                      13.474
+    - Setup time:                            0.155
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         13.319
+
+    - Propagation time:                      15.562
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -2.244
+
+    Number of logic level(s):                22
+    Starting point:                          CHOOSE_CHANNEL_fast[2] / Q
+    Ending point:                            init_pulses[18] / D
+    The start point is clocked by            ppm_encoder|clk [rising] on pin C
+    The end   point is clocked by            ppm_encoder|clk [rising] on pin C
+
+Instance / Net                                     Pin      Pin               Arrival     No. of    
+Name                                  Type         Name     Dir     Delay     Time        Fan Out(s)
+----------------------------------------------------------------------------------------------------
+CHOOSE_CHANNEL_fast[2]                SB_DFFE      Q        Out     0.796     0.796       -         
+CHOOSE_CHANNEL_fast[2]                Net          -        -       1.599     -           5         
+CHOOSE_CHANNEL_fast_RNICOMD1[2]       SB_LUT4      I0       In      -         2.395       -         
+CHOOSE_CHANNEL_fast_RNICOMD1[2]       SB_LUT4      O        Out     0.661     3.056       -         
+un15_0_iv_1[12]                       Net          -        -       1.371     -           1         
+CHOOSE_CHANNEL_fast_RNIIG2M4[2]       SB_LUT4      I3       In      -         4.427       -         
+CHOOSE_CHANNEL_fast_RNIIG2M4[2]       SB_LUT4      O        Out     0.424     4.851       -         
+un15_0[12]                            Net          -        -       1.371     -           3         
+CHOOSE_CHANNEL_fast_RNIIG2M4_0[2]     SB_LUT4      I0       In      -         6.222       -         
+CHOOSE_CHANNEL_fast_RNIIG2M4_0[2]     SB_LUT4      O        Out     0.661     6.884       -         
+N_323_i                               Net          -        -       0.905     -           8         
+un1_init_pulses_cry_1_c               SB_CARRY     I0       In      -         7.789       -         
+un1_init_pulses_cry_1_c               SB_CARRY     CO       Out     0.380     8.168       -         
+un1_init_pulses_cry_1                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_2_0_c             SB_CARRY     CI       In      -         8.182       -         
+un1_init_pulses_cry_2_0_c             SB_CARRY     CO       Out     0.186     8.368       -         
+un1_init_pulses_cry_2                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_3_c               SB_CARRY     CI       In      -         8.382       -         
+un1_init_pulses_cry_3_c               SB_CARRY     CO       Out     0.186     8.568       -         
+un1_init_pulses_cry_3                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_4_c               SB_CARRY     CI       In      -         8.582       -         
+un1_init_pulses_cry_4_c               SB_CARRY     CO       Out     0.186     8.768       -         
+un1_init_pulses_cry_4                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_5_c               SB_CARRY     CI       In      -         8.782       -         
+un1_init_pulses_cry_5_c               SB_CARRY     CO       Out     0.186     8.968       -         
+un1_init_pulses_cry_5                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_6_c               SB_CARRY     CI       In      -         8.982       -         
+un1_init_pulses_cry_6_c               SB_CARRY     CO       Out     0.186     9.168       -         
+un1_init_pulses_cry_6                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_7_c               SB_CARRY     CI       In      -         9.182       -         
+un1_init_pulses_cry_7_c               SB_CARRY     CO       Out     0.186     9.368       -         
+un1_init_pulses_cry_7                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_8_c               SB_CARRY     CI       In      -         9.382       -         
+un1_init_pulses_cry_8_c               SB_CARRY     CO       Out     0.186     9.568       -         
+un1_init_pulses_cry_8                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_9_c               SB_CARRY     CI       In      -         9.582       -         
+un1_init_pulses_cry_9_c               SB_CARRY     CO       Out     0.186     9.768       -         
+un1_init_pulses_cry_9                 Net          -        -       0.014     -           2         
+un1_init_pulses_cry_10_c              SB_CARRY     CI       In      -         9.782       -         
+un1_init_pulses_cry_10_c              SB_CARRY     CO       Out     0.186     9.968       -         
+un1_init_pulses_cry_10                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_11_c              SB_CARRY     CI       In      -         9.982       -         
+un1_init_pulses_cry_11_c              SB_CARRY     CO       Out     0.186     10.168      -         
+un1_init_pulses_cry_11                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_12_c              SB_CARRY     CI       In      -         10.182      -         
+un1_init_pulses_cry_12_c              SB_CARRY     CO       Out     0.186     10.368      -         
+un1_init_pulses_cry_12                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_13_0_c            SB_CARRY     CI       In      -         10.382      -         
+un1_init_pulses_cry_13_0_c            SB_CARRY     CO       Out     0.186     10.568      -         
+un1_init_pulses_cry_13                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_14_c              SB_CARRY     CI       In      -         10.582      -         
+un1_init_pulses_cry_14_c              SB_CARRY     CO       Out     0.186     10.768      -         
+un1_init_pulses_cry_14                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_15_c              SB_CARRY     CI       In      -         10.782      -         
+un1_init_pulses_cry_15_c              SB_CARRY     CO       Out     0.186     10.968      -         
+un1_init_pulses_cry_15                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_16_c              SB_CARRY     CI       In      -         10.982      -         
+un1_init_pulses_cry_16_c              SB_CARRY     CO       Out     0.186     11.168      -         
+un1_init_pulses_cry_16                Net          -        -       0.014     -           2         
+un1_init_pulses_cry_17_c              SB_CARRY     CI       In      -         11.182      -         
+un1_init_pulses_cry_17_c              SB_CARRY     CO       Out     0.186     11.368      -         
+un1_init_pulses_cry_17                Net          -        -       0.386     -           1         
+init_pulses_RNO_0[18]                 SB_LUT4      I3       In      -         11.754      -         
+init_pulses_RNO_0[18]                 SB_LUT4      O        Out     0.465     12.219      -         
+init_pulses_RNO_0[18]                 Net          -        -       1.371     -           1         
+init_pulses_RNO[18]                   SB_LUT4      I3       In      -         13.590      -         
+init_pulses_RNO[18]                   SB_LUT4      O        Out     0.465     14.055      -         
+init_pulses_16[18]                    Net          -        -       1.507     -           1         
+init_pulses[18]                       SB_DFF       D        In      -         15.562      -         
+====================================================================================================
+Total path delay (propagation time + setup) of 15.717 is 6.983(44.4%) logic and 8.734(55.6%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+
+##### END OF TIMING REPORT #####]
+
+Timing exceptions that could not be applied
+None
+
+Finished final timing analysis (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:02s; Memory used current: 133MB peak: 135MB)
+
+
+Finished timing report (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:02s; Memory used current: 133MB peak: 135MB)
+
+---------------------------------------
+Resource Usage Report for ppm_encoder 
+
+Mapping to part: ice40up5ksg48
+Cell usage:
+SB_CARRY        58 uses
+SB_DFF          22 uses
+SB_DFFE         27 uses
+SB_DFFSR        33 uses
+SB_DFFSS        1 use
+SB_GB           2 uses
+SB_LUT4         148 uses
+
+I/O ports: 3
+I/O primitives: 3
+SB_GB_IO       1 use
+SB_IO          2 uses
+
+I/O Register bits:                  0
+Register bits not including I/Os:   83 (1%)
+Total load per clock:
+   ppm_encoder|clk: 1
+
+@S |Mapping Summary:
+Total  LUTs: 148 (2%)
+
+Distribution of All Consumed LUTs = LUT4 
+Distribution of All Consumed Luts 148 = 148 
+
+Mapper successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:02s; Memory used current: 28MB peak: 135MB)
+
+Process took 0h:00m:04s realtime, 0h:00m:02s cputime
+# Sun Mar 10 17:05:30 2019
+
+###########################################################]

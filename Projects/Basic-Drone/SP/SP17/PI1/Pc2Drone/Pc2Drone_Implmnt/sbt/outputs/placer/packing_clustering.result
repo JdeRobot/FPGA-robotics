@@ -1,0 +1,921 @@
+ble_pack frame_dron_decoder_1.WDT[0]_LC_6 {frame_dron_decoder_1.WDT[0], frame_dron_decoder_1.un1_WDT_cry_0_c, frame_dron_decoder_1.WDT_RNO[0]}
+ble_pack frame_dron_decoder_1.WDT[1]_LC_7 {frame_dron_decoder_1.WDT[1], frame_dron_decoder_1.un1_WDT_cry_1_c, frame_dron_decoder_1.WDT_RNO[1]}
+ble_pack frame_dron_decoder_1.WDT[2]_LC_14 {frame_dron_decoder_1.WDT[2], frame_dron_decoder_1.un1_WDT_cry_2_c, frame_dron_decoder_1.WDT_RNO[2]}
+ble_pack frame_dron_decoder_1.WDT[3]_LC_15 {frame_dron_decoder_1.WDT[3], frame_dron_decoder_1.un1_WDT_cry_3_c, frame_dron_decoder_1.WDT_RNO[3]}
+ble_pack frame_dron_decoder_1.WDT[4]_LC_16 {frame_dron_decoder_1.WDT[4], frame_dron_decoder_1.un1_WDT_cry_4_c, frame_dron_decoder_1.WDT_RNO[4]}
+ble_pack frame_dron_decoder_1.WDT[5]_LC_17 {frame_dron_decoder_1.WDT[5], frame_dron_decoder_1.un1_WDT_cry_5_c, frame_dron_decoder_1.WDT_RNO[5]}
+ble_pack frame_dron_decoder_1.WDT[6]_LC_18 {frame_dron_decoder_1.WDT[6], frame_dron_decoder_1.un1_WDT_cry_6_c, frame_dron_decoder_1.WDT_RNO[6]}
+ble_pack frame_dron_decoder_1.WDT[7]_LC_19 {frame_dron_decoder_1.WDT[7], frame_dron_decoder_1.un1_WDT_cry_7_c, frame_dron_decoder_1.WDT_RNO[7]}
+clb_pack PLB_0 {frame_dron_decoder_1.WDT[0]_LC_6, frame_dron_decoder_1.WDT[1]_LC_7, frame_dron_decoder_1.WDT[2]_LC_14, frame_dron_decoder_1.WDT[3]_LC_15, frame_dron_decoder_1.WDT[4]_LC_16, frame_dron_decoder_1.WDT[5]_LC_17, frame_dron_decoder_1.WDT[6]_LC_18, frame_dron_decoder_1.WDT[7]_LC_19}
+ble_pack frame_dron_decoder_1.WDT[8]_LC_20 {frame_dron_decoder_1.WDT[8], frame_dron_decoder_1.un1_WDT_cry_8_c, frame_dron_decoder_1.WDT_RNO[8]}
+ble_pack frame_dron_decoder_1.WDT[9]_LC_21 {frame_dron_decoder_1.WDT[9], frame_dron_decoder_1.un1_WDT_cry_9_c, frame_dron_decoder_1.WDT_RNO[9]}
+ble_pack frame_dron_decoder_1.WDT[10]_LC_8 {frame_dron_decoder_1.WDT[10], frame_dron_decoder_1.un1_WDT_cry_10_c, frame_dron_decoder_1.WDT_RNO[10]}
+ble_pack frame_dron_decoder_1.WDT[11]_LC_9 {frame_dron_decoder_1.WDT[11], frame_dron_decoder_1.un1_WDT_cry_11_c, frame_dron_decoder_1.WDT_RNO[11]}
+ble_pack frame_dron_decoder_1.WDT[12]_LC_10 {frame_dron_decoder_1.WDT[12], frame_dron_decoder_1.un1_WDT_cry_12_c, frame_dron_decoder_1.WDT_RNO[12]}
+ble_pack frame_dron_decoder_1.WDT[13]_LC_11 {frame_dron_decoder_1.WDT[13], frame_dron_decoder_1.un1_WDT_cry_13_c, frame_dron_decoder_1.WDT_RNO[13]}
+ble_pack frame_dron_decoder_1.WDT[14]_LC_12 {frame_dron_decoder_1.WDT[14], frame_dron_decoder_1.un1_WDT_cry_14_c, frame_dron_decoder_1.WDT_RNO[14]}
+ble_pack frame_dron_decoder_1.WDT[15]_LC_13 {frame_dron_decoder_1.WDT[15], frame_dron_decoder_1.WDT_RNO[15]}
+clb_pack PLB_1 {frame_dron_decoder_1.WDT[8]_LC_20, frame_dron_decoder_1.WDT[9]_LC_21, frame_dron_decoder_1.WDT[10]_LC_8, frame_dron_decoder_1.WDT[11]_LC_9, frame_dron_decoder_1.WDT[12]_LC_10, frame_dron_decoder_1.WDT[13]_LC_11, frame_dron_decoder_1.WDT[14]_LC_12, frame_dron_decoder_1.WDT[15]_LC_13}
+ble_pack ppm_encoder_1.counter[0]_LC_115 {ppm_encoder_1.counter[0], ppm_encoder_1.un1_counter_13_cry_0_c, ppm_encoder_1.counter_RNO[0]}
+ble_pack ppm_encoder_1.counter[1]_LC_116 {ppm_encoder_1.counter[1], ppm_encoder_1.un1_counter_13_cry_1_c, ppm_encoder_1.counter_RNO[1]}
+ble_pack ppm_encoder_1.counter[2]_LC_126 {ppm_encoder_1.counter[2], ppm_encoder_1.un1_counter_13_cry_2_c, ppm_encoder_1.counter_RNO[2]}
+ble_pack ppm_encoder_1.counter[3]_LC_127 {ppm_encoder_1.counter[3], ppm_encoder_1.un1_counter_13_cry_3_c, ppm_encoder_1.counter_RNO[3]}
+ble_pack ppm_encoder_1.counter[4]_LC_128 {ppm_encoder_1.counter[4], ppm_encoder_1.un1_counter_13_cry_4_c, ppm_encoder_1.counter_RNO[4]}
+ble_pack ppm_encoder_1.counter[5]_LC_129 {ppm_encoder_1.counter[5], ppm_encoder_1.un1_counter_13_cry_5_c, ppm_encoder_1.counter_RNO[5]}
+ble_pack ppm_encoder_1.counter[6]_LC_130 {ppm_encoder_1.counter[6], ppm_encoder_1.un1_counter_13_cry_6_c, ppm_encoder_1.counter_RNO[6]}
+ble_pack ppm_encoder_1.counter[7]_LC_131 {ppm_encoder_1.counter[7], ppm_encoder_1.un1_counter_13_cry_7_c, ppm_encoder_1.counter_RNO[7]}
+clb_pack PLB_2 {ppm_encoder_1.counter[0]_LC_115, ppm_encoder_1.counter[1]_LC_116, ppm_encoder_1.counter[2]_LC_126, ppm_encoder_1.counter[3]_LC_127, ppm_encoder_1.counter[4]_LC_128, ppm_encoder_1.counter[5]_LC_129, ppm_encoder_1.counter[6]_LC_130, ppm_encoder_1.counter[7]_LC_131}
+ble_pack ppm_encoder_1.counter[8]_LC_132 {ppm_encoder_1.counter[8], ppm_encoder_1.un1_counter_13_cry_8_c, ppm_encoder_1.counter_RNO[8]}
+ble_pack ppm_encoder_1.counter[9]_LC_133 {ppm_encoder_1.counter[9], ppm_encoder_1.un1_counter_13_cry_9_c, ppm_encoder_1.counter_RNO[9]}
+ble_pack ppm_encoder_1.counter[10]_LC_117 {ppm_encoder_1.counter[10], ppm_encoder_1.un1_counter_13_cry_10_c, ppm_encoder_1.counter_RNO[10]}
+ble_pack ppm_encoder_1.counter[11]_LC_118 {ppm_encoder_1.counter[11], ppm_encoder_1.un1_counter_13_cry_11_c, ppm_encoder_1.counter_RNO[11]}
+ble_pack ppm_encoder_1.counter[12]_LC_119 {ppm_encoder_1.counter[12], ppm_encoder_1.un1_counter_13_cry_12_c, ppm_encoder_1.counter_RNO[12]}
+ble_pack ppm_encoder_1.counter[13]_LC_120 {ppm_encoder_1.counter[13], ppm_encoder_1.un1_counter_13_cry_13_c, ppm_encoder_1.counter_RNO[13]}
+ble_pack ppm_encoder_1.counter[14]_LC_121 {ppm_encoder_1.counter[14], ppm_encoder_1.un1_counter_13_cry_14_c, ppm_encoder_1.counter_RNO[14]}
+ble_pack ppm_encoder_1.counter[15]_LC_122 {ppm_encoder_1.counter[15], ppm_encoder_1.un1_counter_13_cry_15_c, ppm_encoder_1.counter_RNO[15]}
+clb_pack PLB_3 {ppm_encoder_1.counter[8]_LC_132, ppm_encoder_1.counter[9]_LC_133, ppm_encoder_1.counter[10]_LC_117, ppm_encoder_1.counter[11]_LC_118, ppm_encoder_1.counter[12]_LC_119, ppm_encoder_1.counter[13]_LC_120, ppm_encoder_1.counter[14]_LC_121, ppm_encoder_1.counter[15]_LC_122}
+ble_pack ppm_encoder_1.counter[16]_LC_123 {ppm_encoder_1.counter[16], ppm_encoder_1.un1_counter_13_cry_16_c, ppm_encoder_1.counter_RNO[16]}
+ble_pack ppm_encoder_1.counter[17]_LC_124 {ppm_encoder_1.counter[17], ppm_encoder_1.un1_counter_13_cry_17_c, ppm_encoder_1.counter_RNO[17]}
+ble_pack ppm_encoder_1.counter[18]_LC_125 {ppm_encoder_1.counter[18], ppm_encoder_1.counter_RNO[18]}
+clb_pack PLB_4 {ppm_encoder_1.counter[16]_LC_123, ppm_encoder_1.counter[17]_LC_124, ppm_encoder_1.counter[18]_LC_125}
+ble_pack uart_drone.timer_Count_RNI5A9J[1]_LC_509 {uart_drone.un4_timer_Count_1_cry_1_c, uart_drone.timer_Count_RNI5A9J[1]}
+ble_pack uart_drone.timer_Count_RNO_0[2]_LC_517 {uart_drone.un4_timer_Count_1_cry_2_c, uart_drone.timer_Count_RNO_0[2]}
+ble_pack uart_drone.timer_Count_RNO_0[3]_LC_518 {uart_drone.un4_timer_Count_1_cry_3_c, uart_drone.timer_Count_RNO_0[3]}
+ble_pack uart_drone.timer_Count_RNO_0[4]_LC_519 {uart_drone.timer_Count_RNO_0[4]}
+clb_pack PLB_5 {uart_drone.timer_Count_RNI5A9J[1]_LC_509, uart_drone.timer_Count_RNO_0[2]_LC_517, uart_drone.timer_Count_RNO_0[3]_LC_518, uart_drone.timer_Count_RNO_0[4]_LC_519}
+ble_pack uart_frame_decoder.WDT[0]_LC_530 {uart_frame_decoder.WDT[0], uart_frame_decoder.un1_WDT_cry_0_c, uart_frame_decoder.WDT_RNO[0]}
+ble_pack uart_frame_decoder.WDT[1]_LC_531 {uart_frame_decoder.WDT[1], uart_frame_decoder.un1_WDT_cry_1_c, uart_frame_decoder.WDT_RNO[1]}
+ble_pack uart_frame_decoder.WDT[2]_LC_538 {uart_frame_decoder.WDT[2], uart_frame_decoder.un1_WDT_cry_2_c, uart_frame_decoder.WDT_RNO[2]}
+ble_pack uart_frame_decoder.WDT[3]_LC_539 {uart_frame_decoder.WDT[3], uart_frame_decoder.un1_WDT_cry_3_c, uart_frame_decoder.WDT_RNO[3]}
+ble_pack uart_frame_decoder.WDT[4]_LC_540 {uart_frame_decoder.WDT[4], uart_frame_decoder.un1_WDT_cry_4_c, uart_frame_decoder.WDT_RNO[4]}
+ble_pack uart_frame_decoder.WDT[5]_LC_541 {uart_frame_decoder.WDT[5], uart_frame_decoder.un1_WDT_cry_5_c, uart_frame_decoder.WDT_RNO[5]}
+ble_pack uart_frame_decoder.WDT[6]_LC_542 {uart_frame_decoder.WDT[6], uart_frame_decoder.un1_WDT_cry_6_c, uart_frame_decoder.WDT_RNO[6]}
+ble_pack uart_frame_decoder.WDT[7]_LC_543 {uart_frame_decoder.WDT[7], uart_frame_decoder.un1_WDT_cry_7_c, uart_frame_decoder.WDT_RNO[7]}
+clb_pack PLB_6 {uart_frame_decoder.WDT[0]_LC_530, uart_frame_decoder.WDT[1]_LC_531, uart_frame_decoder.WDT[2]_LC_538, uart_frame_decoder.WDT[3]_LC_539, uart_frame_decoder.WDT[4]_LC_540, uart_frame_decoder.WDT[5]_LC_541, uart_frame_decoder.WDT[6]_LC_542, uart_frame_decoder.WDT[7]_LC_543}
+ble_pack uart_frame_decoder.WDT[8]_LC_544 {uart_frame_decoder.WDT[8], uart_frame_decoder.un1_WDT_cry_8_c, uart_frame_decoder.WDT_RNO[8]}
+ble_pack uart_frame_decoder.WDT[9]_LC_545 {uart_frame_decoder.WDT[9], uart_frame_decoder.un1_WDT_cry_9_c, uart_frame_decoder.WDT_RNO[9]}
+ble_pack uart_frame_decoder.WDT[10]_LC_532 {uart_frame_decoder.WDT[10], uart_frame_decoder.un1_WDT_cry_10_c, uart_frame_decoder.WDT_RNO[10]}
+ble_pack uart_frame_decoder.WDT[11]_LC_533 {uart_frame_decoder.WDT[11], uart_frame_decoder.un1_WDT_cry_11_c, uart_frame_decoder.WDT_RNO[11]}
+ble_pack uart_frame_decoder.WDT[12]_LC_534 {uart_frame_decoder.WDT[12], uart_frame_decoder.un1_WDT_cry_12_c, uart_frame_decoder.WDT_RNO[12]}
+ble_pack uart_frame_decoder.WDT[13]_LC_535 {uart_frame_decoder.WDT[13], uart_frame_decoder.un1_WDT_cry_13_c, uart_frame_decoder.WDT_RNO[13]}
+ble_pack uart_frame_decoder.WDT[14]_LC_536 {uart_frame_decoder.WDT[14], uart_frame_decoder.un1_WDT_cry_14_c, uart_frame_decoder.WDT_RNO[14]}
+ble_pack uart_frame_decoder.WDT[15]_LC_537 {uart_frame_decoder.WDT[15], uart_frame_decoder.WDT_RNO[15]}
+clb_pack PLB_7 {uart_frame_decoder.WDT[8]_LC_544, uart_frame_decoder.WDT[9]_LC_545, uart_frame_decoder.WDT[10]_LC_532, uart_frame_decoder.WDT[11]_LC_533, uart_frame_decoder.WDT[12]_LC_534, uart_frame_decoder.WDT[13]_LC_535, uart_frame_decoder.WDT[14]_LC_536, uart_frame_decoder.WDT[15]_LC_537}
+ble_pack uart_pc.timer_Count_RNIRP8S[1]_LC_634 {uart_pc.un4_timer_Count_1_cry_1_c, uart_pc.timer_Count_RNIRP8S[1]}
+ble_pack uart_pc.timer_Count_RNO_0[2]_LC_638 {uart_pc.un4_timer_Count_1_cry_2_c, uart_pc.timer_Count_RNO_0[2]}
+ble_pack uart_pc.timer_Count_RNO_0[3]_LC_639 {uart_pc.un4_timer_Count_1_cry_3_c, uart_pc.timer_Count_RNO_0[3]}
+ble_pack uart_pc.timer_Count_RNO_0[4]_LC_640 {uart_pc.timer_Count_RNO_0[4]}
+clb_pack PLB_8 {uart_pc.timer_Count_RNIRP8S[1]_LC_634, uart_pc.timer_Count_RNO_0[2]_LC_638, uart_pc.timer_Count_RNO_0[3]_LC_639, uart_pc.timer_Count_RNO_0[4]_LC_640}
+ble_pack ppm_encoder_1.counter24_0_I_1_c_LC_779 {ppm_encoder_1.counter24_0_I_1_c}
+ble_pack ppm_encoder_1.counter24_0_I_9_c_LC_787 {ppm_encoder_1.counter24_0_I_9_c}
+ble_pack ppm_encoder_1.counter24_0_I_15_c_LC_778 {ppm_encoder_1.counter24_0_I_15_c}
+ble_pack ppm_encoder_1.counter24_0_I_21_c_LC_780 {ppm_encoder_1.counter24_0_I_21_c}
+ble_pack ppm_encoder_1.counter24_0_I_27_c_LC_781 {ppm_encoder_1.counter24_0_I_27_c}
+ble_pack ppm_encoder_1.counter24_0_I_33_c_LC_782 {ppm_encoder_1.counter24_0_I_33_c}
+ble_pack ppm_encoder_1.counter24_0_I_39_c_LC_783 {ppm_encoder_1.counter24_0_I_39_c}
+ble_pack ppm_encoder_1.counter24_0_I_45_c_LC_784 {ppm_encoder_1.counter24_0_I_45_c}
+clb_pack PLB_9 {ppm_encoder_1.counter24_0_I_1_c_LC_779, ppm_encoder_1.counter24_0_I_9_c_LC_787, ppm_encoder_1.counter24_0_I_15_c_LC_778, ppm_encoder_1.counter24_0_I_21_c_LC_780, ppm_encoder_1.counter24_0_I_27_c_LC_781, ppm_encoder_1.counter24_0_I_33_c_LC_782, ppm_encoder_1.counter24_0_I_39_c_LC_783, ppm_encoder_1.counter24_0_I_45_c_LC_784}
+ble_pack ppm_encoder_1.counter24_0_I_51_c_LC_785 {ppm_encoder_1.counter24_0_I_51_c}
+ble_pack ppm_encoder_1.counter24_0_I_57_c_LC_786 {ppm_encoder_1.counter24_0_I_57_c}
+ble_pack ppm_encoder_1.counter24_0_N_2_THRU_LUT4_0_LC_748 {ppm_encoder_1.counter24_0_N_2_THRU_LUT4_0}
+clb_pack PLB_10 {ppm_encoder_1.counter24_0_I_51_c_LC_785, ppm_encoder_1.counter24_0_I_57_c_LC_786, ppm_encoder_1.counter24_0_N_2_THRU_LUT4_0_LC_748}
+ble_pack ppm_encoder_1.init_pulses_RNI8LUS_0[0]_LC_788 {ppm_encoder_1.init_pulses_RNI8LUS_0[0]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[1]_LC_195 {ppm_encoder_1.throttle_RNIR0L07[1], ppm_encoder_1.init_pulses_RNO_0[1]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[2]_LC_205 {ppm_encoder_1.init_pulses_RNIANLVA[2], ppm_encoder_1.init_pulses_RNO_0[2]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[3]_LC_206 {ppm_encoder_1.init_pulses_RNIRFMUE[3], ppm_encoder_1.init_pulses_RNO_0[3]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[4]_LC_207 {ppm_encoder_1.init_pulses_RNIFL5EL[4], ppm_encoder_1.init_pulses_RNO_0[4]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[5]_LC_208 {ppm_encoder_1.init_pulses_RNI91LTR[5], ppm_encoder_1.init_pulses_RNO_0[5]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[6]_LC_209 {ppm_encoder_1.init_pulses_RNI5A6431[6], ppm_encoder_1.init_pulses_RNO_0[6]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[7]_LC_210 {ppm_encoder_1.init_pulses_RNI7PNAA1[7], ppm_encoder_1.init_pulses_RNO_0[7]}
+clb_pack PLB_11 {ppm_encoder_1.init_pulses_RNI8LUS_0[0]_LC_788, ppm_encoder_1.init_pulses_RNO_0[1]_LC_195, ppm_encoder_1.init_pulses_RNO_0[2]_LC_205, ppm_encoder_1.init_pulses_RNO_0[3]_LC_206, ppm_encoder_1.init_pulses_RNO_0[4]_LC_207, ppm_encoder_1.init_pulses_RNO_0[5]_LC_208, ppm_encoder_1.init_pulses_RNO_0[6]_LC_209, ppm_encoder_1.init_pulses_RNO_0[7]_LC_210}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[8]_LC_211 {ppm_encoder_1.init_pulses_RNIFE9HH1[8], ppm_encoder_1.init_pulses_RNO_0[8]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[9]_LC_212 {ppm_encoder_1.init_pulses_RNIT9RNO1[9], ppm_encoder_1.init_pulses_RNO_0[9]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[10]_LC_196 {ppm_encoder_1.init_pulses_RNIR6IFV1[10], ppm_encoder_1.init_pulses_RNO_0[10]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[11]_LC_197 {ppm_encoder_1.init_pulses_RNIV99762[11], ppm_encoder_1.init_pulses_RNO_0[11]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[12]_LC_198 {ppm_encoder_1.init_pulses_RNI9J0VC2[12], ppm_encoder_1.init_pulses_RNO_0[12]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[13]_LC_199 {ppm_encoder_1.init_pulses_RNIP2OMJ2[13], ppm_encoder_1.init_pulses_RNO_0[13]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[14]_LC_200 {ppm_encoder_1.init_pulses_RNIJ5N5R2[14], ppm_encoder_1.init_pulses_RNO_0[14]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[15]_LC_201 {ppm_encoder_1.init_pulses_RNIV7MDT2[15], ppm_encoder_1.init_pulses_RNO_0[15]}
+clb_pack PLB_12 {ppm_encoder_1.init_pulses_RNO_0[8]_LC_211, ppm_encoder_1.init_pulses_RNO_0[9]_LC_212, ppm_encoder_1.init_pulses_RNO_0[10]_LC_196, ppm_encoder_1.init_pulses_RNO_0[11]_LC_197, ppm_encoder_1.init_pulses_RNO_0[12]_LC_198, ppm_encoder_1.init_pulses_RNO_0[13]_LC_199, ppm_encoder_1.init_pulses_RNO_0[14]_LC_200, ppm_encoder_1.init_pulses_RNO_0[15]_LC_201}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[16]_LC_202 {ppm_encoder_1.init_pulses_RNIUQH7U2[16], ppm_encoder_1.init_pulses_RNO_0[16]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[17]_LC_203 {ppm_encoder_1.init_pulses_RNO_3[18], ppm_encoder_1.init_pulses_RNO_0[17]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[18]_LC_204 {ppm_encoder_1.init_pulses_RNO_0[18]}
+clb_pack PLB_13 {ppm_encoder_1.init_pulses_RNO_0[16]_LC_202, ppm_encoder_1.init_pulses_RNO_0[17]_LC_203, ppm_encoder_1.init_pulses_RNO_0[18]_LC_204}
+ble_pack ppm_encoder_1.init_pulses_RNIC9HQ4[0]_LC_789 {ppm_encoder_1.init_pulses_RNIC9HQ4[0]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[1]_LC_223 {ppm_encoder_1.init_pulses_RNILVFN5[1], ppm_encoder_1.init_pulses_RNO_1[1]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[2]_LC_233 {ppm_encoder_1.init_pulses_RNI3B1IA[2], ppm_encoder_1.init_pulses_RNO_1[2]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[3]_LC_234 {ppm_encoder_1.init_pulses_RNIE30FB[3], ppm_encoder_1.init_pulses_RNO_1[3]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[4]_LC_235 {ppm_encoder_1.init_pulses_RNIQSUBC[4], ppm_encoder_1.init_pulses_RNO_1[4]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[5]_LC_236 {ppm_encoder_1.init_pulses_RNI7NT8D[5], ppm_encoder_1.init_pulses_RNO_1[5]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[6]_LC_237 {ppm_encoder_1.init_pulses_RNIP6F3I[6], ppm_encoder_1.init_pulses_RNO_1[6]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[7]_LC_238 {ppm_encoder_1.init_pulses_RNI83E0J[7], ppm_encoder_1.init_pulses_RNO_1[7]}
+clb_pack PLB_14 {ppm_encoder_1.init_pulses_RNIC9HQ4[0]_LC_789, ppm_encoder_1.init_pulses_RNO_1[1]_LC_223, ppm_encoder_1.init_pulses_RNO_1[2]_LC_233, ppm_encoder_1.init_pulses_RNO_1[3]_LC_234, ppm_encoder_1.init_pulses_RNO_1[4]_LC_235, ppm_encoder_1.init_pulses_RNO_1[5]_LC_236, ppm_encoder_1.init_pulses_RNO_1[6]_LC_237, ppm_encoder_1.init_pulses_RNO_1[7]_LC_238}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[8]_LC_239 {ppm_encoder_1.init_pulses_RNIO0DTJ[8], ppm_encoder_1.init_pulses_RNO_1[8]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[9]_LC_240 {ppm_encoder_1.init_pulses_RNI9VBQK[9], ppm_encoder_1.init_pulses_RNO_1[9]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[10]_LC_224 {ppm_encoder_1.init_pulses_RNI2C7KL[10], ppm_encoder_1.init_pulses_RNO_1[10]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[11]_LC_225 {ppm_encoder_1.init_pulses_RNISP2EM[11], ppm_encoder_1.init_pulses_RNO_1[11]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[12]_LC_226 {ppm_encoder_1.init_pulses_RNIN8U7N[12], ppm_encoder_1.init_pulses_RNO_1[12]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[13]_LC_227 {ppm_encoder_1.init_pulses_RNINCCVR[13], ppm_encoder_1.init_pulses_RNO_1[13]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[14]_LC_228 {ppm_encoder_1.init_pulses_RNIKT7PS[14], ppm_encoder_1.init_pulses_RNO_1[14]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[15]_LC_229 {ppm_encoder_1.init_pulses_RNIIF3JT[15], ppm_encoder_1.init_pulses_RNO_1[15]}
+clb_pack PLB_15 {ppm_encoder_1.init_pulses_RNO_1[8]_LC_239, ppm_encoder_1.init_pulses_RNO_1[9]_LC_240, ppm_encoder_1.init_pulses_RNO_1[10]_LC_224, ppm_encoder_1.init_pulses_RNO_1[11]_LC_225, ppm_encoder_1.init_pulses_RNO_1[12]_LC_226, ppm_encoder_1.init_pulses_RNO_1[13]_LC_227, ppm_encoder_1.init_pulses_RNO_1[14]_LC_228, ppm_encoder_1.init_pulses_RNO_1[15]_LC_229}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[16]_LC_230 {ppm_encoder_1.init_pulses_RNIH2VCU[16], ppm_encoder_1.init_pulses_RNO_1[16]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[17]_LC_231 {ppm_encoder_1.init_pulses_RNO_4[18], ppm_encoder_1.init_pulses_RNO_1[17]}
+ble_pack ppm_encoder_1.init_pulses_RNO_1[18]_LC_232 {ppm_encoder_1.init_pulses_RNO_1[18]}
+clb_pack PLB_16 {ppm_encoder_1.init_pulses_RNO_1[16]_LC_230, ppm_encoder_1.init_pulses_RNO_1[17]_LC_231, ppm_encoder_1.init_pulses_RNO_1[18]_LC_232}
+ble_pack ppm_encoder_1.un1_aileron_cry_6_c_LC_790 {ppm_encoder_1.un1_aileron_cry_6_c}
+ble_pack ppm_encoder_1.un1_aileron_cry_6_THRU_LUT4_0_LC_752 {ppm_encoder_1.un1_aileron_cry_7_c, ppm_encoder_1.un1_aileron_cry_6_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_aileron_cry_7_THRU_LUT4_0_LC_753 {ppm_encoder_1.un1_aileron_cry_8_c, ppm_encoder_1.un1_aileron_cry_7_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_aileron_cry_8_THRU_LUT4_0_LC_754 {ppm_encoder_1.un1_aileron_cry_9_c, ppm_encoder_1.un1_aileron_cry_8_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_aileron_cry_9_THRU_LUT4_0_LC_755 {ppm_encoder_1.un1_aileron_cry_10_c, ppm_encoder_1.un1_aileron_cry_9_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_aileron_cry_10_THRU_LUT4_0_LC_749 {ppm_encoder_1.un1_aileron_cry_11_c, ppm_encoder_1.un1_aileron_cry_10_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_aileron_cry_11_THRU_LUT4_0_LC_750 {ppm_encoder_1.un1_aileron_cry_12_c, ppm_encoder_1.un1_aileron_cry_11_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_aileron_cry_12_THRU_LUT4_0_LC_751 {ppm_encoder_1.un1_aileron_cry_13_c, ppm_encoder_1.un1_aileron_cry_12_THRU_LUT4_0}
+clb_pack PLB_17 {ppm_encoder_1.un1_aileron_cry_6_c_LC_790, ppm_encoder_1.un1_aileron_cry_6_THRU_LUT4_0_LC_752, ppm_encoder_1.un1_aileron_cry_7_THRU_LUT4_0_LC_753, ppm_encoder_1.un1_aileron_cry_8_THRU_LUT4_0_LC_754, ppm_encoder_1.un1_aileron_cry_9_THRU_LUT4_0_LC_755, ppm_encoder_1.un1_aileron_cry_10_THRU_LUT4_0_LC_749, ppm_encoder_1.un1_aileron_cry_11_THRU_LUT4_0_LC_750, ppm_encoder_1.un1_aileron_cry_12_THRU_LUT4_0_LC_751}
+ble_pack ppm_encoder_1.aileron_esr[14]_LC_97 {ppm_encoder_1.aileron_esr[14], ppm_encoder_1.aileron_esr_RNO[14]}
+clb_pack PLB_18 {ppm_encoder_1.aileron_esr[14]_LC_97}
+ble_pack ppm_encoder_1.un1_elevator_cry_6_c_LC_791 {ppm_encoder_1.un1_elevator_cry_6_c}
+ble_pack ppm_encoder_1.un1_elevator_cry_6_THRU_LUT4_0_LC_759 {ppm_encoder_1.un1_elevator_cry_7_c, ppm_encoder_1.un1_elevator_cry_6_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_elevator_cry_7_THRU_LUT4_0_LC_760 {ppm_encoder_1.un1_elevator_cry_8_c, ppm_encoder_1.un1_elevator_cry_7_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_elevator_cry_8_THRU_LUT4_0_LC_761 {ppm_encoder_1.un1_elevator_cry_9_c, ppm_encoder_1.un1_elevator_cry_8_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_elevator_cry_9_THRU_LUT4_0_LC_762 {ppm_encoder_1.un1_elevator_cry_10_c, ppm_encoder_1.un1_elevator_cry_9_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_elevator_cry_10_THRU_LUT4_0_LC_756 {ppm_encoder_1.un1_elevator_cry_11_c, ppm_encoder_1.un1_elevator_cry_10_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_elevator_cry_11_THRU_LUT4_0_LC_757 {ppm_encoder_1.un1_elevator_cry_12_c, ppm_encoder_1.un1_elevator_cry_11_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_elevator_cry_12_THRU_LUT4_0_LC_758 {ppm_encoder_1.un1_elevator_cry_13_c, ppm_encoder_1.un1_elevator_cry_12_THRU_LUT4_0}
+clb_pack PLB_19 {ppm_encoder_1.un1_elevator_cry_6_c_LC_791, ppm_encoder_1.un1_elevator_cry_6_THRU_LUT4_0_LC_759, ppm_encoder_1.un1_elevator_cry_7_THRU_LUT4_0_LC_760, ppm_encoder_1.un1_elevator_cry_8_THRU_LUT4_0_LC_761, ppm_encoder_1.un1_elevator_cry_9_THRU_LUT4_0_LC_762, ppm_encoder_1.un1_elevator_cry_10_THRU_LUT4_0_LC_756, ppm_encoder_1.un1_elevator_cry_11_THRU_LUT4_0_LC_757, ppm_encoder_1.un1_elevator_cry_12_THRU_LUT4_0_LC_758}
+ble_pack ppm_encoder_1.elevator_esr[14]_LC_154 {ppm_encoder_1.elevator_esr[14], ppm_encoder_1.elevator_esr_RNO[14]}
+clb_pack PLB_20 {ppm_encoder_1.elevator_esr[14]_LC_154}
+ble_pack ppm_encoder_1.un1_rudder_cry_6_c_LC_792 {ppm_encoder_1.un1_rudder_cry_6_c}
+ble_pack ppm_encoder_1.un1_rudder_cry_6_THRU_LUT4_0_LC_766 {ppm_encoder_1.un1_rudder_cry_7_c, ppm_encoder_1.un1_rudder_cry_6_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_rudder_cry_7_THRU_LUT4_0_LC_767 {ppm_encoder_1.un1_rudder_cry_8_c, ppm_encoder_1.un1_rudder_cry_7_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_rudder_cry_8_THRU_LUT4_0_LC_768 {ppm_encoder_1.un1_rudder_cry_9_c, ppm_encoder_1.un1_rudder_cry_8_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_rudder_cry_9_THRU_LUT4_0_LC_769 {ppm_encoder_1.un1_rudder_cry_10_c, ppm_encoder_1.un1_rudder_cry_9_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_rudder_cry_10_THRU_LUT4_0_LC_763 {ppm_encoder_1.un1_rudder_cry_11_c, ppm_encoder_1.un1_rudder_cry_10_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_rudder_cry_11_THRU_LUT4_0_LC_764 {ppm_encoder_1.un1_rudder_cry_12_c, ppm_encoder_1.un1_rudder_cry_11_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_rudder_cry_12_THRU_LUT4_0_LC_765 {ppm_encoder_1.un1_rudder_cry_13_c, ppm_encoder_1.un1_rudder_cry_12_THRU_LUT4_0}
+clb_pack PLB_21 {ppm_encoder_1.un1_rudder_cry_6_c_LC_792, ppm_encoder_1.un1_rudder_cry_6_THRU_LUT4_0_LC_766, ppm_encoder_1.un1_rudder_cry_7_THRU_LUT4_0_LC_767, ppm_encoder_1.un1_rudder_cry_8_THRU_LUT4_0_LC_768, ppm_encoder_1.un1_rudder_cry_9_THRU_LUT4_0_LC_769, ppm_encoder_1.un1_rudder_cry_10_THRU_LUT4_0_LC_763, ppm_encoder_1.un1_rudder_cry_11_THRU_LUT4_0_LC_764, ppm_encoder_1.un1_rudder_cry_12_THRU_LUT4_0_LC_765}
+ble_pack ppm_encoder_1.rudder_esr[14]_LC_322 {ppm_encoder_1.rudder_esr[14], ppm_encoder_1.rudder_esr_RNO[14]}
+clb_pack PLB_22 {ppm_encoder_1.rudder_esr[14]_LC_322}
+ble_pack ppm_encoder_1.un1_throttle_cry_6_c_LC_793 {ppm_encoder_1.un1_throttle_cry_6_c}
+ble_pack ppm_encoder_1.un1_throttle_cry_6_THRU_LUT4_0_LC_773 {ppm_encoder_1.un1_throttle_cry_7_c, ppm_encoder_1.un1_throttle_cry_6_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_throttle_cry_7_THRU_LUT4_0_LC_774 {ppm_encoder_1.un1_throttle_cry_8_c, ppm_encoder_1.un1_throttle_cry_7_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_throttle_cry_8_THRU_LUT4_0_LC_775 {ppm_encoder_1.un1_throttle_cry_9_c, ppm_encoder_1.un1_throttle_cry_8_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_throttle_cry_9_THRU_LUT4_0_LC_776 {ppm_encoder_1.un1_throttle_cry_10_c, ppm_encoder_1.un1_throttle_cry_9_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_throttle_cry_10_THRU_LUT4_0_LC_770 {ppm_encoder_1.un1_throttle_cry_11_c, ppm_encoder_1.un1_throttle_cry_10_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_throttle_cry_11_THRU_LUT4_0_LC_771 {ppm_encoder_1.un1_throttle_cry_12_c, ppm_encoder_1.un1_throttle_cry_11_THRU_LUT4_0}
+ble_pack ppm_encoder_1.un1_throttle_cry_12_THRU_LUT4_0_LC_772 {ppm_encoder_1.un1_throttle_cry_13_c, ppm_encoder_1.un1_throttle_cry_12_THRU_LUT4_0}
+clb_pack PLB_23 {ppm_encoder_1.un1_throttle_cry_6_c_LC_793, ppm_encoder_1.un1_throttle_cry_6_THRU_LUT4_0_LC_773, ppm_encoder_1.un1_throttle_cry_7_THRU_LUT4_0_LC_774, ppm_encoder_1.un1_throttle_cry_8_THRU_LUT4_0_LC_775, ppm_encoder_1.un1_throttle_cry_9_THRU_LUT4_0_LC_776, ppm_encoder_1.un1_throttle_cry_10_THRU_LUT4_0_LC_770, ppm_encoder_1.un1_throttle_cry_11_THRU_LUT4_0_LC_771, ppm_encoder_1.un1_throttle_cry_12_THRU_LUT4_0_LC_772}
+ble_pack ppm_encoder_1.throttle_esr[14]_LC_352 {ppm_encoder_1.throttle_esr[14], ppm_encoder_1.throttle_esr_RNO[14]}
+clb_pack PLB_24 {ppm_encoder_1.throttle_esr[14]_LC_352}
+ble_pack reset_module_System.count_1_cry_1_c_LC_794 {reset_module_System.count_1_cry_1_c}
+ble_pack reset_module_System.count_RNO_0[2]_LC_362 {reset_module_System.count_1_cry_2_c, reset_module_System.count_RNO_0[2]}
+ble_pack reset_module_System.count[3]_LC_377 {reset_module_System.count[3], reset_module_System.count_1_cry_3_c, reset_module_System.count_RNO[3]}
+ble_pack reset_module_System.count[4]_LC_378 {reset_module_System.count[4], reset_module_System.count_1_cry_4_c, reset_module_System.count_RNO[4]}
+ble_pack reset_module_System.count[5]_LC_379 {reset_module_System.count[5], reset_module_System.count_1_cry_5_c, reset_module_System.count_RNO[5]}
+ble_pack reset_module_System.count[6]_LC_380 {reset_module_System.count[6], reset_module_System.count_1_cry_6_c, reset_module_System.count_RNO[6]}
+ble_pack reset_module_System.count[7]_LC_381 {reset_module_System.count[7], reset_module_System.count_1_cry_7_c, reset_module_System.count_RNO[7]}
+ble_pack reset_module_System.count[8]_LC_382 {reset_module_System.count[8], reset_module_System.count_1_cry_8_c, reset_module_System.count_RNO[8]}
+clb_pack PLB_25 {reset_module_System.count_1_cry_1_c_LC_794, reset_module_System.count_RNO_0[2]_LC_362, reset_module_System.count[3]_LC_377, reset_module_System.count[4]_LC_378, reset_module_System.count[5]_LC_379, reset_module_System.count[6]_LC_380, reset_module_System.count[7]_LC_381, reset_module_System.count[8]_LC_382}
+ble_pack reset_module_System.count[9]_LC_383 {reset_module_System.count[9], reset_module_System.count_1_cry_9_c, reset_module_System.count_RNO[9]}
+ble_pack reset_module_System.count[10]_LC_364 {reset_module_System.count[10], reset_module_System.count_1_cry_10_c, reset_module_System.count_RNO[10]}
+ble_pack reset_module_System.count[11]_LC_365 {reset_module_System.count[11], reset_module_System.count_1_cry_11_c, reset_module_System.count_RNO[11]}
+ble_pack reset_module_System.count[12]_LC_366 {reset_module_System.count[12], reset_module_System.count_1_cry_12_c, reset_module_System.count_RNO[12]}
+ble_pack reset_module_System.count[13]_LC_367 {reset_module_System.count[13], reset_module_System.count_1_cry_13_c, reset_module_System.count_RNO[13]}
+ble_pack reset_module_System.count[14]_LC_368 {reset_module_System.count[14], reset_module_System.count_1_cry_14_c, reset_module_System.count_RNO[14]}
+ble_pack reset_module_System.count[15]_LC_369 {reset_module_System.count[15], reset_module_System.count_1_cry_15_c, reset_module_System.count_RNO[15]}
+ble_pack reset_module_System.count[16]_LC_370 {reset_module_System.count[16], reset_module_System.count_1_cry_16_c, reset_module_System.count_RNO[16]}
+clb_pack PLB_26 {reset_module_System.count[9]_LC_383, reset_module_System.count[10]_LC_364, reset_module_System.count[11]_LC_365, reset_module_System.count[12]_LC_366, reset_module_System.count[13]_LC_367, reset_module_System.count[14]_LC_368, reset_module_System.count[15]_LC_369, reset_module_System.count[16]_LC_370}
+ble_pack reset_module_System.count[17]_LC_371 {reset_module_System.count[17], reset_module_System.count_1_cry_17_c, reset_module_System.count_RNO[17]}
+ble_pack reset_module_System.count[18]_LC_372 {reset_module_System.count[18], reset_module_System.count_1_cry_18_c, reset_module_System.count_RNO[18]}
+ble_pack reset_module_System.count[19]_LC_373 {reset_module_System.count[19], reset_module_System.count_1_cry_19_c, reset_module_System.count_RNO[19]}
+ble_pack reset_module_System.count[20]_LC_375 {reset_module_System.count[20], reset_module_System.count_1_cry_20_c, reset_module_System.count_RNO[20]}
+ble_pack reset_module_System.count[21]_LC_376 {reset_module_System.count[21], reset_module_System.count_RNO[21]}
+clb_pack PLB_27 {reset_module_System.count[17]_LC_371, reset_module_System.count[18]_LC_372, reset_module_System.count[19]_LC_373, reset_module_System.count[20]_LC_375, reset_module_System.count[21]_LC_376}
+ble_pack scaler_1.un2_source_data_0_cry_1_c_LC_795 {scaler_1.un2_source_data_0_cry_1_c}
+ble_pack scaler_1.source_data_1_esr[6]_LC_392 {scaler_1.source_data_1_esr[6], scaler_1.un2_source_data_0_cry_2_c, scaler_1.source_data_1_esr_RNO[6]}
+ble_pack scaler_1.source_data_1_esr[7]_LC_393 {scaler_1.source_data_1_esr[7], scaler_1.un2_source_data_0_cry_3_c, scaler_1.source_data_1_esr_RNO[7]}
+ble_pack scaler_1.source_data_1_esr[8]_LC_394 {scaler_1.source_data_1_esr[8], scaler_1.un2_source_data_0_cry_4_c, scaler_1.source_data_1_esr_RNO[8]}
+ble_pack scaler_1.source_data_1_esr[9]_LC_395 {scaler_1.source_data_1_esr[9], scaler_1.un2_source_data_0_cry_5_c, scaler_1.source_data_1_esr_RNO[9]}
+ble_pack scaler_1.source_data_1_esr[10]_LC_387 {scaler_1.source_data_1_esr[10], scaler_1.un2_source_data_0_cry_6_c, scaler_1.source_data_1_esr_RNO[10]}
+ble_pack scaler_1.source_data_1_esr[11]_LC_388 {scaler_1.source_data_1_esr[11], scaler_1.un2_source_data_0_cry_7_c, scaler_1.source_data_1_esr_RNO[11]}
+ble_pack scaler_1.source_data_1_esr[12]_LC_389 {scaler_1.source_data_1_esr[12], scaler_1.un2_source_data_0_cry_8_c, scaler_1.source_data_1_esr_RNO[12]}
+clb_pack PLB_28 {scaler_1.un2_source_data_0_cry_1_c_LC_795, scaler_1.source_data_1_esr[6]_LC_392, scaler_1.source_data_1_esr[7]_LC_393, scaler_1.source_data_1_esr[8]_LC_394, scaler_1.source_data_1_esr[9]_LC_395, scaler_1.source_data_1_esr[10]_LC_387, scaler_1.source_data_1_esr[11]_LC_388, scaler_1.source_data_1_esr[12]_LC_389}
+ble_pack scaler_1.source_data_1_esr[13]_LC_390 {scaler_1.source_data_1_esr[13], scaler_1.un2_source_data_0_cry_9_c, scaler_1.source_data_1_esr_RNO[13]}
+ble_pack scaler_1.source_data_1_esr[14]_LC_653 {scaler_1.source_data_1_esr[14], scaler_1.source_data_1_esr_14_THRU_LUT4_0}
+clb_pack PLB_29 {scaler_1.source_data_1_esr[13]_LC_390, scaler_1.source_data_1_esr[14]_LC_653}
+ble_pack scaler_1.un3_source_data.un3_source_data_0_cry_0_c_LC_796 {scaler_1.un3_source_data.un3_source_data_0_cry_0_c}
+ble_pack scaler_1.un3_source_data.un3_source_data_0_cry_0_c_RNIFOB11_LC_399 {scaler_1.un3_source_data.un3_source_data_0_cry_1_c, scaler_1.un3_source_data.un3_source_data_0_cry_0_c_RNIFOB11}
+ble_pack scaler_1.un3_source_data.un3_source_data_0_cry_1_c_RNIISC11_LC_400 {scaler_1.un3_source_data.un3_source_data_0_cry_2_c, scaler_1.un3_source_data.un3_source_data_0_cry_1_c_RNIISC11}
+ble_pack scaler_1.un3_source_data.un3_source_data_0_cry_2_c_RNIL0E11_LC_401 {scaler_1.un3_source_data.un3_source_data_0_cry_3_c, scaler_1.un3_source_data.un3_source_data_0_cry_2_c_RNIL0E11}
+ble_pack scaler_1.un3_source_data.un3_source_data_0_cry_3_c_RNIO4F11_LC_402 {scaler_1.un3_source_data.un3_source_data_0_cry_4_c, scaler_1.un3_source_data.un3_source_data_0_cry_3_c_RNIO4F11}
+ble_pack scaler_1.un3_source_data.un3_source_data_0_cry_4_c_RNIR8G11_LC_403 {scaler_1.un3_source_data.un3_source_data_0_cry_5_c, scaler_1.un3_source_data.un3_source_data_0_cry_4_c_RNIR8G11}
+ble_pack scaler_1.un3_source_data.un3_source_data_0_cry_5_c_RNIUCH11_LC_404 {scaler_1.un3_source_data.un3_source_data_0_cry_6_c, scaler_1.un3_source_data.un3_source_data_0_cry_5_c_RNIUCH11}
+ble_pack scaler_1.un3_source_data.un3_source_data_0_cry_6_c_RNI1HI11_LC_405 {scaler_1.un3_source_data.un3_source_data_0_cry_7_c, scaler_1.un3_source_data.un3_source_data_0_cry_6_c_RNI1HI11}
+clb_pack PLB_30 {scaler_1.un3_source_data.un3_source_data_0_cry_0_c_LC_796, scaler_1.un3_source_data.un3_source_data_0_cry_0_c_RNIFOB11_LC_399, scaler_1.un3_source_data.un3_source_data_0_cry_1_c_RNIISC11_LC_400, scaler_1.un3_source_data.un3_source_data_0_cry_2_c_RNIL0E11_LC_401, scaler_1.un3_source_data.un3_source_data_0_cry_3_c_RNIO4F11_LC_402, scaler_1.un3_source_data.un3_source_data_0_cry_4_c_RNIR8G11_LC_403, scaler_1.un3_source_data.un3_source_data_0_cry_5_c_RNIUCH11_LC_404, scaler_1.un3_source_data.un3_source_data_0_cry_6_c_RNI1HI11_LC_405}
+ble_pack scaler_1.un3_source_data.un3_source_data_0_cry_7_c_RNI2JJ11_LC_406 {scaler_1.un3_source_data.un3_source_data_0_cry_8_c, scaler_1.un3_source_data.un3_source_data_0_cry_7_c_RNI2JJ11}
+ble_pack scaler_1.un3_source_data.un3_source_data_0_cry_8_c_RNIPB6F_LC_407 {scaler_1.un3_source_data.un3_source_data_0_cry_8_c_RNIPB6F}
+ble_pack LC_804 {CONSTANT_ONE_LUT4}
+ble_pack uart_frame_decoder.count8_cry_0_c_inv_LC_546 {uart_frame_decoder.count8_cry_0_c_inv}
+clb_pack PLB_31 {scaler_1.un3_source_data.un3_source_data_0_cry_7_c_RNI2JJ11_LC_406, scaler_1.un3_source_data.un3_source_data_0_cry_8_c_RNIPB6F_LC_407, LC_804, uart_frame_decoder.count8_cry_0_c_inv_LC_546}
+ble_pack scaler_2.un2_source_data_0_cry_1_c_LC_797 {scaler_2.un2_source_data_0_cry_1_c}
+ble_pack scaler_2.source_data_1_esr[6]_LC_415 {scaler_2.source_data_1_esr[6], scaler_2.un2_source_data_0_cry_2_c, scaler_2.source_data_1_esr_RNO[6]}
+ble_pack scaler_2.source_data_1_esr[7]_LC_416 {scaler_2.source_data_1_esr[7], scaler_2.un2_source_data_0_cry_3_c, scaler_2.source_data_1_esr_RNO[7]}
+ble_pack scaler_2.source_data_1_esr[8]_LC_417 {scaler_2.source_data_1_esr[8], scaler_2.un2_source_data_0_cry_4_c, scaler_2.source_data_1_esr_RNO[8]}
+ble_pack scaler_2.source_data_1_esr[9]_LC_418 {scaler_2.source_data_1_esr[9], scaler_2.un2_source_data_0_cry_5_c, scaler_2.source_data_1_esr_RNO[9]}
+ble_pack scaler_2.source_data_1_esr[10]_LC_410 {scaler_2.source_data_1_esr[10], scaler_2.un2_source_data_0_cry_6_c, scaler_2.source_data_1_esr_RNO[10]}
+ble_pack scaler_2.source_data_1_esr[11]_LC_411 {scaler_2.source_data_1_esr[11], scaler_2.un2_source_data_0_cry_7_c, scaler_2.source_data_1_esr_RNO[11]}
+ble_pack scaler_2.source_data_1_esr[12]_LC_412 {scaler_2.source_data_1_esr[12], scaler_2.un2_source_data_0_cry_8_c, scaler_2.source_data_1_esr_RNO[12]}
+clb_pack PLB_32 {scaler_2.un2_source_data_0_cry_1_c_LC_797, scaler_2.source_data_1_esr[6]_LC_415, scaler_2.source_data_1_esr[7]_LC_416, scaler_2.source_data_1_esr[8]_LC_417, scaler_2.source_data_1_esr[9]_LC_418, scaler_2.source_data_1_esr[10]_LC_410, scaler_2.source_data_1_esr[11]_LC_411, scaler_2.source_data_1_esr[12]_LC_412}
+ble_pack scaler_2.source_data_1_esr[13]_LC_413 {scaler_2.source_data_1_esr[13], scaler_2.un2_source_data_0_cry_9_c, scaler_2.source_data_1_esr_RNO[13]}
+ble_pack scaler_2.source_data_1_esr[14]_LC_655 {scaler_2.source_data_1_esr[14], scaler_2.source_data_1_esr_14_THRU_LUT4_0}
+clb_pack PLB_33 {scaler_2.source_data_1_esr[13]_LC_413, scaler_2.source_data_1_esr[14]_LC_655}
+ble_pack scaler_2.un3_source_data.un3_source_data_0_cry_0_c_LC_798 {scaler_2.un3_source_data.un3_source_data_0_cry_0_c}
+ble_pack scaler_2.un3_source_data.un3_source_data_0_cry_0_c_RNIIOOH_LC_421 {scaler_2.un3_source_data.un3_source_data_0_cry_1_c, scaler_2.un3_source_data.un3_source_data_0_cry_0_c_RNIIOOH}
+ble_pack scaler_2.un3_source_data.un3_source_data_0_cry_1_c_RNILSPH_LC_422 {scaler_2.un3_source_data.un3_source_data_0_cry_2_c, scaler_2.un3_source_data.un3_source_data_0_cry_1_c_RNILSPH}
+ble_pack scaler_2.un3_source_data.un3_source_data_0_cry_2_c_RNIO0RH_LC_423 {scaler_2.un3_source_data.un3_source_data_0_cry_3_c, scaler_2.un3_source_data.un3_source_data_0_cry_2_c_RNIO0RH}
+ble_pack scaler_2.un3_source_data.un3_source_data_0_cry_3_c_RNIR4SH_LC_424 {scaler_2.un3_source_data.un3_source_data_0_cry_4_c, scaler_2.un3_source_data.un3_source_data_0_cry_3_c_RNIR4SH}
+ble_pack scaler_2.un3_source_data.un3_source_data_0_cry_4_c_RNIU8TH_LC_425 {scaler_2.un3_source_data.un3_source_data_0_cry_5_c, scaler_2.un3_source_data.un3_source_data_0_cry_4_c_RNIU8TH}
+ble_pack scaler_2.un3_source_data.un3_source_data_0_cry_5_c_RNI1DUH_LC_426 {scaler_2.un3_source_data.un3_source_data_0_cry_6_c, scaler_2.un3_source_data.un3_source_data_0_cry_5_c_RNI1DUH}
+ble_pack scaler_2.un3_source_data.un3_source_data_0_cry_6_c_RNI4HVH_LC_427 {scaler_2.un3_source_data.un3_source_data_0_cry_7_c, scaler_2.un3_source_data.un3_source_data_0_cry_6_c_RNI4HVH}
+clb_pack PLB_34 {scaler_2.un3_source_data.un3_source_data_0_cry_0_c_LC_798, scaler_2.un3_source_data.un3_source_data_0_cry_0_c_RNIIOOH_LC_421, scaler_2.un3_source_data.un3_source_data_0_cry_1_c_RNILSPH_LC_422, scaler_2.un3_source_data.un3_source_data_0_cry_2_c_RNIO0RH_LC_423, scaler_2.un3_source_data.un3_source_data_0_cry_3_c_RNIR4SH_LC_424, scaler_2.un3_source_data.un3_source_data_0_cry_4_c_RNIU8TH_LC_425, scaler_2.un3_source_data.un3_source_data_0_cry_5_c_RNI1DUH_LC_426, scaler_2.un3_source_data.un3_source_data_0_cry_6_c_RNI4HVH_LC_427}
+ble_pack scaler_2.un3_source_data.un3_source_data_0_cry_7_c_RNI5J0I_LC_428 {scaler_2.un3_source_data.un3_source_data_0_cry_8_c, scaler_2.un3_source_data.un3_source_data_0_cry_7_c_RNI5J0I}
+ble_pack scaler_2.un3_source_data.un3_source_data_0_cry_8_c_RNIQL42_LC_429 {scaler_2.un3_source_data.un3_source_data_0_cry_8_c_RNIQL42}
+clb_pack PLB_35 {scaler_2.un3_source_data.un3_source_data_0_cry_7_c_RNI5J0I_LC_428, scaler_2.un3_source_data.un3_source_data_0_cry_8_c_RNIQL42_LC_429}
+ble_pack scaler_3.un2_source_data_0_cry_1_c_LC_799 {scaler_3.un2_source_data_0_cry_1_c}
+ble_pack scaler_3.source_data_1_esr[6]_LC_437 {scaler_3.source_data_1_esr[6], scaler_3.un2_source_data_0_cry_2_c, scaler_3.source_data_1_esr_RNO[6]}
+ble_pack scaler_3.source_data_1_esr[7]_LC_438 {scaler_3.source_data_1_esr[7], scaler_3.un2_source_data_0_cry_3_c, scaler_3.source_data_1_esr_RNO[7]}
+ble_pack scaler_3.source_data_1_esr[8]_LC_439 {scaler_3.source_data_1_esr[8], scaler_3.un2_source_data_0_cry_4_c, scaler_3.source_data_1_esr_RNO[8]}
+ble_pack scaler_3.source_data_1_esr[9]_LC_440 {scaler_3.source_data_1_esr[9], scaler_3.un2_source_data_0_cry_5_c, scaler_3.source_data_1_esr_RNO[9]}
+ble_pack scaler_3.source_data_1_esr[10]_LC_432 {scaler_3.source_data_1_esr[10], scaler_3.un2_source_data_0_cry_6_c, scaler_3.source_data_1_esr_RNO[10]}
+ble_pack scaler_3.source_data_1_esr[11]_LC_433 {scaler_3.source_data_1_esr[11], scaler_3.un2_source_data_0_cry_7_c, scaler_3.source_data_1_esr_RNO[11]}
+ble_pack scaler_3.source_data_1_esr[12]_LC_434 {scaler_3.source_data_1_esr[12], scaler_3.un2_source_data_0_cry_8_c, scaler_3.source_data_1_esr_RNO[12]}
+clb_pack PLB_36 {scaler_3.un2_source_data_0_cry_1_c_LC_799, scaler_3.source_data_1_esr[6]_LC_437, scaler_3.source_data_1_esr[7]_LC_438, scaler_3.source_data_1_esr[8]_LC_439, scaler_3.source_data_1_esr[9]_LC_440, scaler_3.source_data_1_esr[10]_LC_432, scaler_3.source_data_1_esr[11]_LC_433, scaler_3.source_data_1_esr[12]_LC_434}
+ble_pack scaler_3.source_data_1_esr[13]_LC_435 {scaler_3.source_data_1_esr[13], scaler_3.un2_source_data_0_cry_9_c, scaler_3.source_data_1_esr_RNO[13]}
+ble_pack scaler_3.source_data_1_esr[14]_LC_656 {scaler_3.source_data_1_esr[14], scaler_3.source_data_1_esr_14_THRU_LUT4_0}
+clb_pack PLB_37 {scaler_3.source_data_1_esr[13]_LC_435, scaler_3.source_data_1_esr[14]_LC_656}
+ble_pack scaler_3.un3_source_data.un3_source_data_0_cry_0_c_LC_800 {scaler_3.un3_source_data.un3_source_data_0_cry_0_c}
+ble_pack scaler_3.un3_source_data.un3_source_data_0_cry_0_c_RNILO5I_LC_443 {scaler_3.un3_source_data.un3_source_data_0_cry_1_c, scaler_3.un3_source_data.un3_source_data_0_cry_0_c_RNILO5I}
+ble_pack scaler_3.un3_source_data.un3_source_data_0_cry_1_c_RNIOS6I_LC_444 {scaler_3.un3_source_data.un3_source_data_0_cry_2_c, scaler_3.un3_source_data.un3_source_data_0_cry_1_c_RNIOS6I}
+ble_pack scaler_3.un3_source_data.un3_source_data_0_cry_2_c_RNIR08I_LC_445 {scaler_3.un3_source_data.un3_source_data_0_cry_3_c, scaler_3.un3_source_data.un3_source_data_0_cry_2_c_RNIR08I}
+ble_pack scaler_3.un3_source_data.un3_source_data_0_cry_3_c_RNIU49I_LC_446 {scaler_3.un3_source_data.un3_source_data_0_cry_4_c, scaler_3.un3_source_data.un3_source_data_0_cry_3_c_RNIU49I}
+ble_pack scaler_3.un3_source_data.un3_source_data_0_cry_4_c_RNI19AI_LC_447 {scaler_3.un3_source_data.un3_source_data_0_cry_5_c, scaler_3.un3_source_data.un3_source_data_0_cry_4_c_RNI19AI}
+ble_pack scaler_3.un3_source_data.un3_source_data_0_cry_5_c_RNI4DBI_LC_448 {scaler_3.un3_source_data.un3_source_data_0_cry_6_c, scaler_3.un3_source_data.un3_source_data_0_cry_5_c_RNI4DBI}
+ble_pack scaler_3.un3_source_data.un3_source_data_0_cry_6_c_RNI7HCI_LC_449 {scaler_3.un3_source_data.un3_source_data_0_cry_7_c, scaler_3.un3_source_data.un3_source_data_0_cry_6_c_RNI7HCI}
+clb_pack PLB_38 {scaler_3.un3_source_data.un3_source_data_0_cry_0_c_LC_800, scaler_3.un3_source_data.un3_source_data_0_cry_0_c_RNILO5I_LC_443, scaler_3.un3_source_data.un3_source_data_0_cry_1_c_RNIOS6I_LC_444, scaler_3.un3_source_data.un3_source_data_0_cry_2_c_RNIR08I_LC_445, scaler_3.un3_source_data.un3_source_data_0_cry_3_c_RNIU49I_LC_446, scaler_3.un3_source_data.un3_source_data_0_cry_4_c_RNI19AI_LC_447, scaler_3.un3_source_data.un3_source_data_0_cry_5_c_RNI4DBI_LC_448, scaler_3.un3_source_data.un3_source_data_0_cry_6_c_RNI7HCI_LC_449}
+ble_pack scaler_3.un3_source_data.un3_source_data_0_cry_7_c_RNI8JDI_LC_450 {scaler_3.un3_source_data.un3_source_data_0_cry_8_c, scaler_3.un3_source_data.un3_source_data_0_cry_7_c_RNI8JDI}
+ble_pack scaler_3.un3_source_data.un3_source_data_0_cry_8_c_RNIRV25_LC_451 {scaler_3.un3_source_data.un3_source_data_0_cry_8_c_RNIRV25}
+clb_pack PLB_39 {scaler_3.un3_source_data.un3_source_data_0_cry_7_c_RNI8JDI_LC_450, scaler_3.un3_source_data.un3_source_data_0_cry_8_c_RNIRV25_LC_451}
+ble_pack scaler_4.un2_source_data_0_cry_1_c_LC_801 {scaler_4.un2_source_data_0_cry_1_c}
+ble_pack scaler_4.source_data_1_esr[6]_LC_459 {scaler_4.source_data_1_esr[6], scaler_4.un2_source_data_0_cry_2_c, scaler_4.source_data_1_esr_RNO[6]}
+ble_pack scaler_4.source_data_1_esr[7]_LC_460 {scaler_4.source_data_1_esr[7], scaler_4.un2_source_data_0_cry_3_c, scaler_4.source_data_1_esr_RNO[7]}
+ble_pack scaler_4.source_data_1_esr[8]_LC_461 {scaler_4.source_data_1_esr[8], scaler_4.un2_source_data_0_cry_4_c, scaler_4.source_data_1_esr_RNO[8]}
+ble_pack scaler_4.source_data_1_esr[9]_LC_462 {scaler_4.source_data_1_esr[9], scaler_4.un2_source_data_0_cry_5_c, scaler_4.source_data_1_esr_RNO[9]}
+ble_pack scaler_4.source_data_1_esr[10]_LC_454 {scaler_4.source_data_1_esr[10], scaler_4.un2_source_data_0_cry_6_c, scaler_4.source_data_1_esr_RNO[10]}
+ble_pack scaler_4.source_data_1_esr[11]_LC_455 {scaler_4.source_data_1_esr[11], scaler_4.un2_source_data_0_cry_7_c, scaler_4.source_data_1_esr_RNO[11]}
+ble_pack scaler_4.source_data_1_esr[12]_LC_456 {scaler_4.source_data_1_esr[12], scaler_4.un2_source_data_0_cry_8_c, scaler_4.source_data_1_esr_RNO[12]}
+clb_pack PLB_40 {scaler_4.un2_source_data_0_cry_1_c_LC_801, scaler_4.source_data_1_esr[6]_LC_459, scaler_4.source_data_1_esr[7]_LC_460, scaler_4.source_data_1_esr[8]_LC_461, scaler_4.source_data_1_esr[9]_LC_462, scaler_4.source_data_1_esr[10]_LC_454, scaler_4.source_data_1_esr[11]_LC_455, scaler_4.source_data_1_esr[12]_LC_456}
+ble_pack scaler_4.source_data_1_esr[13]_LC_457 {scaler_4.source_data_1_esr[13], scaler_4.un2_source_data_0_cry_9_c, scaler_4.source_data_1_esr_RNO[13]}
+ble_pack scaler_4.source_data_1_esr[14]_LC_657 {scaler_4.source_data_1_esr[14], scaler_4.source_data_1_esr_14_THRU_LUT4_0}
+clb_pack PLB_41 {scaler_4.source_data_1_esr[13]_LC_457, scaler_4.source_data_1_esr[14]_LC_657}
+ble_pack scaler_4.un3_source_data.un3_source_data_0_cry_0_c_LC_802 {scaler_4.un3_source_data.un3_source_data_0_cry_0_c}
+ble_pack scaler_4.un3_source_data.un3_source_data_0_cry_0_c_RNIOOII_LC_465 {scaler_4.un3_source_data.un3_source_data_0_cry_1_c, scaler_4.un3_source_data.un3_source_data_0_cry_0_c_RNIOOII}
+ble_pack scaler_4.un3_source_data.un3_source_data_0_cry_1_c_RNIRSJI_LC_466 {scaler_4.un3_source_data.un3_source_data_0_cry_2_c, scaler_4.un3_source_data.un3_source_data_0_cry_1_c_RNIRSJI}
+ble_pack scaler_4.un3_source_data.un3_source_data_0_cry_2_c_RNIU0LI_LC_467 {scaler_4.un3_source_data.un3_source_data_0_cry_3_c, scaler_4.un3_source_data.un3_source_data_0_cry_2_c_RNIU0LI}
+ble_pack scaler_4.un3_source_data.un3_source_data_0_cry_3_c_RNI15MI_LC_468 {scaler_4.un3_source_data.un3_source_data_0_cry_4_c, scaler_4.un3_source_data.un3_source_data_0_cry_3_c_RNI15MI}
+ble_pack scaler_4.un3_source_data.un3_source_data_0_cry_4_c_RNI49NI_LC_469 {scaler_4.un3_source_data.un3_source_data_0_cry_5_c, scaler_4.un3_source_data.un3_source_data_0_cry_4_c_RNI49NI}
+ble_pack scaler_4.un3_source_data.un3_source_data_0_cry_5_c_RNI7DOI_LC_470 {scaler_4.un3_source_data.un3_source_data_0_cry_6_c, scaler_4.un3_source_data.un3_source_data_0_cry_5_c_RNI7DOI}
+ble_pack scaler_4.un3_source_data.un3_source_data_0_cry_6_c_RNIAHPI_LC_471 {scaler_4.un3_source_data.un3_source_data_0_cry_7_c, scaler_4.un3_source_data.un3_source_data_0_cry_6_c_RNIAHPI}
+clb_pack PLB_42 {scaler_4.un3_source_data.un3_source_data_0_cry_0_c_LC_802, scaler_4.un3_source_data.un3_source_data_0_cry_0_c_RNIOOII_LC_465, scaler_4.un3_source_data.un3_source_data_0_cry_1_c_RNIRSJI_LC_466, scaler_4.un3_source_data.un3_source_data_0_cry_2_c_RNIU0LI_LC_467, scaler_4.un3_source_data.un3_source_data_0_cry_3_c_RNI15MI_LC_468, scaler_4.un3_source_data.un3_source_data_0_cry_4_c_RNI49NI_LC_469, scaler_4.un3_source_data.un3_source_data_0_cry_5_c_RNI7DOI_LC_470, scaler_4.un3_source_data.un3_source_data_0_cry_6_c_RNIAHPI_LC_471}
+ble_pack scaler_4.un3_source_data.un3_source_data_0_cry_7_c_RNIBJQI_LC_472 {scaler_4.un3_source_data.un3_source_data_0_cry_8_c, scaler_4.un3_source_data.un3_source_data_0_cry_7_c_RNIBJQI}
+ble_pack scaler_4.un3_source_data.un3_source_data_0_cry_8_c_RNIS918_LC_473 {scaler_4.un3_source_data.un3_source_data_0_cry_8_c_RNIS918}
+clb_pack PLB_43 {scaler_4.un3_source_data.un3_source_data_0_cry_7_c_RNIBJQI_LC_472, scaler_4.un3_source_data.un3_source_data_0_cry_8_c_RNIS918_LC_473}
+ble_pack uart_frame_decoder.count8_cry_0_c_LC_803 {uart_frame_decoder.count8_cry_0_c}
+ble_pack uart_frame_decoder.count8_cry_1_c_inv_LC_547 {uart_frame_decoder.count8_cry_1_c, uart_frame_decoder.count8_cry_1_c_inv}
+ble_pack uart_frame_decoder.count8_cry_2_c_inv_LC_549 {uart_frame_decoder.count8_cry_2_c, uart_frame_decoder.count8_cry_2_c_inv}
+ble_pack uart_frame_decoder.count8_THRU_LUT4_0_LC_777 {uart_frame_decoder.count8_THRU_LUT4_0}
+clb_pack PLB_44 {uart_frame_decoder.count8_cry_0_c_LC_803, uart_frame_decoder.count8_cry_1_c_inv_LC_547, uart_frame_decoder.count8_cry_2_c_inv_LC_549, uart_frame_decoder.count8_THRU_LUT4_0_LC_777}
+ble_pack frame_dron_decoder_1.WDT_RNI6TFJ1[10]_LC_2 {frame_dron_decoder_1.WDT_RNI6TFJ1[10]}
+ble_pack frame_dron_decoder_1.WDT_RNIA5HI2[7]_LC_3 {frame_dron_decoder_1.WDT_RNIA5HI2[7]}
+ble_pack frame_dron_decoder_1.WDT_RNI05KQ[6]_LC_0 {frame_dron_decoder_1.WDT_RNI05KQ[6]}
+ble_pack frame_dron_decoder_1.WDT_RNI3A9C3[15]_LC_1 {frame_dron_decoder_1.WDT_RNI3A9C3[15]}
+ble_pack frame_dron_decoder_1.WDT_RNIMRG3[4]_LC_5 {frame_dron_decoder_1.WDT_RNIMRG3[4]}
+ble_pack frame_dron_decoder_1.WDT_RNICPRL3[15]_LC_4 {frame_dron_decoder_1.WDT_RNICPRL3[15]}
+ble_pack frame_dron_decoder_1.state[2]_LC_32 {frame_dron_decoder_1.state[2], frame_dron_decoder_1.state_RNO[2]}
+ble_pack frame_dron_decoder_1.state[5]_LC_37 {frame_dron_decoder_1.state[5], frame_dron_decoder_1.state_RNO[5]}
+clb_pack PLB_45 {frame_dron_decoder_1.WDT_RNI6TFJ1[10]_LC_2, frame_dron_decoder_1.WDT_RNIA5HI2[7]_LC_3, frame_dron_decoder_1.WDT_RNI05KQ[6]_LC_0, frame_dron_decoder_1.WDT_RNI3A9C3[15]_LC_1, frame_dron_decoder_1.WDT_RNIMRG3[4]_LC_5, frame_dron_decoder_1.WDT_RNICPRL3[15]_LC_4, frame_dron_decoder_1.state[2]_LC_32, frame_dron_decoder_1.state[5]_LC_37}
+ble_pack frame_dron_decoder_1.state_RNO_0[0]_LC_26 {frame_dron_decoder_1.state_RNO_0[0]}
+ble_pack frame_dron_decoder_1.state_RNO_3[0]_LC_35 {frame_dron_decoder_1.state_RNO_3[0]}
+ble_pack frame_dron_decoder_1.state[0]_LC_25 {frame_dron_decoder_1.state[0], frame_dron_decoder_1.state_RNO[0]}
+ble_pack frame_dron_decoder_1.state_RNIOTUU[6]_LC_24 {frame_dron_decoder_1.state_RNIOTUU[6]}
+ble_pack frame_dron_decoder_1.state[6]_LC_38 {frame_dron_decoder_1.state[6], frame_dron_decoder_1.state_RNO[6]}
+ble_pack frame_dron_decoder_1.state_ns_0_a3_0_1[3]_LC_40 {frame_dron_decoder_1.state_ns_0_a3_0_1[3]}
+ble_pack frame_dron_decoder_1.state_ns_i_a2_2[0]_LC_41 {frame_dron_decoder_1.state_ns_i_a2_2[0]}
+ble_pack frame_dron_decoder_1.state_ns_i_a2_2_0[0]_LC_42 {frame_dron_decoder_1.state_ns_i_a2_2_0[0]}
+clb_pack PLB_46 {frame_dron_decoder_1.state_RNO_0[0]_LC_26, frame_dron_decoder_1.state_RNO_3[0]_LC_35, frame_dron_decoder_1.state[0]_LC_25, frame_dron_decoder_1.state_RNIOTUU[6]_LC_24, frame_dron_decoder_1.state[6]_LC_38, frame_dron_decoder_1.state_ns_0_a3_0_1[3]_LC_40, frame_dron_decoder_1.state_ns_i_a2_2[0]_LC_41, frame_dron_decoder_1.state_ns_i_a2_2_0[0]_LC_42}
+ble_pack frame_dron_decoder_1.state_RNO_0[1]_LC_27 {frame_dron_decoder_1.state_RNO_0[1]}
+ble_pack frame_dron_decoder_1.state_RNO_1[1]_LC_31 {frame_dron_decoder_1.state_RNO_1[1]}
+ble_pack frame_dron_decoder_1.state[1]_LC_29 {frame_dron_decoder_1.state[1], frame_dron_decoder_1.state_RNO[1]}
+ble_pack frame_dron_decoder_1.state_RNO_0[3]_LC_28 {frame_dron_decoder_1.state_RNO_0[3]}
+ble_pack frame_dron_decoder_1.state[3]_LC_34 {frame_dron_decoder_1.state[3], frame_dron_decoder_1.state_RNO[3]}
+ble_pack frame_dron_decoder_1.state_RNO_1[0]_LC_30 {frame_dron_decoder_1.state_RNO_1[0]}
+ble_pack frame_dron_decoder_1.state_RNO_2[0]_LC_33 {frame_dron_decoder_1.state_RNO_2[0]}
+ble_pack frame_dron_decoder_1.state[4]_LC_36 {frame_dron_decoder_1.state[4], frame_dron_decoder_1.state_RNO[4]}
+clb_pack PLB_47 {frame_dron_decoder_1.state_RNO_0[1]_LC_27, frame_dron_decoder_1.state_RNO_1[1]_LC_31, frame_dron_decoder_1.state[1]_LC_29, frame_dron_decoder_1.state_RNO_0[3]_LC_28, frame_dron_decoder_1.state[3]_LC_34, frame_dron_decoder_1.state_RNO_1[0]_LC_30, frame_dron_decoder_1.state_RNO_2[0]_LC_33, frame_dron_decoder_1.state[4]_LC_36}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNI78NT_LC_44 {ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNI78NT}
+ble_pack ppm_encoder_1.counter24_0_I_57_c_RNIRCE81_LC_107 {ppm_encoder_1.counter24_0_I_57_c_RNIRCE81}
+ble_pack ppm_encoder_1.init_pulses[1]_LC_213 {ppm_encoder_1.init_pulses[1], ppm_encoder_1.init_pulses_RNO[1]}
+ble_pack ppm_encoder_1.init_pulses_RNI9MUS[1]_LC_161 {ppm_encoder_1.init_pulses_RNI9MUS[1]}
+ble_pack ppm_encoder_1.PPM_STATE_RNIV4V5[1]_LC_80 {ppm_encoder_1.PPM_STATE_RNIV4V5[1]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNI7RM01_0_LC_46 {ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNI7RM01_0}
+ble_pack ppm_encoder_1.PPM_STATE[0]_LC_81 {ppm_encoder_1.PPM_STATE[0], ppm_encoder_1.PPM_STATE_RNO[0]}
+ble_pack ppm_encoder_1.PPM_STATE[1]_LC_82 {ppm_encoder_1.PPM_STATE[1], ppm_encoder_1.PPM_STATE_RNO[1]}
+clb_pack PLB_48 {ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNI78NT_LC_44, ppm_encoder_1.counter24_0_I_57_c_RNIRCE81_LC_107, ppm_encoder_1.init_pulses[1]_LC_213, ppm_encoder_1.init_pulses_RNI9MUS[1]_LC_161, ppm_encoder_1.PPM_STATE_RNIV4V5[1]_LC_80, ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNI7RM01_0_LC_46, ppm_encoder_1.PPM_STATE[0]_LC_81, ppm_encoder_1.PPM_STATE[1]_LC_82}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNI7RM01_LC_45 {ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNI7RM01}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast_RNIHFK13[0]_LC_64 {ppm_encoder_1.CHOOSE_CHANNEL_fast_RNIHFK13[0]}
+ble_pack ppm_encoder_1.throttle_RNIALN65[1]_LC_325 {ppm_encoder_1.throttle_RNIALN65[1]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI5QE01[0]_LC_58 {ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI5QE01[0]}
+ble_pack ppm_encoder_1.aileron_esr_RNIMGR62[4]_LC_93 {ppm_encoder_1.aileron_esr_RNIMGR62[4]}
+ble_pack ppm_encoder_1.aileron_esr_RNI8CGI5[4]_LC_91 {ppm_encoder_1.aileron_esr_RNI8CGI5[4]}
+ble_pack ppm_encoder_1.throttle_esr_RNI62ME2[4]_LC_349 {ppm_encoder_1.throttle_esr_RNI62ME2[4]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI5QE01_0[0]_LC_59 {ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI5QE01_0[0]}
+clb_pack PLB_49 {ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNI7RM01_LC_45, ppm_encoder_1.CHOOSE_CHANNEL_fast_RNIHFK13[0]_LC_64, ppm_encoder_1.throttle_RNIALN65[1]_LC_325, ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI5QE01[0]_LC_58, ppm_encoder_1.aileron_esr_RNIMGR62[4]_LC_93, ppm_encoder_1.aileron_esr_RNI8CGI5[4]_LC_91, ppm_encoder_1.throttle_esr_RNI62ME2[4]_LC_349, ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI5QE01_0[0]_LC_59}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNIE3D21_LC_47 {ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNIE3D21}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNIGD613_LC_48 {ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNIGD613}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI35QO1[0]_LC_57 {ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI35QO1[0]}
+ble_pack ppm_encoder_1.PPM_STATE_RNI2APU1_2[1]_LC_76 {ppm_encoder_1.PPM_STATE_RNI2APU1_2[1]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI8J2H[2]_LC_63 {ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI8J2H[2]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI7O1N_0[2]_LC_61 {ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI7O1N_0[2]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL[3]_LC_56 {ppm_encoder_1.CHOOSE_CHANNEL[3], ppm_encoder_1.CHOOSE_CHANNEL_RNO[3]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast[2]_LC_68 {ppm_encoder_1.CHOOSE_CHANNEL_fast[2], ppm_encoder_1.CHOOSE_CHANNEL_fast_RNO[2]}
+clb_pack PLB_50 {ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNIE3D21_LC_47, ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNIGD613_LC_48, ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI35QO1[0]_LC_57, ppm_encoder_1.PPM_STATE_RNI2APU1_2[1]_LC_76, ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI8J2H[2]_LC_63, ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI7O1N_0[2]_LC_61, ppm_encoder_1.CHOOSE_CHANNEL[3]_LC_56, ppm_encoder_1.CHOOSE_CHANNEL_fast[2]_LC_68}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI6LFQ[0]_LC_60 {ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI6LFQ[0]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast[0]_LC_66 {ppm_encoder_1.CHOOSE_CHANNEL_fast[0], ppm_encoder_1.CHOOSE_CHANNEL_fast_RNO[0]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast[1]_LC_67 {ppm_encoder_1.CHOOSE_CHANNEL_fast[1], ppm_encoder_1.CHOOSE_CHANNEL_fast_RNO[1]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast[3]_LC_69 {ppm_encoder_1.CHOOSE_CHANNEL_fast[3], ppm_encoder_1.CHOOSE_CHANNEL_fast_RNO[3]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast_RNILS7D[3]_LC_65 {ppm_encoder_1.CHOOSE_CHANNEL_fast_RNILS7D[3]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL[0]_LC_53 {ppm_encoder_1.CHOOSE_CHANNEL[0], ppm_encoder_1.CHOOSE_CHANNEL_RNO[0]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_LC_49 {ppm_encoder_1.CHOOSE_CHANNEL_1_rep1, ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_RNO}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL[1]_LC_54 {ppm_encoder_1.CHOOSE_CHANNEL[1], ppm_encoder_1.CHOOSE_CHANNEL_RNO[1]}
+clb_pack PLB_51 {ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI6LFQ[0]_LC_60, ppm_encoder_1.CHOOSE_CHANNEL_fast[0]_LC_66, ppm_encoder_1.CHOOSE_CHANNEL_fast[1]_LC_67, ppm_encoder_1.CHOOSE_CHANNEL_fast[3]_LC_69, ppm_encoder_1.CHOOSE_CHANNEL_fast_RNILS7D[3]_LC_65, ppm_encoder_1.CHOOSE_CHANNEL[0]_LC_53, ppm_encoder_1.CHOOSE_CHANNEL_1_rep1_LC_49, ppm_encoder_1.CHOOSE_CHANNEL[1]_LC_54}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_ns_3_0_.m6_LC_70 {ppm_encoder_1.CHOOSE_CHANNEL_ns_3_0_.m6}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL[2]_LC_55 {ppm_encoder_1.CHOOSE_CHANNEL[2], ppm_encoder_1.CHOOSE_CHANNEL_RNO[2]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_2[11]_LC_295 {ppm_encoder_1.pulses2count_esr_RNO_2[11]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[11]_LC_261 {ppm_encoder_1.pulses2count_esr_RNO_0[11]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_2[12]_LC_296 {ppm_encoder_1.pulses2count_esr_RNO_2[12]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[12]_LC_262 {ppm_encoder_1.pulses2count_esr_RNO_0[12]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_RNI33GU[3]_LC_51 {ppm_encoder_1.CHOOSE_CHANNEL_RNI33GU[3]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_RNI33GU_0[3]_LC_50 {ppm_encoder_1.CHOOSE_CHANNEL_RNI33GU_0[3]}
+clb_pack PLB_52 {ppm_encoder_1.CHOOSE_CHANNEL_ns_3_0_.m6_LC_70, ppm_encoder_1.CHOOSE_CHANNEL[2]_LC_55, ppm_encoder_1.pulses2count_esr_RNO_2[11]_LC_295, ppm_encoder_1.pulses2count_esr_RNO_0[11]_LC_261, ppm_encoder_1.pulses2count_esr_RNO_2[12]_LC_296, ppm_encoder_1.pulses2count_esr_RNO_0[12]_LC_262, ppm_encoder_1.CHOOSE_CHANNEL_RNI33GU[3]_LC_51, ppm_encoder_1.CHOOSE_CHANNEL_RNI33GU_0[3]_LC_50}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_ns_3_0_.m9_LC_71 {ppm_encoder_1.CHOOSE_CHANNEL_ns_3_0_.m9}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[1]_LC_279 {ppm_encoder_1.pulses2count_esr_RNO_1[1]}
+ble_pack ppm_encoder_1.pulses2count_esr[1]_LC_273 {ppm_encoder_1.pulses2count_esr[1], ppm_encoder_1.pulses2count_esr_RNO[1]}
+ble_pack ppm_encoder_1.counter24_0_I_1_c_RNO_LC_99 {ppm_encoder_1.counter24_0_I_1_c_RNO}
+ble_pack ppm_encoder_1.pulses2count_esr[0]_LC_258 {ppm_encoder_1.pulses2count_esr[0], ppm_encoder_1.pulses2count_esr_RNO[0]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[1]_LC_259 {ppm_encoder_1.pulses2count_esr_RNO_0[1]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[3]_LC_286 {ppm_encoder_1.pulses2count_esr_RNO_1[3]}
+ble_pack ppm_encoder_1.pulses2count_esr[3]_LC_305 {ppm_encoder_1.pulses2count_esr[3], ppm_encoder_1.pulses2count_esr_RNO[3]}
+clb_pack PLB_53 {ppm_encoder_1.CHOOSE_CHANNEL_ns_3_0_.m9_LC_71, ppm_encoder_1.pulses2count_esr_RNO_1[1]_LC_279, ppm_encoder_1.pulses2count_esr[1]_LC_273, ppm_encoder_1.counter24_0_I_1_c_RNO_LC_99, ppm_encoder_1.pulses2count_esr[0]_LC_258, ppm_encoder_1.pulses2count_esr_RNO_0[1]_LC_259, ppm_encoder_1.pulses2count_esr_RNO_1[3]_LC_286, ppm_encoder_1.pulses2count_esr[3]_LC_305}
+ble_pack ppm_encoder_1.PPM_STATE_RNI09RH2[1]_LC_72 {ppm_encoder_1.PPM_STATE_RNI09RH2[1]}
+ble_pack ppm_encoder_1.counter24_0_I_57_c_RNIGCO83_LC_106 {ppm_encoder_1.counter24_0_I_57_c_RNIGCO83}
+ble_pack ppm_encoder_1.counter_RNIAEV01[8]_LC_111 {ppm_encoder_1.counter_RNIAEV01[8]}
+ble_pack ppm_encoder_1.counter_RNIDBJ8[13]_LC_112 {ppm_encoder_1.counter_RNIDBJ8[13]}
+ble_pack ppm_encoder_1.counter_RNIUS1G[4]_LC_114 {ppm_encoder_1.counter_RNIUS1G[4]}
+ble_pack ppm_encoder_1.ppm_output_reg_RNO_1_LC_252 {ppm_encoder_1.ppm_output_reg_RNO_1}
+clb_pack PLB_54 {ppm_encoder_1.PPM_STATE_RNI09RH2[1]_LC_72, ppm_encoder_1.counter24_0_I_57_c_RNIGCO83_LC_106, ppm_encoder_1.counter_RNIAEV01[8]_LC_111, ppm_encoder_1.counter_RNIDBJ8[13]_LC_112, ppm_encoder_1.counter_RNIUS1G[4]_LC_114, ppm_encoder_1.ppm_output_reg_RNO_1_LC_252}
+ble_pack ppm_encoder_1.PPM_STATE_RNISL0F[1]_LC_78 {ppm_encoder_1.PPM_STATE_RNISL0F[1]}
+ble_pack ppm_encoder_1.ppm_output_reg_RNO_2_LC_253 {ppm_encoder_1.ppm_output_reg_RNO_2}
+ble_pack ppm_encoder_1.counter24_0_I_9_c_RNO_LC_109 {ppm_encoder_1.counter24_0_I_9_c_RNO}
+ble_pack ppm_encoder_1.pulses2count_esr[2]_LC_293 {ppm_encoder_1.pulses2count_esr[2], ppm_encoder_1.pulses2count_esr_RNO[2]}
+ble_pack ppm_encoder_1.pulses2count_esr[10]_LC_274 {ppm_encoder_1.pulses2count_esr[10], ppm_encoder_1.pulses2count_esr_RNO[10]}
+ble_pack ppm_encoder_1.counter24_0_I_33_c_RNO_LC_102 {ppm_encoder_1.counter24_0_I_33_c_RNO}
+ble_pack ppm_encoder_1.pulses2count_esr[11]_LC_275 {ppm_encoder_1.pulses2count_esr[11], ppm_encoder_1.pulses2count_esr_RNO[11]}
+ble_pack ppm_encoder_1.pulses2count_esr[12]_LC_276 {ppm_encoder_1.pulses2count_esr[12], ppm_encoder_1.pulses2count_esr_RNO[12]}
+clb_pack PLB_55 {ppm_encoder_1.PPM_STATE_RNISL0F[1]_LC_78, ppm_encoder_1.ppm_output_reg_RNO_2_LC_253, ppm_encoder_1.counter24_0_I_9_c_RNO_LC_109, ppm_encoder_1.pulses2count_esr[2]_LC_293, ppm_encoder_1.pulses2count_esr[10]_LC_274, ppm_encoder_1.counter24_0_I_33_c_RNO_LC_102, ppm_encoder_1.pulses2count_esr[11]_LC_275, ppm_encoder_1.pulses2count_esr[12]_LC_276}
+ble_pack ppm_encoder_1.aileron_esr_RNIOIR62[5]_LC_94 {ppm_encoder_1.aileron_esr_RNIOIR62[5]}
+ble_pack ppm_encoder_1.aileron_esr_RNIDHGI5[5]_LC_92 {ppm_encoder_1.aileron_esr_RNIDHGI5[5]}
+ble_pack ppm_encoder_1.throttle_esr_RNI84ME2[5]_LC_351 {ppm_encoder_1.throttle_esr_RNI84ME2[5]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_2[5]_LC_300 {ppm_encoder_1.pulses2count_esr_RNO_2[5]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[5]_LC_288 {ppm_encoder_1.pulses2count_esr_RNO_1[5]}
+ble_pack ppm_encoder_1.aileron_esr[5]_LC_646 {ppm_encoder_1.aileron_esr[5], ppm_encoder_1.aileron_esr_5_THRU_LUT4_0}
+ble_pack ppm_encoder_1.elevator_esr[5]_LC_648 {ppm_encoder_1.elevator_esr[5], ppm_encoder_1.elevator_esr_5_THRU_LUT4_0}
+ble_pack ppm_encoder_1.throttle_esr[5]_LC_652 {ppm_encoder_1.throttle_esr[5], ppm_encoder_1.throttle_esr_5_THRU_LUT4_0}
+clb_pack PLB_56 {ppm_encoder_1.aileron_esr_RNIOIR62[5]_LC_94, ppm_encoder_1.aileron_esr_RNIDHGI5[5]_LC_92, ppm_encoder_1.throttle_esr_RNI84ME2[5]_LC_351, ppm_encoder_1.pulses2count_esr_RNO_2[5]_LC_300, ppm_encoder_1.pulses2count_esr_RNO_1[5]_LC_288, ppm_encoder_1.aileron_esr[5]_LC_646, ppm_encoder_1.elevator_esr[5]_LC_648, ppm_encoder_1.throttle_esr[5]_LC_652}
+ble_pack ppm_encoder_1.aileron_esr_RNIOVDS2[14]_LC_95 {ppm_encoder_1.aileron_esr_RNIOVDS2[14]}
+ble_pack ppm_encoder_1.aileron_esr_RNITH3L6[14]_LC_96 {ppm_encoder_1.aileron_esr_RNITH3L6[14]}
+ble_pack ppm_encoder_1.throttle_esr_RNI81QU2[14]_LC_350 {ppm_encoder_1.throttle_esr_RNI81QU2[14]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_2[14]_LC_298 {ppm_encoder_1.pulses2count_esr_RNO_2[14]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[14]_LC_284 {ppm_encoder_1.pulses2count_esr_RNO_1[14]}
+ble_pack ppm_encoder_1.pulses2count_esr[14]_LC_278 {ppm_encoder_1.pulses2count_esr[14], ppm_encoder_1.pulses2count_esr_RNO[14]}
+ble_pack ppm_encoder_1.counter24_0_I_45_c_RNO_LC_104 {ppm_encoder_1.counter24_0_I_45_c_RNO}
+clb_pack PLB_57 {ppm_encoder_1.aileron_esr_RNIOVDS2[14]_LC_95, ppm_encoder_1.aileron_esr_RNITH3L6[14]_LC_96, ppm_encoder_1.throttle_esr_RNI81QU2[14]_LC_350, ppm_encoder_1.pulses2count_esr_RNO_2[14]_LC_298, ppm_encoder_1.pulses2count_esr_RNO_1[14]_LC_284, ppm_encoder_1.pulses2count_esr[14]_LC_278, ppm_encoder_1.counter24_0_I_45_c_RNO_LC_104}
+ble_pack ppm_encoder_1.counter24_0_I_15_c_RNO_LC_98 {ppm_encoder_1.counter24_0_I_15_c_RNO}
+ble_pack ppm_encoder_1.pulses2count_esr[4]_LC_308 {ppm_encoder_1.pulses2count_esr[4], ppm_encoder_1.pulses2count_esr_RNO[4]}
+ble_pack ppm_encoder_1.pulses2count_esr[5]_LC_309 {ppm_encoder_1.pulses2count_esr[5], ppm_encoder_1.pulses2count_esr_RNO[5]}
+ble_pack ppm_encoder_1.pulses2count_esr[13]_LC_277 {ppm_encoder_1.pulses2count_esr[13], ppm_encoder_1.pulses2count_esr_RNO[13]}
+ble_pack ppm_encoder_1.counter24_0_I_39_c_RNO_LC_103 {ppm_encoder_1.counter24_0_I_39_c_RNO}
+ble_pack ppm_encoder_1.pulses2count_esr[6]_LC_310 {ppm_encoder_1.pulses2count_esr[6], ppm_encoder_1.pulses2count_esr_RNO[6]}
+ble_pack ppm_encoder_1.counter24_0_I_21_c_RNO_LC_100 {ppm_encoder_1.counter24_0_I_21_c_RNO}
+clb_pack PLB_58 {ppm_encoder_1.counter24_0_I_15_c_RNO_LC_98, ppm_encoder_1.pulses2count_esr[4]_LC_308, ppm_encoder_1.pulses2count_esr[5]_LC_309, ppm_encoder_1.pulses2count_esr[13]_LC_277, ppm_encoder_1.counter24_0_I_39_c_RNO_LC_103, ppm_encoder_1.pulses2count_esr[6]_LC_310, ppm_encoder_1.counter24_0_I_21_c_RNO_LC_100}
+ble_pack ppm_encoder_1.counter24_0_I_27_c_RNO_LC_101 {ppm_encoder_1.counter24_0_I_27_c_RNO}
+ble_pack ppm_encoder_1.pulses2count_esr[8]_LC_312 {ppm_encoder_1.pulses2count_esr[8], ppm_encoder_1.pulses2count_esr_RNO[8]}
+ble_pack ppm_encoder_1.pulses2count_esr[9]_LC_313 {ppm_encoder_1.pulses2count_esr[9], ppm_encoder_1.pulses2count_esr_RNO[9]}
+ble_pack ppm_encoder_1.pulses2count_esr[7]_LC_311 {ppm_encoder_1.pulses2count_esr[7], ppm_encoder_1.pulses2count_esr_RNO[7]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[8]_LC_291 {ppm_encoder_1.pulses2count_esr_RNO_1[8]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[9]_LC_292 {ppm_encoder_1.pulses2count_esr_RNO_1[9]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[7]_LC_290 {ppm_encoder_1.pulses2count_esr_RNO_1[7]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_2[8]_LC_303 {ppm_encoder_1.pulses2count_esr_RNO_2[8]}
+clb_pack PLB_59 {ppm_encoder_1.counter24_0_I_27_c_RNO_LC_101, ppm_encoder_1.pulses2count_esr[8]_LC_312, ppm_encoder_1.pulses2count_esr[9]_LC_313, ppm_encoder_1.pulses2count_esr[7]_LC_311, ppm_encoder_1.pulses2count_esr_RNO_1[8]_LC_291, ppm_encoder_1.pulses2count_esr_RNO_1[9]_LC_292, ppm_encoder_1.pulses2count_esr_RNO_1[7]_LC_290, ppm_encoder_1.pulses2count_esr_RNO_2[8]_LC_303}
+ble_pack ppm_encoder_1.counter24_0_I_51_c_RNO_LC_105 {ppm_encoder_1.counter24_0_I_51_c_RNO}
+ble_pack ppm_encoder_1.pulses2count[16]_LC_255 {ppm_encoder_1.pulses2count[16], ppm_encoder_1.pulses2count_RNO[16]}
+ble_pack ppm_encoder_1.pulses2count[17]_LC_256 {ppm_encoder_1.pulses2count[17], ppm_encoder_1.pulses2count_RNO[17]}
+ble_pack ppm_encoder_1.pulses2count[15]_LC_254 {ppm_encoder_1.pulses2count[15], ppm_encoder_1.pulses2count_RNO[15]}
+ble_pack ppm_encoder_1.pulses2count[18]_LC_257 {ppm_encoder_1.pulses2count[18], ppm_encoder_1.pulses2count_RNO[18]}
+ble_pack ppm_encoder_1.counter24_0_I_57_c_RNO_LC_108 {ppm_encoder_1.counter24_0_I_57_c_RNO}
+ble_pack ppm_encoder_1.counter_RNI637H[18]_LC_110 {ppm_encoder_1.counter_RNI637H[18]}
+ble_pack ppm_encoder_1.init_pulses_RNIVIRP_0[16]_LC_191 {ppm_encoder_1.init_pulses_RNIVIRP_0[16]}
+clb_pack PLB_60 {ppm_encoder_1.counter24_0_I_51_c_RNO_LC_105, ppm_encoder_1.pulses2count[16]_LC_255, ppm_encoder_1.pulses2count[17]_LC_256, ppm_encoder_1.pulses2count[15]_LC_254, ppm_encoder_1.pulses2count[18]_LC_257, ppm_encoder_1.counter24_0_I_57_c_RNO_LC_108, ppm_encoder_1.counter_RNI637H[18]_LC_110, ppm_encoder_1.init_pulses_RNIVIRP_0[16]_LC_191}
+ble_pack ppm_encoder_1.counter_RNIK1KG[0]_LC_113 {ppm_encoder_1.counter_RNIK1KG[0]}
+ble_pack ppm_encoder_1.elevator_RNI03DH2[11]_LC_134 {ppm_encoder_1.elevator_RNI03DH2[11]}
+ble_pack ppm_encoder_1.elevator_RNIALRT5[11]_LC_140 {ppm_encoder_1.elevator_RNIALRT5[11]}
+ble_pack ppm_encoder_1.throttle_RNIG4JI2[11]_LC_328 {ppm_encoder_1.throttle_RNIG4JI2[11]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_3[11]_LC_306 {ppm_encoder_1.pulses2count_esr_RNO_3[11]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[11]_LC_281 {ppm_encoder_1.pulses2count_esr_RNO_1[11]}
+ble_pack ppm_encoder_1.aileron[11]_LC_84 {ppm_encoder_1.aileron[11], ppm_encoder_1.aileron_RNO[11]}
+clb_pack PLB_61 {ppm_encoder_1.counter_RNIK1KG[0]_LC_113, ppm_encoder_1.elevator_RNI03DH2[11]_LC_134, ppm_encoder_1.elevator_RNIALRT5[11]_LC_140, ppm_encoder_1.throttle_RNIG4JI2[11]_LC_328, ppm_encoder_1.pulses2count_esr_RNO_3[11]_LC_306, ppm_encoder_1.pulses2count_esr_RNO_1[11]_LC_281, ppm_encoder_1.aileron[11]_LC_84}
+ble_pack ppm_encoder_1.elevator_RNI25DH2[12]_LC_135 {ppm_encoder_1.elevator_RNI25DH2[12]}
+ble_pack ppm_encoder_1.elevator_RNIFQRT5[12]_LC_143 {ppm_encoder_1.elevator_RNIFQRT5[12]}
+ble_pack ppm_encoder_1.throttle_RNII6JI2[12]_LC_329 {ppm_encoder_1.throttle_RNII6JI2[12]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_3[12]_LC_307 {ppm_encoder_1.pulses2count_esr_RNO_3[12]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[12]_LC_282 {ppm_encoder_1.pulses2count_esr_RNO_1[12]}
+ble_pack ppm_encoder_1.aileron[12]_LC_85 {ppm_encoder_1.aileron[12], ppm_encoder_1.aileron_RNO[12]}
+ble_pack ppm_encoder_1.elevator[12]_LC_148 {ppm_encoder_1.elevator[12], ppm_encoder_1.elevator_RNO[12]}
+ble_pack ppm_encoder_1.throttle[12]_LC_342 {ppm_encoder_1.throttle[12], ppm_encoder_1.throttle_RNO[12]}
+clb_pack PLB_62 {ppm_encoder_1.elevator_RNI25DH2[12]_LC_135, ppm_encoder_1.elevator_RNIFQRT5[12]_LC_143, ppm_encoder_1.throttle_RNII6JI2[12]_LC_329, ppm_encoder_1.pulses2count_esr_RNO_3[12]_LC_307, ppm_encoder_1.pulses2count_esr_RNO_1[12]_LC_282, ppm_encoder_1.aileron[12]_LC_85, ppm_encoder_1.elevator[12]_LC_148, ppm_encoder_1.throttle[12]_LC_342}
+ble_pack ppm_encoder_1.elevator_RNI47DH2[13]_LC_136 {ppm_encoder_1.elevator_RNI47DH2[13]}
+ble_pack ppm_encoder_1.elevator_RNIKVRT5[13]_LC_144 {ppm_encoder_1.elevator_RNIKVRT5[13]}
+ble_pack ppm_encoder_1.throttle_RNIK8JI2[13]_LC_331 {ppm_encoder_1.throttle_RNIK8JI2[13]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_2[13]_LC_297 {ppm_encoder_1.pulses2count_esr_RNO_2[13]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[13]_LC_283 {ppm_encoder_1.pulses2count_esr_RNO_1[13]}
+ble_pack ppm_encoder_1.aileron[13]_LC_86 {ppm_encoder_1.aileron[13], ppm_encoder_1.aileron_RNO[13]}
+ble_pack ppm_encoder_1.elevator[13]_LC_149 {ppm_encoder_1.elevator[13], ppm_encoder_1.elevator_RNO[13]}
+ble_pack ppm_encoder_1.throttle[13]_LC_343 {ppm_encoder_1.throttle[13], ppm_encoder_1.throttle_RNO[13]}
+clb_pack PLB_63 {ppm_encoder_1.elevator_RNI47DH2[13]_LC_136, ppm_encoder_1.elevator_RNIKVRT5[13]_LC_144, ppm_encoder_1.throttle_RNIK8JI2[13]_LC_331, ppm_encoder_1.pulses2count_esr_RNO_2[13]_LC_297, ppm_encoder_1.pulses2count_esr_RNO_1[13]_LC_283, ppm_encoder_1.aileron[13]_LC_86, ppm_encoder_1.elevator[13]_LC_149, ppm_encoder_1.throttle[13]_LC_343}
+ble_pack ppm_encoder_1.elevator_RNI8GVN2[6]_LC_138 {ppm_encoder_1.elevator_RNI8GVN2[6]}
+ble_pack ppm_encoder_1.throttle_RNIEDI96[6]_LC_327 {ppm_encoder_1.throttle_RNIEDI96[6]}
+ble_pack ppm_encoder_1.throttle_RNIO1KK2[6]_LC_332 {ppm_encoder_1.throttle_RNIO1KK2[6]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_2[6]_LC_301 {ppm_encoder_1.pulses2count_esr_RNO_2[6]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[6]_LC_289 {ppm_encoder_1.pulses2count_esr_RNO_1[6]}
+ble_pack ppm_encoder_1.aileron[6]_LC_87 {ppm_encoder_1.aileron[6], ppm_encoder_1.aileron_RNO[6]}
+ble_pack ppm_encoder_1.elevator[6]_LC_150 {ppm_encoder_1.elevator[6], ppm_encoder_1.elevator_RNO[6]}
+ble_pack ppm_encoder_1.throttle[6]_LC_345 {ppm_encoder_1.throttle[6], ppm_encoder_1.throttle_RNO[6]}
+clb_pack PLB_64 {ppm_encoder_1.elevator_RNI8GVN2[6]_LC_138, ppm_encoder_1.throttle_RNIEDI96[6]_LC_327, ppm_encoder_1.throttle_RNIO1KK2[6]_LC_332, ppm_encoder_1.pulses2count_esr_RNO_2[6]_LC_301, ppm_encoder_1.pulses2count_esr_RNO_1[6]_LC_289, ppm_encoder_1.aileron[6]_LC_87, ppm_encoder_1.elevator[6]_LC_150, ppm_encoder_1.throttle[6]_LC_345}
+ble_pack ppm_encoder_1.elevator_RNIAIVN2[7]_LC_139 {ppm_encoder_1.elevator_RNIAIVN2[7]}
+ble_pack ppm_encoder_1.throttle_RNIJII96[7]_LC_330 {ppm_encoder_1.throttle_RNIJII96[7]}
+ble_pack ppm_encoder_1.throttle_RNIQ3KK2[7]_LC_334 {ppm_encoder_1.throttle_RNIQ3KK2[7]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_2[7]_LC_302 {ppm_encoder_1.pulses2count_esr_RNO_2[7]}
+ble_pack ppm_encoder_1.elevator[7]_LC_151 {ppm_encoder_1.elevator[7], ppm_encoder_1.elevator_RNO[7]}
+ble_pack ppm_encoder_1.throttle[7]_LC_346 {ppm_encoder_1.throttle[7], ppm_encoder_1.throttle_RNO[7]}
+ble_pack ppm_encoder_1.aileron[7]_LC_88 {ppm_encoder_1.aileron[7], ppm_encoder_1.aileron_RNO[7]}
+ble_pack ppm_encoder_1.rudder[7]_LC_319 {ppm_encoder_1.rudder[7], ppm_encoder_1.rudder_RNO[7]}
+clb_pack PLB_65 {ppm_encoder_1.elevator_RNIAIVN2[7]_LC_139, ppm_encoder_1.throttle_RNIJII96[7]_LC_330, ppm_encoder_1.throttle_RNIQ3KK2[7]_LC_334, ppm_encoder_1.pulses2count_esr_RNO_2[7]_LC_302, ppm_encoder_1.elevator[7]_LC_151, ppm_encoder_1.throttle[7]_LC_346, ppm_encoder_1.aileron[7]_LC_88, ppm_encoder_1.rudder[7]_LC_319}
+ble_pack ppm_encoder_1.elevator_RNICKVN2[8]_LC_141 {ppm_encoder_1.elevator_RNICKVN2[8]}
+ble_pack ppm_encoder_1.throttle_RNIONI96[8]_LC_333 {ppm_encoder_1.throttle_RNIONI96[8]}
+ble_pack ppm_encoder_1.throttle_RNIS5KK2[8]_LC_336 {ppm_encoder_1.throttle_RNIS5KK2[8]}
+ble_pack ppm_encoder_1.elevator_RNIEMVN2[9]_LC_142 {ppm_encoder_1.elevator_RNIEMVN2[9]}
+ble_pack ppm_encoder_1.throttle_RNITSI96[9]_LC_337 {ppm_encoder_1.throttle_RNITSI96[9]}
+ble_pack ppm_encoder_1.throttle_RNIU7KK2[9]_LC_338 {ppm_encoder_1.throttle_RNIU7KK2[9]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_2[9]_LC_304 {ppm_encoder_1.pulses2count_esr_RNO_2[9]}
+ble_pack ppm_encoder_1.elevator[9]_LC_153 {ppm_encoder_1.elevator[9], ppm_encoder_1.elevator_RNO[9]}
+clb_pack PLB_66 {ppm_encoder_1.elevator_RNICKVN2[8]_LC_141, ppm_encoder_1.throttle_RNIONI96[8]_LC_333, ppm_encoder_1.throttle_RNIS5KK2[8]_LC_336, ppm_encoder_1.elevator_RNIEMVN2[9]_LC_142, ppm_encoder_1.throttle_RNITSI96[9]_LC_337, ppm_encoder_1.throttle_RNIU7KK2[9]_LC_338, ppm_encoder_1.pulses2count_esr_RNO_2[9]_LC_304, ppm_encoder_1.elevator[9]_LC_153}
+ble_pack ppm_encoder_1.elevator_RNIU0DH2[10]_LC_145 {ppm_encoder_1.elevator_RNIU0DH2[10]}
+ble_pack ppm_encoder_1.elevator_RNI5GRT5[10]_LC_137 {ppm_encoder_1.elevator_RNI5GRT5[10]}
+ble_pack ppm_encoder_1.throttle_RNIE2JI2[10]_LC_326 {ppm_encoder_1.throttle_RNIE2JI2[10]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_2[10]_LC_294 {ppm_encoder_1.pulses2count_esr_RNO_2[10]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[10]_LC_280 {ppm_encoder_1.pulses2count_esr_RNO_1[10]}
+ble_pack ppm_encoder_1.aileron[10]_LC_83 {ppm_encoder_1.aileron[10], ppm_encoder_1.aileron_RNO[10]}
+ble_pack ppm_encoder_1.elevator[10]_LC_146 {ppm_encoder_1.elevator[10], ppm_encoder_1.elevator_RNO[10]}
+ble_pack ppm_encoder_1.throttle[10]_LC_340 {ppm_encoder_1.throttle[10], ppm_encoder_1.throttle_RNO[10]}
+clb_pack PLB_67 {ppm_encoder_1.elevator_RNIU0DH2[10]_LC_145, ppm_encoder_1.elevator_RNI5GRT5[10]_LC_137, ppm_encoder_1.throttle_RNIE2JI2[10]_LC_326, ppm_encoder_1.pulses2count_esr_RNO_2[10]_LC_294, ppm_encoder_1.pulses2count_esr_RNO_1[10]_LC_280, ppm_encoder_1.aileron[10]_LC_83, ppm_encoder_1.elevator[10]_LC_146, ppm_encoder_1.throttle[10]_LC_340}
+ble_pack ppm_encoder_1.init_pulses_RNI5ATG1[15]_LC_157 {ppm_encoder_1.init_pulses_RNI5ATG1[15]}
+ble_pack ppm_encoder_1.init_pulses[15]_LC_219 {ppm_encoder_1.init_pulses[15], ppm_encoder_1.init_pulses_RNO[15]}
+ble_pack ppm_encoder_1.init_pulses_RNIUHRP[15]_LC_189 {ppm_encoder_1.init_pulses_RNIUHRP[15]}
+ble_pack ppm_encoder_1.init_pulses_RNO_2[18]_LC_242 {ppm_encoder_1.init_pulses_RNO_2[18]}
+ble_pack ppm_encoder_1.init_pulses[18]_LC_222 {ppm_encoder_1.init_pulses[18], ppm_encoder_1.init_pulses_RNO[18]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI7O1N[2]_LC_62 {ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI7O1N[2]}
+ble_pack ppm_encoder_1.init_pulses[10]_LC_214 {ppm_encoder_1.init_pulses[10], ppm_encoder_1.init_pulses_RNO[10]}
+ble_pack ppm_encoder_1.init_pulses_RNIPCRP[10]_LC_180 {ppm_encoder_1.init_pulses_RNIPCRP[10]}
+clb_pack PLB_68 {ppm_encoder_1.init_pulses_RNI5ATG1[15]_LC_157, ppm_encoder_1.init_pulses[15]_LC_219, ppm_encoder_1.init_pulses_RNIUHRP[15]_LC_189, ppm_encoder_1.init_pulses_RNO_2[18]_LC_242, ppm_encoder_1.init_pulses[18]_LC_222, ppm_encoder_1.CHOOSE_CHANNEL_fast_RNI7O1N[2]_LC_62, ppm_encoder_1.init_pulses[10]_LC_214, ppm_encoder_1.init_pulses_RNIPCRP[10]_LC_180}
+ble_pack ppm_encoder_1.init_pulses_RNIAVNR2[0]_LC_163 {ppm_encoder_1.init_pulses_RNIAVNR2[0]}
+ble_pack ppm_encoder_1.init_pulses[0]_LC_193 {ppm_encoder_1.init_pulses[0], ppm_encoder_1.init_pulses_RNO[0]}
+ble_pack ppm_encoder_1.init_pulses_RNI8LUS[0]_LC_159 {ppm_encoder_1.init_pulses_RNI8LUS[0]}
+ble_pack ppm_encoder_1.init_pulses_RNO_0[0]_LC_194 {ppm_encoder_1.init_pulses_RNO_0[0]}
+ble_pack ppm_encoder_1.init_pulses_RNIC1OR2[2]_LC_166 {ppm_encoder_1.init_pulses_RNIC1OR2[2]}
+ble_pack ppm_encoder_1.init_pulses[2]_LC_241 {ppm_encoder_1.init_pulses[2], ppm_encoder_1.init_pulses_RNO[2]}
+ble_pack ppm_encoder_1.init_pulses_RNIANUS[2]_LC_162 {ppm_encoder_1.init_pulses_RNIANUS[2]}
+ble_pack ppm_encoder_1.throttle_RNI5V123[2]_LC_324 {ppm_encoder_1.throttle_RNI5V123[2]}
+clb_pack PLB_69 {ppm_encoder_1.init_pulses_RNIAVNR2[0]_LC_163, ppm_encoder_1.init_pulses[0]_LC_193, ppm_encoder_1.init_pulses_RNI8LUS[0]_LC_159, ppm_encoder_1.init_pulses_RNO_0[0]_LC_194, ppm_encoder_1.init_pulses_RNIC1OR2[2]_LC_166, ppm_encoder_1.init_pulses[2]_LC_241, ppm_encoder_1.init_pulses_RNIANUS[2]_LC_162, ppm_encoder_1.throttle_RNI5V123[2]_LC_324}
+ble_pack ppm_encoder_1.init_pulses_RNIG5OR2[6]_LC_174 {ppm_encoder_1.init_pulses_RNIG5OR2[6]}
+ble_pack ppm_encoder_1.init_pulses[6]_LC_246 {ppm_encoder_1.init_pulses[6], ppm_encoder_1.init_pulses_RNO[6]}
+ble_pack ppm_encoder_1.init_pulses_RNIERUS[6]_LC_171 {ppm_encoder_1.init_pulses_RNIERUS[6]}
+ble_pack ppm_encoder_1.init_pulses_RNIUPKO2[13]_LC_190 {ppm_encoder_1.init_pulses_RNIUPKO2[13]}
+ble_pack ppm_encoder_1.init_pulses[13]_LC_217 {ppm_encoder_1.init_pulses[13], ppm_encoder_1.init_pulses_RNO[13]}
+ble_pack ppm_encoder_1.init_pulses_RNISFRP[13]_LC_186 {ppm_encoder_1.init_pulses_RNISFRP[13]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[6]_LC_269 {ppm_encoder_1.pulses2count_esr_RNO_0[6]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[13]_LC_263 {ppm_encoder_1.pulses2count_esr_RNO_0[13]}
+clb_pack PLB_70 {ppm_encoder_1.init_pulses_RNIG5OR2[6]_LC_174, ppm_encoder_1.init_pulses[6]_LC_246, ppm_encoder_1.init_pulses_RNIERUS[6]_LC_171, ppm_encoder_1.init_pulses_RNIUPKO2[13]_LC_190, ppm_encoder_1.init_pulses[13]_LC_217, ppm_encoder_1.init_pulses_RNISFRP[13]_LC_186, ppm_encoder_1.pulses2count_esr_RNO_0[6]_LC_269, ppm_encoder_1.pulses2count_esr_RNO_0[13]_LC_263}
+ble_pack ppm_encoder_1.init_pulses_RNIR7352[3]_LC_183 {ppm_encoder_1.init_pulses_RNIR7352[3]}
+ble_pack ppm_encoder_1.init_pulses_RNI60223[3]_LC_158 {ppm_encoder_1.init_pulses_RNI60223[3]}
+ble_pack ppm_encoder_1.init_pulses_RNIBOUS[3]_LC_165 {ppm_encoder_1.init_pulses_RNIBOUS[3]}
+ble_pack ppm_encoder_1.init_pulses_RNIBOUS_0[3]_LC_164 {ppm_encoder_1.init_pulses_RNIBOUS_0[3]}
+ble_pack ppm_encoder_1.throttle[1]_LC_339 {ppm_encoder_1.throttle[1], ppm_encoder_1.throttle_RNO[1]}
+ble_pack ppm_encoder_1.throttle[2]_LC_344 {ppm_encoder_1.throttle[2], ppm_encoder_1.throttle_RNO[2]}
+ble_pack ppm_encoder_1.throttle_RNIR7352[2]_LC_335 {ppm_encoder_1.throttle_RNIR7352[2]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[2]_LC_285 {ppm_encoder_1.pulses2count_esr_RNO_1[2]}
+clb_pack PLB_71 {ppm_encoder_1.init_pulses_RNIR7352[3]_LC_183, ppm_encoder_1.init_pulses_RNI60223[3]_LC_158, ppm_encoder_1.init_pulses_RNIBOUS[3]_LC_165, ppm_encoder_1.init_pulses_RNIBOUS_0[3]_LC_164, ppm_encoder_1.throttle[1]_LC_339, ppm_encoder_1.throttle[2]_LC_344, ppm_encoder_1.throttle_RNIR7352[2]_LC_335, ppm_encoder_1.pulses2count_esr_RNO_1[2]_LC_285}
+ble_pack ppm_encoder_1.init_pulses[11]_LC_215 {ppm_encoder_1.init_pulses[11], ppm_encoder_1.init_pulses_RNO[11]}
+ble_pack ppm_encoder_1.init_pulses_RNIQDRP[11]_LC_182 {ppm_encoder_1.init_pulses_RNIQDRP[11]}
+ble_pack ppm_encoder_1.init_pulses_RNIQDRP_0[11]_LC_181 {ppm_encoder_1.init_pulses_RNIQDRP_0[11]}
+ble_pack ppm_encoder_1.init_pulses[12]_LC_216 {ppm_encoder_1.init_pulses[12], ppm_encoder_1.init_pulses_RNO[12]}
+ble_pack ppm_encoder_1.init_pulses_RNIRERP[12]_LC_185 {ppm_encoder_1.init_pulses_RNIRERP[12]}
+ble_pack ppm_encoder_1.init_pulses_RNIRERP_0[12]_LC_184 {ppm_encoder_1.init_pulses_RNIRERP_0[12]}
+ble_pack ppm_encoder_1.init_pulses[14]_LC_218 {ppm_encoder_1.init_pulses[14], ppm_encoder_1.init_pulses_RNO[14]}
+ble_pack ppm_encoder_1.init_pulses_RNITGRP[14]_LC_188 {ppm_encoder_1.init_pulses_RNITGRP[14]}
+clb_pack PLB_72 {ppm_encoder_1.init_pulses[11]_LC_215, ppm_encoder_1.init_pulses_RNIQDRP[11]_LC_182, ppm_encoder_1.init_pulses_RNIQDRP_0[11]_LC_181, ppm_encoder_1.init_pulses[12]_LC_216, ppm_encoder_1.init_pulses_RNIRERP[12]_LC_185, ppm_encoder_1.init_pulses_RNIRERP_0[12]_LC_184, ppm_encoder_1.init_pulses[14]_LC_218, ppm_encoder_1.init_pulses_RNITGRP[14]_LC_188}
+ble_pack ppm_encoder_1.init_pulses[16]_LC_220 {ppm_encoder_1.init_pulses[16], ppm_encoder_1.init_pulses_RNO[16]}
+ble_pack ppm_encoder_1.init_pulses_RNIVIRP[16]_LC_192 {ppm_encoder_1.init_pulses_RNIVIRP[16]}
+ble_pack ppm_encoder_1.init_pulses[17]_LC_221 {ppm_encoder_1.init_pulses[17], ppm_encoder_1.init_pulses_RNO[17]}
+ble_pack ppm_encoder_1.init_pulses_RNI0KRP_0[17]_LC_155 {ppm_encoder_1.init_pulses_RNI0KRP_0[17]}
+ble_pack ppm_encoder_1.init_pulses_RNI0KRP[17]_LC_156 {ppm_encoder_1.init_pulses_RNI0KRP[17]}
+ble_pack ppm_encoder_1.init_pulses[4]_LC_244 {ppm_encoder_1.init_pulses[4], ppm_encoder_1.init_pulses_RNO[4]}
+ble_pack ppm_encoder_1.init_pulses_RNICPUS[4]_LC_168 {ppm_encoder_1.init_pulses_RNICPUS[4]}
+ble_pack ppm_encoder_1.init_pulses_RNICPUS_0[4]_LC_167 {ppm_encoder_1.init_pulses_RNICPUS_0[4]}
+clb_pack PLB_73 {ppm_encoder_1.init_pulses[16]_LC_220, ppm_encoder_1.init_pulses_RNIVIRP[16]_LC_192, ppm_encoder_1.init_pulses[17]_LC_221, ppm_encoder_1.init_pulses_RNI0KRP_0[17]_LC_155, ppm_encoder_1.init_pulses_RNI0KRP[17]_LC_156, ppm_encoder_1.init_pulses[4]_LC_244, ppm_encoder_1.init_pulses_RNICPUS[4]_LC_168, ppm_encoder_1.init_pulses_RNICPUS_0[4]_LC_167}
+ble_pack ppm_encoder_1.init_pulses[3]_LC_243 {ppm_encoder_1.init_pulses[3], ppm_encoder_1.init_pulses_RNO[3]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[3]_LC_266 {ppm_encoder_1.pulses2count_esr_RNO_0[3]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[2]_LC_265 {ppm_encoder_1.pulses2count_esr_RNO_0[2]}
+ble_pack ppm_encoder_1.init_pulses[5]_LC_245 {ppm_encoder_1.init_pulses[5], ppm_encoder_1.init_pulses_RNO[5]}
+ble_pack ppm_encoder_1.init_pulses_RNIDQUS[5]_LC_170 {ppm_encoder_1.init_pulses_RNIDQUS[5]}
+ble_pack ppm_encoder_1.init_pulses_RNIDQUS_0[5]_LC_169 {ppm_encoder_1.init_pulses_RNIDQUS_0[5]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[5]_LC_268 {ppm_encoder_1.pulses2count_esr_RNO_0[5]}
+ble_pack ppm_encoder_1.init_pulses[7]_LC_247 {ppm_encoder_1.init_pulses[7], ppm_encoder_1.init_pulses_RNO[7]}
+clb_pack PLB_74 {ppm_encoder_1.init_pulses[3]_LC_243, ppm_encoder_1.pulses2count_esr_RNO_0[3]_LC_266, ppm_encoder_1.pulses2count_esr_RNO_0[2]_LC_265, ppm_encoder_1.init_pulses[5]_LC_245, ppm_encoder_1.init_pulses_RNIDQUS[5]_LC_170, ppm_encoder_1.init_pulses_RNIDQUS_0[5]_LC_169, ppm_encoder_1.pulses2count_esr_RNO_0[5]_LC_268, ppm_encoder_1.init_pulses[7]_LC_247}
+ble_pack ppm_encoder_1.init_pulses[8]_LC_248 {ppm_encoder_1.init_pulses[8], ppm_encoder_1.init_pulses_RNO[8]}
+ble_pack ppm_encoder_1.init_pulses_RNIGTUS[8]_LC_176 {ppm_encoder_1.init_pulses_RNIGTUS[8]}
+ble_pack ppm_encoder_1.init_pulses_RNIGTUS_0[8]_LC_175 {ppm_encoder_1.init_pulses_RNIGTUS_0[8]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[8]_LC_271 {ppm_encoder_1.pulses2count_esr_RNO_0[8]}
+ble_pack ppm_encoder_1.init_pulses[9]_LC_249 {ppm_encoder_1.init_pulses[9], ppm_encoder_1.init_pulses_RNO[9]}
+ble_pack ppm_encoder_1.init_pulses_RNIHUUS[9]_LC_178 {ppm_encoder_1.init_pulses_RNIHUUS[9]}
+ble_pack ppm_encoder_1.init_pulses_RNIHUUS_0[9]_LC_177 {ppm_encoder_1.init_pulses_RNIHUUS_0[9]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[9]_LC_272 {ppm_encoder_1.pulses2count_esr_RNO_0[9]}
+clb_pack PLB_75 {ppm_encoder_1.init_pulses[8]_LC_248, ppm_encoder_1.init_pulses_RNIGTUS[8]_LC_176, ppm_encoder_1.init_pulses_RNIGTUS_0[8]_LC_175, ppm_encoder_1.pulses2count_esr_RNO_0[8]_LC_271, ppm_encoder_1.init_pulses[9]_LC_249, ppm_encoder_1.init_pulses_RNIHUUS[9]_LC_178, ppm_encoder_1.init_pulses_RNIHUUS_0[9]_LC_177, ppm_encoder_1.pulses2count_esr_RNO_0[9]_LC_272}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[10]_LC_260 {ppm_encoder_1.pulses2count_esr_RNO_0[10]}
+ble_pack ppm_encoder_1.rudder[10]_LC_314 {ppm_encoder_1.rudder[10], ppm_encoder_1.rudder_RNO[10]}
+ble_pack ppm_encoder_1.rudder_esr_ctle[14]_LC_323 {ppm_encoder_1.rudder_esr_ctle[14]}
+ble_pack scaler_1.source_data_valid_LC_654 {scaler_1.source_data_valid, scaler_1.source_data_valid_THRU_LUT4_0}
+ble_pack scaler_1.source_data_1_esr_ctle[14]_LC_396 {scaler_1.source_data_1_esr_ctle[14]}
+ble_pack uart_frame_decoder.source_data_valid_LC_556 {uart_frame_decoder.source_data_valid, uart_frame_decoder.source_data_valid_RNO}
+ble_pack uart_frame_decoder.count8_cry_2_c_RNIU1C61_LC_548 {uart_frame_decoder.count8_cry_2_c_RNIU1C61}
+ble_pack uart_pc.data_rdy_LC_615 {uart_pc.data_rdy, uart_pc.data_rdy_RNO}
+clb_pack PLB_76 {ppm_encoder_1.pulses2count_esr_RNO_0[10]_LC_260, ppm_encoder_1.rudder[10]_LC_314, ppm_encoder_1.rudder_esr_ctle[14]_LC_323, scaler_1.source_data_valid_LC_654, scaler_1.source_data_1_esr_ctle[14]_LC_396, uart_frame_decoder.source_data_valid_LC_556, uart_frame_decoder.count8_cry_2_c_RNIU1C61_LC_548, uart_pc.data_rdy_LC_615}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[14]_LC_264 {ppm_encoder_1.pulses2count_esr_RNO_0[14]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[4]_LC_267 {ppm_encoder_1.pulses2count_esr_RNO_0[4]}
+ble_pack ppm_encoder_1.rudder_esr[4]_LC_649 {ppm_encoder_1.rudder_esr[4], ppm_encoder_1.rudder_esr_4_THRU_LUT4_0}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_0[7]_LC_270 {ppm_encoder_1.pulses2count_esr_RNO_0[7]}
+ble_pack ppm_encoder_1.init_pulses_RNITGRP_0[14]_LC_187 {ppm_encoder_1.init_pulses_RNITGRP_0[14]}
+ble_pack ppm_encoder_1.init_pulses_RNIFSUS_0[7]_LC_172 {ppm_encoder_1.init_pulses_RNIFSUS_0[7]}
+ble_pack ppm_encoder_1.init_pulses_RNIFSUS[7]_LC_173 {ppm_encoder_1.init_pulses_RNIFSUS[7]}
+ble_pack ppm_encoder_1.init_pulses_RNI9MUS_0[1]_LC_160 {ppm_encoder_1.init_pulses_RNI9MUS_0[1]}
+clb_pack PLB_77 {ppm_encoder_1.pulses2count_esr_RNO_0[14]_LC_264, ppm_encoder_1.pulses2count_esr_RNO_0[4]_LC_267, ppm_encoder_1.rudder_esr[4]_LC_649, ppm_encoder_1.pulses2count_esr_RNO_0[7]_LC_270, ppm_encoder_1.init_pulses_RNITGRP_0[14]_LC_187, ppm_encoder_1.init_pulses_RNIFSUS_0[7]_LC_172, ppm_encoder_1.init_pulses_RNIFSUS[7]_LC_173, ppm_encoder_1.init_pulses_RNI9MUS_0[1]_LC_160}
+ble_pack reset_module_System.count_RNI34OR1[21]_LC_353 {reset_module_System.count_RNI34OR1[21]}
+ble_pack reset_module_System.count_RNIMJ304[12]_LC_357 {reset_module_System.count_RNIMJ304[12]}
+ble_pack reset_module_System.count_RNIA72I1[16]_LC_356 {reset_module_System.count_RNIA72I1[16]}
+ble_pack reset_module_System.count_RNIR9N6[1]_LC_358 {reset_module_System.count_RNIR9N6[1]}
+ble_pack reset_module_System.count[1]_LC_363 {reset_module_System.count[1], reset_module_System.count_RNO[1]}
+ble_pack reset_module_System.reset_LC_384 {reset_module_System.reset, reset_module_System.reset_RNO}
+ble_pack reset_module_System.count[0]_LC_360 {reset_module_System.count[0], reset_module_System.count_RNO[0]}
+ble_pack reset_module_System.count[2]_LC_374 {reset_module_System.count[2], reset_module_System.count_RNO[2]}
+clb_pack PLB_78 {reset_module_System.count_RNI34OR1[21]_LC_353, reset_module_System.count_RNIMJ304[12]_LC_357, reset_module_System.count_RNIA72I1[16]_LC_356, reset_module_System.count_RNIR9N6[1]_LC_358, reset_module_System.count[1]_LC_363, reset_module_System.reset_LC_384, reset_module_System.count[0]_LC_360, reset_module_System.count[2]_LC_374}
+ble_pack reset_module_System.count_RNI97FD[5]_LC_354 {reset_module_System.count_RNI97FD[5]}
+ble_pack reset_module_System.count_RNI9O1P[2]_LC_355 {reset_module_System.count_RNI9O1P[2]}
+ble_pack reset_module_System.count_RNISRMR1[10]_LC_359 {reset_module_System.count_RNISRMR1[10]}
+ble_pack uart_drone.state_RNI40411[2]_LC_495 {uart_drone.state_RNI40411[2]}
+ble_pack uart_drone.state[2]_LC_506 {uart_drone.state[2], uart_drone.state_RNO[2]}
+ble_pack uart_drone.state_RNO_0[2]_LC_503 {uart_drone.state_RNO_0[2]}
+ble_pack uart_drone.state_RNO_0[3]_LC_504 {uart_drone.state_RNO_0[3]}
+clb_pack PLB_79 {reset_module_System.count_RNI97FD[5]_LC_354, reset_module_System.count_RNI9O1P[2]_LC_355, reset_module_System.count_RNISRMR1[10]_LC_359, uart_drone.state_RNI40411[2]_LC_495, uart_drone.state[2]_LC_506, uart_drone.state_RNO_0[2]_LC_503, uart_drone.state_RNO_0[3]_LC_504}
+ble_pack uart_drone.state_RNI62411[4]_LC_496 {uart_drone.state_RNI62411[4]}
+ble_pack uart_drone.state_RNI63LK2[3]_LC_497 {uart_drone.state_RNI63LK2[3]}
+ble_pack uart_drone.bit_Count[1]_LC_477 {uart_drone.bit_Count[1], uart_drone.bit_Count_RNO[1]}
+ble_pack uart_drone.bit_Count_RNIJOJC1[2]_LC_474 {uart_drone.bit_Count_RNIJOJC1[2]}
+ble_pack uart_drone.bit_Count[0]_LC_475 {uart_drone.bit_Count[0], uart_drone.bit_Count_RNO[0]}
+ble_pack uart_drone.bit_Count[2]_LC_478 {uart_drone.bit_Count[2], uart_drone.bit_Count_RNO[2]}
+ble_pack uart_drone.bit_Count_RNO_0[2]_LC_476 {uart_drone.bit_Count_RNO_0[2]}
+ble_pack uart_drone.timer_Count_RNIU8TV1[3]_LC_514 {uart_drone.timer_Count_RNIU8TV1[3]}
+clb_pack PLB_80 {uart_drone.state_RNI62411[4]_LC_496, uart_drone.state_RNI63LK2[3]_LC_497, uart_drone.bit_Count[1]_LC_477, uart_drone.bit_Count_RNIJOJC1[2]_LC_474, uart_drone.bit_Count[0]_LC_475, uart_drone.bit_Count[2]_LC_478, uart_drone.bit_Count_RNO_0[2]_LC_476, uart_drone.timer_Count_RNIU8TV1[3]_LC_514}
+ble_pack uart_drone.state_RNI9ADK1[4]_LC_498 {uart_drone.state_RNI9ADK1[4]}
+ble_pack uart_drone.timer_Count_RNI9E9J[2]_LC_510 {uart_drone.timer_Count_RNI9E9J[2]}
+ble_pack uart_drone.state_RNIAT1D1[4]_LC_499 {uart_drone.state_RNIAT1D1[4]}
+ble_pack uart_drone.state[4]_LC_508 {uart_drone.state[4], uart_drone.state_RNO[4]}
+ble_pack uart_drone.timer_Count_RNIDGR31[2]_LC_511 {uart_drone.timer_Count_RNIDGR31[2]}
+ble_pack uart_drone.timer_Count[2]_LC_521 {uart_drone.timer_Count[2], uart_drone.timer_Count_RNO[2]}
+ble_pack uart_drone.timer_Count[3]_LC_522 {uart_drone.timer_Count[3], uart_drone.timer_Count_RNO[3]}
+ble_pack uart_drone.timer_Count_RNIES9Q1[2]_LC_512 {uart_drone.timer_Count_RNIES9Q1[2]}
+clb_pack PLB_81 {uart_drone.state_RNI9ADK1[4]_LC_498, uart_drone.timer_Count_RNI9E9J[2]_LC_510, uart_drone.state_RNIAT1D1[4]_LC_499, uart_drone.state[4]_LC_508, uart_drone.timer_Count_RNIDGR31[2]_LC_511, uart_drone.timer_Count[2]_LC_521, uart_drone.timer_Count[3]_LC_522, uart_drone.timer_Count_RNIES9Q1[2]_LC_512}
+ble_pack uart_drone.state[0]_LC_501 {uart_drone.state[0], uart_drone.state_RNO[0]}
+ble_pack uart_drone.state_RNO_0[0]_LC_502 {uart_drone.state_RNO_0[0]}
+ble_pack uart_drone.state[1]_LC_505 {uart_drone.state[1], uart_drone.state_RNO[1]}
+ble_pack uart_drone_sync.Q_0_[0]_LC_666 {uart_drone_sync.Q_0_[0], uart_drone_sync.Q_0__0_THRU_LUT4_0}
+ble_pack uart_drone_sync.aux_3__0_[0]_LC_670 {uart_drone_sync.aux_3__0_[0], uart_drone_sync.aux_3__0__0_THRU_LUT4_0}
+ble_pack uart_drone_sync.aux_2__0_[0]_LC_669 {uart_drone_sync.aux_2__0_[0], uart_drone_sync.aux_2__0__0_THRU_LUT4_0}
+ble_pack uart_drone_sync.aux_1__0_[0]_LC_668 {uart_drone_sync.aux_1__0_[0], uart_drone_sync.aux_1__0__0_THRU_LUT4_0}
+ble_pack uart_drone_sync.aux_0__0_[0]_LC_667 {uart_drone_sync.aux_0__0_[0], uart_drone_sync.aux_0__0__0_THRU_LUT4_0}
+clb_pack PLB_82 {uart_drone.state[0]_LC_501, uart_drone.state_RNO_0[0]_LC_502, uart_drone.state[1]_LC_505, uart_drone_sync.Q_0_[0]_LC_666, uart_drone_sync.aux_3__0_[0]_LC_670, uart_drone_sync.aux_2__0_[0]_LC_669, uart_drone_sync.aux_1__0_[0]_LC_668, uart_drone_sync.aux_0__0_[0]_LC_667}
+ble_pack uart_drone.state[3]_LC_507 {uart_drone.state[3], uart_drone.state_RNO[3]}
+ble_pack uart_drone.state_RNIOU0N[4]_LC_500 {uart_drone.state_RNIOU0N[4]}
+ble_pack uart_drone.timer_Count[0]_LC_515 {uart_drone.timer_Count[0], uart_drone.timer_Count_RNO[0]}
+ble_pack uart_drone.timer_Count_RNO_0[1]_LC_516 {uart_drone.timer_Count_RNO_0[1]}
+ble_pack uart_drone.timer_Count[1]_LC_520 {uart_drone.timer_Count[1], uart_drone.timer_Count_RNO[1]}
+ble_pack uart_drone.timer_Count[4]_LC_523 {uart_drone.timer_Count[4], uart_drone.timer_Count_RNO[4]}
+ble_pack uart_pc.timer_Count[0]_LC_636 {uart_pc.timer_Count[0], uart_pc.timer_Count_RNO[0]}
+ble_pack uart_pc.state_RNIMQ8T1[4]_LC_620 {uart_pc.state_RNIMQ8T1[4]}
+clb_pack PLB_83 {uart_drone.state[3]_LC_507, uart_drone.state_RNIOU0N[4]_LC_500, uart_drone.timer_Count[0]_LC_515, uart_drone.timer_Count_RNO_0[1]_LC_516, uart_drone.timer_Count[1]_LC_520, uart_drone.timer_Count[4]_LC_523, uart_pc.timer_Count[0]_LC_636, uart_pc.state_RNIMQ8T1[4]_LC_620}
+ble_pack uart_frame_decoder.WDT_RNI5CUL2[15]_LC_525 {uart_frame_decoder.WDT_RNI5CUL2[15]}
+ble_pack uart_frame_decoder.state_1[3]_LC_583 {uart_frame_decoder.state_1[3], uart_frame_decoder.state_1_RNO[3]}
+ble_pack uart_frame_decoder.state_1[4]_LC_585 {uart_frame_decoder.state_1[4], uart_frame_decoder.state_1_RNO[4]}
+ble_pack uart_frame_decoder.state_1[5]_LC_586 {uart_frame_decoder.state_1[5], uart_frame_decoder.state_1_RNO[5]}
+ble_pack uart_frame_decoder.state_1[6]_LC_587 {uart_frame_decoder.state_1[6], uart_frame_decoder.state_1_RNO[6]}
+ble_pack uart_frame_decoder.state_1[7]_LC_588 {uart_frame_decoder.state_1[7], uart_frame_decoder.state_1_RNO[7]}
+ble_pack uart_frame_decoder.state_1[8]_LC_589 {uart_frame_decoder.state_1[8], uart_frame_decoder.state_1_RNO[8]}
+ble_pack uart_frame_decoder.state_1[9]_LC_590 {uart_frame_decoder.state_1[9], uart_frame_decoder.state_1_RNO[9]}
+clb_pack PLB_84 {uart_frame_decoder.WDT_RNI5CUL2[15]_LC_525, uart_frame_decoder.state_1[3]_LC_583, uart_frame_decoder.state_1[4]_LC_585, uart_frame_decoder.state_1[5]_LC_586, uart_frame_decoder.state_1[6]_LC_587, uart_frame_decoder.state_1[7]_LC_588, uart_frame_decoder.state_1[8]_LC_589, uart_frame_decoder.state_1[9]_LC_590}
+ble_pack uart_frame_decoder.WDT_RNIAGPB[10]_LC_526 {uart_frame_decoder.WDT_RNIAGPB[10]}
+ble_pack uart_frame_decoder.WDT_RNIM8N32[7]_LC_528 {uart_frame_decoder.WDT_RNIM8N32[7]}
+ble_pack uart_frame_decoder.WDT_RNIBI7E[6]_LC_527 {uart_frame_decoder.WDT_RNIBI7E[6]}
+ble_pack uart_frame_decoder.WDT_RNI17K92[15]_LC_524 {uart_frame_decoder.WDT_RNI17K92[15]}
+ble_pack uart_frame_decoder.WDT_RNIQAB11[4]_LC_529 {uart_frame_decoder.WDT_RNIQAB11[4]}
+ble_pack uart_frame_decoder.count_RNI8GDP1[2]_LC_550 {uart_frame_decoder.count_RNI8GDP1[2]}
+ble_pack uart_frame_decoder.count[0]_LC_552 {uart_frame_decoder.count[0], uart_frame_decoder.count_RNO[0]}
+ble_pack uart_frame_decoder.count[2]_LC_554 {uart_frame_decoder.count[2], uart_frame_decoder.count_RNO[2]}
+clb_pack PLB_85 {uart_frame_decoder.WDT_RNIAGPB[10]_LC_526, uart_frame_decoder.WDT_RNIM8N32[7]_LC_528, uart_frame_decoder.WDT_RNIBI7E[6]_LC_527, uart_frame_decoder.WDT_RNI17K92[15]_LC_524, uart_frame_decoder.WDT_RNIQAB11[4]_LC_529, uart_frame_decoder.count_RNI8GDP1[2]_LC_550, uart_frame_decoder.count[0]_LC_552, uart_frame_decoder.count[2]_LC_554}
+ble_pack uart_frame_decoder.state_1_RNIDPNH[1]_LC_571 {uart_frame_decoder.state_1_RNIDPNH[1]}
+ble_pack uart_frame_decoder.state_1_ns_0_i_a2_0_0_1[2]_LC_591 {uart_frame_decoder.state_1_ns_0_i_a2_0_0_1[2]}
+ble_pack uart_frame_decoder.state_1_RNO_1[0]_LC_580 {uart_frame_decoder.state_1_RNO_1[0]}
+ble_pack uart_frame_decoder.state_1_RNO_3[0]_LC_584 {uart_frame_decoder.state_1_RNO_3[0]}
+ble_pack uart_frame_decoder.state_1_ns_0_i_a2_0_4[1]_LC_592 {uart_frame_decoder.state_1_ns_0_i_a2_0_4[1]}
+ble_pack uart_frame_decoder.state_1[0]_LC_575 {uart_frame_decoder.state_1[0], uart_frame_decoder.state_1_RNO[0]}
+ble_pack uart_frame_decoder.state_1_ns_0_i_a2_1[2]_LC_594 {uart_frame_decoder.state_1_ns_0_i_a2_1[2]}
+ble_pack uart_frame_decoder.state_1_ns_0_i_a2_1_1[2]_LC_593 {uart_frame_decoder.state_1_ns_0_i_a2_1_1[2]}
+clb_pack PLB_86 {uart_frame_decoder.state_1_RNIDPNH[1]_LC_571, uart_frame_decoder.state_1_ns_0_i_a2_0_0_1[2]_LC_591, uart_frame_decoder.state_1_RNO_1[0]_LC_580, uart_frame_decoder.state_1_RNO_3[0]_LC_584, uart_frame_decoder.state_1_ns_0_i_a2_0_4[1]_LC_592, uart_frame_decoder.state_1[0]_LC_575, uart_frame_decoder.state_1_ns_0_i_a2_1[2]_LC_594, uart_frame_decoder.state_1_ns_0_i_a2_1_1[2]_LC_593}
+ble_pack uart_frame_decoder.state_1_RNO_2[0]_LC_582 {uart_frame_decoder.state_1_RNO_2[0]}
+ble_pack uart_frame_decoder.state_1[1]_LC_578 {uart_frame_decoder.state_1[1], uart_frame_decoder.state_1_RNO[1]}
+ble_pack uart_frame_decoder.state_1_RNO_0[1]_LC_577 {uart_frame_decoder.state_1_RNO_0[1]}
+ble_pack uart_frame_decoder.state_1[10]_LC_579 {uart_frame_decoder.state_1[10], uart_frame_decoder.state_1_RNO[10]}
+ble_pack uart_frame_decoder.state_1_RNINMHJ[10]_LC_574 {uart_frame_decoder.state_1_RNINMHJ[10]}
+ble_pack uart_frame_decoder.state_1_RNO_0[0]_LC_576 {uart_frame_decoder.state_1_RNO_0[0]}
+ble_pack uart_frame_decoder.count_RNIHJ501[0]_LC_551 {uart_frame_decoder.count_RNIHJ501[0]}
+ble_pack uart_frame_decoder.state_1_RNIF7PK[9]_LC_573 {uart_frame_decoder.state_1_RNIF7PK[9]}
+clb_pack PLB_87 {uart_frame_decoder.state_1_RNO_2[0]_LC_582, uart_frame_decoder.state_1[1]_LC_578, uart_frame_decoder.state_1_RNO_0[1]_LC_577, uart_frame_decoder.state_1[10]_LC_579, uart_frame_decoder.state_1_RNINMHJ[10]_LC_574, uart_frame_decoder.state_1_RNO_0[0]_LC_576, uart_frame_decoder.count_RNIHJ501[0]_LC_551, uart_frame_decoder.state_1_RNIF7PK[9]_LC_573}
+ble_pack uart_pc.state_RNIBLRB2[4]_LC_616 {uart_pc.state_RNIBLRB2[4]}
+ble_pack uart_pc.timer_Count_RNIVT8S[2]_LC_635 {uart_pc.timer_Count_RNIVT8S[2]}
+ble_pack uart_pc.timer_Count[2]_LC_642 {uart_pc.timer_Count[2], uart_pc.timer_Count_RNO[2]}
+ble_pack uart_pc.timer_Count_RNIPD2K1[2]_LC_633 {uart_pc.timer_Count_RNIPD2K1[2]}
+ble_pack uart_pc.state[4]_LC_629 {uart_pc.state[4], uart_pc.state_RNO[4]}
+ble_pack uart_pc.timer_Count[3]_LC_643 {uart_pc.timer_Count[3], uart_pc.timer_Count_RNO[3]}
+ble_pack uart_pc.timer_Count_RNILR1B2[2]_LC_632 {uart_pc.timer_Count_RNILR1B2[2]}
+ble_pack uart_pc.timer_Count_RNIE94V3[2]_LC_631 {uart_pc.timer_Count_RNIE94V3[2]}
+clb_pack PLB_88 {uart_pc.state_RNIBLRB2[4]_LC_616, uart_pc.timer_Count_RNIVT8S[2]_LC_635, uart_pc.timer_Count[2]_LC_642, uart_pc.timer_Count_RNIPD2K1[2]_LC_633, uart_pc.state[4]_LC_629, uart_pc.timer_Count[3]_LC_643, uart_pc.timer_Count_RNILR1B2[2]_LC_632, uart_pc.timer_Count_RNIE94V3[2]_LC_631}
+ble_pack uart_pc.state_RNIGRIF1[2]_LC_618 {uart_pc.state_RNIGRIF1[2]}
+ble_pack uart_pc.state[2]_LC_627 {uart_pc.state[2], uart_pc.state_RNO[2]}
+ble_pack uart_pc.state_RNO_0[2]_LC_624 {uart_pc.state_RNO_0[2]}
+ble_pack uart_pc.state_RNO_0[3]_LC_625 {uart_pc.state_RNO_0[3]}
+ble_pack uart_pc.state[3]_LC_628 {uart_pc.state[3], uart_pc.state_RNO[3]}
+ble_pack uart_pc.state_RNIITIF1[4]_LC_619 {uart_pc.state_RNIITIF1[4]}
+ble_pack uart_pc.state_RNIUPE73[3]_LC_621 {uart_pc.state_RNIUPE73[3]}
+ble_pack uart_pc.timer_Count_RNI5UFA2[3]_LC_630 {uart_pc.timer_Count_RNI5UFA2[3]}
+clb_pack PLB_89 {uart_pc.state_RNIGRIF1[2]_LC_618, uart_pc.state[2]_LC_627, uart_pc.state_RNO_0[2]_LC_624, uart_pc.state_RNO_0[3]_LC_625, uart_pc.state[3]_LC_628, uart_pc.state_RNIITIF1[4]_LC_619, uart_pc.state_RNIUPE73[3]_LC_621, uart_pc.timer_Count_RNI5UFA2[3]_LC_630}
+ble_pack uart_pc.state[0]_LC_622 {uart_pc.state[0], uart_pc.state_RNO[0]}
+ble_pack uart_pc.state_RNO_0[0]_LC_623 {uart_pc.state_RNO_0[0]}
+ble_pack uart_pc.state[1]_LC_626 {uart_pc.state[1], uart_pc.state_RNO[1]}
+ble_pack uart_pc_sync.Q_0_[0]_LC_743 {uart_pc_sync.Q_0_[0], uart_pc_sync.Q_0__0_THRU_LUT4_0}
+ble_pack uart_pc_sync.aux_3__0_[0]_LC_747 {uart_pc_sync.aux_3__0_[0], uart_pc_sync.aux_3__0__0_THRU_LUT4_0}
+ble_pack uart_pc_sync.aux_2__0_[0]_LC_746 {uart_pc_sync.aux_2__0_[0], uart_pc_sync.aux_2__0__0_THRU_LUT4_0}
+ble_pack uart_pc_sync.aux_1__0_[0]_LC_745 {uart_pc_sync.aux_1__0_[0], uart_pc_sync.aux_1__0__0_THRU_LUT4_0}
+ble_pack uart_pc_sync.aux_0__0_[0]_LC_744 {uart_pc_sync.aux_0__0_[0], uart_pc_sync.aux_0__0__0_THRU_LUT4_0}
+clb_pack PLB_90 {uart_pc.state[0]_LC_622, uart_pc.state_RNO_0[0]_LC_623, uart_pc.state[1]_LC_626, uart_pc_sync.Q_0_[0]_LC_743, uart_pc_sync.aux_3__0_[0]_LC_747, uart_pc_sync.aux_2__0_[0]_LC_746, uart_pc_sync.aux_1__0_[0]_LC_745, uart_pc_sync.aux_0__0_[0]_LC_744}
+ble_pack uart_pc.timer_Count[1]_LC_641 {uart_pc.timer_Count[1], uart_pc.timer_Count_RNO[1]}
+ble_pack uart_pc.timer_Count_RNO_0[1]_LC_637 {uart_pc.timer_Count_RNO_0[1]}
+ble_pack uart_pc.timer_Count[4]_LC_644 {uart_pc.timer_Count[4], uart_pc.timer_Count_RNO[4]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_0_rep1_LC_43 {ppm_encoder_1.CHOOSE_CHANNEL_0_rep1, ppm_encoder_1.CHOOSE_CHANNEL_0_rep1_RNO}
+ble_pack ppm_encoder_1.init_pulses_RNIPCRP_0[10]_LC_179 {ppm_encoder_1.init_pulses_RNIPCRP_0[10]}
+ble_pack ppm_encoder_1.PPM_STATE_RNISH5F[1]_LC_77 {ppm_encoder_1.PPM_STATE_RNISH5F[1]}
+ble_pack ppm_encoder_1.PPM_STATE_RNIV4V5_0[1]_LC_79 {ppm_encoder_1.PPM_STATE_RNIV4V5_0[1]}
+ble_pack ppm_encoder_1.PPM_STATE_RNI2APU1_0[1]_LC_73 {ppm_encoder_1.PPM_STATE_RNI2APU1_0[1]}
+clb_pack PLB_91 {uart_pc.timer_Count[1]_LC_641, uart_pc.timer_Count_RNO_0[1]_LC_637, uart_pc.timer_Count[4]_LC_644, ppm_encoder_1.CHOOSE_CHANNEL_0_rep1_LC_43, ppm_encoder_1.init_pulses_RNIPCRP_0[10]_LC_179, ppm_encoder_1.PPM_STATE_RNISH5F[1]_LC_77, ppm_encoder_1.PPM_STATE_RNIV4V5_0[1]_LC_79, ppm_encoder_1.PPM_STATE_RNI2APU1_0[1]_LC_73}
+ble_pack frame_dron_decoder_1.state[7]_LC_39 {frame_dron_decoder_1.state[7], frame_dron_decoder_1.state_RNO[7]}
+ble_pack uart_drone.data_rdy_LC_494 {uart_drone.data_rdy, uart_drone.data_rdy_RNO}
+ble_pack frame_dron_decoder_1.source_data_valid_2_sqmuxa_i_LC_22 {frame_dron_decoder_1.source_data_valid_2_sqmuxa_i}
+ble_pack frame_dron_decoder_1.source_data_valid_LC_23 {frame_dron_decoder_1.source_data_valid, frame_dron_decoder_1.source_data_valid_RNO}
+ble_pack uart_drone.timer_Count_RNIRC5U2[2]_LC_513 {uart_drone.timer_Count_RNIRC5U2[2]}
+ble_pack ppm_encoder_1.CHOOSE_CHANNEL_RNIC2521[1]_LC_52 {ppm_encoder_1.CHOOSE_CHANNEL_RNIC2521[1]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_1[4]_LC_287 {ppm_encoder_1.pulses2count_esr_RNO_1[4]}
+ble_pack ppm_encoder_1.pulses2count_esr_RNO_2[4]_LC_299 {ppm_encoder_1.pulses2count_esr_RNO_2[4]}
+clb_pack PLB_92 {frame_dron_decoder_1.state[7]_LC_39, uart_drone.data_rdy_LC_494, frame_dron_decoder_1.source_data_valid_2_sqmuxa_i_LC_22, frame_dron_decoder_1.source_data_valid_LC_23, uart_drone.timer_Count_RNIRC5U2[2]_LC_513, ppm_encoder_1.CHOOSE_CHANNEL_RNIC2521[1]_LC_52, ppm_encoder_1.pulses2count_esr_RNO_1[4]_LC_287, ppm_encoder_1.pulses2count_esr_RNO_2[4]_LC_299}
+ble_pack ppm_encoder_1.aileron[8]_LC_89 {ppm_encoder_1.aileron[8], ppm_encoder_1.aileron_RNO[8]}
+ble_pack ppm_encoder_1.rudder[6]_LC_318 {ppm_encoder_1.rudder[6], ppm_encoder_1.rudder_RNO[6]}
+ble_pack ppm_encoder_1.aileron[9]_LC_90 {ppm_encoder_1.aileron[9], ppm_encoder_1.aileron_RNO[9]}
+ble_pack ppm_encoder_1.elevator[11]_LC_147 {ppm_encoder_1.elevator[11], ppm_encoder_1.elevator_RNO[11]}
+ble_pack ppm_encoder_1.elevator[8]_LC_152 {ppm_encoder_1.elevator[8], ppm_encoder_1.elevator_RNO[8]}
+ble_pack ppm_encoder_1.rudder[11]_LC_315 {ppm_encoder_1.rudder[11], ppm_encoder_1.rudder_RNO[11]}
+ble_pack ppm_encoder_1.rudder[12]_LC_316 {ppm_encoder_1.rudder[12], ppm_encoder_1.rudder_RNO[12]}
+clb_pack PLB_93 {ppm_encoder_1.aileron[8]_LC_89, ppm_encoder_1.rudder[6]_LC_318, ppm_encoder_1.aileron[9]_LC_90, ppm_encoder_1.elevator[11]_LC_147, ppm_encoder_1.elevator[8]_LC_152, ppm_encoder_1.rudder[11]_LC_315, ppm_encoder_1.rudder[12]_LC_316}
+ble_pack ppm_encoder_1.ppm_output_reg_LC_250 {ppm_encoder_1.ppm_output_reg, ppm_encoder_1.ppm_output_reg_RNO}
+ble_pack ppm_encoder_1.ppm_output_reg_RNO_0_LC_251 {ppm_encoder_1.ppm_output_reg_RNO_0}
+ble_pack ppm_encoder_1.rudder[13]_LC_317 {ppm_encoder_1.rudder[13], ppm_encoder_1.rudder_RNO[13]}
+ble_pack ppm_encoder_1.rudder[8]_LC_320 {ppm_encoder_1.rudder[8], ppm_encoder_1.rudder_RNO[8]}
+ble_pack ppm_encoder_1.rudder[9]_LC_321 {ppm_encoder_1.rudder[9], ppm_encoder_1.rudder_RNO[9]}
+ble_pack ppm_encoder_1.throttle[11]_LC_341 {ppm_encoder_1.throttle[11], ppm_encoder_1.throttle_RNO[11]}
+ble_pack ppm_encoder_1.throttle[8]_LC_347 {ppm_encoder_1.throttle[8], ppm_encoder_1.throttle_RNO[8]}
+clb_pack PLB_94 {ppm_encoder_1.ppm_output_reg_LC_250, ppm_encoder_1.ppm_output_reg_RNO_0_LC_251, ppm_encoder_1.rudder[13]_LC_317, ppm_encoder_1.rudder[8]_LC_320, ppm_encoder_1.rudder[9]_LC_321, ppm_encoder_1.throttle[11]_LC_341, ppm_encoder_1.throttle[8]_LC_347}
+ble_pack ppm_encoder_1.throttle[9]_LC_348 {ppm_encoder_1.throttle[9], ppm_encoder_1.throttle_RNO[9]}
+ble_pack scaler_1.source_data_1[4]_LC_386 {scaler_1.source_data_1[4], scaler_1.source_data_1_RNO[4]}
+ble_pack scaler_1.un2_source_data_0_cry_1_c_RNO_LC_397 {scaler_1.un2_source_data_0_cry_1_c_RNO}
+ble_pack scaler_2.source_data_1[4]_LC_409 {scaler_2.source_data_1[4], scaler_2.source_data_1_RNO[4]}
+ble_pack scaler_2.un2_source_data_0_cry_1_c_RNO_LC_419 {scaler_2.un2_source_data_0_cry_1_c_RNO}
+ble_pack scaler_3.source_data_1[4]_LC_431 {scaler_3.source_data_1[4], scaler_3.source_data_1_RNO[4]}
+ble_pack scaler_3.un2_source_data_0_cry_1_c_RNO_LC_441 {scaler_3.un2_source_data_0_cry_1_c_RNO}
+ble_pack scaler_4.source_data_1[4]_LC_453 {scaler_4.source_data_1[4], scaler_4.source_data_1_RNO[4]}
+clb_pack PLB_95 {ppm_encoder_1.throttle[9]_LC_348, scaler_1.source_data_1[4]_LC_386, scaler_1.un2_source_data_0_cry_1_c_RNO_LC_397, scaler_2.source_data_1[4]_LC_409, scaler_2.un2_source_data_0_cry_1_c_RNO_LC_419, scaler_3.source_data_1[4]_LC_431, scaler_3.un2_source_data_0_cry_1_c_RNO_LC_441, scaler_4.source_data_1[4]_LC_453}
+ble_pack scaler_1.source_data_1_esr[5]_LC_391 {scaler_1.source_data_1_esr[5], scaler_1.source_data_1_esr_RNO[5]}
+ble_pack scaler_2.source_data_1_esr[5]_LC_414 {scaler_2.source_data_1_esr[5], scaler_2.source_data_1_esr_RNO[5]}
+ble_pack scaler_3.source_data_1_esr[5]_LC_436 {scaler_3.source_data_1_esr[5], scaler_3.source_data_1_esr_RNO[5]}
+ble_pack scaler_4.source_data_1_esr[5]_LC_458 {scaler_4.source_data_1_esr[5], scaler_4.source_data_1_esr_RNO[5]}
+ble_pack scaler_4.un2_source_data_0_cry_1_c_RNO_LC_463 {scaler_4.un2_source_data_0_cry_1_c_RNO}
+ble_pack uart_drone.data_Aux_RNO_0[0]_LC_480 {uart_drone.data_Aux_RNO_0[0]}
+ble_pack uart_drone.data_Aux_RNO_0[1]_LC_481 {uart_drone.data_Aux_RNO_0[1]}
+ble_pack uart_drone.data_Aux_RNO_0[2]_LC_482 {uart_drone.data_Aux_RNO_0[2]}
+clb_pack PLB_96 {scaler_1.source_data_1_esr[5]_LC_391, scaler_2.source_data_1_esr[5]_LC_414, scaler_3.source_data_1_esr[5]_LC_436, scaler_4.source_data_1_esr[5]_LC_458, scaler_4.un2_source_data_0_cry_1_c_RNO_LC_463, uart_drone.data_Aux_RNO_0[0]_LC_480, uart_drone.data_Aux_RNO_0[1]_LC_481, uart_drone.data_Aux_RNO_0[2]_LC_482}
+ble_pack uart_drone.data_Aux[0]_LC_479 {uart_drone.data_Aux[0], uart_drone.data_Aux_RNO[0]}
+ble_pack uart_drone.data_Aux[1]_LC_487 {uart_drone.data_Aux[1], uart_drone.data_Aux_RNO[1]}
+ble_pack uart_drone.data_Aux[2]_LC_488 {uart_drone.data_Aux[2], uart_drone.data_Aux_RNO[2]}
+ble_pack uart_drone.data_Aux[3]_LC_489 {uart_drone.data_Aux[3], uart_drone.data_Aux_RNO[3]}
+ble_pack uart_drone.data_Aux_RNO_0[3]_LC_483 {uart_drone.data_Aux_RNO_0[3]}
+ble_pack uart_drone.data_Aux_RNO_0[4]_LC_484 {uart_drone.data_Aux_RNO_0[4]}
+ble_pack uart_drone.data_Aux[4]_LC_490 {uart_drone.data_Aux[4], uart_drone.data_Aux_RNO[4]}
+ble_pack uart_drone.data_Aux_RNO_0[5]_LC_485 {uart_drone.data_Aux_RNO_0[5]}
+clb_pack PLB_97 {uart_drone.data_Aux[0]_LC_479, uart_drone.data_Aux[1]_LC_487, uart_drone.data_Aux[2]_LC_488, uart_drone.data_Aux[3]_LC_489, uart_drone.data_Aux_RNO_0[3]_LC_483, uart_drone.data_Aux_RNO_0[4]_LC_484, uart_drone.data_Aux[4]_LC_490, uart_drone.data_Aux_RNO_0[5]_LC_485}
+ble_pack uart_drone.data_Aux_RNO_0[6]_LC_486 {uart_drone.data_Aux_RNO_0[6]}
+ble_pack uart_drone.data_Aux[6]_LC_492 {uart_drone.data_Aux[6], uart_drone.data_Aux_RNO[6]}
+ble_pack uart_drone.data_Aux[5]_LC_491 {uart_drone.data_Aux[5], uart_drone.data_Aux_RNO[5]}
+ble_pack uart_drone.data_Aux[7]_LC_493 {uart_drone.data_Aux[7], uart_drone.data_Aux_RNO[7]}
+ble_pack uart_pc.bit_Count_RNI4U6E1[2]_LC_595 {uart_pc.bit_Count_RNI4U6E1[2]}
+ble_pack uart_pc.data_Aux_RNO_0[0]_LC_601 {uart_pc.data_Aux_RNO_0[0]}
+ble_pack uart_pc.data_Aux_RNO_0[1]_LC_602 {uart_pc.data_Aux_RNO_0[1]}
+ble_pack uart_pc.data_Aux_RNO_0[2]_LC_603 {uart_pc.data_Aux_RNO_0[2]}
+clb_pack PLB_98 {uart_drone.data_Aux_RNO_0[6]_LC_486, uart_drone.data_Aux[6]_LC_492, uart_drone.data_Aux[5]_LC_491, uart_drone.data_Aux[7]_LC_493, uart_pc.bit_Count_RNI4U6E1[2]_LC_595, uart_pc.data_Aux_RNO_0[0]_LC_601, uart_pc.data_Aux_RNO_0[1]_LC_602, uart_pc.data_Aux_RNO_0[2]_LC_603}
+ble_pack uart_frame_decoder.state_1[2]_LC_581 {uart_frame_decoder.state_1[2], uart_frame_decoder.state_1_RNO[2]}
+ble_pack uart_frame_decoder.state_1_RNI80PK[2]_LC_560 {uart_frame_decoder.state_1_RNI80PK[2]}
+ble_pack uart_frame_decoder.state_1_RNI5DVT[2]_LC_557 {uart_frame_decoder.state_1_RNI5DVT[2]}
+ble_pack uart_frame_decoder.source_data_valid_2_sqmuxa_i_LC_555 {uart_frame_decoder.source_data_valid_2_sqmuxa_i}
+ble_pack uart_frame_decoder.state_1_RNI91PK[3]_LC_562 {uart_frame_decoder.state_1_RNI91PK[3]}
+ble_pack uart_frame_decoder.state_1_RNI6EVT[3]_LC_558 {uart_frame_decoder.state_1_RNI6EVT[3]}
+ble_pack uart_frame_decoder.state_1_RNIA2PK[4]_LC_564 {uart_frame_decoder.state_1_RNIA2PK[4]}
+ble_pack uart_frame_decoder.state_1_RNI7FVT[4]_LC_559 {uart_frame_decoder.state_1_RNI7FVT[4]}
+clb_pack PLB_99 {uart_frame_decoder.state_1[2]_LC_581, uart_frame_decoder.state_1_RNI80PK[2]_LC_560, uart_frame_decoder.state_1_RNI5DVT[2]_LC_557, uart_frame_decoder.source_data_valid_2_sqmuxa_i_LC_555, uart_frame_decoder.state_1_RNI91PK[3]_LC_562, uart_frame_decoder.state_1_RNI6EVT[3]_LC_558, uart_frame_decoder.state_1_RNIA2PK[4]_LC_564, uart_frame_decoder.state_1_RNI7FVT[4]_LC_559}
+ble_pack uart_pc.bit_Count[0]_LC_596 {uart_pc.bit_Count[0], uart_pc.bit_Count_RNO[0]}
+ble_pack uart_pc.bit_Count_RNO_0[2]_LC_597 {uart_pc.bit_Count_RNO_0[2]}
+ble_pack uart_pc.bit_Count[2]_LC_599 {uart_pc.bit_Count[2], uart_pc.bit_Count_RNO[2]}
+ble_pack uart_pc.bit_Count[1]_LC_598 {uart_pc.bit_Count[1], uart_pc.bit_Count_RNO[1]}
+ble_pack uart_pc.data_Aux_RNO_0[3]_LC_604 {uart_pc.data_Aux_RNO_0[3]}
+ble_pack uart_pc.data_Aux_RNO_0[4]_LC_605 {uart_pc.data_Aux_RNO_0[4]}
+ble_pack uart_pc.data_Aux_RNO_0[5]_LC_606 {uart_pc.data_Aux_RNO_0[5]}
+ble_pack uart_pc.data_Aux_RNO_0[6]_LC_607 {uart_pc.data_Aux_RNO_0[6]}
+clb_pack PLB_100 {uart_pc.bit_Count[0]_LC_596, uart_pc.bit_Count_RNO_0[2]_LC_597, uart_pc.bit_Count[2]_LC_599, uart_pc.bit_Count[1]_LC_598, uart_pc.data_Aux_RNO_0[3]_LC_604, uart_pc.data_Aux_RNO_0[4]_LC_605, uart_pc.data_Aux_RNO_0[5]_LC_606, uart_pc.data_Aux_RNO_0[6]_LC_607}
+ble_pack uart_pc.data_Aux[0]_LC_600 {uart_pc.data_Aux[0], uart_pc.data_Aux_RNO[0]}
+ble_pack uart_pc.data_Aux[1]_LC_608 {uart_pc.data_Aux[1], uart_pc.data_Aux_RNO[1]}
+ble_pack uart_pc.data_Aux[2]_LC_609 {uart_pc.data_Aux[2], uart_pc.data_Aux_RNO[2]}
+ble_pack uart_pc.data_Aux[3]_LC_610 {uart_pc.data_Aux[3], uart_pc.data_Aux_RNO[3]}
+ble_pack uart_pc.data_Aux[4]_LC_611 {uart_pc.data_Aux[4], uart_pc.data_Aux_RNO[4]}
+ble_pack uart_pc.data_Aux[5]_LC_612 {uart_pc.data_Aux[5], uart_pc.data_Aux_RNO[5]}
+ble_pack uart_pc.data_Aux[6]_LC_613 {uart_pc.data_Aux[6], uart_pc.data_Aux_RNO[6]}
+ble_pack uart_pc.data_Aux[7]_LC_614 {uart_pc.data_Aux[7], uart_pc.data_Aux_RNO[7]}
+clb_pack PLB_101 {uart_pc.data_Aux[0]_LC_600, uart_pc.data_Aux[1]_LC_608, uart_pc.data_Aux[2]_LC_609, uart_pc.data_Aux[3]_LC_610, uart_pc.data_Aux[4]_LC_611, uart_pc.data_Aux[5]_LC_612, uart_pc.data_Aux[6]_LC_613, uart_pc.data_Aux[7]_LC_614}
+ble_pack uart_pc.state_RNIEAGS[4]_LC_617 {uart_pc.state_RNIEAGS[4]}
+ble_pack ppm_encoder_1.PPM_STATE_RNI2APU1[1]_LC_74 {ppm_encoder_1.PPM_STATE_RNI2APU1[1]}
+ble_pack ppm_encoder_1.PPM_STATE_RNI2APU1_1[1]_LC_75 {ppm_encoder_1.PPM_STATE_RNI2APU1_1[1]}
+ble_pack reset_module_System.count_RNO_0[1]_LC_361 {reset_module_System.count_RNO_0[1]}
+ble_pack scaler_1.N_508_i_l_ofx_LC_385 {scaler_1.N_508_i_l_ofx}
+ble_pack uart_frame_decoder.source_CH1data_esr[7]_LC_678 {uart_frame_decoder.source_CH1data_esr[7], uart_frame_decoder.source_CH1data_esr_7_THRU_LUT4_0}
+ble_pack scaler_1.un3_source_data.un3_source_data_0_axb_7_LC_398 {scaler_1.un3_source_data.un3_source_data_0_axb_7}
+ble_pack scaler_2.N_520_i_l_ofx_LC_408 {scaler_2.N_520_i_l_ofx}
+clb_pack PLB_102 {uart_pc.state_RNIEAGS[4]_LC_617, ppm_encoder_1.PPM_STATE_RNI2APU1[1]_LC_74, ppm_encoder_1.PPM_STATE_RNI2APU1_1[1]_LC_75, reset_module_System.count_RNO_0[1]_LC_361, scaler_1.N_508_i_l_ofx_LC_385, uart_frame_decoder.source_CH1data_esr[7]_LC_678, scaler_1.un3_source_data.un3_source_data_0_axb_7_LC_398, scaler_2.N_520_i_l_ofx_LC_408}
+ble_pack scaler_2.un3_source_data.un3_source_data_0_axb_7_LC_420 {scaler_2.un3_source_data.un3_source_data_0_axb_7}
+ble_pack uart_frame_decoder.source_CH2data_esr[7]_LC_686 {uart_frame_decoder.source_CH2data_esr[7], uart_frame_decoder.source_CH2data_esr_7_THRU_LUT4_0}
+ble_pack scaler_3.N_532_i_l_ofx_LC_430 {scaler_3.N_532_i_l_ofx}
+ble_pack scaler_3.un3_source_data.un3_source_data_0_axb_7_LC_442 {scaler_3.un3_source_data.un3_source_data_0_axb_7}
+ble_pack scaler_4.N_544_i_l_ofx_LC_452 {scaler_4.N_544_i_l_ofx}
+ble_pack scaler_4.un3_source_data.un3_source_data_0_axb_7_LC_464 {scaler_4.un3_source_data.un3_source_data_0_axb_7}
+ble_pack uart_frame_decoder.state_1_RNI8GVT[5]_LC_561 {uart_frame_decoder.state_1_RNI8GVT[5]}
+ble_pack uart_frame_decoder.state_1_RNIB3PK[5]_LC_566 {uart_frame_decoder.state_1_RNIB3PK[5]}
+clb_pack PLB_103 {scaler_2.un3_source_data.un3_source_data_0_axb_7_LC_420, uart_frame_decoder.source_CH2data_esr[7]_LC_686, scaler_3.N_532_i_l_ofx_LC_430, scaler_3.un3_source_data.un3_source_data_0_axb_7_LC_442, scaler_4.N_544_i_l_ofx_LC_452, scaler_4.un3_source_data.un3_source_data_0_axb_7_LC_464, uart_frame_decoder.state_1_RNI8GVT[5]_LC_561, uart_frame_decoder.state_1_RNIB3PK[5]_LC_566}
+ble_pack uart_frame_decoder.count[1]_LC_553 {uart_frame_decoder.count[1], uart_frame_decoder.count_RNO[1]}
+ble_pack uart_frame_decoder.state_1_RNI9HVT[6]_LC_563 {uart_frame_decoder.state_1_RNI9HVT[6]}
+ble_pack uart_frame_decoder.state_1_RNIC4PK[6]_LC_568 {uart_frame_decoder.state_1_RNIC4PK[6]}
+ble_pack uart_frame_decoder.state_1_RNID5PK[7]_LC_570 {uart_frame_decoder.state_1_RNID5PK[7]}
+ble_pack uart_frame_decoder.state_1_RNIAIVT[7]_LC_565 {uart_frame_decoder.state_1_RNIAIVT[7]}
+ble_pack uart_frame_decoder.state_1_RNIE6PK[8]_LC_572 {uart_frame_decoder.state_1_RNIE6PK[8]}
+ble_pack uart_frame_decoder.state_1_RNIBJVT[8]_LC_567 {uart_frame_decoder.state_1_RNIBJVT[8]}
+ble_pack uart_frame_decoder.state_1_RNICKVT[9]_LC_569 {uart_frame_decoder.state_1_RNICKVT[9]}
+clb_pack PLB_104 {uart_frame_decoder.count[1]_LC_553, uart_frame_decoder.state_1_RNI9HVT[6]_LC_563, uart_frame_decoder.state_1_RNIC4PK[6]_LC_568, uart_frame_decoder.state_1_RNID5PK[7]_LC_570, uart_frame_decoder.state_1_RNIAIVT[7]_LC_565, uart_frame_decoder.state_1_RNIE6PK[8]_LC_572, uart_frame_decoder.state_1_RNIBJVT[8]_LC_567, uart_frame_decoder.state_1_RNICKVT[9]_LC_569}
+ble_pack ppm_encoder_1.aileron_esr[4]_LC_645 {ppm_encoder_1.aileron_esr[4], ppm_encoder_1.aileron_esr_4_THRU_LUT4_0}
+ble_pack ppm_encoder_1.elevator_esr[4]_LC_647 {ppm_encoder_1.elevator_esr[4], ppm_encoder_1.elevator_esr_4_THRU_LUT4_0}
+ble_pack ppm_encoder_1.rudder_esr[5]_LC_650 {ppm_encoder_1.rudder_esr[5], ppm_encoder_1.rudder_esr_5_THRU_LUT4_0}
+ble_pack ppm_encoder_1.throttle_esr[4]_LC_651 {ppm_encoder_1.throttle_esr[4], ppm_encoder_1.throttle_esr_4_THRU_LUT4_0}
+clb_pack PLB_105 {ppm_encoder_1.aileron_esr[4]_LC_645, ppm_encoder_1.elevator_esr[4]_LC_647, ppm_encoder_1.rudder_esr[5]_LC_650, ppm_encoder_1.throttle_esr[4]_LC_651}
+ble_pack uart_drone.data_esr[0]_LC_658 {uart_drone.data_esr[0], uart_drone.data_esr_0_THRU_LUT4_0}
+ble_pack uart_drone.data_esr[1]_LC_659 {uart_drone.data_esr[1], uart_drone.data_esr_1_THRU_LUT4_0}
+ble_pack uart_drone.data_esr[2]_LC_660 {uart_drone.data_esr[2], uart_drone.data_esr_2_THRU_LUT4_0}
+ble_pack uart_drone.data_esr[3]_LC_661 {uart_drone.data_esr[3], uart_drone.data_esr_3_THRU_LUT4_0}
+ble_pack uart_drone.data_esr[4]_LC_662 {uart_drone.data_esr[4], uart_drone.data_esr_4_THRU_LUT4_0}
+ble_pack uart_drone.data_esr[5]_LC_663 {uart_drone.data_esr[5], uart_drone.data_esr_5_THRU_LUT4_0}
+ble_pack uart_drone.data_esr[6]_LC_664 {uart_drone.data_esr[6], uart_drone.data_esr_6_THRU_LUT4_0}
+ble_pack uart_drone.data_esr[7]_LC_665 {uart_drone.data_esr[7], uart_drone.data_esr_7_THRU_LUT4_0}
+clb_pack PLB_106 {uart_drone.data_esr[0]_LC_658, uart_drone.data_esr[1]_LC_659, uart_drone.data_esr[2]_LC_660, uart_drone.data_esr[3]_LC_661, uart_drone.data_esr[4]_LC_662, uart_drone.data_esr[5]_LC_663, uart_drone.data_esr[6]_LC_664, uart_drone.data_esr[7]_LC_665}
+ble_pack uart_frame_decoder.source_CH1data_esr[0]_LC_671 {uart_frame_decoder.source_CH1data_esr[0], uart_frame_decoder.source_CH1data_esr_0_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH1data_esr[1]_LC_672 {uart_frame_decoder.source_CH1data_esr[1], uart_frame_decoder.source_CH1data_esr_1_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH1data_esr[2]_LC_673 {uart_frame_decoder.source_CH1data_esr[2], uart_frame_decoder.source_CH1data_esr_2_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH1data_esr[3]_LC_674 {uart_frame_decoder.source_CH1data_esr[3], uart_frame_decoder.source_CH1data_esr_3_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH1data_esr[4]_LC_675 {uart_frame_decoder.source_CH1data_esr[4], uart_frame_decoder.source_CH1data_esr_4_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH1data_esr[5]_LC_676 {uart_frame_decoder.source_CH1data_esr[5], uart_frame_decoder.source_CH1data_esr_5_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH1data_esr[6]_LC_677 {uart_frame_decoder.source_CH1data_esr[6], uart_frame_decoder.source_CH1data_esr_6_THRU_LUT4_0}
+clb_pack PLB_107 {uart_frame_decoder.source_CH1data_esr[0]_LC_671, uart_frame_decoder.source_CH1data_esr[1]_LC_672, uart_frame_decoder.source_CH1data_esr[2]_LC_673, uart_frame_decoder.source_CH1data_esr[3]_LC_674, uart_frame_decoder.source_CH1data_esr[4]_LC_675, uart_frame_decoder.source_CH1data_esr[5]_LC_676, uart_frame_decoder.source_CH1data_esr[6]_LC_677}
+ble_pack uart_frame_decoder.source_CH2data_esr[0]_LC_679 {uart_frame_decoder.source_CH2data_esr[0], uart_frame_decoder.source_CH2data_esr_0_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH2data_esr[1]_LC_680 {uart_frame_decoder.source_CH2data_esr[1], uart_frame_decoder.source_CH2data_esr_1_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH2data_esr[2]_LC_681 {uart_frame_decoder.source_CH2data_esr[2], uart_frame_decoder.source_CH2data_esr_2_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH2data_esr[3]_LC_682 {uart_frame_decoder.source_CH2data_esr[3], uart_frame_decoder.source_CH2data_esr_3_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH2data_esr[4]_LC_683 {uart_frame_decoder.source_CH2data_esr[4], uart_frame_decoder.source_CH2data_esr_4_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH2data_esr[5]_LC_684 {uart_frame_decoder.source_CH2data_esr[5], uart_frame_decoder.source_CH2data_esr_5_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH2data_esr[6]_LC_685 {uart_frame_decoder.source_CH2data_esr[6], uart_frame_decoder.source_CH2data_esr_6_THRU_LUT4_0}
+clb_pack PLB_108 {uart_frame_decoder.source_CH2data_esr[0]_LC_679, uart_frame_decoder.source_CH2data_esr[1]_LC_680, uart_frame_decoder.source_CH2data_esr[2]_LC_681, uart_frame_decoder.source_CH2data_esr[3]_LC_682, uart_frame_decoder.source_CH2data_esr[4]_LC_683, uart_frame_decoder.source_CH2data_esr[5]_LC_684, uart_frame_decoder.source_CH2data_esr[6]_LC_685}
+ble_pack uart_frame_decoder.source_CH3data_esr[0]_LC_687 {uart_frame_decoder.source_CH3data_esr[0], uart_frame_decoder.source_CH3data_esr_0_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH3data_esr[1]_LC_688 {uart_frame_decoder.source_CH3data_esr[1], uart_frame_decoder.source_CH3data_esr_1_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH3data_esr[2]_LC_689 {uart_frame_decoder.source_CH3data_esr[2], uart_frame_decoder.source_CH3data_esr_2_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH3data_esr[3]_LC_690 {uart_frame_decoder.source_CH3data_esr[3], uart_frame_decoder.source_CH3data_esr_3_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH3data_esr[4]_LC_691 {uart_frame_decoder.source_CH3data_esr[4], uart_frame_decoder.source_CH3data_esr_4_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH3data_esr[5]_LC_692 {uart_frame_decoder.source_CH3data_esr[5], uart_frame_decoder.source_CH3data_esr_5_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH3data_esr[6]_LC_693 {uart_frame_decoder.source_CH3data_esr[6], uart_frame_decoder.source_CH3data_esr_6_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH3data_esr[7]_LC_694 {uart_frame_decoder.source_CH3data_esr[7], uart_frame_decoder.source_CH3data_esr_7_THRU_LUT4_0}
+clb_pack PLB_109 {uart_frame_decoder.source_CH3data_esr[0]_LC_687, uart_frame_decoder.source_CH3data_esr[1]_LC_688, uart_frame_decoder.source_CH3data_esr[2]_LC_689, uart_frame_decoder.source_CH3data_esr[3]_LC_690, uart_frame_decoder.source_CH3data_esr[4]_LC_691, uart_frame_decoder.source_CH3data_esr[5]_LC_692, uart_frame_decoder.source_CH3data_esr[6]_LC_693, uart_frame_decoder.source_CH3data_esr[7]_LC_694}
+ble_pack uart_frame_decoder.source_CH4data_esr[0]_LC_695 {uart_frame_decoder.source_CH4data_esr[0], uart_frame_decoder.source_CH4data_esr_0_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH4data_esr[1]_LC_696 {uart_frame_decoder.source_CH4data_esr[1], uart_frame_decoder.source_CH4data_esr_1_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH4data_esr[2]_LC_697 {uart_frame_decoder.source_CH4data_esr[2], uart_frame_decoder.source_CH4data_esr_2_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH4data_esr[3]_LC_698 {uart_frame_decoder.source_CH4data_esr[3], uart_frame_decoder.source_CH4data_esr_3_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH4data_esr[4]_LC_699 {uart_frame_decoder.source_CH4data_esr[4], uart_frame_decoder.source_CH4data_esr_4_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH4data_esr[5]_LC_700 {uart_frame_decoder.source_CH4data_esr[5], uart_frame_decoder.source_CH4data_esr_5_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH4data_esr[6]_LC_701 {uart_frame_decoder.source_CH4data_esr[6], uart_frame_decoder.source_CH4data_esr_6_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_CH4data_esr[7]_LC_702 {uart_frame_decoder.source_CH4data_esr[7], uart_frame_decoder.source_CH4data_esr_7_THRU_LUT4_0}
+clb_pack PLB_110 {uart_frame_decoder.source_CH4data_esr[0]_LC_695, uart_frame_decoder.source_CH4data_esr[1]_LC_696, uart_frame_decoder.source_CH4data_esr[2]_LC_697, uart_frame_decoder.source_CH4data_esr[3]_LC_698, uart_frame_decoder.source_CH4data_esr[4]_LC_699, uart_frame_decoder.source_CH4data_esr[5]_LC_700, uart_frame_decoder.source_CH4data_esr[6]_LC_701, uart_frame_decoder.source_CH4data_esr[7]_LC_702}
+ble_pack uart_frame_decoder.source_offset1data_esr[0]_LC_703 {uart_frame_decoder.source_offset1data_esr[0], uart_frame_decoder.source_offset1data_esr_0_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset1data_esr[1]_LC_704 {uart_frame_decoder.source_offset1data_esr[1], uart_frame_decoder.source_offset1data_esr_1_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset1data_esr[2]_LC_705 {uart_frame_decoder.source_offset1data_esr[2], uart_frame_decoder.source_offset1data_esr_2_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset1data_esr[3]_LC_706 {uart_frame_decoder.source_offset1data_esr[3], uart_frame_decoder.source_offset1data_esr_3_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset1data_esr[4]_LC_707 {uart_frame_decoder.source_offset1data_esr[4], uart_frame_decoder.source_offset1data_esr_4_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset1data_esr[5]_LC_708 {uart_frame_decoder.source_offset1data_esr[5], uart_frame_decoder.source_offset1data_esr_5_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset1data_esr[6]_LC_709 {uart_frame_decoder.source_offset1data_esr[6], uart_frame_decoder.source_offset1data_esr_6_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset1data_esr[7]_LC_710 {uart_frame_decoder.source_offset1data_esr[7], uart_frame_decoder.source_offset1data_esr_7_THRU_LUT4_0}
+clb_pack PLB_111 {uart_frame_decoder.source_offset1data_esr[0]_LC_703, uart_frame_decoder.source_offset1data_esr[1]_LC_704, uart_frame_decoder.source_offset1data_esr[2]_LC_705, uart_frame_decoder.source_offset1data_esr[3]_LC_706, uart_frame_decoder.source_offset1data_esr[4]_LC_707, uart_frame_decoder.source_offset1data_esr[5]_LC_708, uart_frame_decoder.source_offset1data_esr[6]_LC_709, uart_frame_decoder.source_offset1data_esr[7]_LC_710}
+ble_pack uart_frame_decoder.source_offset2data_esr[0]_LC_711 {uart_frame_decoder.source_offset2data_esr[0], uart_frame_decoder.source_offset2data_esr_0_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset2data_esr[1]_LC_712 {uart_frame_decoder.source_offset2data_esr[1], uart_frame_decoder.source_offset2data_esr_1_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset2data_esr[2]_LC_713 {uart_frame_decoder.source_offset2data_esr[2], uart_frame_decoder.source_offset2data_esr_2_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset2data_esr[3]_LC_714 {uart_frame_decoder.source_offset2data_esr[3], uart_frame_decoder.source_offset2data_esr_3_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset2data_esr[4]_LC_715 {uart_frame_decoder.source_offset2data_esr[4], uart_frame_decoder.source_offset2data_esr_4_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset2data_esr[5]_LC_716 {uart_frame_decoder.source_offset2data_esr[5], uart_frame_decoder.source_offset2data_esr_5_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset2data_esr[6]_LC_717 {uart_frame_decoder.source_offset2data_esr[6], uart_frame_decoder.source_offset2data_esr_6_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset2data_esr[7]_LC_718 {uart_frame_decoder.source_offset2data_esr[7], uart_frame_decoder.source_offset2data_esr_7_THRU_LUT4_0}
+clb_pack PLB_112 {uart_frame_decoder.source_offset2data_esr[0]_LC_711, uart_frame_decoder.source_offset2data_esr[1]_LC_712, uart_frame_decoder.source_offset2data_esr[2]_LC_713, uart_frame_decoder.source_offset2data_esr[3]_LC_714, uart_frame_decoder.source_offset2data_esr[4]_LC_715, uart_frame_decoder.source_offset2data_esr[5]_LC_716, uart_frame_decoder.source_offset2data_esr[6]_LC_717, uart_frame_decoder.source_offset2data_esr[7]_LC_718}
+ble_pack uart_frame_decoder.source_offset3data_esr[0]_LC_719 {uart_frame_decoder.source_offset3data_esr[0], uart_frame_decoder.source_offset3data_esr_0_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset3data_esr[1]_LC_720 {uart_frame_decoder.source_offset3data_esr[1], uart_frame_decoder.source_offset3data_esr_1_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset3data_esr[2]_LC_721 {uart_frame_decoder.source_offset3data_esr[2], uart_frame_decoder.source_offset3data_esr_2_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset3data_esr[3]_LC_722 {uart_frame_decoder.source_offset3data_esr[3], uart_frame_decoder.source_offset3data_esr_3_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset3data_esr[4]_LC_723 {uart_frame_decoder.source_offset3data_esr[4], uart_frame_decoder.source_offset3data_esr_4_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset3data_esr[5]_LC_724 {uart_frame_decoder.source_offset3data_esr[5], uart_frame_decoder.source_offset3data_esr_5_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset3data_esr[6]_LC_725 {uart_frame_decoder.source_offset3data_esr[6], uart_frame_decoder.source_offset3data_esr_6_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset3data_esr[7]_LC_726 {uart_frame_decoder.source_offset3data_esr[7], uart_frame_decoder.source_offset3data_esr_7_THRU_LUT4_0}
+clb_pack PLB_113 {uart_frame_decoder.source_offset3data_esr[0]_LC_719, uart_frame_decoder.source_offset3data_esr[1]_LC_720, uart_frame_decoder.source_offset3data_esr[2]_LC_721, uart_frame_decoder.source_offset3data_esr[3]_LC_722, uart_frame_decoder.source_offset3data_esr[4]_LC_723, uart_frame_decoder.source_offset3data_esr[5]_LC_724, uart_frame_decoder.source_offset3data_esr[6]_LC_725, uart_frame_decoder.source_offset3data_esr[7]_LC_726}
+ble_pack uart_frame_decoder.source_offset4data_esr[0]_LC_727 {uart_frame_decoder.source_offset4data_esr[0], uart_frame_decoder.source_offset4data_esr_0_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset4data_esr[1]_LC_728 {uart_frame_decoder.source_offset4data_esr[1], uart_frame_decoder.source_offset4data_esr_1_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset4data_esr[2]_LC_729 {uart_frame_decoder.source_offset4data_esr[2], uart_frame_decoder.source_offset4data_esr_2_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset4data_esr[3]_LC_730 {uart_frame_decoder.source_offset4data_esr[3], uart_frame_decoder.source_offset4data_esr_3_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset4data_esr[4]_LC_731 {uart_frame_decoder.source_offset4data_esr[4], uart_frame_decoder.source_offset4data_esr_4_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset4data_esr[5]_LC_732 {uart_frame_decoder.source_offset4data_esr[5], uart_frame_decoder.source_offset4data_esr_5_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset4data_esr[6]_LC_733 {uart_frame_decoder.source_offset4data_esr[6], uart_frame_decoder.source_offset4data_esr_6_THRU_LUT4_0}
+ble_pack uart_frame_decoder.source_offset4data_esr[7]_LC_734 {uart_frame_decoder.source_offset4data_esr[7], uart_frame_decoder.source_offset4data_esr_7_THRU_LUT4_0}
+clb_pack PLB_114 {uart_frame_decoder.source_offset4data_esr[0]_LC_727, uart_frame_decoder.source_offset4data_esr[1]_LC_728, uart_frame_decoder.source_offset4data_esr[2]_LC_729, uart_frame_decoder.source_offset4data_esr[3]_LC_730, uart_frame_decoder.source_offset4data_esr[4]_LC_731, uart_frame_decoder.source_offset4data_esr[5]_LC_732, uart_frame_decoder.source_offset4data_esr[6]_LC_733, uart_frame_decoder.source_offset4data_esr[7]_LC_734}
+ble_pack uart_pc.data_esr[0]_LC_735 {uart_pc.data_esr[0], uart_pc.data_esr_0_THRU_LUT4_0}
+ble_pack uart_pc.data_esr[1]_LC_736 {uart_pc.data_esr[1], uart_pc.data_esr_1_THRU_LUT4_0}
+ble_pack uart_pc.data_esr[2]_LC_737 {uart_pc.data_esr[2], uart_pc.data_esr_2_THRU_LUT4_0}
+ble_pack uart_pc.data_esr[3]_LC_738 {uart_pc.data_esr[3], uart_pc.data_esr_3_THRU_LUT4_0}
+ble_pack uart_pc.data_esr[4]_LC_739 {uart_pc.data_esr[4], uart_pc.data_esr_4_THRU_LUT4_0}
+ble_pack uart_pc.data_esr[5]_LC_740 {uart_pc.data_esr[5], uart_pc.data_esr_5_THRU_LUT4_0}
+ble_pack uart_pc.data_esr[6]_LC_741 {uart_pc.data_esr[6], uart_pc.data_esr_6_THRU_LUT4_0}
+ble_pack uart_pc.data_esr[7]_LC_742 {uart_pc.data_esr[7], uart_pc.data_esr_7_THRU_LUT4_0}
+clb_pack PLB_115 {uart_pc.data_esr[0]_LC_735, uart_pc.data_esr[1]_LC_736, uart_pc.data_esr[2]_LC_737, uart_pc.data_esr[3]_LC_738, uart_pc.data_esr[4]_LC_739, uart_pc.data_esr[5]_LC_740, uart_pc.data_esr[6]_LC_741, uart_pc.data_esr[7]_LC_742}

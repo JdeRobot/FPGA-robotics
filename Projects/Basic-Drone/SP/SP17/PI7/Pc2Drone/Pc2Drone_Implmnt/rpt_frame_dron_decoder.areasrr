@@ -1,0 +1,35 @@
+#### START OF AREA REPORT #####[
+
+Part:			ICE40UP5KSG48 (Lattice)
+
+----------------------------------------------------------------------------------
+########   Utilization report for  Top level view:   frame_dron_decoder   ########
+==================================================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     73                 100 %                
+==================================================
+Total SEQUENTIAL ELEMENTS in the block frame_dron_decoder:	73 (28.40 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name       Total elements     Utilization     Notes
+---------------------------------------------------
+LUTS       107                100 %                
+CARRYS     15                 100 %                
+===================================================
+Total COMBINATIONAL LOGIC in the block frame_dron_decoder:	122 (47.47 % Utilization)
+
+
+IO PADS
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     60                 100 %                
+=================================================
+Total IO PADS in the block frame_dron_decoder:	60 (23.35 % Utilization)
+
+
+##### END OF AREA REPORT #####]
+

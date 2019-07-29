@@ -1,0 +1,27 @@
+---------------------------------------
+Resource Usage Report for ppm_encoder 
+
+Mapping to part: ice40up5ksg48
+Cell usage:
+SB_CARRY        58 uses
+SB_DFF          22 uses
+SB_DFFE         27 uses
+SB_DFFSR        33 uses
+SB_DFFSS        1 use
+SB_GB           2 uses
+SB_LUT4         148 uses
+
+I/O ports: 3
+I/O primitives: 3
+SB_GB_IO       1 use
+SB_IO          2 uses
+
+I/O Register bits:                  0
+Register bits not including I/Os:   83 (1%)
+
+@S |Mapping Summary:
+Total  LUTs: 148 (2%)
+
+Distribution of All Consumed LUTs = LUT4 
+Distribution of All Consumed Luts 148 = 148 
+

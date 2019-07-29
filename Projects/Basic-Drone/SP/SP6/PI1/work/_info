@@ -1,0 +1,57 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_pro/17.0
+vKeyPress
+!s110 1550658211
+!i10b 1
+!s100 WzV^:ohaK>l<lX;7C;dhK2
+I6F>lYagEjV[@JEhKV`4Yg0
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+Z1 dC:/Users/Eloy_WU1/Desktop/KeyPress
+w1550658189
+8KeyPress.v
+FKeyPress.v
+L0 15
+Z2 OV;L;10.5c;63
+r1
+!s85 0
+31
+!s108 1550658211.000000
+!s107 KeyPress.v|
+!s90 -reportprogress|300|+incdir+../hdl|-work|work|-incr|KeyPress.v|
+!i113 1
+Z3 o-work work
+Z4 !s92 +incdir+../hdl -work work
+Z5 tCvgOpt 0
+n@key@press
+vKeyPress_tb
+!s10a 1550657877
+!s110 1550657879
+!i10b 1
+!s100 aW;Ggc@k<I`PJ1o4o3U2T2
+ITZ<_0`@5]HE^XFDWIen_A1
+R0
+R1
+w1550657877
+8KeyPress_tb.v
+FKeyPress_tb.v
+L0 21
+R2
+r1
+!s85 0
+31
+!s108 1550657879.000000
+!s107 KeyPress_tb.v|
+!s90 -reportprogress|300|+incdir+../hdl|-work|work|-incr|KeyPress_tb.v|
+!i113 1
+R3
+R4
+R5
+n@key@press_tb

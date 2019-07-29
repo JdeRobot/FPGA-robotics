@@ -1,0 +1,22 @@
+@P:  Worst Slack : -2.906
+@P:  Pc2drone_pll|PLLOUTCORE_derived_clock - Estimated Frequency : 51.6 MHz
+@P:  Pc2drone_pll|PLLOUTCORE_derived_clock - Requested Frequency : 60.7 MHz
+@P:  Pc2drone_pll|PLLOUTCORE_derived_clock - Estimated Period : 19.372
+@P:  Pc2drone_pll|PLLOUTCORE_derived_clock - Requested Period : 16.466
+@P:  Pc2drone_pll|PLLOUTCORE_derived_clock - Slack : -2.906
+@P:  Pc2drone|clk_system - Estimated Frequency : NA
+@P:  Pc2drone|clk_system - Requested Frequency : 60.7 MHz
+@P:  Pc2drone|clk_system - Estimated Period : NA
+@P:  Pc2drone|clk_system - Requested Period : 16.466
+@P:  Pc2drone|clk_system - Slack : NA
+@P:  System - Estimated Frequency : 1.0 MHz
+@P:  System - Requested Frequency : 1.0 MHz
+@P:  System - Estimated Period : 983.689
+@P:  System - Requested Period : 1000.000
+@P:  System - Slack : 16.311
+@P: Pc2drone Part : ice40up5ksg48
+@P: Pc2drone I/O primitives : 11
+@P: Pc2drone I/O Register bits : 0
+@P: Pc2drone Register bits (Non I/O) : 971 (18%)
+@P: Pc2drone Total Luts : 1871 (35%)
+@P:  CPU Time : 0h:00m:15s

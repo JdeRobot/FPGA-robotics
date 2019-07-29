@@ -1,0 +1,70 @@
+* ******************************************************************************
+
+* iCEcube Pin Table
+
+* Version:            2017.08.27940
+
+* Build Date:         Sep 11 2017 16:52:36
+
+* File Generated:     Mar 12 2019 01:42:01
+
+* Purpose:            Detailed IO and package pin info
+
+* Copyright (C) 2006-2010 by Lattice Semiconductor Corp. All rights reserved.
+
+* ******************************************************************************
+
+Device, iCE40UP5K
+Package, SG48
+
+Pin Number, Pin Type Name, Signal Name, Direction, Global Buffer, IO Standard, Pull Up, Pullup resistor, Weak Pull Up, IO Function, IO Bank, Drive Strength 
+---------------, ---------------, ---------------, ---------------, ---------------, ---------------, ---------------, ---------------, ---------------, ---------------, 
+1, VCCIO_2, not used, , , , , , bottomBank, 
+2, PIO, debug_state_output[0], Output, , SB_LVCMOS, No Pull Up, , , Simple Output, bottomBank, x1
+3, PIO, not used, , , , , , bottomBank, 
+4, PIO, uart_input, Input, , SB_LVCMOS, No Pull Up, , , Simple Input, bottomBank, x1
+5, VCC, not used, , , , , , UnknownBank, 
+6, PIO, uart_input_debug, Output, , SB_LVCMOS, No Pull Up, , , Simple Output, bottomBank, x1
+7, CDONE, not used, , , , , , bottomBank, 
+8, CRESET_B, not used, , , , , , bottomBank, 
+9, PIO, debug_state_output[1], Output, , SB_LVCMOS, No Pull Up, , , Simple Output, bottomBank, x1
+10, PIO, debug_state_output[3], Output, , SB_LVCMOS, No Pull Up, , , Simple Output, bottomBank, x1
+11, PIO, not used, , , , , , bottomBank, 
+12, PIO, not used, , , , , , bottomBank, 
+13, PIO, not used, , , , , , bottomBank, 
+14, SPI_SO, not used, , , , , , bottomBank, 
+15, SPI_SCK, not used, , , , , , bottomBank, 
+16, SPI_SS_B, not used, , , , , , bottomBank, 
+17, SPI_SI, not used, , , , , , bottomBank, 
+18, PIO, frame_decoder_dv, Output, , SB_LVCMOS, No Pull Up, , , Simple Output, bottomBank, x1
+19, PIO, not used, , , , , , bottomBank, 
+20, PIO_GBIN, not used, , , , , , bottomBank, 
+21, PIO, not used, , , , , , bottomBank, 
+22, VDDIO_SPI, not used, , , , , , bottomBank, 
+23, PIO_I3C, not used, , , , , , topBank, 
+24, VPP, not used, , , , , , topBank, 
+25, PIO_I3C, not used, , , , , , topBank, 
+26, PIO, not used, , , , , , topBank, 
+27, PIO, not used, , , , , , topBank, 
+28, PIO, not used, , , , , , topBank, 
+29, AVDD_TOP, not used, , , , , , UnknownBank, 
+30, VCC, not used, , , , , , UnknownBank, 
+31, PIO, not used, , , , , , topBank, 
+32, PIO, not used, , , , , , topBank, 
+33, VCCIO_0, not used, , , , , , topBank, 
+34, PIO, not used, , , , , , topBank, 
+35, PIO_GBIN, clk_system, Input, glb Buff, SB_LVCMOS, No Pull Up, , , Simple Input, topBank, x1
+36, PIO, not used, , , , , , topBank, 
+37, PIO_GBIN, not used, , , , , , topBank, 
+38, PIO, not used, , , , , , topBank, 
+39, PIO_RGB, not used, , , , , , topBank, 
+40, PIO_RGB, not used, , , , , , topBank, 
+41, PIO_RGB, not used, , , , , , topBank, 
+42, PIO, debug_state_output[4], Output, , SB_LVCMOS, No Pull Up, , , Simple Output, topBank, x1
+43, PIO, not used, , , , , , topBank, 
+44, PIO_GBIN, not used, , , , , , bottomBank, 
+45, PIO, debug_sinkdatavalid_output, Output, , SB_LVCMOS, No Pull Up, , , Simple Output, bottomBank, x1
+46, PIO, debug_state_output[2], Output, , SB_LVCMOS, No Pull Up, , , Simple Output, bottomBank, x1
+47, PIO, uart_data_rdy, Output, , SB_LVCMOS, No Pull Up, , , Simple Output, bottomBank, x1
+48, PIO, not used, , , , , , bottomBank, 
+Total Number of Used Pins, 11

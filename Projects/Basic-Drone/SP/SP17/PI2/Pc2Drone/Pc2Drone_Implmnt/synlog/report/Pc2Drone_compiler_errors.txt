@@ -1,0 +1,2 @@
+@E: CS153 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":154:11:154:11|Can't mix blocking and non-blocking assignments to a variable
+

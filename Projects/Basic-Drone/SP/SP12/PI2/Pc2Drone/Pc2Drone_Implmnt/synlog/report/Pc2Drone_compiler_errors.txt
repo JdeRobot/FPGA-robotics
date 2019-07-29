@@ -1,0 +1,2 @@
+@E: CG906 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP12\PI2\Pc2Drone\frame_decoder.v":141:4:141:13|Reference to unknown variable S_OFF4_ADQ.
+

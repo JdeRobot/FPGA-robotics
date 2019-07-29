@@ -1,0 +1,287 @@
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_fast_RNIAP4S1_0_LC_7_22_0 { ppm_encoder1.CHOOSE_CHANNEL_fast_RNIAP4S1[0] }
+ble_pack ppm_encoder1.PPM_STATE_RNILLSE4_0_LC_7_22_1 { ppm_encoder1.PPM_STATE_RNILLSE4[0] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_fast_2_LC_7_22_5 { ppm_encoder1.CHOOSE_CHANNEL_cnst_3_2_.N_156_0_i_fast, ppm_encoder1.CHOOSE_CHANNEL_fast[2] }
+ble_pack ppm_encoder1.PPM_STATE_RNO_0_0_LC_7_22_7 { ppm_encoder1.PPM_STATE_RNO_0[0] }
+clb_pack LT_7_22 { ppm_encoder1.CHOOSE_CHANNEL_fast_RNIAP4S1_0_LC_7_22_0, ppm_encoder1.PPM_STATE_RNILLSE4_0_LC_7_22_1, ppm_encoder1.CHOOSE_CHANNEL_fast_2_LC_7_22_5, ppm_encoder1.PPM_STATE_RNO_0_0_LC_7_22_7 }
+set_location LT_7_22 7 22
+ble_pack ppm_encoder1.init_pulses_7_LC_7_23_0 { ppm_encoder1.init_pulses_RNO[7], ppm_encoder1.init_pulses[7] }
+ble_pack ppm_encoder1.init_pulses_9_LC_7_23_2 { ppm_encoder1.init_pulses_RNO[9], ppm_encoder1.init_pulses[9] }
+ble_pack ppm_encoder1.PPM_STATE_RNIH6OE8_0_LC_7_23_4 { ppm_encoder1.PPM_STATE_RNIH6OE8[0] }
+ble_pack ppm_encoder1.init_pulses_3_LC_7_23_7 { ppm_encoder1.init_pulses_RNO[3], ppm_encoder1.init_pulses[3] }
+clb_pack LT_7_23 { ppm_encoder1.init_pulses_7_LC_7_23_0, ppm_encoder1.init_pulses_9_LC_7_23_2, ppm_encoder1.PPM_STATE_RNIH6OE8_0_LC_7_23_4, ppm_encoder1.init_pulses_3_LC_7_23_7 }
+set_location LT_7_23 7 23
+ble_pack ppm_encoder1.init_pulses_4_LC_7_24_5 { ppm_encoder1.init_pulses_RNO[4], ppm_encoder1.init_pulses[4] }
+clb_pack LT_7_24 { ppm_encoder1.init_pulses_4_LC_7_24_5 }
+set_location LT_7_24 7 24
+ble_pack ppm_encoder1.init_pulses_10_LC_7_25_2 { ppm_encoder1.init_pulses_RNO[10], ppm_encoder1.init_pulses[10] }
+ble_pack ppm_encoder1.init_pulses_11_LC_7_25_3 { ppm_encoder1.init_pulses_RNO[11], ppm_encoder1.init_pulses[11] }
+ble_pack ppm_encoder1.init_pulses_13_LC_7_25_4 { ppm_encoder1.init_pulses_RNO[13], ppm_encoder1.init_pulses[13] }
+ble_pack ppm_encoder1.init_pulses_14_LC_7_25_6 { ppm_encoder1.init_pulses_RNO[14], ppm_encoder1.init_pulses[14] }
+ble_pack ppm_encoder1.init_pulses_15_LC_7_25_7 { ppm_encoder1.init_pulses_RNO[15], ppm_encoder1.init_pulses[15] }
+clb_pack LT_7_25 { ppm_encoder1.init_pulses_10_LC_7_25_2, ppm_encoder1.init_pulses_11_LC_7_25_3, ppm_encoder1.init_pulses_13_LC_7_25_4, ppm_encoder1.init_pulses_14_LC_7_25_6, ppm_encoder1.init_pulses_15_LC_7_25_7 }
+set_location LT_7_25 7 25
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_fast_3_LC_8_21_1 { ppm_encoder1.CHOOSE_CHANNEL_cnst_3_2_.N_7_i_fast, ppm_encoder1.CHOOSE_CHANNEL_fast[3] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_fast_0_LC_8_21_4 { ppm_encoder1.CHOOSE_CHANNEL_fast_RNO[0], ppm_encoder1.CHOOSE_CHANNEL_fast[0] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_fast_1_LC_8_21_7 { ppm_encoder1.CHOOSE_CHANNEL_fast_RNO[1], ppm_encoder1.CHOOSE_CHANNEL_fast[1] }
+clb_pack LT_8_21 { ppm_encoder1.CHOOSE_CHANNEL_fast_3_LC_8_21_1, ppm_encoder1.CHOOSE_CHANNEL_fast_0_LC_8_21_4, ppm_encoder1.CHOOSE_CHANNEL_fast_1_LC_8_21_7 }
+set_location LT_8_21 8 21
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_fast_RNIAP4S1_1_0_LC_8_22_0 { ppm_encoder1.CHOOSE_CHANNEL_fast_RNIAP4S1_1[0] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_fast_RNIAP4S1_0_0_LC_8_22_1 { ppm_encoder1.CHOOSE_CHANNEL_fast_RNIAP4S1_0[0] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_fast_RNISGRV3_0_LC_8_22_2 { ppm_encoder1.CHOOSE_CHANNEL_fast_RNISGRV3[0] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_fast_RNISGRV3_0_0_LC_8_22_3 { ppm_encoder1.CHOOSE_CHANNEL_fast_RNISGRV3_0[0] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_fast_RNIMD2U_1_LC_8_22_4 { ppm_encoder1.CHOOSE_CHANNEL_fast_RNIMD2U[1] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_fast_RNIINM32_2_LC_8_22_5 { ppm_encoder1.CHOOSE_CHANNEL_fast_RNIINM32[2] }
+ble_pack ppm_encoder1.PPM_STATE_1_LC_8_22_6 { ppm_encoder1.PPM_STATE_RNO[1], ppm_encoder1.PPM_STATE[1] }
+ble_pack ppm_encoder1.PPM_STATE_RNIH6OE8_0_0_LC_8_22_7 { ppm_encoder1.PPM_STATE_RNIH6OE8_0[0] }
+clb_pack LT_8_22 { ppm_encoder1.CHOOSE_CHANNEL_fast_RNIAP4S1_1_0_LC_8_22_0, ppm_encoder1.CHOOSE_CHANNEL_fast_RNIAP4S1_0_0_LC_8_22_1, ppm_encoder1.CHOOSE_CHANNEL_fast_RNISGRV3_0_LC_8_22_2, ppm_encoder1.CHOOSE_CHANNEL_fast_RNISGRV3_0_0_LC_8_22_3, ppm_encoder1.CHOOSE_CHANNEL_fast_RNIMD2U_1_LC_8_22_4, ppm_encoder1.CHOOSE_CHANNEL_fast_RNIINM32_2_LC_8_22_5, ppm_encoder1.PPM_STATE_1_LC_8_22_6, ppm_encoder1.PPM_STATE_RNIH6OE8_0_0_LC_8_22_7 }
+set_location LT_8_22 8 22
+ble_pack ppm_encoder1.init_pulses_RNO_0_0_LC_8_23_0 { ppm_encoder1.init_pulses_RNO_0[0], ppm_encoder1.un1_init_pulses_cry_0_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_1_LC_8_23_1 { ppm_encoder1.init_pulses_RNO_0[1], ppm_encoder1.un1_init_pulses_cry_1_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_2_LC_8_23_2 { ppm_encoder1.init_pulses_RNO_0[2], ppm_encoder1.un1_init_pulses_cry_2_0_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_3_LC_8_23_3 { ppm_encoder1.init_pulses_RNO_0[3], ppm_encoder1.un1_init_pulses_cry_3_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_4_LC_8_23_4 { ppm_encoder1.init_pulses_RNO_0[4], ppm_encoder1.un1_init_pulses_cry_4_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_5_LC_8_23_5 { ppm_encoder1.init_pulses_RNO_0[5], ppm_encoder1.un1_init_pulses_cry_5_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_6_LC_8_23_6 { ppm_encoder1.init_pulses_RNO_0[6], ppm_encoder1.un1_init_pulses_cry_6_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_7_LC_8_23_7 { ppm_encoder1.init_pulses_RNO_0[7], ppm_encoder1.un1_init_pulses_cry_7_c }
+clb_pack LT_8_23 { ppm_encoder1.init_pulses_RNO_0_0_LC_8_23_0, ppm_encoder1.init_pulses_RNO_0_1_LC_8_23_1, ppm_encoder1.init_pulses_RNO_0_2_LC_8_23_2, ppm_encoder1.init_pulses_RNO_0_3_LC_8_23_3, ppm_encoder1.init_pulses_RNO_0_4_LC_8_23_4, ppm_encoder1.init_pulses_RNO_0_5_LC_8_23_5, ppm_encoder1.init_pulses_RNO_0_6_LC_8_23_6, ppm_encoder1.init_pulses_RNO_0_7_LC_8_23_7 }
+set_location LT_8_23 8 23
+ble_pack ppm_encoder1.init_pulses_RNO_0_8_LC_8_24_0 { ppm_encoder1.init_pulses_RNO_0[8], ppm_encoder1.un1_init_pulses_cry_8_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_9_LC_8_24_1 { ppm_encoder1.init_pulses_RNO_0[9], ppm_encoder1.un1_init_pulses_cry_9_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_10_LC_8_24_2 { ppm_encoder1.init_pulses_RNO_0[10], ppm_encoder1.un1_init_pulses_cry_10_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_11_LC_8_24_3 { ppm_encoder1.init_pulses_RNO_0[11], ppm_encoder1.un1_init_pulses_cry_11_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_12_LC_8_24_4 { ppm_encoder1.init_pulses_RNO_0[12], ppm_encoder1.un1_init_pulses_cry_12_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_13_LC_8_24_5 { ppm_encoder1.init_pulses_RNO_0[13], ppm_encoder1.un1_init_pulses_cry_13_0_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_14_LC_8_24_6 { ppm_encoder1.init_pulses_RNO_0[14], ppm_encoder1.un1_init_pulses_cry_14_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_15_LC_8_24_7 { ppm_encoder1.init_pulses_RNO_0[15], ppm_encoder1.un1_init_pulses_cry_15_c }
+clb_pack LT_8_24 { ppm_encoder1.init_pulses_RNO_0_8_LC_8_24_0, ppm_encoder1.init_pulses_RNO_0_9_LC_8_24_1, ppm_encoder1.init_pulses_RNO_0_10_LC_8_24_2, ppm_encoder1.init_pulses_RNO_0_11_LC_8_24_3, ppm_encoder1.init_pulses_RNO_0_12_LC_8_24_4, ppm_encoder1.init_pulses_RNO_0_13_LC_8_24_5, ppm_encoder1.init_pulses_RNO_0_14_LC_8_24_6, ppm_encoder1.init_pulses_RNO_0_15_LC_8_24_7 }
+set_location LT_8_24 8 24
+ble_pack ppm_encoder1.init_pulses_RNO_0_16_LC_8_25_0 { ppm_encoder1.init_pulses_RNO_0[16], ppm_encoder1.un1_init_pulses_cry_16_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_17_LC_8_25_1 { ppm_encoder1.init_pulses_RNO_0[17], ppm_encoder1.un1_init_pulses_cry_17_c }
+ble_pack ppm_encoder1.init_pulses_RNO_0_18_LC_8_25_2 { ppm_encoder1.init_pulses_RNO_0[18] }
+ble_pack ppm_encoder1.init_pulses_18_LC_8_25_3 { ppm_encoder1.init_pulses_RNO[18], ppm_encoder1.init_pulses[18] }
+ble_pack ppm_encoder1.init_pulses_16_LC_8_25_4 { ppm_encoder1.init_pulses_RNO[16], ppm_encoder1.init_pulses[16] }
+ble_pack ppm_encoder1.init_pulses_17_LC_8_25_5 { ppm_encoder1.init_pulses_RNO[17], ppm_encoder1.init_pulses[17] }
+ble_pack ppm_encoder1.init_pulses_12_LC_8_25_7 { ppm_encoder1.init_pulses_RNO[12], ppm_encoder1.init_pulses[12] }
+clb_pack LT_8_25 { ppm_encoder1.init_pulses_RNO_0_16_LC_8_25_0, ppm_encoder1.init_pulses_RNO_0_17_LC_8_25_1, ppm_encoder1.init_pulses_RNO_0_18_LC_8_25_2, ppm_encoder1.init_pulses_18_LC_8_25_3, ppm_encoder1.init_pulses_16_LC_8_25_4, ppm_encoder1.init_pulses_17_LC_8_25_5, ppm_encoder1.init_pulses_12_LC_8_25_7 }
+set_location LT_8_25 8 25
+ble_pack ppm_encoder1.PPM_STATE_0_LC_9_22_2 { ppm_encoder1.PPM_STATE_RNO[0], ppm_encoder1.PPM_STATE[0] }
+clb_pack LT_9_22 { ppm_encoder1.PPM_STATE_0_LC_9_22_2 }
+set_location LT_9_22 9 22
+ble_pack ppm_encoder1.init_pulses_6_LC_9_23_0 { ppm_encoder1.init_pulses_RNO[6], ppm_encoder1.init_pulses[6] }
+ble_pack ppm_encoder1.init_pulses_1_LC_9_23_1 { ppm_encoder1.init_pulses_RNO[1], ppm_encoder1.init_pulses[1] }
+ble_pack ppm_encoder1.init_pulses_0_LC_9_23_2 { ppm_encoder1.init_pulses_RNO[0], ppm_encoder1.init_pulses[0] }
+ble_pack ppm_encoder1.PPM_STATE_RNI13JM_1_0_LC_9_23_4 { ppm_encoder1.PPM_STATE_RNI13JM_1[0] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_RNIHVGU1_2_LC_9_23_5 { ppm_encoder1.CHOOSE_CHANNEL_RNIHVGU1[2] }
+ble_pack ppm_encoder1.init_pulses_2_LC_9_23_6 { ppm_encoder1.init_pulses_RNO[2], ppm_encoder1.init_pulses[2] }
+clb_pack LT_9_23 { ppm_encoder1.init_pulses_6_LC_9_23_0, ppm_encoder1.init_pulses_1_LC_9_23_1, ppm_encoder1.init_pulses_0_LC_9_23_2, ppm_encoder1.PPM_STATE_RNI13JM_1_0_LC_9_23_4, ppm_encoder1.CHOOSE_CHANNEL_RNIHVGU1_2_LC_9_23_5, ppm_encoder1.init_pulses_2_LC_9_23_6 }
+set_location LT_9_23 9 23
+ble_pack ppm_encoder1.init_pulses_5_LC_9_24_0 { ppm_encoder1.init_pulses_RNO[5], ppm_encoder1.init_pulses[5] }
+ble_pack ppm_encoder1.init_pulses_8_LC_9_24_4 { ppm_encoder1.init_pulses_RNO[8], ppm_encoder1.init_pulses[8] }
+ble_pack CONSTANT_ONE_LUT4_LC_9_24_7 { CONSTANT_ONE_LUT4 }
+clb_pack LT_9_24 { ppm_encoder1.init_pulses_5_LC_9_24_0, ppm_encoder1.init_pulses_8_LC_9_24_4, CONSTANT_ONE_LUT4_LC_9_24_7 }
+set_location LT_9_24 9 24
+ble_pack ppm_encoder1.pulses2count_13_LC_9_25_0 { ppm_encoder1.pulses2count_RNO[13], ppm_encoder1.pulses2count[13] }
+ble_pack ppm_encoder1.pulses2count_15_LC_9_25_2 { ppm_encoder1.pulses2count_RNO[15], ppm_encoder1.pulses2count[15] }
+ble_pack ppm_encoder1.pulses2count_5_LC_9_25_3 { ppm_encoder1.pulses2count_RNO[5], ppm_encoder1.pulses2count[5] }
+ble_pack ppm_encoder1.pulses2count_4_LC_9_25_6 { ppm_encoder1.pulses2count_RNO[4], ppm_encoder1.pulses2count[4] }
+ble_pack ppm_encoder1.pulses2count_17_LC_9_25_7 { ppm_encoder1.pulses2count_RNO[17], ppm_encoder1.pulses2count[17] }
+clb_pack LT_9_25 { ppm_encoder1.pulses2count_13_LC_9_25_0, ppm_encoder1.pulses2count_15_LC_9_25_2, ppm_encoder1.pulses2count_5_LC_9_25_3, ppm_encoder1.pulses2count_4_LC_9_25_6, ppm_encoder1.pulses2count_17_LC_9_25_7 }
+set_location LT_9_25 9 25
+ble_pack ppm_encoder1.pulses2count_18_LC_9_26_3 { ppm_encoder1.pulses2count_RNO[18], ppm_encoder1.pulses2count[18] }
+ble_pack ppm_encoder1.pulses2count_16_LC_9_26_5 { ppm_encoder1.pulses2count_RNO[16], ppm_encoder1.pulses2count[16] }
+clb_pack LT_9_26 { ppm_encoder1.pulses2count_18_LC_9_26_3, ppm_encoder1.pulses2count_16_LC_9_26_5 }
+set_location LT_9_26 9 26
+ble_pack uart1.count_pulses_needed_0_LC_9_28_0 { uart1.count_pulses_needed_RNO[0], uart1.count_pulses_needed[0], uart1.un1_count_pulses_needed_6_cry_0_c }
+ble_pack uart1.count_pulses_needed_1_LC_9_28_1 { uart1.count_pulses_needed_RNO[1], uart1.count_pulses_needed[1], uart1.un1_count_pulses_needed_6_cry_1_c }
+ble_pack uart1.count_pulses_needed_2_LC_9_28_2 { uart1.count_pulses_needed_RNO[2], uart1.count_pulses_needed[2], uart1.un1_count_pulses_needed_6_cry_2_c }
+ble_pack uart1.count_pulses_needed_3_LC_9_28_3 { uart1.count_pulses_needed_RNO[3], uart1.count_pulses_needed[3], uart1.un1_count_pulses_needed_6_cry_3_c }
+ble_pack uart1.count_pulses_needed_4_LC_9_28_4 { uart1.count_pulses_needed_RNO[4], uart1.count_pulses_needed[4], uart1.un1_count_pulses_needed_6_cry_4_c }
+ble_pack uart1.count_pulses_needed_5_LC_9_28_5 { uart1.count_pulses_needed_RNO[5], uart1.count_pulses_needed[5], uart1.un1_count_pulses_needed_6_cry_5_c }
+ble_pack uart1.count_pulses_needed_6_LC_9_28_6 { uart1.count_pulses_needed_RNO[6], uart1.count_pulses_needed[6], uart1.un1_count_pulses_needed_6_cry_6_c }
+ble_pack uart1.count_pulses_needed_7_LC_9_28_7 { uart1.count_pulses_needed_RNO[7], uart1.count_pulses_needed[7], uart1.un1_count_pulses_needed_6_cry_7_c }
+clb_pack LT_9_28 { uart1.count_pulses_needed_0_LC_9_28_0, uart1.count_pulses_needed_1_LC_9_28_1, uart1.count_pulses_needed_2_LC_9_28_2, uart1.count_pulses_needed_3_LC_9_28_3, uart1.count_pulses_needed_4_LC_9_28_4, uart1.count_pulses_needed_5_LC_9_28_5, uart1.count_pulses_needed_6_LC_9_28_6, uart1.count_pulses_needed_7_LC_9_28_7 }
+set_location LT_9_28 9 28
+ble_pack uart1.count_pulses_needed_8_LC_9_29_0 { uart1.count_pulses_needed_RNO[8], uart1.count_pulses_needed[8] }
+clb_pack LT_9_29 { uart1.count_pulses_needed_8_LC_9_29_0 }
+set_location LT_9_29 9 29
+ble_pack ppm_encoder1.pulses2count_9_LC_10_22_5 { ppm_encoder1.pulses2count_RNO[9], ppm_encoder1.pulses2count[9] }
+ble_pack ppm_encoder1.pulses2count_8_LC_10_22_6 { ppm_encoder1.pulses2count_RNO[8], ppm_encoder1.pulses2count[8] }
+clb_pack LT_10_22 { ppm_encoder1.pulses2count_9_LC_10_22_5, ppm_encoder1.pulses2count_8_LC_10_22_6 }
+set_location LT_10_22 10 22
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_RNIMVMJ_0_1_LC_10_23_1 { ppm_encoder1.CHOOSE_CHANNEL_RNIMVMJ_0[1] }
+ble_pack ppm_encoder1.PPM_STATE_RNO_1_0_LC_10_23_3 { ppm_encoder1.PPM_STATE_RNO_1[0] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_RNIN2AA1_0_3_LC_10_23_6 { ppm_encoder1.CHOOSE_CHANNEL_RNIN2AA1_0[3] }
+ble_pack ppm_encoder1.pulses2count_RNO_0_11_LC_10_23_7 { ppm_encoder1.pulses2count_RNO_0[11] }
+clb_pack LT_10_23 { ppm_encoder1.CHOOSE_CHANNEL_RNIMVMJ_0_1_LC_10_23_1, ppm_encoder1.PPM_STATE_RNO_1_0_LC_10_23_3, ppm_encoder1.CHOOSE_CHANNEL_RNIN2AA1_0_3_LC_10_23_6, ppm_encoder1.pulses2count_RNO_0_11_LC_10_23_7 }
+set_location LT_10_23 10 23
+ble_pack ppm_encoder1.pulses2count_10_LC_10_24_0 { ppm_encoder1.pulses2count_RNO[10], ppm_encoder1.pulses2count[10] }
+ble_pack ppm_encoder1.pulses2count_6_LC_10_24_1 { ppm_encoder1.pulses2count_RNO[6], ppm_encoder1.pulses2count[6] }
+ble_pack ppm_encoder1.pulses2count_7_LC_10_24_2 { ppm_encoder1.pulses2count_RNO[7], ppm_encoder1.pulses2count[7] }
+ble_pack ppm_encoder1.pulses2count_14_LC_10_24_3 { ppm_encoder1.pulses2count_RNO[14], ppm_encoder1.pulses2count[14] }
+ble_pack ppm_encoder1.pulses2count_3_LC_10_24_4 { ppm_encoder1.pulses2count_RNO[3], ppm_encoder1.pulses2count[3] }
+ble_pack ppm_encoder1.pulses2count_2_LC_10_24_6 { ppm_encoder1.pulses2count_RNO[2], ppm_encoder1.pulses2count[2] }
+ble_pack ppm_encoder1.pulses2count_11_LC_10_24_7 { ppm_encoder1.pulses2count_RNO[11], ppm_encoder1.pulses2count[11] }
+clb_pack LT_10_24 { ppm_encoder1.pulses2count_10_LC_10_24_0, ppm_encoder1.pulses2count_6_LC_10_24_1, ppm_encoder1.pulses2count_7_LC_10_24_2, ppm_encoder1.pulses2count_14_LC_10_24_3, ppm_encoder1.pulses2count_3_LC_10_24_4, ppm_encoder1.pulses2count_2_LC_10_24_6, ppm_encoder1.pulses2count_11_LC_10_24_7 }
+set_location LT_10_24 10 24
+ble_pack ppm_encoder1.counter11_0_I_15_c_RNO_LC_10_25_0 { ppm_encoder1.counter11_0_I_15_c_RNO }
+ble_pack ppm_encoder1.PPM_STATE_RNO_0_1_LC_10_25_1 { ppm_encoder1.PPM_STATE_RNO_0[1] }
+ble_pack ppm_encoder1.counter11_0_I_45_c_RNO_LC_10_25_5 { ppm_encoder1.counter11_0_I_45_c_RNO }
+ble_pack ppm_encoder1.PPM_STATE_RNI13JM_0_0_LC_10_25_6 { ppm_encoder1.PPM_STATE_RNI13JM_0[0] }
+ble_pack ppm_encoder1.counter11_0_I_51_c_RNO_LC_10_25_7 { ppm_encoder1.counter11_0_I_51_c_RNO }
+clb_pack LT_10_25 { ppm_encoder1.counter11_0_I_15_c_RNO_LC_10_25_0, ppm_encoder1.PPM_STATE_RNO_0_1_LC_10_25_1, ppm_encoder1.counter11_0_I_45_c_RNO_LC_10_25_5, ppm_encoder1.PPM_STATE_RNI13JM_0_0_LC_10_25_6, ppm_encoder1.counter11_0_I_51_c_RNO_LC_10_25_7 }
+set_location LT_10_25 10 25
+ble_pack ppm_encoder1.counter11_0_I_39_c_RNO_LC_10_26_0 { ppm_encoder1.counter11_0_I_39_c_RNO }
+ble_pack ppm_encoder1.pulses2count_12_LC_10_26_1 { ppm_encoder1.pulses2count_RNO[12], ppm_encoder1.pulses2count[12] }
+ble_pack ppm_encoder1.counter_RNIG8G3_11_LC_10_26_6 { ppm_encoder1.counter_RNIG8G3[11] }
+clb_pack LT_10_26 { ppm_encoder1.counter11_0_I_39_c_RNO_LC_10_26_0, ppm_encoder1.pulses2count_12_LC_10_26_1, ppm_encoder1.counter_RNIG8G3_11_LC_10_26_6 }
+set_location LT_10_26 10 26
+ble_pack ppm_encoder1.counter11_0_I_57_c_RNO_LC_10_27_0 { ppm_encoder1.counter11_0_I_57_c_RNO }
+clb_pack LT_10_27 { ppm_encoder1.counter11_0_I_57_c_RNO_LC_10_27_0 }
+set_location LT_10_27 10 27
+ble_pack uart1.position_RNIFHNB3_3_LC_10_28_0 { uart1.position_RNIFHNB3[3] }
+ble_pack uart1.state_bus_14_1_0__m9_i_o2_1_2_LC_10_28_1 { uart1.state_bus_14_1_0_.m9_i_o2_1_2 }
+ble_pack uart1.state_bus_14_1_0__m9_i_o2_0_3_LC_10_28_2 { uart1.state_bus_14_1_0_.m9_i_o2_0_3 }
+ble_pack uart1.state_bus_14_1_0__m9_i_o2_1_0_LC_10_28_3 { uart1.state_bus_14_1_0_.m9_i_o2_1_0 }
+ble_pack uart1.state_bus_14_1_0__m9_i_o2_LC_10_28_4 { uart1.state_bus_14_1_0_.m9_i_o2 }
+ble_pack uart1.state_bus_14_1_0__m9_i_o2_0_2_LC_10_28_5 { uart1.state_bus_14_1_0_.m9_i_o2_0_2 }
+ble_pack uart1.state_bus_14_1_0__m9_i_o2_1_LC_10_28_6 { uart1.state_bus_14_1_0_.m9_i_o2_1 }
+ble_pack uart1.state_bus_RNI9EKQ5_1_LC_10_28_7 { uart1.state_bus_RNI9EKQ5[1] }
+clb_pack LT_10_28 { uart1.position_RNIFHNB3_3_LC_10_28_0, uart1.state_bus_14_1_0__m9_i_o2_1_2_LC_10_28_1, uart1.state_bus_14_1_0__m9_i_o2_0_3_LC_10_28_2, uart1.state_bus_14_1_0__m9_i_o2_1_0_LC_10_28_3, uart1.state_bus_14_1_0__m9_i_o2_LC_10_28_4, uart1.state_bus_14_1_0__m9_i_o2_0_2_LC_10_28_5, uart1.state_bus_14_1_0__m9_i_o2_1_LC_10_28_6, uart1.state_bus_RNI9EKQ5_1_LC_10_28_7 }
+set_location LT_10_28 10 28
+ble_pack ppm_encoder1.PPM_STATE_RNI13JM_0_LC_11_22_6 { ppm_encoder1.PPM_STATE_RNI13JM[0] }
+clb_pack LT_11_22 { ppm_encoder1.PPM_STATE_RNI13JM_0_LC_11_22_6 }
+set_location LT_11_22 11 22
+ble_pack ppm_encoder1.counter11_0_I_27_c_RNO_LC_11_23_0 { ppm_encoder1.counter11_0_I_27_c_RNO }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_RNIMVMJ_1_LC_11_23_4 { ppm_encoder1.CHOOSE_CHANNEL_RNIMVMJ[1] }
+ble_pack ppm_encoder1.ppm_output_reg_LC_11_23_6 { ppm_encoder1.ppm_output_reg_RNO, ppm_encoder1.ppm_output_reg }
+clb_pack LT_11_23 { ppm_encoder1.counter11_0_I_27_c_RNO_LC_11_23_0, ppm_encoder1.CHOOSE_CHANNEL_RNIMVMJ_1_LC_11_23_4, ppm_encoder1.ppm_output_reg_LC_11_23_6 }
+set_location LT_11_23 11 23
+ble_pack ppm_encoder1.counter11_0_I_1_c_LC_11_24_0 { ppm_encoder1.counter11_0_I_1_c }
+ble_pack ppm_encoder1.counter11_0_I_9_c_LC_11_24_1 { ppm_encoder1.counter11_0_I_9_c }
+ble_pack ppm_encoder1.counter11_0_I_15_c_LC_11_24_2 { ppm_encoder1.counter11_0_I_15_c }
+ble_pack ppm_encoder1.counter11_0_I_21_c_LC_11_24_3 { ppm_encoder1.counter11_0_I_21_c }
+ble_pack ppm_encoder1.counter11_0_I_27_c_LC_11_24_4 { ppm_encoder1.counter11_0_I_27_c }
+ble_pack ppm_encoder1.counter11_0_I_33_c_LC_11_24_5 { ppm_encoder1.counter11_0_I_33_c }
+ble_pack ppm_encoder1.counter11_0_I_39_c_LC_11_24_6 { ppm_encoder1.counter11_0_I_39_c }
+ble_pack ppm_encoder1.counter11_0_I_45_c_LC_11_24_7 { ppm_encoder1.counter11_0_I_45_c }
+clb_pack LT_11_24 { ppm_encoder1.counter11_0_I_1_c_LC_11_24_0, ppm_encoder1.counter11_0_I_9_c_LC_11_24_1, ppm_encoder1.counter11_0_I_15_c_LC_11_24_2, ppm_encoder1.counter11_0_I_21_c_LC_11_24_3, ppm_encoder1.counter11_0_I_27_c_LC_11_24_4, ppm_encoder1.counter11_0_I_33_c_LC_11_24_5, ppm_encoder1.counter11_0_I_39_c_LC_11_24_6, ppm_encoder1.counter11_0_I_45_c_LC_11_24_7 }
+set_location LT_11_24 11 24
+ble_pack ppm_encoder1.counter11_0_I_51_c_LC_11_25_0 { ppm_encoder1.counter11_0_I_51_c }
+ble_pack ppm_encoder1.counter11_0_I_57_c_LC_11_25_1 { ppm_encoder1.counter11_0_I_57_c }
+ble_pack ppm_encoder1.counter11_0_N_2_THRU_LUT4_0_LC_11_25_2 { ppm_encoder1.counter11_0_N_2_THRU_LUT4_0 }
+ble_pack ppm_encoder1.counter11_0_I_33_c_RNO_LC_11_25_3 { ppm_encoder1.counter11_0_I_33_c_RNO }
+ble_pack ppm_encoder1.counter11_0_I_21_c_RNO_LC_11_25_4 { ppm_encoder1.counter11_0_I_21_c_RNO }
+ble_pack ppm_encoder1.counter_RNI4452_17_LC_11_25_5 { ppm_encoder1.counter_RNI4452[17] }
+ble_pack ppm_encoder1.counter_RNIH9Q7_12_LC_11_25_6 { ppm_encoder1.counter_RNIH9Q7[12] }
+ble_pack ppm_encoder1.counter11_0_I_9_c_RNO_LC_11_25_7 { ppm_encoder1.counter11_0_I_9_c_RNO }
+clb_pack LT_11_25 { ppm_encoder1.counter11_0_I_51_c_LC_11_25_0, ppm_encoder1.counter11_0_I_57_c_LC_11_25_1, ppm_encoder1.counter11_0_N_2_THRU_LUT4_0_LC_11_25_2, ppm_encoder1.counter11_0_I_33_c_RNO_LC_11_25_3, ppm_encoder1.counter11_0_I_21_c_RNO_LC_11_25_4, ppm_encoder1.counter_RNI4452_17_LC_11_25_5, ppm_encoder1.counter_RNIH9Q7_12_LC_11_25_6, ppm_encoder1.counter11_0_I_9_c_RNO_LC_11_25_7 }
+set_location LT_11_25 11 25
+ble_pack ppm_encoder1.counter_0_LC_11_26_0 { ppm_encoder1.counter_RNO[0], ppm_encoder1.counter[0], ppm_encoder1.un1_counter_13_cry_0_c }
+ble_pack ppm_encoder1.counter_1_LC_11_26_1 { ppm_encoder1.counter_RNO[1], ppm_encoder1.counter[1], ppm_encoder1.un1_counter_13_cry_1_c }
+ble_pack ppm_encoder1.counter_2_LC_11_26_2 { ppm_encoder1.counter_RNO[2], ppm_encoder1.counter[2], ppm_encoder1.un1_counter_13_cry_2_c }
+ble_pack ppm_encoder1.counter_3_LC_11_26_3 { ppm_encoder1.counter_RNO[3], ppm_encoder1.counter[3], ppm_encoder1.un1_counter_13_cry_3_c }
+ble_pack ppm_encoder1.counter_4_LC_11_26_4 { ppm_encoder1.counter_RNO[4], ppm_encoder1.counter[4], ppm_encoder1.un1_counter_13_cry_4_c }
+ble_pack ppm_encoder1.counter_5_LC_11_26_5 { ppm_encoder1.counter_RNO[5], ppm_encoder1.counter[5], ppm_encoder1.un1_counter_13_cry_5_c }
+ble_pack ppm_encoder1.counter_6_LC_11_26_6 { ppm_encoder1.counter_RNO[6], ppm_encoder1.counter[6], ppm_encoder1.un1_counter_13_cry_6_c }
+ble_pack ppm_encoder1.counter_7_LC_11_26_7 { ppm_encoder1.counter_RNO[7], ppm_encoder1.counter[7], ppm_encoder1.un1_counter_13_cry_7_c }
+clb_pack LT_11_26 { ppm_encoder1.counter_0_LC_11_26_0, ppm_encoder1.counter_1_LC_11_26_1, ppm_encoder1.counter_2_LC_11_26_2, ppm_encoder1.counter_3_LC_11_26_3, ppm_encoder1.counter_4_LC_11_26_4, ppm_encoder1.counter_5_LC_11_26_5, ppm_encoder1.counter_6_LC_11_26_6, ppm_encoder1.counter_7_LC_11_26_7 }
+set_location LT_11_26 11 26
+ble_pack ppm_encoder1.counter_8_LC_11_27_0 { ppm_encoder1.counter_RNO[8], ppm_encoder1.counter[8], ppm_encoder1.un1_counter_13_cry_8_c }
+ble_pack ppm_encoder1.counter_9_LC_11_27_1 { ppm_encoder1.counter_RNO[9], ppm_encoder1.counter[9], ppm_encoder1.un1_counter_13_cry_9_c }
+ble_pack ppm_encoder1.counter_10_LC_11_27_2 { ppm_encoder1.counter_RNO[10], ppm_encoder1.counter[10], ppm_encoder1.un1_counter_13_cry_10_c }
+ble_pack ppm_encoder1.counter_11_LC_11_27_3 { ppm_encoder1.counter_RNO[11], ppm_encoder1.counter[11], ppm_encoder1.un1_counter_13_cry_11_c }
+ble_pack ppm_encoder1.counter_12_LC_11_27_4 { ppm_encoder1.counter_RNO[12], ppm_encoder1.counter[12], ppm_encoder1.un1_counter_13_cry_12_c }
+ble_pack ppm_encoder1.counter_13_LC_11_27_5 { ppm_encoder1.counter_RNO[13], ppm_encoder1.counter[13], ppm_encoder1.un1_counter_13_cry_13_c }
+ble_pack ppm_encoder1.counter_14_LC_11_27_6 { ppm_encoder1.counter_RNO[14], ppm_encoder1.counter[14], ppm_encoder1.un1_counter_13_cry_14_c }
+ble_pack ppm_encoder1.counter_15_LC_11_27_7 { ppm_encoder1.counter_RNO[15], ppm_encoder1.counter[15], ppm_encoder1.un1_counter_13_cry_15_c }
+clb_pack LT_11_27 { ppm_encoder1.counter_8_LC_11_27_0, ppm_encoder1.counter_9_LC_11_27_1, ppm_encoder1.counter_10_LC_11_27_2, ppm_encoder1.counter_11_LC_11_27_3, ppm_encoder1.counter_12_LC_11_27_4, ppm_encoder1.counter_13_LC_11_27_5, ppm_encoder1.counter_14_LC_11_27_6, ppm_encoder1.counter_15_LC_11_27_7 }
+set_location LT_11_27 11 27
+ble_pack ppm_encoder1.counter_16_LC_11_28_0 { ppm_encoder1.counter_RNO[16], ppm_encoder1.counter[16], ppm_encoder1.un1_counter_13_cry_16_c }
+ble_pack ppm_encoder1.counter_17_LC_11_28_1 { ppm_encoder1.counter_RNO[17], ppm_encoder1.counter[17], ppm_encoder1.un1_counter_13_cry_17_c }
+ble_pack ppm_encoder1.counter_18_LC_11_28_2 { ppm_encoder1.counter_RNO[18], ppm_encoder1.counter[18] }
+clb_pack LT_11_28 { ppm_encoder1.counter_16_LC_11_28_0, ppm_encoder1.counter_17_LC_11_28_1, ppm_encoder1.counter_18_LC_11_28_2 }
+set_location LT_11_28 11 28
+ble_pack uart1.data_reg_0_LC_11_29_0 { uart1.data_reg_RNO[0], uart1.data_reg[0] }
+ble_pack uart1.data_reg_6_LC_11_29_1 { uart1.data_reg_RNO[6], uart1.data_reg[6] }
+ble_pack uart1.data_reg_4_LC_11_29_2 { uart1.data_reg_RNO[4], uart1.data_reg[4] }
+ble_pack uart1.data_reg_1_LC_11_29_3 { uart1.data_reg_RNO[1], uart1.data_reg[1] }
+ble_pack uart1.data_reg_3_LC_11_29_4 { uart1.data_reg_RNO[3], uart1.data_reg[3] }
+ble_pack uart1.data_reg_5_LC_11_29_5 { uart1.data_reg_RNO[5], uart1.data_reg[5] }
+ble_pack uart1.data_reg_2_LC_11_29_6 { uart1.data_reg_RNO[2], uart1.data_reg[2] }
+ble_pack uart1.data_reg_7_LC_11_29_7 { uart1.data_reg_RNO[7], uart1.data_reg[7] }
+clb_pack LT_11_29 { uart1.data_reg_0_LC_11_29_0, uart1.data_reg_6_LC_11_29_1, uart1.data_reg_4_LC_11_29_2, uart1.data_reg_1_LC_11_29_3, uart1.data_reg_3_LC_11_29_4, uart1.data_reg_5_LC_11_29_5, uart1.data_reg_2_LC_11_29_6, uart1.data_reg_7_LC_11_29_7 }
+set_location LT_11_29 11 29
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_3_LC_12_22_2 { ppm_encoder1.CHOOSE_CHANNEL_cnst_3_2_.N_7_i, ppm_encoder1.CHOOSE_CHANNEL[3] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_1_LC_12_22_3 { ppm_encoder1.CHOOSE_CHANNEL_RNO[1], ppm_encoder1.CHOOSE_CHANNEL[1] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_2_LC_12_22_4 { ppm_encoder1.CHOOSE_CHANNEL_cnst_3_2_.N_156_0_i, ppm_encoder1.CHOOSE_CHANNEL[2] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_0_LC_12_22_7 { ppm_encoder1.CHOOSE_CHANNEL_RNO[0], ppm_encoder1.CHOOSE_CHANNEL[0] }
+clb_pack LT_12_22 { ppm_encoder1.CHOOSE_CHANNEL_3_LC_12_22_2, ppm_encoder1.CHOOSE_CHANNEL_1_LC_12_22_3, ppm_encoder1.CHOOSE_CHANNEL_2_LC_12_22_4, ppm_encoder1.CHOOSE_CHANNEL_0_LC_12_22_7 }
+set_location LT_12_22 12 22
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_RNIPDR9_1_LC_12_23_1 { ppm_encoder1.CHOOSE_CHANNEL_RNIPDR9[1] }
+ble_pack ppm_encoder1.CHOOSE_CHANNEL_RNIN2AA1_3_LC_12_23_2 { ppm_encoder1.CHOOSE_CHANNEL_RNIN2AA1[3] }
+clb_pack LT_12_23 { ppm_encoder1.CHOOSE_CHANNEL_RNIPDR9_1_LC_12_23_1, ppm_encoder1.CHOOSE_CHANNEL_RNIN2AA1_3_LC_12_23_2 }
+set_location LT_12_23 12 23
+ble_pack ppm_encoder1.counter_RNIK9FB1_10_LC_12_24_0 { ppm_encoder1.counter_RNIK9FB1[10] }
+ble_pack ppm_encoder1.counter11_0_I_57_c_RNI6HID2_LC_12_24_1 { ppm_encoder1.counter11_0_I_57_c_RNI6HID2 }
+ble_pack ppm_encoder1.counter_RNIK97Q_5_LC_12_24_6 { ppm_encoder1.counter_RNIK97Q[5] }
+clb_pack LT_12_24 { ppm_encoder1.counter_RNIK9FB1_10_LC_12_24_0, ppm_encoder1.counter11_0_I_57_c_RNI6HID2_LC_12_24_1, ppm_encoder1.counter_RNIK97Q_5_LC_12_24_6 }
+set_location LT_12_24 12 24
+ble_pack ppm_encoder1.pulses2count_1_LC_12_25_1 { ppm_encoder1.pulses2count_RNO[1], ppm_encoder1.pulses2count[1] }
+ble_pack ppm_encoder1.counter11_0_I_1_c_RNO_LC_12_25_2 { ppm_encoder1.counter11_0_I_1_c_RNO }
+ble_pack ppm_encoder1.pulses2count_0_LC_12_25_3 { ppm_encoder1.pulses2count_RNO[0], ppm_encoder1.pulses2count[0] }
+clb_pack LT_12_25 { ppm_encoder1.pulses2count_1_LC_12_25_1, ppm_encoder1.counter11_0_I_1_c_RNO_LC_12_25_2, ppm_encoder1.pulses2count_0_LC_12_25_3 }
+set_location LT_12_25 12 25
+ble_pack ppm_encoder1.counter_RNI44A4_18_LC_12_26_0 { ppm_encoder1.counter_RNI44A4[18] }
+ble_pack ppm_encoder1.counter_RNIRQ42_14_LC_12_26_4 { ppm_encoder1.counter_RNIRQ42[14] }
+ble_pack ppm_encoder1.counter_RNIBI35_10_LC_12_26_6 { ppm_encoder1.counter_RNIBI35[10] }
+clb_pack LT_12_26 { ppm_encoder1.counter_RNI44A4_18_LC_12_26_0, ppm_encoder1.counter_RNIRQ42_14_LC_12_26_4, ppm_encoder1.counter_RNIBI35_10_LC_12_26_6 }
+set_location LT_12_26 12 26
+ble_pack uart1.position_RNO_0_1_LC_12_27_1 { uart1.position_RNO_0[1] }
+ble_pack uart1.position_1_LC_12_27_2 { uart1.position_RNO[1], uart1.position[1] }
+ble_pack uart1.position_2_LC_12_27_3 { uart1.position_RNO[2], uart1.position[2] }
+ble_pack uart1.position_RNI5N4Q3_1_LC_12_27_4 { uart1.position_RNI5N4Q3[1] }
+ble_pack uart1.position_3_LC_12_27_5 { uart1.position_RNO[3], uart1.position[3] }
+ble_pack uart1.position_0_LC_12_27_6 { uart1.position_RNO[0], uart1.position[0] }
+clb_pack LT_12_27 { uart1.position_RNO_0_1_LC_12_27_1, uart1.position_1_LC_12_27_2, uart1.position_2_LC_12_27_3, uart1.position_RNI5N4Q3_1_LC_12_27_4, uart1.position_3_LC_12_27_5, uart1.position_0_LC_12_27_6 }
+set_location LT_12_27 12 27
+ble_pack uart1.state_bus_14_1_0__N_9_i_N_2L1_LC_12_28_1 { uart1.state_bus_14_1_0_.N_9_i_N_2L1 }
+ble_pack uart1.state_bus_0_LC_12_28_2 { uart1.state_bus_14_1_0_.N_9_i, uart1.state_bus[0] }
+ble_pack uart1.state_bus_RNIR5T6_0_1_LC_12_28_3 { uart1.state_bus_RNIR5T6_0[1] }
+ble_pack uart1.state_bus_RNIR5T6_1_1_LC_12_28_4 { uart1.state_bus_RNIR5T6_1[1] }
+ble_pack uart1.flag_reg_RNO_0_LC_12_28_5 { uart1.flag_reg_RNO_0 }
+ble_pack uart1.flag_reg_LC_12_28_6 { uart1.flag_reg_RNO, uart1.flag_reg }
+ble_pack uart1.state_bus_1_LC_12_28_7 { uart1.state_bus_14_1_0_.N_7_i, uart1.state_bus[1] }
+clb_pack LT_12_28 { uart1.state_bus_14_1_0__N_9_i_N_2L1_LC_12_28_1, uart1.state_bus_0_LC_12_28_2, uart1.state_bus_RNIR5T6_0_1_LC_12_28_3, uart1.state_bus_RNIR5T6_1_1_LC_12_28_4, uart1.flag_reg_RNO_0_LC_12_28_5, uart1.flag_reg_LC_12_28_6, uart1.state_bus_1_LC_12_28_7 }
+set_location LT_12_28 12 28
+ble_pack uart1.state_bus_RNIR5T6_1_LC_12_29_0 { uart1.state_bus_RNIR5T6[1] }
+ble_pack KeyPress1.source_data_reg_cnst_0_0_45_i_i_x2_LC_12_29_1 { KeyPress1.source_data_reg_cnst_0_0_45_i_i_x2 }
+ble_pack KeyPress1.source_data_ready_reg_4_i_0_o3_0_LC_12_29_2 { KeyPress1.source_data_ready_reg_4_i_0_o3_0 }
+ble_pack KeyPress1.source_data_reg_RNO_0_2_LC_12_29_3 { KeyPress1.source_data_reg_RNO_0[2] }
+ble_pack KeyPress1.source_data_ready_reg_4_i_0_a3_2_1_LC_12_29_4 { KeyPress1.source_data_ready_reg_4_i_0_a3_2_1 }
+ble_pack uart1.data_rdy_reg_LC_12_29_5 { uart1.data_rdy_reg_RNO, uart1.data_rdy_reg }
+ble_pack KeyPress1.source_data_ready_reg_4_i_0_o3_LC_12_29_6 { KeyPress1.source_data_ready_reg_4_i_0_o3 }
+ble_pack KeyPress1.source_data_ready_reg_4_i_0_a3_0_LC_12_29_7 { KeyPress1.source_data_ready_reg_4_i_0_a3_0 }
+clb_pack LT_12_29 { uart1.state_bus_RNIR5T6_1_LC_12_29_0, KeyPress1.source_data_reg_cnst_0_0_45_i_i_x2_LC_12_29_1, KeyPress1.source_data_ready_reg_4_i_0_o3_0_LC_12_29_2, KeyPress1.source_data_reg_RNO_0_2_LC_12_29_3, KeyPress1.source_data_ready_reg_4_i_0_a3_2_1_LC_12_29_4, uart1.data_rdy_reg_LC_12_29_5, KeyPress1.source_data_ready_reg_4_i_0_o3_LC_12_29_6, KeyPress1.source_data_ready_reg_4_i_0_a3_0_LC_12_29_7 }
+set_location LT_12_29 12 29
+ble_pack KeyPress1.source_data_reg_2_LC_12_30_0 { KeyPress1.source_data_reg_RNO[2], KeyPress1.source_data_reg[2] }
+ble_pack KeyPress1.source_data_ready_reg_4_i_0_a3_LC_12_30_2 { KeyPress1.source_data_ready_reg_4_i_0_a3 }
+ble_pack KeyPress1.source_data_reg_0_LC_12_30_3 { KeyPress1.source_data_reg_RNO[0], KeyPress1.source_data_reg[0] }
+ble_pack KeyPress1.source_data_ready_reg_LC_12_30_4 { KeyPress1.source_data_ready_reg_4_i_0_a3_KeyPress1.source_data_ready_reg_REP_LUT4_0, KeyPress1.source_data_ready_reg }
+ble_pack KeyPress1.source_data_reg_RNO_0_1_LC_12_30_6 { KeyPress1.source_data_reg_RNO_0[1] }
+ble_pack KeyPress1.source_data_reg_1_LC_12_30_7 { KeyPress1.source_data_reg_RNO[1], KeyPress1.source_data_reg[1] }
+clb_pack LT_12_30 { KeyPress1.source_data_reg_2_LC_12_30_0, KeyPress1.source_data_ready_reg_4_i_0_a3_LC_12_30_2, KeyPress1.source_data_reg_0_LC_12_30_3, KeyPress1.source_data_ready_reg_LC_12_30_4, KeyPress1.source_data_reg_RNO_0_1_LC_12_30_6, KeyPress1.source_data_reg_1_LC_12_30_7 }
+set_location LT_12_30 12 30
+set_location ppm_encoder1.counter11_0_I_57_c_RNI6HID2_0 12 31
+set_location ppm_encoder1.CHOOSE_CHANNEL_RNIN2AA1_1[3] 12 0
+set_io s1 23
+set_io reset_system 43
+set_io source_data[2] 38
+set_io source_data[0] 36
+set_io sdin 25
+set_io ppm_output 34
+set_io debug 16
+set_io data_debug 37
+set_io source_data_rdy 31
+set_io source_data[1] 42
+set_io led 12
+set_io clk_system 35

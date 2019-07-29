@@ -1,0 +1,7 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: BN397 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\drones_kids.v":45:12:45:16|Connected syn_hyper_connect __xmr_use__1_, tag __xmr_tag__2_0_66d8e0ea5f251f30af66f55df130d675
+@N: BN397 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\drones_kids.v":44:18:44:22|Connected syn_hyper_connect __xmr_use__3_, tag __xmr_tag__1_0_66d8e0ea5f251f30af66f55df130d675
+@N: MO111 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\drones_kids.v":22:7:22:11|Tristate driver debug (in view: work.drones_kids(verilog)) on net debug (in view: work.drones_kids(verilog)) has its enable tied to GND.
+@N: MO111 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\drones_kids.v":22:7:22:11|Tristate driver debug (in view: work.drones_kids(verilog)) on net debug (in view: work.drones_kids(verilog)) has its enable tied to GND.
+@N: BN225 |Writing default property annotation file C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\DronesForKids\DronesForKids\DronesForKids_Implmnt\DronesForKids.sap.

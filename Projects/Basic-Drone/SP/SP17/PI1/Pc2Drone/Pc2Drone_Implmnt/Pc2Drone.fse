@@ -1,0 +1,109 @@
+
+fsm_encoding {6980985} onehot
+
+fsm_state_encoding {6980985} 000 {00001}
+
+fsm_state_encoding {6980985} 001 {00010}
+
+fsm_state_encoding {6980985} 010 {00100}
+
+fsm_state_encoding {6980985} 011 {01000}
+
+fsm_state_encoding {6980985} 100 {10000}
+
+fsm_registers {6980985} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {7830834} onehot
+
+fsm_state_encoding {7830834} S_WF_STX1 {00000000001}
+
+fsm_state_encoding {7830834} S_WF_STX2 {00000000010}
+
+fsm_state_encoding {7830834} S_CH1_ADQ {00000000100}
+
+fsm_state_encoding {7830834} S_CH2_ADQ {00000001000}
+
+fsm_state_encoding {7830834} S_CH3_ADQ {00000010000}
+
+fsm_state_encoding {7830834} S_CH4_ADQ {00000100000}
+
+fsm_state_encoding {7830834} S_OFF1_ADQ {00001000000}
+
+fsm_state_encoding {7830834} S_OFF2_ADQ {00010000000}
+
+fsm_state_encoding {7830834} S_OFF3_ADQ {00100000000}
+
+fsm_state_encoding {7830834} S_OFF4_ADQ {01000000000}
+
+fsm_state_encoding {7830834} S_RSV {10000000000}
+
+fsm_registers {7830834} {state_1[10]}  {state_1[9]}  {state_1[8]}  {state_1[7]}  {state_1[6]}  {state_1[5]}  {state_1[4]}  {state_1[3]}  {state_1[2]}  {state_1[1]}  {state_1[0]} 
+
+fsm_encoding {10980983} sequential
+
+fsm_state_encoding {10980983} CHANNEL {00}
+
+fsm_state_encoding {10980983} GENERATE_CHANNEL {01}
+
+fsm_state_encoding {10980983} SEPARATOR {10}
+
+fsm_registers {10980983} {PPM_STATE[1]}  {PPM_STATE[0]} 
+
+fsm_encoding {10980982} original
+
+fsm_state_encoding {10980982} INIT_PROTOCOL {0000}
+
+fsm_state_encoding {10980982} CH1 {0001}
+
+fsm_state_encoding {10980982} CH2 {0010}
+
+fsm_state_encoding {10980982} CH3 {0011}
+
+fsm_state_encoding {10980982} CH4 {0100}
+
+fsm_state_encoding {10980982} CH5 {0101}
+
+fsm_state_encoding {10980982} CH6 {0110}
+
+fsm_state_encoding {10980982} CH7 {0111}
+
+fsm_state_encoding {10980982} CH8 {1000}
+
+fsm_state_encoding {10980982} CH9 {1001}
+
+fsm_state_encoding {10980982} CH10 {1010}
+
+fsm_state_encoding {10980982} CH11 {1011}
+
+fsm_state_encoding {10980982} CH12 {1100}
+
+fsm_registers {10980982} {CHOOSE_CHANNEL[3]}  {CHOOSE_CHANNEL[2]}  {CHOOSE_CHANNEL[1]}  {CHOOSE_CHANNEL[0]} 
+
+fsm_encoding {12610611} onehot
+
+fsm_state_encoding {12610611} S_WF_STX1 {00000001}
+
+fsm_state_encoding {12610611} S_WF_STX2 {00000010}
+
+fsm_state_encoding {12610611} S_WF_H_disp_front_LSB {00000100}
+
+fsm_state_encoding {12610611} S_WF_H_disp_front_MSB {00001000}
+
+fsm_state_encoding {12610611} S_WF_H_disp_side_LSB {00010000}
+
+fsm_state_encoding {12610611} S_WF_H_disp_side_MSB {00100000}
+
+fsm_state_encoding {12610611} S_WF_altitude_LSB {01000000}
+
+fsm_state_encoding {12610611} S_WF_altitude_MSB {10000000}
+
+fsm_registers {12610611} {state[7]}  {state[6]}  {state[5]}  {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+_disp_side_LSB {00010000}
+
+fsm_state_encoding {12610611} S_WF_H_disp_side_MSB {00100000}
+
+fsm_state_encoding {12610611} S_WF_altitude_LSB {01000000}
+
+fsm_state_encoding {12610611} S_WF_altitude_MSB {10000000}
+
+fsm_registers {12610611} {state[7]}  {state[6]}  {state[5]}  {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 

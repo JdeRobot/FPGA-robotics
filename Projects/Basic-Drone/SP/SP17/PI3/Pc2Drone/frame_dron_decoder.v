@@ -1,0 +1,141 @@
+//================================================ START FILE HEADER ================================================
+// Filename : dron_frame_decoder.v
+// Module Name : dron_frame_decoder
+// Module ID : Part of SP17PI1
+// Description : Decodes Incoming frame from drone sensors, and outputs DeltaX, DeltaY and Altitude values.
+// Description : Frame: STX1|STX2|H_disp_front_MSB|H_disp_front_LSB|H_disp_side_MSB|H_disp_side_LSB|altitude_MSB|altitude_LSB
+// Description : STX1 value = 0xff = 255, STX2 value = 0xa5 = 165
+//================================================= VERSION CONTROL =================================================
+// $Revision: 2911 $
+// $Author: enavarro $
+// $Date: $
+// $URL: $
+//================================================= MAINTENANCE LOG =================================================
+//
+//================================================ MODULE DECLARATION ===============================================
+module frame_dron_decoder 
+// GLOBAL PARAMETER DECLARATION
+(
+// INPUT PORT DECLARATION
+	input	reset,
+	input	clk,
+	input	sink_data_valid,
+	input	[7:0]	sink_data,
+// OUTPUT PORT DECLARATION
+	output reg source_data_valid,
+	output reg [15:0] source_H_disp_front,
+	output reg [15:0] source_H_disp_side,
+	output reg [15:0] source_Altitude
+);
+
+// INPUT/OUTPUT PORT DECLARATION
+// LOCAL PARAMETER DECLARATION
+// ======================= State machine Parameters ======================= //
+localparam S_WF_STX1 = 5'd0, S_WF_STX2 = 5'd1;
+localparam S_WF_H_disp_front_LSB = 5'd2, S_WF_H_disp_front_MSB = 5'd3;
+localparam S_WF_H_disp_side_LSB = 5'd4, S_WF_H_disp_side_MSB = 5'd5;
+localparam S_WF_altitude_LSB = 5'd6, S_WF_altitude_MSB = 5'd7;
+localparam LIMIT_WDT = 32'd42000;
+
+// INTERNAL REGISTERS DECLARATION
+//(* syn_encoding = "safe" *) reg [2:0] state;
+reg [4:0] state;
+reg [31:0] WDT;
+
+
+// WIRES DECLARATION
+
+// TASK DECLARATION
+task treset;
+begin
+	state <= S_WF_STX1;
+	WDT <= 32'd0;
+	source_data_valid <= 0;
+	source_H_disp_front <= 16'd0;
+	source_H_disp_side <= 16'd0;
+	source_Altitude <= 16'd0;
+end
+endtask
+
+// ALWAYS CONSTRUCT BLOCK
+always @(posedge clk)
+begin
+	if (reset) begin
+		treset();
+	end else begin
+		
+		if (sink_data_valid) begin
+			WDT <= 32'd0;
+			case (state)
+				S_WF_STX1: begin
+					if (sink_data==8'hFF) begin
+						state <= S_WF_STX2;
+					end else begin
+						state <= S_WF_STX1;
+					end
+				end
+				S_WF_STX2: begin
+					if (sink_data==8'hA5) begin
+						state <= S_WF_H_disp_front_MSB;
+					end else begin
+						state <= S_WF_STX1;
+					end
+				end
+				S_WF_H_disp_front_MSB: begin
+					source_H_disp_front[15:8] <= sink_data;
+					state <= S_WF_H_disp_front_LSB;
+				end
+				S_WF_H_disp_front_LSB: begin
+					source_H_disp_front[7:0] <= sink_data;
+					state <= S_WF_H_disp_side_MSB;
+				end
+				S_WF_H_disp_side_MSB: begin
+					source_H_disp_side[15:8] <= sink_data;
+					state <= S_WF_H_disp_side_LSB;
+				end
+				S_WF_H_disp_side_LSB: begin
+					source_H_disp_side[7:0] <= sink_data;
+					state <= S_WF_altitude_MSB;
+				end
+				S_WF_altitude_MSB: begin
+					source_Altitude[15:8] <= sink_data;
+					state <= S_WF_altitude_LSB;
+				end
+				S_WF_altitude_LSB: begin	// Si el sensor mide <50, puede medir mal, por tanto =0.
+					source_Altitude[7:0] <= sink_data;
+					source_data_valid <= 1;
+					state <= S_WF_STX1;
+				end
+				default: 
+					treset();
+			endcase
+		end else begin
+			source_data_valid <= 0;
+			if (WDT < LIMIT_WDT) begin
+				WDT <= WDT + 32'd1;
+				state <= state;
+			end else begin
+				WDT <= WDT;
+				state <= S_WF_STX1;
+			end
+		end
+		
+	end // reset end
+end // always end
+
+
+// CONTINOUS ASSIGNMENT
+assign debug_state = state;
+assign debug_sinkdatavalid = sink_data_valid;
+
+// END OF MODULE
+endmodule
+
+
+
+/*if (sink_data < 50) begin
+						source_Altitude[7:0] <= 0;
+					end else begin
+						source_Altitude[7:0] <= sink_data;
+					end*/
+

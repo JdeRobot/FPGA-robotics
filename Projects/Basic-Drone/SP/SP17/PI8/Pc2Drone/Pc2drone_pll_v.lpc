@@ -1,0 +1,5 @@
+[General]
+DeviceFamily=iCE40UP
+
+[AdditionalDelay]
+AdditionalDelayNo=true

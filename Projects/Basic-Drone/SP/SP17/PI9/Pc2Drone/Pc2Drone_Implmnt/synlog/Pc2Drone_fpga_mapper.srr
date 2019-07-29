@@ -1,0 +1,933 @@
+# Tue Jul 16 20:04:56 2019
+
+Synopsys Lattice Technology Mapper, Version maplat, Build 1612R, Built Dec  5 2016 10:31:39
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+Product Version L-2016.09L+ice40
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 100MB)
+
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 101MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 101MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 101MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 101MB peak: 103MB)
+
+
+
+Starting Optimization and Mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 132MB peak: 135MB)
+
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+@N: MT206 |Auto Constrain mode is enabled
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\reset_module.v":36:0:36:5|User-specified initial value defined for instance reset_module_System.count[21:0] is being ignored. 
+
+Finished RTL optimizations (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 136MB peak: 138MB)
+
+Encoding state machine state[4:0] (in view: work.uart_rx_24s_12s_0s_1s_2s_3s_4s(verilog))
+original code -> new code
+   000 -> 00001
+   001 -> 00010
+   010 -> 00100
+   011 -> 01000
+   100 -> 10000
+Encoding state machine state[14:0] (in view: work.frame_decoder(verilog))
+original code -> new code
+   00000 -> 000000000000001
+   00001 -> 000000000000010
+   00010 -> 000000000000100
+   00011 -> 000000000001000
+   00100 -> 000000000010000
+   00101 -> 000000000100000
+   00110 -> 000000001000000
+   00111 -> 000000010000000
+   01000 -> 000000100000000
+   01001 -> 000001000000000
+   01010 -> 000010000000000
+   01011 -> 000100000000000
+   01100 -> 001000000000000
+   01101 -> 010000000000000
+   01111 -> 100000000000000
+Encoding state machine state[7:0] (in view: work.frame_dron_decoder(verilog))
+original code -> new code
+   00000 -> 00000001
+   00001 -> 00000010
+   00010 -> 00000100
+   00011 -> 00001000
+   00100 -> 00010000
+   00101 -> 00100000
+   00110 -> 01000000
+   00111 -> 10000000
+Encoding state machine state[2:0] (in view: work.pid_horizontal(verilog))
+original code -> new code
+   00 -> 00
+   01 -> 01
+   10 -> 10
+Encoding state machine state[2:0] (in view: work.pid_altitude(verilog))
+original code -> new code
+   000 -> 00
+   001 -> 01
+   010 -> 10
+Encoding state machine PPM_STATE[2:0] (in view: work.ppm_encoder(verilog))
+original code -> new code
+   00 -> 00
+   01 -> 01
+   10 -> 10
+Encoding state machine CHOOSE_CHANNEL[12:0] (in view: work.ppm_encoder(verilog))
+original code -> new code
+   0000 -> 0000
+   0001 -> 0001
+   0010 -> 0010
+   0011 -> 0011
+   0100 -> 0100
+   0101 -> 0101
+   0110 -> 0110
+   0111 -> 0111
+   1000 -> 1000
+   1001 -> 1001
+   1010 -> 1010
+   1011 -> 1011
+   1100 -> 1100
+@N: MF179 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":199:9:199:32|Found 19 by 19 bit equality operator ('==') counter24 (in view: work.ppm_encoder(verilog))
+
+Starting factoring (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 139MB peak: 140MB)
+
+
+Finished factoring (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 146MB peak: 147MB)
+
+
+Finished gated-clock and generated-clock conversion (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 149MB peak: 150MB)
+
+
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:02s; Memory used current: 145MB peak: 150MB)
+
+@W: BN132 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\pid_horizontal.v":87:0:87:5|Removing instance pid_front.pid_prereg[31] (in view: work.Pc2drone(verilog)) because it is equivalent to instance pid_front.pid_prereg[30] (in view: work.Pc2drone(verilog)). To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\pid_horizontal.v":87:0:87:5|Removing instance pid_side.pid_prereg[31] (in view: work.Pc2drone(verilog)) because it is equivalent to instance pid_side.pid_prereg[30] (in view: work.Pc2drone(verilog)). To keep the instance, apply constraint syn_preserve=1 on the instance.
+
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:03s; Memory used current: 146MB peak: 150MB)
+
+
+Finished Early Timing Optimization (Real Time elapsed 0h:00m:05s; CPU Time elapsed 0h:00m:05s; Memory used current: 147MB peak: 150MB)
+
+@W: BN132 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Removing instance ppm_encoder_1.rudder[3] because it is equivalent to instance ppm_encoder_1.rudder[1]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Removing instance ppm_encoder_1.rudder[1] because it is equivalent to instance ppm_encoder_1.rudder[0]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:06s; CPU Time elapsed 0h:00m:05s; Memory used current: 147MB peak: 150MB)
+
+@N: BN362 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Removing sequential instance ppm_encoder_1.rudder[0] (in view: work.Pc2drone(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Removing sequential instance ppm_encoder_1.rudder[2] (in view: work.Pc2drone(verilog)) because it does not drive other instances.
+
+Finished preparing to map (Real Time elapsed 0h:00m:07s; CPU Time elapsed 0h:00m:07s; Memory used current: 147MB peak: 150MB)
+
+
+Finished technology mapping (Real Time elapsed 0h:00m:08s; CPU Time elapsed 0h:00m:08s; Memory used current: 179MB peak: 183MB)
+
+@N: MF151 :|The module G_3 is too small to be pipelined.
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+   1		0h:00m:09s		    -4.07ns		1591 /       953
+   2		0h:00m:09s		    -3.57ns		1568 /       953
+   3		0h:00m:09s		    -3.07ns		1566 /       953
+   4		0h:00m:09s		    -3.07ns		1571 /       953
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\frame_dron_decoder.v":61:0:61:5|Replicating instance dron_frame_decoder_1.source_H_disp_front[0] (in view: work.Pc2drone(verilog)) with 9 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\frame_dron_decoder.v":61:0:61:5|Replicating instance dron_frame_decoder_1.source_H_disp_side[0] (in view: work.Pc2drone(verilog)) with 11 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Replicating instance ppm_encoder_1.CHOOSE_CHANNEL[2] (in view: work.Pc2drone(verilog)) with 23 loads 2 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\frame_decoder.v":81:0:81:5|Replicating instance Commands_frame_decoder.source_xy_ki[1] (in view: work.Pc2drone(verilog)) with 76 loads 3 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\frame_decoder.v":81:0:81:5|Replicating instance Commands_frame_decoder.source_xy_ki[0] (in view: work.Pc2drone(verilog)) with 70 loads 3 times to improve timing.
+Timing driven replication report
+Added 10 Registers via timing driven replication
+Added 4 LUTs via timing driven replication
+
+   5		0h:00m:10s		    -2.56ns		1625 /       963
+   6		0h:00m:10s		    -2.17ns		1632 /       963
+   7		0h:00m:10s		    -2.17ns		1633 /       963
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Replicating instance ppm_encoder_1.CHOOSE_CHANNEL[0] (in view: work.Pc2drone(verilog)) with 26 loads 2 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Replicating instance ppm_encoder_1.CHOOSE_CHANNEL[1] (in view: work.Pc2drone(verilog)) with 25 loads 2 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\frame_decoder.v":81:0:81:5|Replicating instance Commands_frame_decoder.source_xy_ki[2] (in view: work.Pc2drone(verilog)) with 89 loads 3 times to improve timing.
+Timing driven replication report
+Added 7 Registers via timing driven replication
+Added 4 LUTs via timing driven replication
+
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Replicating instance ppm_encoder_1.CHOOSE_CHANNEL[3] (in view: work.Pc2drone(verilog)) with 9 loads 1 time to improve timing.
+Timing driven replication report
+Added 1 Registers via timing driven replication
+Added 1 LUTs via timing driven replication
+
+   8		0h:00m:10s		    -1.83ns		1646 /       971
+   9		0h:00m:11s		    -1.67ns		1646 /       971
+  10		0h:00m:11s		    -1.67ns		1657 /       971
+Re-levelizing using alternate method
+Assigned 0 out of 4362 signals to level zero using alternate method
+@N: FX1017 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\pc2drone.v":81:13:81:29|SB_GB inserted on the net clk_system_pll.
+@N: FX1017 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\reset_module.v":36:0:36:5|SB_GB inserted on the net reset_system.
+@N: FX1017 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\pid_altitude.v":97:0:97:5|SB_GB inserted on the net N_580.
+@N: FX1017 :|SB_GB inserted on the net N_579_0.
+@N: FX1017 :|SB_GB inserted on the net N_404.
+@N: FX1017 :|SB_GB inserted on the net N_478.
+@N: FX1017 :|SB_GB inserted on the net pid_alt.state_0[0].
+@N: FX1017 :|SB_GB inserted on the net N_1352.
+
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:12s; CPU Time elapsed 0h:00m:11s; Memory used current: 188MB peak: 189MB)
+
+
+Finished restoring hierarchy (Real Time elapsed 0h:00m:12s; CPU Time elapsed 0h:00m:12s; Memory used current: 188MB peak: 189MB)
+
+
+
+@S |Clock Optimization Summary
+
+
+#### START OF CLOCK OPTIMIZATION REPORT #####[
+
+1 non-gated/non-generated clock tree(s) driving 971 clock pin(s) of sequential element(s)
+0 gated/generated clock tree(s) driving 0 clock pin(s) of sequential element(s)
+0 instances converted, 0 sequential instances remain driven by gated/generated clocks
+
+================================================ Non-Gated/Non-Generated Clocks ================================================
+Clock Tree ID     Driving Element                         Drive Element Type     Fanout     Sample Instance                     
+--------------------------------------------------------------------------------------------------------------------------------
+@K:CKID0001       Pc2drone_pll_inst.Pc2drone_pll_inst     SB_PLL40_PAD           971        ppm_encoder_1.CHOOSE_CHANNEL_fast[3]
+================================================================================================================================
+
+
+##### END OF CLOCK OPTIMIZATION REPORT ######]
+
+
+Start Writing Netlists (Real Time elapsed 0h:00m:12s; CPU Time elapsed 0h:00m:12s; Memory used current: 157MB peak: 189MB)
+
+Writing Analyst data base C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI9\Pc2Drone\Pc2Drone_Implmnt\synwork\Pc2Drone_m.srm
+
+Finished Writing Netlist Databases (Real Time elapsed 0h:00m:13s; CPU Time elapsed 0h:00m:13s; Memory used current: 187MB peak: 190MB)
+
+Writing EDIF Netlist and constraint files
+@N: BW103 |The default time unit for the Synopsys Constraint File (SDC or FDC) is 1ns.
+@N: BW107 |Synopsys Constraint File capacitance units using default value of 1pF 
+@N: FX1056 |Writing EDF file: C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI9\Pc2Drone\Pc2Drone_Implmnt\Pc2Drone.edf
+L-2016.09L+ice40
+
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:14s; CPU Time elapsed 0h:00m:14s; Memory used current: 188MB peak: 191MB)
+
+
+Start final timing analysis (Real Time elapsed 0h:00m:15s; CPU Time elapsed 0h:00m:14s; Memory used current: 185MB peak: 191MB)
+
+@W: MT246 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\pid_horizontal.v":107:22:107:42|Blackbox SB_MAC16 is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results) 
+@W: MT420 |Found inferred clock Pc2drone|clk_system with period 16.47ns. Please declare a user-defined clock on object "p:clk_system"
+@N: MT615 |Found clock Pc2drone_pll|PLLOUTCORE_derived_clock with period 16.47ns 
+
+
+##### START OF TIMING REPORT #####[
+# Timing Report written on Tue Jul 16 20:05:11 2019
+#
+
+
+Top view:               Pc2drone
+Requested Frequency:    60.7 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N: MT320 |This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report.
+
+@N: MT322 |Clock constraints include only register-to-register paths associated with each individual clock.
+
+
+
+Performance Summary
+*******************
+
+
+Worst slack in design: -2.906
+
+                                          Requested     Estimated     Requested     Estimated                 Clock                                  Clock                
+Starting Clock                            Frequency     Frequency     Period        Period        Slack       Type                                   Group                
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Pc2drone_pll|PLLOUTCORE_derived_clock     60.7 MHz      51.6 MHz      16.466        19.372        -2.906      derived (from Pc2drone|clk_system)     Autoconstr_clkgroup_0
+Pc2drone|clk_system                       60.7 MHz      NA            16.466        NA            DCM/PLL     inferred                               Autoconstr_clkgroup_0
+System                                    1.0 MHz       1.0 MHz       1000.000      983.689       16.311      system                                 system_clkgroup      
+==========================================================================================================================================================================
+@N: MT582 |Estimated period and frequency not reported for given clock unless the clock has at least one timing path which is not a false or a max delay path and that does not have excessive slack
+
+
+
+
+
+Clock Relationships
+*******************
+
+Clocks                                                                        |    rise  to  rise    |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Starting                               Ending                                 |  constraint  slack   |  constraint  slack  |  constraint  slack  |  constraint  slack
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+System                                 Pc2drone_pll|PLLOUTCORE_derived_clock  |  16.466      16.311  |  No paths    -      |  No paths    -      |  No paths    -    
+Pc2drone_pll|PLLOUTCORE_derived_clock  System                                 |  16.466      8.474   |  No paths    -      |  No paths    -      |  No paths    -    
+Pc2drone_pll|PLLOUTCORE_derived_clock  Pc2drone_pll|PLLOUTCORE_derived_clock  |  16.466      -2.906  |  No paths    -      |  No paths    -      |  No paths    -    
+=====================================================================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: Pc2drone_pll|PLLOUTCORE_derived_clock
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                                                     Starting                                                                                        Arrival           
+Instance                                             Reference                                 Type          Pin     Net                             Time        Slack 
+                                                     Clock                                                                                                             
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+pid_side.error_d_reg_prev_esr[11]                    Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     Q       error_d_reg_prev[11]            0.796       -2.906
+pid_front.error_d_reg_prev_esr[11]                   Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     Q       error_d_reg_prev[11]            0.796       -2.906
+pid_front.error_p_reg_esr[11]                        Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     Q       error_p_reg[11]                 0.796       -2.833
+pid_side.error_p_reg_esr[11]                         Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     Q       error_p_reg[11]                 0.796       -2.833
+dron_frame_decoder_1.source_H_disp_front_fast[0]     Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFSR      Q       source_H_disp_front_fast[0]     0.796       -2.409
+dron_frame_decoder_1.source_H_disp_side_fast[0]      Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFSR      Q       source_H_disp_side_fast[0]      0.796       -2.390
+dron_frame_decoder_1.source_H_disp_front[1]          Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFSR      Q       drone_H_disp_front[1]           0.796       -2.209
+dron_frame_decoder_1.source_H_disp_side[1]           Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFSR      Q       drone_H_disp_side[1]            0.796       -2.190
+dron_frame_decoder_1.source_H_disp_side[2]           Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFSR      Q       drone_H_disp_side[2]            0.796       -2.015
+dron_frame_decoder_1.source_H_disp_front[2]          Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFSR      Q       drone_H_disp_front[2]           0.796       -2.009
+=======================================================================================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                                  Starting                                                                                     Required           
+Instance                          Reference                                 Type          Pin     Net                          Time         Slack 
+                                  Clock                                                                                                           
+--------------------------------------------------------------------------------------------------------------------------------------------------
+pid_side.pid_prereg_esr[30]       Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     D       pid_prereg_esr_RNO_0[30]     16.311       -2.906
+pid_front.pid_prereg_esr[30]      Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     D       pid_prereg_esr_RNO[30]       16.311       -2.906
+pid_side.pid_prereg_esr[29]       Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     D       pid_prereg_esr_RNO_0[29]     16.311       -2.706
+pid_front.pid_prereg_esr[29]      Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     D       pid_prereg_esr_RNO[29]       16.311       -2.706
+pid_front.pid_prereg_esr[28]      Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     D       pid_prereg_esr_RNO[28]       16.311       -2.506
+pid_side.pid_prereg_esr[28]       Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     D       pid_prereg_esr_RNO_0[28]     16.311       -2.506
+pid_front.error_i_reg_esr[24]     Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     D       error_i_reg_9[24]            16.311       -2.409
+pid_side.error_i_reg_esr[24]      Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     D       error_i_reg_9[24]            16.311       -2.390
+pid_front.pid_prereg_esr[27]      Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     D       pid_prereg_esr_RNO[27]       16.311       -2.306
+pid_side.pid_prereg_esr[27]       Pc2drone_pll|PLLOUTCORE_derived_clock     SB_DFFESR     D       pid_prereg_esr_RNO_0[27]     16.311       -2.306
+==================================================================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      16.466
+    - Setup time:                            0.155
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         16.311
+
+    - Propagation time:                      19.217
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -2.906
+
+    Number of logic level(s):                22
+    Starting point:                          pid_side.error_d_reg_prev_esr[11] / Q
+    Ending point:                            pid_side.pid_prereg_esr[30] / D
+    The start point is clocked by            Pc2drone_pll|PLLOUTCORE_derived_clock [rising] on pin C
+    The end   point is clocked by            Pc2drone_pll|PLLOUTCORE_derived_clock [rising] on pin C
+
+Instance / Net                                               Pin      Pin               Arrival     No. of    
+Name                                           Type          Name     Dir     Delay     Time        Fan Out(s)
+--------------------------------------------------------------------------------------------------------------
+pid_side.error_d_reg_prev_esr[11]              SB_DFFESR     Q        Out     0.796     0.796       -         
+error_d_reg_prev[11]                           Net           -        -       1.599     -           3         
+pid_side.error_d_reg_prev_esr_RNI0TN9[11]      SB_LUT4       I0       In      -         2.395       -         
+pid_side.error_d_reg_prev_esr_RNI0TN9[11]      SB_LUT4       O        Out     0.661     3.056       -         
+un1_pid_prereg_79                              Net           -        -       1.371     -           4         
+pid_side.error_p_reg_esr_RNIVHA21[12]          SB_LUT4       I3       In      -         4.427       -         
+pid_side.error_p_reg_esr_RNIVHA21[12]          SB_LUT4       O        Out     0.465     4.893       -         
+error_p_reg_esr_RNIVHA21[12]                   Net           -        -       1.371     -           1         
+pid_side.error_p_reg_esr_RNIQOFJ2[12]          SB_LUT4       I1       In      -         6.263       -         
+pid_side.error_p_reg_esr_RNIQOFJ2[12]          SB_LUT4       O        Out     0.589     6.853       -         
+error_p_reg_esr_RNIQOFJ2[12]                   Net           -        -       1.371     -           3         
+pid_side.error_d_reg_prev_esr_RNISG2C3[13]     SB_LUT4       I0       In      -         8.224       -         
+pid_side.error_d_reg_prev_esr_RNISG2C3[13]     SB_LUT4       O        Out     0.661     8.885       -         
+un1_pid_prereg_97                              Net           -        -       1.371     -           1         
+pid_side.error_d_reg_prev_esr_RNIMEJ18[12]     SB_LUT4       I2       In      -         10.256      -         
+pid_side.error_d_reg_prev_esr_RNIMEJ18[12]     SB_LUT4       O        Out     0.558     10.814      -         
+error_d_reg_prev_esr_RNIMEJ18[12]              Net           -        -       1.371     -           3         
+pid_side.error_d_reg_prev_esr_RNINPDOK[12]     SB_LUT4       I1       In      -         12.185      -         
+pid_side.error_d_reg_prev_esr_RNINPDOK[12]     SB_LUT4       O        Out     0.589     12.775      -         
+error_d_reg_prev_esr_RNINPDOK[12]              Net           -        -       0.905     -           2         
+pid_side.un1_pid_prereg_0_cry_15_c             SB_CARRY      I0       In      -         13.680      -         
+pid_side.un1_pid_prereg_0_cry_15_c             SB_CARRY      CO       Out     0.380     14.059      -         
+un1_pid_prereg_0_cry_15                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_16_0_c           SB_CARRY      CI       In      -         14.073      -         
+pid_side.un1_pid_prereg_0_cry_16_0_c           SB_CARRY      CO       Out     0.186     14.259      -         
+un1_pid_prereg_0_cry_16                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_17_0_c           SB_CARRY      CI       In      -         14.273      -         
+pid_side.un1_pid_prereg_0_cry_17_0_c           SB_CARRY      CO       Out     0.186     14.459      -         
+un1_pid_prereg_0_cry_17                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_18_0_c           SB_CARRY      CI       In      -         14.473      -         
+pid_side.un1_pid_prereg_0_cry_18_0_c           SB_CARRY      CO       Out     0.186     14.659      -         
+un1_pid_prereg_0_cry_18                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_19_0_c           SB_CARRY      CI       In      -         14.673      -         
+pid_side.un1_pid_prereg_0_cry_19_0_c           SB_CARRY      CO       Out     0.186     14.859      -         
+un1_pid_prereg_0_cry_19                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_20_0_c           SB_CARRY      CI       In      -         14.873      -         
+pid_side.un1_pid_prereg_0_cry_20_0_c           SB_CARRY      CO       Out     0.186     15.059      -         
+un1_pid_prereg_0_cry_20                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_21_0_c           SB_CARRY      CI       In      -         15.073      -         
+pid_side.un1_pid_prereg_0_cry_21_0_c           SB_CARRY      CO       Out     0.186     15.259      -         
+un1_pid_prereg_0_cry_21                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_22_0_c           SB_CARRY      CI       In      -         15.273      -         
+pid_side.un1_pid_prereg_0_cry_22_0_c           SB_CARRY      CO       Out     0.186     15.459      -         
+un1_pid_prereg_0_cry_22                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_23_0_c           SB_CARRY      CI       In      -         15.473      -         
+pid_side.un1_pid_prereg_0_cry_23_0_c           SB_CARRY      CO       Out     0.186     15.659      -         
+un1_pid_prereg_0_cry_23                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_24_0_c           SB_CARRY      CI       In      -         15.673      -         
+pid_side.un1_pid_prereg_0_cry_24_0_c           SB_CARRY      CO       Out     0.186     15.859      -         
+un1_pid_prereg_0_cry_24                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_25_0_c           SB_CARRY      CI       In      -         15.873      -         
+pid_side.un1_pid_prereg_0_cry_25_0_c           SB_CARRY      CO       Out     0.186     16.059      -         
+un1_pid_prereg_0_cry_25                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_26_0_c           SB_CARRY      CI       In      -         16.073      -         
+pid_side.un1_pid_prereg_0_cry_26_0_c           SB_CARRY      CO       Out     0.186     16.259      -         
+un1_pid_prereg_0_cry_26                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_27_0_c           SB_CARRY      CI       In      -         16.273      -         
+pid_side.un1_pid_prereg_0_cry_27_0_c           SB_CARRY      CO       Out     0.186     16.459      -         
+un1_pid_prereg_0_cry_27                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_28_0_c           SB_CARRY      CI       In      -         16.473      -         
+pid_side.un1_pid_prereg_0_cry_28_0_c           SB_CARRY      CO       Out     0.186     16.659      -         
+un1_pid_prereg_0_cry_28                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_29_0_c           SB_CARRY      CI       In      -         16.673      -         
+pid_side.un1_pid_prereg_0_cry_29_0_c           SB_CARRY      CO       Out     0.186     16.859      -         
+un1_pid_prereg_0_cry_29                        Net           -        -       0.386     -           1         
+pid_side.pid_prereg_esr_RNO[30]                SB_LUT4       I3       In      -         17.245      -         
+pid_side.pid_prereg_esr_RNO[30]                SB_LUT4       O        Out     0.465     17.710      -         
+pid_prereg_esr_RNO_0[30]                       Net           -        -       1.507     -           1         
+pid_side.pid_prereg_esr[30]                    SB_DFFESR     D        In      -         19.217      -         
+==============================================================================================================
+Total path delay (propagation time + setup) of 19.372 is 7.924(40.9%) logic and 11.448(59.1%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 2: 
+      Requested Period:                      16.466
+    - Setup time:                            0.155
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         16.311
+
+    - Propagation time:                      19.217
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -2.906
+
+    Number of logic level(s):                22
+    Starting point:                          pid_front.error_d_reg_prev_esr[11] / Q
+    Ending point:                            pid_front.pid_prereg_esr[30] / D
+    The start point is clocked by            Pc2drone_pll|PLLOUTCORE_derived_clock [rising] on pin C
+    The end   point is clocked by            Pc2drone_pll|PLLOUTCORE_derived_clock [rising] on pin C
+
+Instance / Net                                            Pin      Pin               Arrival     No. of    
+Name                                        Type          Name     Dir     Delay     Time        Fan Out(s)
+-----------------------------------------------------------------------------------------------------------
+pid_front.error_d_reg_prev_esr[11]          SB_DFFESR     Q        Out     0.796     0.796       -         
+error_d_reg_prev[11]                        Net           -        -       1.599     -           3         
+pid_front.error_p_reg_esr_RNI873N[11]       SB_LUT4       I0       In      -         2.395       -         
+pid_front.error_p_reg_esr_RNI873N[11]       SB_LUT4       O        Out     0.661     3.056       -         
+un1_pid_prereg_79                           Net           -        -       1.371     -           4         
+pid_front.error_p_reg_esr_RNIJ1FT1[12]      SB_LUT4       I3       In      -         4.427       -         
+pid_front.error_p_reg_esr_RNIJ1FT1[12]      SB_LUT4       O        Out     0.465     4.893       -         
+error_p_reg_esr_RNIJ1FT1[12]                Net           -        -       1.371     -           1         
+pid_front.error_p_reg_esr_RNI6J6A4[12]      SB_LUT4       I1       In      -         6.263       -         
+pid_front.error_p_reg_esr_RNI6J6A4[12]      SB_LUT4       O        Out     0.589     6.853       -         
+error_p_reg_esr_RNI6J6A4[12]                Net           -        -       1.371     -           3         
+pid_front.error_p_reg_esr_RNIKGIG5[13]      SB_LUT4       I0       In      -         8.224       -         
+pid_front.error_p_reg_esr_RNIKGIG5[13]      SB_LUT4       O        Out     0.661     8.885       -         
+un1_pid_prereg_97                           Net           -        -       1.371     -           1         
+pid_front.error_p_reg_esr_RNIQTN5D[13]      SB_LUT4       I2       In      -         10.256      -         
+pid_front.error_p_reg_esr_RNIQTN5D[13]      SB_LUT4       O        Out     0.558     10.814      -         
+error_p_reg_esr_RNIQTN5D[13]                Net           -        -       1.371     -           3         
+pid_front.error_p_reg_esr_RNI3TJH01[13]     SB_LUT4       I1       In      -         12.185      -         
+pid_front.error_p_reg_esr_RNI3TJH01[13]     SB_LUT4       O        Out     0.589     12.775      -         
+error_p_reg_esr_RNI3TJH01[13]               Net           -        -       0.905     -           2         
+pid_front.un1_pid_prereg_0_cry_15_c         SB_CARRY      I0       In      -         13.680      -         
+pid_front.un1_pid_prereg_0_cry_15_c         SB_CARRY      CO       Out     0.380     14.059      -         
+un1_pid_prereg_0_cry_15                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_16_0_c       SB_CARRY      CI       In      -         14.073      -         
+pid_front.un1_pid_prereg_0_cry_16_0_c       SB_CARRY      CO       Out     0.186     14.259      -         
+un1_pid_prereg_0_cry_16                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_17_0_c       SB_CARRY      CI       In      -         14.273      -         
+pid_front.un1_pid_prereg_0_cry_17_0_c       SB_CARRY      CO       Out     0.186     14.459      -         
+un1_pid_prereg_0_cry_17                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_18_0_c       SB_CARRY      CI       In      -         14.473      -         
+pid_front.un1_pid_prereg_0_cry_18_0_c       SB_CARRY      CO       Out     0.186     14.659      -         
+un1_pid_prereg_0_cry_18                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_19_0_c       SB_CARRY      CI       In      -         14.673      -         
+pid_front.un1_pid_prereg_0_cry_19_0_c       SB_CARRY      CO       Out     0.186     14.859      -         
+un1_pid_prereg_0_cry_19                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_20_0_c       SB_CARRY      CI       In      -         14.873      -         
+pid_front.un1_pid_prereg_0_cry_20_0_c       SB_CARRY      CO       Out     0.186     15.059      -         
+un1_pid_prereg_0_cry_20                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_21_0_c       SB_CARRY      CI       In      -         15.073      -         
+pid_front.un1_pid_prereg_0_cry_21_0_c       SB_CARRY      CO       Out     0.186     15.259      -         
+un1_pid_prereg_0_cry_21                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_22_0_c       SB_CARRY      CI       In      -         15.273      -         
+pid_front.un1_pid_prereg_0_cry_22_0_c       SB_CARRY      CO       Out     0.186     15.459      -         
+un1_pid_prereg_0_cry_22                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_23_0_c       SB_CARRY      CI       In      -         15.473      -         
+pid_front.un1_pid_prereg_0_cry_23_0_c       SB_CARRY      CO       Out     0.186     15.659      -         
+un1_pid_prereg_0_cry_23                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_24_0_c       SB_CARRY      CI       In      -         15.673      -         
+pid_front.un1_pid_prereg_0_cry_24_0_c       SB_CARRY      CO       Out     0.186     15.859      -         
+un1_pid_prereg_0_cry_24                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_25_0_c       SB_CARRY      CI       In      -         15.873      -         
+pid_front.un1_pid_prereg_0_cry_25_0_c       SB_CARRY      CO       Out     0.186     16.059      -         
+un1_pid_prereg_0_cry_25                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_26_0_c       SB_CARRY      CI       In      -         16.073      -         
+pid_front.un1_pid_prereg_0_cry_26_0_c       SB_CARRY      CO       Out     0.186     16.259      -         
+un1_pid_prereg_0_cry_26                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_27_0_c       SB_CARRY      CI       In      -         16.273      -         
+pid_front.un1_pid_prereg_0_cry_27_0_c       SB_CARRY      CO       Out     0.186     16.459      -         
+un1_pid_prereg_0_cry_27                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_28_0_c       SB_CARRY      CI       In      -         16.473      -         
+pid_front.un1_pid_prereg_0_cry_28_0_c       SB_CARRY      CO       Out     0.186     16.659      -         
+un1_pid_prereg_0_cry_28                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_29_0_c       SB_CARRY      CI       In      -         16.673      -         
+pid_front.un1_pid_prereg_0_cry_29_0_c       SB_CARRY      CO       Out     0.186     16.859      -         
+un1_pid_prereg_0_cry_29                     Net           -        -       0.386     -           1         
+pid_front.pid_prereg_esr_RNO[30]            SB_LUT4       I3       In      -         17.245      -         
+pid_front.pid_prereg_esr_RNO[30]            SB_LUT4       O        Out     0.465     17.710      -         
+pid_prereg_esr_RNO[30]                      Net           -        -       1.507     -           1         
+pid_front.pid_prereg_esr[30]                SB_DFFESR     D        In      -         19.217      -         
+===========================================================================================================
+Total path delay (propagation time + setup) of 19.372 is 7.924(40.9%) logic and 11.448(59.1%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 3: 
+      Requested Period:                      16.466
+    - Setup time:                            0.155
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         16.311
+
+    - Propagation time:                      19.145
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -2.834
+
+    Number of logic level(s):                22
+    Starting point:                          pid_front.error_p_reg_esr[11] / Q
+    Ending point:                            pid_front.pid_prereg_esr[30] / D
+    The start point is clocked by            Pc2drone_pll|PLLOUTCORE_derived_clock [rising] on pin C
+    The end   point is clocked by            Pc2drone_pll|PLLOUTCORE_derived_clock [rising] on pin C
+
+Instance / Net                                            Pin      Pin               Arrival     No. of    
+Name                                        Type          Name     Dir     Delay     Time        Fan Out(s)
+-----------------------------------------------------------------------------------------------------------
+pid_front.error_p_reg_esr[11]               SB_DFFESR     Q        Out     0.796     0.796       -         
+error_p_reg[11]                             Net           -        -       1.599     -           3         
+pid_front.error_p_reg_esr_RNI873N[11]       SB_LUT4       I1       In      -         2.395       -         
+pid_front.error_p_reg_esr_RNI873N[11]       SB_LUT4       O        Out     0.589     2.984       -         
+un1_pid_prereg_79                           Net           -        -       1.371     -           4         
+pid_front.error_p_reg_esr_RNIJ1FT1[12]      SB_LUT4       I3       In      -         4.355       -         
+pid_front.error_p_reg_esr_RNIJ1FT1[12]      SB_LUT4       O        Out     0.465     4.820       -         
+error_p_reg_esr_RNIJ1FT1[12]                Net           -        -       1.371     -           1         
+pid_front.error_p_reg_esr_RNI6J6A4[12]      SB_LUT4       I1       In      -         6.191       -         
+pid_front.error_p_reg_esr_RNI6J6A4[12]      SB_LUT4       O        Out     0.589     6.780       -         
+error_p_reg_esr_RNI6J6A4[12]                Net           -        -       1.371     -           3         
+pid_front.error_p_reg_esr_RNIKGIG5[13]      SB_LUT4       I0       In      -         8.151       -         
+pid_front.error_p_reg_esr_RNIKGIG5[13]      SB_LUT4       O        Out     0.661     8.813       -         
+un1_pid_prereg_97                           Net           -        -       1.371     -           1         
+pid_front.error_p_reg_esr_RNIQTN5D[13]      SB_LUT4       I2       In      -         10.184      -         
+pid_front.error_p_reg_esr_RNIQTN5D[13]      SB_LUT4       O        Out     0.558     10.742      -         
+error_p_reg_esr_RNIQTN5D[13]                Net           -        -       1.371     -           3         
+pid_front.error_p_reg_esr_RNI3TJH01[13]     SB_LUT4       I1       In      -         12.113      -         
+pid_front.error_p_reg_esr_RNI3TJH01[13]     SB_LUT4       O        Out     0.589     12.702      -         
+error_p_reg_esr_RNI3TJH01[13]               Net           -        -       0.905     -           2         
+pid_front.un1_pid_prereg_0_cry_15_c         SB_CARRY      I0       In      -         13.607      -         
+pid_front.un1_pid_prereg_0_cry_15_c         SB_CARRY      CO       Out     0.380     13.987      -         
+un1_pid_prereg_0_cry_15                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_16_0_c       SB_CARRY      CI       In      -         14.001      -         
+pid_front.un1_pid_prereg_0_cry_16_0_c       SB_CARRY      CO       Out     0.186     14.187      -         
+un1_pid_prereg_0_cry_16                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_17_0_c       SB_CARRY      CI       In      -         14.201      -         
+pid_front.un1_pid_prereg_0_cry_17_0_c       SB_CARRY      CO       Out     0.186     14.387      -         
+un1_pid_prereg_0_cry_17                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_18_0_c       SB_CARRY      CI       In      -         14.401      -         
+pid_front.un1_pid_prereg_0_cry_18_0_c       SB_CARRY      CO       Out     0.186     14.587      -         
+un1_pid_prereg_0_cry_18                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_19_0_c       SB_CARRY      CI       In      -         14.601      -         
+pid_front.un1_pid_prereg_0_cry_19_0_c       SB_CARRY      CO       Out     0.186     14.787      -         
+un1_pid_prereg_0_cry_19                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_20_0_c       SB_CARRY      CI       In      -         14.801      -         
+pid_front.un1_pid_prereg_0_cry_20_0_c       SB_CARRY      CO       Out     0.186     14.987      -         
+un1_pid_prereg_0_cry_20                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_21_0_c       SB_CARRY      CI       In      -         15.001      -         
+pid_front.un1_pid_prereg_0_cry_21_0_c       SB_CARRY      CO       Out     0.186     15.187      -         
+un1_pid_prereg_0_cry_21                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_22_0_c       SB_CARRY      CI       In      -         15.201      -         
+pid_front.un1_pid_prereg_0_cry_22_0_c       SB_CARRY      CO       Out     0.186     15.387      -         
+un1_pid_prereg_0_cry_22                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_23_0_c       SB_CARRY      CI       In      -         15.401      -         
+pid_front.un1_pid_prereg_0_cry_23_0_c       SB_CARRY      CO       Out     0.186     15.587      -         
+un1_pid_prereg_0_cry_23                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_24_0_c       SB_CARRY      CI       In      -         15.601      -         
+pid_front.un1_pid_prereg_0_cry_24_0_c       SB_CARRY      CO       Out     0.186     15.787      -         
+un1_pid_prereg_0_cry_24                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_25_0_c       SB_CARRY      CI       In      -         15.801      -         
+pid_front.un1_pid_prereg_0_cry_25_0_c       SB_CARRY      CO       Out     0.186     15.987      -         
+un1_pid_prereg_0_cry_25                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_26_0_c       SB_CARRY      CI       In      -         16.001      -         
+pid_front.un1_pid_prereg_0_cry_26_0_c       SB_CARRY      CO       Out     0.186     16.187      -         
+un1_pid_prereg_0_cry_26                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_27_0_c       SB_CARRY      CI       In      -         16.201      -         
+pid_front.un1_pid_prereg_0_cry_27_0_c       SB_CARRY      CO       Out     0.186     16.387      -         
+un1_pid_prereg_0_cry_27                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_28_0_c       SB_CARRY      CI       In      -         16.401      -         
+pid_front.un1_pid_prereg_0_cry_28_0_c       SB_CARRY      CO       Out     0.186     16.587      -         
+un1_pid_prereg_0_cry_28                     Net           -        -       0.014     -           2         
+pid_front.un1_pid_prereg_0_cry_29_0_c       SB_CARRY      CI       In      -         16.601      -         
+pid_front.un1_pid_prereg_0_cry_29_0_c       SB_CARRY      CO       Out     0.186     16.787      -         
+un1_pid_prereg_0_cry_29                     Net           -        -       0.386     -           1         
+pid_front.pid_prereg_esr_RNO[30]            SB_LUT4       I3       In      -         17.173      -         
+pid_front.pid_prereg_esr_RNO[30]            SB_LUT4       O        Out     0.465     17.638      -         
+pid_prereg_esr_RNO[30]                      Net           -        -       1.507     -           1         
+pid_front.pid_prereg_esr[30]                SB_DFFESR     D        In      -         19.145      -         
+===========================================================================================================
+Total path delay (propagation time + setup) of 19.300 is 7.852(40.7%) logic and 11.448(59.3%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 4: 
+      Requested Period:                      16.466
+    - Setup time:                            0.155
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         16.311
+
+    - Propagation time:                      19.145
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -2.834
+
+    Number of logic level(s):                22
+    Starting point:                          pid_side.error_p_reg_esr[11] / Q
+    Ending point:                            pid_side.pid_prereg_esr[30] / D
+    The start point is clocked by            Pc2drone_pll|PLLOUTCORE_derived_clock [rising] on pin C
+    The end   point is clocked by            Pc2drone_pll|PLLOUTCORE_derived_clock [rising] on pin C
+
+Instance / Net                                               Pin      Pin               Arrival     No. of    
+Name                                           Type          Name     Dir     Delay     Time        Fan Out(s)
+--------------------------------------------------------------------------------------------------------------
+pid_side.error_p_reg_esr[11]                   SB_DFFESR     Q        Out     0.796     0.796       -         
+error_p_reg[11]                                Net           -        -       1.599     -           3         
+pid_side.error_d_reg_prev_esr_RNI0TN9[11]      SB_LUT4       I1       In      -         2.395       -         
+pid_side.error_d_reg_prev_esr_RNI0TN9[11]      SB_LUT4       O        Out     0.589     2.984       -         
+un1_pid_prereg_79                              Net           -        -       1.371     -           4         
+pid_side.error_p_reg_esr_RNIVHA21[12]          SB_LUT4       I3       In      -         4.355       -         
+pid_side.error_p_reg_esr_RNIVHA21[12]          SB_LUT4       O        Out     0.465     4.820       -         
+error_p_reg_esr_RNIVHA21[12]                   Net           -        -       1.371     -           1         
+pid_side.error_p_reg_esr_RNIQOFJ2[12]          SB_LUT4       I1       In      -         6.191       -         
+pid_side.error_p_reg_esr_RNIQOFJ2[12]          SB_LUT4       O        Out     0.589     6.780       -         
+error_p_reg_esr_RNIQOFJ2[12]                   Net           -        -       1.371     -           3         
+pid_side.error_d_reg_prev_esr_RNISG2C3[13]     SB_LUT4       I0       In      -         8.151       -         
+pid_side.error_d_reg_prev_esr_RNISG2C3[13]     SB_LUT4       O        Out     0.661     8.813       -         
+un1_pid_prereg_97                              Net           -        -       1.371     -           1         
+pid_side.error_d_reg_prev_esr_RNIMEJ18[12]     SB_LUT4       I2       In      -         10.184      -         
+pid_side.error_d_reg_prev_esr_RNIMEJ18[12]     SB_LUT4       O        Out     0.558     10.742      -         
+error_d_reg_prev_esr_RNIMEJ18[12]              Net           -        -       1.371     -           3         
+pid_side.error_d_reg_prev_esr_RNINPDOK[12]     SB_LUT4       I1       In      -         12.113      -         
+pid_side.error_d_reg_prev_esr_RNINPDOK[12]     SB_LUT4       O        Out     0.589     12.702      -         
+error_d_reg_prev_esr_RNINPDOK[12]              Net           -        -       0.905     -           2         
+pid_side.un1_pid_prereg_0_cry_15_c             SB_CARRY      I0       In      -         13.607      -         
+pid_side.un1_pid_prereg_0_cry_15_c             SB_CARRY      CO       Out     0.380     13.987      -         
+un1_pid_prereg_0_cry_15                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_16_0_c           SB_CARRY      CI       In      -         14.001      -         
+pid_side.un1_pid_prereg_0_cry_16_0_c           SB_CARRY      CO       Out     0.186     14.187      -         
+un1_pid_prereg_0_cry_16                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_17_0_c           SB_CARRY      CI       In      -         14.201      -         
+pid_side.un1_pid_prereg_0_cry_17_0_c           SB_CARRY      CO       Out     0.186     14.387      -         
+un1_pid_prereg_0_cry_17                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_18_0_c           SB_CARRY      CI       In      -         14.401      -         
+pid_side.un1_pid_prereg_0_cry_18_0_c           SB_CARRY      CO       Out     0.186     14.587      -         
+un1_pid_prereg_0_cry_18                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_19_0_c           SB_CARRY      CI       In      -         14.601      -         
+pid_side.un1_pid_prereg_0_cry_19_0_c           SB_CARRY      CO       Out     0.186     14.787      -         
+un1_pid_prereg_0_cry_19                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_20_0_c           SB_CARRY      CI       In      -         14.801      -         
+pid_side.un1_pid_prereg_0_cry_20_0_c           SB_CARRY      CO       Out     0.186     14.987      -         
+un1_pid_prereg_0_cry_20                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_21_0_c           SB_CARRY      CI       In      -         15.001      -         
+pid_side.un1_pid_prereg_0_cry_21_0_c           SB_CARRY      CO       Out     0.186     15.187      -         
+un1_pid_prereg_0_cry_21                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_22_0_c           SB_CARRY      CI       In      -         15.201      -         
+pid_side.un1_pid_prereg_0_cry_22_0_c           SB_CARRY      CO       Out     0.186     15.387      -         
+un1_pid_prereg_0_cry_22                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_23_0_c           SB_CARRY      CI       In      -         15.401      -         
+pid_side.un1_pid_prereg_0_cry_23_0_c           SB_CARRY      CO       Out     0.186     15.587      -         
+un1_pid_prereg_0_cry_23                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_24_0_c           SB_CARRY      CI       In      -         15.601      -         
+pid_side.un1_pid_prereg_0_cry_24_0_c           SB_CARRY      CO       Out     0.186     15.787      -         
+un1_pid_prereg_0_cry_24                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_25_0_c           SB_CARRY      CI       In      -         15.801      -         
+pid_side.un1_pid_prereg_0_cry_25_0_c           SB_CARRY      CO       Out     0.186     15.987      -         
+un1_pid_prereg_0_cry_25                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_26_0_c           SB_CARRY      CI       In      -         16.001      -         
+pid_side.un1_pid_prereg_0_cry_26_0_c           SB_CARRY      CO       Out     0.186     16.187      -         
+un1_pid_prereg_0_cry_26                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_27_0_c           SB_CARRY      CI       In      -         16.201      -         
+pid_side.un1_pid_prereg_0_cry_27_0_c           SB_CARRY      CO       Out     0.186     16.387      -         
+un1_pid_prereg_0_cry_27                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_28_0_c           SB_CARRY      CI       In      -         16.401      -         
+pid_side.un1_pid_prereg_0_cry_28_0_c           SB_CARRY      CO       Out     0.186     16.587      -         
+un1_pid_prereg_0_cry_28                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_29_0_c           SB_CARRY      CI       In      -         16.601      -         
+pid_side.un1_pid_prereg_0_cry_29_0_c           SB_CARRY      CO       Out     0.186     16.787      -         
+un1_pid_prereg_0_cry_29                        Net           -        -       0.386     -           1         
+pid_side.pid_prereg_esr_RNO[30]                SB_LUT4       I3       In      -         17.173      -         
+pid_side.pid_prereg_esr_RNO[30]                SB_LUT4       O        Out     0.465     17.638      -         
+pid_prereg_esr_RNO_0[30]                       Net           -        -       1.507     -           1         
+pid_side.pid_prereg_esr[30]                    SB_DFFESR     D        In      -         19.145      -         
+==============================================================================================================
+Total path delay (propagation time + setup) of 19.300 is 7.852(40.7%) logic and 11.448(59.3%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 5: 
+      Requested Period:                      16.466
+    - Setup time:                            0.155
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         16.311
+
+    - Propagation time:                      19.047
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -2.736
+
+    Number of logic level(s):                21
+    Starting point:                          pid_side.error_d_reg_prev_esr[11] / Q
+    Ending point:                            pid_side.pid_prereg_esr[30] / D
+    The start point is clocked by            Pc2drone_pll|PLLOUTCORE_derived_clock [rising] on pin C
+    The end   point is clocked by            Pc2drone_pll|PLLOUTCORE_derived_clock [rising] on pin C
+
+Instance / Net                                               Pin      Pin               Arrival     No. of    
+Name                                           Type          Name     Dir     Delay     Time        Fan Out(s)
+--------------------------------------------------------------------------------------------------------------
+pid_side.error_d_reg_prev_esr[11]              SB_DFFESR     Q        Out     0.796     0.796       -         
+error_d_reg_prev[11]                           Net           -        -       1.599     -           3         
+pid_side.error_d_reg_prev_esr_RNI0TN9[11]      SB_LUT4       I0       In      -         2.395       -         
+pid_side.error_d_reg_prev_esr_RNI0TN9[11]      SB_LUT4       O        Out     0.661     3.056       -         
+un1_pid_prereg_79                              Net           -        -       1.371     -           4         
+pid_side.error_p_reg_esr_RNIVHA21[12]          SB_LUT4       I3       In      -         4.427       -         
+pid_side.error_p_reg_esr_RNIVHA21[12]          SB_LUT4       O        Out     0.465     4.893       -         
+error_p_reg_esr_RNIVHA21[12]                   Net           -        -       1.371     -           1         
+pid_side.error_p_reg_esr_RNIQOFJ2[12]          SB_LUT4       I1       In      -         6.263       -         
+pid_side.error_p_reg_esr_RNIQOFJ2[12]          SB_LUT4       O        Out     0.589     6.853       -         
+error_p_reg_esr_RNIQOFJ2[12]                   Net           -        -       1.371     -           3         
+pid_side.error_d_reg_prev_esr_RNISG2C3[13]     SB_LUT4       I0       In      -         8.224       -         
+pid_side.error_d_reg_prev_esr_RNISG2C3[13]     SB_LUT4       O        Out     0.661     8.885       -         
+un1_pid_prereg_97                              Net           -        -       1.371     -           1         
+pid_side.error_d_reg_prev_esr_RNIMEJ18[12]     SB_LUT4       I2       In      -         10.256      -         
+pid_side.error_d_reg_prev_esr_RNIMEJ18[12]     SB_LUT4       O        Out     0.558     10.814      -         
+error_d_reg_prev_esr_RNIMEJ18[12]              Net           -        -       1.371     -           3         
+pid_side.error_d_reg_prev_esr_RNITHHEA[12]     SB_LUT4       I0       In      -         12.185      -         
+pid_side.error_d_reg_prev_esr_RNITHHEA[12]     SB_LUT4       O        Out     0.661     12.847      -         
+error_d_reg_prev_esr_RNITHHEA[12]              Net           -        -       0.905     -           2         
+pid_side.un1_pid_prereg_0_cry_16_0_c           SB_CARRY      I1       In      -         13.752      -         
+pid_side.un1_pid_prereg_0_cry_16_0_c           SB_CARRY      CO       Out     0.337     14.089      -         
+un1_pid_prereg_0_cry_16                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_17_0_c           SB_CARRY      CI       In      -         14.103      -         
+pid_side.un1_pid_prereg_0_cry_17_0_c           SB_CARRY      CO       Out     0.186     14.289      -         
+un1_pid_prereg_0_cry_17                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_18_0_c           SB_CARRY      CI       In      -         14.303      -         
+pid_side.un1_pid_prereg_0_cry_18_0_c           SB_CARRY      CO       Out     0.186     14.489      -         
+un1_pid_prereg_0_cry_18                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_19_0_c           SB_CARRY      CI       In      -         14.503      -         
+pid_side.un1_pid_prereg_0_cry_19_0_c           SB_CARRY      CO       Out     0.186     14.689      -         
+un1_pid_prereg_0_cry_19                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_20_0_c           SB_CARRY      CI       In      -         14.703      -         
+pid_side.un1_pid_prereg_0_cry_20_0_c           SB_CARRY      CO       Out     0.186     14.889      -         
+un1_pid_prereg_0_cry_20                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_21_0_c           SB_CARRY      CI       In      -         14.903      -         
+pid_side.un1_pid_prereg_0_cry_21_0_c           SB_CARRY      CO       Out     0.186     15.089      -         
+un1_pid_prereg_0_cry_21                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_22_0_c           SB_CARRY      CI       In      -         15.103      -         
+pid_side.un1_pid_prereg_0_cry_22_0_c           SB_CARRY      CO       Out     0.186     15.289      -         
+un1_pid_prereg_0_cry_22                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_23_0_c           SB_CARRY      CI       In      -         15.303      -         
+pid_side.un1_pid_prereg_0_cry_23_0_c           SB_CARRY      CO       Out     0.186     15.489      -         
+un1_pid_prereg_0_cry_23                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_24_0_c           SB_CARRY      CI       In      -         15.503      -         
+pid_side.un1_pid_prereg_0_cry_24_0_c           SB_CARRY      CO       Out     0.186     15.689      -         
+un1_pid_prereg_0_cry_24                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_25_0_c           SB_CARRY      CI       In      -         15.703      -         
+pid_side.un1_pid_prereg_0_cry_25_0_c           SB_CARRY      CO       Out     0.186     15.889      -         
+un1_pid_prereg_0_cry_25                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_26_0_c           SB_CARRY      CI       In      -         15.903      -         
+pid_side.un1_pid_prereg_0_cry_26_0_c           SB_CARRY      CO       Out     0.186     16.089      -         
+un1_pid_prereg_0_cry_26                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_27_0_c           SB_CARRY      CI       In      -         16.103      -         
+pid_side.un1_pid_prereg_0_cry_27_0_c           SB_CARRY      CO       Out     0.186     16.289      -         
+un1_pid_prereg_0_cry_27                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_28_0_c           SB_CARRY      CI       In      -         16.303      -         
+pid_side.un1_pid_prereg_0_cry_28_0_c           SB_CARRY      CO       Out     0.186     16.489      -         
+un1_pid_prereg_0_cry_28                        Net           -        -       0.014     -           2         
+pid_side.un1_pid_prereg_0_cry_29_0_c           SB_CARRY      CI       In      -         16.503      -         
+pid_side.un1_pid_prereg_0_cry_29_0_c           SB_CARRY      CO       Out     0.186     16.689      -         
+un1_pid_prereg_0_cry_29                        Net           -        -       0.386     -           1         
+pid_side.pid_prereg_esr_RNO[30]                SB_LUT4       I3       In      -         17.075      -         
+pid_side.pid_prereg_esr_RNO[30]                SB_LUT4       O        Out     0.465     17.540      -         
+pid_prereg_esr_RNO_0[30]                       Net           -        -       1.507     -           1         
+pid_side.pid_prereg_esr[30]                    SB_DFFESR     D        In      -         19.047      -         
+==============================================================================================================
+Total path delay (propagation time + setup) of 19.202 is 7.768(40.5%) logic and 11.434(59.5%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+
+
+====================================
+Detailed Report for Clock: System
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                                          Starting                                       Arrival           
+Instance                                  Reference     Type         Pin      Net        Time        Slack 
+                                          Clock                                                            
+-----------------------------------------------------------------------------------------------------------
+pid_front.un2_error_1_mulonly_0[24:0]     System        SB_MAC16     O[2]     O[2]       0.000       16.311
+pid_side.un2_error_1_mulonly_0[24:0]      System        SB_MAC16     O[2]     O_0[2]     0.000       16.311
+pid_front.un2_error_1_mulonly_0[24:0]     System        SB_MAC16     O[3]     O[3]       0.000       16.311
+pid_side.un2_error_1_mulonly_0[24:0]      System        SB_MAC16     O[3]     O_1[3]     0.000       16.311
+pid_front.un2_error_1_mulonly_0[24:0]     System        SB_MAC16     O[4]     O[4]       0.000       16.311
+pid_alt.un2_error_1_mulonly_0[24:0]       System        SB_MAC16     O[4]     O_4[4]     0.000       16.311
+pid_side.un2_error_1_mulonly_0[24:0]      System        SB_MAC16     O[4]     O_1[4]     0.000       16.311
+pid_front.un2_error_1_mulonly_0[24:0]     System        SB_MAC16     O[5]     O[5]       0.000       16.311
+pid_alt.un2_error_1_mulonly_0[24:0]       System        SB_MAC16     O[5]     O_4[5]     0.000       16.311
+pid_side.un2_error_1_mulonly_0[24:0]      System        SB_MAC16     O[5]     O_1[5]     0.000       16.311
+===========================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                                 Starting                                       Required           
+Instance                         Reference     Type          Pin     Net        Time         Slack 
+                                 Clock                                                             
+---------------------------------------------------------------------------------------------------
+pid_alt.error_d_reg_esr[0]       System        SB_DFFESR     D       O_3[4]     16.311       16.311
+pid_side.error_d_reg_esr[0]      System        SB_DFFESR     D       O_0[2]     16.311       16.311
+pid_front.error_d_reg_esr[0]     System        SB_DFFESR     D       O[2]       16.311       16.311
+pid_side.error_d_reg_esr[1]      System        SB_DFFESR     D       O_1[3]     16.311       16.311
+pid_alt.error_d_reg_esr[1]       System        SB_DFFESR     D       O_3[5]     16.311       16.311
+pid_front.error_d_reg_esr[1]     System        SB_DFFESR     D       O[3]       16.311       16.311
+pid_side.error_d_reg_esr[2]      System        SB_DFFESR     D       O_1[4]     16.311       16.311
+pid_alt.error_d_reg_esr[2]       System        SB_DFFESR     D       O_3[6]     16.311       16.311
+pid_front.error_d_reg_esr[2]     System        SB_DFFESR     D       O[4]       16.311       16.311
+pid_alt.error_d_reg_esr[3]       System        SB_DFFESR     D       O_3[7]     16.311       16.311
+===================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      16.466
+    - Setup time:                            0.155
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         16.311
+
+    - Propagation time:                      0.000
+    - Clock delay at starting point:         0.000 (ideal)
+    - Estimated clock delay at start point:  -0.000
+    = Slack (non-critical) :                 16.311
+
+    Number of logic level(s):                0
+    Starting point:                          pid_front.un2_error_1_mulonly_0[24:0] / O[2]
+    Ending point:                            pid_front.error_d_reg_esr[0] / D
+    The start point is clocked by            System [rising]
+    The end   point is clocked by            Pc2drone_pll|PLLOUTCORE_derived_clock [rising] on pin C
+
+Instance / Net                                          Pin      Pin               Arrival     No. of    
+Name                                      Type          Name     Dir     Delay     Time        Fan Out(s)
+---------------------------------------------------------------------------------------------------------
+pid_front.un2_error_1_mulonly_0[24:0]     SB_MAC16      O[2]     Out     0.000     0.000       -         
+O[2]                                      Net           -        -       0.000     -           1         
+pid_front.error_d_reg_esr[0]              SB_DFFESR     D        In      -         0.000       -         
+=========================================================================================================
+Total path delay (propagation time + setup) of 0.155 is 0.155(100.0%) logic and 0.000(0.0%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+
+##### END OF TIMING REPORT #####]
+
+Timing exceptions that could not be applied
+None
+
+Finished final timing analysis (Real Time elapsed 0h:00m:15s; CPU Time elapsed 0h:00m:14s; Memory used current: 185MB peak: 191MB)
+
+
+Finished timing report (Real Time elapsed 0h:00m:15s; CPU Time elapsed 0h:00m:14s; Memory used current: 185MB peak: 191MB)
+
+---------------------------------------
+Resource Usage Report for Pc2drone 
+
+Mapping to part: ice40up5ksg48
+Cell usage:
+GND             13 uses
+SB_CARRY        426 uses
+SB_DFF          73 uses
+SB_DFFE         66 uses
+SB_DFFESR       575 uses
+SB_DFFESS       4 uses
+SB_DFFSR        214 uses
+SB_DFFSS        39 uses
+SB_GB           8 uses
+VCC             13 uses
+SB_MAC16            7 uses
+  MULTONLY  7 uses
+SB_LUT4         1871 uses
+
+I/O ports: 11
+I/O primitives: 11
+SB_IO          10 uses
+SB_PLL40_PAD   1 use
+
+I/O Register bits:                  0
+Register bits not including I/Os:   971 (18%)
+Total load per clock:
+   Pc2drone|clk_system: 1
+   Pc2drone_pll|PLLOUTCORE_derived_clock: 971
+
+@S |Mapping Summary:
+Total  LUTs: 1871 (35%)
+
+Distribution of All Consumed LUTs = LUT4 
+Distribution of All Consumed Luts 1871 = 1871 
+
+Mapper successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:15s; CPU Time elapsed 0h:00m:15s; Memory used current: 33MB peak: 191MB)
+
+Process took 0h:00m:15s realtime, 0h:00m:15s cputime
+# Tue Jul 16 20:05:12 2019
+
+###########################################################]

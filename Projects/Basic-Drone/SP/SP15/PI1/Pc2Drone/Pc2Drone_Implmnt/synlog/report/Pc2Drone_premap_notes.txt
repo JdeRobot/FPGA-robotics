@@ -1,0 +1,7 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: BN362 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp15\pi1\pc2drone\uart_rx.v":98:0:98:5|Removing sequential instance source_ber_framing_error (in view: work.uart_rx(verilog)) of type view:PrimLib.sdffr(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp15\pi1\pc2drone\scaler.v":46:0:46:5|Removing sequential instance source_data_valid (in view: work.scaler_2(verilog)) of type view:PrimLib.dff(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp15\pi1\pc2drone\scaler.v":46:0:46:5|Removing sequential instance source_data_valid (in view: work.scaler_1(verilog)) of type view:PrimLib.dff(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp15\pi1\pc2drone\scaler.v":46:0:46:5|Removing sequential instance source_data_valid (in view: work.scaler_0(verilog)) of type view:PrimLib.dff(prim) because it does not drive other instances.
+@N: BN225 |Writing default property annotation file C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP15\PI1\Pc2Drone\Pc2Drone_Implmnt\Pc2Drone.sap.

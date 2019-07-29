@@ -1,0 +1,29 @@
+---------------------------------------
+Resource Usage Report for drones_kids 
+
+Mapping to part: ice40up5ksg48
+Cell usage:
+GND             3 uses
+SB_CARRY        54 uses
+SB_DFF          35 uses
+SB_DFFE         27 uses
+SB_DFFSR        35 uses
+SB_DFFSS        1 use
+SB_GB           2 uses
+VCC             3 uses
+SB_LUT4         180 uses
+
+I/O ports: 12
+I/O primitives: 12
+SB_GB_IO       1 use
+SB_IO          11 uses
+
+I/O Register bits:                  0
+Register bits not including I/Os:   98 (1%)
+
+@S |Mapping Summary:
+Total  LUTs: 180 (3%)
+
+Distribution of All Consumed LUTs = LUT4 
+Distribution of All Consumed Luts 180 = 180 
+

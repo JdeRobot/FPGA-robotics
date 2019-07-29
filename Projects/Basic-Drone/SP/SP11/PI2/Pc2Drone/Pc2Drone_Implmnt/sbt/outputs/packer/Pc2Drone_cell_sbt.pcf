@@ -1,0 +1,146 @@
+ble_pack uart.bit_Count_RNO_0_1_LC_13_17_1 { uart.bit_Count_RNO_0[1] }
+ble_pack uart.bit_Count_1_LC_13_17_2 { uart.bit_Count_RNO[1], uart.bit_Count[1] }
+clb_pack LT_13_17 { uart.bit_Count_RNO_0_1_LC_13_17_1, uart.bit_Count_1_LC_13_17_2 }
+set_location LT_13_17 13 17
+ble_pack uart.bit_Count_RNO_1_2_LC_13_18_2 { uart.bit_Count_RNO_1[2] }
+ble_pack uart.bit_Count_RNO_0_2_LC_13_18_3 { uart.bit_Count_RNO_0[2] }
+ble_pack uart.bit_Count_2_LC_13_18_4 { uart.bit_Count_RNO[2], uart.bit_Count[2] }
+ble_pack uart.bit_Count_RNO_2_2_LC_13_18_6 { uart.bit_Count_RNO_2[2] }
+ble_pack uart.bit_Count_RNO_1_1_LC_13_18_7 { uart.bit_Count_RNO_1[1] }
+clb_pack LT_13_18 { uart.bit_Count_RNO_1_2_LC_13_18_2, uart.bit_Count_RNO_0_2_LC_13_18_3, uart.bit_Count_2_LC_13_18_4, uart.bit_Count_RNO_2_2_LC_13_18_6, uart.bit_Count_RNO_1_1_LC_13_18_7 }
+set_location LT_13_18 13 18
+ble_pack uart.state_RNO_1_3_LC_13_19_0 { uart.state_RNO_1[3] }
+ble_pack uart.state_RNIB0BC_2_LC_13_19_1 { uart.state_RNIB0BC[2] }
+ble_pack uart.state_RNO_2_2_LC_13_19_2 { uart.state_RNO_2[2] }
+ble_pack uart.state_RNO_1_2_LC_13_19_3 { uart.state_RNO_1[2] }
+ble_pack uart.state_RNO_0_2_LC_13_19_4 { uart.state_RNO_0[2] }
+ble_pack uart.state_2_LC_13_19_5 { uart.state_RNO[2], uart.state[2] }
+ble_pack uart.state_1_LC_13_19_6 { uart.state_RNO[1], uart.state[1] }
+ble_pack uart.state_RNO_0_3_LC_13_19_7 { uart.state_RNO_0[3] }
+clb_pack LT_13_19 { uart.state_RNO_1_3_LC_13_19_0, uart.state_RNIB0BC_2_LC_13_19_1, uart.state_RNO_2_2_LC_13_19_2, uart.state_RNO_1_2_LC_13_19_3, uart.state_RNO_0_2_LC_13_19_4, uart.state_2_LC_13_19_5, uart.state_1_LC_13_19_6, uart.state_RNO_0_3_LC_13_19_7 }
+set_location LT_13_19 13 19
+ble_pack uart.data_Aux_esr_RNO_0_7_LC_14_17_0 { uart.data_Aux_esr_RNO_0[7] }
+ble_pack uart.data_Aux_esr_RNO_7_LC_14_17_1 { uart.data_Aux_esr_RNO[7] }
+ble_pack uart.data_Aux_esr_7_LC_14_17_2 { uart.data_Aux_esr_7_THRU_LUT4_0, uart.data_Aux_esr[7] }
+clb_pack LT_14_17 { uart.data_Aux_esr_RNO_0_7_LC_14_17_0, uart.data_Aux_esr_RNO_7_LC_14_17_1, uart.data_Aux_esr_7_LC_14_17_2 }
+set_location LT_14_17 14 17
+ble_pack uart.timer_Count_RNIBAKE2_6_LC_14_18_0 { uart.timer_Count_RNIBAKE2[6] }
+ble_pack uart.timer_Count_RNIQ1101_3_LC_14_18_1 { uart.timer_Count_RNIQ1101[3] }
+ble_pack uart.timer_Count_RNITC202_6_LC_14_18_2 { uart.timer_Count_RNITC202[6] }
+ble_pack uart.timer_Count_RNIGLM11_6_LC_14_18_3 { uart.timer_Count_RNIGLM11[6] }
+ble_pack uart.state_RNIBLJS1_3_LC_14_18_4 { uart.state_RNIBLJS1[3] }
+ble_pack uart.bit_Count_0_LC_14_18_5 { uart.bit_Count_RNO[0], uart.bit_Count[0] }
+ble_pack uart.bit_Count_RNIETHE_2_LC_14_18_6 { uart.bit_Count_RNIETHE[2] }
+ble_pack uart.bit_Count_RNO_0_0_LC_14_18_7 { uart.bit_Count_RNO_0[0] }
+clb_pack LT_14_18 { uart.timer_Count_RNIBAKE2_6_LC_14_18_0, uart.timer_Count_RNIQ1101_3_LC_14_18_1, uart.timer_Count_RNITC202_6_LC_14_18_2, uart.timer_Count_RNIGLM11_6_LC_14_18_3, uart.state_RNIBLJS1_3_LC_14_18_4, uart.bit_Count_0_LC_14_18_5, uart.bit_Count_RNIETHE_2_LC_14_18_6, uart.bit_Count_RNO_0_0_LC_14_18_7 }
+set_location LT_14_18 14 18
+ble_pack uart.timer_Count_RNINU001_0_1_LC_14_19_0 { uart.timer_Count_RNINU001_0[1] }
+ble_pack uart.state_3_LC_14_19_1 { uart.state_RNO[3], uart.state[3] }
+ble_pack uart.timer_Count_6_rep1_RNIRC5S1_LC_14_19_2 { uart.timer_Count_6_rep1_RNIRC5S1 }
+ble_pack uart.state_RNILALH5_4_LC_14_19_3 { uart.state_RNILALH5[4] }
+ble_pack uart.timer_Count_RNIQ9BL_0_LC_14_19_4 { uart.timer_Count_RNIQ9BL[0] }
+ble_pack uart.timer_Count_RNIICSG1_6_LC_14_19_5 { uart.timer_Count_RNIICSG1[6] }
+ble_pack uart.timer_Count_RNIN6BL_0_LC_14_19_6 { uart.timer_Count_RNIN6BL[0] }
+ble_pack uart.timer_Count_fast_RNI7MEA1_6_LC_14_19_7 { uart.timer_Count_fast_RNI7MEA1[6] }
+clb_pack LT_14_19 { uart.timer_Count_RNINU001_0_1_LC_14_19_0, uart.state_3_LC_14_19_1, uart.timer_Count_6_rep1_RNIRC5S1_LC_14_19_2, uart.state_RNILALH5_4_LC_14_19_3, uart.timer_Count_RNIQ9BL_0_LC_14_19_4, uart.timer_Count_RNIICSG1_6_LC_14_19_5, uart.timer_Count_RNIN6BL_0_LC_14_19_6, uart.timer_Count_fast_RNI7MEA1_6_LC_14_19_7 }
+set_location LT_14_19 14 19
+ble_pack uart.timer_Count_7_LC_14_20_0 { uart.timer_Count_RNO[7], uart.timer_Count[7] }
+ble_pack uart.timer_Count_6_LC_14_20_1 { uart.timer_Count_RNO[6], uart.timer_Count[6] }
+ble_pack uart.timer_Count_fast_6_LC_14_20_2 { uart.timer_Count_fast_RNO[6], uart.timer_Count_fast[6] }
+ble_pack uart.timer_Count_6_rep1_LC_14_20_3 { uart.timer_Count_6_rep1_RNO, uart.timer_Count_6_rep1 }
+ble_pack uart.timer_Count_0_LC_14_20_4 { uart.timer_Count_RNO[0], uart.timer_Count[0] }
+clb_pack LT_14_20 { uart.timer_Count_7_LC_14_20_0, uart.timer_Count_6_LC_14_20_1, uart.timer_Count_fast_6_LC_14_20_2, uart.timer_Count_6_rep1_LC_14_20_3, uart.timer_Count_0_LC_14_20_4 }
+set_location LT_14_20 14 20
+ble_pack uart.data_Aux_esr_1_LC_15_16_2 { uart.data_Aux_esr_1_THRU_LUT4_0, uart.data_Aux_esr[1] }
+clb_pack LT_15_16 { uart.data_Aux_esr_1_LC_15_16_2 }
+set_location LT_15_16 15 16
+ble_pack uart.data_Aux_esr_RNO_0_4_LC_15_17_1 { uart.data_Aux_esr_RNO_0[4] }
+ble_pack uart.data_Aux_esr_RNO_0_0_LC_15_17_2 { uart.data_Aux_esr_RNO_0[0] }
+ble_pack uart.state_RNID2BC_3_LC_15_17_5 { uart.state_RNID2BC[3] }
+ble_pack uart.data_Aux_esr_RNO_1_LC_15_17_6 { uart.data_Aux_esr_RNO[1] }
+clb_pack LT_15_17 { uart.data_Aux_esr_RNO_0_4_LC_15_17_1, uart.data_Aux_esr_RNO_0_0_LC_15_17_2, uart.state_RNID2BC_3_LC_15_17_5, uart.data_Aux_esr_RNO_1_LC_15_17_6 }
+set_location LT_15_17 15 17
+ble_pack uart.state_4_LC_15_18_1 { uart.state_RNO[4], uart.state[4] }
+ble_pack uart.timer_Count_RNI9BTG2_6_LC_15_18_2 { uart.timer_Count_RNI9BTG2[6] }
+ble_pack uart.data_Aux_esr_RNO_0_1_LC_15_18_3 { uart.data_Aux_esr_RNO_0[1] }
+ble_pack uart.data_Aux_esr_RNO_0_3_LC_15_18_4 { uart.data_Aux_esr_RNO_0[3] }
+ble_pack uart.data_Aux_esr_RNO_3_LC_15_18_5 { uart.data_Aux_esr_RNO[3] }
+ble_pack uart.data_Aux_esr_RNO_0_2_LC_15_18_6 { uart.data_Aux_esr_RNO_0[2] }
+ble_pack uart.data_Aux_esr_RNO_2_LC_15_18_7 { uart.data_Aux_esr_RNO[2] }
+clb_pack LT_15_18 { uart.state_4_LC_15_18_1, uart.timer_Count_RNI9BTG2_6_LC_15_18_2, uart.data_Aux_esr_RNO_0_1_LC_15_18_3, uart.data_Aux_esr_RNO_0_3_LC_15_18_4, uart.data_Aux_esr_RNO_3_LC_15_18_5, uart.data_Aux_esr_RNO_0_2_LC_15_18_6, uart.data_Aux_esr_RNO_2_LC_15_18_7 }
+set_location LT_15_18 15 18
+ble_pack uart.timer_Count_4_LC_15_19_1 { uart.timer_Count_RNO[4], uart.timer_Count[4] }
+ble_pack uart.timer_Count_6_rep1_RNI1B4S_LC_15_19_2 { uart.timer_Count_6_rep1_RNI1B4S }
+ble_pack uart.timer_Count_6_rep1_RNI02Q61_LC_15_19_4 { uart.timer_Count_6_rep1_RNI02Q61 }
+ble_pack uart.timer_Count_RNINU001_1_LC_15_19_5 { uart.timer_Count_RNINU001[1] }
+ble_pack uart.timer_Count_3_LC_15_19_6 { uart.timer_Count_RNO[3], uart.timer_Count[3] }
+ble_pack uart.timer_Count_2_LC_15_19_7 { uart.timer_Count_RNO[2], uart.timer_Count[2] }
+clb_pack LT_15_19 { uart.timer_Count_4_LC_15_19_1, uart.timer_Count_6_rep1_RNI1B4S_LC_15_19_2, uart.timer_Count_6_rep1_RNI02Q61_LC_15_19_4, uart.timer_Count_RNINU001_1_LC_15_19_5, uart.timer_Count_3_LC_15_19_6, uart.timer_Count_2_LC_15_19_7 }
+set_location LT_15_19 15 19
+ble_pack uart.timer_Count_RNIMLMA1_1_LC_15_20_0 { uart.timer_Count_RNIMLMA1[1] }
+ble_pack uart.timer_Count_RNIH8CL1_0_LC_15_20_1 { uart.timer_Count_RNIH8CL1[0] }
+ble_pack uart.timer_Count_5_LC_15_20_2 { uart.timer_Count_RNO[5], uart.timer_Count[5] }
+ble_pack uart.timer_Count_RNIHJ661_3_LC_15_20_3 { uart.timer_Count_RNIHJ661[3] }
+ble_pack uart.timer_Count_RNI6JN12_4_LC_15_20_4 { uart.timer_Count_RNI6JN12[4] }
+ble_pack uart.timer_Count_1_LC_15_20_5 { uart.timer_Count_RNO[1], uart.timer_Count[1] }
+ble_pack uart.timer_Count_RNIV5RV2_4_LC_15_20_7 { uart.timer_Count_RNIV5RV2[4] }
+clb_pack LT_15_20 { uart.timer_Count_RNIMLMA1_1_LC_15_20_0, uart.timer_Count_RNIH8CL1_0_LC_15_20_1, uart.timer_Count_5_LC_15_20_2, uart.timer_Count_RNIHJ661_3_LC_15_20_3, uart.timer_Count_RNI6JN12_4_LC_15_20_4, uart.timer_Count_1_LC_15_20_5, uart.timer_Count_RNIV5RV2_4_LC_15_20_7 }
+set_location LT_15_20 15 20
+ble_pack uart.data_rdy_LC_15_21_3 { uart.data_rdy_RNO, uart.data_rdy }
+clb_pack LT_15_21 { uart.data_rdy_LC_15_21_3 }
+set_location LT_15_21 15 21
+ble_pack uart.data_Aux_esr_RNO_0_LC_16_16_2 { uart.data_Aux_esr_RNO[0] }
+ble_pack uart.data_Aux_esr_RNO_4_LC_16_16_5 { uart.data_Aux_esr_RNO[4] }
+clb_pack LT_16_16 { uart.data_Aux_esr_RNO_0_LC_16_16_2, uart.data_Aux_esr_RNO_4_LC_16_16_5 }
+set_location LT_16_16 16 16
+ble_pack uart.data_Aux_esr_2_LC_16_17_0 { uart.data_Aux_esr_2_THRU_LUT4_0, uart.data_Aux_esr[2] }
+clb_pack LT_16_17 { uart.data_Aux_esr_2_LC_16_17_0 }
+set_location LT_16_17 16 17
+ble_pack uart.data_Aux_esr_3_LC_16_18_2 { uart.data_Aux_esr_3_THRU_LUT4_0, uart.data_Aux_esr[3] }
+ble_pack uart.data_Aux_esr_RNO_0_6_LC_16_18_7 { uart.data_Aux_esr_RNO_0[6] }
+clb_pack LT_16_18 { uart.data_Aux_esr_3_LC_16_18_2, uart.data_Aux_esr_RNO_0_6_LC_16_18_7 }
+set_location LT_16_18 16 18
+ble_pack uart.timer_Count_6_rep1_RNIOBV23_LC_16_19_0 { uart.timer_Count_6_rep1_RNIOBV23 }
+ble_pack uart.state_RNIVF8I3_4_LC_16_19_1 { uart.state_RNIVF8I3[4] }
+ble_pack uart.data_Aux_esr_RNO_0_5_LC_16_19_2 { uart.data_Aux_esr_RNO_0[5] }
+ble_pack uart.data_Aux_esr_RNO_5_LC_16_19_3 { uart.data_Aux_esr_RNO[5] }
+ble_pack uart.data_Aux_esr_RNO_6_LC_16_19_6 { uart.data_Aux_esr_RNO[6] }
+ble_pack uart.timer_Count_RNIUL3I6_4_LC_16_19_7 { uart.timer_Count_RNIUL3I6[4] }
+clb_pack LT_16_19 { uart.timer_Count_6_rep1_RNIOBV23_LC_16_19_0, uart.state_RNIVF8I3_4_LC_16_19_1, uart.data_Aux_esr_RNO_0_5_LC_16_19_2, uart.data_Aux_esr_RNO_5_LC_16_19_3, uart.data_Aux_esr_RNO_6_LC_16_19_6, uart.timer_Count_RNIUL3I6_4_LC_16_19_7 }
+set_location LT_16_19 16 19
+ble_pack uart.data_Aux_esr_5_LC_16_20_3 { uart.data_Aux_esr_5_THRU_LUT4_0, uart.data_Aux_esr[5] }
+clb_pack LT_16_20 { uart.data_Aux_esr_5_LC_16_20_3 }
+set_location LT_16_20 16 20
+ble_pack uart.data_Aux_esr_4_LC_17_16_5 { uart.data_Aux_esr_4_THRU_LUT4_0, uart.data_Aux_esr[4] }
+clb_pack LT_17_16 { uart.data_Aux_esr_4_LC_17_16_5 }
+set_location LT_17_16 17 16
+ble_pack uart.data_Aux_esr_0_LC_17_17_1 { uart.data_Aux_esr_0_THRU_LUT4_0, uart.data_Aux_esr[0] }
+clb_pack LT_17_17 { uart.data_Aux_esr_0_LC_17_17_1 }
+set_location LT_17_17 17 17
+ble_pack uart.data_esr_0_LC_17_18_0 { uart.data_esr_0_THRU_LUT4_0, uart.data_esr[0] }
+ble_pack uart.data_esr_1_LC_17_18_1 { uart.data_esr_1_THRU_LUT4_0, uart.data_esr[1] }
+ble_pack uart.data_esr_2_LC_17_18_2 { uart.data_esr_2_THRU_LUT4_0, uart.data_esr[2] }
+ble_pack uart.data_esr_3_LC_17_18_3 { uart.data_esr_3_THRU_LUT4_0, uart.data_esr[3] }
+ble_pack uart.data_esr_5_LC_17_18_5 { uart.data_esr_5_THRU_LUT4_0, uart.data_esr[5] }
+ble_pack uart.data_esr_6_LC_17_18_6 { uart.data_esr_6_THRU_LUT4_0, uart.data_esr[6] }
+ble_pack uart.data_esr_7_LC_17_18_7 { uart.data_esr_7_THRU_LUT4_0, uart.data_esr[7] }
+clb_pack LT_17_18 { uart.data_esr_0_LC_17_18_0, uart.data_esr_1_LC_17_18_1, uart.data_esr_2_LC_17_18_2, uart.data_esr_3_LC_17_18_3, uart.data_esr_5_LC_17_18_5, uart.data_esr_6_LC_17_18_6, uart.data_esr_7_LC_17_18_7 }
+set_location LT_17_18 17 18
+ble_pack uart.data_esr_4_LC_17_19_5 { uart.data_esr_4_THRU_LUT4_0, uart.data_esr[4] }
+clb_pack LT_17_19 { uart.data_esr_4_LC_17_19_5 }
+set_location LT_17_19 17 19
+ble_pack uart.data_Aux_esr_6_LC_17_20_0 { uart.data_Aux_esr_6_THRU_LUT4_0, uart.data_Aux_esr[6] }
+clb_pack LT_17_20 { uart.data_Aux_esr_6_LC_17_20_0 }
+set_location LT_17_20 17 20
+set_io uart_input 4
+set_io data_rdy 37
+set_io data[6] 34
+set_io data[2] 18
+set_io data[7] 42
+set_io data[5] 32
+set_io data[3] 16
+set_io data[1] 20
+set_io uart_input_debug 2
+set_io data[4] 26
+set_io data[0] 6
+set_io clk_system 35

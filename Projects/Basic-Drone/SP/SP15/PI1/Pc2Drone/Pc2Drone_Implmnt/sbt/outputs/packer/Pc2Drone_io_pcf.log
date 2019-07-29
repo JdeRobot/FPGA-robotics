@@ -1,0 +1,5 @@
+OUTPUT ppm_output 	 location (13, 0, 1) 	 6 	 SB_LVCMOS
+OUTPUT uart_input_debug 	 location (16, 0, 0) 	 10 	 SB_LVCMOS
+INPUT  uart_input 	 location (9, 0, 0) 	 4 	 SB_LVCMOS
+OUTPUT frame_decoder_dv 	 location (17, 0, 0) 	 11 	 SB_LVCMOS
+INPUT  clk_system 	 location (12, 31, 1) 	 35 	 SB_LVCMOS

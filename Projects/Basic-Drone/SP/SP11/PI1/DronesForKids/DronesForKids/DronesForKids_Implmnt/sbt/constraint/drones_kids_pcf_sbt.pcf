@@ -1,0 +1,30 @@
+# ##############################################################################
+
+# iCEcube PCF
+
+# Version:            2017.08.27940
+
+# File Generated:     Mar 8 2019 06:37:28
+
+# Family & Device:    iCE40UP5K
+
+# Package:            SG48
+
+# ##############################################################################
+
+###MergeFF List 2
+set_io_ff led -out ON
+set_io_ff s1 -in ON
+
+###IOSet List 10
+set_io clk_system 35 -io_std SB_LVCMOS -pullup no
+set_io led 12 -io_std SB_LVCMOS -pullup no
+set_io source_data[1] 42 -io_std SB_LVCMOS -pullup no
+set_io source_data_rdy 31 -io_std SB_LVCMOS -pullup no
+set_io ppm_output 34 -io_std SB_LVCMOS -pullup no
+set_io sdin 25 -io_std SB_LVCMOS -pullup no
+set_io source_data[0] 36 -io_std SB_LVCMOS -pullup no
+set_io source_data[2] 38 -io_std SB_LVCMOS -pullup no
+set_io reset_system 43 -io_std SB_LVCMOS -pullup no
+set_io s1 23 -io_std SB_LVCMOS -pullup no
+

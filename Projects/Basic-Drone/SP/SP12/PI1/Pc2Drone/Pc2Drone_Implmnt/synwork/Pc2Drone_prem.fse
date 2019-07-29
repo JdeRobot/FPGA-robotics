@@ -1,0 +1,32 @@
+
+fsm_encoding {6980982} onehot
+
+fsm_state_encoding {6980982} 000 {00001}
+
+fsm_state_encoding {6980982} 001 {00010}
+
+fsm_state_encoding {6980982} 010 {00100}
+
+fsm_state_encoding {6980982} 011 {01000}
+
+fsm_state_encoding {6980982} 100 {10000}
+
+fsm_registers {6980982} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {7790791} onehot
+
+fsm_state_encoding {7790791} S_WF_STX1 {0000001}
+
+fsm_state_encoding {7790791} S_WF_STX2 {0000010}
+
+fsm_state_encoding {7790791} S_CH1_ADQ {0000100}
+
+fsm_state_encoding {7790791} S_CH2_ADQ {0001000}
+
+fsm_state_encoding {7790791} S_CH3_ADQ {0010000}
+
+fsm_state_encoding {7790791} S_CH4_ADQ {0100000}
+
+fsm_state_encoding {7790791} S_OFF1_ADQ {1000000}
+
+fsm_registers {7790791} {state_1[6]}  {state_1[5]}  {state_1[4]}  {state_1[3]}  {state_1[2]}  {state_1[1]}  {state_1[0]} 

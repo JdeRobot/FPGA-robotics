@@ -1,0 +1,135 @@
+set_location uart.data_esr_7_THRU_LUT4_0 17 18 7 #SB_LUT4
+set_location uart.data_esr_6_THRU_LUT4_0 17 18 6 #SB_LUT4
+set_location uart.data_esr_5_THRU_LUT4_0 17 18 5 #SB_LUT4
+set_location uart.data_esr_4_THRU_LUT4_0 17 19 5 #SB_LUT4
+set_location uart.data_esr_3_THRU_LUT4_0 17 18 3 #SB_LUT4
+set_location uart.data_esr_2_THRU_LUT4_0 17 18 2 #SB_LUT4
+set_location uart.data_esr_1_THRU_LUT4_0 17 18 1 #SB_LUT4
+set_location uart.data_esr_0_THRU_LUT4_0 17 18 0 #SB_LUT4
+set_location uart.data_Aux_esr_7_THRU_LUT4_0 14 17 2 #SB_LUT4
+set_location uart.data_Aux_esr_6_THRU_LUT4_0 17 20 0 #SB_LUT4
+set_location uart.data_Aux_esr_5_THRU_LUT4_0 16 20 3 #SB_LUT4
+set_location uart.data_Aux_esr_4_THRU_LUT4_0 17 16 5 #SB_LUT4
+set_location uart.data_Aux_esr_3_THRU_LUT4_0 16 18 2 #SB_LUT4
+set_location uart.data_Aux_esr_2_THRU_LUT4_0 16 17 0 #SB_LUT4
+set_location uart.data_Aux_esr_1_THRU_LUT4_0 15 16 2 #SB_LUT4
+set_location uart.data_Aux_esr_0_THRU_LUT4_0 17 17 1 #SB_LUT4
+set_location uart.timer_Count_RNI9BTG2[6] 15 18 2 #SB_LUT4
+set_location uart.timer_Count[4] 15 19 1 #SB_DFFSR
+set_location uart.state[1] 13 19 6 #SB_DFF
+set_location uart.data_Aux_esr[0] 17 17 1 #SB_DFFESR
+set_location uart.timer_Count_RNO[2] 15 19 7 #SB_LUT4
+set_location uart.state_RNO[2] 13 19 5 #SB_LUT4
+set_location uart.data_Aux_esr_RNO_0[5] 16 19 2 #SB_LUT4
+set_location uart.bit_Count_RNO[1] 13 17 2 #SB_LUT4
+set_location uart.timer_Count_fast[6] 14 20 2 #SB_DFFSR
+set_location uart.timer_Count_RNIH8CL1[0] 15 20 1 #SB_LUT4
+set_location uart.timer_Count[0] 14 20 4 #SB_DFFSR
+set_location uart.state_RNO_0[2] 13 19 4 #SB_LUT4
+set_location uart.bit_Count[1] 13 17 2 #SB_DFF
+set_location uart.timer_Count_RNO[7] 14 20 0 #SB_LUT4
+set_location uart.timer_Count_RNITC202[6] 14 18 2 #SB_LUT4
+set_location uart.timer_Count_6_rep1_RNO 14 20 3 #SB_LUT4
+set_location uart.data_Aux_esr_RNO_0[2] 15 18 6 #SB_LUT4
+set_location uart.bit_Count_RNO_0[2] 13 18 3 #SB_LUT4
+set_location uart.state_RNO_1[2] 13 19 3 #SB_LUT4
+set_location uart.state_RNILALH5[4] 14 19 3 #SB_LUT4
+set_location uart.data_esr[4] 17 19 5 #SB_DFFESR
+set_location uart.data_Aux_esr_RNO[1] 15 17 6 #SB_LUT4
+set_location uart.timer_Count_fast_RNO[6] 14 20 2 #SB_LUT4
+set_location uart.timer_Count[5] 15 20 2 #SB_DFFSR
+set_location uart.data_rdy 15 21 3 #SB_DFF
+set_location uart.timer_Count_RNIN6BL[0] 14 19 6 #SB_LUT4
+set_location uart.state_RNIVF8I3[4] 16 19 1 #SB_LUT4
+set_location uart.data_Aux_esr[7] 14 17 2 #SB_DFFESR
+set_location uart.timer_Count_RNO[3] 15 19 6 #SB_LUT4
+set_location uart.state_RNO[3] 14 19 1 #SB_LUT4
+set_location uart.data_Aux_esr_RNO_0[6] 16 18 7 #SB_LUT4
+set_location uart.bit_Count_RNO_2[2] 13 18 6 #SB_LUT4
+set_location uart.bit_Count_RNO_1[1] 13 18 7 #SB_LUT4
+set_location GND -1 -1 -1 #GND
+set_location uart.data_esr[0] 17 18 0 #SB_DFFESR
+set_location uart.data_Aux_esr_RNO[5] 16 19 3 #SB_LUT4
+set_location uart.timer_Count_RNINU001_0[1] 14 19 0 #SB_LUT4
+set_location uart.timer_Count_6_rep1 14 20 3 #SB_DFFSR
+set_location uart.timer_Count[1] 15 20 5 #SB_DFFSR
+set_location uart.bit_Count[2] 13 18 4 #SB_DFF
+set_location uart.state[2] 13 19 5 #SB_DFF
+set_location uart.data_Aux_esr_RNO_0[3] 15 18 4 #SB_LUT4
+set_location uart.data_Aux_esr[3] 16 18 2 #SB_DFFESR
+set_location uart.bit_Count_RNO_0[1] 13 17 1 #SB_LUT4
+set_location uart.timer_Count_6_rep1_RNIOBV23 16 19 0 #SB_LUT4
+set_location uart.state_RNO_1[3] 13 19 0 #SB_LUT4
+set_location uart.data_esr[5] 17 18 5 #SB_DFFESR
+set_location uart.data_Aux_esr_RNO[0] 16 16 2 #SB_LUT4
+set_location uart.bit_Count_RNO[2] 13 18 4 #SB_LUT4
+set_location uart.timer_Count_RNIHJ661[3] 15 20 3 #SB_LUT4
+set_location uart.timer_Count_RNI6JN12[4] 15 20 4 #SB_LUT4
+set_location uart.state_RNIB0BC[2] 13 19 1 #SB_LUT4
+set_location uart.timer_Count_fast_RNI7MEA1[6] 14 19 7 #SB_LUT4
+set_location uart.data_esr[3] 17 18 3 #SB_DFFESR
+set_location uart.data_Aux_esr_RNO[6] 16 19 6 #SB_LUT4
+set_location uart.data_Aux_esr[6] 17 20 0 #SB_DFFESR
+set_location uart.timer_Count_RNO[4] 15 19 1 #SB_LUT4
+set_location uart.timer_Count_RNIV5RV2[4] 15 20 7 #SB_LUT4
+set_location uart.state_RNO[4] 15 18 1 #SB_LUT4
+set_location uart.state_RNIBLJS1[3] 14 18 4 #SB_LUT4
+set_location uart.data_Aux_esr_RNO_0[7] 14 17 0 #SB_LUT4
+set_location uart.timer_Count_6_rep1_RNIRC5S1 14 19 2 #SB_LUT4
+set_location uart.data_esr[1] 17 18 1 #SB_DFFESR
+set_location uart.data_Aux_esr_RNO[4] 16 16 5 #SB_LUT4
+set_location uart.timer_Count_RNIUL3I6[4] 16 19 7 #SB_LUT4
+set_location uart.timer_Count_RNIQ1101[3] 14 18 1 #SB_LUT4
+set_location uart.timer_Count[6] 14 20 1 #SB_DFFSR
+set_location uart.state[3] 14 19 1 #SB_DFF
+set_location uart.data_Aux_esr[2] 16 17 0 #SB_DFFESR
+set_location uart.bit_Count_RNO_0[0] 14 18 7 #SB_LUT4
+set_location uart.timer_Count_RNO[0] 14 20 4 #SB_LUT4
+set_location uart.timer_Count_6_rep1_RNI02Q61 15 19 4 #SB_LUT4
+set_location uart.data_esr[6] 17 18 6 #SB_DFFESR
+set_location uart.data_Aux_esr_RNO[3] 15 18 5 #SB_LUT4
+set_location uart.bit_Count_RNO_1[2] 13 18 2 #SB_LUT4
+set_location uart.timer_Count_RNIICSG1[6] 14 19 5 #SB_LUT4
+set_location uart.timer_Count[2] 15 19 7 #SB_DFFSR
+set_location uart.state[4] 15 18 1 #SB_DFF
+set_location uart.data_Aux_esr[5] 16 20 3 #SB_DFFESR
+set_location uart.timer_Count_RNO[5] 15 20 2 #SB_LUT4
+set_location uart.timer_Count_RNIMLMA1[1] 15 20 0 #SB_LUT4
+set_location uart.state_RNID2BC[3] 15 17 5 #SB_LUT4
+set_location uart.data_Aux_esr_RNO_0[0] 15 17 2 #SB_LUT4
+set_location uart.data_esr[2] 17 18 2 #SB_DFFESR
+set_location uart.data_Aux_esr_RNO[7] 14 17 1 #SB_LUT4
+set_location uart.bit_Count_RNIETHE[2] 14 18 6 #SB_LUT4
+set_location uart.timer_Count[7] 14 20 0 #SB_DFFSR
+set_location uart.state_RNO_2[2] 13 19 2 #SB_LUT4
+set_location uart.timer_Count_RNINU001[1] 15 19 5 #SB_LUT4
+set_location uart.timer_Count_RNIBAKE2[6] 14 18 0 #SB_LUT4
+set_location uart.data_Aux_esr[1] 15 16 2 #SB_DFFESR
+set_location uart.timer_Count_RNO[1] 15 20 5 #SB_LUT4
+set_location uart.timer_Count_6_rep1_RNI1B4S 15 19 2 #SB_LUT4
+set_location uart.state_RNO[1] 13 19 6 #SB_LUT4
+set_location uart.data_rdy_RNO 15 21 3 #SB_LUT4
+set_location uart.data_esr[7] 17 18 7 #SB_DFFESR
+set_location uart.data_Aux_esr_RNO[2] 15 18 7 #SB_LUT4
+set_location uart.data_Aux_esr_RNO_0[4] 15 17 1 #SB_LUT4
+set_location uart.bit_Count_RNO[0] 14 18 5 #SB_LUT4
+set_location uart.timer_Count_RNIQ9BL[0] 14 19 4 #SB_LUT4
+set_location uart.timer_Count_RNIGLM11[6] 14 18 3 #SB_LUT4
+set_location uart.timer_Count[3] 15 19 6 #SB_DFFSR
+set_location uart.state_RNO_0[3] 13 19 7 #SB_LUT4
+set_location uart.data_Aux_esr[4] 17 16 5 #SB_DFFESR
+set_location uart.bit_Count[0] 14 18 5 #SB_DFF
+set_location uart.timer_Count_RNO[6] 14 20 1 #SB_LUT4
+set_location uart.data_Aux_esr_RNO_0[1] 15 18 3 #SB_LUT4
+set_io uart_input 4
+set_io data_rdy 37
+set_io data[6] 34
+set_io data[2] 18
+set_io data[7] 42
+set_io data[5] 32
+set_io data[3] 16
+set_io data[1] 20
+set_io uart_input_debug 2
+set_io data[4] 26
+set_io data[0] 6
+set_io clk_system 35

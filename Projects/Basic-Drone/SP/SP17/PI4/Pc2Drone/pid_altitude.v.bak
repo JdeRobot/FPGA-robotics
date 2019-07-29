@@ -1,0 +1,94 @@
+//================================================ START FILE HEADER ================================================
+// Filename : pid.v
+// Module Name : pid
+// Module ID : Part of SP17PI2
+// Description : Computes pid control.
+//================================================= VERSION CONTROL =================================================
+// $Revision: 2911 $
+// $Author: enavarro $
+// $Date: $
+// $URL: $
+//================================================= MAINTENANCE LOG =================================================
+//
+//================================================ MODULE DECLARATION ===============================================
+module pid_altitude 
+// GLOBAL PARAMETER DECLARATION
+(
+// INPUT PORT DECLARATION
+	input	reset,
+	input	clk,
+	input	sink_data_valid,
+	input [7:0] sink_command,				// [ 0 , 255 ]
+	input	signed [15:0] sink_data,		// [ 0 , 5000 ]
+	input [7:0] sink_kp,						// [ 0 , 255 ]
+// OUTPUT PORT DECLARATION
+	output reg source_data_valid,
+	output reg signed [14:0] source_p	// [ 0 , 12240 ]
+);
+
+// INPUT/OUTPUT PORT DECLARATION
+// LOCAL PARAMETER DECLARATION
+localparam zeros4 = 4'd0;
+// ======================= State machine Parameters ======================= //
+// INTERNAL REGISTERS DECLARATION
+
+
+// WIRES DECLARATION
+wire signed [15:0] sink_command_scaled;	// [ 0 , 4080 ]
+wire signed [15:0] error;						// [ -5000 , 4080 ]
+wire signed [15:0] sink_kp_signed;			// [ 0 , 255 ]
+wire signed [31:0] error_p_prescaled;		// [ -1.275.000 , 1.040.400 ]
+wire signed [31:0] error_p;					// [ -79.687 , 65.025 ]
+
+
+// CONTINOUS ASSIGNMENT
+assign sink_command_scaled = {zeros4, sink_command, zeros4};	// Scale sink_command x16 into sink_command_scaled
+assign error = sink_command_scaled - sink_data;			// Computes error
+assign sink_kp_signed = {zeros4, zeros4, sink_kp};		// Signs Kp value
+assign error_p_prescaled = (error * sink_kp_signed);	// Computes proportional error
+assign error_p = {error_p_prescaled[31],error_p_prescaled[31],error_p_prescaled[31],error_p_prescaled[31], error_p_prescaled[31:4]};	// Equals to >>4, scaling error to Kp/16
+//assign error_p = error_p_prescaled >>> 4;					// Equals to >>4, scaling error to Kp/16
+// The rest of Needed error correction, will be applied by integral component comming next.
+
+// TASK DECLARATION
+task treset;
+begin
+	source_data_valid <= 0;
+	source_p <= 15'd8268;
+end
+endtask
+
+
+// ALWAYS CONSTRUCT BLOCK
+always @(posedge clk)
+begin
+	if (reset) begin
+		treset();
+	end else begin
+		if (sink_data_valid) begin
+			/*if ( (error_p<12240) && (error_p>0) ) begin
+				source_p <= error_p;	// [ 0 , 12240 ]
+			end else begin
+				if ((error_p<=0)) begin
+					source_p <= 15'd0;
+				end else begin
+					source_p <= 15'd12240;
+				end
+			end*/
+			source_p <= error_p;
+			source_data_valid <= 1;
+		end else begin
+			source_p <= source_p;
+			source_data_valid <= 0;
+		end
+	end
+end
+
+
+// END OF MODULE
+endmodule
+
+
+
+
+

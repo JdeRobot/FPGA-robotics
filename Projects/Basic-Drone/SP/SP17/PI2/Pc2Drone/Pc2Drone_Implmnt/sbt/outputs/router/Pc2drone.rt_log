@@ -1,0 +1,32 @@
+* ******************************************************************************
+
+* iCEcube Router
+
+* Version:            2017.08.27940
+
+* Build Date:         Sep 11 2017 17:03:42
+
+* File Generated:     Apr 6 2019 11:51:51
+
+* Purpose:            Router runtime info
+
+* Copyright (C) 2006-2010 by Lattice Semiconductor Corp. All rights reserved.
+
+* ******************************************************************************
+
+Executing : C:\lscc\iCEcube2.2017.08\sbt_backend\bin\win32\opt\sbrouter.exe C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\Pc2Drone_Implmnt\sbt\netlist\oadb-Pc2drone C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ice40UP5K.lib C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\Pc2Drone_Implmnt\sbt\outputs\packer\Pc2drone_pk.sdc --outdir C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\Pc2Drone_Implmnt\sbt\outputs\router --sdf_file C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP17/PI2/Pc2Drone/Pc2Drone_Implmnt\sbt\outputs\simulation_netlist\Pc2drone_sbt.sdf --pin_permutation 
+I1203: Reading Design Pc2drone
+I1202: Reading Architecture of device iCE40UP5K
+I1209: Started routing
+I1223: Total Nets : 1120 
+I1212: Iteration  1 :   127 unrouted : 5 seconds
+I1212: Iteration  2 :    22 unrouted : 2 seconds
+I1212: Iteration  3 :     8 unrouted : 1 seconds
+I1212: Iteration  4 :     3 unrouted : 0 seconds
+I1212: Iteration  5 :     0 unrouted : 0 seconds
+I1215: Routing is successful
+I1206: Completed routing
+I1204: Writing Design Pc2drone
+I1210: Writing routes
+I1218: Exiting the router
+I1224: Router run-time : 23 seconds

@@ -1,0 +1,12 @@
+@P:  Worst Slack : -2.641
+@P:  drones_kids|clk_system - Estimated Frequency : 56.8 MHz
+@P:  drones_kids|clk_system - Requested Frequency : 66.8 MHz
+@P:  drones_kids|clk_system - Estimated Period : 17.605
+@P:  drones_kids|clk_system - Requested Period : 14.964
+@P:  drones_kids|clk_system - Slack : -2.641
+@P: drones_kids Part : ice40up5ksg48
+@P: drones_kids I/O primitives : 12
+@P: drones_kids I/O Register bits : 0
+@P: drones_kids Register bits (Non I/O) : 98 (1%)
+@P: drones_kids Total Luts : 180 (3%)
+@P:  CPU Time : 0h:00m:02s

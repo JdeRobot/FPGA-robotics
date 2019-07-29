@@ -1,0 +1,12 @@
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\uart.v":49:0:49:5|User-specified initial value defined for instance uart1.position[3:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\uart.v":49:0:49:5|User-specified initial value defined for instance uart1.state_bus[1:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\uart.v":49:0:49:5|User-specified initial value defined for instance uart1.count_pulses_needed[8:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\uart.v":49:0:49:5|User-specified initial value defined for instance uart1.data_reg[7:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\uart.v":49:0:49:5|User-specified initial value defined for instance uart1.data_rdy_reg is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\ppm_encoder.v":128:0:128:5|User-specified initial value defined for instance ppm_encoder1.init_pulses[18:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\ppm_encoder.v":128:0:128:5|User-specified initial value defined for instance ppm_encoder1.counter[18:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\ppm_encoder.v":128:0:128:5|User-specified initial value defined for instance ppm_encoder1.PPM_STATE[1:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\ppm_encoder.v":128:0:128:5|User-specified initial value defined for instance ppm_encoder1.pulses2count[18:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\ppm_encoder.v":128:0:128:5|User-specified initial value defined for instance ppm_encoder1.CHOOSE_CHANNEL[3:0] is being ignored. 
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\ppm_encoder.v":128:0:128:5|User-specified initial value defined for instance ppm_encoder1.ppm_output_reg is being ignored. 
+@W: MT420 |Found inferred clock drones_kids|clk_system with period 14.96ns. Please declare a user-defined clock on object "p:clk_system"

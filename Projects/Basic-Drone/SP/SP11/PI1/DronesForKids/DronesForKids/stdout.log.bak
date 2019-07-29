@@ -1,0 +1,78 @@
+Running in Lattice mode
+
+
+Starting:    C:\iCEcube2\synpbase\bin64\mbin\synbatch.exe
+Install:     C:\iCEcube2\synpbase
+Hostname:    JORDONEZ10
+Date:        Fri Mar 08 15:34:05 2019
+Version:     L-2016.09L+ice40
+
+Arguments:   -product synplify_pro -batch DronesForKids_syn.prj
+ProductType: synplify_pro
+
+
+
+
+
+log file: "D:\kibotics-drones4kids\DronesForKids_ice40Ultra\DronesForKids\DronesForKids\DronesForKids_Implmnt\DronesForKids.srr"
+Running: DronesForKids_Implmnt in foreground
+
+Running DronesForKids_syn|DronesForKids_Implmnt
+
+Running: compile (Compile) on DronesForKids_syn|DronesForKids_Implmnt
+# Fri Mar 08 15:34:06 2019
+
+Running: compile_flow (Compile Process) on DronesForKids_syn|DronesForKids_Implmnt
+# Fri Mar 08 15:34:06 2019
+
+Running: compiler (Compile Input) on DronesForKids_syn|DronesForKids_Implmnt
+# Fri Mar 08 15:34:06 2019
+Copied D:\kibotics-drones4kids\DronesForKids_ice40Ultra\DronesForKids\DronesForKids\DronesForKids_Implmnt\synwork\DronesForKids_comp.srs to D:\kibotics-drones4kids\DronesForKids_ice40Ultra\DronesForKids\DronesForKids\DronesForKids_Implmnt\DronesForKids.srs
+
+compiler completed
+# Fri Mar 08 15:34:09 2019
+
+Return Code: 0
+Run Time:00h:00m:03s
+
+Running: multi_srs_gen (Multi-srs Generator) on DronesForKids_syn|DronesForKids_Implmnt
+# Fri Mar 08 15:34:09 2019
+
+multi_srs_gen completed
+# Fri Mar 08 15:34:10 2019
+
+Return Code: 0
+Run Time:00h:00m:01s
+Copied D:\kibotics-drones4kids\DronesForKids_ice40Ultra\DronesForKids\DronesForKids\DronesForKids_Implmnt\synwork\DronesForKids_mult.srs to D:\kibotics-drones4kids\DronesForKids_ice40Ultra\DronesForKids\DronesForKids\DronesForKids_Implmnt\DronesForKids.srs
+Complete: Compile Process on DronesForKids_syn|DronesForKids_Implmnt
+
+Running: premap (Pre-mapping) on DronesForKids_syn|DronesForKids_Implmnt
+# Fri Mar 08 15:34:10 2019
+
+premap completed with warnings
+# Fri Mar 08 15:34:17 2019
+
+Return Code: 1
+Run Time:00h:00m:07s
+Complete: Compile on DronesForKids_syn|DronesForKids_Implmnt
+
+Running: map (Map) on DronesForKids_syn|DronesForKids_Implmnt
+# Fri Mar 08 15:34:17 2019
+License granted for 4 parallel jobs
+
+Running: fpga_mapper (Map & Optimize) on DronesForKids_syn|DronesForKids_Implmnt
+# Fri Mar 08 15:34:17 2019
+Copied D:\kibotics-drones4kids\DronesForKids_ice40Ultra\DronesForKids\DronesForKids\DronesForKids_Implmnt\synwork\DronesForKids_m.srm to D:\kibotics-drones4kids\DronesForKids_ice40Ultra\DronesForKids\DronesForKids\DronesForKids_Implmnt\DronesForKids.srm
+
+fpga_mapper completed with warnings
+# Fri Mar 08 15:34:22 2019
+
+Return Code: 1
+Run Time:00h:00m:05s
+Complete: Map on DronesForKids_syn|DronesForKids_Implmnt
+Complete: Logic Synthesis on DronesForKids_syn|DronesForKids_Implmnt
+
+exit status=0
+
+exit status=0
+
