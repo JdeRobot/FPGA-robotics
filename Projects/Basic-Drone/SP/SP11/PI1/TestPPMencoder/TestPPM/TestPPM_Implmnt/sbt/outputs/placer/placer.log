@@ -1,0 +1,193 @@
+* ******************************************************************************
+
+* iCEcube Placer
+
+* Version:            2017.08.27940
+
+* Build Date:         Sep 11 2017 17:12:22
+
+* File Generated:     Mar 10 2019 17:05:37
+
+* Purpose:            
+
+* Copyright (C) 2006-2010 by Lattice Semiconductor Corp. All rights reserved.
+
+* ******************************************************************************
+
+Executing : C:\lscc\iCEcube2.2017.08\sbt_backend\bin\win32\opt\sbtplacer.exe --des-lib C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder --outdir C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\placer --device-file C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev --package SG48 --deviceMarketName iCE40UP5K --sdc-file C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\Temp/sbt_temp.sdc --lib-file C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ice40UP5K.lib --effort_level std --out-sdc-file C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\placer\ppm_encoder_pl.sdc
+I2004: Option and Settings Summary
+=============================================================
+Device file          - C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev
+Package              - SG48
+Design database      - C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder
+SDC file             - C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\Temp/sbt_temp.sdc
+Output directory     - C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\placer
+Timing library       - C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ice40UP5K.lib
+Effort level         - std
+
+I2050: Starting reading inputs for placer
+=============================================================
+I2100: Reading design library: C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder/BFPGA_DESIGN_ep
+I2065: Reading device file : C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev
+I2051: Reading of inputs for placer completed successfully
+
+I2053: Starting placement of the design
+=============================================================
+
+Input Design Statistics
+    Number of LUTs      	:	148
+    Number of DFFs      	:	83
+    Number of DFFs packed to IO	:	0
+    Number of Carrys    	:	58
+    Number of RAMs      	:	0
+    Number of ROMs      	:	0
+    Number of IOs       	:	2
+    Number of GBIOs     	:	1
+    Number of GBs       	:	2
+    Number of WarmBoot  	:	0
+    Number of PLLs      	:	0
+    Number of I2Cs      	:	0
+    Number of SPIs      	:	0
+    Number of DSPs     	:	0
+    Number of SBIOODs     	:	0
+    Number of LEDDAIPs     	:	0
+    Number of RGBADRVs     	:	0
+    Number of LFOSCs     	:	0
+    Number of HFOSCs     	:	0
+    Number of FILTER_50NSs     	:	0
+    Number of SPRAMs     	:	0
+
+
+Phase 1
+I2077: Start design legalization
+
+Design Legalization Statistics
+    Number of feedthru LUTs inserted to legalize input of DFFs     	:	0
+    Number of feedthru LUTs inserted for LUTs driving multiple DFFs	:	0
+    Number of LUTs replicated for LUTs driving multiple DFFs       	:	0
+    Number of feedthru LUTs inserted to legalize output of CARRYs  	:	1
+    Number of feedthru LUTs inserted to legalize global signals    	:	0
+    Number of feedthru CARRYs inserted to legalize input of CARRYs 	:	0
+    Number of inserted LUTs to Legalize IOs with PIN_TYPE= 01xxxx  	:	0
+    Number of inserted LUTs to Legalize IOs with PIN_TYPE= 10xxxx  	:	0
+    Number of inserted LUTs to Legalize IOs with PIN_TYPE= 11xxxx  	:	0
+    Total LUTs inserted                                            	:	1
+    Total CARRYs inserted                                          	:	0
+
+
+I2078: Design legalization is completed successfully
+I2088: Phase 1, elapsed time : 0.0 (sec)
+
+
+Phase 2
+I2088: Phase 2, elapsed time : 0.1 (sec)
+
+Phase 3
+
+Design Statistics after Packing
+    Number of LUTs      	:	150
+    Number of DFFs      	:	83
+    Number of DFFs packed to IO	:	0
+    Number of Carrys    	:	58
+
+Device Utilization Summary after Packing
+    Sequential LogicCells
+        LUT and DFF      	:	54
+        LUT, DFF and CARRY	:	29
+    Combinational LogicCells
+        Only LUT         	:	49
+        CARRY Only       	:	11
+        LUT with CARRY   	:	18
+    LogicCells                  :	161/5280
+    PLBs                        :	24/660
+    BRAMs                       :	0/30
+    IOs and GBIOs               :	3/36
+    PLLs                        :	0/1
+    I2Cs                        :	0/2
+    SPIs                        :	0/2
+    DSPs                        :	0/8
+    SBIOODs                     :	0/3
+    RGBADRVs                    :	0/1
+    LEDDAIPs                    :	0/1
+    LFOSCs                      :	0/1
+    HFOSCs                      :	0/1
+    SPRAMs                      :	0/4
+    FILTER50NSs                 :	0/2
+
+
+I2088: Phase 3, elapsed time : 1.0 (sec)
+
+Phase 4
+I2108: 0 SB_IO_I3C instances present in the design. 2 I3C IOs available in the device
+I2088: Phase 4, elapsed time : 0.4 (sec)
+
+Phase 5
+I2088: Phase 5, elapsed time : 0.7 (sec)
+
+Phase 6
+I2088: Phase 6, elapsed time : 24.9 (sec)
+
+Final Design Statistics
+    Number of LUTs      	:	150
+    Number of DFFs      	:	83
+    Number of DFFs packed to IO	:	0
+    Number of Carrys    	:	58
+    Number of RAMs      	:	0
+    Number of ROMs      	:	0
+    Number of IOs       	:	2
+    Number of GBIOs     	:	1
+    Number of GBs       	:	2
+    Number of WarmBoot  	:	0
+    Number of PLLs      	:	0
+    Number of I2Cs      	:	0
+    Number of SPIs      	:	0
+    Number of DSPs     	:	0
+    Number of SBIOODs     	:	0
+    Number of LEDDAIPs     	:	0
+    Number of RGBADRVs     	:	0
+    Number of LFOSCs     	:	0
+    Number of HFOSCs     	:	0
+    Number of FILTER_50NSs     	:	0
+    Number of SPRAMs     	:	0
+
+Device Utilization Summary
+    LogicCells                  :	161/5280
+    PLBs                        :	34/660
+    BRAMs                       :	0/30
+    IOs and GBIOs               :	3/36
+    PLLs                        :	0/1
+    I2Cs                        :	0/2
+    SPIs                        :	0/2
+    DSPs                        :	0/8
+    SBIOODs                     :	0/3
+    RGBADRVs                    :	0/1
+    LEDDAIPs                    :	0/1
+    LFOSCs                      :	0/1
+    HFOSCs                      :	0/1
+    SPRAMs                      :	0/4
+    FILTER50NSs                 :	0/2
+
+
+
+#####################################################################
+Placement Timing Summary
+
+The timing summary is based on estimated routing delays after
+placement. For final timing report, please carry out the timing
+analysis after routing.
+=====================================================================
+
+#####################################################################
+                     Clock Summary 
+=====================================================================
+Number of clocks: 1
+Clock: ppm_encoder|clk | Frequency: 59.02 MHz | Target: 74.24 MHz
+
+=====================================================================
+                     End of Clock Summary
+#####################################################################
+
+I2054: Placement of design completed successfully
+
+I2076: Placer run-time: 27.9 sec.
+

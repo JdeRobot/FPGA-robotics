@@ -1,0 +1,110 @@
+#### START OF AREA REPORT #####[
+
+Part:			ICE40UP5KSG48 (Lattice)
+
+------------------------------------------------------------------------
+########   Utilization report for  Top level view:   Pc2Drone   ########
+========================================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     93                 100 %                
+==================================================
+Total SEQUENTIAL ELEMENTS in the block Pc2Drone:	93 (29.43 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name       Total elements     Utilization     Notes
+---------------------------------------------------
+LUTS       158                100 %                
+CARRYS     44                 100 %                
+===================================================
+Total COMBINATIONAL LOGIC in the block Pc2Drone:	202 (63.92 % Utilization)
+
+
+IO PADS
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     11                 100 %                
+=================================================
+Total IO PADS in the block Pc2Drone:	11 (3.48 % Utilization)
+
+------------------------------------------------------------------
+########   Utilization report for  cell:   dff_v_ncycle   ########
+Instance path:   Pc2Drone.dff_v_ncycle                            
+==================================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     5                  5.38 %               
+==================================================
+Total SEQUENTIAL ELEMENTS in the block Pc2Drone.dff_v_ncycle:	5 (1.58 % Utilization)
+
+-------------------------------------------------------------------
+########   Utilization report for  cell:   frame_decoder   ########
+Instance path:   Pc2Drone.frame_decoder                            
+===================================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     31                 33.3 %               
+==================================================
+Total SEQUENTIAL ELEMENTS in the block Pc2Drone.frame_decoder:	31 (9.81 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name       Total elements     Utilization     Notes
+---------------------------------------------------
+LUTS       66                 41.8 %               
+CARRYS     18                 40.9 %               
+===================================================
+Total COMBINATIONAL LOGIC in the block Pc2Drone.frame_decoder:	84 (26.58 % Utilization)
+
+------------------------------------------------------------------
+########   Utilization report for  cell:   reset_module   ########
+Instance path:   Pc2Drone.reset_module                            
+==================================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     24                 25.8 %               
+==================================================
+Total SEQUENTIAL ELEMENTS in the block Pc2Drone.reset_module:	24 (7.59 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name       Total elements     Utilization     Notes
+---------------------------------------------------
+LUTS       33                 20.9 %               
+CARRYS     20                 45.5 %               
+===================================================
+Total COMBINATIONAL LOGIC in the block Pc2Drone.reset_module:	53 (16.77 % Utilization)
+
+-------------------------------------------------------------
+########   Utilization report for  cell:   uart_rx   ########
+Instance path:   Pc2Drone.uart_rx                            
+=============================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     33                 35.5 %               
+==================================================
+Total SEQUENTIAL ELEMENTS in the block Pc2Drone.uart_rx:	33 (10.44 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name       Total elements     Utilization     Notes
+---------------------------------------------------
+LUTS       59                 37.3 %               
+CARRYS     6                  13.6 %               
+===================================================
+Total COMBINATIONAL LOGIC in the block Pc2Drone.uart_rx:	65 (20.57 % Utilization)
+
+
+##### END OF AREA REPORT #####]
+

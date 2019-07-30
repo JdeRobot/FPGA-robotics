@@ -1,0 +1,71 @@
+# Sun Mar 10 19:21:31 2019
+
+Synopsys Lattice Technology Pre-mapping, Version maplat, Build 1612R, Built Dec  5 2016 10:31:39
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+Product Version L-2016.09L+ice40
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 100MB)
+
+@A: MF827 |No constraint file specified.
+@L: C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\Pc2Drone_Implmnt\Pc2Drone_scck.rpt 
+Printing clock  summary report in "C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\Pc2Drone_Implmnt\Pc2Drone_scck.rpt" file 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 102MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 102MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 101MB peak: 102MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 101MB peak: 104MB)
+
+@N: BN362 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi2\pc2drone\uart_rx.v":98:0:98:5|Removing sequential instance source_ber_framing_error (in view: work.uart_rx(verilog)) of type view:PrimLib.sdffr(prim) because it does not drive other instances.
+ICG Latch Removal Summary:
+Number of ICG latches removed:	0
+Number of ICG latches not removed:	0
+syn_allowed_resources : blockrams=30  set on top level netlist Pc2Drone
+
+Finished netlist restructuring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 134MB)
+
+
+
+Clock Summary
+*****************
+
+Start                   Requested     Requested     Clock        Clock                     Clock
+Clock                   Frequency     Period        Type         Group                     Load 
+------------------------------------------------------------------------------------------------
+Pc2Drone|clk_system     172.5 MHz     5.798         inferred     Autoconstr_clkgroup_0     33   
+================================================================================================
+
+@W: MT529 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi2\pc2drone\uart_rx.v":98:0:98:5|Found inferred clock Pc2Drone|clk_system which controls 33 sequential elements including uart.state[4:0]. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
+
+Finished Pre Mapping Phase.
+@N: BN225 |Writing default property annotation file C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\Pc2Drone_Implmnt\Pc2Drone.sap.
+
+Starting constraint checker (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 134MB)
+
+Encoding state machine state[4:0] (in view: work.uart_rx(verilog))
+original code -> new code
+   000 -> 00001
+   001 -> 00010
+   010 -> 00100
+   011 -> 01000
+   100 -> 10000
+None
+None
+
+Finished constraint checker (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 132MB peak: 134MB)
+
+Pre-mapping successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 47MB peak: 134MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Sun Mar 10 19:21:32 2019
+
+###########################################################]

@@ -1,0 +1,127 @@
+* ******************************************************************************
+
+* iCEcube Report
+
+* Version:            2017.08.27940
+
+* Build Date:         Sep 11 2017 16:52:36
+
+* File Generated:     Apr 22 2019 18:23:48
+
+* Purpose:            General info of design implementation
+
+* Copyright (C) 2006-2010 by Lattice Semiconductor Corp. All rights reserved.
+
+* ******************************************************************************
+
+Synthesis/Placement Summary:
+----------------------------
+    Status:  Successful
+    Runtime: 2 seconds
+
+Device Info:
+------------
+    Device Family: iCE40UP
+    Device:        iCE40UP5K
+    Package:       SG48
+
+Design statistics:
+------------------
+    FFs:                  604
+    LUTs:                 1270
+    RAMs:                 0
+    IOBs:                 11
+    GBs:                  7
+    PLLs:                 0
+    Warm Boots:           0
+    SPIs:                 0
+    I2Cs:                 0
+    HFOSCs:               0
+    LFOSCs:               0
+    RGBA_DRVs:            0
+    LEDDA_IPs:            0
+    DSPs:                 7
+    SPRAMs:               0
+    FILTER_50NSs:         0
+
+Logic Resource Utilization:
+---------------------------
+    Total Logic Cells: 1304/5280
+        Combinational Logic Cells: 700      out of   5280      13.2576%
+        Sequential Logic Cells:    604      out of   5280      11.4394%
+        Logic Tiles:               301      out of   660       45.6061%
+    Registers: 
+        Logic Registers:           604      out of   5280      11.4394%
+        IO Registers:              0        out of   480       0
+    Block RAMs:                    0        out of   30        0%
+    Warm Boots:                    0        out of   1         0%
+    SPIs:                          0        out of   2         0%
+    I2Cs:                          0        out of   2         0%
+    HFOSCs:                        0        out of   1         0%
+    LFOSCs:                        0        out of   1         0%
+    RGBA_DRVs:                     0        out of   1         0%
+    LEDDA_IPs:                     0        out of   1         0%
+    DSPs:                          7        out of   8         87.5%
+    SPRAMs:                        0        out of   4         0%
+    FILTER_50NSs:                  0        out of   2         0%
+    Pins:
+        Input Pins:                3        out of   39        7.69231%
+        Output Pins:               8        out of   39        20.5128%
+        InOut Pins:                0        out of   39        0%
+    Global Buffers:                7        out of   8         87.5%
+    PLLs:                          0        out of   1         0%
+
+IO Bank Utilization:
+--------------------
+    Bank 3: 0        out of   0         0%
+    Bank 1: 0        out of   0         0%
+    Bank 0: 1        out of   17        5.88235%
+    Bank 2: 10       out of   22        45.4545%
+
+Detailed I/O Info:
+------------------
+    Input Pins: 
+    Pin Number  Direction  IO Standard  Pull Up  IO Bank  IO Function    Signal Name       
+    ----------  ---------  -----------  -------  -------  -----------    -----------       
+    2           Input      SB_LVCMOS    No       2        Simple Input   uart_input_drone  
+    4           Input      SB_LVCMOS    No       2        Simple Input   uart_input_pc     
+    35          Input      SB_LVCMOS    No       0        Simple Input   clk_system        
+
+    Output Pins: 
+    Pin Number  Direction  IO Standard  Pull Up  IO Bank  IO Function    Signal Name       
+    ----------  ---------  -----------  -------  -------  -----------    -----------       
+    6           Output     SB_LVCMOS    No       2        Simple Output  ppm_output        
+    9           Output     SB_LVCMOS    No       2        Simple Output  debug_CH0_16A     
+    10          Output     SB_LVCMOS    No       2        Simple Output  debug_CH2_18A     
+    11          Output     SB_LVCMOS    No       2        Simple Output  debug_CH3_20A     
+    18          Output     SB_LVCMOS    No       2        Simple Output  debug_CH5_31B     
+    45          Output     SB_LVCMOS    No       2        Simple Output  debug_CH6_5B      
+    46          Output     SB_LVCMOS    No       2        Simple Output  debug_CH1_0A      
+    47          Output     SB_LVCMOS    No       2        Simple Output  debug_CH4_2A      
+
+Detailed Global Buffer Info:
+----------------------------
+    Buffer Number  IO Bank  Driven By  Fanout  Signal Name            
+    -------------  -------  ---------  ------  -----------            
+    7              0        IO         604     clk_system_c_g         
+    2              0                   110     N_411_g                
+    6              2                   371     reset_system_g         
+    3              0                   93      pid_alt.N_410_0_g      
+    1              0                   30      debug_CH3_20A_c_0_g    
+    5              2                   81      pid_alt.state_0_g_0    
+    4              0                   19      ppm_encoder_1.N_322_g  
+
+
+Router Summary:
+---------------
+    Status:  Successful
+    Runtime: 31 seconds
+
+Routing Resource Utilization:
+-----------------------------
+              Local line of tile     9172 out of 110555      8.29632%
+                          Span 4     2346 out of  23008      10.1965%
+                         Span 12      364 out of   4464      8.15412%
+                  Global network        7 out of      8      87.5%
+      Vertical Inter-LUT Connect      111 out of   4620      2.4026%
+

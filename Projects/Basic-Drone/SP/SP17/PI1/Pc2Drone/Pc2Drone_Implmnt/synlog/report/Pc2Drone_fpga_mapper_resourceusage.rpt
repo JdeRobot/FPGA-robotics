@@ -1,0 +1,29 @@
+---------------------------------------
+Resource Usage Report for Pc2drone 
+
+Mapping to part: ice40up5ksg48
+Cell usage:
+GND             12 uses
+SB_CARRY        227 uses
+SB_DFF          66 uses
+SB_DFFESR       147 uses
+SB_DFFSR        132 uses
+SB_DFFSS        29 uses
+SB_GB           3 uses
+VCC             12 uses
+SB_LUT4         645 uses
+
+I/O ports: 7
+I/O primitives: 7
+SB_GB_IO       1 use
+SB_IO          6 uses
+
+I/O Register bits:                  0
+Register bits not including I/Os:   374 (7%)
+
+@S |Mapping Summary:
+Total  LUTs: 645 (12%)
+
+Distribution of All Consumed LUTs = LUT4 
+Distribution of All Consumed Luts 645 = 645 
+

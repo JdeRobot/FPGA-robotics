@@ -1,0 +1,2 @@
+@E: CS168 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI6\Pc2Drone\Pc2Drone.v":81:44:81:44|Port REFERENCECLK does not exist
+

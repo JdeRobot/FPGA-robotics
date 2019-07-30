@@ -1,0 +1,2 @@
+@W: FX1039 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp12\pi1\pc2drone\reset_module.v":36:0:36:5|User-specified initial value defined for instance reset_module_System.count[21:0] is being ignored. 
+@W: MT420 |Found inferred clock Pc2Drone|clk_system with period 8.94ns. Please declare a user-defined clock on object "p:clk_system"

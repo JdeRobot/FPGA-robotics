@@ -1,0 +1,46 @@
+Running in Lattice mode
+
+
+Starting:    C:\lscc\iCEcube2.2017.08\synpbase\bin64\mbin\synbatch.exe
+Install:     C:\lscc\iCEcube2.2017.08\synpbase
+Hostname:    ELOY-PORTATIL
+Date:        Tue Mar 12 01:40:52 2019
+Version:     L-2016.09L+ice40
+
+Arguments:   -product synplify_pro -batch Pc2Drone_syn.prj
+ProductType: synplify_pro
+
+
+
+
+
+log file: "C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP12\PI1\Pc2Drone\Pc2Drone_Implmnt\Pc2Drone.srr"
+Running: Pc2Drone_Implmnt in foreground
+
+Running Pc2Drone_syn|Pc2Drone_Implmnt
+
+Running: compile (Compile) on Pc2Drone_syn|Pc2Drone_Implmnt
+# Tue Mar 12 01:40:52 2019
+
+Running: compile_flow (Compile Process) on Pc2Drone_syn|Pc2Drone_Implmnt
+# Tue Mar 12 01:40:52 2019
+
+Running: compiler (Compile Input) on Pc2Drone_syn|Pc2Drone_Implmnt
+# Tue Mar 12 01:40:52 2019
+compiler exited with errors
+Job failed on: Pc2Drone_syn|Pc2Drone_Implmnt
+
+Job: "compiler" terminated with error status: 2
+See log file: "C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP12\PI1\Pc2Drone\Pc2Drone_Implmnt\synlog\Pc2Drone_compiler.srr"
+# Tue Mar 12 01:40:52 2019
+
+Return Code: 2
+Run Time:00h:00m:00s
+Complete: Compile Process on Pc2Drone_syn|Pc2Drone_Implmnt
+Complete: Compile on Pc2Drone_syn|Pc2Drone_Implmnt
+Complete: Logic Synthesis on Pc2Drone_syn|Pc2Drone_Implmnt
+
+exit status=2
+
+exit status=2
+

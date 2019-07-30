@@ -1,0 +1,9 @@
+C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP19/PI2/pid_altitude.v {0 {vlog -work work -stats=none C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP19/PI2/pid_altitude.v
+Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
+-- Compiling module pid_altitude
+** Error: (vlog-13069) C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP19/PI2/pid_altitude.v(47): near "=": syntax error, unexpected '='.
+
+** Error: C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP19/PI2/pid_altitude.v(47): (vlog-13205) Syntax error found in the scope following 'sink_data_lim'. Is there a missing '::'?
+
+
+} {4.0 5.0 6.0 7.0} {}}

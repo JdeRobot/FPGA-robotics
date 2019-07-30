@@ -1,0 +1,12 @@
+@P:  Worst Slack : -2.661
+@P:  Pc2drone|clk_system - Estimated Frequency : 56.4 MHz
+@P:  Pc2drone|clk_system - Requested Frequency : 66.3 MHz
+@P:  Pc2drone|clk_system - Estimated Period : 17.740
+@P:  Pc2drone|clk_system - Requested Period : 15.079
+@P:  Pc2drone|clk_system - Slack : -2.661
+@P: Pc2drone Part : ice40up5ksg48
+@P: Pc2drone I/O primitives : 7
+@P: Pc2drone I/O Register bits : 0
+@P: Pc2drone Register bits (Non I/O) : 374 (7%)
+@P: Pc2drone Total Luts : 645 (12%)
+@P:  CPU Time : 0h:00m:05s

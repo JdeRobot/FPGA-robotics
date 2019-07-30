@@ -1,0 +1,54 @@
+#### START OF AREA REPORT #####[
+
+Part:			ICE40UP5KSG48 (Lattice)
+
+------------------------------------------------------------------------
+########   Utilization report for  Top level view:   Pc2Drone   ########
+========================================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     34                 100 %                
+==================================================
+Total SEQUENTIAL ELEMENTS in the block Pc2Drone:	34 (27.87 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+LUTS     72                 100 %                
+=================================================
+Total COMBINATIONAL LOGIC in the block Pc2Drone:	72 (59.02 % Utilization)
+
+
+IO PADS
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     12                 100 %                
+=================================================
+Total IO PADS in the block Pc2Drone:	12 (9.84 % Utilization)
+
+-------------------------------------------------------------
+########   Utilization report for  cell:   uart_rx   ########
+Instance path:   Pc2Drone.uart_rx                            
+=============================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     34                 100 %                
+==================================================
+Total SEQUENTIAL ELEMENTS in the block Pc2Drone.uart_rx:	34 (27.87 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+LUTS     72                 100 %                
+=================================================
+Total COMBINATIONAL LOGIC in the block Pc2Drone.uart_rx:	72 (59.02 % Utilization)
+
+
+##### END OF AREA REPORT #####]
+

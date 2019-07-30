@@ -1,0 +1,120 @@
+Synopsys HDL Compiler, version comp2016q3p1, Build 141R, built Dec  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+Synopsys Verilog Compiler, version comp2016q3p1, Build 141R, built Dec  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+@I::"C:\lscc\iCEcube2.2017.08\synpbase\lib\generic\sb_ice40.v" (library work)
+@I::"C:\lscc\iCEcube2.2017.08\synpbase\lib\vlog\hypermods.v" (library __hyper__lib__)
+@I::"C:\lscc\iCEcube2.2017.08\synpbase\lib\vlog\umr_capim.v" (library snps_haps)
+@I::"C:\lscc\iCEcube2.2017.08\synpbase\lib\vlog\scemi_objects.v" (library snps_haps)
+@I::"C:\lscc\iCEcube2.2017.08\synpbase\lib\vlog\scemi_pipes.svh" (library snps_haps)
+@I::"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\drones_kids.v" (library work)
+@I::"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\KeyPress.v" (library work)
+@I::"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\uart.v" (library work)
+@I::"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v" (library work)
+Verilog syntax check successful!
+Options changed - recompiling
+Selecting top level module drones_kids
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\uart.v":1:7:1:10|Synthesizing module uart in library work.
+
+@N: CG364 :"C:\lscc\iCEcube2.2017.08\synpbase\lib\vlog\hypermods.v":9:7:9:22|Synthesizing module syn_hyper_source in library __hyper__lib__.
+
+	w=32'b00000000000000000000000000000001
+	tag=376'b0101111101011111011110000110110101110010010111110111010001100001011001110101111101011111001100010101111100110000010111110011011000110110011001000011100001100101001100000110010101100001001101010110011000110010001101010011000101100110001100110011000001100001011001100011011000110110011001100011010100110101011001000110011000110001001100110011000001100100001101100011011100110101
+   Generated name = syn_hyper_source_1s___xmr_tag__1_0_66d8e0ea5f251f30af66f55df130d675_Z1
+
+@N: CG364 :"C:\lscc\iCEcube2.2017.08\synpbase\lib\vlog\hypermods.v":9:7:9:22|Synthesizing module syn_hyper_source in library __hyper__lib__.
+
+	w=32'b00000000000000000000000000001000
+	tag=376'b0101111101011111011110000110110101110010010111110111010001100001011001110101111101011111001100100101111100110000010111110011011000110110011001000011100001100101001100000110010101100001001101010110011000110010001101010011000101100110001100110011000001100001011001100011011000110110011001100011010100110101011001000110011000110001001100110011000001100100001101100011011100110101
+   Generated name = syn_hyper_source_8s___xmr_tag__2_0_66d8e0ea5f251f30af66f55df130d675_Z2
+
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\uart.v":84:23:84:30|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\uart.v":91:45:91:52|Removing redundant assignment.
+@W: CL169 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\uart.v":49:0:49:5|Pruning unused register data_debug_reg. Make sure that there are no unused intermediate registers.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\KeyPress.v":2:7:2:14|Synthesizing module KeyPress in library work.
+
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\KeyPress.v":87:24:87:38|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\KeyPress.v":94:22:94:36|Removing redundant assignment.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":1:7:1:17|Synthesizing module ppm_encoder in library work.
+
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":120:28:120:35|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":121:27:121:33|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":122:28:122:35|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":123:26:123:31|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":230:33:230:43|Removing redundant assignment.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\drones_kids.v":1:7:1:17|Synthesizing module drones_kids in library work.
+
+@N: CG364 :"C:\lscc\iCEcube2.2017.08\synpbase\lib\vlog\hypermods.v":16:7:16:23|Synthesizing module syn_hyper_connect in library __hyper__lib__.
+
+	w=32'b00000000000000000000000000000001
+	tag=376'b0101111101011111011110000110110101110010010111110111010001100001011001110101111101011111001100010101111100110000010111110011011000110110011001000011100001100101001100000110010101100001001101010110011000110010001101010011000101100110001100110011000001100001011001100011011000110110011001100011010100110101011001000110011000110001001100110011000001100100001101100011011100110101
+	dflt=32'b00000000000000000000000000000101
+	mustconnect=1'b1
+   Generated name = syn_hyper_connect_1s___xmr_tag__1_0_66d8e0ea5f251f30af66f55df130d675_5s_1_Z3
+
+@N: CG364 :"C:\lscc\iCEcube2.2017.08\synpbase\lib\vlog\hypermods.v":16:7:16:23|Synthesizing module syn_hyper_connect in library __hyper__lib__.
+
+	w=32'b00000000000000000000000000001000
+	tag=376'b0101111101011111011110000110110101110010010111110111010001100001011001110101111101011111001100100101111100110000010111110011011000110110011001000011100001100101001100000110010101100001001101010110011000110010001101010011000101100110001100110011000001100001011001100011011000110110011001100011010100110101011001000110011000110001001100110011000001100100001101100011011100110101
+	dflt=32'b00000000000000000000000000000101
+	mustconnect=1'b1
+   Generated name = syn_hyper_connect_8s___xmr_tag__2_0_66d8e0ea5f251f30af66f55df130d675_5s_1_Z4
+
+@W: CL157 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\drones_kids.v":22:7:22:11|*Output debug has undriven bits; assigning undriven bits to 0.  Simulation mismatch possible. Assign all bits of the output.
+@W: CL279 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Pruning register bits 14 to 2 of throttle[14:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL279 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Pruning register bits 14 to 5 of rudder[14:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL260 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Pruning register bit 3 of rudder[14:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@W: CL279 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Pruning register bits 14 to 2 of elevator[14:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL279 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Pruning register bits 14 to 5 of aileron[14:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL260 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Pruning register bit 3 of aileron[14:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Register bit aileron[4] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Register bit rudder[4] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Register bit elevator[0] is always 1.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Register bit elevator[1] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Register bit throttle[0] is always 1.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Register bit throttle[1] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Register bit aileron[0] is always 1.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Register bit rudder[0] is always 1.
+@W: CL260 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Pruning register bit 0 of rudder[2:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@W: CL260 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Pruning register bit 0 of aileron[2:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@W: CL177 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":64:0:64:5|Sharing sequential element rudder. Add a syn_preserve attribute to the element to prevent sharing.
+@N: CL201 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":128:0:128:5|Trying to extract state machine for register CHOOSE_CHANNEL.
+@N: CL201 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\ppm_encoder.v":128:0:128:5|Trying to extract state machine for register PPM_STATE.
+@N: CL201 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\uart.v":49:0:49:5|Trying to extract state machine for register state_bus.
+@N: CL159 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\uart.v":24:6:24:10|Input reset is unused.
+
+At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 73MB peak: 75MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Fri Mar 08 19:55:56 2019
+
+###########################################################]
+Synopsys Netlist Linker, version comp2016q3p1, Build 141R, built Dec  5 2016
+@N|Running in 64-bit mode
+@N: NF107 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\drones_kids.v":1:7:1:17|Selected library: work cell: drones_kids view verilog as top level
+@N: NF107 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\drones_kids.v":1:7:1:17|Selected library: work cell: drones_kids view verilog as top level
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 67MB peak: 68MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Fri Mar 08 19:55:57 2019
+
+###########################################################]
+@END
+
+At c_hdl Exit (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:00s; Memory used current: 3MB peak: 4MB)
+
+Process took 0h:00m:03s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Fri Mar 08 19:55:57 2019
+
+###########################################################]

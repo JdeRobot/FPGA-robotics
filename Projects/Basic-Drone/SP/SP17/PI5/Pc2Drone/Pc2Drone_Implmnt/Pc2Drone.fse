@@ -1,0 +1,151 @@
+
+fsm_encoding {6980987} onehot
+
+fsm_state_encoding {6980987} 000 {00001}
+
+fsm_state_encoding {6980987} 001 {00010}
+
+fsm_state_encoding {6980987} 010 {00100}
+
+fsm_state_encoding {6980987} 011 {01000}
+
+fsm_state_encoding {6980987} 100 {10000}
+
+fsm_registers {6980987} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {7810816} onehot
+
+fsm_state_encoding {7810816} S_WF_STX1 {000000000000001}
+
+fsm_state_encoding {7810816} S_WF_STX2 {000000000000010}
+
+fsm_state_encoding {7810816} S_CH1_ADQ {000000000000100}
+
+fsm_state_encoding {7810816} S_CH2_ADQ {000000000001000}
+
+fsm_state_encoding {7810816} S_CH3_ADQ {000000000010000}
+
+fsm_state_encoding {7810816} S_CH4_ADQ {000000000100000}
+
+fsm_state_encoding {7810816} S_OFF1_ADQ {000000001000000}
+
+fsm_state_encoding {7810816} S_OFF2_ADQ {000000010000000}
+
+fsm_state_encoding {7810816} S_OFF3_ADQ {000000100000000}
+
+fsm_state_encoding {7810816} S_OFF4_ADQ {000001000000000}
+
+fsm_state_encoding {7810816} S_ALT_KI {000010000000000}
+
+fsm_state_encoding {7810816} S_ALT_KD {000100000000000}
+
+fsm_state_encoding {7810816} S_XY_KI {001000000000000}
+
+fsm_state_encoding {7810816} S_XY_KD {010000000000000}
+
+fsm_state_encoding {7810816} S_RSV {100000000000000}
+
+fsm_registers {7810816} {state[14]}  {state[13]}  {state[12]}  {state[11]}  {state[10]}  {state[9]}  {state[8]}  {state[7]}  {state[6]}  {state[5]}  {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {12610615} onehot
+
+fsm_state_encoding {12610615} S_WF_STX1 {00000001}
+
+fsm_state_encoding {12610615} S_WF_STX2 {00000010}
+
+fsm_state_encoding {12610615} S_WF_H_disp_front_LSB {00000100}
+
+fsm_state_encoding {12610615} S_WF_H_disp_front_MSB {00001000}
+
+fsm_state_encoding {12610615} S_WF_H_disp_side_LSB {00010000}
+
+fsm_state_encoding {12610615} S_WF_H_disp_side_MSB {00100000}
+
+fsm_state_encoding {12610615} S_WF_altitude_LSB {01000000}
+
+fsm_state_encoding {12610615} S_WF_altitude_MSB {10000000}
+
+fsm_registers {12610615} {state[7]}  {state[6]}  {state[5]}  {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {14730734} sequential
+
+fsm_state_encoding {14730734} S_WF_DV {00}
+
+fsm_state_encoding {14730734} S_1_STAGE {01}
+
+fsm_state_encoding {14730734} S_2_STAGE {10}
+
+fsm_registers {14730734} {state[1]}  {state[0]} 
+
+fsm_encoding {13970973} sequential
+
+fsm_state_encoding {13970973} S_WF_DV {00}
+
+fsm_state_encoding {13970973} S_1_STAGE {01}
+
+fsm_state_encoding {13970973} S_2_STAGE {10}
+
+fsm_registers {13970973} {state[1]}  {state[0]} 
+
+fsm_encoding {10930932} sequential
+
+fsm_state_encoding {10930932} CHANNEL {00}
+
+fsm_state_encoding {10930932} GENERATE_CHANNEL {01}
+
+fsm_state_encoding {10930932} SEPARATOR {10}
+
+fsm_registers {10930932} {PPM_STATE[1]}  {PPM_STATE[0]} 
+
+fsm_encoding {10930931} original
+
+fsm_state_encoding {10930931} INIT_PROTOCOL {0000}
+
+fsm_state_encoding {10930931} CH1 {0001}
+
+fsm_state_encoding {10930931} CH2 {0010}
+
+fsm_state_encoding {10930931} CH3 {0011}
+
+fsm_state_encoding {10930931} CH4 {0100}
+
+fsm_state_encoding {10930931} CH5 {0101}
+
+fsm_state_encoding {10930931} CH6 {0110}
+
+fsm_state_encoding {10930931} CH7 {0111}
+
+fsm_state_encoding {10930931} CH8 {1000}
+
+fsm_state_encoding {10930931} CH9 {1001}
+
+fsm_state_encoding {10930931} CH10 {1010}
+
+fsm_state_encoding {10930931} CH11 {1011}
+
+fsm_state_encoding {10930931} CH12 {1100}
+
+fsm_registers {10930931} {CHOOSE_CHANNEL[3]}  {CHOOSE_CHANNEL[2]}  {CHOOSE_CHANNEL[1]}  {CHOOSE_CHANNEL[0]} 
+931} CH2 {0010}
+
+fsm_state_encoding {10930931} CH3 {0011}
+
+fsm_state_encoding {10930931} CH4 {0100}
+
+fsm_state_encoding {10930931} CH5 {0101}
+
+fsm_state_encoding {10930931} CH6 {0110}
+
+fsm_state_encoding {10930931} CH7 {0111}
+
+fsm_state_encoding {10930931} CH8 {1000}
+
+fsm_state_encoding {10930931} CH9 {1001}
+
+fsm_state_encoding {10930931} CH10 {1010}
+
+fsm_state_encoding {10930931} CH11 {1011}
+
+fsm_state_encoding {10930931} CH12 {1100}
+
+fsm_registers {10930931} {CHOOSE_CHANNEL[3]}  {CHOOSE_CHANNEL[2]}  {CHOOSE_CHANNEL[1]}  {CHOOSE_CHANNEL[0]} 

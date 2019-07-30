@@ -1,0 +1,1 @@
+define_attribute {i:uart1} {syn_noprune} 1

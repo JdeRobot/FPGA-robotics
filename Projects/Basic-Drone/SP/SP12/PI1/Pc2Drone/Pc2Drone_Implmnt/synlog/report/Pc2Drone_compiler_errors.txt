@@ -1,0 +1,2 @@
+@E: CG389 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP12\PI1\Pc2Drone\Pc2Drone.v":53:13:53:31|Reference to undefined module reset_module
+

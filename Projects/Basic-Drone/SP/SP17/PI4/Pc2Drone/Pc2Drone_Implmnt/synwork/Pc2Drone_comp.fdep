@@ -1,0 +1,55 @@
+#OPTIONS:"|-layerid|0|-orig_srs|C:\\Users\\Eloy\\Desktop\\TFG\\Repo\\kibotics-drones4kids\\TFG_Eloy\\SP\\SP17\\PI4\\Pc2Drone\\Pc2Drone_Implmnt\\synwork\\Pc2Drone_comp.srs|-prodtype|synplify_pro|-primux|-fixsmult|-infer_seqShift|-ice|-sdff_counter|-nram|-divnmod|-nostructver|-I|C:\\Users\\Eloy\\Desktop\\TFG\\Repo\\kibotics-drones4kids\\TFG_Eloy\\SP\\SP17\\PI4\\Pc2Drone\\|-I|C:\\lscc\\iCEcube2.2017.08\\synpbase\\lib|-v2001|-devicelib|C:\\lscc\\iCEcube2.2017.08\\synpbase\\lib\\generic\\sb_ice40.v|-encrypt|-pro|-ui|-fid2|-ram|-sharing|on|-ll|2000|-autosm|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work"
+#CUR:"C:\\lscc\\iCEcube2.2017.08\\synpbase\\bin64\\c_ver.exe":1552070682
+#CUR:"C:\\lscc\\iCEcube2.2017.08\\synpbase\\lib\\generic\\sb_ice40.v":1552070687
+#CUR:"C:\\lscc\\iCEcube2.2017.08\\synpbase\\lib\\vlog\\hypermods.v":1552070700
+#CUR:"C:\\lscc\\iCEcube2.2017.08\\synpbase\\lib\\vlog\\umr_capim.v":1552070700
+#CUR:"C:\\lscc\\iCEcube2.2017.08\\synpbase\\lib\\vlog\\scemi_objects.v":1552070700
+#CUR:"C:\\lscc\\iCEcube2.2017.08\\synpbase\\lib\\vlog\\scemi_pipes.svh":1552070700
+#CUR:"C:\\Users\\Eloy\\Desktop\\TFG\\Repo\\kibotics-drones4kids\\TFG_Eloy\\SP\\SP17\\PI4\\Pc2Drone\\Pc2Drone.v":1555948294
+#CUR:"C:\\Users\\Eloy\\Desktop\\TFG\\Repo\\kibotics-drones4kids\\TFG_Eloy\\SP\\SP17\\PI4\\Pc2Drone\\uart_rx.v":1552240621
+#CUR:"C:\\Users\\Eloy\\Desktop\\TFG\\Repo\\kibotics-drones4kids\\TFG_Eloy\\SP\\SP17\\PI4\\Pc2Drone\\frame_decoder.v":1555948766
+#CUR:"C:\\Users\\Eloy\\Desktop\\TFG\\Repo\\kibotics-drones4kids\\TFG_Eloy\\SP\\SP17\\PI4\\Pc2Drone\\reset_module.v":1552351136
+#CUR:"C:\\Users\\Eloy\\Desktop\\TFG\\Repo\\kibotics-drones4kids\\TFG_Eloy\\SP\\SP17\\PI4\\Pc2Drone\\dff_v_ncycle.v":1552428095
+#CUR:"C:\\Users\\Eloy\\Desktop\\TFG\\Repo\\kibotics-drones4kids\\TFG_Eloy\\SP\\SP17\\PI4\\Pc2Drone\\ppm_encoder.v":1555094207
+#CUR:"C:\\Users\\Eloy\\Desktop\\TFG\\Repo\\kibotics-drones4kids\\TFG_Eloy\\SP\\SP17\\PI4\\Pc2Drone\\scaler.v":1554406655
+#CUR:"C:\\Users\\Eloy\\Desktop\\TFG\\Repo\\kibotics-drones4kids\\TFG_Eloy\\SP\\SP17\\PI4\\Pc2Drone\\frame_dron_decoder.v":1555244129
+#CUR:"C:\\Users\\Eloy\\Desktop\\TFG\\Repo\\kibotics-drones4kids\\TFG_Eloy\\SP\\SP17\\PI4\\Pc2Drone\\pid_altitude.v":1555946805
+0			"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI4\Pc2Drone\Pc2Drone.v" verilog
+1			"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI4\Pc2Drone\uart_rx.v" verilog
+2			"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI4\Pc2Drone\frame_decoder.v" verilog
+3			"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI4\Pc2Drone\reset_module.v" verilog
+4			"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI4\Pc2Drone\dff_v_ncycle.v" verilog
+5			"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI4\Pc2Drone\ppm_encoder.v" verilog
+6			"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI4\Pc2Drone\scaler.v" verilog
+7			"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI4\Pc2Drone\frame_dron_decoder.v" verilog
+8			"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI4\Pc2Drone\pid_altitude.v" verilog
+#Dependency Lists(Uses List)
+0 5 8 7 6 2 1 4 3
+1 -1
+2 -1
+3 -1
+4 -1
+5 -1
+6 -1
+7 -1
+8 -1
+#Dependency Lists(Users Of)
+0 -1
+1 0
+2 0
+3 0
+4 0
+5 0
+6 0
+7 0
+8 0
+#Design Unit to File Association
+module work Pc2drone 0
+module work ppm_encoder 5
+module work pid_altitude 8
+module work frame_dron_decoder 7
+module work scaler 6
+module work frame_decoder 2
+module work uart_rx 1
+module work dff_v_ncycle 4
+module work reset_module 3

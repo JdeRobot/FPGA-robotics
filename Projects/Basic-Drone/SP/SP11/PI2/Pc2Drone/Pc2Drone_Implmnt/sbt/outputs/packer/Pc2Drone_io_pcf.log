@@ -1,0 +1,12 @@
+INPUT  uart_input 	 location (9, 0, 0) 	 4 	 SB_LVCMOS
+OUTPUT data_rdy 	 location (13, 31, 0) 	 37 	 SB_LVCMOS
+OUTPUT data[6] 	 location (13, 31, 1) 	 34 	 
+OUTPUT data[2] 	 location (22, 0, 1) 	 18 	 
+OUTPUT data[7] 	 location (8, 31, 0) 	 42 	 
+OUTPUT data[5] 	 location (16, 31, 0) 	 32 	 
+OUTPUT data[3] 	 location (24, 0, 1) 	 16 	 
+OUTPUT data[1] 	 location (19, 0, 1) 	 20 	 
+OUTPUT uart_input_debug 	 location (8, 0, 0) 	 2 	 SB_LVCMOS
+OUTPUT data[4] 	 location (18, 31, 0) 	 26 	 
+OUTPUT data[0] 	 location (13, 0, 1) 	 6 	 SB_LVCMOS
+INPUT  clk_system 	 location (12, 31, 1) 	 35 	 SB_LVCMOS

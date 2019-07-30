@@ -1,0 +1,3 @@
+@E: CG431 :"D:\kibotics-drones4kids\DronesForKids_ice40Ultra\ppm_encoder.v":212:64:212:67|Expecting radix character (one of b, o, h, or d) or unsized single bit literal (one of '1, '0, 'x, 'z) 
+@E: CS187 :"D:\kibotics-drones4kids\DronesForKids_ice40Ultra\ppm_encoder.v":263:0:263:8|Expecting endmodule
+

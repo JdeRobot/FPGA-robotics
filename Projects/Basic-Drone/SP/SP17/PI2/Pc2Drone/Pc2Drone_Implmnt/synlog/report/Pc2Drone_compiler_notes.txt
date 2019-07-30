@@ -1,0 +1,130 @@
+@N|Running in 64-bit mode
+@N|Running in 64-bit mode
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\reset_module.v":14:7:14:18|Synthesizing module reset_module in library work.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\reset_module.v":40:11:40:15|Removing redundant assignment.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\dff_v_ncycle.v":14:7:14:18|Synthesizing module dff_v_ncycle in library work.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":14:7:14:13|Synthesizing module uart_rx in library work.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":63:9:63:12|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":164:18:164:25|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":167:18:167:26|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":185:17:185:24|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":207:17:207:25|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":208:16:208:23|Removing redundant assignment.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":16:7:16:19|Synthesizing module frame_decoder in library work.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":164:14:164:18|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":166:12:166:14|Removing redundant assignment.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\scaler.v":14:7:14:12|Synthesizing module scaler in library work.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\scaler.v":56:18:56:28|Removing redundant assignment.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":16:7:16:24|Synthesizing module frame_dron_decoder in library work.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":120:13:120:17|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":122:11:122:13|Removing redundant assignment.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\pid_altitude.v":14:7:14:18|Synthesizing module pid_altitude in library work.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\pid_altitude.v":81:15:81:22|Removing redundant assignment.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\ppm_encoder.v":14:7:14:17|Synthesizing module ppm_encoder in library work.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\ppm_encoder.v":111:15:111:22|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\ppm_encoder.v":112:14:112:20|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\ppm_encoder.v":113:15:113:22|Removing redundant assignment.
+@N: CG179 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\ppm_encoder.v":114:13:114:18|Removing redundant assignment.
+@N: CG364 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\Pc2Drone.v":14:7:14:14|Synthesizing module Pc2drone in library work.
+@N: CL201 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\ppm_encoder.v":98:0:98:5|Trying to extract state machine for register CHOOSE_CHANNEL.
+@N: CL201 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\ppm_encoder.v":98:0:98:5|Trying to extract state machine for register PPM_STATE.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[16] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[17] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[18] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[19] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[20] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[21] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[22] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[23] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[24] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[25] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[26] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[27] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[28] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[29] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[30] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Register bit WDT[31] is always 0.
+@N: CL201 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_dron_decoder.v":61:0:61:5|Trying to extract state machine for register state.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\scaler.v":46:0:46:5|Register bit source_data[0] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\scaler.v":46:0:46:5|Register bit source_data[1] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\scaler.v":46:0:46:5|Register bit source_data[2] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\scaler.v":46:0:46:5|Register bit source_data[3] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[16] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[17] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[18] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[19] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[20] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[21] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[22] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[23] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[24] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[25] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[26] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[27] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[28] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[29] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[30] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit WDT[31] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[3] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[4] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[5] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[6] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[7] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[8] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[9] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[10] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[11] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[12] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[13] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[14] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[15] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[16] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[17] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[18] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[19] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[20] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[21] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[22] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[23] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[24] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[25] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[26] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[27] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[28] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[29] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[30] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Register bit count[31] is always 0.
+@N: CL201 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\frame_decoder.v":84:0:84:5|Trying to extract state machine for register state.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[5] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[6] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[7] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[8] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[9] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[10] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[11] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[12] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[13] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[14] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[15] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[16] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[17] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[18] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[19] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[20] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[21] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[22] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[23] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[24] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[25] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[26] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[27] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[28] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[29] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[30] is always 0.
+@N: CL189 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Register bit timer_Count[31] is always 0.
+@N: CL201 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\uart_rx.v":98:0:98:5|Trying to extract state machine for register state.
+@N: CL135 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\dff_v_ncycle.v":44:0:44:5|Found sequential shift Q with address depth of 5 words and data bit width of 1.
+@N|Running in 64-bit mode
+@N: NF107 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\Pc2Drone.v":14:7:14:14|Selected library: work cell: Pc2drone view verilog as top level
+@N: NF107 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI2\Pc2Drone\Pc2Drone.v":14:7:14:14|Selected library: work cell: Pc2drone view verilog as top level
+

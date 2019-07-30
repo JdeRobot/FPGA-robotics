@@ -1,0 +1,3 @@
+OUTPUT test_led 	 location (13, 0, 1) 	 6 	 SB_LVCMOS
+OUTPUT ppm_output 	 location (13, 31, 1) 	 34 	 SB_LVCMOS
+INPUT  clk 	 location (12, 31, 1) 	 35 	 SB_LVCMOS

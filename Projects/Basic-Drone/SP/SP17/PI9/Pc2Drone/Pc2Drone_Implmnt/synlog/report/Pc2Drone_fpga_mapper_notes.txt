@@ -1,0 +1,31 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: MT206 |Auto Constrain mode is enabled
+@N: MF179 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":199:9:199:32|Found 19 by 19 bit equality operator ('==') counter24 (in view: work.ppm_encoder(verilog))
+@N: BN362 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Removing sequential instance ppm_encoder_1.rudder[0] (in view: work.Pc2drone(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Removing sequential instance ppm_encoder_1.rudder[2] (in view: work.Pc2drone(verilog)) because it does not drive other instances.
+@N: MF151 :|The module G_3 is too small to be pipelined.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\frame_dron_decoder.v":61:0:61:5|Replicating instance dron_frame_decoder_1.source_H_disp_front[0] (in view: work.Pc2drone(verilog)) with 9 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\frame_dron_decoder.v":61:0:61:5|Replicating instance dron_frame_decoder_1.source_H_disp_side[0] (in view: work.Pc2drone(verilog)) with 11 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Replicating instance ppm_encoder_1.CHOOSE_CHANNEL[2] (in view: work.Pc2drone(verilog)) with 23 loads 2 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\frame_decoder.v":81:0:81:5|Replicating instance Commands_frame_decoder.source_xy_ki[1] (in view: work.Pc2drone(verilog)) with 76 loads 3 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\frame_decoder.v":81:0:81:5|Replicating instance Commands_frame_decoder.source_xy_ki[0] (in view: work.Pc2drone(verilog)) with 70 loads 3 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Replicating instance ppm_encoder_1.CHOOSE_CHANNEL[0] (in view: work.Pc2drone(verilog)) with 26 loads 2 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Replicating instance ppm_encoder_1.CHOOSE_CHANNEL[1] (in view: work.Pc2drone(verilog)) with 25 loads 2 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\frame_decoder.v":81:0:81:5|Replicating instance Commands_frame_decoder.source_xy_ki[2] (in view: work.Pc2drone(verilog)) with 89 loads 3 times to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\ppm_encoder.v":93:0:93:5|Replicating instance ppm_encoder_1.CHOOSE_CHANNEL[3] (in view: work.Pc2drone(verilog)) with 9 loads 1 time to improve timing.
+@N: FX1017 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\pc2drone.v":81:13:81:29|SB_GB inserted on the net clk_system_pll.
+@N: FX1017 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\reset_module.v":36:0:36:5|SB_GB inserted on the net reset_system.
+@N: FX1017 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp17\pi9\pc2drone\pid_altitude.v":97:0:97:5|SB_GB inserted on the net N_580.
+@N: FX1017 :|SB_GB inserted on the net N_579_0.
+@N: FX1017 :|SB_GB inserted on the net N_404.
+@N: FX1017 :|SB_GB inserted on the net N_478.
+@N: FX1017 :|SB_GB inserted on the net pid_alt.state_0[0].
+@N: FX1017 :|SB_GB inserted on the net N_1352.
+@N: BW103 |The default time unit for the Synopsys Constraint File (SDC or FDC) is 1ns.
+@N: BW107 |Synopsys Constraint File capacitance units using default value of 1pF 
+@N: FX1056 |Writing EDF file: C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI9\Pc2Drone\Pc2Drone_Implmnt\Pc2Drone.edf
+@N: MT615 |Found clock Pc2drone_pll|PLLOUTCORE_derived_clock with period 16.47ns 
+@N: MT320 |This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report.
+@N: MT322 |Clock constraints include only register-to-register paths associated with each individual clock.
+@N: MT582 |Estimated period and frequency not reported for given clock unless the clock has at least one timing path which is not a false or a max delay path and that does not have excessive slack

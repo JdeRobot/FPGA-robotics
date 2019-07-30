@@ -1,0 +1,12 @@
+INPUT  s1 	 location (19, 31, 0) 	 23 	 SB_LVCMOS
+INPUT  reset_system 	 location (9, 31, 0) 	 43 	 SB_LVCMOS
+OUTPUT source_data[2] 	 location (8, 31, 1) 	 38 	 SB_LVCMOS
+OUTPUT source_data[0] 	 location (9, 31, 1) 	 36 	 SB_LVCMOS
+INPUT  sdin 	 location (19, 31, 1) 	 25 	 SB_LVCMOS
+OUTPUT ppm_output 	 location (13, 31, 1) 	 34 	 SB_LVCMOS
+OUTPUT debug 	 location (24, 0, 1) 	 16 	 
+OUTPUT data_debug 	 location (13, 31, 0) 	 37 	 
+OUTPUT source_data_rdy 	 location (16, 31, 1) 	 31 	 SB_LVCMOS
+OUTPUT source_data[1] 	 location (8, 31, 0) 	 42 	 SB_LVCMOS
+OUTPUT led 	 location (18, 0, 0) 	 12 	 SB_LVCMOS
+INPUT  clk_system 	 location (12, 31, 1) 	 35 	 SB_LVCMOS

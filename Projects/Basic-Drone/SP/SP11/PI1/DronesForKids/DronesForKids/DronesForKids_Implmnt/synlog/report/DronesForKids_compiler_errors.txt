@@ -1,0 +1,4 @@
+@E: CS153 :"D:\kibotics-drones4kids\DronesForKids_ice40Ultra\uart.v":86:22:86:22|Can't mix blocking and non-blocking assignments to a variable
+@E: CS153 :"D:\kibotics-drones4kids\DronesForKids_ice40Ultra\uart.v":86:22:86:22|Illegal or Unsupported Syntax within black box. Use: // synthesis translate_off {  unsupported Verilog } // synthesis translate_on 
+@E: CS153 :"D:\kibotics-drones4kids\DronesForKids_ice40Ultra\uart.v":86:22:86:22|Alternatively, set the builtin compiler directive IGNORE_VERILOG_BLACKBOX_GUTS in the Verilog tab of the UI or set `define IGNORE_VERILOG_BLACKBOX_GUTS in any Verilog file.
+

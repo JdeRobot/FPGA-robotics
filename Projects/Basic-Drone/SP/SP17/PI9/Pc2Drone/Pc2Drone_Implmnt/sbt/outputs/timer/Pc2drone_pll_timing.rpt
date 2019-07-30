@@ -1,0 +1,486 @@
+# ******************************************************************************
+
+# iCEcube Static Timer
+
+# Version:            2017.08.27940
+
+# Build Date:         Sep 11 2017 16:53:46
+
+# File Generated:     May 18 2019 11:55:26
+
+# Purpose:            Timing Report with critical paths info
+
+# Copyright (C) 2006-2010 by Lattice Semiconductor Corp. All rights reserved.
+
+# ******************************************************************************
+
+Device: iCE40UP5K
+Derating factors (Best:Typical:Worst) :-  ( 0.491675 : 0.859651 : 1.32445 )
+Derating factor used to generate this timing report:  Worst
+Based on the following operating conditions 
+Junction Temperature(degree Celsius): 85
+Core Voltage(V): 1.14
+Process Corner:  Worst
+NOTE:
+Please check both worst-case and best-case scenarios for "Setup Times" 
+and "Hold Times" checks
+Maximum Operating Frequency is: N/A
+
+
+ #####################################################################
+                    3::Datasheet Report
+
+All values are in Picoseconds
+ =====================================================================
+
+                        3.1::Setup Times
+                        ----------------
+
+Data Port  Clock Port  Setup Times  Clock Reference:Phase  
+---------  ----------  -----------  ---------------------  
+
+
+                       3.2::Clock to Out
+                       -----------------
+
+Data Port  Clock Port  Clock to Out  Clock Reference:Phase  
+---------  ----------  ------------  ---------------------  
+
+
+                         3.3::Pad to Pad
+                         ---------------
+
+Port Name (Input)  Port Name (Output)  Pad to Pad  
+-----------------  ------------------  ----------  
+REFERENCECLK       PLLOUTCORE          11856       
+REFERENCECLK       PLLOUTGLOBAL        14836       
+
+
+                         3.4::Hold Times
+                         ---------------
+
+Data Port  Clock Port  Hold Times  Clock Reference:Phase  
+---------  ----------  ----------  ---------------------  
+
+
+               3.5::Minimum Clock to Out
+               -------------------------
+
+Data Port  Clock Port  Minimum Clock to Out  Clock Reference:Phase  
+---------  ----------  --------------------  ---------------------  
+
+
+                 3.6::Minimum Pad To Pad
+                 -----------------------
+
+Port Name (Input)  Port Name (Output)  Minimum Pad To Pad  
+-----------------  ------------------  ------------------  
+REFERENCECLK       PLLOUTCORE          10811               
+REFERENCECLK       PLLOUTGLOBAL        12850               
+
+ =====================================================================
+                    End of Datasheet Report
+ #####################################################################
+
+ #####################################################################
+                    6::Path Details for DataSheet
+ =====================================================================
+
+
+6.3::PI to PO Path Details              
+--------------------------------------------------
+
+6.3.1::Path details for port: PLLOUTCORE
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : PLLOUTCORE
+Input Port       : REFERENCECLK
+Pad to Pad Delay : 11856
+
+Pad to Pad Path
+pin name                               model name                          delay  cummulative delay  edge  Fanout  
+-------------------------------------  ----------------------------------  -----  -----------------  ----  ------  
+REFERENCECLK                           Pc2drone_pll                        0      0                  RISE  1       
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in  IO_PAD                              0      0                  RISE  1       
+REFERENCECLK_ibuf_iopad/DOUT           IO_PAD                              510    510                RISE  1       
+REFERENCECLK_ibuf_preio/PADIN          PRE_IO_PIN_TYPE_000001              0      510                RISE  1       
+REFERENCECLK_ibuf_preio/DIN0           PRE_IO_PIN_TYPE_000001              490    1000               RISE  1       
+I__19/I                                Odrv4                               0      1000               RISE  1       
+I__19/O                                Odrv4                               596    1596               RISE  1       
+I__20/I                                LocalMux                            0      1596               RISE  1       
+I__20/O                                LocalMux                            1099   2695               RISE  1       
+I__21/I                                IoInMux                             0      2695               RISE  1       
+I__21/O                                IoInMux                             662    3358               RISE  1       
+Pc2drone_pll_inst/REFERENCECLK         SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  0      3358               RISE  1       
+Pc2drone_pll_inst/PLLOUTCORE           SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  2662   6020               RISE  1       
+I__15/I                                Odrv4                               0      6020               RISE  1       
+I__15/O                                Odrv4                               596    6616               RISE  1       
+I__16/I                                IoSpan4Mux                          0      6616               RISE  1       
+I__16/O                                IoSpan4Mux                          622    7238               RISE  1       
+I__17/I                                LocalMux                            0      7238               RISE  1       
+I__17/O                                LocalMux                            1099   8338               RISE  1       
+I__18/I                                IoInMux                             0      8338               RISE  1       
+I__18/O                                IoInMux                             662    9000               RISE  1       
+PLLOUTCORE_obuf_preio/DOUT0            PRE_IO_PIN_TYPE_011001              0      9000               RISE  1       
+PLLOUTCORE_obuf_preio/PADOUT           PRE_IO_PIN_TYPE_011001              768    9768               FALL  1       
+PLLOUTCORE_obuf_iopad/DIN              IO_PAD                              0      9768               FALL  1       
+PLLOUTCORE_obuf_iopad/PACKAGEPIN:out   IO_PAD                              2088   11856              FALL  1       
+PLLOUTCORE                             Pc2drone_pll                        0      11856              FALL  1       
+
+6.3.2::Path details for port: PLLOUTGLOBAL
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : PLLOUTGLOBAL
+Input Port       : REFERENCECLK
+Pad to Pad Delay : 14836
+
+Pad to Pad Path
+pin name                                              model name                          delay  cummulative delay  edge  Fanout  
+----------------------------------------------------  ----------------------------------  -----  -----------------  ----  ------  
+REFERENCECLK                                          Pc2drone_pll                        0      0                  RISE  1       
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in                 IO_PAD                              0      0                  RISE  1       
+REFERENCECLK_ibuf_iopad/DOUT                          IO_PAD                              510    510                RISE  1       
+REFERENCECLK_ibuf_preio/PADIN                         PRE_IO_PIN_TYPE_000001              0      510                RISE  1       
+REFERENCECLK_ibuf_preio/DIN0                          PRE_IO_PIN_TYPE_000001              490    1000               RISE  1       
+I__19/I                                               Odrv4                               0      1000               RISE  1       
+I__19/O                                               Odrv4                               596    1596               RISE  1       
+I__20/I                                               LocalMux                            0      1596               RISE  1       
+I__20/O                                               LocalMux                            1099   2695               RISE  1       
+I__21/I                                               IoInMux                             0      2695               RISE  1       
+I__21/O                                               IoInMux                             662    3358               RISE  1       
+Pc2drone_pll_inst/REFERENCECLK                        SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  0      3358               RISE  1       
+Pc2drone_pll_inst/PLLOUTGLOBAL                        SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  3404   6761               RISE  1       
+I__11/I                                               GlobalMux                           0      6761               RISE  1       
+I__11/O                                               GlobalMux                           252    7013               RISE  1       
+I__12/I                                               Glb2LocalMux                        0      7013               RISE  1       
+I__12/O                                               Glb2LocalMux                        583    7596               RISE  1       
+I__13/I                                               LocalMux                            0      7596               RISE  1       
+I__13/O                                               LocalMux                            1099   8695               RISE  1       
+I__14/I                                               InMux                               0      8695               RISE  1       
+I__14/O                                               InMux                               662    9357               RISE  1       
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_9_30_0/in3    LogicCell40_SEQ_MODE_0000           0      9357               RISE  1       
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_9_30_0/lcout  LogicCell40_SEQ_MODE_0000           861    10218              RISE  1       
+I__9/I                                                LocalMux                            0      10218              RISE  1       
+I__9/O                                                LocalMux                            1099   11318              RISE  1       
+I__10/I                                               IoInMux                             0      11318              RISE  1       
+I__10/O                                               IoInMux                             662    11980              RISE  1       
+PLLOUTGLOBAL_obuf_preio/DOUT0                         PRE_IO_PIN_TYPE_011001              0      11980              RISE  1       
+PLLOUTGLOBAL_obuf_preio/PADOUT                        PRE_IO_PIN_TYPE_011001              768    12748              FALL  1       
+PLLOUTGLOBAL_obuf_iopad/DIN                           IO_PAD                              0      12748              FALL  1       
+PLLOUTGLOBAL_obuf_iopad/PACKAGEPIN:out                IO_PAD                              2088   14836              FALL  1       
+PLLOUTGLOBAL                                          Pc2drone_pll                        0      14836              FALL  1       
+
+6.6::Min PI to PO Path Details          
+--------------------------------------------------
+
+6.6.1::Path details for port: PLLOUTCORE
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : PLLOUTCORE
+Input Port       : REFERENCECLK
+Pad to Pad Delay : 10811
+
+Pad to Pad Path
+pin name                               model name                          delay  cummulative delay  edge  Fanout  
+-------------------------------------  ----------------------------------  -----  -----------------  ----  ------  
+REFERENCECLK                           Pc2drone_pll                        0      0                  FALL  1       
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in  IO_PAD                              0      0                  FALL  1       
+REFERENCECLK_ibuf_iopad/DOUT           IO_PAD                              460    460                FALL  1       
+REFERENCECLK_ibuf_preio/PADIN          PRE_IO_PIN_TYPE_000001              0      460                FALL  1       
+REFERENCECLK_ibuf_preio/DIN0           PRE_IO_PIN_TYPE_000001              490    950                FALL  1       
+I__19/I                                Odrv4                               0      950                FALL  1       
+I__19/O                                Odrv4                               649    1599               FALL  1       
+I__20/I                                LocalMux                            0      1599               FALL  1       
+I__20/O                                LocalMux                            768    2367               FALL  1       
+I__21/I                                IoInMux                             0      2367               FALL  1       
+I__21/O                                IoInMux                             503    2871               FALL  1       
+Pc2drone_pll_inst/REFERENCECLK         SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  0      2871               FALL  1       
+Pc2drone_pll_inst/PLLOUTCORE           SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  2609   5480               FALL  1       
+I__15/I                                Odrv4                               0      5480               FALL  1       
+I__15/O                                Odrv4                               649    6129               FALL  1       
+I__16/I                                IoSpan4Mux                          0      6129               FALL  1       
+I__16/O                                IoSpan4Mux                          742    6870               FALL  1       
+I__17/I                                LocalMux                            0      6870               FALL  1       
+I__17/O                                LocalMux                            768    7639               FALL  1       
+I__18/I                                IoInMux                             0      7639               FALL  1       
+I__18/O                                IoInMux                             503    8142               FALL  1       
+PLLOUTCORE_obuf_preio/DOUT0            PRE_IO_PIN_TYPE_011001              0      8142               FALL  1       
+PLLOUTCORE_obuf_preio/PADOUT           PRE_IO_PIN_TYPE_011001              755    8897               RISE  1       
+PLLOUTCORE_obuf_iopad/DIN              IO_PAD                              0      8897               RISE  1       
+PLLOUTCORE_obuf_iopad/PACKAGEPIN:out   IO_PAD                              1914   10811              RISE  1       
+PLLOUTCORE                             Pc2drone_pll                        0      10811              RISE  1       
+
+6.6.2::Path details for port: PLLOUTGLOBAL
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : PLLOUTGLOBAL
+Input Port       : REFERENCECLK
+Pad to Pad Delay : 12850
+
+Pad to Pad Path
+pin name                                              model name                          delay  cummulative delay  edge  Fanout  
+----------------------------------------------------  ----------------------------------  -----  -----------------  ----  ------  
+REFERENCECLK                                          Pc2drone_pll                        0      0                  FALL  1       
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in                 IO_PAD                              0      0                  FALL  1       
+REFERENCECLK_ibuf_iopad/DOUT                          IO_PAD                              460    460                FALL  1       
+REFERENCECLK_ibuf_preio/PADIN                         PRE_IO_PIN_TYPE_000001              0      460                FALL  1       
+REFERENCECLK_ibuf_preio/DIN0                          PRE_IO_PIN_TYPE_000001              490    950                FALL  1       
+I__19/I                                               Odrv4                               0      950                FALL  1       
+I__19/O                                               Odrv4                               649    1599               FALL  1       
+I__20/I                                               LocalMux                            0      1599               FALL  1       
+I__20/O                                               LocalMux                            768    2367               FALL  1       
+I__21/I                                               IoInMux                             0      2367               FALL  1       
+I__21/O                                               IoInMux                             503    2871               FALL  1       
+Pc2drone_pll_inst/REFERENCECLK                        SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  0      2871               FALL  1       
+Pc2drone_pll_inst/PLLOUTGLOBAL                        SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  3086   5956               FALL  1       
+I__11/I                                               GlobalMux                           0      5956               FALL  1       
+I__11/O                                               GlobalMux                           278    6235               FALL  1       
+I__12/I                                               Glb2LocalMux                        0      6235               FALL  1       
+I__12/O                                               Glb2LocalMux                        530    6764               FALL  1       
+I__13/I                                               LocalMux                            0      6764               FALL  1       
+I__13/O                                               LocalMux                            768    7533               FALL  1       
+I__14/I                                               InMux                               0      7533               FALL  1       
+I__14/O                                               InMux                               503    8036               FALL  1       
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_9_30_0/in3    LogicCell40_SEQ_MODE_0000           0      8036               FALL  1       
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_9_30_0/lcout  LogicCell40_SEQ_MODE_0000           874    8910               FALL  1       
+I__9/I                                                LocalMux                            0      8910               FALL  1       
+I__9/O                                                LocalMux                            768    9678               FALL  1       
+I__10/I                                               IoInMux                             0      9678               FALL  1       
+I__10/O                                               IoInMux                             503    10181              FALL  1       
+PLLOUTGLOBAL_obuf_preio/DOUT0                         PRE_IO_PIN_TYPE_011001              0      10181              FALL  1       
+PLLOUTGLOBAL_obuf_preio/PADOUT                        PRE_IO_PIN_TYPE_011001              755    10936              RISE  1       
+PLLOUTGLOBAL_obuf_iopad/DIN                           IO_PAD                              0      10936              RISE  1       
+PLLOUTGLOBAL_obuf_iopad/PACKAGEPIN:out                IO_PAD                              1914   12850              RISE  1       
+PLLOUTGLOBAL                                          Pc2drone_pll                        0      12850              RISE  1       
+
+
+ =====================================================================
+                    End of Path Details for Datasheet
+ #####################################################################
+
+##################################################################### 
+                    Detailed Setup Report for all timing paths 
+===================================================================== 
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : REFERENCECLK
+Path End         : PLLOUTGLOBAL
+Setup Constraint : +INF
+Path slack       : +INF
+
+End-of-path required time (ps)           +INF
+
+Launch Clock Arrival Time (DEFAULT:R#0)       0
++ Launch Clock Source Latency                 0
++ Input Delay                                 0
++ Data Path Delay                         13088
+---------------------------------------   ----- 
+End-of-path arrival time (ps)             13088
+ 
+Data path
+pin name                                              model name                          delay  cumulative delay  slack  edge  Fanout
+----------------------------------------------------  ----------------------------------  -----  ----------------  -----  ----  ------
+REFERENCECLK                                          Pc2drone_pll                            0                 0   +INF  RISE       1
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in                 IO_PAD                                  0                 0   +INF  RISE       1
+REFERENCECLK_ibuf_iopad/DOUT                          IO_PAD                                510               510   +INF  RISE       1
+REFERENCECLK_ibuf_preio/PADIN                         PRE_IO_PIN_TYPE_000001                  0               510   +INF  RISE       1
+REFERENCECLK_ibuf_preio/DIN0                          PRE_IO_PIN_TYPE_000001                490              1000   +INF  FALL       1
+I__19/I                                               Odrv4                                   0              1000   +INF  FALL       1
+I__19/O                                               Odrv4                                 649              1649   +INF  FALL       1
+I__20/I                                               LocalMux                                0              1649   +INF  FALL       1
+I__20/O                                               LocalMux                              768              2417   +INF  FALL       1
+I__21/I                                               IoInMux                                 0              2417   +INF  FALL       1
+I__21/O                                               IoInMux                               503              2921   +INF  FALL       1
+Pc2drone_pll_inst/REFERENCECLK                        SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE      0              2921   +INF  FALL       1
+Pc2drone_pll_inst/PLLOUTGLOBAL                        SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE   3086              6006   +INF  FALL       1
+I__11/I                                               GlobalMux                               0              6006   +INF  FALL       1
+I__11/O                                               GlobalMux                             278              6285   +INF  FALL       1
+I__12/I                                               Glb2LocalMux                            0              6285   +INF  FALL       1
+I__12/O                                               Glb2LocalMux                          530              6814   +INF  FALL       1
+I__13/I                                               LocalMux                                0              6814   +INF  FALL       1
+I__13/O                                               LocalMux                              768              7583   +INF  FALL       1
+I__14/I                                               InMux                                   0              7583   +INF  FALL       1
+I__14/O                                               InMux                                 503              8086   +INF  FALL       1
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_9_30_0/in3    LogicCell40_SEQ_MODE_0000               0              8086   +INF  FALL       1
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_9_30_0/lcout  LogicCell40_SEQ_MODE_0000             874              8960   +INF  FALL       1
+I__9/I                                                LocalMux                                0              8960   +INF  FALL       1
+I__9/O                                                LocalMux                              768              9728   +INF  FALL       1
+I__10/I                                               IoInMux                                 0              9728   +INF  FALL       1
+I__10/O                                               IoInMux                               503             10231   +INF  FALL       1
+PLLOUTGLOBAL_obuf_preio/DOUT0                         PRE_IO_PIN_TYPE_011001                  0             10231   +INF  FALL       1
+PLLOUTGLOBAL_obuf_preio/PADOUT                        PRE_IO_PIN_TYPE_011001                768             11000   +INF  FALL       1
+PLLOUTGLOBAL_obuf_iopad/DIN                           IO_PAD                                  0             11000   +INF  FALL       1
+PLLOUTGLOBAL_obuf_iopad/PACKAGEPIN:out                IO_PAD                               2088             13088   +INF  FALL       1
+PLLOUTGLOBAL                                          Pc2drone_pll                            0             13088   +INF  FALL       1
+
+
+++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : REFERENCECLK
+Path End         : PLLOUTCORE
+Setup Constraint : +INF
+Path slack       : +INF
+
+End-of-path required time (ps)           +INF
+
+Launch Clock Arrival Time (DEFAULT:R#0)       0
++ Launch Clock Source Latency                 0
++ Input Delay                                 0
++ Data Path Delay                         10998
+---------------------------------------   ----- 
+End-of-path arrival time (ps)             10998
+ 
+Data path
+pin name                               model name                          delay  cumulative delay  slack  edge  Fanout
+-------------------------------------  ----------------------------------  -----  ----------------  -----  ----  ------
+REFERENCECLK                           Pc2drone_pll                            0                 0   +INF  FALL       1
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in  IO_PAD                                  0                 0   +INF  FALL       1
+REFERENCECLK_ibuf_iopad/DOUT           IO_PAD                                460               460   +INF  FALL       1
+REFERENCECLK_ibuf_preio/PADIN          PRE_IO_PIN_TYPE_000001                  0               460   +INF  FALL       1
+REFERENCECLK_ibuf_preio/DIN0           PRE_IO_PIN_TYPE_000001                490               950   +INF  FALL       1
+I__19/I                                Odrv4                                   0               950   +INF  FALL       1
+I__19/O                                Odrv4                                 649              1599   +INF  FALL       1
+I__20/I                                LocalMux                                0              1599   +INF  FALL       1
+I__20/O                                LocalMux                              768              2367   +INF  FALL       1
+I__21/I                                IoInMux                                 0              2367   +INF  FALL       1
+I__21/O                                IoInMux                               503              2871   +INF  FALL       1
+Pc2drone_pll_inst/REFERENCECLK         SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE      0              2871   +INF  FALL       1
+Pc2drone_pll_inst/PLLOUTCORE           SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE   2609              5480   +INF  FALL       1
+I__15/I                                Odrv4                                   0              5480   +INF  FALL       1
+I__15/O                                Odrv4                                 649              6129   +INF  FALL       1
+I__16/I                                IoSpan4Mux                              0              6129   +INF  FALL       1
+I__16/O                                IoSpan4Mux                            742              6870   +INF  FALL       1
+I__17/I                                LocalMux                                0              6870   +INF  FALL       1
+I__17/O                                LocalMux                              768              7639   +INF  FALL       1
+I__18/I                                IoInMux                                 0              7639   +INF  FALL       1
+I__18/O                                IoInMux                               503              8142   +INF  FALL       1
+PLLOUTCORE_obuf_preio/DOUT0            PRE_IO_PIN_TYPE_011001                  0              8142   +INF  FALL       1
+PLLOUTCORE_obuf_preio/PADOUT           PRE_IO_PIN_TYPE_011001                768              8910   +INF  FALL       1
+PLLOUTCORE_obuf_iopad/DIN              IO_PAD                                  0              8910   +INF  FALL       1
+PLLOUTCORE_obuf_iopad/PACKAGEPIN:out   IO_PAD                               2088             10998   +INF  FALL       1
+PLLOUTCORE                             Pc2drone_pll                            0             10998   +INF  FALL       1
+
+===================================================================== 
+                    End of Detailed Setup Report for all timing paths 
+##################################################################### 
+
+##################################################################### 
+                    Detailed Hold Report for all timing paths 
+===================================================================== 
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : REFERENCECLK
+Path End         : PLLOUTGLOBAL
+Hold Constraint  : -INF
+Path slack       : +INF
+
+End-of-path required time (ps)           +INF
+
+Launch Clock Arrival Time (DEFAULT:R#0)       0
++ Launch Clock Source Latency                 0
++ Input Delay                                 0
++ Data Path Delay                         13088
+---------------------------------------   ----- 
+End-of-path arrival time (ps)             13088
+ 
+Data path
+pin name                                              model name                          delay  cumulative delay  slack  edge  Fanout
+----------------------------------------------------  ----------------------------------  -----  ----------------  -----  ----  ------
+REFERENCECLK                                          Pc2drone_pll                            0                 0   +INF  RISE       1
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in                 IO_PAD                                  0                 0   +INF  RISE       1
+REFERENCECLK_ibuf_iopad/DOUT                          IO_PAD                                510               510   +INF  RISE       1
+REFERENCECLK_ibuf_preio/PADIN                         PRE_IO_PIN_TYPE_000001                  0               510   +INF  RISE       1
+REFERENCECLK_ibuf_preio/DIN0                          PRE_IO_PIN_TYPE_000001                490              1000   +INF  FALL       1
+I__19/I                                               Odrv4                                   0              1000   +INF  FALL       1
+I__19/O                                               Odrv4                                 649              1649   +INF  FALL       1
+I__20/I                                               LocalMux                                0              1649   +INF  FALL       1
+I__20/O                                               LocalMux                              768              2417   +INF  FALL       1
+I__21/I                                               IoInMux                                 0              2417   +INF  FALL       1
+I__21/O                                               IoInMux                               503              2921   +INF  FALL       1
+Pc2drone_pll_inst/REFERENCECLK                        SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE      0              2921   +INF  FALL       1
+Pc2drone_pll_inst/PLLOUTGLOBAL                        SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE   3086              6006   +INF  FALL       1
+I__11/I                                               GlobalMux                               0              6006   +INF  FALL       1
+I__11/O                                               GlobalMux                             278              6285   +INF  FALL       1
+I__12/I                                               Glb2LocalMux                            0              6285   +INF  FALL       1
+I__12/O                                               Glb2LocalMux                          530              6814   +INF  FALL       1
+I__13/I                                               LocalMux                                0              6814   +INF  FALL       1
+I__13/O                                               LocalMux                              768              7583   +INF  FALL       1
+I__14/I                                               InMux                                   0              7583   +INF  FALL       1
+I__14/O                                               InMux                                 503              8086   +INF  FALL       1
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_9_30_0/in3    LogicCell40_SEQ_MODE_0000               0              8086   +INF  FALL       1
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_9_30_0/lcout  LogicCell40_SEQ_MODE_0000             874              8960   +INF  FALL       1
+I__9/I                                                LocalMux                                0              8960   +INF  FALL       1
+I__9/O                                                LocalMux                              768              9728   +INF  FALL       1
+I__10/I                                               IoInMux                                 0              9728   +INF  FALL       1
+I__10/O                                               IoInMux                               503             10231   +INF  FALL       1
+PLLOUTGLOBAL_obuf_preio/DOUT0                         PRE_IO_PIN_TYPE_011001                  0             10231   +INF  FALL       1
+PLLOUTGLOBAL_obuf_preio/PADOUT                        PRE_IO_PIN_TYPE_011001                768             11000   +INF  FALL       1
+PLLOUTGLOBAL_obuf_iopad/DIN                           IO_PAD                                  0             11000   +INF  FALL       1
+PLLOUTGLOBAL_obuf_iopad/PACKAGEPIN:out                IO_PAD                               2088             13088   +INF  FALL       1
+PLLOUTGLOBAL                                          Pc2drone_pll                            0             13088   +INF  FALL       1
+
+
+++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin       : REFERENCECLK
+Path End         : PLLOUTCORE
+Hold Constraint  : -INF
+Path slack       : +INF
+
+End-of-path required time (ps)           +INF
+
+Launch Clock Arrival Time (DEFAULT:R#0)       0
++ Launch Clock Source Latency                 0
++ Input Delay                                 0
++ Data Path Delay                         10998
+---------------------------------------   ----- 
+End-of-path arrival time (ps)             10998
+ 
+Data path
+pin name                               model name                          delay  cumulative delay  slack  edge  Fanout
+-------------------------------------  ----------------------------------  -----  ----------------  -----  ----  ------
+REFERENCECLK                           Pc2drone_pll                            0                 0   +INF  FALL       1
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in  IO_PAD                                  0                 0   +INF  FALL       1
+REFERENCECLK_ibuf_iopad/DOUT           IO_PAD                                460               460   +INF  FALL       1
+REFERENCECLK_ibuf_preio/PADIN          PRE_IO_PIN_TYPE_000001                  0               460   +INF  FALL       1
+REFERENCECLK_ibuf_preio/DIN0           PRE_IO_PIN_TYPE_000001                490               950   +INF  FALL       1
+I__19/I                                Odrv4                                   0               950   +INF  FALL       1
+I__19/O                                Odrv4                                 649              1599   +INF  FALL       1
+I__20/I                                LocalMux                                0              1599   +INF  FALL       1
+I__20/O                                LocalMux                              768              2367   +INF  FALL       1
+I__21/I                                IoInMux                                 0              2367   +INF  FALL       1
+I__21/O                                IoInMux                               503              2871   +INF  FALL       1
+Pc2drone_pll_inst/REFERENCECLK         SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE      0              2871   +INF  FALL       1
+Pc2drone_pll_inst/PLLOUTCORE           SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE   2609              5480   +INF  FALL       1
+I__15/I                                Odrv4                                   0              5480   +INF  FALL       1
+I__15/O                                Odrv4                                 649              6129   +INF  FALL       1
+I__16/I                                IoSpan4Mux                              0              6129   +INF  FALL       1
+I__16/O                                IoSpan4Mux                            742              6870   +INF  FALL       1
+I__17/I                                LocalMux                                0              6870   +INF  FALL       1
+I__17/O                                LocalMux                              768              7639   +INF  FALL       1
+I__18/I                                IoInMux                                 0              7639   +INF  FALL       1
+I__18/O                                IoInMux                               503              8142   +INF  FALL       1
+PLLOUTCORE_obuf_preio/DOUT0            PRE_IO_PIN_TYPE_011001                  0              8142   +INF  FALL       1
+PLLOUTCORE_obuf_preio/PADOUT           PRE_IO_PIN_TYPE_011001                768              8910   +INF  FALL       1
+PLLOUTCORE_obuf_iopad/DIN              IO_PAD                                  0              8910   +INF  FALL       1
+PLLOUTCORE_obuf_iopad/PACKAGEPIN:out   IO_PAD                               2088             10998   +INF  FALL       1
+PLLOUTCORE                             Pc2drone_pll                            0             10998   +INF  FALL       1
+
+===================================================================== 
+                    End of Detailed Hold Report for all timing paths 
+##################################################################### 
+
+##################################################################### 
+                    End of Timing Report 
+##################################################################### 
+

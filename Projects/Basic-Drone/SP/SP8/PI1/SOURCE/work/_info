@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/altera/15.1
+vppm_encoder
+!s110 1552236803
+!i10b 1
+!s100 MUj1eZCez5bBf@[Ld7dI33
+IYT_Tj]o7g6U1N3PV2EFg41
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+Z1 dC:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP8/PI1/SOURCE
+w1552236769
+8C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP8/PI1/SOURCE/ppm_encoder_mod.v
+FC:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP8/PI1/SOURCE/ppm_encoder_mod.v
+L0 1
+Z2 OV;L;10.4b;61
+r1
+!s85 0
+31
+!s108 1552236803.000000
+!s107 C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP8/PI1/SOURCE/ppm_encoder_mod.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP8/PI1/SOURCE/ppm_encoder_mod.v|
+!i113 1
+Z3 o-work work
+vuart_rx
+!s110 1551730388
+!i10b 1
+!s100 7Rb[h]E@SF8bRG4:[]V:z1
+IQ]7_c0nH_GD;jeLJ^:lz[3
+R0
+R1
+w1551730377
+8uart_rx.v
+Fuart_rx.v
+L0 14
+R2
+r1
+!s85 0
+31
+!s108 1551730388.000000
+!s107 uart_rx.v|
+!s90 -reportprogress|300|+incdir+../hdl|-work|work|-incr|uart_rx.v|
+!i113 1
+R3
+Z4 !s92 +incdir+../hdl -work work
+vuart_rx_tb
+!s10a 1551730067
+!s110 1551730133
+!i10b 1
+!s100 <_3C3TX9;IR7YJbNO<=lX0
+IM7AzeQ?ff`ZdoN]NWcVB<1
+R0
+R1
+w1551730067
+8uart_rx_tb.v
+Fuart_rx_tb.v
+L0 4
+R2
+r1
+!s85 0
+31
+!s108 1551730133.000000
+!s107 uart_rx_tb.v|
+!s90 -reportprogress|300|+incdir+../hdl|-work|work|-incr|uart_rx_tb.v|
+!i113 1
+R3
+R4

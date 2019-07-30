@@ -1,0 +1,3 @@
+@E: CG285 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI3\Pc2Drone\pid_altitude.v":130:4:130:5|Expecting statement
+@E: CS187 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI3\Pc2Drone\pid_altitude.v":151:0:151:8|Expecting endmodule
+

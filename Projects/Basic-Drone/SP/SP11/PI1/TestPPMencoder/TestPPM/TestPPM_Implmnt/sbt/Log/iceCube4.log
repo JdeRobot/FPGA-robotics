@@ -1,0 +1,310 @@
+20:21:21
+
+
+"C:/lscc/iCEcube2.2017.08/sbt_backend/bin/win32/opt\edifparser.exe" "C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev" "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt/TestPPM.edf " "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist" "-pSG48" "-yC:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt/sbt/constraint/ppm_encoder_pcf_sbt.pcf " -c --devicename iCE40UP5K
+starting edif parserrunning edif parserLattice Semiconductor Corporation  Edif Parser
+Release:        2017.08.27940
+Build Date:     Sep 11 2017 16:51:25
+
+Parsing edif file: C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt/TestPPM.edf...
+Parsing constraint file: C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt/sbt/constraint/ppm_encoder_pcf_sbt.pcf ...
+start to read sdc/scf file C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt/TestPPM.scf
+sdc_reader OK C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt/TestPPM.scf
+Stored edif netlist at C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder...
+
+write Timing Constraint to C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt/Temp/sbt_temp.sdc
+
+EDIF Parser succeeded
+Top module is: ppm_encoder
+
+EDF Parser run-time: 3 (sec)
+edif parser succeed.
+
+
+"C:/lscc/iCEcube2.2017.08/sbt_backend/bin/win32/opt\sbtplacer.exe" --des-lib "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder" --outdir "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\placer" --device-file "C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev" --package SG48 --deviceMarketName iCE40UP5K --sdc-file "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\Temp/sbt_temp.sdc" --lib-file "C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ice40UP5K.lib" --effort_level std --out-sdc-file "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\placer\ppm_encoder_pl.sdc"
+starting placerrunning placerExecuting : C:\lscc\iCEcube2.2017.08\sbt_backend\bin\win32\opt\sbtplacer.exe --des-lib C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder --outdir C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\placer --device-file C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev --package SG48 --deviceMarketName iCE40UP5K --sdc-file C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\Temp/sbt_temp.sdc --lib-file C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ice40UP5K.lib --effort_level std --out-sdc-file C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\placer\ppm_encoder_pl.sdc
+Lattice Semiconductor Corporation  Placer
+Release:        2017.08.27940
+Build Date:     Sep 11 2017 17:12:23
+
+I2004: Option and Settings Summary
+=============================================================
+Device file          - C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev
+Package              - SG48
+Design database      - C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder
+SDC file             - C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\Temp/sbt_temp.sdc
+Output directory     - C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\placer
+Timing library       - C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ice40UP5K.lib
+Effort level         - std
+
+I2050: Starting reading inputs for placer
+=============================================================
+I2100: Reading design library: C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder/BFPGA_DESIGN_ep
+I2065: Reading device file : C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev
+I2051: Reading of inputs for placer completed successfully
+
+I2053: Starting placement of the design
+=============================================================
+
+Input Design Statistics
+    Number of LUTs      	:	125
+    Number of DFFs      	:	68
+    Number of DFFs packed to IO	:	0
+    Number of Carrys    	:	45
+    Number of RAMs      	:	0
+    Number of ROMs      	:	0
+    Number of IOs       	:	1
+    Number of GBIOs     	:	1
+    Number of GBs       	:	2
+    Number of WarmBoot  	:	0
+    Number of PLLs      	:	0
+    Number of I2Cs      	:	0
+    Number of SPIs      	:	0
+    Number of DSPs     	:	0
+    Number of SBIOODs     	:	0
+    Number of LEDDAIPs     	:	0
+    Number of RGBADRVs     	:	0
+    Number of LFOSCs     	:	0
+    Number of HFOSCs     	:	0
+    Number of FILTER_50NSs     	:	0
+    Number of SPRAMs     	:	0
+
+
+Phase 1
+I2077: Start design legalization
+
+Design Legalization Statistics
+    Number of feedthru LUTs inserted to legalize input of DFFs     	:	0
+    Number of feedthru LUTs inserted for LUTs driving multiple DFFs	:	0
+    Number of LUTs replicated for LUTs driving multiple DFFs       	:	0
+    Number of feedthru LUTs inserted to legalize output of CARRYs  	:	1
+    Number of feedthru LUTs inserted to legalize global signals    	:	0
+    Number of feedthru CARRYs inserted to legalize input of CARRYs 	:	0
+    Number of inserted LUTs to Legalize IOs with PIN_TYPE= 01xxxx  	:	0
+    Number of inserted LUTs to Legalize IOs with PIN_TYPE= 10xxxx  	:	0
+    Number of inserted LUTs to Legalize IOs with PIN_TYPE= 11xxxx  	:	0
+    Total LUTs inserted                                            	:	1
+    Total CARRYs inserted                                          	:	0
+
+
+I2078: Design legalization is completed successfully
+I2088: Phase 1, elapsed time : 0.0 (sec)
+
+
+Phase 2
+I2088: Phase 2, elapsed time : 0.0 (sec)
+
+Phase 3
+
+Design Statistics after Packing
+    Number of LUTs      	:	127
+    Number of DFFs      	:	68
+    Number of DFFs packed to IO	:	0
+    Number of Carrys    	:	45
+
+Device Utilization Summary after Packing
+    Sequential LogicCells
+        LUT and DFF      	:	50
+        LUT, DFF and CARRY	:	18
+    Combinational LogicCells
+        Only LUT         	:	43
+        CARRY Only       	:	11
+        LUT with CARRY   	:	16
+    LogicCells                  :	138/5280
+    PLBs                        :	20/660
+    BRAMs                       :	0/30
+    IOs and GBIOs               :	2/36
+    PLLs                        :	0/1
+    I2Cs                        :	0/2
+    SPIs                        :	0/2
+    DSPs                        :	0/8
+    SBIOODs                     :	0/3
+    RGBADRVs                    :	0/1
+    LEDDAIPs                    :	0/1
+    LFOSCs                      :	0/1
+    HFOSCs                      :	0/1
+    SPRAMs                      :	0/4
+    FILTER50NSs                 :	0/2
+
+
+I2088: Phase 3, elapsed time : 1.0 (sec)
+
+Phase 4
+I2108: 0 SB_IO_I3C instances present in the design. 2 I3C IOs available in the device
+I2088: Phase 4, elapsed time : 0.5 (sec)
+
+Phase 5
+I2088: Phase 5, elapsed time : 0.5 (sec)
+
+Phase 6
+I2088: Phase 6, elapsed time : 27.2 (sec)
+
+Final Design Statistics
+    Number of LUTs      	:	127
+    Number of DFFs      	:	68
+    Number of DFFs packed to IO	:	0
+    Number of Carrys    	:	45
+    Number of RAMs      	:	0
+    Number of ROMs      	:	0
+    Number of IOs       	:	1
+    Number of GBIOs     	:	1
+    Number of GBs       	:	2
+    Number of WarmBoot  	:	0
+    Number of PLLs      	:	0
+    Number of I2Cs      	:	0
+    Number of SPIs      	:	0
+    Number of DSPs     	:	0
+    Number of SBIOODs     	:	0
+    Number of LEDDAIPs     	:	0
+    Number of RGBADRVs     	:	0
+    Number of LFOSCs     	:	0
+    Number of HFOSCs     	:	0
+    Number of FILTER_50NSs     	:	0
+    Number of SPRAMs     	:	0
+
+Device Utilization Summary
+    LogicCells                  :	138/5280
+    PLBs                        :	28/660
+    BRAMs                       :	0/30
+    IOs and GBIOs               :	2/36
+    PLLs                        :	0/1
+    I2Cs                        :	0/2
+    SPIs                        :	0/2
+    DSPs                        :	0/8
+    SBIOODs                     :	0/3
+    RGBADRVs                    :	0/1
+    LEDDAIPs                    :	0/1
+    LFOSCs                      :	0/1
+    HFOSCs                      :	0/1
+    SPRAMs                      :	0/4
+    FILTER50NSs                 :	0/2
+
+
+
+#####################################################################
+Placement Timing Summary
+
+The timing summary is based on estimated routing delays after
+placement. For final timing report, please carry out the timing
+analysis after routing.
+=====================================================================
+
+#####################################################################
+                     Clock Summary 
+=====================================================================
+Number of clocks: 1
+Clock: ppm_encoder|clk | Frequency: 59.58 MHz | Target: 74.63 MHz
+
+=====================================================================
+                     End of Clock Summary
+#####################################################################
+
+I2054: Placement of design completed successfully
+
+I2076: Placer run-time: 30.1 sec.
+
+placer succeed.
+starting IPExporterrunning IPExporterIPExporter succeed.
+
+
+"C:/lscc/iCEcube2.2017.08/sbt_backend/bin/win32/opt\packer.exe" "C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev" "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder" --package SG48 --outdir "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\packer" --DRC_only  --translator "C:\lscc\iCEcube2.2017.08\sbt_backend\bin\sdc_translator.tcl" --src_sdc_file "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\placer\ppm_encoder_pl.sdc" --dst_sdc_file "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\packer\ppm_encoder_pk.sdc" --devicename iCE40UP5K
+starting packerrunning packerLattice Semiconductor Corporation  Packer
+Release:        2017.08.27940
+Build Date:     Sep 11 2017 16:52:47
+
+Begin Packing...
+initializing finish
+Total HPWL cost is 356
+used logic cells: 138
+Design Rule Checking Succeeded
+
+DRC Checker run-time: 0 (sec)
+packer succeed.
+
+
+"C:/lscc/iCEcube2.2017.08/sbt_backend/bin/win32/opt\packer.exe" "C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev" "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder" --package SG48 --outdir "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\packer" --translator "C:\lscc\iCEcube2.2017.08\sbt_backend\bin\sdc_translator.tcl" --src_sdc_file "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\placer\ppm_encoder_pl.sdc" --dst_sdc_file "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\packer\ppm_encoder_pk.sdc" --devicename iCE40UP5K
+starting packerrunning packerLattice Semiconductor Corporation  Packer
+Release:        2017.08.27940
+Build Date:     Sep 11 2017 16:52:47
+
+Begin Packing...
+initializing finish
+Total HPWL cost is 356
+used logic cells: 138
+Translating sdc file C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\placer\ppm_encoder_pl.sdc...
+Translated sdc file is C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\packer\ppm_encoder_pk.sdc
+Packer succeeded
+
+Packer run-time: 1 (sec)
+packer succeed.
+
+
+"C:\lscc\iCEcube2.2017.08\sbt_backend\bin\win32\opt\sbrouter.exe" "C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev" "C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\TestPPMencoder\TestPPM\TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder" "C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ice40UP5K.lib" "C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\TestPPMencoder\TestPPM\TestPPM_Implmnt\sbt\outputs\packer\ppm_encoder_pk.sdc" --outdir "C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\TestPPMencoder\TestPPM\TestPPM_Implmnt\sbt\outputs\router" --sdf_file "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\simulation_netlist\ppm_encoder_sbt.sdf" --pin_permutation
+starting routerrunning routerSJRouter....
+Executing : C:\lscc\iCEcube2.2017.08\sbt_backend\bin\win32\opt\sbrouter.exe C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\TestPPMencoder\TestPPM\TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ice40UP5K.lib C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\TestPPMencoder\TestPPM\TestPPM_Implmnt\sbt\outputs\packer\ppm_encoder_pk.sdc --outdir C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\TestPPMencoder\TestPPM\TestPPM_Implmnt\sbt\outputs\router --sdf_file C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\simulation_netlist\ppm_encoder_sbt.sdf --pin_permutation 
+Lattice Semiconductor Corporation  Router
+Release:        2017.08.27940
+Build Date:     Sep 11 2017 17:02:50
+
+I1203: Reading Design ppm_encoder
+Read design time: 0
+I1202: Reading Architecture of device iCE40UP5K
+Read device time: 15
+I1209: Started routing
+I1223: Total Nets : 172 
+I1212: Iteration  1 :    56 unrouted : 1 seconds
+I1212: Iteration  2 :    11 unrouted : 0 seconds
+I1212: Iteration  3 :     7 unrouted : 0 seconds
+I1212: Iteration  4 :     2 unrouted : 0 seconds
+I1212: Iteration  5 :     2 unrouted : 0 seconds
+I1212: Iteration  6 :     2 unrouted : 0 seconds
+I1212: Iteration  7 :     2 unrouted : 0 seconds
+I1212: Iteration  8 :     2 unrouted : 0 seconds
+I1212: Iteration  9 :     2 unrouted : 0 seconds
+I1212: Iteration 10 :     0 unrouted : 0 seconds
+I1215: Routing is successful
+Routing time: 2
+I1206: Completed routing
+I1204: Writing Design ppm_encoder
+Lib Closed
+I1210: Writing routes
+I1218: Exiting the router
+I1224: Router run-time : 18 seconds
+router succeed.
+
+"C:/lscc/iCEcube2.2017.08/sbt_backend/bin/win32/opt\netlister.exe" --verilog "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\simulation_netlist\ppm_encoder_sbt.v" --vhdl "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt/sbt/outputs/simulation_netlist\ppm_encoder_sbt.vhd" --lib "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder" --view rt --device "C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev" --splitio  --in-sdc-file "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\packer\ppm_encoder_pk.sdc" --out-sdc-file "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\netlister\ppm_encoder_sbt.sdc"
+starting netlistrunning netlistLattice Semiconductor Corporation  Verilog & VHDL Netlister
+Release:        2017.08.27940
+Build Date:     Sep 11 2017 17:30:26
+
+Generating Verilog & VHDL netlist files ...
+Writing C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\simulation_netlist\ppm_encoder_sbt.v
+Writing C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt/sbt/outputs/simulation_netlist\ppm_encoder_sbt.vhd
+Netlister succeeded.
+
+Netlister run-time: 3 (sec)
+netlist succeed.
+
+
+"C:/lscc/iCEcube2.2017.08/sbt_backend/bin/win32/opt\sbtimer.exe" --des-lib "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder" --lib-file "C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ice40UP5K.lib" --sdc-file "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\netlister\ppm_encoder_sbt.sdc" --sdf-file "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\simulation_netlist\ppm_encoder_sbt.sdf" --report-file "C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\TestPPMencoder\TestPPM\TestPPM_Implmnt\sbt\outputs\timer\ppm_encoder_timing.rpt" --device-file "C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev" --timing-summary
+starting timerrunning timerExecuting : C:\lscc\iCEcube2.2017.08\sbt_backend\bin\win32\opt\sbtimer.exe --des-lib C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder --lib-file C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ice40UP5K.lib --sdc-file C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\netlister\ppm_encoder_sbt.sdc --sdf-file C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\simulation_netlist\ppm_encoder_sbt.sdf --report-file C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI1\TestPPMencoder\TestPPM\TestPPM_Implmnt\sbt\outputs\timer\ppm_encoder_timing.rpt --device-file C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev --timing-summary
+Lattice Semiconductor Corporation  Timer
+Release:        2017.08.27940
+Build Date:     Sep 11 2017 17:01:05
+
+Timer run-time: 4 seconds
+timer succeed.
+timer succeeded.
+
+
+"C:/lscc/iCEcube2.2017.08/sbt_backend/bin/win32/opt\bitmap.exe" "C:\lscc\iCEcube2.2017.08\sbt_backend\devices\ICE40T05.dev" --design "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\netlist\oadb-ppm_encoder" --device_name iCE40UP5K --package SG48 --outdir "C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP11/PI1/TestPPMencoder/TestPPM/TestPPM_Implmnt\sbt\outputs\bitmap" --low_power on --init_ram on --init_ram_bank 1111 --frequency low --warm_boot on
+starting bitmaprunning bitmapLattice Semiconductor Corporation  Bit Stream Generator
+Release:        2017.08.27940
+Build Date:     Sep 11 2017 17:29:39
+
+Bit Stream File Size: 832584 (813K 72 Bits)
+Bit Stream Generator succeeded
+
+Bitmap run-time: 2 (sec)
+bitmap succeed.
+20:29:43

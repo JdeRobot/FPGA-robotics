@@ -1,0 +1,12 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: MT206 |Auto Constrain mode is enabled
+@N: BN362 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi2\pc2drone\uart_rx.v":98:0:98:5|Removing sequential instance uart.state[0] (in view: work.Pc2Drone(verilog)) because it does not drive other instances.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi2\pc2drone\uart_rx.v":104:2:104:5|Replicating instance uart.un1_state_4_0_a2 (in view: work.Pc2Drone(verilog)) with 9 loads 1 time to improve timing.
+@N: FX271 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi2\pc2drone\uart_rx.v":98:0:98:5|Replicating instance uart.timer_Count[6] (in view: work.Pc2Drone(verilog)) with 15 loads 2 times to improve timing.
+@N: FX1016 :"c:\users\eloy\desktop\tfg\repo\kibotics-drones4kids\tfg_eloy\sp\sp11\pi2\pc2drone\pc2drone.v":18:7:18:16|SB_GB_IO inserted on the port clk_system.
+@N: BW103 |The default time unit for the Synopsys Constraint File (SDC or FDC) is 1ns.
+@N: BW107 |Synopsys Constraint File capacitance units using default value of 1pF 
+@N: FX1056 |Writing EDF file: C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP11\PI2\Pc2Drone\Pc2Drone_Implmnt\Pc2Drone.edf
+@N: MT320 |This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report.
+@N: MT322 |Clock constraints include only register-to-register paths associated with each individual clock.

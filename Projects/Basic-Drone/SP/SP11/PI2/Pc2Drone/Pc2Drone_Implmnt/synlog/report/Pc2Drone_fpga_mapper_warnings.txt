@@ -1,0 +1,1 @@
+@W: MT420 |Found inferred clock Pc2Drone|clk_system with period 10.47ns. Please declare a user-defined clock on object "p:clk_system"

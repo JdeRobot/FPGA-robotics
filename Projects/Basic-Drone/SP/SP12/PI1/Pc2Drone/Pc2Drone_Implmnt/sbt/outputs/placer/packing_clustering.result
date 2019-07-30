@@ -1,0 +1,185 @@
+ble_pack reset_module_System.count_1_cry_1_c_LC_157 {reset_module_System.count_1_cry_1_c}
+ble_pack reset_module_System.count_RNO_0[2]_LC_9 {reset_module_System.count_1_cry_2_c, reset_module_System.count_RNO_0[2]}
+ble_pack reset_module_System.count[3]_LC_24 {reset_module_System.count[3], reset_module_System.count_1_cry_3_c, reset_module_System.count_RNO[3]}
+ble_pack reset_module_System.count[4]_LC_25 {reset_module_System.count[4], reset_module_System.count_1_cry_4_c, reset_module_System.count_RNO[4]}
+ble_pack reset_module_System.count[5]_LC_26 {reset_module_System.count[5], reset_module_System.count_1_cry_5_c, reset_module_System.count_RNO[5]}
+ble_pack reset_module_System.count[6]_LC_27 {reset_module_System.count[6], reset_module_System.count_1_cry_6_c, reset_module_System.count_RNO[6]}
+ble_pack reset_module_System.count[7]_LC_28 {reset_module_System.count[7], reset_module_System.count_1_cry_7_c, reset_module_System.count_RNO[7]}
+ble_pack reset_module_System.count[8]_LC_29 {reset_module_System.count[8], reset_module_System.count_1_cry_8_c, reset_module_System.count_RNO[8]}
+clb_pack PLB_0 {reset_module_System.count_1_cry_1_c_LC_157, reset_module_System.count_RNO_0[2]_LC_9, reset_module_System.count[3]_LC_24, reset_module_System.count[4]_LC_25, reset_module_System.count[5]_LC_26, reset_module_System.count[6]_LC_27, reset_module_System.count[7]_LC_28, reset_module_System.count[8]_LC_29}
+ble_pack reset_module_System.count[9]_LC_30 {reset_module_System.count[9], reset_module_System.count_1_cry_9_c, reset_module_System.count_RNO[9]}
+ble_pack reset_module_System.count[10]_LC_11 {reset_module_System.count[10], reset_module_System.count_1_cry_10_c, reset_module_System.count_RNO[10]}
+ble_pack reset_module_System.count[11]_LC_12 {reset_module_System.count[11], reset_module_System.count_1_cry_11_c, reset_module_System.count_RNO[11]}
+ble_pack reset_module_System.count[12]_LC_13 {reset_module_System.count[12], reset_module_System.count_1_cry_12_c, reset_module_System.count_RNO[12]}
+ble_pack reset_module_System.count[13]_LC_14 {reset_module_System.count[13], reset_module_System.count_1_cry_13_c, reset_module_System.count_RNO[13]}
+ble_pack reset_module_System.count[14]_LC_15 {reset_module_System.count[14], reset_module_System.count_1_cry_14_c, reset_module_System.count_RNO[14]}
+ble_pack reset_module_System.count[15]_LC_16 {reset_module_System.count[15], reset_module_System.count_1_cry_15_c, reset_module_System.count_RNO[15]}
+ble_pack reset_module_System.count[16]_LC_17 {reset_module_System.count[16], reset_module_System.count_1_cry_16_c, reset_module_System.count_RNO[16]}
+clb_pack PLB_1 {reset_module_System.count[9]_LC_30, reset_module_System.count[10]_LC_11, reset_module_System.count[11]_LC_12, reset_module_System.count[12]_LC_13, reset_module_System.count[13]_LC_14, reset_module_System.count[14]_LC_15, reset_module_System.count[15]_LC_16, reset_module_System.count[16]_LC_17}
+ble_pack reset_module_System.count[17]_LC_18 {reset_module_System.count[17], reset_module_System.count_1_cry_17_c, reset_module_System.count_RNO[17]}
+ble_pack reset_module_System.count[18]_LC_19 {reset_module_System.count[18], reset_module_System.count_1_cry_18_c, reset_module_System.count_RNO[18]}
+ble_pack reset_module_System.count[19]_LC_20 {reset_module_System.count[19], reset_module_System.count_1_cry_19_c, reset_module_System.count_RNO[19]}
+ble_pack reset_module_System.count[20]_LC_22 {reset_module_System.count[20], reset_module_System.count_1_cry_20_c, reset_module_System.count_RNO[20]}
+ble_pack reset_module_System.count[21]_LC_23 {reset_module_System.count[21], reset_module_System.count_RNO[21]}
+clb_pack PLB_2 {reset_module_System.count[17]_LC_18, reset_module_System.count[18]_LC_19, reset_module_System.count[19]_LC_20, reset_module_System.count[20]_LC_22, reset_module_System.count[21]_LC_23}
+ble_pack reset_module_System.count_RNI10J41[1]_LC_0 {reset_module_System.count_RNI10J41[1]}
+ble_pack reset_module_System.count[1]_LC_10 {reset_module_System.count[1], reset_module_System.count_RNO[1]}
+ble_pack reset_module_System.count_RNIN3HK3[2]_LC_5 {reset_module_System.count_RNIN3HK3[2]}
+ble_pack reset_module_System.reset_fast_LC_32 {reset_module_System.reset_fast, reset_module_System.reset_fast_RNO}
+ble_pack uart.state_RNI3TGU[4]_LC_69 {uart.state_RNI3TGU[4]}
+ble_pack uart.state_RNICGLN3[2]_LC_72 {uart.state_RNICGLN3[2]}
+ble_pack uart.state_RNI38F97[2]_LC_68 {uart.state_RNI38F97[2]}
+clb_pack PLB_3 {reset_module_System.count_RNI10J41[1]_LC_0, reset_module_System.count[1]_LC_10, reset_module_System.count_RNIN3HK3[2]_LC_5, reset_module_System.reset_fast_LC_32, uart.state_RNI3TGU[4]_LC_69, uart.state_RNICGLN3[2]_LC_72, uart.state_RNI38F97[2]_LC_68}
+ble_pack reset_module_System.count_RNI34OR1[21]_LC_1 {reset_module_System.count_RNI34OR1[21]}
+ble_pack reset_module_System.reset_iso_LC_33 {reset_module_System.reset_iso, reset_module_System.reset_iso_RNO}
+ble_pack reset_module_System.reset_LC_31 {reset_module_System.reset, reset_module_System.reset_RNO}
+ble_pack uart.state_RNIAFHL[4]_LC_70 {uart.state_RNIAFHL[4]}
+ble_pack uart.state_RNILS533[4]_LC_76 {uart.state_RNILS533[4]}
+ble_pack uart.timer_Count_4_rep1_RNIHBMA2_LC_94 {uart.timer_Count_4_rep1_RNIHBMA2}
+ble_pack uart.state_RNICRQ06[4]_LC_73 {uart.state_RNICRQ06[4]}
+ble_pack uart.timer_Count_fast_RNIHHG81[2]_LC_112 {uart.timer_Count_fast_RNIHHG81[2]}
+clb_pack PLB_4 {reset_module_System.count_RNI34OR1[21]_LC_1, reset_module_System.reset_iso_LC_33, reset_module_System.reset_LC_31, uart.state_RNIAFHL[4]_LC_70, uart.state_RNILS533[4]_LC_76, uart.timer_Count_4_rep1_RNIHBMA2_LC_94, uart.state_RNICRQ06[4]_LC_73, uart.timer_Count_fast_RNIHHG81[2]_LC_112}
+ble_pack reset_module_System.count_RNI97FD[5]_LC_2 {reset_module_System.count_RNI97FD[5]}
+ble_pack reset_module_System.count_RNI9O1P[2]_LC_3 {reset_module_System.count_RNI9O1P[2]}
+ble_pack reset_module_System.count[2]_LC_21 {reset_module_System.count[2], reset_module_System.count_RNO[2]}
+ble_pack reset_module_System.count[0]_LC_7 {reset_module_System.count[0], reset_module_System.count_RNO[0]}
+ble_pack reset_module_System.count_RNICR4G1[12]_LC_4 {reset_module_System.count_RNICR4G1[12]}
+ble_pack reset_module_System.count_RNO_0[1]_LC_8 {reset_module_System.count_RNO_0[1]}
+ble_pack uart.bit_Count_RNI4ENK[2]_LC_34 {uart.bit_Count_RNI4ENK[2]}
+clb_pack PLB_5 {reset_module_System.count_RNI97FD[5]_LC_2, reset_module_System.count_RNI9O1P[2]_LC_3, reset_module_System.count[2]_LC_21, reset_module_System.count[0]_LC_7, reset_module_System.count_RNICR4G1[12]_LC_4, reset_module_System.count_RNO_0[1]_LC_8, uart.bit_Count_RNI4ENK[2]_LC_34}
+ble_pack uart.bit_Count_RNO_0[0]_LC_40 {uart.bit_Count_RNO_0[0]}
+ble_pack uart.bit_Count[0]_LC_39 {uart.bit_Count[0], uart.bit_Count_RNO[0]}
+ble_pack uart.bit_Count_RNO_2[2]_LC_48 {uart.bit_Count_RNO_2[2]}
+ble_pack uart.bit_Count_RNO_0[2]_LC_42 {uart.bit_Count_RNO_0[2]}
+ble_pack uart.bit_Count[2]_LC_46 {uart.bit_Count[2], uart.bit_Count_RNO[2]}
+ble_pack uart.bit_Count_RNILKM9_0[2]_LC_36 {uart.bit_Count_RNILKM9_0[2]}
+ble_pack uart.data_Aux_esr_RNO_0[2]_LC_54 {uart.data_Aux_esr_RNO_0[2]}
+ble_pack uart.data_Aux_esr_RNO[2]_LC_60 {uart.data_Aux_esr_RNO[2]}
+clb_pack PLB_6 {uart.bit_Count_RNO_0[0]_LC_40, uart.bit_Count[0]_LC_39, uart.bit_Count_RNO_2[2]_LC_48, uart.bit_Count_RNO_0[2]_LC_42, uart.bit_Count[2]_LC_46, uart.bit_Count_RNILKM9_0[2]_LC_36, uart.data_Aux_esr_RNO_0[2]_LC_54, uart.data_Aux_esr_RNO[2]_LC_60}
+ble_pack uart.bit_Count_RNO_1[1]_LC_44 {uart.bit_Count_RNO_1[1]}
+ble_pack uart.bit_Count_RNO_3[1]_LC_49 {uart.bit_Count_RNO_3[1]}
+ble_pack uart.bit_Count[1]_LC_43 {uart.bit_Count[1], uart.bit_Count_RNO[1]}
+ble_pack uart.bit_Count_RNILKM9_1[2]_LC_37 {uart.bit_Count_RNILKM9_1[2]}
+ble_pack uart.bit_Count_RNILKM9[2]_LC_38 {uart.bit_Count_RNILKM9[2]}
+ble_pack uart.data_Aux_esr_RNO_0[0]_LC_52 {uart.data_Aux_esr_RNO_0[0]}
+ble_pack uart.data_Aux_esr_RNO[0]_LC_51 {uart.data_Aux_esr_RNO[0]}
+ble_pack uart.timer_Count_RNI3UCP2[4]_LC_99 {uart.timer_Count_RNI3UCP2[4]}
+clb_pack PLB_7 {uart.bit_Count_RNO_1[1]_LC_44, uart.bit_Count_RNO_3[1]_LC_49, uart.bit_Count[1]_LC_43, uart.bit_Count_RNILKM9_1[2]_LC_37, uart.bit_Count_RNILKM9[2]_LC_38, uart.data_Aux_esr_RNO_0[0]_LC_52, uart.data_Aux_esr_RNO[0]_LC_51, uart.timer_Count_RNI3UCP2[4]_LC_99}
+ble_pack uart.bit_Count_RNO_1[2]_LC_45 {uart.bit_Count_RNO_1[2]}
+ble_pack uart.timer_Count[5]_LC_109 {uart.timer_Count[5], uart.timer_Count_RNO[5]}
+ble_pack uart.timer_Count_RNI3B101[6]_LC_98 {uart.timer_Count_RNI3B101[6]}
+ble_pack uart.timer_Count[7]_LC_111 {uart.timer_Count[7], uart.timer_Count_RNO[7]}
+ble_pack uart.timer_Count[6]_LC_110 {uart.timer_Count[6], uart.timer_Count_RNO[6]}
+ble_pack uart.timer_Count_RNIJTGR[0]_LC_101 {uart.timer_Count_RNIJTGR[0]}
+ble_pack uart.timer_Count[0]_LC_104 {uart.timer_Count[0], uart.timer_Count_RNO[0]}
+ble_pack uart.timer_Count_RNI22NA1[4]_LC_97 {uart.timer_Count_RNI22NA1[4]}
+clb_pack PLB_8 {uart.bit_Count_RNO_1[2]_LC_45, uart.timer_Count[5]_LC_109, uart.timer_Count_RNI3B101[6]_LC_98, uart.timer_Count[7]_LC_111, uart.timer_Count[6]_LC_110, uart.timer_Count_RNIJTGR[0]_LC_101, uart.timer_Count[0]_LC_104, uart.timer_Count_RNI22NA1[4]_LC_97}
+ble_pack uart.bit_Count_RNO_2[1]_LC_47 {uart.bit_Count_RNO_2[1]}
+ble_pack uart.bit_Count_RNO_4[1]_LC_50 {uart.bit_Count_RNO_4[1]}
+ble_pack uart.timer_Count_2_rep1_LC_93 {uart.timer_Count_2_rep1, uart.timer_Count_2_rep1_RNO}
+ble_pack uart.state_RNO_2[3]_LC_86 {uart.state_RNO_2[3]}
+ble_pack uart.state_RNO_5[4]_LC_92 {uart.state_RNO_5[4]}
+ble_pack uart.state_RNO_0[4]_LC_81 {uart.state_RNO_0[4]}
+ble_pack uart.state_RNO_1[3]_LC_83 {uart.state_RNO_1[3]}
+ble_pack uart.state_RNO_4[4]_LC_91 {uart.state_RNO_4[4]}
+clb_pack PLB_9 {uart.bit_Count_RNO_2[1]_LC_47, uart.bit_Count_RNO_4[1]_LC_50, uart.timer_Count_2_rep1_LC_93, uart.state_RNO_2[3]_LC_86, uart.state_RNO_5[4]_LC_92, uart.state_RNO_0[4]_LC_81, uart.state_RNO_1[3]_LC_83, uart.state_RNO_4[4]_LC_91}
+ble_pack uart.data_Aux_esr_RNO_0[1]_LC_53 {uart.data_Aux_esr_RNO_0[1]}
+ble_pack uart.data_Aux_esr_RNO[1]_LC_59 {uart.data_Aux_esr_RNO[1]}
+ble_pack uart.data_Aux_esr[1]_LC_139 {uart.data_Aux_esr[1], uart.data_Aux_esr_1_THRU_LUT4_0}
+ble_pack uart.data_Aux_esr_RNO_0[3]_LC_55 {uart.data_Aux_esr_RNO_0[3]}
+ble_pack uart.data_Aux_esr_RNO[3]_LC_61 {uart.data_Aux_esr_RNO[3]}
+ble_pack uart.data_Aux_esr_RNO_0[4]_LC_56 {uart.data_Aux_esr_RNO_0[4]}
+ble_pack uart.data_Aux_esr_RNO[4]_LC_62 {uart.data_Aux_esr_RNO[4]}
+ble_pack uart.data_Aux_esr_RNO_0[5]_LC_57 {uart.data_Aux_esr_RNO_0[5]}
+clb_pack PLB_10 {uart.data_Aux_esr_RNO_0[1]_LC_53, uart.data_Aux_esr_RNO[1]_LC_59, uart.data_Aux_esr[1]_LC_139, uart.data_Aux_esr_RNO_0[3]_LC_55, uart.data_Aux_esr_RNO[3]_LC_61, uart.data_Aux_esr_RNO_0[4]_LC_56, uart.data_Aux_esr_RNO[4]_LC_62, uart.data_Aux_esr_RNO_0[5]_LC_57}
+ble_pack uart.data_Aux_esr_RNO[6]_LC_64 {uart.data_Aux_esr_RNO[6]}
+ble_pack uart.data_Aux_esr_RNO_0[6]_LC_58 {uart.data_Aux_esr_RNO_0[6]}
+ble_pack uart.state_RNID2BC[4]_LC_74 {uart.state_RNID2BC[4]}
+ble_pack uart.state[3]_LC_88 {uart.state[3], uart.state_RNO[3]}
+ble_pack uart.state[4]_LC_90 {uart.state[4], uart.state_RNO[4]}
+ble_pack uart.state_RNIB0BC[2]_LC_71 {uart.state_RNIB0BC[2]}
+ble_pack uart.state[2]_LC_85 {uart.state[2], uart.state_RNO[2]}
+clb_pack PLB_11 {uart.data_Aux_esr_RNO[6]_LC_64, uart.data_Aux_esr_RNO_0[6]_LC_58, uart.state_RNID2BC[4]_LC_74, uart.state[3]_LC_88, uart.state[4]_LC_90, uart.state_RNIB0BC[2]_LC_71, uart.state[2]_LC_85}
+ble_pack uart.data_Aux_esr_RNO[7]_LC_65 {uart.data_Aux_esr_RNO[7]}
+ble_pack uart.bit_Count_RNIETHE[2]_LC_35 {uart.bit_Count_RNIETHE[2]}
+ble_pack uart.state_RNO_0[3]_LC_80 {uart.state_RNO_0[3]}
+ble_pack uart.data_Aux_esr[7]_LC_145 {uart.data_Aux_esr[7], uart.data_Aux_esr_7_THRU_LUT4_0}
+ble_pack uart.state_RNO_3[4]_LC_89 {uart.state_RNO_3[4]}
+ble_pack uart.state_RNIGLM11[4]_LC_75 {uart.state_RNIGLM11[4]}
+ble_pack uart.bit_Count_RNO_0[1]_LC_41 {uart.bit_Count_RNO_0[1]}
+ble_pack uart.data_rdy_RNO_0_LC_67 {uart.data_rdy_RNO_0}
+clb_pack PLB_12 {uart.data_Aux_esr_RNO[7]_LC_65, uart.bit_Count_RNIETHE[2]_LC_35, uart.state_RNO_0[3]_LC_80, uart.data_Aux_esr[7]_LC_145, uart.state_RNO_3[4]_LC_89, uart.state_RNIGLM11[4]_LC_75, uart.bit_Count_RNO_0[1]_LC_41, uart.data_rdy_RNO_0_LC_67}
+ble_pack uart.data_rdy_LC_66 {uart.data_rdy, uart.data_rdy_RNO}
+ble_pack uart_frame_decoder.state_1_RNO_0[2]_LC_123 {uart_frame_decoder.state_1_RNO_0[2]}
+ble_pack uart.timer_Count_fast_RNIT1EN1[4]_LC_114 {uart.timer_Count_fast_RNIT1EN1[4]}
+ble_pack uart.state_RNINUKT2[4]_LC_77 {uart.state_RNINUKT2[4]}
+ble_pack uart.timer_Count_RNI1HBL[6]_LC_96 {uart.timer_Count_RNI1HBL[6]}
+ble_pack uart.state_RNO_2[4]_LC_87 {uart.state_RNO_2[4]}
+ble_pack uart_frame_decoder.source_data_valid_LC_118 {uart_frame_decoder.source_data_valid, uart_frame_decoder.source_data_valid_RNO}
+ble_pack uart_frame_decoder.state_1_esr_ctle[5]_LC_133 {uart_frame_decoder.state_1_esr_ctle[5]}
+clb_pack PLB_13 {uart.data_rdy_LC_66, uart_frame_decoder.state_1_RNO_0[2]_LC_123, uart.timer_Count_fast_RNIT1EN1[4]_LC_114, uart.state_RNINUKT2[4]_LC_77, uart.timer_Count_RNI1HBL[6]_LC_96, uart.state_RNO_2[4]_LC_87, uart_frame_decoder.source_data_valid_LC_118, uart_frame_decoder.state_1_esr_ctle[5]_LC_133}
+ble_pack uart.state_RNO_1[4]_LC_84 {uart.state_RNO_1[4]}
+ble_pack uart.timer_Count[4]_LC_108 {uart.timer_Count[4], uart.timer_Count_RNO[4]}
+ble_pack uart.timer_Count_RNIH8CL1[4]_LC_100 {uart.timer_Count_RNIH8CL1[4]}
+ble_pack uart.timer_Count_RNIN6BL[0]_LC_102 {uart.timer_Count_RNIN6BL[0]}
+ble_pack uart.timer_Count[1]_LC_105 {uart.timer_Count[1], uart.timer_Count_RNO[1]}
+ble_pack uart.timer_Count[3]_LC_107 {uart.timer_Count[3], uart.timer_Count_RNO[3]}
+ble_pack uart.timer_Count_fast[4]_LC_117 {uart.timer_Count_fast[4], uart.timer_Count_fast_RNO[4]}
+ble_pack uart.timer_Count_4_rep1_LC_95 {uart.timer_Count_4_rep1, uart.timer_Count_4_rep1_RNO}
+clb_pack PLB_14 {uart.state_RNO_1[4]_LC_84, uart.timer_Count[4]_LC_108, uart.timer_Count_RNIH8CL1[4]_LC_100, uart.timer_Count_RNIN6BL[0]_LC_102, uart.timer_Count[1]_LC_105, uart.timer_Count[3]_LC_107, uart.timer_Count_fast[4]_LC_117, uart.timer_Count_4_rep1_LC_95}
+ble_pack uart_frame_decoder.state_1_RNI5BVV[1]_LC_119 {uart_frame_decoder.state_1_RNI5BVV[1]}
+ble_pack uart_frame_decoder.state_1_srsts_0_i_a2_0_0_1[2]_LC_134 {uart_frame_decoder.state_1_srsts_0_i_a2_0_0_1[2]}
+ble_pack uart_frame_decoder.state_1[0]_LC_120 {uart_frame_decoder.state_1[0], uart_frame_decoder.state_1_RNO[0]}
+ble_pack uart_frame_decoder.state_1_RNO_0[0]_LC_121 {uart_frame_decoder.state_1_RNO_0[0]}
+ble_pack uart_frame_decoder.state_1_srsts_0_i_a2_0_4[1]_LC_135 {uart_frame_decoder.state_1_srsts_0_i_a2_0_4[1]}
+ble_pack uart_frame_decoder.state_1_RNO_0[1]_LC_122 {uart_frame_decoder.state_1_RNO_0[1]}
+ble_pack uart_frame_decoder.state_1[1]_LC_124 {uart_frame_decoder.state_1[1], uart_frame_decoder.state_1_RNO[1]}
+ble_pack uart_frame_decoder.state_1_RNO_1[0]_LC_125 {uart_frame_decoder.state_1_RNO_1[0]}
+clb_pack PLB_15 {uart_frame_decoder.state_1_RNI5BVV[1]_LC_119, uart_frame_decoder.state_1_srsts_0_i_a2_0_0_1[2]_LC_134, uart_frame_decoder.state_1[0]_LC_120, uart_frame_decoder.state_1_RNO_0[0]_LC_121, uart_frame_decoder.state_1_srsts_0_i_a2_0_4[1]_LC_135, uart_frame_decoder.state_1_RNO_0[1]_LC_122, uart_frame_decoder.state_1[1]_LC_124, uart_frame_decoder.state_1_RNO_1[0]_LC_125}
+ble_pack uart_frame_decoder.state_1[2]_LC_126 {uart_frame_decoder.state_1[2], uart_frame_decoder.state_1_RNO[2]}
+ble_pack uart_frame_decoder.state_1_srsts_i_i_a2_3[0]_LC_136 {uart_frame_decoder.state_1_srsts_i_i_a2_3[0]}
+ble_pack uart_frame_decoder.state_1_srsts_i_i_a2_3_0[0]_LC_137 {uart_frame_decoder.state_1_srsts_i_i_a2_3_0[0]}
+ble_pack uart_frame_decoder.state_1_RNO_3[0]_LC_128 {uart_frame_decoder.state_1_RNO_3[0]}
+ble_pack uart_frame_decoder.state_1_esr_RNIQ0UJ[3]_LC_132 {uart_frame_decoder.state_1_esr_RNIQ0UJ[3]}
+ble_pack uart_frame_decoder.state_1_esr_RNI7FFE[4]_LC_131 {uart_frame_decoder.state_1_esr_RNI7FFE[4]}
+ble_pack uart_frame_decoder.state_1[6]_LC_129 {uart_frame_decoder.state_1[6], uart_frame_decoder.state_1_RNO[6]}
+ble_pack uart_frame_decoder.state_1_RNO_2[0]_LC_127 {uart_frame_decoder.state_1_RNO_2[0]}
+clb_pack PLB_16 {uart_frame_decoder.state_1[2]_LC_126, uart_frame_decoder.state_1_srsts_i_i_a2_3[0]_LC_136, uart_frame_decoder.state_1_srsts_i_i_a2_3_0[0]_LC_137, uart_frame_decoder.state_1_RNO_3[0]_LC_128, uart_frame_decoder.state_1_esr_RNIQ0UJ[3]_LC_132, uart_frame_decoder.state_1_esr_RNI7FFE[4]_LC_131, uart_frame_decoder.state_1[6]_LC_129, uart_frame_decoder.state_1_RNO_2[0]_LC_127}
+ble_pack uart.state[0]_LC_78 {uart.state[0], uart.state_RNO[0]}
+ble_pack uart.state[1]_LC_82 {uart.state[1], uart.state_RNO[1]}
+ble_pack uart.state_RNO_0[2]_LC_79 {uart.state_RNO_0[2]}
+ble_pack uart.timer_Count_RNIQAJ83[4]_LC_103 {uart.timer_Count_RNIQAJ83[4]}
+ble_pack uart.timer_Count_fast_RNILTQT[2]_LC_113 {uart.timer_Count_fast_RNILTQT[2]}
+ble_pack uart_frame_decoder.state_1_esr_RNI19FE[3]_LC_130 {uart_frame_decoder.state_1_esr_RNI19FE[3]}
+ble_pack reset_module_System.count_RNIP8RT[10]_LC_6 {reset_module_System.count_RNIP8RT[10]}
+ble_pack uart.data_Aux_esr_RNO[5]_LC_63 {uart.data_Aux_esr_RNO[5]}
+clb_pack PLB_17 {uart.state[0]_LC_78, uart.state[1]_LC_82, uart.state_RNO_0[2]_LC_79, uart.timer_Count_RNIQAJ83[4]_LC_103, uart.timer_Count_fast_RNILTQT[2]_LC_113, uart_frame_decoder.state_1_esr_RNI19FE[3]_LC_130, reset_module_System.count_RNIP8RT[10]_LC_6, uart.data_Aux_esr_RNO[5]_LC_63}
+ble_pack uart.timer_Count_fast[3]_LC_116 {uart.timer_Count_fast[3], uart.timer_Count_fast_RNO[3]}
+ble_pack uart.timer_Count[2]_LC_106 {uart.timer_Count[2], uart.timer_Count_RNO[2]}
+ble_pack uart.timer_Count_fast[2]_LC_115 {uart.timer_Count_fast[2], uart.timer_Count_fast_RNO[2]}
+clb_pack PLB_18 {uart.timer_Count_fast[3]_LC_116, uart.timer_Count[2]_LC_106, uart.timer_Count_fast[2]_LC_115}
+ble_pack uart.data_Aux_esr[0]_LC_138 {uart.data_Aux_esr[0], uart.data_Aux_esr_0_THRU_LUT4_0}
+clb_pack PLB_19 {uart.data_Aux_esr[0]_LC_138}
+ble_pack uart.data_Aux_esr[2]_LC_140 {uart.data_Aux_esr[2], uart.data_Aux_esr_2_THRU_LUT4_0}
+clb_pack PLB_20 {uart.data_Aux_esr[2]_LC_140}
+ble_pack uart.data_Aux_esr[3]_LC_141 {uart.data_Aux_esr[3], uart.data_Aux_esr_3_THRU_LUT4_0}
+clb_pack PLB_21 {uart.data_Aux_esr[3]_LC_141}
+ble_pack uart.data_Aux_esr[4]_LC_142 {uart.data_Aux_esr[4], uart.data_Aux_esr_4_THRU_LUT4_0}
+clb_pack PLB_22 {uart.data_Aux_esr[4]_LC_142}
+ble_pack uart.data_Aux_esr[5]_LC_143 {uart.data_Aux_esr[5], uart.data_Aux_esr_5_THRU_LUT4_0}
+clb_pack PLB_23 {uart.data_Aux_esr[5]_LC_143}
+ble_pack uart.data_Aux_esr[6]_LC_144 {uart.data_Aux_esr[6], uart.data_Aux_esr_6_THRU_LUT4_0}
+clb_pack PLB_24 {uart.data_Aux_esr[6]_LC_144}
+ble_pack uart.data_esr[0]_LC_146 {uart.data_esr[0], uart.data_esr_0_THRU_LUT4_0}
+ble_pack uart.data_esr[1]_LC_147 {uart.data_esr[1], uart.data_esr_1_THRU_LUT4_0}
+ble_pack uart.data_esr[2]_LC_148 {uart.data_esr[2], uart.data_esr_2_THRU_LUT4_0}
+ble_pack uart.data_esr[3]_LC_149 {uart.data_esr[3], uart.data_esr_3_THRU_LUT4_0}
+ble_pack uart.data_esr[4]_LC_150 {uart.data_esr[4], uart.data_esr_4_THRU_LUT4_0}
+ble_pack uart.data_esr[5]_LC_151 {uart.data_esr[5], uart.data_esr_5_THRU_LUT4_0}
+ble_pack uart.data_esr[6]_LC_152 {uart.data_esr[6], uart.data_esr_6_THRU_LUT4_0}
+ble_pack uart.data_esr[7]_LC_153 {uart.data_esr[7], uart.data_esr_7_THRU_LUT4_0}
+clb_pack PLB_25 {uart.data_esr[0]_LC_146, uart.data_esr[1]_LC_147, uart.data_esr[2]_LC_148, uart.data_esr[3]_LC_149, uart.data_esr[4]_LC_150, uart.data_esr[5]_LC_151, uart.data_esr[6]_LC_152, uart.data_esr[7]_LC_153}
+ble_pack uart_frame_decoder.state_1_esr[3]_LC_154 {uart_frame_decoder.state_1_esr[3], uart_frame_decoder.state_1_esr_3_THRU_LUT4_0}
+ble_pack uart_frame_decoder.state_1_esr[4]_LC_155 {uart_frame_decoder.state_1_esr[4], uart_frame_decoder.state_1_esr_4_THRU_LUT4_0}
+ble_pack uart_frame_decoder.state_1_esr[5]_LC_156 {uart_frame_decoder.state_1_esr[5], uart_frame_decoder.state_1_esr_5_THRU_LUT4_0}
+clb_pack PLB_26 {uart_frame_decoder.state_1_esr[3]_LC_154, uart_frame_decoder.state_1_esr[4]_LC_155, uart_frame_decoder.state_1_esr[5]_LC_156}

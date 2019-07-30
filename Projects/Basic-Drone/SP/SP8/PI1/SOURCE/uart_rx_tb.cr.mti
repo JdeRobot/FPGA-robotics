@@ -1,0 +1,8 @@
+C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP8/PI1/SOURCE/ppm_encoder_mod.v {1 {vlog -work work -stats=none C:/Users/Eloy/Desktop/TFG/Repo/kibotics-drones4kids/TFG_Eloy/SP/SP8/PI1/SOURCE/ppm_encoder_mod.v
+Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
+-- Compiling module ppm_encoder
+
+Top level modules:
+	ppm_encoder
+
+} {} {}}

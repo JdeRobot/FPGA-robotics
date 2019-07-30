@@ -1,0 +1,35 @@
+#### START OF AREA REPORT #####[
+
+Part:			ICE40UP5KSG48 (Lattice)
+
+--------------------------------------------------------------------
+########   Utilization report for  Top level view:   uart   ########
+====================================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     23                 100 %                
+==================================================
+Total SEQUENTIAL ELEMENTS in the block uart:	23 (23.71 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name       Total elements     Utilization     Notes
+---------------------------------------------------
+LUTS       52                 100 %                
+CARRYS     8                  100 %                
+===================================================
+Total COMBINATIONAL LOGIC in the block uart:	60 (61.86 % Utilization)
+
+
+IO PADS
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     12                 100 %                
+=================================================
+Total IO PADS in the block uart:	12 (12.37 % Utilization)
+
+
+##### END OF AREA REPORT #####]
+

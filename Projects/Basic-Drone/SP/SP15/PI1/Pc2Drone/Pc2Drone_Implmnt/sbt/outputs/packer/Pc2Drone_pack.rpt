@@ -1,0 +1,104 @@
+* ******************************************************************************
+
+* iCEcube Report
+
+* Version:            2017.08.27940
+
+* Build Date:         Sep 11 2017 16:52:36
+
+* File Generated:     May 16 2019 21:17:27
+
+* Purpose:            General info of design implementation
+
+* Copyright (C) 2006-2010 by Lattice Semiconductor Corp. All rights reserved.
+
+* ******************************************************************************
+
+Synthesis/Placement Summary:
+----------------------------
+    Status:  Successful
+    Runtime: 1 seconds
+
+Device Info:
+------------
+    Device Family: iCE40UP
+    Device:        iCE40UP5K
+    Package:       SG48
+
+Design statistics:
+------------------
+    FFs:                  324
+    LUTs:                 703
+    RAMs:                 0
+    IOBs:                 5
+    GBs:                  5
+    PLLs:                 0
+    Warm Boots:           0
+    SPIs:                 0
+    I2Cs:                 0
+    HFOSCs:               0
+    LFOSCs:               0
+    RGBA_DRVs:            0
+    LEDDA_IPs:            0
+    DSPs:                 0
+    SPRAMs:               0
+    FILTER_50NSs:         0
+
+Logic Resource Utilization:
+---------------------------
+    Total Logic Cells: 730/5280
+        Combinational Logic Cells: 406      out of   5280      7.68939%
+        Sequential Logic Cells:    324      out of   5280      6.13636%
+        Logic Tiles:               142      out of   660       21.5152%
+    Registers: 
+        Logic Registers:           324      out of   5280      6.13636%
+        IO Registers:              0        out of   480       0
+    Block RAMs:                    0        out of   30        0%
+    Warm Boots:                    0        out of   1         0%
+    SPIs:                          0        out of   2         0%
+    I2Cs:                          0        out of   2         0%
+    HFOSCs:                        0        out of   1         0%
+    LFOSCs:                        0        out of   1         0%
+    RGBA_DRVs:                     0        out of   1         0%
+    LEDDA_IPs:                     0        out of   1         0%
+    DSPs:                          0        out of   8         0%
+    SPRAMs:                        0        out of   4         0%
+    FILTER_50NSs:                  0        out of   2         0%
+    Pins:
+        Input Pins:                2        out of   39        5.12821%
+        Output Pins:               3        out of   39        7.69231%
+        InOut Pins:                0        out of   39        0%
+    Global Buffers:                5        out of   8         62.5%
+    PLLs:                          0        out of   1         0%
+
+IO Bank Utilization:
+--------------------
+    Bank 3: 0        out of   0         0%
+    Bank 1: 0        out of   0         0%
+    Bank 0: 1        out of   17        5.88235%
+    Bank 2: 4        out of   22        18.1818%
+
+Detailed I/O Info:
+------------------
+    Input Pins: 
+    Pin Number  Direction  IO Standard  Pull Up  IO Bank  IO Function    Signal Name       
+    ----------  ---------  -----------  -------  -------  -----------    -----------       
+    4           Input      SB_LVCMOS    No       2        Simple Input   uart_input        
+    35          Input      SB_LVCMOS    No       0        Simple Input   clk_system        
+
+    Output Pins: 
+    Pin Number  Direction  IO Standard  Pull Up  IO Bank  IO Function    Signal Name       
+    ----------  ---------  -----------  -------  -------  -----------    -----------       
+    6           Output     SB_LVCMOS    No       2        Simple Output  ppm_output        
+    10          Output     SB_LVCMOS    No       2        Simple Output  uart_input_debug  
+    11          Output     SB_LVCMOS    No       2        Simple Output  frame_decoder_dv  
+
+Detailed Global Buffer Info:
+----------------------------
+    Buffer Number  IO Bank  Driven By  Fanout  Signal Name                
+    -------------  -------  ---------  ------  -----------                
+    7              0        IO         324     clk_system_c_g             
+    6              2                   241     reset_system_g             
+    3              0                   40      frame_decoder_dv_c_0_g     
+    5              2                   19      ppm_encoder_1.N_238_i_0_g  
+    4              0                   19      ppm_encoder_1.N_512_g      

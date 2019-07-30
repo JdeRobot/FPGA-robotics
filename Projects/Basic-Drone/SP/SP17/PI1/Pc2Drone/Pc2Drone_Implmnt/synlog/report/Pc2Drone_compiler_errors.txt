@@ -1,0 +1,2 @@
+@E: CG389 :"C:\Users\Eloy\Desktop\TFG\Repo\kibotics-drones4kids\TFG_Eloy\SP\SP17\PI1\Pc2Drone\Pc2Drone.v":190:20:190:38|Reference to undefined module drone_frame_decoder
+

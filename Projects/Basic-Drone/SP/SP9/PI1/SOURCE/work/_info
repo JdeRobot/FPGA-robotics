@@ -1,0 +1,55 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_pro/17.0
+vuart_rx
+!s110 1551868151
+!i10b 1
+!s100 JP`B^;^R:IJ=b==2hF[B32
+IW1AN:A410HC8=L3k=f2O23
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+Z1 dC:/Users/Eloy_WU1/Desktop/Githubs/kibotics-drones4kids/TFG_Eloy/SP/SP9/PI1/SOURCE
+w1551868063
+8uart_rx.v
+Fuart_rx.v
+L0 1
+Z2 OV;L;10.5c;63
+r1
+!s85 0
+31
+!s108 1551868151.000000
+!s107 uart_rx.v|
+!s90 -reportprogress|300|+incdir+../hdl|-work|work|-incr|uart_rx.v|
+!i113 1
+Z3 o-work work
+Z4 !s92 +incdir+../hdl -work work
+Z5 tCvgOpt 0
+vuart_rx_tb
+!s10a 1551867432
+!s110 1551867442
+!i10b 1
+!s100 j<MPfQn_:JZT6TFTMTY_83
+I<oe:Md7:R9MM:Y2fJ[K8o2
+R0
+R1
+w1551867432
+8uart_rx_tb.v
+Fuart_rx_tb.v
+L0 4
+R2
+r1
+!s85 0
+31
+!s108 1551867442.000000
+!s107 uart_rx_tb.v|
+!s90 -reportprogress|300|+incdir+../hdl|-work|work|-incr|uart_rx_tb.v|
+!i113 1
+R3
+R4
+R5
