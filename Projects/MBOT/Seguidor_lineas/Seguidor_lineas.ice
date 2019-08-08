@@ -12,6 +12,25 @@
     "graph": {
       "blocks": [
         {
+          "id": "421d268a-d748-4ae7-8f84-bc8d0ab1e1d3",
+          "type": "basic.output",
+          "data": {
+            "name": "D1",
+            "pins": [
+              {
+                "index": "0",
+                "name": "",
+                "value": ""
+              }
+            ],
+            "virtual": false
+          },
+          "position": {
+            "x": 1016,
+            "y": -440
+          }
+        },
+        {
           "id": "b048d187-d794-42b8-a9a5-19db8b008b29",
           "type": "basic.output",
           "data": {
@@ -26,8 +45,8 @@
             "virtual": false
           },
           "position": {
-            "x": 232,
-            "y": -232
+            "x": 184,
+            "y": -160
           }
         },
         {
@@ -38,15 +57,15 @@
             "pins": [
               {
                 "index": "0",
-                "name": "D1",
-                "value": "118"
+                "name": "D0",
+                "value": "119"
               }
             ],
             "virtual": false
           },
           "position": {
-            "x": 1024,
-            "y": -184
+            "x": 1016,
+            "y": -120
           }
         },
         {
@@ -70,6 +89,44 @@
           }
         },
         {
+          "id": "2c3bffab-694d-4835-b90f-00af92936413",
+          "type": "basic.output",
+          "data": {
+            "name": "DEBUG_IR",
+            "pins": [
+              {
+                "index": "0",
+                "name": "LED0",
+                "value": "95"
+              }
+            ],
+            "virtual": false
+          },
+          "position": {
+            "x": 184,
+            "y": 24
+          }
+        },
+        {
+          "id": "a10e9568-fa2b-4d54-a55c-e53ef8ad1432",
+          "type": "basic.output",
+          "data": {
+            "name": "Motor_DER",
+            "pins": [
+              {
+                "index": "0",
+                "name": "D2",
+                "value": "117"
+              }
+            ],
+            "virtual": false
+          },
+          "position": {
+            "x": 1008,
+            "y": 64
+          }
+        },
+        {
           "id": "614a1edc-8868-4907-b153-031100a4cf34",
           "type": "basic.input",
           "data": {
@@ -90,41 +147,29 @@
           }
         },
         {
-          "id": "a10e9568-fa2b-4d54-a55c-e53ef8ad1432",
-          "type": "basic.output",
+          "id": "796058db-53dc-4fbe-b24f-0a8d75ee90e7",
+          "type": "basic.constant",
           "data": {
-            "name": "Motor_DER",
-            "pins": [
-              {
-                "index": "0",
-                "name": "D0",
-                "value": "119"
-              }
-            ],
-            "virtual": false
+            "name": "velocity_IZQ",
+            "value": "16'd2000",
+            "local": false
           },
           "position": {
-            "x": 1000,
-            "y": 96
+            "x": 592,
+            "y": -248
           }
         },
         {
-          "id": "2c3bffab-694d-4835-b90f-00af92936413",
-          "type": "basic.output",
+          "id": "ad4b6a15-7e55-4980-a99a-679480157d2c",
+          "type": "basic.constant",
           "data": {
-            "name": "DEBUG_IR",
-            "pins": [
-              {
-                "index": "0",
-                "name": "LED0",
-                "value": "95"
-              }
-            ],
-            "virtual": false
+            "name": "velocity_DER",
+            "value": "16'd2000",
+            "local": false
           },
           "position": {
-            "x": 208,
-            "y": 280
+            "x": 592,
+            "y": -56
           }
         },
         {
@@ -152,59 +197,11 @@
           }
         },
         {
-          "id": "23b8c115-fd85-491d-a664-0cff8bd6cf29",
-          "type": "52574d9d0e8b304c5dc0732a496a9d43a62b94b1",
-          "position": {
-            "x": 576,
-            "y": -128
-          },
-          "size": {
-            "width": 96,
-            "height": 96
-          }
-        },
-        {
-          "id": "83a3a1ed-3741-4598-88c8-3b070b14707a",
-          "type": "fec7ff39e4c71bcdf0ca03690e64aab18405ad25",
-          "position": {
-            "x": 408,
-            "y": -48
-          },
-          "size": {
-            "width": 96,
-            "height": 64
-          }
-        },
-        {
-          "id": "48aa905a-d2b4-4290-a725-c1668636d1d3",
-          "type": "52574d9d0e8b304c5dc0732a496a9d43a62b94b1",
-          "position": {
-            "x": 576,
-            "y": 40
-          },
-          "size": {
-            "width": 96,
-            "height": 96
-          }
-        },
-        {
-          "id": "2a028986-2c77-476d-84e8-8d90d935bfd2",
-          "type": "b734f60cce5a9de8621cbbd63cf95b689e40512c",
-          "position": {
-            "x": 408,
-            "y": 144
-          },
-          "size": {
-            "width": 96,
-            "height": 64
-          }
-        },
-        {
           "id": "b1398baa-e1ab-432a-abd6-8c15406835b7",
           "type": "e156d3e9bfab13f2760227aab507b823f967f912",
           "position": {
-            "x": 648,
-            "y": -368
+            "x": 592,
+            "y": -448
           },
           "size": {
             "width": 96,
@@ -212,11 +209,59 @@
           }
         },
         {
-          "id": "a9317763-c3bf-40c2-8ba4-9a6fd7f058a8",
-          "type": "96f0988f8164f7c1b216c8ee122d6ce3cf6bc139",
+          "id": "f445f4e3-9984-452c-b406-c3a3a7edced4",
+          "type": "4f986a8dfa6eeb14c177f1f6a4b76b4d48e58186",
           "position": {
-            "x": 792,
+            "x": 592,
+            "y": -120
+          },
+          "size": {
+            "width": 96,
+            "height": 64
+          }
+        },
+        {
+          "id": "26ff0cf8-b4cf-4e71-9275-34d8283b562d",
+          "type": "4f986a8dfa6eeb14c177f1f6a4b76b4d48e58186",
+          "position": {
+            "x": 592,
+            "y": 64
+          },
+          "size": {
+            "width": 96,
+            "height": 64
+          }
+        },
+        {
+          "id": "72648128-7539-485c-9ab6-156e98a571d7",
+          "type": "c83dcd1d9ab420d911df81b3dfae04681559c623",
+          "position": {
+            "x": 296,
             "y": -384
+          },
+          "size": {
+            "width": 96,
+            "height": 64
+          }
+        },
+        {
+          "id": "8bbbf807-0a60-4a28-ba73-c7ddcbbaef26",
+          "type": "c4dd08263a85a91ba53e2ae2b38de344c5efcb52",
+          "position": {
+            "x": 400,
+            "y": -104
+          },
+          "size": {
+            "width": 96,
+            "height": 64
+          }
+        },
+        {
+          "id": "60e4030b-147a-4e13-bfcf-89f9ac01c801",
+          "type": "c4dd08263a85a91ba53e2ae2b38de344c5efcb52",
+          "position": {
+            "x": 400,
+            "y": 80
           },
           "size": {
             "width": 96,
@@ -267,8 +312,8 @@
         },
         {
           "source": {
-            "block": "23b8c115-fd85-491d-a664-0cff8bd6cf29",
-            "port": "910bbdc3-5979-4834-ab08-a96083e784ce"
+            "block": "f445f4e3-9984-452c-b406-c3a3a7edced4",
+            "port": "63a66901-b384-423f-9b70-76f155bebb40"
           },
           "target": {
             "block": "2df702c0-573d-47ad-b365-83b5e982648b",
@@ -277,66 +322,23 @@
         },
         {
           "source": {
-            "block": "b67746f7-24ae-4aa8-84cb-1afc80537c84",
-            "port": "664caf9e-5f40-4df4-800a-b626af702e62"
-          },
-          "target": {
-            "block": "23b8c115-fd85-491d-a664-0cff8bd6cf29",
-            "port": "e3e07bdb-9bb3-4afb-ace5-bcc99aecef0a"
-          },
-          "vertices": [
-            {
-              "x": 352,
-              "y": 88
-            }
-          ]
-        },
-        {
-          "source": {
-            "block": "83a3a1ed-3741-4598-88c8-3b070b14707a",
-            "port": "3d584b0a-29eb-47af-8c43-c0822282ef05"
-          },
-          "target": {
-            "block": "23b8c115-fd85-491d-a664-0cff8bd6cf29",
-            "port": "9e05d630-6be7-45c7-b3ce-3a4e161901cd"
-          }
-        },
-        {
-          "source": {
-            "block": "48aa905a-d2b4-4290-a725-c1668636d1d3",
-            "port": "910bbdc3-5979-4834-ab08-a96083e784ce"
+            "block": "26ff0cf8-b4cf-4e71-9275-34d8283b562d",
+            "port": "63a66901-b384-423f-9b70-76f155bebb40"
           },
           "target": {
             "block": "a10e9568-fa2b-4d54-a55c-e53ef8ad1432",
             "port": "in"
-          },
-          "vertices": []
-        },
-        {
-          "source": {
-            "block": "2a028986-2c77-476d-84e8-8d90d935bfd2",
-            "port": "3d584b0a-29eb-47af-8c43-c0822282ef05"
-          },
-          "target": {
-            "block": "48aa905a-d2b4-4290-a725-c1668636d1d3",
-            "port": "9e05d630-6be7-45c7-b3ce-3a4e161901cd"
           }
         },
         {
           "source": {
-            "block": "fa5cd101-8698-4ba8-bd8b-3122527324cf",
-            "port": "664caf9e-5f40-4df4-800a-b626af702e62"
+            "block": "72648128-7539-485c-9ab6-156e98a571d7",
+            "port": "19c8f68d-5022-487f-9ab0-f0a3cd58bead"
           },
           "target": {
-            "block": "48aa905a-d2b4-4290-a725-c1668636d1d3",
-            "port": "e3e07bdb-9bb3-4afb-ace5-bcc99aecef0a"
-          },
-          "vertices": [
-            {
-              "x": 264,
-              "y": -64
-            }
-          ]
+            "block": "b1398baa-e1ab-432a-abd6-8c15406835b7",
+            "port": "c8da2f1b-b72c-4337-bbda-82283cfeca57"
+          }
         },
         {
           "source": {
@@ -344,10 +346,49 @@
             "port": "0cdc2b14-ba97-4dc0-a41f-3e6f9ce7310d"
           },
           "target": {
-            "block": "a9317763-c3bf-40c2-8ba4-9a6fd7f058a8",
-            "port": "18c2ebc7-5152-439c-9b3f-851c59bac834"
+            "block": "421d268a-d748-4ae7-8f84-bc8d0ab1e1d3",
+            "port": "in"
+          }
+        },
+        {
+          "source": {
+            "block": "796058db-53dc-4fbe-b24f-0a8d75ee90e7",
+            "port": "constant-out"
           },
-          "vertices": []
+          "target": {
+            "block": "f445f4e3-9984-452c-b406-c3a3a7edced4",
+            "port": "94314d85-3bc8-485e-8267-57d52d038baa"
+          }
+        },
+        {
+          "source": {
+            "block": "ad4b6a15-7e55-4980-a99a-679480157d2c",
+            "port": "constant-out"
+          },
+          "target": {
+            "block": "26ff0cf8-b4cf-4e71-9275-34d8283b562d",
+            "port": "94314d85-3bc8-485e-8267-57d52d038baa"
+          }
+        },
+        {
+          "source": {
+            "block": "8bbbf807-0a60-4a28-ba73-c7ddcbbaef26",
+            "port": "19c8f68d-5022-487f-9ab0-f0a3cd58bead"
+          },
+          "target": {
+            "block": "f445f4e3-9984-452c-b406-c3a3a7edced4",
+            "port": "8b33b8c2-e685-4d38-b041-0d9fae82e57f"
+          }
+        },
+        {
+          "source": {
+            "block": "60e4030b-147a-4e13-bfcf-89f9ac01c801",
+            "port": "19c8f68d-5022-487f-9ab0-f0a3cd58bead"
+          },
+          "target": {
+            "block": "26ff0cf8-b4cf-4e71-9275-34d8283b562d",
+            "port": "8b33b8c2-e685-4d38-b041-0d9fae82e57f"
+          }
         }
       ]
     }
@@ -433,268 +474,6 @@
               },
               "target": {
                 "block": "664caf9e-5f40-4df4-800a-b626af702e62",
-                "port": "in"
-              }
-            }
-          ]
-        }
-      }
-    },
-    "52574d9d0e8b304c5dc0732a496a9d43a62b94b1": {
-      "package": {
-        "name": "MotorBit",
-        "version": "0.1",
-        "description": "Controlador para servo de rotacion continua. Con on=1, el motor avanza. Dir=1 sentido agujas reloj/ 0 el contrario",
-        "author": "Juan Gonzalez-Gomez y Jesus Arroyo",
-        "image": "%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%22-252%20400.9%2070.563453%2059.187547%22%20width=%2270.563%22%20height=%2259.188%22%3E%3Cdefs%3E%3Cmarker%20orient=%22auto%22%20id=%22a%22%20overflow=%22visible%22%3E%3Cpath%20d=%22M1.926%201.21L-1.352.005l3.278-1.206a2.05%202.05%200%200%200%200%202.411z%22%20fill=%22#00f%22%20fill-rule=%22evenodd%22%20stroke=%22#00f%22%20stroke-width=%22.1875%22%20stroke-linejoin=%22round%22/%3E%3C/marker%3E%3Cmarker%20orient=%22auto%22%20id=%22b%22%20overflow=%22visible%22%3E%3Cpath%20d=%22M-1.926-1.21L1.352-.005l-3.278%201.206a2.05%202.05%200%200%200%200-2.411z%22%20fill=%22#00f%22%20fill-rule=%22evenodd%22%20stroke=%22#00f%22%20stroke-width=%22.1875%22%20stroke-linejoin=%22round%22/%3E%3C/marker%3E%3C/defs%3E%3Ctext%20style=%22line-height:125%25%22%20x=%22-241.208%22%20y=%22459.946%22%20font-weight=%22400%22%20font-size=%2217.5%22%20font-family=%22sans-serif%22%20letter-spacing=%220%22%20word-spacing=%220%22%3E%3Ctspan%20x=%22-241.208%22%20y=%22459.946%22%20style=%22-inkscape-font-specification:'sans-serif%20Bold'%22%20font-weight=%22700%22%20font-size=%2210%22%3EMotorBit%3C/tspan%3E%3C/text%3E%3Cpath%20d=%22M-242.672%20437.86v-.395h-8.131a.697.677%200%200%201-.697-.677V417.71a.697.677%200%200%201%20.697-.677h8.13v-.395a.697.677%200%200%201%20.697-.677h45.416a.697.677%200%200%201%20.697.677v.395h8.13a.697.677%200%200%201%20.697.677v19.077a.697.677%200%200%201-.697.677h-8.13v.395a.697.677%200%200%201-.697.677h-45.416a.697.677%200%200%201-.696-.677%22%20fill=%22gray%22%20fill-rule=%22evenodd%22%20stroke=%22#191919%22/%3E%3Cellipse%20cy=%22-421.549%22%20cx=%22-247.667%22%20transform=%22scale(1%20-1)%22%20rx=%222.497%22%20ry=%222.427%22%20fill=%22#fff%22%20stroke=%22#191919%22/%3E%3Cellipse%20cy=%22-432.95%22%20cx=%22-247.667%22%20transform=%22scale(1%20-1)%22%20rx=%222.497%22%20ry=%222.427%22%20fill=%22#fff%22%20stroke=%22#191919%22/%3E%3Cellipse%20cy=%22-421.549%22%20cx=%22-190.869%22%20transform=%22scale(1%20-1)%22%20rx=%222.497%22%20ry=%222.427%22%20fill=%22#fff%22%20stroke=%22#191919%22/%3E%3Cellipse%20cy=%22-432.95%22%20cx=%22-190.869%22%20transform=%22scale(1%20-1)%22%20rx=%222.497%22%20ry=%222.427%22%20fill=%22#fff%22%20stroke=%22#191919%22/%3E%3Cg%20transform=%22matrix(1.16152%200%200%20-1.12877%20-219.268%20427.25)%22%20fill=%22#4d4d4d%22%20stroke-width=%221.184%22%3E%3Ccircle%20cx=%229.45%22%20r=%227.079%22%20stroke=%22#191919%22%20stroke-width=%22.873%22/%3E%3Ctitle%3EFusion009002001_cs001%3C/title%3E%3C/g%3E%3Cpath%20d=%22M291.086%20396.23a24.94%2024.871%200%200%201-21.17-23.762%2024.94%2024.871%200%200%201%2019.54-25.112%2024.94%2024.871%200%200%201%2028.336%2014.554%2024.94%2024.871%200%200%201-9.151%2030.448%22%20transform=%22matrix(-.9762%20.21689%20.21647%20.97629%200%200)%22%20fill=%22none%22%20stroke=%22#00f%22%20stroke-width=%222%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%20marker-start=%22url(#a)%22%20marker-end=%22url(#b)%22/%3E%3Ctext%20style=%22line-height:125%25%22%20x=%22-199.948%22%20y=%22459.792%22%20font-weight=%22400%22%20font-size=%2217.5%22%20font-family=%22sans-serif%22%20letter-spacing=%220%22%20word-spacing=%220%22%20fill=%22red%22/%3E%3C/svg%3E"
-      },
-      "design": {
-        "graph": {
-          "blocks": [
-            {
-              "id": "8da63e4e-07b6-4711-900a-8c8843f20352",
-              "type": "basic.input",
-              "data": {
-                "name": "",
-                "clock": true
-              },
-              "position": {
-                "x": 112,
-                "y": 120
-              }
-            },
-            {
-              "id": "e3e07bdb-9bb3-4afb-ace5-bcc99aecef0a",
-              "type": "basic.input",
-              "data": {
-                "name": "on",
-                "clock": false
-              },
-              "position": {
-                "x": 112,
-                "y": 256
-              }
-            },
-            {
-              "id": "910bbdc3-5979-4834-ab08-a96083e784ce",
-              "type": "basic.output",
-              "data": {
-                "name": ""
-              },
-              "position": {
-                "x": 968,
-                "y": 256
-              }
-            },
-            {
-              "id": "9e05d630-6be7-45c7-b3ce-3a4e161901cd",
-              "type": "basic.input",
-              "data": {
-                "name": "dir",
-                "clock": false
-              },
-              "position": {
-                "x": 112,
-                "y": 392
-              }
-            },
-            {
-              "id": "111d9859-6de5-4608-9176-ed8359ffebc5",
-              "type": "basic.code",
-              "data": {
-                "code": "//-- MotorBit\n\n//-- Control de un servo de rotacion continua SM-S4303R\n//-- con dos bits\n\n//-- Constantes para el angulo del servo\nlocalparam ANG_0   = 8'h01;\nlocalparam ANG_45  = 8'h24;\nlocalparam ANG_90  = 8'h72;\nlocalparam ANG_135 = 8'h96;\nlocalparam ANG_180 = 8'hE4;\nlocalparam STOP = 8'h90;\nlocalparam ATRAS = 8'h24;\nlocalparam ADELANTE = 8'hE4;\n\n\n//-- Posicion del servo cuando el\n//-- bit de entrada es 0\n//-- La corona del servo mira a la derecha\nlocalparam BIT0 = STOP;\n\n//-- Posicion el servo cuando el bit\n//-- de entrada es 1\n//-- La corona del servo mira a la izquierda\nlocalparam BIT1 = ATRAS;\n\n\n//-- Posicion de 8 bits del servo\nreg [7:0] pos;\n\n//-- Asignar la posicion de 8 bits\n//-- segun si lo recibido es 0 ó 1\nalways @(posedge clk)\n  pos <= (on_off==0) ? STOP : \n         dir ? ADELANTE : ATRAS;\n\n\n//---\n//--- ServoMotor \n\n//-- M es el valor del divisor para\n//-- obtener tics de M / 12.0 micro-segundos\nlocalparam M = 94; \nlocalparam N = $clog2(M);\n\n//-- Contador para generar los tics\nreg [N-1:0] divcounter = 0;\n\n//-- Flag para indicar que un tic\n//-- ha ocurrido\nreg tic = 0;\n\n//-- Generacion de los tics. Cada\n//-- M ciclos del reloj se genera 1\nalways @(posedge clk)\n tic <= (divcounter == M - 2);\n\n//-- Contador modulo M\nalways @(posedge clk)\n if (tic)\n   divcounter <= 0;\n else\n   divcounter <= divcounter + 1;\n\n//-- Contador de la posicion del \n//-- servo\nreg [10:0] angle_counter = 0;\n\n//-- A la posicion destino hay que\n//-- sumarle un offset, correspondiente\n//-- a los 0.3ms de la posicion inicial\nwire [8:0] pose = {1'b0, pos} + 9'd46;\n\n//-- Con cada tic se incrementa el\n//-- contador de angulo del servo\nalways @(posedge clk)\n if (tic)\n   angle_counter <= angle_counter + 1;\n\n//-- Cuando el contador es menor que el \n//-- valor objetivo, la señal de PWM\n//-- del servo se pone 1, y 0 en \n//-- caso contrario\n\nreg servo;\n\nalways @(posedge clk)\n servo <= (angle_counter < {2'b00, pose});\n\n",
-                "params": [],
-                "ports": {
-                  "in": [
-                    {
-                      "name": "clk"
-                    },
-                    {
-                      "name": "on_off"
-                    },
-                    {
-                      "name": "dir"
-                    }
-                  ],
-                  "out": [
-                    {
-                      "name": "servo"
-                    }
-                  ]
-                }
-              },
-              "position": {
-                "x": 304,
-                "y": 80
-              },
-              "size": {
-                "width": 528,
-                "height": 416
-              }
-            }
-          ],
-          "wires": [
-            {
-              "source": {
-                "block": "111d9859-6de5-4608-9176-ed8359ffebc5",
-                "port": "servo"
-              },
-              "target": {
-                "block": "910bbdc3-5979-4834-ab08-a96083e784ce",
-                "port": "in"
-              }
-            },
-            {
-              "source": {
-                "block": "e3e07bdb-9bb3-4afb-ace5-bcc99aecef0a",
-                "port": "out"
-              },
-              "target": {
-                "block": "111d9859-6de5-4608-9176-ed8359ffebc5",
-                "port": "on_off"
-              }
-            },
-            {
-              "source": {
-                "block": "9e05d630-6be7-45c7-b3ce-3a4e161901cd",
-                "port": "out"
-              },
-              "target": {
-                "block": "111d9859-6de5-4608-9176-ed8359ffebc5",
-                "port": "dir"
-              }
-            },
-            {
-              "source": {
-                "block": "8da63e4e-07b6-4711-900a-8c8843f20352",
-                "port": "out"
-              },
-              "target": {
-                "block": "111d9859-6de5-4608-9176-ed8359ffebc5",
-                "port": "clk"
-              }
-            }
-          ]
-        }
-      }
-    },
-    "fec7ff39e4c71bcdf0ca03690e64aab18405ad25": {
-      "package": {
-        "name": "0",
-        "version": "0.1",
-        "description": "Un bit constante a 0",
-        "author": "Jesus Arroyo",
-        "image": "%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2233.641%22%20height=%2258.608%22%20viewBox=%220%200%2031.538733%2054.944538%22%3E%3Cg%20stroke=%22#00f%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20d=%22M21.822%2033.91l4.092%208.992-3.772%209.727%204.181%201.311M13.356%2034.68s-1.091%208.252-2.585%208.918C9.278%2044.265%201%2050.456%201%2050.456l2.647%203.256%22%20fill=%22none%22%20stroke-width=%222%22/%3E%3Cpath%20d=%22M19.787%202.504a11.65%2017.168%2028.167%200%200-14.101%2010.6%2011.65%2017.168%2028.167%200%200%202.166%2020.634%2011.65%2017.168%2028.167%200%200%2018.373-9.636%2011.65%2017.168%2028.167%200%200-2.166-20.633%2011.65%2017.168%2028.167%200%200-4.272-.965zm-1.31%205.123a8.864%2012.535%2028.167%200%201%203.232.766%208.864%2012.535%2028.167%200%201%201.898%2015.234%208.864%2012.535%2028.167%200%201-13.732%206.867A8.864%2012.535%2028.167%200%201%207.979%2015.26a8.864%2012.535%2028.167%200%201%2010.498-7.633z%22%20fill=%22#00f%22%20stroke-width=%225%22/%3E%3C/g%3E%3C/svg%3E"
-      },
-      "design": {
-        "graph": {
-          "blocks": [
-            {
-              "id": "61331ec5-2c56-4cdd-b607-e63b1502fa65",
-              "type": "basic.code",
-              "data": {
-                "code": "//-- Bit constante a 0\nassign q = 1'b0;\n\n",
-                "params": [],
-                "ports": {
-                  "in": [],
-                  "out": [
-                    {
-                      "name": "q"
-                    }
-                  ]
-                }
-              },
-              "position": {
-                "x": 168,
-                "y": 112
-              },
-              "size": {
-                "width": 256,
-                "height": 160
-              }
-            },
-            {
-              "id": "3d584b0a-29eb-47af-8c43-c0822282ef05",
-              "type": "basic.output",
-              "data": {
-                "name": ""
-              },
-              "position": {
-                "x": 512,
-                "y": 160
-              }
-            }
-          ],
-          "wires": [
-            {
-              "source": {
-                "block": "61331ec5-2c56-4cdd-b607-e63b1502fa65",
-                "port": "q"
-              },
-              "target": {
-                "block": "3d584b0a-29eb-47af-8c43-c0822282ef05",
-                "port": "in"
-              }
-            }
-          ]
-        }
-      }
-    },
-    "b734f60cce5a9de8621cbbd63cf95b689e40512c": {
-      "package": {
-        "name": "1",
-        "version": "0.1",
-        "description": "Un bit constante a 1",
-        "author": "Jesus Arroyo",
-        "image": "%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2233.632%22%20height=%2269.34%22%20viewBox=%220%200%2031.530464%2065.006656%22%3E%3Cpath%20d=%22M3.517%2012.015L19%200l12.53%202.863-10.012%2043.262-9.746-2.227%207.7-34.532L8.03%2016.38z%22%20fill=%22#00f%22%20fill-rule=%22evenodd%22/%3E%3Cpath%20d=%22M17.593%2043.464l7.822%2010.472-6.56%207.919%202.27%202.043M15.985%2043.719l-4.542%2010.473-10.345%202.043.757%203.32%22%20fill=%22none%22%20stroke=%22#00f%22%20stroke-width=%222.196%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22/%3E%3C/svg%3E"
-      },
-      "design": {
-        "graph": {
-          "blocks": [
-            {
-              "id": "61331ec5-2c56-4cdd-b607-e63b1502fa65",
-              "type": "basic.code",
-              "data": {
-                "code": "//-- Bit constante a 1\nassign q = 1'b1;\n\n",
-                "params": [],
-                "ports": {
-                  "in": [],
-                  "out": [
-                    {
-                      "name": "q"
-                    }
-                  ]
-                }
-              },
-              "position": {
-                "x": 168,
-                "y": 112
-              },
-              "size": {
-                "width": 256,
-                "height": 160
-              }
-            },
-            {
-              "id": "3d584b0a-29eb-47af-8c43-c0822282ef05",
-              "type": "basic.output",
-              "data": {
-                "name": ""
-              },
-              "position": {
-                "x": 512,
-                "y": 160
-              }
-            }
-          ],
-          "wires": [
-            {
-              "source": {
-                "block": "61331ec5-2c56-4cdd-b607-e63b1502fa65",
-                "port": "q"
-              },
-              "target": {
-                "block": "3d584b0a-29eb-47af-8c43-c0822282ef05",
                 "port": "in"
               }
             }
@@ -910,61 +689,186 @@
         }
       }
     },
-    "96f0988f8164f7c1b216c8ee122d6ce3cf6bc139": {
+    "4f986a8dfa6eeb14c177f1f6a4b76b4d48e58186": {
       "package": {
-        "name": "NOT",
+        "name": "PWM_CONTROLLER",
         "version": "1.0.0",
-        "description": "NOT logic gate",
-        "author": "Jesús Arroyo",
-        "image": "%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2291.33%22%20height=%2245.752%22%20version=%221%22%3E%3Cpath%20d=%22M0%2020.446h27v2H0zM70.322%2020.447h15.3v2h-15.3z%22/%3E%3Cpath%20d=%22M66.05%2026.746c-2.9%200-5.3-2.4-5.3-5.3s2.4-5.3%205.3-5.3%205.3%202.4%205.3%205.3-2.4%205.3-5.3%205.3zm0-8.6c-1.8%200-3.3%201.5-3.3%203.3%200%201.8%201.5%203.3%203.3%203.3%201.8%200%203.3-1.5%203.3-3.3%200-1.8-1.5-3.3-3.3-3.3z%22/%3E%3Cpath%20d=%22M25.962%202.563l33.624%2018.883L25.962%2040.33V2.563z%22%20fill=%22none%22%20stroke=%22#000%22%20stroke-width=%223%22/%3E%3C/svg%3E"
+        "description": "",
+        "author": "",
+        "image": "%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20512%20512%22%3E%3Cg%20fill=%22#f2f2f2%22%3E%3Ccircle%20cx=%22256%22%20cy=%22256%22%20r=%22256%22/%3E%3Cpath%20d=%22M256%20256zM256%20256zM256%20256zM256%20256zM256%20256zM256%20256z%22/%3E%3C/g%3E%3Cpath%20d=%22M481.067%20256H393.6c0-25.6-6.4-48-18.133-69.333-11.733-21.333-29.867-38.4-50.133-50.133L369.067%2060.8C403.2%2081.067%20432%20108.8%20451.2%20142.933c18.133%2034.134%2029.867%2072.534%2029.867%20113.067z%22%20fill=%22#f8b64c%22/%3E%3Cpath%20d=%22M481.067%20256c0%2040.533-10.667%2078.933-29.867%20112-19.2%2034.133-48%2062.933-82.133%2082.133L325.333%20374.4c21.333-11.733%2038.4-29.867%2050.133-50.133C387.2%20304%20393.6%20280.533%20393.6%20254.933h87.467V256z%22%20fill=%22#ff7058%22/%3E%3Cpath%20d=%22M186.667%20136.533c-21.333%2011.733-38.4%2029.867-50.133%2050.133C124.8%20206.933%20118.4%20230.4%20118.4%20256H30.933c0-40.533%2010.667-78.933%2029.867-112%2019.2-34.133%2048-62.933%2082.133-82.133l43.734%2074.666z%22%20fill=%22#54c0eb%22/%3E%3Cpath%20d=%22M186.667%20375.467L142.933%20451.2C108.8%20432%2080%20403.2%2060.8%20369.067%2042.667%20334.933%2030.933%20296.533%2030.933%20256H118.4c0%2025.6%206.4%2049.067%2018.133%2069.333a160.656%20160.656%200%200%200%2050.134%2050.134z%22%20fill=%22#84dbff%22/%3E%3Cpath%20d=%22M368%2061.867L324.267%20137.6c-20.267-11.733-43.733-18.133-69.333-18.133s-48%206.4-69.333%2018.133l-43.733-75.733c35.2-19.2%2073.6-30.933%20114.133-30.933S334.933%2042.667%20368%2061.867z%22%20fill=%22#ffd15c%22/%3E%3Ccircle%20cx=%22256%22%20cy=%22256%22%20r=%22137.6%22%20fill=%22#f2f2f2%22/%3E%3Cpath%20d=%22M273.067%20230.4c12.8%209.6%2016%2027.733%207.467%2040.533-9.6%2012.8-27.733%2016-40.533%207.467-12.8-9.6-87.467-96-87.467-96s106.666%2038.4%20120.533%2048z%22%20fill=%22#40596b%22/%3E%3Ccircle%20cx=%22256%22%20cy=%22253.867%22%20r=%2217.067%22%20fill=%22#ff7058%22/%3E%3Cpath%20d=%22M256%2052.267c120.533%200%20218.667%2094.933%20224%20214.4%200-3.2%201.067-7.467%201.067-10.667C481.067%20132.267%20380.8%2030.933%20256%2030.933S30.933%20132.267%2030.933%20256c0%203.2%200%207.467%201.067%2010.667%205.333-119.467%20103.467-214.4%20224-214.4z%22%20opacity=%22.15%22%20fill=%22#40596b%22/%3E%3C/svg%3E"
       },
       "design": {
         "graph": {
           "blocks": [
             {
-              "id": "18c2ebc7-5152-439c-9b3f-851c59bac834",
+              "id": "159fd93f-0f27-4956-93b1-1343b7692189",
               "type": "basic.input",
               "data": {
-                "name": ""
+                "name": "clock",
+                "clock": true
               },
               "position": {
-                "x": 64,
-                "y": 144
+                "x": -224,
+                "y": -272
               }
             },
             {
-              "id": "664caf9e-5f40-4df4-800a-b626af702e62",
+              "id": "63a66901-b384-423f-9b70-76f155bebb40",
               "type": "basic.output",
               "data": {
-                "name": ""
+                "name": "PWM"
               },
               "position": {
-                "x": 752,
-                "y": 144
+                "x": 1232,
+                "y": -144
               }
             },
             {
-              "id": "5365ed8c-e5db-4445-938f-8d689830ea5c",
+              "id": "8b33b8c2-e685-4d38-b041-0d9fae82e57f",
+              "type": "basic.input",
+              "data": {
+                "name": "ON_OFF",
+                "clock": false
+              },
+              "position": {
+                "x": -224,
+                "y": -16
+              }
+            },
+            {
+              "id": "94314d85-3bc8-485e-8267-57d52d038baa",
+              "type": "basic.constant",
+              "data": {
+                "name": "velocity",
+                "value": "16'd0",
+                "local": false
+              },
+              "position": {
+                "x": 512,
+                "y": -576
+              }
+            },
+            {
+              "id": "50d5caeb-e74a-4756-a919-8a5f8399271d",
               "type": "basic.code",
               "data": {
-                "code": "// NOT logic gate\n\nassign c = ~ a;",
-                "params": [],
+                "code": "localparam pulses_nedded = 16'd7000; \r\n\r\nreg [15:0] pulses_nedded_velocity = 16'd0; //24009 maximo\r\nreg [15:0] count = 0; \r\nreg T = 0;\r\n\r\nalways @(posedge clock)\r\nbegin\r\n  count <= (count == pulses_nedded-1) ? 0: count+1;\r\n  pulses_nedded_velocity <= ((velocity/16'd9) >=pulses_nedded) ? pulses_nedded: (velocity/16'd9);\r\n\r\nend\r\n\r\nalways @(posedge clock)\r\nbegin\r\n  if(start==1'b1)\r\n    T <= (count <= pulses_nedded_velocity) ? 1:0;\r\nend\r\nassign PWM = T;\r\n",
+                "params": [
+                  {
+                    "name": "velocity"
+                  }
+                ],
                 "ports": {
                   "in": [
                     {
-                      "name": "a"
+                      "name": "clock"
+                    },
+                    {
+                      "name": "start"
                     }
                   ],
                   "out": [
                     {
-                      "name": "c"
+                      "name": "PWM"
                     }
                   ]
                 }
               },
               "position": {
-                "x": 256,
-                "y": 48
+                "x": -8,
+                "y": -368
+              },
+              "size": {
+                "width": 1136,
+                "height": 512
+              }
+            }
+          ],
+          "wires": [
+            {
+              "source": {
+                "block": "159fd93f-0f27-4956-93b1-1343b7692189",
+                "port": "out"
+              },
+              "target": {
+                "block": "50d5caeb-e74a-4756-a919-8a5f8399271d",
+                "port": "clock"
+              }
+            },
+            {
+              "source": {
+                "block": "8b33b8c2-e685-4d38-b041-0d9fae82e57f",
+                "port": "out"
+              },
+              "target": {
+                "block": "50d5caeb-e74a-4756-a919-8a5f8399271d",
+                "port": "start"
+              }
+            },
+            {
+              "source": {
+                "block": "50d5caeb-e74a-4756-a919-8a5f8399271d",
+                "port": "PWM"
+              },
+              "target": {
+                "block": "63a66901-b384-423f-9b70-76f155bebb40",
+                "port": "in"
+              }
+            },
+            {
+              "source": {
+                "block": "94314d85-3bc8-485e-8267-57d52d038baa",
+                "port": "constant-out"
+              },
+              "target": {
+                "block": "50d5caeb-e74a-4756-a919-8a5f8399271d",
+                "port": "velocity"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "c83dcd1d9ab420d911df81b3dfae04681559c623": {
+      "package": {
+        "name": "Bit 1",
+        "version": "1.0.0",
+        "description": "Assign 1 to the output wire",
+        "author": "Jesús Arroyo",
+        "image": "%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2247.303%22%20height=%2227.648%22%20viewBox=%220%200%2044.346456%2025.919999%22%3E%3Ctext%20style=%22line-height:125%25%22%20x=%22325.218%22%20y=%22315.455%22%20font-weight=%22400%22%20font-size=%2212.669%22%20font-family=%22sans-serif%22%20letter-spacing=%220%22%20word-spacing=%220%22%20transform=%22translate(-307.01%20-298.51)%22%3E%3Ctspan%20x=%22325.218%22%20y=%22315.455%22%20style=%22-inkscape-font-specification:'Courier%2010%20Pitch'%22%20font-family=%22Courier%2010%20Pitch%22%3E1%3C/tspan%3E%3C/text%3E%3C/svg%3E"
+      },
+      "design": {
+        "graph": {
+          "blocks": [
+            {
+              "id": "19c8f68d-5022-487f-9ab0-f0a3cd58bead",
+              "type": "basic.output",
+              "data": {
+                "name": ""
+              },
+              "position": {
+                "x": 608,
+                "y": 192
+              }
+            },
+            {
+              "id": "b959fb96-ac67-4aea-90b3-ed35a4c17bf5",
+              "type": "basic.code",
+              "data": {
+                "code": "// Bit 1\n\nassign v = 1'b1;",
+                "params": [],
+                "ports": {
+                  "in": [],
+                  "out": [
+                    {
+                      "name": "v"
+                    }
+                  ]
+                }
+              },
+              "position": {
+                "x": 96,
+                "y": 96
               },
               "size": {
                 "width": 384,
@@ -975,21 +879,73 @@
           "wires": [
             {
               "source": {
-                "block": "18c2ebc7-5152-439c-9b3f-851c59bac834",
-                "port": "out"
+                "block": "b959fb96-ac67-4aea-90b3-ed35a4c17bf5",
+                "port": "v"
               },
               "target": {
-                "block": "5365ed8c-e5db-4445-938f-8d689830ea5c",
-                "port": "a"
+                "block": "19c8f68d-5022-487f-9ab0-f0a3cd58bead",
+                "port": "in"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "c4dd08263a85a91ba53e2ae2b38de344c5efcb52": {
+      "package": {
+        "name": "Bit 0",
+        "version": "1.0.0",
+        "description": "Assign 0 to the output wire",
+        "author": "Jesús Arroyo",
+        "image": "%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2247.303%22%20height=%2227.648%22%20viewBox=%220%200%2044.346456%2025.919999%22%3E%3Ctext%20style=%22line-height:125%25%22%20x=%22325.37%22%20y=%22315.373%22%20font-weight=%22400%22%20font-size=%2212.669%22%20font-family=%22sans-serif%22%20letter-spacing=%220%22%20word-spacing=%220%22%20transform=%22translate(-307.01%20-298.51)%22%3E%3Ctspan%20x=%22325.37%22%20y=%22315.373%22%20style=%22-inkscape-font-specification:'Courier%2010%20Pitch'%22%20font-family=%22Courier%2010%20Pitch%22%3E0%3C/tspan%3E%3C/text%3E%3C/svg%3E"
+      },
+      "design": {
+        "graph": {
+          "blocks": [
+            {
+              "id": "19c8f68d-5022-487f-9ab0-f0a3cd58bead",
+              "type": "basic.output",
+              "data": {
+                "name": ""
+              },
+              "position": {
+                "x": 608,
+                "y": 192
               }
             },
             {
+              "id": "b959fb96-ac67-4aea-90b3-ed35a4c17bf5",
+              "type": "basic.code",
+              "data": {
+                "code": "// Bit 0\n\nassign v = 1'b0;",
+                "params": [],
+                "ports": {
+                  "in": [],
+                  "out": [
+                    {
+                      "name": "v"
+                    }
+                  ]
+                }
+              },
+              "position": {
+                "x": 96,
+                "y": 96
+              },
+              "size": {
+                "width": 384,
+                "height": 256
+              }
+            }
+          ],
+          "wires": [
+            {
               "source": {
-                "block": "5365ed8c-e5db-4445-938f-8d689830ea5c",
-                "port": "c"
+                "block": "b959fb96-ac67-4aea-90b3-ed35a4c17bf5",
+                "port": "v"
               },
               "target": {
-                "block": "664caf9e-5f40-4df4-800a-b626af702e62",
+                "block": "19c8f68d-5022-487f-9ab0-f0a3cd58bead",
                 "port": "in"
               }
             }
