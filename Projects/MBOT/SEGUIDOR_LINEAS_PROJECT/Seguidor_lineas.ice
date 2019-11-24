@@ -76,15 +76,15 @@
             "pins": [
               {
                 "index": "0",
-                "name": "D12",
-                "value": "63"
+                "name": "D11",
+                "value": "21"
               }
             ],
             "virtual": false,
             "clock": false
           },
           "position": {
-            "x": -128,
+            "x": -264,
             "y": -104
           }
         },
@@ -134,16 +134,100 @@
             "pins": [
               {
                 "index": "0",
-                "name": "D13",
-                "value": "64"
+                "name": "D10",
+                "value": "22"
               }
             ],
             "virtual": false,
             "clock": false
           },
           "position": {
-            "x": -128,
+            "x": -264,
             "y": 144
+          }
+        },
+        {
+          "id": "35a15c3f-c50a-4cc0-8579-c787116d5e9a",
+          "type": "basic.output",
+          "data": {
+            "name": "leds",
+            "pins": [
+              {
+                "index": "0",
+                "name": "D8",
+                "value": "20"
+              }
+            ],
+            "virtual": false
+          },
+          "position": {
+            "x": 1560,
+            "y": 544
+          }
+        },
+        {
+          "id": "405e4af9-da0b-49ca-b9cb-a6ebab9d139e",
+          "type": "basic.constant",
+          "data": {
+            "name": "red",
+            "value": "24'b000000001111111100000000",
+            "local": true
+          },
+          "position": {
+            "x": 8,
+            "y": 456
+          }
+        },
+        {
+          "id": "9fa111f2-1dd0-49dc-9fff-b63c43c62462",
+          "type": "basic.constant",
+          "data": {
+            "name": "green",
+            "value": "24'b000000000000000011111111",
+            "local": true
+          },
+          "position": {
+            "x": 104,
+            "y": 456
+          }
+        },
+        {
+          "id": "f5a8c26f-96a4-4c00-a0b1-727b6928d4b7",
+          "type": "basic.constant",
+          "data": {
+            "name": "blue",
+            "value": "24'b111111110000000000000000",
+            "local": true
+          },
+          "position": {
+            "x": 200,
+            "y": 456
+          }
+        },
+        {
+          "id": "413f2785-e7a6-4920-81c4-c9d94dba04b3",
+          "type": "basic.constant",
+          "data": {
+            "name": "mix1",
+            "value": "24'b10101010101010101010101",
+            "local": true
+          },
+          "position": {
+            "x": 296,
+            "y": 456
+          }
+        },
+        {
+          "id": "a4a84fb9-83c4-49b8-8e20-4ef8869aec9a",
+          "type": "basic.constant",
+          "data": {
+            "name": "mix2",
+            "value": "24'b010101010101010101010101",
+            "local": true
+          },
+          "position": {
+            "x": 392,
+            "y": 456
           }
         },
         {
@@ -311,6 +395,127 @@
             "width": 520,
             "height": 56
           }
+        },
+        {
+          "id": "b3a86708-ae65-44b7-a06d-8373bb7d0475",
+          "type": "c4dd08263a85a91ba53e2ae2b38de344c5efcb52",
+          "position": {
+            "x": 536,
+            "y": -120
+          },
+          "size": {
+            "width": 96,
+            "height": 64
+          }
+        },
+        {
+          "id": "77ba4b34-e43f-48c9-8068-62f5df15ef3e",
+          "type": "c4dd08263a85a91ba53e2ae2b38de344c5efcb52",
+          "position": {
+            "x": 536,
+            "y": 120
+          },
+          "size": {
+            "width": 96,
+            "height": 64
+          }
+        },
+        {
+          "id": "10147842-3fa9-430b-94a1-e0061e453b53",
+          "type": "basic.code",
+          "data": {
+            "code": "  // Neopixel state machine.\r\n  reg [2:0] state;\r\n  reg [1:0] npxc;\r\n  reg leds;\r\n  reg [12:0] lpxc;\r\n  reg [7:0] bits;\r\n  reg [7:0] led_num;\r\n  //reg [24:0] test_color = 24'b000000001111111100000000; //red\r\n  //reg [24:0] test_color = 24'b111111110000000000000000; //blue\r\n  //reg [24:0] test_color = 24'b000000000000000011111111; //green\r\n  //reg [24:0] test_color = 24'b010101010101010101010101; //mix2\r\n  //assign test_color = 24'b10101010101010101010101; //mix1\r\n  // Process the state machine at each 12MHz clock edge.\r\n  always@(posedge clk)\r\n    begin\r\n      // Process the state machine; states 0-3 are the four WS2812B 'ticks',\r\n      // each consisting of 83.33 * 4 ~= 333.33 nanoseconds. Four of those\r\n      // ticks are then ~1333.33 nanoseconds long, and we can get close to\r\n      // the ideal 1250ns period.\r\n      // A '1' is 3 high periods followed by 1 low period (999.99/333.33 ns)\r\n      // A '0' is 1 high period followed by 3 low periods (333.33/999.99 ns)\r\n      if (state == 0 || state == 1 || state == 2 || state == 3)\r\n        begin\r\n          npxc = npxc + 1;\r\n          if (npxc == 0)\r\n            begin\r\n              state = state + 1;\r\n            end\r\n        end\r\n      if (state == 4)\r\n        begin\r\n          bits = bits + 1;\r\n\t  if (bits == 24)\r\n            begin\r\n              bits = 0;\r\n              state = state + 1;\r\n            end\r\n          else\r\n            begin\r\n              state = 0;\r\n            end\r\n        end\r\n      if (state == 5)\r\n        begin\r\n          led_num = led_num + 1;\r\n          if (led_num == 96)\r\n            begin\r\n              led_num = 0;\r\n              state = state + 1;\r\n            end\r\n          else\r\n            begin\r\n              state = 0;\r\n            end\r\n        end\r\n      if (state == 6)\r\n        begin\r\n          lpxc = lpxc + 1;\r\n          if (lpxc == 0)\r\n            begin\r\n              state = 0;\r\n            end\r\n        end\r\n      // Set the correct pin state.\r\n      if (test_color & (1 << bits))\r\n        begin\r\n        if (state == 0 || state == 1 || state == 2)\r\n          begin\r\n            leds <= 1;\r\n          end\r\n        else if (state == 3 || state == 6)\r\n          begin\r\n            leds <= 0;\r\n          end\r\n        end\r\n      else\r\n        begin\r\n        if (state == 0)\r\n          begin\r\n            leds <= 1;\r\n          end\r\n        else if (state == 1 || state == 2 || state == 3 || state == 6)\r\n          begin\r\n            leds <= 0;\r\n          end\r\n      end\r\n    end",
+            "params": [],
+            "ports": {
+              "in": [
+                {
+                  "name": "clk"
+                },
+                {
+                  "name": "test_color",
+                  "range": "[0:23]",
+                  "size": 24
+                }
+              ],
+              "out": [
+                {
+                  "name": "leds"
+                }
+              ]
+            }
+          },
+          "position": {
+            "x": 656,
+            "y": 272
+          },
+          "size": {
+            "width": 792,
+            "height": 600
+          }
+        },
+        {
+          "id": "015c0087-d8f0-4cd2-b502-95d0a691c8ba",
+          "type": "2d00dc6cbf770622c583a0dff0e0d8e2763ab2ec",
+          "position": {
+            "x": 224,
+            "y": 336
+          },
+          "size": {
+            "width": 96,
+            "height": 96
+          }
+        },
+        {
+          "id": "b6fbfd20-fdd5-4298-9d6d-09a69739d552",
+          "type": "basic.code",
+          "data": {
+            "code": "reg [23:0] test_color_reg;\nreg [1:0] IR;\nalways @(posedge clk) begin\n    IR = {IR_LEFT,IR_RIGHT};\n    case(IR)\n        2'b00: test_color_reg = red;\n        2'b01: test_color_reg = green;\n        2'b10: test_color_reg = blue;\n        2'b11: test_color_reg = mix1;\n        default: test_color_reg = mix2;\n    endcase\nend\nassign test_color = test_color_reg;",
+            "params": [
+              {
+                "name": "red"
+              },
+              {
+                "name": "green"
+              },
+              {
+                "name": "blue"
+              },
+              {
+                "name": "mix1"
+              },
+              {
+                "name": "mix2"
+              }
+            ],
+            "ports": {
+              "in": [
+                {
+                  "name": "clk"
+                },
+                {
+                  "name": "IR_LEFT"
+                },
+                {
+                  "name": "IR_RIGHT"
+                }
+              ],
+              "out": [
+                {
+                  "name": "test_color",
+                  "range": "[0:23]",
+                  "size": 24
+                }
+              ]
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 600
+          },
+          "size": {
+            "width": 440,
+            "height": 232
+          }
         }
       ],
       "wires": [
@@ -386,26 +591,6 @@
         },
         {
           "source": {
-            "block": "ad3bccab-c46c-49eb-a00a-c7ef8020cee3",
-            "port": "51ce0fb0-3414-447b-b69f-6f238a3c1401"
-          },
-          "target": {
-            "block": "8d460903-edb1-4a04-90e6-f779a1d2e28c",
-            "port": "in"
-          }
-        },
-        {
-          "source": {
-            "block": "4a1aec61-2765-4255-ac2f-0f697f4f0083",
-            "port": "51ce0fb0-3414-447b-b69f-6f238a3c1401"
-          },
-          "target": {
-            "block": "52f0e16f-2399-480c-b4e4-b709e08892ac",
-            "port": "in"
-          }
-        },
-        {
-          "source": {
             "block": "47d5e651-f8db-4d7c-bedb-5bdaae4a482c",
             "port": "19c8f68d-5022-487f-9ab0-f0a3cd58bead"
           },
@@ -452,13 +637,7 @@
           "target": {
             "block": "ad3bccab-c46c-49eb-a00a-c7ef8020cee3",
             "port": "0816c510-5b0b-4f6e-a8b5-ebc44f87121b"
-          },
-          "vertices": [
-            {
-              "x": 408,
-              "y": -72
-            }
-          ]
+          }
         },
         {
           "source": {
@@ -468,13 +647,104 @@
           "target": {
             "block": "4a1aec61-2765-4255-ac2f-0f697f4f0083",
             "port": "0816c510-5b0b-4f6e-a8b5-ebc44f87121b"
+          }
+        },
+        {
+          "source": {
+            "block": "10147842-3fa9-430b-94a1-e0061e453b53",
+            "port": "leds"
+          },
+          "target": {
+            "block": "35a15c3f-c50a-4cc0-8579-c787116d5e9a",
+            "port": "in"
+          }
+        },
+        {
+          "source": {
+            "block": "f09d4a83-f50b-4fe9-ba49-5c1594ea04a1",
+            "port": "out"
+          },
+          "target": {
+            "block": "b6fbfd20-fdd5-4298-9d6d-09a69739d552",
+            "port": "IR_LEFT"
+          }
+        },
+        {
+          "source": {
+            "block": "614a1edc-8868-4907-b153-031100a4cf34",
+            "port": "out"
+          },
+          "target": {
+            "block": "b6fbfd20-fdd5-4298-9d6d-09a69739d552",
+            "port": "IR_RIGHT"
           },
           "vertices": [
             {
-              "x": 400,
-              "y": 176
+              "x": -120,
+              "y": 552
             }
           ]
+        },
+        {
+          "source": {
+            "block": "b6fbfd20-fdd5-4298-9d6d-09a69739d552",
+            "port": "test_color"
+          },
+          "target": {
+            "block": "10147842-3fa9-430b-94a1-e0061e453b53",
+            "port": "test_color"
+          },
+          "size": 24
+        },
+        {
+          "source": {
+            "block": "405e4af9-da0b-49ca-b9cb-a6ebab9d139e",
+            "port": "constant-out"
+          },
+          "target": {
+            "block": "b6fbfd20-fdd5-4298-9d6d-09a69739d552",
+            "port": "red"
+          }
+        },
+        {
+          "source": {
+            "block": "9fa111f2-1dd0-49dc-9fff-b63c43c62462",
+            "port": "constant-out"
+          },
+          "target": {
+            "block": "b6fbfd20-fdd5-4298-9d6d-09a69739d552",
+            "port": "green"
+          }
+        },
+        {
+          "source": {
+            "block": "f5a8c26f-96a4-4c00-a0b1-727b6928d4b7",
+            "port": "constant-out"
+          },
+          "target": {
+            "block": "b6fbfd20-fdd5-4298-9d6d-09a69739d552",
+            "port": "blue"
+          }
+        },
+        {
+          "source": {
+            "block": "413f2785-e7a6-4920-81c4-c9d94dba04b3",
+            "port": "constant-out"
+          },
+          "target": {
+            "block": "b6fbfd20-fdd5-4298-9d6d-09a69739d552",
+            "port": "mix1"
+          }
+        },
+        {
+          "source": {
+            "block": "a4a84fb9-83c4-49b8-8e20-4ef8869aec9a",
+            "port": "constant-out"
+          },
+          "target": {
+            "block": "b6fbfd20-fdd5-4298-9d6d-09a69739d552",
+            "port": "mix2"
+          }
         }
       ]
     }
@@ -1092,6 +1362,141 @@
               "target": {
                 "block": "50d5caeb-e74a-4756-a919-8a5f8399271d",
                 "port": "start"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "2d00dc6cbf770622c583a0dff0e0d8e2763ab2ec": {
+      "package": {
+        "name": "Mux 2:1",
+        "version": "1.0.0",
+        "description": "Multiplexer 2:1",
+        "author": "Carlos Diaz",
+        "image": "%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%22-252%20400.9%2090%2040%22%3E%3Cpath%20d=%22M-162%20419.9h-24v-7.2l-41-11.8v9h-25v2h25v18h-25v2h25v9l41-11.7v-7.4h24v-1.9zm-63%2018.5v-35l37%2010.8v13.5l-37%2010.7z%22/%3E%3C/svg%3E"
+      },
+      "design": {
+        "graph": {
+          "blocks": [
+            {
+              "id": "c3f73f68-1074-4355-b69f-6a20f7bea3e7",
+              "type": "basic.input",
+              "data": {
+                "name": "i0"
+              },
+              "position": {
+                "x": 80,
+                "y": 120
+              }
+            },
+            {
+              "id": "5fb29465-2ee7-45bb-afa4-9a3de895c774",
+              "type": "basic.input",
+              "data": {
+                "name": "i1"
+              },
+              "position": {
+                "x": 80,
+                "y": 208
+              }
+            },
+            {
+              "id": "061aa997-2f30-4591-8841-fb6abf5c3b2e",
+              "type": "basic.output",
+              "data": {
+                "name": "o"
+              },
+              "position": {
+                "x": 792,
+                "y": 208
+              }
+            },
+            {
+              "id": "67ed5e09-486d-4f97-929f-aefea9c43951",
+              "type": "basic.input",
+              "data": {
+                "name": "sel"
+              },
+              "position": {
+                "x": 80,
+                "y": 296
+              }
+            },
+            {
+              "id": "ba573190-2ead-411a-a323-1b15a22d46db",
+              "type": "basic.code",
+              "data": {
+                "code": "reg _o;\n\nalways @(*) begin\n    case(sel0)\n        0: _o = in0;\n        1: _o = in1;\n        default: _o = in0;\n    endcase\nend\n\nassign o = _o;",
+                "params": [],
+                "ports": {
+                  "in": [
+                    {
+                      "name": "in0"
+                    },
+                    {
+                      "name": "in1"
+                    },
+                    {
+                      "name": "sel0"
+                    }
+                  ],
+                  "out": [
+                    {
+                      "name": "o"
+                    }
+                  ]
+                }
+              },
+              "position": {
+                "x": 312,
+                "y": 112
+              },
+              "size": {
+                "width": 384,
+                "height": 256
+              }
+            }
+          ],
+          "wires": [
+            {
+              "source": {
+                "block": "ba573190-2ead-411a-a323-1b15a22d46db",
+                "port": "o"
+              },
+              "target": {
+                "block": "061aa997-2f30-4591-8841-fb6abf5c3b2e",
+                "port": "in"
+              }
+            },
+            {
+              "source": {
+                "block": "c3f73f68-1074-4355-b69f-6a20f7bea3e7",
+                "port": "out"
+              },
+              "target": {
+                "block": "ba573190-2ead-411a-a323-1b15a22d46db",
+                "port": "in0"
+              }
+            },
+            {
+              "source": {
+                "block": "5fb29465-2ee7-45bb-afa4-9a3de895c774",
+                "port": "out"
+              },
+              "target": {
+                "block": "ba573190-2ead-411a-a323-1b15a22d46db",
+                "port": "in1"
+              }
+            },
+            {
+              "source": {
+                "block": "67ed5e09-486d-4f97-929f-aefea9c43951",
+                "port": "out"
+              },
+              "target": {
+                "block": "ba573190-2ead-411a-a323-1b15a22d46db",
+                "port": "sel0"
               }
             }
           ]
