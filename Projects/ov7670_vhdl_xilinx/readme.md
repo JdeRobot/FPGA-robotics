@@ -1,6 +1,8 @@
-# OV7670 camera project
+# OV7670 camera project with VHDL and Xilinx
+
+It has been tested with Digilent Nexys 4
   
-+ **ov7670_osc_disp**: with display options for debbuging
++ **ov7670_osc_disp**: with display options for debugging
   + It is more or less working with bluish image
   + SW(0)= '1': test_mode. Sends one SCCB command evey time pb_right is pushed.
   + SW(3 downto 0): Capture interpretation bytes from camera 
