@@ -23,40 +23,52 @@ end debounce_1pulse;
 
 architecture behav of debounce_1pulse is
    signal count : unsigned(23 downto 0);
-   signal sig_deb : std_logic;
-   signal sig_deb_rg : std_logic;
+   signal counting      : std_logic;
+   signal sig_in_rg1    : std_logic;
+   signal sig_in_rg2    : std_logic;
+   signal sig_risevent  : std_logic;
+   signal sig_fallevent : std_logic;
 begin
-  -- signal is not a pulse, but has no bouncing
+
+  P_reg_in: process(rst, clk)
+  begin
+    if rst = c_on then
+      sig_in_rg1 <= '0';
+      sig_in_rg2 <= '0';
+    elsif clk'event and clk='1' then
+      sig_in_rg1 <= sig_in;
+      sig_in_rg2 <= sig_in_rg1;
+    end if;
+  end process;
+
+  sig_risevent <= '1' when (sig_in_rg1 = '1' and sig_in_rg2 = '0') else '0';
+  sig_fallevent <= '1' when (sig_in_rg1 = '0' and sig_in_rg2 = '1') else '0';
+
   P_deb: process(rst, clk)
   begin
     if rst = c_on then
-      sig_deb <='0'; 
-      count <= (others => '0');
+      counting <='0'; 
+      sig_out  <='0'; 
+      count <= (others => '1');
     elsif clk'event and clk='1' then
-      if sig_in = '1' then
-        if count = x"FFFFFF" then
-          sig_deb <= '1';
-        else
-          sig_deb <= '0';
-          count <= count+1; -- to avoid two pulses if it is very large
-        end if;
+      sig_out <= '0';
+      if sig_risevent = '1' then
+        counting <='1'; 
+      elsif sig_fallevent = '1' then
+        counting <='0'; 
+        count <= (others => '1');
+      elsif count = 0 then
+        sig_out <= '1';
+        counting <= '0'; 
+        count <= (others => '1');
+      elsif counting = '1' then
+        count <= count - 1;
       else
-        count <= (others => '0');
-        sig_deb <= '0';
+        counting <='0'; 
+        count <= (others => '1');
       end if;
     end if;
   end process;
-
-  P_reg: process(rst, clk)
-  begin
-    if rst = c_on then
-      sig_deb_rg <= '0';
-    elsif clk'event and clk='1' then
-      sig_deb_rg <= sig_deb;
-    end if;
-  end process;
-
-  sig_out <= '1' when sig_deb ='1' and sig_deb_rg = '0' else '0';
   
 end behav;
 
