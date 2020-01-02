@@ -1,9 +1,10 @@
-# OV7670 camera project with VHDL and Xilinx
+# OV7670 camera project with verilog and Xilinx
 
 It has been tested with Digilent Nexys 4
   
 + **ov7670_osc_disp**: with display options for debugging
-  + It is more or less working. Camera configuration needs improvement
+  + It is more or less working, camera configuration needs improvement
+  + Some testbenches are still in VHDL
   + SW(0)= '1': test_mode. Sends one SCCB command evey time pb_right is pushed.
   + SW(3 downto 0): Capture interpretation bytes from camera 
      + "000": RGB444
@@ -19,7 +20,6 @@ It has been tested with Digilent Nexys 4
      + "11": YUV
   + SW(15)='1' reset camera
   
-  
-![capture](captura.jpg )
+ 
 
 
