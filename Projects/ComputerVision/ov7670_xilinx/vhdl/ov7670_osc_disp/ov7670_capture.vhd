@@ -156,7 +156,7 @@ begin
       cnt_byte <= '0';
     elsif clk'event and clk='1' then
       --if vsync_rg3 = '1' then -- there are some glitches
-      if vsync_3up = '1' then
+      if vsync_3up = '1' then  -- new screen
         cnt_pxl <= (others => '0');
         cnt_pxl_base <= (others => '0');
         cnt_line_pxl <= (others => '0');
@@ -171,7 +171,7 @@ begin
         end if;
         if href_rg2 = '0' then -- will be a falling edge
           cnt_line_totpxls <= cnt_line_pxl; -- cnt_line_totpxls is to test
-          -- it is not realiable to count all the pixels of a line,
+          -- it is not reliable to count all the pixels of a line,
           -- some lines have more other less
           cnt_pxl <= cnt_pxl_base + c_img_cols;
           cnt_pxl_base <= cnt_pxl_base + c_img_cols;
@@ -195,7 +195,7 @@ begin
     elsif clk'event and clk= '1' then
       if href_rg3 = '1' then  -- visible
         --if cnt_clk = "01" then -- I think this is the safest
-        if cnt_clk = "001" then -- I think this is the safest
+        if cnt_clk(2 downto 0) = "001" then -- I think this is the safest
         --if pclk_fall = '1' then
           if cnt_byte = '0' then 
              case sw13_rgbmode is
@@ -236,7 +236,7 @@ begin
   dout <= (red & green & blue) when unsigned(sw13_rgbmode) < 3 else gray;
   --dout <= std_logic_vector(cnt_pxl(7 downto 0));
   addr <= std_logic_vector(cnt_pxl);
-  we <= '1' when (href_rg3 ='1' and cnt_byte='1' and cnt_clk="010") else '0';
+  we <= '1' when (href_rg3 ='1' and cnt_byte='1' and cnt_clk(2 downto 0)="010") else '0';
 
 end Behavioral;
 

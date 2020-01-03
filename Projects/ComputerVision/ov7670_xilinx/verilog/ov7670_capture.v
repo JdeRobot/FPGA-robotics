@@ -28,7 +28,7 @@ module ov7670_capture
     input  [2:0]  sw13_rgbmode,
     output [11:0] dataout_test,
     output reg [3:0]  led_test,
-    output [7:0]  data,
+    input  [7:0]  data,
     output [c_nb_img_pxls-1:0] addr,
     output [7:0]  dout,
     output        we
@@ -144,7 +144,7 @@ module ov7670_capture
 
   // FPGA clock is 10ns and pclk is 40ns
   //pclk_fall <= '1' when (pclk_rg2='0' and pclk_rg3='1') else '0';
-  assign pclk_fall = ~pclk_rg2 && pclk_rg3;
+  assign pclk_fall = ((pclk_rg2 == 1'b0) && pclk_rg3)? 1'b1 : 1'b0;
 
   // each pixel has 2 bytes, each byte in each pclk
   // each pixel -> 2 pclk
@@ -159,7 +159,7 @@ module ov7670_capture
     end
     else begin
       //if vsync_rg3 = '1' then // there are some glitches
-      if (vsync_3up) begin
+      if (vsync_3up) begin // new screen
         cnt_pxl      <= 0;
         cnt_pxl_base <= 0;
         cnt_line_pxl <= 0;
@@ -175,7 +175,7 @@ module ov7670_capture
         end
         if (href_rg2 == 1'b0) begin // will be a falling edge
           cnt_line_totpxls <= cnt_line_pxl; // cnt_line_totpxls is to test
-          // it is not realiable to count all the pixels of a line,
+          // it is not reliable to count all the pixels of a line,
           // some lines have more other less
           cnt_pxl <= cnt_pxl_base + c_img_cols;
           cnt_pxl_base <= cnt_pxl_base + c_img_cols;
@@ -189,7 +189,7 @@ module ov7670_capture
   end
 
   //dataout_test <= "00" & std_logic_vector(cnt_line_totpxls); // 2 + 10 bits
-  assign dataout_test = {7'b000_0000, cnt_pclk_max_freeze}; // 7 + 5 bits
+  assign dataout_test = {7'b0000000, cnt_pclk_max_freeze}; // 7 + 5 bits
 
   always @ (posedge rst, posedge clk)
   begin
@@ -248,7 +248,8 @@ module ov7670_capture
   assign dout = (sw13_rgbmode < 3) ? {red, green, blue} : gray;
   //dout <= std_logic_vector(cnt_pxl(7 downto 0));
   assign addr = cnt_pxl;
-  assign we = (href_rg3 && cnt_byte && cnt_clk==3'b010)? 1'b1 : 1'b0;
+
+  assign we = (href_rg3 && cnt_byte && (cnt_clk[2:0]==3'b010))? 1'b1 : 1'b0;
 
 endmodule
 
