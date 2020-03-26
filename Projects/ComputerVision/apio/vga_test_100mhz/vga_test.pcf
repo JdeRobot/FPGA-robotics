@@ -1,0 +1,16 @@
+set_io rst 34
+set_io clk 49
+set_io led 45
+set_io led1 44
+set_io test_clk 21
+set_io test_pin 19
+set_io test_newpxl 22
+set_io test_hsync 20
+set_io vga_hsync 10
+set_io vga_vsync 9
+set_io vga_red[0] 1
+set_io vga_red[1] 2
+set_io vga_green[0] 3
+set_io vga_green[1] 4
+set_io vga_blue[0] 7
+set_io vga_blue[1] 8
