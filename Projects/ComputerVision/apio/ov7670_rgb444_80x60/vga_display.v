@@ -93,10 +93,26 @@ module vga_display
             vga_blue  = frame_pixel[7:4];
           end
       end
+      else if ((col == c_img_cols) || (row == c_img_rows)) begin
+         vga_red   = 4'b0000;
+         vga_green = 4'b1000;
+         vga_blue  = 4'b1000;
+      end
+      else if ((col == 2*c_img_cols) || (row == 2*c_img_rows)) begin
+         vga_red   = 4'b1000;
+         vga_green = 4'b1000;
+         vga_blue  = 4'b0000;
+      end
+      else if ((col == 4*c_img_cols) || (row == 4*c_img_rows)) begin
+         vga_red   = 4'b1000;
+         vga_green = 4'b0000;
+         vga_blue  = 4'b1000;
+      end
+
       else begin
-         vga_red   = 4'b1001;
-         vga_green = 4'b1101;
-         vga_blue  = 4'b1100;
+         vga_red   = 4'b0000;
+         vga_green = 4'b0000;
+         vga_blue  = 4'b0000;
       end
     end
   end

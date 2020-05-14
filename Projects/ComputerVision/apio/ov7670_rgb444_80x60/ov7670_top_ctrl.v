@@ -16,6 +16,8 @@ module ov7670_top_ctrl
    input        test_send,        //in testmode, send 1 instruction
    input  [1:0] sw_regs,          // test to choose diferent rg
    input        resend,           //resend the sequence
+   output [5:0] cnt_reg_test,     //to test the count
+
    output       done,             //all transmission done
    output       sclk,             //sccb clock
    output       sdat_on,          //transmitting serial ('1')
@@ -59,6 +61,7 @@ module ov7670_top_ctrl
     .sw_regs      (sw_regs),
     .resend       (resend),
     .sccb_ready   (sccb_ready),
+    .cnt_reg_test (cnt_reg_test), //test
     .start_tx     (start_tx),
     .done         (done),
     .id           (id),

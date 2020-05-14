@@ -76,12 +76,6 @@ module ov7670_capture
   reg [c_nb_line_pxls-1:0] cnt_line_pxl;
   reg [c_nb_line_pxls-1:0] cnt_line_totpxls;
 
-  // indicates if the column is in the frame of the image (taking less cols)
-  wire       col_inframe;
-  // indicates if the number of pixels are in the frame of the image
-  // (taking less rows and cols)
-  wire       img_inframe;
-
    // there should be 4 clks in a pclk (byte), but just in case, make 
    // another bit to avoid overflow and go back in 0 before time
   reg [4:0]    cnt_clk;
@@ -196,34 +190,27 @@ module ov7670_capture
         cnt_byte     <= 1'b0;
       end
       else if (href_rg3) begin // is zero at optical blank COM[6]
-        if (img_inframe) begin
-          if (pclk_fall &&  col_inframe) begin
-            if (cnt_byte) begin
-              cnt_pxl <= cnt_pxl + 1;
-              cnt_line_pxl <= cnt_line_pxl + 1;
-            end
-            cnt_byte <= ~cnt_byte;
+        if (pclk_fall) begin
+          if (cnt_byte) begin
+            cnt_pxl <= cnt_pxl + 1;
+            cnt_line_pxl <= cnt_line_pxl + 1;
           end
-          if (href_rg2 == 1'b0) begin // will be a falling edge
-            // new line
-            cnt_line_totpxls <= cnt_line_pxl; // cnt_line_totpxls is to test
-            // it is not reliable to count all the pixels of a line,
-            // some lines have more other less
-            cnt_pxl <= cnt_pxl_base + c_img_cols;
-            cnt_pxl_base <= cnt_pxl_base + c_img_cols;
-            cnt_line_pxl <= 0;
-          end
+          cnt_byte <= ~cnt_byte;
         end
-        else begin
-          cnt_byte <= 1'b0;
-          cnt_line_pxl <= 0;
+        if (href_rg2 == 1'b0) begin // will be a falling edge
+          cnt_line_totpxls <= cnt_line_pxl; // cnt_line_totpxls is to test
+          // it is not reliable to count all the pixels of a line,
+          // some lines have more other less
+          cnt_pxl <= cnt_pxl_base + c_img_cols;
+          cnt_pxl_base <= cnt_pxl_base + c_img_cols;
         end
+      end
+      else begin
+        cnt_byte <= 1'b0;
+        cnt_line_pxl <= 0;
       end
     end
   end
-
-  assign col_inframe = ( cnt_line_pxl < c_img_cols) ? 1'b1 : 1'b0;
-  assign img_inframe = ( cnt_pxl < c_img_pxls) ? 1'b1 : 1'b0;
 
   //dataout_test <= "00" & std_logic_vector(cnt_line_totpxls); // 2 + 10 bits
   assign dataout_test = {7'b0000000, cnt_pclk_max_freeze}; // 7 + 5 bits
@@ -288,7 +275,7 @@ module ov7670_capture
   //dout <= std_logic_vector(cnt_pxl(7 downto 0));
   assign addr = cnt_pxl;
 
-  assign we = (href_rg3 && cnt_byte && pclk_rise && col_inframe && img_inframe)? 1'b1 : 1'b0;
+  assign we = (href_rg3 && cnt_byte && pclk_rise)? 1'b1 : 1'b0;
 
 endmodule
 
