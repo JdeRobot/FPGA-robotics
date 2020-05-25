@@ -12,9 +12,6 @@
 module ov7670_top_ctrl
   (input        rst,              //reset, active high
    input        clk,              //FPGA clock
-   input        test_mode,        //if '1': in test mode
-   input        test_send,        //in testmode, send 1 instruction
-   input  [1:0] sw_regs,          // test to choose diferent rg
    input        resend,           //resend the sequence
    output [5:0] cnt_reg_test,     //to test the count
 
@@ -56,9 +53,6 @@ module ov7670_top_ctrl
   (
     .rst          (rst),
     .clk          (clk),
-    .test_mode    (test_mode),
-    .test_send    (test_send),
-    .sw_regs      (sw_regs),
     .resend       (resend),
     .sccb_ready   (sccb_ready),
     .cnt_reg_test (cnt_reg_test), //test

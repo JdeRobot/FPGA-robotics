@@ -4,7 +4,7 @@
 //   Universidad Rey Juan Carlos
 //   https://github.com/felipe-m
 //
-//   top module with debuging modules
+//   top module 
 //------------------------------------------------------------------------------//
 
 module top_ov7670
@@ -68,7 +68,6 @@ module top_ov7670
 
     wire          clk100mhz;
 
-    wire          btnr_test_1p;
 
     wire [7:0]    cnt_vsync_max_test;
 
@@ -76,12 +75,7 @@ module top_ov7670
     wire          rgbmode;
 
     wire [2:0]    sw13_rgbmode;
-    wire [1:0]    sw56_regs;
-    wire          sw0_test_cmd;
 
-  assign btnr_test_1p = 1'b0;
-
-  assign sw0_test_cmd = 1'b0;
 
   assign vga_red_2b   = vga_red[3:2];
   assign vga_green_2b = vga_green[3:2];
@@ -93,7 +87,6 @@ module top_ov7670
   assign ov7670_d[1:0] = 2'b00;
 
   assign sw13_rgbmode = 3'b000;
-  assign sw56_regs = 2'b11;
 
   // 100 MHz clock
    SB_PLL40_CORE
@@ -176,9 +169,6 @@ module top_ov7670
   (
      .rst          (rst),
      .clk          (clk100mhz),
-     .test_mode    (sw0_test_cmd),
-     .test_send    (btnr_test_1p),
-     .sw_regs      (sw56_regs),
      .resend       (resend),
      .cnt_reg_test (led[5:0]),
      .done         (config_finished),
