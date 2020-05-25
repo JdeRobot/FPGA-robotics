@@ -24,7 +24,7 @@ The goal of this project is to perform image processing inside FPGAs, different 
   Display 80x60 video on a VGA from the ov7670 camera.
   Camera in test mode
   
-   ![OV7670 camera and alhambra pin connection](ComputerVision/ov7670_alhambra_interface.png)
+   ![OV7670 camera and alhambra pin connection](ov7670_alhambra_interface.png)
   
   
 ### ov7670_xilinx: 
