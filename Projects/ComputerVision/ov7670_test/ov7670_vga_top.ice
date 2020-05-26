@@ -12,25 +12,6 @@
     "graph": {
       "blocks": [
         {
-          "id": "bfdb5492-73fd-4068-ba17-c0ca2126f027",
-          "type": "basic.output",
-          "data": {
-            "name": "ov7670_configdone",
-            "pins": [
-              {
-                "index": "0",
-                "name": "LED7",
-                "value": "37"
-              }
-            ],
-            "virtual": false
-          },
-          "position": {
-            "x": 584,
-            "y": -160
-          }
-        },
-        {
           "id": "6a0e88eb-1641-4a08-a0b8-0f9f1fbbfc8f",
           "type": "basic.output",
           "data": {
@@ -39,78 +20,40 @@
             "pins": [
               {
                 "index": "5",
-                "name": "LED0",
-                "value": "45"
+                "name": "LED5",
+                "value": "39"
               },
               {
                 "index": "4",
-                "name": "LED1",
-                "value": "44"
-              },
-              {
-                "index": "3",
-                "name": "LED2",
-                "value": "43"
-              },
-              {
-                "index": "2",
-                "name": "LED3",
-                "value": "42"
-              },
-              {
-                "index": "1",
                 "name": "LED4",
                 "value": "41"
               },
               {
+                "index": "3",
+                "name": "LED3",
+                "value": "42"
+              },
+              {
+                "index": "2",
+                "name": "LED2",
+                "value": "43"
+              },
+              {
+                "index": "1",
+                "name": "LED1",
+                "value": "44"
+              },
+              {
                 "index": "0",
-                "name": "LED5",
-                "value": "39"
+                "name": "LED0",
+                "value": "45"
               }
             ],
             "virtual": false
           },
           "position": {
             "x": 464,
-            "y": -96
-          }
-        },
-        {
-          "id": "ffaa06b5-796a-4e98-9c55-909eb660a635",
-          "type": "basic.output",
-          "data": {
-            "name": "ov7670_sioc",
-            "pins": [
-              {
-                "index": "0",
-                "name": "DD5",
-                "value": "119"
-              }
-            ],
-            "virtual": false
-          },
-          "position": {
-            "x": 600,
-            "y": -88
-          }
-        },
-        {
-          "id": "fc643432-cfdf-4c14-9b65-757883106a84",
-          "type": "basic.output",
-          "data": {
-            "name": "ov7670_siod",
-            "pins": [
-              {
-                "index": "0",
-                "name": "DD4",
-                "value": "118"
-              }
-            ],
-            "virtual": false
-          },
-          "position": {
-            "x": 1080,
-            "y": -64
+            "y": -56
           }
         },
         {
@@ -133,22 +76,22 @@
           }
         },
         {
-          "id": "ac2c4344-5e8a-44d5-83f1-c3716461f8d8",
+          "id": "bfdb5492-73fd-4068-ba17-c0ca2126f027",
           "type": "basic.output",
           "data": {
-            "name": "ov7670_rst_n",
+            "name": "ov7670_configdone",
             "pins": [
               {
                 "index": "0",
-                "name": "D13",
-                "value": "64"
+                "name": "LED7",
+                "value": "37"
               }
             ],
             "virtual": false
           },
           "position": {
-            "x": 616,
-            "y": -16
+            "x": 592,
+            "y": 32
           }
         },
         {
@@ -171,22 +114,60 @@
           }
         },
         {
-          "id": "cc78171e-8916-4ea4-9596-55337729c09c",
+          "id": "fc643432-cfdf-4c14-9b65-757883106a84",
           "type": "basic.output",
           "data": {
-            "name": "ov7670_xclk",
+            "name": "ov7670_siod",
             "pins": [
               {
                 "index": "0",
-                "name": "DD0",
-                "value": "114"
+                "name": "DD4",
+                "value": "118"
               }
             ],
             "virtual": false
           },
           "position": {
-            "x": 632,
-            "y": 56
+            "x": 1016,
+            "y": 80
+          }
+        },
+        {
+          "id": "ffaa06b5-796a-4e98-9c55-909eb660a635",
+          "type": "basic.output",
+          "data": {
+            "name": "ov7670_sioc",
+            "pins": [
+              {
+                "index": "0",
+                "name": "DD5",
+                "value": "119"
+              }
+            ],
+            "virtual": false
+          },
+          "position": {
+            "x": 608,
+            "y": 96
+          }
+        },
+        {
+          "id": "ac2c4344-5e8a-44d5-83f1-c3716461f8d8",
+          "type": "basic.output",
+          "data": {
+            "name": "ov7670_rst_n",
+            "pins": [
+              {
+                "index": "0",
+                "name": "D13",
+                "value": "64"
+              }
+            ],
+            "virtual": false
+          },
+          "position": {
+            "x": 736,
+            "y": 104
           }
         },
         {
@@ -206,7 +187,7 @@
           },
           "position": {
             "x": -128,
-            "y": 144
+            "y": 104
           }
         },
         {
@@ -226,6 +207,26 @@
           "position": {
             "x": 1424,
             "y": 144
+          }
+        },
+        {
+          "id": "b81a0ea6-0c17-40de-be7f-09e7b34b540a",
+          "type": "basic.input",
+          "data": {
+            "name": "ov7670_pclk",
+            "pins": [
+              {
+                "index": "0",
+                "name": "DD1",
+                "value": "115"
+              }
+            ],
+            "virtual": false,
+            "clock": false
+          },
+          "position": {
+            "x": -88,
+            "y": 184
           }
         },
         {
@@ -249,26 +250,6 @@
           }
         },
         {
-          "id": "b81a0ea6-0c17-40de-be7f-09e7b34b540a",
-          "type": "basic.input",
-          "data": {
-            "name": "ov7670_pclk",
-            "pins": [
-              {
-                "index": "0",
-                "name": "DD1",
-                "value": "115"
-              }
-            ],
-            "virtual": false,
-            "clock": false
-          },
-          "position": {
-            "x": -88,
-            "y": 224
-          }
-        },
-        {
           "id": "d06565e2-0027-4d1c-be1a-72d07474e83c",
           "type": "basic.output",
           "data": {
@@ -288,6 +269,25 @@
           }
         },
         {
+          "id": "cc78171e-8916-4ea4-9596-55337729c09c",
+          "type": "basic.output",
+          "data": {
+            "name": "ov7670_xclk",
+            "pins": [
+              {
+                "index": "0",
+                "name": "DD0",
+                "value": "114"
+              }
+            ],
+            "virtual": false
+          },
+          "position": {
+            "x": 728,
+            "y": 240
+          }
+        },
+        {
           "id": "ae231bc1-98fc-4f63-bde3-93e91eb032b6",
           "type": "basic.input",
           "data": {
@@ -303,8 +303,8 @@
             "clock": false
           },
           "position": {
-            "x": -96,
-            "y": 296
+            "x": -88,
+            "y": 256
           }
         },
         {
@@ -342,8 +342,8 @@
             "clock": false
           },
           "position": {
-            "x": -96,
-            "y": 368
+            "x": 0,
+            "y": 336
           }
         },
         {
@@ -366,6 +366,26 @@
           }
         },
         {
+          "id": "812f4fda-cb9d-4e65-8edb-fa3608dea2bb",
+          "type": "basic.input",
+          "data": {
+            "name": "ov7670_d2",
+            "pins": [
+              {
+                "index": "0",
+                "name": "D12",
+                "value": "63"
+              }
+            ],
+            "virtual": false,
+            "clock": false
+          },
+          "position": {
+            "x": -184,
+            "y": 400
+          }
+        },
+        {
           "id": "e789260d-f329-4e21-8f38-f3aede7db563",
           "type": "basic.output",
           "data": {
@@ -385,26 +405,6 @@
           }
         },
         {
-          "id": "812f4fda-cb9d-4e65-8edb-fa3608dea2bb",
-          "type": "basic.input",
-          "data": {
-            "name": "ov7670_d2",
-            "pins": [
-              {
-                "index": "0",
-                "name": "D12",
-                "value": "63"
-              }
-            ],
-            "virtual": false,
-            "clock": false
-          },
-          "position": {
-            "x": -208,
-            "y": 480
-          }
-        },
-        {
           "id": "564210a9-ab36-4233-a12c-1ef37c0e0643",
           "type": "basic.input",
           "data": {
@@ -420,8 +420,28 @@
             "clock": false
           },
           "position": {
-            "x": -208,
-            "y": 544
+            "x": -184,
+            "y": 464
+          }
+        },
+        {
+          "id": "f01f4d8a-db44-4eae-8e93-0683d5b604ba",
+          "type": "basic.input",
+          "data": {
+            "name": "ov7670_d5",
+            "pins": [
+              {
+                "index": "0",
+                "name": "D10",
+                "value": "22"
+              }
+            ],
+            "virtual": false,
+            "clock": false
+          },
+          "position": {
+            "x": -184,
+            "y": 528
           }
         },
         {
@@ -444,26 +464,6 @@
           }
         },
         {
-          "id": "f01f4d8a-db44-4eae-8e93-0683d5b604ba",
-          "type": "basic.input",
-          "data": {
-            "name": "ov7670_d5",
-            "pins": [
-              {
-                "index": "0",
-                "name": "D10",
-                "value": "22"
-              }
-            ],
-            "virtual": false,
-            "clock": false
-          },
-          "position": {
-            "x": -208,
-            "y": 608
-          }
-        },
-        {
           "id": "90058400-323d-4aec-ab67-97de09da9531",
           "type": "basic.input",
           "data": {
@@ -479,8 +479,8 @@
             "clock": false
           },
           "position": {
-            "x": -208,
-            "y": 672
+            "x": -184,
+            "y": 592
           }
         },
         {
@@ -499,8 +499,8 @@
             "clock": false
           },
           "position": {
-            "x": -208,
-            "y": 736
+            "x": -184,
+            "y": 656
           }
         },
         {
@@ -579,8 +579,8 @@
           "id": "03455873-dfee-4483-b4b8-f35968ac26a3",
           "type": "1bed30028dcc60783f6df923e737c8d159e38a83",
           "position": {
-            "x": -8,
-            "y": 456
+            "x": 0,
+            "y": 408
           },
           "size": {
             "width": 96,
@@ -591,8 +591,8 @@
           "id": "3d6b537f-b304-4891-81f3-c1847a767233",
           "type": "c4dd08263a85a91ba53e2ae2b38de344c5efcb52",
           "position": {
-            "x": -208,
-            "y": 416
+            "x": -184,
+            "y": 336
           },
           "size": {
             "width": 96,
@@ -612,34 +612,15 @@
           }
         },
         {
-          "id": "a906ad5f-e61c-4692-8bd6-9a952ea59089",
-          "type": "basic.code",
-          "data": {
-            "code": "assign ov7670_siod = sdat_on ? sdat_out : 1'bz;",
-            "params": [],
-            "ports": {
-              "in": [
-                {
-                  "name": "sdat_on"
-                },
-                {
-                  "name": "sdat_out"
-                }
-              ],
-              "out": [
-                {
-                  "name": "ov7670_siod"
-                }
-              ]
-            }
-          },
+          "id": "b6b384f4-03e8-470a-a6d3-6e9d08de1675",
+          "type": "d7e6ff61e136e0120db6aaabf8b34ea6fd14c159",
           "position": {
-            "x": 856,
-            "y": -16
+            "x": 888,
+            "y": 96
           },
           "size": {
-            "width": 192,
-            "height": 128
+            "width": 96,
+            "height": 64
           }
         }
       ],
@@ -781,44 +762,10 @@
             "block": "707be221-f975-4fff-acd4-4283cefeeb90",
             "port": "39a65195-8ffd-49ac-ad1f-f4e3ef32a78f"
           },
-          "vertices": []
-        },
-        {
-          "source": {
-            "block": "9e8126e0-9379-481a-ade7-c01853c61f6e",
-            "port": "out"
-          },
-          "target": {
-            "block": "707be221-f975-4fff-acd4-4283cefeeb90",
-            "port": "b7e432dc-1572-4971-bdd6-5b4aaad78afb"
-          },
-          "vertices": []
-        },
-        {
-          "source": {
-            "block": "ae231bc1-98fc-4f63-bde3-93e91eb032b6",
-            "port": "out"
-          },
-          "target": {
-            "block": "707be221-f975-4fff-acd4-4283cefeeb90",
-            "port": "548589b6-f63b-4fd1-a16b-4631af0b83a3"
-          },
           "vertices": [
             {
-              "x": 16,
-              "y": 384
-            },
-            {
-              "x": 96,
-              "y": 384
-            },
-            {
-              "x": 168,
-              "y": 384
-            },
-            {
-              "x": 192,
-              "y": 408
+              "x": 64,
+              "y": 296
             }
           ]
         },
@@ -860,7 +807,13 @@
           "target": {
             "block": "cc78171e-8916-4ea4-9596-55337729c09c",
             "port": "in"
-          }
+          },
+          "vertices": [
+            {
+              "x": 624,
+              "y": 280
+            }
+          ]
         },
         {
           "source": {
@@ -926,22 +879,6 @@
         },
         {
           "source": {
-            "block": "564210a9-ab36-4233-a12c-1ef37c0e0643",
-            "port": "out"
-          },
-          "target": {
-            "block": "03455873-dfee-4483-b4b8-f35968ac26a3",
-            "port": "2f0c37bf-782f-4ff4-a948-092d72f663cb"
-          },
-          "vertices": [
-            {
-              "x": -96,
-              "y": 568
-            }
-          ]
-        },
-        {
-          "source": {
             "block": "f01f4d8a-db44-4eae-8e93-0683d5b604ba",
             "port": "out"
           },
@@ -962,24 +899,8 @@
           },
           "vertices": [
             {
-              "x": -80,
-              "y": 528
-            }
-          ]
-        },
-        {
-          "source": {
-            "block": "90058400-323d-4aec-ab67-97de09da9531",
-            "port": "out"
-          },
-          "target": {
-            "block": "03455873-dfee-4483-b4b8-f35968ac26a3",
-            "port": "40ac0610-323e-4121-8b8c-22221388630d"
-          },
-          "vertices": [
-            {
-              "x": -80,
-              "y": 688
+              "x": -48,
+              "y": 464
             }
           ]
         },
@@ -1090,12 +1011,22 @@
         },
         {
           "source": {
+            "block": "b6b384f4-03e8-470a-a6d3-6e9d08de1675",
+            "port": "6459ba21-608e-4f77-8235-c8c1b08ba775"
+          },
+          "target": {
+            "block": "fc643432-cfdf-4c14-9b65-757883106a84",
+            "port": "in"
+          }
+        },
+        {
+          "source": {
             "block": "707be221-f975-4fff-acd4-4283cefeeb90",
             "port": "f1d87b29-eb08-4299-a540-533fb6117945"
           },
           "target": {
-            "block": "a906ad5f-e61c-4692-8bd6-9a952ea59089",
-            "port": "sdat_on"
+            "block": "b6b384f4-03e8-470a-a6d3-6e9d08de1675",
+            "port": "f96a1baf-fc8b-4c25-b132-12552605743f"
           }
         },
         {
@@ -1104,18 +1035,66 @@
             "port": "c1e4faf5-6809-4479-91e0-ba807320a78f"
           },
           "target": {
-            "block": "a906ad5f-e61c-4692-8bd6-9a952ea59089",
-            "port": "sdat_out"
+            "block": "b6b384f4-03e8-470a-a6d3-6e9d08de1675",
+            "port": "04fdb7a7-2740-4ff1-ad26-56407ef5b958"
           }
         },
         {
           "source": {
-            "block": "a906ad5f-e61c-4692-8bd6-9a952ea59089",
-            "port": "ov7670_siod"
+            "block": "ae231bc1-98fc-4f63-bde3-93e91eb032b6",
+            "port": "out"
           },
           "target": {
-            "block": "fc643432-cfdf-4c14-9b65-757883106a84",
-            "port": "in"
+            "block": "707be221-f975-4fff-acd4-4283cefeeb90",
+            "port": "548589b6-f63b-4fd1-a16b-4631af0b83a3"
+          },
+          "vertices": [
+            {
+              "x": 136,
+              "y": 312
+            }
+          ]
+        },
+        {
+          "source": {
+            "block": "9e8126e0-9379-481a-ade7-c01853c61f6e",
+            "port": "out"
+          },
+          "target": {
+            "block": "707be221-f975-4fff-acd4-4283cefeeb90",
+            "port": "b7e432dc-1572-4971-bdd6-5b4aaad78afb"
+          },
+          "vertices": [
+            {
+              "x": 128,
+              "y": 432
+            }
+          ]
+        },
+        {
+          "source": {
+            "block": "564210a9-ab36-4233-a12c-1ef37c0e0643",
+            "port": "out"
+          },
+          "target": {
+            "block": "03455873-dfee-4483-b4b8-f35968ac26a3",
+            "port": "2f0c37bf-782f-4ff4-a948-092d72f663cb"
+          },
+          "vertices": [
+            {
+              "x": -48,
+              "y": 512
+            }
+          ]
+        },
+        {
+          "source": {
+            "block": "90058400-323d-4aec-ab67-97de09da9531",
+            "port": "out"
+          },
+          "target": {
+            "block": "03455873-dfee-4483-b4b8-f35968ac26a3",
+            "port": "40ac0610-323e-4121-8b8c-22221388630d"
           }
         }
       ]
@@ -4095,6 +4074,143 @@
               },
               "target": {
                 "block": "19c8f68d-5022-487f-9ab0-f0a3cd58bead",
+                "port": "in"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "d7e6ff61e136e0120db6aaabf8b34ea6fd14c159": {
+      "package": {
+        "name": "In-out-right",
+        "version": "0.1",
+        "description": "Bloque inout, con conexión de pin por la derecha",
+        "author": "Salvador E. Tropea",
+        "image": "%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22770.821%22%20height=%22624.079%22%20viewBox=%220%200%20203.94649%20165.12089%22%20id=%22svg8%22%3E%3Cdefs%20id=%22defs2%22%3E%3Cmarker%20orient=%22auto%22%20id=%22Arrow2Mstart%22%20overflow=%22visible%22%3E%3Cpath%20id=%22path899%22%20d=%22M5.231%202.42L-1.324.01%205.23-2.401C4.184-.978%204.19.969%205.231%202.42z%22%20fill=%22green%22%20fill-rule=%22evenodd%22%20stroke=%22green%22%20stroke-width=%22.375%22%20stroke-linejoin=%22round%22/%3E%3C/marker%3E%3Cmarker%20orient=%22auto%22%20id=%22Arrow1Mstart%22%20overflow=%22visible%22%3E%3Cpath%20id=%22path881%22%20d=%22M4%200l2-2-7%202%207%202z%22%20fill=%22green%22%20fill-rule=%22evenodd%22%20stroke=%22green%22%20stroke-width=%22.5332%22/%3E%3C/marker%3E%3Cmarker%20orient=%22auto%22%20id=%22Arrow2Mend%22%20overflow=%22visible%22%3E%3Cpath%20id=%22path902%22%20d=%22M-5.231-2.42L1.324-.01-5.23%202.401c1.047-1.423%201.041-3.37%200-4.821z%22%20fill=%22green%22%20fill-rule=%22evenodd%22%20stroke=%22green%22%20stroke-width=%22.375%22%20stroke-linejoin=%22round%22/%3E%3C/marker%3E%3Cmarker%20orient=%22auto%22%20id=%22TriangleOutS%22%20overflow=%22visible%22%3E%3Cpath%20id=%22path1023%22%20d=%22M1.154%200l-1.73%201v-2z%22%20fill-rule=%22evenodd%22%20stroke=%22#000%22%20stroke-width=%22.2666%22/%3E%3C/marker%3E%3Cmarker%20orient=%22auto%22%20id=%22Arrow1Send%22%20overflow=%22visible%22%3E%3Cpath%20id=%22path890%22%20d=%22M-1.2%200l-1%201%203.5-1-3.5-1z%22%20fill-rule=%22evenodd%22%20stroke=%22#000%22%20stroke-width=%22.2666%22/%3E%3C/marker%3E%3Cmarker%20orient=%22auto%22%20id=%22Arrow2Mend-2%22%20overflow=%22visible%22%3E%3Cpath%20id=%22path902-9%22%20d=%22M-5.231-2.42L1.324-.01-5.23%202.401c1.047-1.423%201.041-3.37%200-4.821z%22%20fill=%22green%22%20fill-rule=%22evenodd%22%20stroke=%22green%22%20stroke-width=%22.375%22%20stroke-linejoin=%22round%22/%3E%3C/marker%3E%3Cmarker%20orient=%22auto%22%20id=%22Arrow2Mend-2-2%22%20overflow=%22visible%22%3E%3Cpath%20id=%22path902-9-7%22%20d=%22M-5.231-2.42L1.324-.01-5.23%202.401c1.047-1.423%201.041-3.37%200-4.821z%22%20fill=%22green%22%20fill-rule=%22evenodd%22%20stroke=%22green%22%20stroke-width=%22.375%22%20stroke-linejoin=%22round%22/%3E%3C/marker%3E%3C/defs%3E%3Cg%20id=%22layer1%22%20transform=%22translate(-29.4%20-56.943)%22%3E%3Cpath%20d=%22M230.796%20196.941h-77.954V76.847%22%20id=%22path873-6-3%22%20fill=%22none%22%20stroke=%22#000%22%20stroke-width=%222.646%22%20stroke-linecap=%22round%22/%3E%3Cpath%20id=%22path855-5%22%20d=%22M130.88%20159.638l-27.214-45.357-27.214%2045.357z%22%20fill=%22#f2f2f2%22%20stroke=%22#000%22%20stroke-width=%222.646%22%20stroke-linejoin=%22round%22/%3E%3Cpath%20d=%22M103.666%20114.28V76.77%22%20id=%22path873%22%20fill=%22none%22%20stroke=%22#000%22%20stroke-width=%222.646%22%20stroke-linecap=%22round%22/%3E%3Cpath%20d=%22M104.086%2076.77h127.918%22%20id=%22path1157%22%20fill=%22none%22%20stroke=%22#000%22%20stroke-width=%222.646%22%20stroke-linecap=%22round%22/%3E%3Ccircle%20id=%22path1159%22%20cx=%22153.191%22%20cy=%2276.77%22%20r=%223.742%22%20fill=%22#00f%22%20stroke=%22#00f%22%20stroke-width=%222.646%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22/%3E%3Cpath%20d=%22M105.27%20159.904v37.511H35.547%22%20id=%22path873-6%22%20fill=%22none%22%20stroke=%22#000%22%20stroke-width=%222.646%22%20stroke-linecap=%22round%22/%3E%3Cpath%20d=%22M39.021%20210.405h57.196%22%20id=%22path1195%22%20fill=%22green%22%20stroke=%22green%22%20stroke-width=%222.646%22%20marker-end=%22url(#Arrow2Mend)%22/%3E%3Cpath%20d=%22M164.857%20109.77v57.195%22%20id=%22path1195-1%22%20fill=%22green%22%20stroke=%22green%22%20stroke-width=%222.646%22%20marker-end=%22url(#Arrow2Mend-2)%22/%3E%3Cpath%20d=%22M163.814%2063.843h57.195%22%20id=%22path1195-1-0%22%20fill=%22green%22%20stroke=%22green%22%20stroke-width=%222.646%22%20marker-start=%22url(#Arrow2Mstart)%22%20marker-end=%22url(#Arrow2Mend-2-2)%22/%3E%3Cpath%20d=%22M90.694%20135.035H51.459%22%20id=%22path873-9%22%20fill=%22none%22%20stroke=%22#000%22%20stroke-width=%222.646%22%20stroke-linecap=%22round%22/%3E%3Ctext%20style=%22line-height:1.25;-inkscape-font-specification:ubuntu;text-align:start%22%20x=%2238.628%22%20y=%22126.356%22%20id=%22text2352%22%20font-weight=%22400%22%20font-size=%2232.91%22%20font-family=%22ubuntu%22%20letter-spacing=%220%22%20word-spacing=%220%22%20stroke-width=%222.057%22%3E%3Ctspan%20id=%22tspan2350%22%20x=%2238.628%22%20y=%22126.356%22%3Eoe%3C/tspan%3E%3C/text%3E%3C/g%3E%3Cstyle%20id=%22style3%22/%3E%3C/svg%3E"
+      },
+      "design": {
+        "config": "true",
+        "graph": {
+          "blocks": [
+            {
+              "id": "f96a1baf-fc8b-4c25-b132-12552605743f",
+              "type": "basic.input",
+              "data": {
+                "name": "oe"
+              },
+              "position": {
+                "x": 40,
+                "y": 64
+              }
+            },
+            {
+              "id": "6459ba21-608e-4f77-8235-c8c1b08ba775",
+              "type": "basic.output",
+              "data": {
+                "name": "pin"
+              },
+              "position": {
+                "x": 704,
+                "y": 64
+              }
+            },
+            {
+              "id": "0b2a85b3-b6ac-4e8a-8b16-dd5a195fb058",
+              "type": "basic.output",
+              "data": {
+                "name": "din"
+              },
+              "position": {
+                "x": 720,
+                "y": 192
+              }
+            },
+            {
+              "id": "04fdb7a7-2740-4ff1-ad26-56407ef5b958",
+              "type": "basic.input",
+              "data": {
+                "name": "dout",
+                "clock": false
+              },
+              "position": {
+                "x": 40,
+                "y": 192
+              }
+            },
+            {
+              "id": "5c8e9a35-33e7-46ef-a0cc-cc27edcc99c0",
+              "type": "basic.code",
+              "data": {
+                "code": "  SB_IO #(\n      .PIN_TYPE(6'b1010_01),\n      .PULLUP(1'b0)\n  ) triState (\n      .PACKAGE_PIN(pin),\n      .OUTPUT_ENABLE(oe),\n      .D_OUT_0(dout),\n      .D_IN_0(din)\n  );",
+                "params": [],
+                "ports": {
+                  "in": [
+                    {
+                      "name": "oe"
+                    },
+                    {
+                      "name": "dout"
+                    }
+                  ],
+                  "out": [
+                    {
+                      "name": "pin"
+                    },
+                    {
+                      "name": "din"
+                    }
+                  ]
+                }
+              },
+              "position": {
+                "x": 248,
+                "y": 32
+              },
+              "size": {
+                "width": 384,
+                "height": 256
+              }
+            }
+          ],
+          "wires": [
+            {
+              "source": {
+                "block": "f96a1baf-fc8b-4c25-b132-12552605743f",
+                "port": "out"
+              },
+              "target": {
+                "block": "5c8e9a35-33e7-46ef-a0cc-cc27edcc99c0",
+                "port": "oe"
+              }
+            },
+            {
+              "source": {
+                "block": "04fdb7a7-2740-4ff1-ad26-56407ef5b958",
+                "port": "out"
+              },
+              "target": {
+                "block": "5c8e9a35-33e7-46ef-a0cc-cc27edcc99c0",
+                "port": "dout"
+              }
+            },
+            {
+              "source": {
+                "block": "5c8e9a35-33e7-46ef-a0cc-cc27edcc99c0",
+                "port": "din"
+              },
+              "target": {
+                "block": "0b2a85b3-b6ac-4e8a-8b16-dd5a195fb058",
+                "port": "in"
+              }
+            },
+            {
+              "source": {
+                "block": "5c8e9a35-33e7-46ef-a0cc-cc27edcc99c0",
+                "port": "pin"
+              },
+              "target": {
+                "block": "6459ba21-608e-4f77-8235-c8c1b08ba775",
                 "port": "in"
               }
             }
