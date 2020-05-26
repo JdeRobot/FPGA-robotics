@@ -1,0 +1,12 @@
+# vi temporary files:
+*~
+*.swp
+
+# freecad
+*.FCStd1
+
+# python
+*.pyc
+
+# Apio
+.sconsign.dblite

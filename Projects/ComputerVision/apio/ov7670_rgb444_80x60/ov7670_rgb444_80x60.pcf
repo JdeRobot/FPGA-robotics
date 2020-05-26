@@ -12,9 +12,10 @@ set_io ov7670_d_msb[0] 22
 #set_io ov7670_d[3] 21
 #set_io ov7670_d[2] 63
 #set_io ov7670_d[1] 64
-set_io ov7670_d_lsb[2] 21
-set_io ov7670_d_lsb[1] 63
-set_io ov7670_d_lsb[0] 64
+set_io ov7670_d_lsb[1] 21
+set_io ov7670_d_lsb[0] 63
+#set_io ov7670_d_lsb[0] 64
+set_io ov7670_rst_n 64
 
 set_io ov7670_sioc 119
 set_io ov7670_siod 118
@@ -31,3 +32,12 @@ set_io vga_green_2b[0] 3
 set_io vga_green_2b[1] 4
 set_io vga_blue_2b[0] 7
 set_io vga_blue_2b[1] 8
+
+set_io led[0] 45
+set_io led[1] 44
+set_io led[2] 43
+set_io led[3] 42
+set_io led[4] 41
+set_io led[5] 39
+set_io led[6] 38
+set_io led[7] 37

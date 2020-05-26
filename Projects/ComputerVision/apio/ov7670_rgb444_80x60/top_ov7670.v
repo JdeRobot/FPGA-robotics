@@ -4,7 +4,7 @@
 //   Universidad Rey Juan Carlos
 //   https://github.com/felipe-m
 //
-//   top module with debuging modules
+//   top module 
 //------------------------------------------------------------------------------//
 
 module top_ov7670
@@ -25,15 +25,16 @@ module top_ov7670
      input        clk,
      output       ov7670_sioc,
      output       ov7670_siod,
+     output       ov7670_rst_n,
 
      input        ov7670_vsync,
      input        ov7670_href,
      input        ov7670_pclk,
      output       ov7670_xclk,
      input  [2:0] ov7670_d_msb, // bits 7:5 (not enough pins)
-     input  [2:0] ov7670_d_lsb, // bits 3:1
+     input  [1:0] ov7670_d_lsb, // bits 3:2
 
-     //output [7:0] led,
+     output [7:0] led,
 
      output [1:0] vga_red_2b, //just 2 bits
      output [1:0] vga_green_2b,
@@ -67,7 +68,6 @@ module top_ov7670
 
     wire          clk100mhz;
 
-    wire          btnr_test_1p;
 
     wire [7:0]    cnt_vsync_max_test;
 
@@ -75,12 +75,7 @@ module top_ov7670
     wire          rgbmode;
 
     wire [2:0]    sw13_rgbmode;
-    wire [1:0]    sw56_regs;
-    wire          sw0_test_cmd;
 
-  assign btnr_test_1p = 1'b0;
-
-  assign sw0_test_cmd = 1'b0;
 
   assign vga_red_2b   = vga_red[3:2];
   assign vga_green_2b = vga_green[3:2];
@@ -88,11 +83,10 @@ module top_ov7670
 
   assign ov7670_d[7:5] =  ov7670_d_msb;
   assign ov7670_d[4] = 1'b0; // cannot get it, with the available pins
-  assign ov7670_d[3:1] =  ov7670_d_lsb;
-  assign ov7670_d[0] = 1'b0;
+  assign ov7670_d[3:2] =  ov7670_d_lsb;
+  assign ov7670_d[1:0] = 2'b00;
 
   assign sw13_rgbmode = 3'b000;
-  assign sw56_regs = 2'b00;
 
   // 100 MHz clock
    SB_PLL40_CORE
@@ -175,10 +169,8 @@ module top_ov7670
   (
      .rst          (rst),
      .clk          (clk100mhz),
-     .test_mode    (sw0_test_cmd),
-     .test_send    (btnr_test_1p),
-     .sw_regs      (sw56_regs),
      .resend       (resend),
+     .cnt_reg_test (led[5:0]),
      .done         (config_finished),
      .sclk         (ov7670_sioc),
      .sdat_on      (sdat_on),
@@ -190,6 +182,9 @@ module top_ov7670
 
   assign resend = 1'b0;
   assign ov7670_siod = sdat_on ? sdat_out : 1'bz;
+
+  assign led[7] = config_finished;
+  assign led[6] = 1'b0;
 
 endmodule
 
