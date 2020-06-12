@@ -1224,154 +1224,154 @@
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1104.C[9] CO=$auto$alumacc.cc:474:replace_alu$1104.C[10] I0=$false I1=capture.cnt_pxl_base[9]
 .attr src "top_ov7670.v:152|ov7670_capture.v:204|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$true I2=controller.i_regs.cnt_cam_clk[0] I3=$false O=$abc$7830$n841
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:149|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:211|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=controller.i_regs.cnt_cam_clk[0] CO=$auto$alumacc.cc:474:replace_alu$1107.C[2] I0=$false I1=ov7670_xclk
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:149|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:211|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt_cam_clk[2] I3=$auto$alumacc.cc:474:replace_alu$1107.C[2] O=$abc$7830$n845
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:149|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:211|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_LUT4 I0=$false I1=$true I2=controller.i_regs.cnt_reg[0] I3=$false O=$auto$wreduce.cc:347:run$1013[0]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:182|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:244|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=controller.i_regs.cnt_reg[0] CO=$auto$alumacc.cc:474:replace_alu$1110.C[2] I0=$false I1=controller.i_regs.cnt_reg[1]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:182|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:244|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt_reg[2] I3=$auto$alumacc.cc:474:replace_alu$1110.C[2] O=$auto$wreduce.cc:347:run$1013[2]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:182|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:244|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1110.C[2] CO=$auto$alumacc.cc:474:replace_alu$1110.C[3] I0=$false I1=controller.i_regs.cnt_reg[2]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:182|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:244|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt_reg[3] I3=$auto$alumacc.cc:474:replace_alu$1110.C[3] O=$auto$wreduce.cc:347:run$1013[3]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:182|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:244|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1110.C[3] CO=$auto$alumacc.cc:474:replace_alu$1110.C[4] I0=$false I1=controller.i_regs.cnt_reg[3]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:182|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:244|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt_reg[4] I3=$auto$alumacc.cc:474:replace_alu$1110.C[4] O=$auto$wreduce.cc:347:run$1013[4]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:182|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:244|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1110.C[4] CO=$auto$alumacc.cc:474:replace_alu$1110.C[5] I0=$false I1=controller.i_regs.cnt_reg[4]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:182|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:244|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt_reg[5] I3=$auto$alumacc.cc:474:replace_alu$1110.C[5] O=$auto$wreduce.cc:347:run$1013[5]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:182|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:244|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_LUT4 I0=$false I1=$true I2=controller.i_regs.cnt300ms[0] I3=$false O=$abc$7830$n899
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[10] I3=$auto$alumacc.cc:474:replace_alu$1113.C[10] O=$abc$7830$n909
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[10] CO=$auto$alumacc.cc:474:replace_alu$1113.C[11] I0=$false I1=controller.i_regs.cnt300ms[10]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[11] I3=$auto$alumacc.cc:474:replace_alu$1113.C[11] O=$abc$7830$n910
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[11] CO=$auto$alumacc.cc:474:replace_alu$1113.C[12] I0=$false I1=controller.i_regs.cnt300ms[11]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[12] I3=$auto$alumacc.cc:474:replace_alu$1113.C[12] O=$abc$7830$n911
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[12] CO=$auto$alumacc.cc:474:replace_alu$1113.C[13] I0=$false I1=controller.i_regs.cnt300ms[12]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[13] I3=$auto$alumacc.cc:474:replace_alu$1113.C[13] O=$abc$7830$n912
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[13] CO=$auto$alumacc.cc:474:replace_alu$1113.C[14] I0=$false I1=controller.i_regs.cnt300ms[13]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[14] I3=$auto$alumacc.cc:474:replace_alu$1113.C[14] O=$abc$7830$n913
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[14] CO=$auto$alumacc.cc:474:replace_alu$1113.C[15] I0=$false I1=controller.i_regs.cnt300ms[14]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[15] I3=$auto$alumacc.cc:474:replace_alu$1113.C[15] O=$abc$7830$n914
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[15] CO=$auto$alumacc.cc:474:replace_alu$1113.C[16] I0=$false I1=controller.i_regs.cnt300ms[15]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[16] I3=$auto$alumacc.cc:474:replace_alu$1113.C[16] O=$abc$7830$n915
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[16] CO=$auto$alumacc.cc:474:replace_alu$1113.C[17] I0=$false I1=controller.i_regs.cnt300ms[16]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[17] I3=$auto$alumacc.cc:474:replace_alu$1113.C[17] O=$abc$7830$n916
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[17] CO=$auto$alumacc.cc:474:replace_alu$1113.C[18] I0=$false I1=controller.i_regs.cnt300ms[17]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[18] I3=$auto$alumacc.cc:474:replace_alu$1113.C[18] O=$abc$7830$n917
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[18] CO=$auto$alumacc.cc:474:replace_alu$1113.C[19] I0=$false I1=controller.i_regs.cnt300ms[18]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[19] I3=$auto$alumacc.cc:474:replace_alu$1113.C[19] O=$abc$7830$n918
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[19] CO=$auto$alumacc.cc:474:replace_alu$1113.C[20] I0=$false I1=controller.i_regs.cnt300ms[19]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_CARRY CI=controller.i_regs.cnt300ms[0] CO=$auto$alumacc.cc:474:replace_alu$1113.C[2] I0=$false I1=controller.i_regs.cnt300ms[1]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[20] I3=$auto$alumacc.cc:474:replace_alu$1113.C[20] O=$abc$7830$n919
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[20] CO=$auto$alumacc.cc:474:replace_alu$1113.C[21] I0=$false I1=controller.i_regs.cnt300ms[20]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[21] I3=$auto$alumacc.cc:474:replace_alu$1113.C[21] O=$abc$7830$n920
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[21] CO=$auto$alumacc.cc:474:replace_alu$1113.C[22] I0=$false I1=controller.i_regs.cnt300ms[21]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[22] I3=$auto$alumacc.cc:474:replace_alu$1113.C[22] O=$abc$7830$n921
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[22] CO=$auto$alumacc.cc:474:replace_alu$1113.C[23] I0=$false I1=controller.i_regs.cnt300ms[22]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[23] I3=$auto$alumacc.cc:474:replace_alu$1113.C[23] O=$abc$7830$n922
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[23] CO=$auto$alumacc.cc:474:replace_alu$1113.C[24] I0=$false I1=controller.i_regs.cnt300ms[23]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[24] I3=$auto$alumacc.cc:474:replace_alu$1113.C[24] O=$abc$7830$n923
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[2] I3=$auto$alumacc.cc:474:replace_alu$1113.C[2] O=$abc$7830$n901
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[2] CO=$auto$alumacc.cc:474:replace_alu$1113.C[3] I0=$false I1=controller.i_regs.cnt300ms[2]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[3] I3=$auto$alumacc.cc:474:replace_alu$1113.C[3] O=$abc$7830$n902
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[3] CO=$auto$alumacc.cc:474:replace_alu$1113.C[4] I0=$false I1=controller.i_regs.cnt300ms[3]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[4] I3=$auto$alumacc.cc:474:replace_alu$1113.C[4] O=$abc$7830$n903
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[4] CO=$auto$alumacc.cc:474:replace_alu$1113.C[5] I0=$false I1=controller.i_regs.cnt300ms[4]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[5] I3=$auto$alumacc.cc:474:replace_alu$1113.C[5] O=$abc$7830$n904
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[5] CO=$auto$alumacc.cc:474:replace_alu$1113.C[6] I0=$false I1=controller.i_regs.cnt300ms[5]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[6] I3=$auto$alumacc.cc:474:replace_alu$1113.C[6] O=$abc$7830$n905
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[6] CO=$auto$alumacc.cc:474:replace_alu$1113.C[7] I0=$false I1=controller.i_regs.cnt300ms[6]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[7] I3=$auto$alumacc.cc:474:replace_alu$1113.C[7] O=$abc$7830$n906
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[7] CO=$auto$alumacc.cc:474:replace_alu$1113.C[8] I0=$false I1=controller.i_regs.cnt300ms[7]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[8] I3=$auto$alumacc.cc:474:replace_alu$1113.C[8] O=$abc$7830$n907
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[8] CO=$auto$alumacc.cc:474:replace_alu$1113.C[9] I0=$false I1=controller.i_regs.cnt300ms[8]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$false I2=controller.i_regs.cnt300ms[9] I3=$auto$alumacc.cc:474:replace_alu$1113.C[9] O=$abc$7830$n908
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
 .gate SB_CARRY CI=$auto$alumacc.cc:474:replace_alu$1113.C[9] CO=$auto$alumacc.cc:474:replace_alu$1113.C[10] I0=$false I1=controller.i_regs.cnt300ms[9]
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:265|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:327|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:47"
 .gate SB_LUT4 I0=$false I1=$true I2=controller.i_sccb.cnt_sclk_div4[0] I3=$false O=$abc$7830$n1026
 .attr src "top_ov7670.v:168|ov7670_top_ctrl.v:35|sccb_master.v:171|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/arith_map.v:53"
 .param LUT_INIT 0110100110010110
@@ -1711,105 +1711,105 @@
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n233 Q=controller.i_regs.pr_ctrl_st[4] R=rst
 .attr src "C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFER C=I_ov_display.clk D=$auto$wreduce.cc:347:run$1013[0] E=$abc$7830$n579 Q=controller.i_regs.cnt_reg[0] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:173|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:235|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
 .gate SB_DFFER C=I_ov_display.clk D=$abc$7830$n1083 E=$abc$7830$n578 Q=controller.i_regs.cnt_reg[1] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:173|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:235|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
 .gate SB_DFFER C=I_ov_display.clk D=$auto$wreduce.cc:347:run$1013[2] E=$abc$7830$n579 Q=controller.i_regs.cnt_reg[2] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:173|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:235|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
 .gate SB_DFFER C=I_ov_display.clk D=$auto$wreduce.cc:347:run$1013[3] E=$abc$7830$n579 Q=controller.i_regs.cnt_reg[3] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:173|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:235|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
 .gate SB_DFFER C=I_ov_display.clk D=$auto$wreduce.cc:347:run$1013[4] E=$abc$7830$n579 Q=controller.i_regs.cnt_reg[4] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:173|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:235|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
 .gate SB_DFFER C=I_ov_display.clk D=$auto$wreduce.cc:347:run$1013[5] E=$abc$7830$n579 Q=controller.i_regs.cnt_reg[5] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:173|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:235|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n842 Q=controller.i_regs.cnt_cam_clk[0] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:141|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:203|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFER C=I_ov_display.clk D=$abc$7830$n844 E=controller.i_regs.cnt_cam_clk[0] Q=ov7670_xclk R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:141|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:203|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n846 Q=controller.i_regs.cnt_cam_clk[2] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:141|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:203|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[0] Q=controller.i_regs.reg_i[0] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[1] Q=controller.i_regs.reg_i[1] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[2] Q=controller.i_regs.reg_i[2] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[3] Q=controller.i_regs.reg_i[3] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[4] Q=controller.i_regs.reg_i[4] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[5] Q=controller.i_regs.reg_i[5] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[6] Q=controller.i_regs.reg_i[6] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFS C=I_ov_display.clk D=controller.i_regs.reg_rom[7] Q=controller.i_regs.reg_i[7] S=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:18"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:18"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[8] Q=controller.i_regs.reg_i[8] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFS C=I_ov_display.clk D=controller.i_regs.reg_rom[9] Q=controller.i_regs.reg_i[9] S=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:18"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:18"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[10] Q=controller.i_regs.reg_i[10] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[11] Q=controller.i_regs.reg_i[11] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFS C=I_ov_display.clk D=controller.i_regs.reg_rom[12] Q=controller.i_regs.reg_i[12] S=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:18"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:18"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[13] Q=controller.i_regs.reg_i[13] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[14] Q=controller.i_regs.reg_i[14] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=controller.i_regs.reg_rom[15] Q=controller.i_regs.reg_i[15] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:194|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n850 Q=controller.i_regs.cnt300ms[0] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFER C=I_ov_display.clk D=$abc$7830$n852 E=$abc$7830$n587 Q=controller.i_regs.cnt300ms[1] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:27"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n854 Q=controller.i_regs.cnt300ms[2] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n856 Q=controller.i_regs.cnt300ms[3] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n858 Q=controller.i_regs.cnt300ms[4] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n860 Q=controller.i_regs.cnt300ms[5] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n862 Q=controller.i_regs.cnt300ms[6] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n864 Q=controller.i_regs.cnt300ms[7] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n866 Q=controller.i_regs.cnt300ms[8] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n868 Q=controller.i_regs.cnt300ms[9] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n870 Q=controller.i_regs.cnt300ms[10] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n872 Q=controller.i_regs.cnt300ms[11] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n874 Q=controller.i_regs.cnt300ms[12] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n876 Q=controller.i_regs.cnt300ms[13] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n878 Q=controller.i_regs.cnt300ms[14] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n880 Q=controller.i_regs.cnt300ms[15] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n882 Q=controller.i_regs.cnt300ms[16] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n884 Q=controller.i_regs.cnt300ms[17] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n886 Q=controller.i_regs.cnt300ms[18] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n888 Q=controller.i_regs.cnt300ms[19] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n890 Q=controller.i_regs.cnt300ms[20] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n892 Q=controller.i_regs.cnt300ms[21] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n894 Q=controller.i_regs.cnt300ms[22] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n896 Q=controller.i_regs.cnt300ms[23] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n898 Q=controller.i_regs.cnt300ms[24] R=rst
-.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:256|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
+.attr src "top_ov7670.v:168|ov7670_top_ctrl.v:52|ov7670_ctrl_reg.v:318|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:17"
 .gate SB_DFFS C=I_ov_display.clk D=$abc$7830$n360 Q=controller.i_sccb.ready_aux S=rst
 .attr src "C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~1\\bin\\../share/yosys/ice40/cells_map.v:18"
 .gate SB_DFFR C=I_ov_display.clk D=$abc$7830$n164 Q=controller.i_sccb.clr_datarg R=rst
