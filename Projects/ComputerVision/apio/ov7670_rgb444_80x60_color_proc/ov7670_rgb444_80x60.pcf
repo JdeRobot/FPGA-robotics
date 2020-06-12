@@ -41,3 +41,6 @@ set_io led[4] 41
 set_io led[5] 39
 set_io led[6] 38
 set_io led[7] 37
+
+
+set_io proc_ctrl 33

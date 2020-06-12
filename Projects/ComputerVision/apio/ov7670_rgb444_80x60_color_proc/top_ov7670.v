@@ -36,6 +36,7 @@ module top_ov7670
      input  [1:0] ov7670_d_lsb, // bits 3:2
 
      output [7:0] led,
+     input        proc_ctrl,  //control of the color processing
 
      output [1:0] vga_red_2b, //just 2 bits
      output [1:0] vga_green_2b,
@@ -163,15 +164,16 @@ module top_ov7670
   // image processing module
   color_proc img_proc
   (
-     .rst            (rst),
-     .clk            (clk100mhz),
+     .rst        (rst),
+     .clk        (clk100mhz),
+     .proc_ctrl  (proc_ctrl),
      // from original image frame buffer
-     .orig_img_addr  (orig_img_addr),
-     .orig_img_pxl   (orig_img_pxl),
+     .orig_addr  (orig_img_addr),
+     .orig_pxl   (orig_img_pxl),
      // to processed image frame buffer
      .proc_we        (proc_we),
-     .proc_img_addr  (proc_img_addr),
-     .proc_img_pxl   (proc_img_pxl)
+     .proc_addr  (proc_img_addr),
+     .proc_pxl   (proc_img_pxl)
   );
 
 

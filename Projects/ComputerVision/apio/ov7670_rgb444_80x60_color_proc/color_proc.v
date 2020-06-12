@@ -33,25 +33,86 @@ module color_proc
     c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
     c_nb_buf_blue  =  4,  // n bits for blue in the buffer (memory)
     // word width of the memory (buffer)
-    c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
+    c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue,
+    // position of the most significant bits of each color
+    c_msb_blue  = c_nb_buf_blue-1,
+    c_msb_red   = c_nb_buf-1,
+    c_msb_green = c_msb_blue + c_nb_buf_green
   )
   (
     input          rst,       //reset, active high
     input          clk,       //fpga clock
-    input  [c_nb_buf-1:0]      orig_img_pxl,
-    output [c_nb_img_pxls-1:0] orig_img_addr,
-    output reg                 proc_we,
-    output reg [c_nb_buf-1:0]      proc_img_pxl,
-    output [c_nb_img_pxls-1:0] proc_img_addr
+    input          proc_ctrl, //input to control the processing (select color)
+    // Address and pixel of original image
+    input  [c_nb_buf-1:0]      orig_pxl,  //pixel from original image
+    output [c_nb_img_pxls-1:0] orig_addr, //pixel mem address original img
+    // Address and pixel of processed image
+    output reg                 proc_we,  //write enable, to write processed pxl
+    output reg [c_nb_buf-1:0]  proc_pxl, // processed pixel to be written
+    output [c_nb_img_pxls-1:0] proc_addr // address of processed pixel
   );
 
 
   reg [c_nb_img_pxls-1:0]  cnt_pxl;
   reg [c_nb_img_pxls-1:0]  cnt_pxl_proc;
+  // indicates which colors will filter RGB
+  reg [2:0] rgb_filter;
 
   wire end_pxl_cnt;
 
+  reg  proc_ctrl_rg1, proc_ctrl_rg2;
+  wire pulse_proc_ctrl;
 
+  parameter  BLACK_PXL = {c_nb_img_pxls{1'b0}};
+
+  always @ (posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      proc_ctrl_rg1 <= 1'b0;
+      proc_ctrl_rg2 <= 1'b0;
+    end
+    else begin
+      proc_ctrl_rg1 <= proc_ctrl;
+      proc_ctrl_rg2 <= proc_ctrl_rg1;
+    end
+  end
+
+  // detect a pulse in proc_ctrl
+  assign pulse_proc_ctrl = (proc_ctrl_rg1 & ~proc_ctrl_rg2);
+  
+  // changes the filter
+  always @ (posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      rgb_filter <= 3'b000; // no filter
+    end
+    else begin
+      if (pulse_proc_ctrl) begin
+        case (rgb_filter)
+          3'b000: // no filter, output same as input
+            rgb_filter <= 3'b100; // red filter
+          3'b100: // red filter
+            rgb_filter <= 3'b010; // green filter
+          3'b010: // green filter
+            rgb_filter <= 3'b001; // blue filter
+          3'b001: // blue filter
+            rgb_filter <= 3'b110; // red and green filter
+          3'b110: // red and green filter
+            rgb_filter <= 3'b101; // red and blue filter
+          3'b101: // red and blue filter
+            rgb_filter <= 3'b011; // green and blue filter
+          3'b011: // green and blue filter
+            rgb_filter <= 3'b111; // red, green and blue filter
+          3'b111: // red, green and blue filter
+            rgb_filter <= 3'b000; // no filter
+        endcase
+      end
+    end
+  end
+         
+
+
+  // memory address count
   always @ (posedge rst, posedge clk)
   begin
     if (rst) begin
@@ -71,16 +132,58 @@ module color_proc
   end
 
   assign end_pxl_cnt = (cnt_pxl == c_img_pxls-1) ? 1'b1 : 1'b0;
-  assign orig_img_addr = cnt_pxl;
-  assign proc_img_addr = cnt_pxl_proc;
+  assign orig_addr = cnt_pxl;
+  assign proc_addr = cnt_pxl_proc;
 
-  always @ (orig_img_pxl) // should include RGB mode
+  always @ (orig_pxl, rgb_filter) // should include RGB mode
   begin
     // check on RED
-    if (orig_img_pxl[c_nb_buf-1])
-      proc_img_pxl <= orig_img_pxl;
-    else
-      proc_img_pxl <= 0;
+    case (rgb_filter)
+      3'b000: // no filter, output same as input
+        proc_pxl <= orig_pxl;
+      3'b100: begin // red filter
+        if (orig_pxl[c_msb_red])
+          proc_pxl <= orig_pxl;
+        else
+          proc_pxl <= BLACK_PXL;
+      end
+      3'b010: begin // green filter
+        if (orig_pxl[c_msb_green])
+          proc_pxl <= orig_pxl;
+        else
+          proc_pxl <= BLACK_PXL;
+      end
+      3'b001: begin // filter blue
+        if (orig_pxl[c_msb_blue])
+          proc_pxl <= orig_pxl;
+        else
+          proc_pxl <= BLACK_PXL;
+      end
+      3'b110: begin // filter red and green
+        if (orig_pxl[c_msb_red] & orig_pxl[c_msb_green])
+          proc_pxl <= orig_pxl;
+        else
+          proc_pxl <= BLACK_PXL;
+      end
+      3'b101: begin // filter red and blue
+        if (orig_pxl[c_msb_red] & orig_pxl[c_msb_blue])
+          proc_pxl <= orig_pxl;
+        else
+          proc_pxl <= BLACK_PXL;
+      end
+      3'b011: begin // filter green and blue
+        if (orig_pxl[c_msb_green] & orig_pxl[c_msb_blue])
+          proc_pxl <= orig_pxl;
+        else
+          proc_pxl <= BLACK_PXL;
+      end
+      3'b111: begin // red, green and blue filter
+        if (orig_pxl[c_msb_red] & orig_pxl[c_msb_green] & orig_pxl[c_msb_blue])
+          proc_pxl <= orig_pxl;
+        else
+          proc_pxl <= BLACK_PXL;
+      end
+    endcase
   end
 
 endmodule
