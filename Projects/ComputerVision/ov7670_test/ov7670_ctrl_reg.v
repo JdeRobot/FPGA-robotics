@@ -89,42 +89,104 @@ module ov7670_ctrl_reg
   // lsb 8 bits are the register value to be written
 
   always @ (cnt_reg) begin
+    // *IG means Implementation guide
     case (cnt_reg)
       6'h00:
-        reg_rom <= 16'h1280; // COM7   Reset
+        reg_rom <= 16'h1280; // 12: COM7 Common Control 7
+                             // [7]=1: Reset all registers to default values
       6'h01:
-        reg_rom <= 16'h1280; // COM7   Reset
+        reg_rom <= 16'h1280; // 12: COM7 Common Control 7
+                             // [7]=1: Reset all registers to default values
       6'h02:
-        reg_rom <= 16'h1204; //
+        reg_rom <= 16'h1204; // 12: COM7 Common Control 7
+                             // [1]=0: disable color bar (dont know what it is
+                             //        because a 0 also shows the test 8bar
+                             // [2,0]="10": Output format RGB 
       6'h03:
-        reg_rom <= 16'h40F0;
+        reg_rom <= 16'h40F0; // 40: COM15 Full 0-255 output, RGB 444
+                             // [7:6]="11": Full output range
+                             // [5:4]="11": RGB 555 only if RGB444 is low
+                             //             so, this is to have RGB444
+                             // [3:0]=0: Reserved
       6'h04:
-        reg_rom <= 16'h8C02;
+        reg_rom <= 16'h8C02; // 8C: RGB444
+                             // [7:2]=0: Reserved
+                             // [1]=1: Enable RGB444
+                             // [0]=0: word format: xR GB
       6'h05:
-        reg_rom <= 16'h1181;
+        reg_rom <= 16'h1181; // 11: CLKRC Internal Clock
+                             // [7]=1: Reserved  **IG says 0, but 1 seems stable
+                             // [6]=0: Use pre-scale
+                             // [5:0]: Interal clock pre-scalar
+                             //    F(internal clk) = F(input clk)/([5:0]+1)
+                             // [5:0]= 1: Divide by 2 (internal clk)
       6'h06:
-        reg_rom <= 16'h0F43;
+        reg_rom <= 16'h0F43; // 0F: COM6 Common Control 6
+                             // [7]=0: Disable HREF at optical blank
+                             // [1]=1: Resets timming when format changes
+                             // others reserved
       6'h07:
-        reg_rom <= 16'hB084;
+        reg_rom <= 16'h1520; // 15: COM10 Common Control 10
+                             // [7]=0: Reserved
+                             // [6]=0: Use HREF not HSYNC
+                             // [5]=1: PCLK doesnt toggle during horizontl blank
+                             // others default
       6'h08:
-        reg_rom <= 16'h1520;
+        reg_rom <= 16'h0C04; // 0C: COM3 Common Control 3
+                             // [3]=1: Enable scale (for QQVGA/2)
+                             // [2]=0: Disable DCW
+                             // others default
       6'h09:
-        reg_rom <= 16'h0C04;
+        reg_rom <= 16'h3E1B; // 3E: COM14 Common Control 14
+                             //    Scaling can be adjusted manually
+                             // [7:5]: Reserved
+                             // [4]=1: Scaling PCLK and DCW enabled
+                             //        Controlled by [2:0] and SCALING_PCLK_DIV
+                             // [3]=1: Manual scaling enabled for predefined
+                             //        modes such QVGA
+                             // [2:0] PCLK divided when COM14[4]=1
+                             // [2:0]=011: Divided by 8-> QQVGA/2: 80x60
       6'h0A:
-        reg_rom <= 16'h3E1B; //COM14 Scaling can be adjusted manually
+        reg_rom <= 16'h703A; // 70: SCALING_XSC
+                             // [7]: test_pattern[0], works with test_pattern[1]
+                             //  00: No test output                            
+                             //  01: Shifting "1"
+                             //  10: 8-bar color bar
+                             //  11: Fade to gray color bar
+                             // [7]= 0 -> 8-bar color bar (test_pattern[1]=1)
+                             // [6:0]: default horizontal scale factor
       6'h0B:
-        reg_rom <= 16'h703A; //SCALING_XSC (default)
+        reg_rom <= 16'h71B5; // 71: SCALING_YSC
+                             // [7]: test_pattern[1], works with test_pattern[0]
+                             //  00: No test output                            
+                             //  01: Shifting "1"
+                             //  10: 8-bar color bar
+                             //  11: Fade to gray color bar
+                             // [7]= 1 -> 8-bar color bar (test_pattern[0]=0)
+                             // [6:0]: default vertical scale factor
       6'h0C:
-        reg_rom <= 16'h71B5; //SCALING_YSC : test color bar
+        reg_rom <= 16'h7233; // 72: SCALING_DCWCTR DCW Control
+                             // [7]=0: Vertical average calc truncation(default)
+                             // [6]=0: Vertical truncation downsampling(default)
+                             // [5:4]: Vertical down sampling rate
+                             // [5:4]=11: Vertical down sampling by 8->QQVGA/2
+                             // [3]=0: Horztal average calc truncation(default)
+                             // [2]=0: Horztal truncation downsampling(default)
+                             // [1:0]: Horztal down sampling rate
+                             // [1:0]=11: Horztal down sampling by 8->QQVGA/2
       6'h0D:
-        reg_rom <= 16'h7233; //SCALING_DCWCTR (down sampling by 8
+        reg_rom <= 16'h73F3; // 73: SCALING_PCLK_DIV
+                             // [7:4]=F: Reserved, and manual says default is 0
+                             //          but IG says F
+                             // [3]=0: Enable clk divider for DSP scale control
+                             // [2:0]=011: Divided by 8 -> QQVGA/2
       6'h0E:
-        reg_rom <= 16'h73F3; //SCALING_PCLK_DIV (divided by 8)
-      6'h0F:
-        reg_rom <= 16'hA202; //SCALING_PCLK_DELAY (default)
+        reg_rom <= 16'hA202; // A2: SCALING_PCLK_DELAY Pixel Clock Delay
+                             // [7]: Reserved
+                             // [6:0]=02: Default scaling ouput delay
       //  end QQVGA
-      6'h10:
-        reg_rom <= 16'hFFFF;  // FINISH CONDITION
+      6'h0F:
+        reg_rom <= 16'hFFFF;  // FINISH CONDITION, register FF doesnt exist
       default:
         reg_rom <= 16'hFFFF;  // FINISH CONDITION
     endcase
