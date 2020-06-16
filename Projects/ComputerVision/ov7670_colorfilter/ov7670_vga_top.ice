@@ -71,8 +71,8 @@
             "virtual": false
           },
           "position": {
-            "x": 1952,
-            "y": -40
+            "x": 1688,
+            "y": -32
           }
         },
         {
@@ -109,8 +109,8 @@
             "virtual": false
           },
           "position": {
-            "x": 1952,
-            "y": 40
+            "x": 1696,
+            "y": 32
           }
         },
         {
@@ -205,8 +205,8 @@
             "virtual": false
           },
           "position": {
-            "x": 1952,
-            "y": 144
+            "x": 1760,
+            "y": 128
           }
         },
         {
@@ -230,6 +230,25 @@
           }
         },
         {
+          "id": "d06565e2-0027-4d1c-be1a-72d07474e83c",
+          "type": "basic.output",
+          "data": {
+            "name": "VGA_G1",
+            "pins": [
+              {
+                "index": "0",
+                "name": "D2",
+                "value": "4"
+              }
+            ],
+            "virtual": false
+          },
+          "position": {
+            "x": 1760,
+            "y": 192
+          }
+        },
+        {
           "id": "d8772c8c-9fc7-4753-ae1c-68628ef1253b",
           "type": "basic.input",
           "data": {
@@ -247,25 +266,6 @@
           "position": {
             "x": 40,
             "y": 216
-          }
-        },
-        {
-          "id": "d06565e2-0027-4d1c-be1a-72d07474e83c",
-          "type": "basic.output",
-          "data": {
-            "name": "VGA_G1",
-            "pins": [
-              {
-                "index": "0",
-                "name": "D2",
-                "value": "4"
-              }
-            ],
-            "virtual": false
-          },
-          "position": {
-            "x": 1952,
-            "y": 224
           }
         },
         {
@@ -322,8 +322,8 @@
             "virtual": false
           },
           "position": {
-            "x": 1952,
-            "y": 304
+            "x": 1832,
+            "y": 280
           }
         },
         {
@@ -347,6 +347,25 @@
           }
         },
         {
+          "id": "83a8ff59-c66c-4018-a70f-53293b9e7c5b",
+          "type": "basic.output",
+          "data": {
+            "name": "VGA_B1",
+            "pins": [
+              {
+                "index": "0",
+                "name": "D4",
+                "value": "8"
+              }
+            ],
+            "virtual": false
+          },
+          "position": {
+            "x": 1816,
+            "y": 352
+          }
+        },
+        {
           "id": "7ffc12d8-533d-4a89-aa35-325abe2cdacc",
           "type": "basic.input",
           "data": {
@@ -364,25 +383,6 @@
           "position": {
             "x": 768,
             "y": 376
-          }
-        },
-        {
-          "id": "83a8ff59-c66c-4018-a70f-53293b9e7c5b",
-          "type": "basic.output",
-          "data": {
-            "name": "VGA_B1",
-            "pins": [
-              {
-                "index": "0",
-                "name": "D4",
-                "value": "8"
-              }
-            ],
-            "virtual": false
-          },
-          "position": {
-            "x": 1952,
-            "y": 384
           }
         },
         {
@@ -420,7 +420,7 @@
             "virtual": false
           },
           "position": {
-            "x": 1800,
+            "x": 1688,
             "y": 464
           }
         },
@@ -479,7 +479,7 @@
             "virtual": false
           },
           "position": {
-            "x": 1736,
+            "x": 1680,
             "y": 544
           }
         },
@@ -563,8 +563,8 @@
           "id": "76c4bf5b-e170-4c23-9221-ee9ea2917875",
           "type": "78c6f83432d326d937d55c84c41e5f87d65c07bd",
           "position": {
-            "x": 1760,
-            "y": -16
+            "x": 1520,
+            "y": -8
           },
           "size": {
             "width": 96,
@@ -575,8 +575,8 @@
           "id": "73126cf4-a5ac-4006-b8bd-0b610c0284f8",
           "type": "78c6f83432d326d937d55c84c41e5f87d65c07bd",
           "position": {
-            "x": 1776,
-            "y": 136
+            "x": 1640,
+            "y": 120
           },
           "size": {
             "width": 96,
@@ -587,8 +587,8 @@
           "id": "f8d627a1-cb82-4b30-86f7-c3d1784f5de4",
           "type": "78c6f83432d326d937d55c84c41e5f87d65c07bd",
           "position": {
-            "x": 1784,
-            "y": 304
+            "x": 1672,
+            "y": 264
           },
           "size": {
             "width": 96,
@@ -623,7 +623,7 @@
           "id": "94304c33-b298-47c9-83ba-49c8c44636fc",
           "type": "f65facb54fedefd9772f50185bce76bdc2ef46a5",
           "position": {
-            "x": 1464,
+            "x": 1424,
             "y": 400
           },
           "size": {
@@ -987,6 +987,12 @@
             "block": "76c4bf5b-e170-4c23-9221-ee9ea2917875",
             "port": "76373c63-7291-4047-8eba-bcbc1030c730"
           },
+          "vertices": [
+            {
+              "x": 1568,
+              "y": 352
+            }
+          ],
           "size": 4
         },
         {
@@ -998,6 +1004,12 @@
             "block": "73126cf4-a5ac-4006-b8bd-0b610c0284f8",
             "port": "76373c63-7291-4047-8eba-bcbc1030c730"
           },
+          "vertices": [
+            {
+              "x": 1648,
+              "y": 336
+            }
+          ],
           "size": 4
         },
         {

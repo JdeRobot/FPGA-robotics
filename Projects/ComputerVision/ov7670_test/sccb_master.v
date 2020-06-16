@@ -253,6 +253,8 @@ module sccb_master
     send_data   = 1'b0;
     new_phase   = 1'b0;
     finish_tx   = 1'b0;
+	//<SC> 
+	sclk		= 1'b1;
     case (pr_sccb_st)
       IDLE_ST: begin  // waiting to send, not busy
         ready_aux = 1'b1;  // ready to send
