@@ -31,15 +31,27 @@ architecture behav of frame_buffer is
 
   type ram_type is array (natural range<>) of std_logic_vector(c_nb_buf-1 downto 0);
   signal ram    : ram_type (0 to c_img_pxls-1); 
+  signal addra_us : unsigned (c_nb_img_pxls-1 downto 0);
+  signal addrb_us : unsigned (c_nb_img_pxls-1 downto 0);
 
 begin
+
+  -- For synthesis
+  addra_us <= unsigned(addra); 
+  addrb_us <= unsigned(addrb); 
+  -- For simulation
+  --addra_us <= unsigned(addra) when unsigned(addra) < c_nb_img_pxls else 
+  --            (others => '0') ; 
+  --addrb_us <= unsigned(addrb) when unsigned(addrb) < c_nb_img_pxls else 
+  --            (others => '0') ; 
+
   P_porta: process(clk)
   begin
     if clk'event and clk='1' then
       if wea = '1' then
-        ram(to_integer(unsigned(addra))) <= dina;
+        ram(to_integer(addra_us)) <= dina;
       end if;
-      doutb <= ram(to_integer(unsigned(addrb)));
+      doutb <= ram(to_integer(addrb_us));
     end if;
   end process;
 

@@ -154,8 +154,8 @@ architecture struct of top_ov7670 is
   -- for debuging: --------------------------
   component top_oscop is
     generic (
-      g_clk_freq        : natural := 100000000;
-      g_sample_freq     : natural :=  10000000
+      g_clk_freq        : natural := 100_000_000;
+      g_sample_freq     : natural :=  10_000_000
     );
     port (
       rst               : in  std_logic;
@@ -347,10 +347,11 @@ begin
 
   ov7670_siod <= sdat_out when sdat_on = '1' else 'Z';
 
-  signal2sample(0) <= ov7670_href;
-  signal2sample(1) <= ov7670_vsync;
+  signal2sample(0) <= ov7670_pclk;
 
-  signal2sample(2) <= ov7670_pclk;
+  signal2sample(1) <= ov7670_href;
+  signal2sample(2) <= ov7670_vsync;
+
   signal2sample(3) <= ov7670_d(4);
 
   signal2sample(4) <= ov7670_d(3);

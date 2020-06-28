@@ -60,7 +60,7 @@ architecture Behavioral of ov7670_capture is
    signal cnt_line_totpxls : unsigned (c_nb_line_pxls-1 downto 0);
 
    -- indicates if the column is in the frame of the image (taking less cols)
-   signal col_inframe : std_logic;
+   --signal col_inframe : std_logic;
    -- indicates if the number of pixels are in the frame of the image
    -- (taking less rows and cols)
    signal img_inframe : std_logic;
@@ -175,8 +175,8 @@ begin
         cnt_line_pxl <= (others => '0');
         cnt_byte <= '0';
       elsif href_rg3 = '1' then -- is zero at optical blank COM[6]
-        --if img_inframe = '1' then
-          if pclk_fall = '1' then -- and col_inframe = '1' then
+        if img_inframe = '1' then -- not necessary
+          if pclk_fall = '1' then
             if cnt_byte = '1' then
               cnt_pxl <= cnt_pxl + 1;
               cnt_line_pxl <= cnt_line_pxl + 1;
@@ -191,7 +191,7 @@ begin
             cnt_pxl_base <= cnt_pxl_base + c_img_cols;
             cnt_line_pxl <= (others => '0');
           end if;
-        --end if;
+        end if;
       else
         cnt_byte <= '0';
         cnt_line_pxl <= (others => '0');
@@ -199,7 +199,7 @@ begin
     end if;
   end process;
 
-  col_inframe <= '1' when cnt_line_pxl < c_img_cols else '0';
+  --col_inframe <= '1' when cnt_line_pxl < c_img_cols else '0';
   img_inframe <= '1' when cnt_pxl < c_img_pxls else '0';
 
   --dataout_test <= "00" & std_logic_vector(cnt_line_totpxls); -- 2 + 10 bits
@@ -258,6 +258,7 @@ begin
   --dout <= std_logic_vector(cnt_pxl(7 downto 0));
   addr <= std_logic_vector(cnt_pxl);
   we <= '1' when (href_rg3 ='1' and cnt_byte='1' and pclk_rise='1')
+            -- not necessary
             --      and col_inframe = '1' and img_inframe = '1')
          else '0';
 
