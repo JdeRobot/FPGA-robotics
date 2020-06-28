@@ -114,7 +114,7 @@ begin
     end if;
   end process;
 
-  -- register twice all the camera inputs to synchronize
+  -- register 3 times all the camera inputs to synchronize
   P_reg: process(rst, clk)
   begin
     if rst = c_on then
@@ -175,8 +175,8 @@ begin
         cnt_line_pxl <= (others => '0');
         cnt_byte <= '0';
       elsif href_rg3 = '1' then -- is zero at optical blank COM[6]
-        if img_inframe = '1' then
-          if pclk_fall = '1' and col_inframe = '1' then
+        --if img_inframe = '1' then
+          if pclk_fall = '1' then -- and col_inframe = '1' then
             if cnt_byte = '1' then
               cnt_pxl <= cnt_pxl + 1;
               cnt_line_pxl <= cnt_line_pxl + 1;
@@ -191,7 +191,7 @@ begin
             cnt_pxl_base <= cnt_pxl_base + c_img_cols;
             cnt_line_pxl <= (others => '0');
           end if;
-        end if;
+        --end if;
       else
         cnt_byte <= '0';
         cnt_line_pxl <= (others => '0');
@@ -257,8 +257,8 @@ begin
   dout <= (red & green & blue) when unsigned(sw13_rgbmode) < 3 else "0000" & gray;
   --dout <= std_logic_vector(cnt_pxl(7 downto 0));
   addr <= std_logic_vector(cnt_pxl);
-  we <= '1' when (href_rg3 ='1' and cnt_byte='1' and pclk_rise='1'
-                  and col_inframe = '1' and img_inframe = '1')
+  we <= '1' when (href_rg3 ='1' and cnt_byte='1' and pclk_rise='1')
+            --      and col_inframe = '1' and img_inframe = '1')
          else '0';
 
 end Behavioral;
