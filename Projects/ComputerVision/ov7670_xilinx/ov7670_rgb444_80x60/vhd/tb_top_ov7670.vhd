@@ -78,14 +78,24 @@ ARCHITECTURE tb OF tb_top_ov7670 IS
       btnc_resend  : in    std_logic
         );
     END COMPONENT;
-    
+
+   -- SCALING_PCLK_DIV OV7670 camera register
+   constant PCLK_DIV : natural := 8; -- divided by 8
+   -- SCALING_DCWCTR OV7670 camera register, vertical downsampling
+   constant V_DIV : natural := 8; -- divided by 8:
 
    --Inputs
    signal rst : std_logic := '0';
    signal clk : std_logic := '0';
    signal ov7670_vsync : std_logic := '0';
    signal ov7670_href : std_logic := '0';
+   signal ov7670_href_out : std_logic := '0';
    signal ov7670_pclk : std_logic := '0';
+   signal ov7670_pclk_out : std_logic := '0'; --it can be divided by PCLK_DIV
+   
+   signal cnt_pclk_line:unsigned(10-1 downto 0) := (others=>'0');
+   signal cnt_href : unsigned(10-1 downto 0) := (others=>'0');
+
    signal ov7670_d : std_logic_vector(7 downto 0) := (others => '0');
    signal sw0_test_cmd : std_logic :='0'; --if '1', step by step SCCB instructions
       -- 0: RGB444, 1: RGB555, 2: RGB565, 3: YUV, 4(others): UV-Y
@@ -133,8 +143,8 @@ BEGIN
           ov7670_rst_n => ov7670_rst_n,
           ov7670_pwdn => ov7670_pwdn,
           ov7670_vsync => ov7670_vsync,
-          ov7670_href => ov7670_href,
-          ov7670_pclk => ov7670_pclk,
+          ov7670_href => ov7670_href_out,
+          ov7670_pclk => ov7670_pclk_out,
           ov7670_xclk => ov7670_xclk,
           ov7670_d => ov7670_d,
           led => led,
@@ -149,10 +159,10 @@ BEGIN
    -- Clock process definitions
    clk_process :process
    begin
-		clk <= '0';
-		wait for clk_period/2;
-		clk <= '1';
-		wait for clk_period/2;
+	clk <= '0';
+	wait for clk_period/2;
+	clk <= '1';
+	wait for clk_period/2;
    end process;
  
   ov7670_pclk_process: process
@@ -166,15 +176,67 @@ BEGIN
       wait for ov7670_pclk_period/2;
     end loop;
   end process;
- 
+
+  ov7670_pclkout_process: process (ov7670_pclk)
+    variable cnt_pclk2 : unsigned(c_nb_img_pxls-1 downto 0) := (others=>'0');
+  begin
+    if PCLK_DIV = 1 then
+      ov7670_pclk_out <= ov7670_pclk;
+    elsif ov7670_pclk'event and ov7670_pclk = '0' then
+      if cnt_pclk2 < PCLK_DIV/2 then
+        ov7670_pclk_out <= '0';
+      else 
+        ov7670_pclk_out <= '1';
+      end if;
+      if cnt_pclk2 < PCLK_DIV-1 then
+        cnt_pclk2 := cnt_pclk2 + 1;
+      else
+        cnt_pclk2 := (others => '0');
+      end if;
+    end if;
+  end process;
+
+  ov7670_hrefout_cont: process (ov7670_href)
+  begin
+    if ov7670_href'event and ov7670_href = '0' then
+      if cnt_href < V_DIV-1 then
+        cnt_href <= cnt_href + 1;
+      else
+        cnt_href <= (others => '0');
+      end if;
+    end if;
+  end process;
+
+
+  ov7670_hrefout_process: process (ov7670_href, cnt_href)
+  begin
+    if V_DIV = 1 then
+      ov7670_href_out <= ov7670_href;
+    else
+      if cnt_href = 0 then
+        ov7670_href_out <= ov7670_href;
+      else 
+        ov7670_href_out <= '0';
+      end if;
+    end if;
+  end process;
+
+
+
+
    line_process :process
-     variable cnt_pclk_line:unsigned(10-1 downto 0) := (others=>'0');
      variable cnt_pclk : unsigned(c_nb_img_pxls-1 downto 0) := (others=>'0');
    begin
      -- wait for one line
      ov7670_href  <= '0';
      ov7670_vsync <= '0';
      ov7670_d     <= (others=> '0');
+     wait until ov7670_pclk'event and ov7670_pclk = '0';
+     wait until ov7670_pclk'event and ov7670_pclk = '0';
+     wait until ov7670_pclk'event and ov7670_pclk = '0';
+     wait until ov7670_pclk'event and ov7670_pclk = '0';
+     wait until ov7670_pclk'event and ov7670_pclk = '0';
+     wait until ov7670_pclk'event and ov7670_pclk = '0';
      wait until ov7670_pclk'event and ov7670_pclk = '0';
      wait for 784 * 2 * ov7670_pclk_period; -- one line * 2 pclk per byte
      while true loop
@@ -187,15 +249,15 @@ BEGIN
        wait for c_ov_lin_bpr * 784 * 2 * ov7670_pclk_period; -- 3 lines
        for i in 0 to 480-1 loop -- visible
          ov7670_href <= '1';
-         while cnt_pclk < 640 loop
-           ov7670_d <= std_logic_vector(cnt_pclk(7 downto 0));
+         while cnt_pclk_line < 640 loop
+           ov7670_d <= std_logic_vector(cnt_pclk_line(7 downto 0));
            wait for ov7670_pclk_period;
-           ov7670_d <= std_logic_vector(cnt_pclk(8 downto 1));
+           ov7670_d <= std_logic_vector(cnt_pclk_line(8 downto 1));
            wait for ov7670_pclk_period;
-           cnt_pclk := cnt_pclk + 1;
+           cnt_pclk_line <= cnt_pclk_line + 1;
          end loop;
          ov7670_href <= '0';
-         cnt_pclk := (others =>'0');
+         cnt_pclk_line <= (others =>'0');
          -- 144 pixel
          wait for 144 * 2 * ov7670_pclk_period;
        end loop;
