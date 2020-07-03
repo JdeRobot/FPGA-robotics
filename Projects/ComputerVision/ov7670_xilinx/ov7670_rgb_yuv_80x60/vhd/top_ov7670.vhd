@@ -18,7 +18,8 @@ entity top_ov7670 is
     generic (
       g_debug_oscop : natural := 1;
       g_debug_7seg  : natural := 1;
-      g_sample_freq : natural := 100_000_000
+      --g_sample_freq : natural := 100_000_000
+      g_sample_freq : natural := 6_250_000 -- x16
     );
     port ( 
       rst          : in    std_logic;
@@ -348,7 +349,7 @@ begin
   ov7670_siod <= sdat_out when sdat_on = '1' else 'Z';
 
 
-  signal2sample(0) <= not ov7670_href;
+  signal2sample(0) <= ov7670_href;
   signal2sample(1) <= ov7670_pclk;
 
   signal2sample(2) <= ov7670_d(7);

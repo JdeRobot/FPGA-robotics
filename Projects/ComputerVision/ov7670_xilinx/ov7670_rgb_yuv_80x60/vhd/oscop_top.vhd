@@ -70,8 +70,6 @@ architecture struct of top_oscop is
 
   component DRAW_OSC is
     Port (
-      rst               : in  STD_LOGIC;
-      clk               : in  STD_LOGIC;
       FilaPantalla      : in  std_logic_vector (c_nb_lines-1 downto 0);
       ColPantalla       : in  std_logic_vector (c_nb_pxls-1 downto 0);
       Visible           : in  STD_LOGIC;
@@ -176,8 +174,6 @@ begin
 
   I_DRAW: DRAW_OSC
     port map (
-      rst             => rst,
-      clk             => clk,
       FilaPantalla    => osc_row,
       ColPantalla     => osc_col,
       Visible         => osc_visible,

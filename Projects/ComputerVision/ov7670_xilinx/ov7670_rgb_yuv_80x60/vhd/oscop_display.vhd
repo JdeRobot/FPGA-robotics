@@ -6,15 +6,8 @@ library WORK;
 use WORK.OSC_PKG.ALL;
 use WORK.VGA_PKG.ALL;
 
----- Uncomment the following library declaration if instantiating
----- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
 entity DRAW_OSC is
   Port (
-    rst               : in  STD_LOGIC;
-    clk               : in  STD_LOGIC;
     FilaPantalla      : in  std_logic_vector (c_nb_lines-1 downto 0);
     ColPantalla       : in  std_logic_vector (c_nb_pxls-1 downto 0);
     Visible           : in  STD_LOGIC;
@@ -55,6 +48,7 @@ begin
   cols2numsamples <= c_numsamples - offset_addr_ram_us;
 
   waverow <= FilaPant_us(c_nb_lines-1 downto c_bt_inwaverow);
+  -- the wave has a top part and a bottom part were it is painted
   wave <= waverow(c_bt_extwaverow-1 downto 1);
   inwaverow <= FilaPant_us(c_bt_inwaverow-1 downto 0);
 
@@ -108,54 +102,55 @@ begin
 
   PPinta: Process (visible,FilaPant_us, ColPant_us,inwaverow, waverow )
   begin
-    --if rst = c_on then
       red    <= (others=>'0');
       green  <= (others=>'0');
       blue   <= (others=>'0');
-    --elsif Clk'event and Clk='1' then
       if visible = '1' then
         red    <= "10000000";
         green  <= "10000000";
         blue   <= "10000000";
         -- each 32 pixels, paint a blue column
         if FilaPant_us < 256 then
-          red    <= (others => '0');
-          green  <= (others => '0');
-          blue   <= (others => '0');
+          red    <= (others => '1');
+          green  <= (others => '1');
+          blue   <= (others => '1');
           if ColPant_us(4 downto 0) = "11111" then
             red    <= (others=>'0');
             green  <= (others=>'0');
-            blue   <= (others=>'1');
+            blue   <= (others=>'1');  -- Blue vertical lines each 32 pixels
           end if;
           if inwaverow = 0 then
-            red    <= (others=>'0');
-            blue   <= (others=>'0');
+            red    <= (others=>'1');
+            blue   <= (others=>'1');
             if ColPant_us(2) = '1' then
-              green  <= (others=>'1');
+              green  <= (others=>'1'); -- Green horizontal lines of 4 pixels
+              red    <= (others=>'0');
+              blue   <= (others=>'0');
             else
               green  <= (others=>'0');
             end if;
           end if;
-          if waverow(0) = '1' then
+          if waverow(0) = '1' then -- the lower part to be painted with a wave
             if data_ram(TO_INTEGER(wave(2 downto 0))) = '1' then
-              if inwaverow = 15 or inwaverow = 14 then
+              -- Wave is high
+              if inwaverow = 1 or inwaverow = 2 then -- top part of the wave ON
+                red    <= (others=>'0'); -- Paint in black
+                green  <= (others=>'0');
+                blue   <= (others=>'0');         
+              else
                 red    <= (others=>'1');
                 green  <= (others=>'1');
                 blue   <= (others=>'1');         
-              else
-                red    <= (others=>'0');
-                green  <= (others=>'0');
-                blue   <= (others=>'0');         
               end if;
             else
-              if inwaverow = 1 or inwaverow = 2then
+              if inwaverow = 14 or inwaverow = 15 then
+                red    <= (others=>'0');  -- Paint in black
+                green  <= (others=>'0');
+                blue   <= (others=>'0');         
+              else
                 red    <= (others=>'1');
                 green  <= (others=>'1');
                 blue   <= (others=>'1');         
-              else
-                red    <= (others=>'0');
-                green  <= (others=>'0');
-                blue   <= (others=>'0');         
               end if;
             end if;
           end if;
