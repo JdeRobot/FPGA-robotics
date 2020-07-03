@@ -7,15 +7,6 @@ library WORK;
 use WORK.VGA_PKG.ALL;
 use WORK.OSC_PKG.ALL;
 
--- el raton va como entre 20 y 30 kHz, lo ponemos a 250 kHz -> 4 us.
--- cada 32 pixeles son 128 us. | 256 pixeles -> ~ 1 ms (1024 us)
-
----- Uncomment the following library declaration if instantiating
----- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
-
 entity top_oscop is
   generic (
     g_clk_freq        : natural := 100000000;

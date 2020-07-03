@@ -75,11 +75,11 @@ architecture behav of ov7670_ctrl_reg is
     x"8C02", -- RGB444 Set RGB format: RGB444
              -- [1]= '1' RGB444 enable
              -- [0]= '0' word format: xR GB
-    x"1181", -- CLKRC  6->0 External clock, pre-scale /2
+    x"1180", -- CLKRC  6->0 External clock, pre-scale 
              --        [7]: 1 (reserved)
              --        [5:0]: Interal clock pre-scalar
              --           F(internal clk) = F(input clk)/([5:0]+1)
-             --        [5:0]= 1: Divide by 2 (internal clk)
+             --        [5:0]= 0: No prescale (internal clk)
 
     x"0F43", -- COM6  
                 -- [7] = 0 Disable HREF at optical black
@@ -93,6 +93,14 @@ architecture behav of ov7670_ctrl_reg is
              -- [6]=0: Use HREF not HSYNC
              -- [5]=1 pclk does not toggle during horizontal blank
              -- others default
+    x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    x"1800", -- HSTOP HREF end high 8-bit. For windowing. Dont want to do
+    x"1900", -- VSTRT VREF start high 8-bit. For windowing. Dont want to do
+    x"1A00", -- VSTOP VREF end high 8-bit. For windowing. Dont want to do
+    x"3200", -- HREF Control
+             -- [7:6] : HREF edge offset to data ouput
+             -- [5:3] : HREF end LSB (high 8MSB at HSTOP)
+             -- [2:0] : HREF start LSB (high 8MSB at HSTART)
 
    --QQVGA2
     x"0C04", -- COM3
@@ -171,11 +179,11 @@ architecture behav of ov7670_ctrl_reg is
     x"8C02", -- RGB444 Set RGB format: RGB444
              -- [1]= '1' RGB444 enable
              -- [0]= '0' word format: xR GB
-    x"1181", -- CLKRC  6->0 External clock, pre-scale /2
+    x"1180", -- CLKRC  6->0 External clock, pre-scale 
              --        [7]: 1 (reserved)
              --        [5:0]: Interal clock pre-scalar
              --           F(internal clk) = F(input clk)/([5:0]+1)
-             --        [5:0]= 1: Divide by 2 (internal clk)
+             --        [5:0]= 0: No prescale (internal clk)
 
     x"0F43", -- COM6  
                 -- [7] = 0 Disable HREF at optical black
@@ -189,6 +197,15 @@ architecture behav of ov7670_ctrl_reg is
              -- [6]=0: Use HREF not HSYNC
              -- [5]=1 pclk does not toggle during horizontal blank
              -- others default
+    x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    x"1800", -- HSTOP HREF end high 8-bit. For windowing. Dont want to do
+    x"1900", -- VSTRT VREF start high 8-bit. For windowing. Dont want to do
+    x"1A00", -- VSTOP VREF end high 8-bit. For windowing. Dont want to do
+    x"3200", -- HREF Control
+             -- [7:6] : HREF edge offset to data ouput
+             -- [5:3] : HREF end LSB (high 8MSB at HSTOP)
+             -- [2:0] : HREF start LSB (high 8MSB at HSTART)
+
 
    --QQVGA2
     x"0C04", -- COM3
@@ -265,14 +282,14 @@ architecture behav of ov7670_ctrl_reg is
                 -- [5:4] = 11: RGB 55 only if RGB444 is low
                 -- [3:0] = 0:  Reserved
 
-    x"8C00", -- RGB444 Set RGB format: RGB444 (not in RGB44-> defaul)
+    x"8C00", -- RGB444 Set RGB format: RGB444 (not in RGB44-> default)
              -- [1]= '1' RGB444 enable
              -- [0]= '0' word format: xR GB
-    x"1181", -- CLKRC  6->0 External clock, pre-scale /2
+    x"1180", -- CLKRC  6->0 External clock, pre-scale
              --        [7]: 1 (reserved)
              --        [5:0]: Interal clock pre-scalar
              --           F(internal clk) = F(input clk)/([5:0]+1)
-             --        [5:0]= 1: Divide by 2 (internal clk)
+             --        [5:0]= 0: no prescale (internal clk)
     x"0F43", -- COM6  
                 -- [7] = 0 Disable HREF at optical black
                 -- [1] = 1 Resets timming when format changes
@@ -283,6 +300,26 @@ architecture behav of ov7670_ctrl_reg is
              -- [6]=0: Use HREF not HSYNC
              -- [5]=1 pclk does not toggle during horizontal blank
              -- others default
+    x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    x"1800", -- HSTOP HREF end high 8-bit. For windowing. Dont want to do
+    x"1900", -- VSTRT VREF start high 8-bit. For windowing. Dont want to do
+    x"1A00", -- VSTOP VREF end high 8-bit. For windowing. Dont want to do
+    x"3200", -- HREF Control
+             -- [7:6] : HREF edge offset to data ouput
+             -- [5:3] : HREF end LSB (high 8MSB at HSTOP)
+             -- [2:0] : HREF start LSB (high 8MSB at HSTART)
+
+    x"3A04", -- TLSB: Line buffer test option (default 0C)
+             -- [7:6] : reserved
+             -- [5]   : negative image enable
+             -- [5]=0 : Normal image 
+             -- [4]=0 : Use normal UV output
+             -- [3]   : Output sequence with COM13[1]
+             --      TSLB[3], COM13[1]:
+             --    00: Y U Y V
+             --    01: Y U Y V
+             --    10: U Y V Y
+             --    11: V Y U Y
 
    --QQVGA2
     x"0C04", -- COM3
@@ -361,11 +398,11 @@ architecture behav of ov7670_ctrl_reg is
     x"8C00", -- RGB444 Set RGB format: RGB444 (not in RGB44-> defaul)
              -- [1]= '1' RGB444 enable
              -- [0]= '0' word format: xR GB
-    x"1181", -- CLKRC  6->0 External clock, pre-scale /2
+    x"1180", -- CLKRC  6->0 External clock, pre-scale
              --        [7]: 1 (reserved)
              --        [5:0]: Interal clock pre-scalar
              --           F(internal clk) = F(input clk)/([5:0]+1)
-             --        [5:0]= 1: Divide by 2 (internal clk)
+             --        [5:0]= 0: no prescale (internal clk)
     x"0F43", -- COM6  
                 -- [7] = 0 Disable HREF at optical black
                 -- [1] = 1 Resets timming when format changes
@@ -376,6 +413,27 @@ architecture behav of ov7670_ctrl_reg is
              -- [6]=0: Use HREF not HSYNC
              -- [5]=1 pclk does not toggle during horizontal blank
              -- others default
+    x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    x"1800", -- HSTOP HREF end high 8-bit. For windowing. Dont want to do
+    x"1900", -- VSTRT VREF start high 8-bit. For windowing. Dont want to do
+    x"1A00", -- VSTOP VREF end high 8-bit. For windowing. Dont want to do
+    x"3200", -- HREF Control
+             -- [7:6] : HREF edge offset to data ouput
+             -- [5:3] : HREF end LSB (high 8MSB at HSTOP)
+             -- [2:0] : HREF start LSB (high 8MSB at HSTART)
+
+    x"3A04", -- TLSB: Line buffer test option (default 0C)
+             -- [7:6] : reserved
+             -- [5]   : negative image enable
+             -- [5]=0 : Normal image 
+             -- [4]=0 : Use normal UV output
+             -- [3]   : Output sequence with COM13[1]
+             --      TSLB[3], COM13[1]:
+             --    00: Y U Y V
+             --    01: Y U Y V
+             --    10: U Y V Y
+             --    11: V Y U Y
+
 
    --QQVGA2
     x"0C04", -- COM3

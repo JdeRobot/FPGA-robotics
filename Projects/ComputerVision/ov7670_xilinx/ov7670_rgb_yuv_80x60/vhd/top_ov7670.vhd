@@ -26,7 +26,7 @@ entity top_ov7670 is
 
       sw0_test_cmd : in    std_logic; --if '1', step by step SCCB instructions
       sw4_test_osc : in    std_logic; --if '1' show oscilloscope
-      sw12_regs    : in    std_logic_vector(1 downto 0); --choose regs sccb
+      sw13_regs    : in    std_logic_vector(2 downto 0); --choose regs sccb
 
       btnr_test    : in    std_logic; --if sw='1', SCCB sent one by one
       btnl_oscop   : in    std_logic; --restart capture oscilloscope(after trig
@@ -106,6 +106,7 @@ architecture struct of top_ov7670 is
       href  : in std_logic;
       vsync : in std_logic;
       rgbmode      : in std_logic;
+      swap_r_b     : in std_logic;
       dataout_test : out std_logic_vector(11 downto 0);
       led_test : out std_logic_vector(3 downto 0);
       data  : in std_logic_vector (7 downto 0);          
@@ -231,6 +232,7 @@ architecture struct of top_ov7670 is
   signal ov_capture_datatest : std_logic_vector(11 downto 0);
 
   signal rgbmode : std_logic;
+  signal swap_r_b : std_logic;
 
 begin
 
@@ -273,7 +275,10 @@ begin
   vga_blue  <= ov_vga_blue  when sw4_test_osc='0' else
                oscop_vga_blue(7 downto 4);
 
-  rgbmode <= '1' when (sw12_regs(0) = '0') else '0';
+  rgbmode <= '1' when (sw13_regs(0) = '0') else '0';
+  -- swaps red and blue, it seems that sometimes it changes them
+  swap_r_b <= '1' when (sw13_regs(2) = '1') else '0';
+
 
   I_ov_display: vga_display
     port map (
@@ -313,7 +318,8 @@ begin
       pclk  => ov7670_pclk,
       vsync => ov7670_vsync,
       href  => ov7670_href,
-      rgbmode     => rgbmode,
+      rgbmode      => rgbmode,
+      swap_r_b     => swap_r_b,
       dataout_test => ov_capture_datatest,
       led_test  => led(3 downto 0),
       data  => ov7670_d,
@@ -328,7 +334,7 @@ begin
       clk           => clk,
       test_mode     => sw0_test_cmd,
       test_send     => btnr_test_1p,
-      sw_regs       => sw12_regs,
+      sw_regs       => sw13_regs(1 downto 0),
       resend        => resend,
       done          => config_finished,
       sclk          => ov7670_sioc,
@@ -341,18 +347,18 @@ begin
 
   ov7670_siod <= sdat_out when sdat_on = '1' else 'Z';
 
-  signal2sample(0) <= ov7670_pclk;
 
-  signal2sample(1) <= ov7670_href;
-  signal2sample(2) <= ov7670_vsync;
+  signal2sample(0) <= not ov7670_href;
+  signal2sample(1) <= ov7670_pclk;
 
-  signal2sample(3) <= ov7670_d(4);
+  signal2sample(2) <= ov7670_d(7);
+  signal2sample(3) <= ov7670_d(6);
 
-  signal2sample(4) <= ov7670_d(3);
-  signal2sample(5) <= ov7670_d(2);
+  signal2sample(4) <= ov7670_d(5);
+  signal2sample(5) <= ov7670_d(4);
 
-  signal2sample(6) <= ov7670_d(1);
-  signal2sample(7) <= ov7670_d(0);
+  signal2sample(6) <= ov7670_d(3);
+  signal2sample(7) <= ov7670_d(2);
   
   g_osc: if g_debug_oscop = 1 generate
     i_osc: top_oscop

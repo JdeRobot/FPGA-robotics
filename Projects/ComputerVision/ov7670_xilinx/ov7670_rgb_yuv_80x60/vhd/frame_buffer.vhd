@@ -37,13 +37,13 @@ architecture behav of frame_buffer is
 begin
 
   -- For synthesis
-  addra_us <= unsigned(addra); 
-  addrb_us <= unsigned(addrb); 
+  --addra_us <= unsigned(addra); 
+  --addrb_us <= unsigned(addrb); 
   -- For simulation
-  --addra_us <= unsigned(addra) when unsigned(addra) < c_nb_img_pxls else 
-  --            (others => '0') ; 
-  --addrb_us <= unsigned(addrb) when unsigned(addrb) < c_nb_img_pxls else 
-  --            (others => '0') ; 
+  addra_us <= unsigned(addra) when unsigned(addra) < c_img_pxls else 
+              (others => '0') ; 
+  addrb_us <= unsigned(addrb) when unsigned(addrb) < c_img_pxls else 
+              (others => '0') ; 
 
   P_porta: process(clk)
   begin

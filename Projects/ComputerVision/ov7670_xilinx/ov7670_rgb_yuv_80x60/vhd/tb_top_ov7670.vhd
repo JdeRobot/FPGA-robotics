@@ -48,7 +48,7 @@ ARCHITECTURE tb OF tb_top_ov7670 IS
       -- 0: RGB444, 1: RGB555, 2: RGB565, 3: YUV, 4(others): UV-Y
       -- always RGB444 for now
       --sw13_rgbmode : in    std_logic_vector(2 downto 0);
-      sw12_regs    : in    std_logic_vector(1 downto 0); --choose regs sccb
+      sw13_regs    : in    std_logic_vector(2 downto 0); --choose regs sccb
       sw4_test_osc : in    std_logic; --if '1' show oscilloscope
 
       btnr_test    : in    std_logic; --if sw='1', SCCB sent one by one
@@ -102,7 +102,10 @@ ARCHITECTURE tb OF tb_top_ov7670 IS
       -- always RGB444 for now
       --sw13_rgbmode : in    std_logic_vector(2 downto 0);
    signal   sw4_test_osc : std_logic :='0'; --if '1' show oscilloscope
-   signal   sw12_regs    : std_logic_vector(1 downto 0) :="11"; --choose regs sccb
+   -- SW1: 0:RGB444    - 1:YUV
+   -- SW2: 0:no test   - 1:test
+   -- SW3: 0:normal    - 1:swap Red with Blue
+   signal   sw13_regs    : std_logic_vector(2 downto 0) :="011";
 
    signal   btnr_test    : std_logic :='0'; --if sw='1', SCCB sent one by one
    signal   btnc_resend  : std_logic :='0';
@@ -134,7 +137,7 @@ BEGIN
           clk => clk,
           sw0_test_cmd => sw0_test_cmd,
           sw4_test_osc => sw4_test_osc,
-          sw12_regs    => sw12_regs,
+          sw13_regs    => sw13_regs,
           btnr_test    => btnr_test,
           btnl_oscop   => btnl_oscop,
 
@@ -232,12 +235,12 @@ BEGIN
      ov7670_vsync <= '0';
      ov7670_d     <= (others=> '0');
      wait until ov7670_pclk'event and ov7670_pclk = '0';
-     wait until ov7670_pclk'event and ov7670_pclk = '0';
-     wait until ov7670_pclk'event and ov7670_pclk = '0';
-     wait until ov7670_pclk'event and ov7670_pclk = '0';
-     wait until ov7670_pclk'event and ov7670_pclk = '0';
-     wait until ov7670_pclk'event and ov7670_pclk = '0';
-     wait until ov7670_pclk'event and ov7670_pclk = '0';
+     --wait until ov7670_pclk'event and ov7670_pclk = '0';
+     --wait until ov7670_pclk'event and ov7670_pclk = '0';
+     --wait until ov7670_pclk'event and ov7670_pclk = '0';
+     --wait until ov7670_pclk'event and ov7670_pclk = '0';
+     --wait until ov7670_pclk'event and ov7670_pclk = '0';
+     --wait until ov7670_pclk'event and ov7670_pclk = '0';
      wait for 784 * 2 * ov7670_pclk_period; -- one line * 2 pclk per byte
      while true loop
        ov7670_vsync <= '1';
@@ -249,11 +252,11 @@ BEGIN
        wait for c_ov_lin_bpr * 784 * 2 * ov7670_pclk_period; -- 3 lines
        for i in 0 to 480-1 loop -- visible
          ov7670_href <= '1';
-         while cnt_pclk_line < 640 loop
+         while cnt_pclk_line < (640/PCLK_DIV) loop
            ov7670_d <= std_logic_vector(cnt_pclk_line(7 downto 0));
-           wait for ov7670_pclk_period;
+           wait for ov7670_pclk_period * PCLK_DIV;
            ov7670_d <= std_logic_vector(cnt_pclk_line(8 downto 1));
-           wait for ov7670_pclk_period;
+           wait for ov7670_pclk_period * PCLK_DIV;
            cnt_pclk_line <= cnt_pclk_line + 1;
          end loop;
          ov7670_href <= '0';
