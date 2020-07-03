@@ -19,7 +19,7 @@ entity top_ov7670 is
       g_debug_oscop : natural := 1;
       g_debug_7seg  : natural := 1;
       --g_sample_freq : natural := 100_000_000
-      g_sample_freq : natural := 6_250_000 -- x16
+      g_sample_freq : natural := c_clk_freq/8 -- x8
     );
     port ( 
       rst          : in    std_logic;
