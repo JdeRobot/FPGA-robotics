@@ -29,11 +29,12 @@ architecture BEHAVIORAL of DRAW_OSC is
   signal    offset_addr_ram_us : unsigned (c_bt_ramdepth-1 downto 0);
   signal    addr_ram_us   : unsigned (c_bt_ramdepth-1 downto 0);
 
-  -- Each wave row takes 16 pixels
-  signal    waverow       : unsigned (c_bt_extwaverow-1 downto 0);
-  -- Each wave row takes 32 pixels
-  signal    wave          : unsigned (c_bt_extwaverow-2 downto 0);
+  -- Each wave takes 32 pixels
+  signal    wave          : unsigned (c_bt_extwaverow-1 downto 0);
   signal    inwaverow     : unsigned (c_bt_inwaverow-1 downto 0);
+  -- the inner 16 bits, because it is divided in to parts
+  signal    ininwaverow   : unsigned (c_bt_inwaverow-2 downto 0);
+  signal    drawave       : std_logic;
 
   -- the number of columns left to reach the total number of samples
   signal    cols2numsamples : unsigned (c_bt_ramdepth-1 downto 0);
@@ -47,10 +48,12 @@ begin
 
   cols2numsamples <= c_numsamples - offset_addr_ram_us;
 
-  waverow <= FilaPant_us(c_nb_lines-1 downto c_bt_inwaverow);
-  -- the wave has a top part and a bottom part were it is painted
-  wave <= waverow(c_bt_extwaverow-1 downto 1);
+  -- -2 because the visible part is only 9 bits (480 lines)
+  wave <= FilaPant_us(c_nb_lines-2 downto c_bt_inwaverow);
   inwaverow <= FilaPant_us(c_bt_inwaverow-1 downto 0);
+  ininwaverow <= inwaverow(c_bt_inwaverow-2 downto 0);
+  -- the wave is drawn at the bottom part of inwaverow
+  drawave <= inwaverow(c_bt_inwaverow-1);
 
   -- the address we have to ask for is the result of substracting 
  
@@ -100,7 +103,7 @@ begin
 --           _________________________________________________
 --Visible __|
 
-  PPinta: Process (visible,FilaPant_us, ColPant_us,inwaverow, waverow )
+  PPinta: Process (visible,FilaPant_us, ColPant_us,inwaverow, ininwaverow )
   begin
       red    <= (others=>'0');
       green  <= (others=>'0');
@@ -119,12 +122,12 @@ begin
             green  <= (others=>'0');
             blue   <= (others=>'1');  -- Blue vertical lines each 32 pixels
           end if;
-          if waverow(0) = '0' then -- the upper parte, no wave is here
+          if drawave = '0' then -- the upper parte, no wave is here
             red    <= "11000000";
             green  <= "11000000";
             blue   <= "11000000";
           end if;
-          if inwaverow = 0 then
+          if ininwaverow = 0 then
             red    <= (others=>'1');
             blue   <= (others=>'1');
             if ColPant_us(2) = '1' then
@@ -135,15 +138,15 @@ begin
               green  <= (others=>'0');
             end if;
           end if;
-          if waverow(0) = '1' then -- the lower part to be painted with a wave
-            if inwaverow = 1 or inwaverow = 2 then -- top part of the wave ON
+          if drawave = '1' then -- the lower part to be painted with a wave
+            if ininwaverow = 1 or ininwaverow = 2 then --top part of the wave ON
               if data_ram(TO_INTEGER(wave(2 downto 0))) = '1' then
                 -- Wave is high
                 red    <= (others=>'0'); -- Paint in black
                 green  <= (others=>'0');
                 blue   <= (others=>'0');         
               end if;
-            elsif inwaverow = 14 or inwaverow = 15 then
+            elsif ininwaverow = 14 or ininwaverow = 15 then
               if data_ram(TO_INTEGER(wave(2 downto 0))) = '0' then
                 red    <= (others=>'0');  -- Paint in black
                 green  <= (others=>'0');
