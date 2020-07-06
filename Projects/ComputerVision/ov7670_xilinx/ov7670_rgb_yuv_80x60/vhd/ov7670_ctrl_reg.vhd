@@ -83,13 +83,88 @@ architecture behav of ov7670_ctrl_reg is
              --           F(internal clk) = F(input clk)/([5:0]+1)
              --        [5:0]= 0: No prescale (internal clk)
 
-    x"0F43", -- COM6  
+    --x"0F43", -- COM6  
+    x"0F4B", -- COM6  (hamster)
                 -- [7] = 0 Disable HREF at optical black
                 -- [1] = 1 Resets timming when format changes
                 -- others reserved
+                -- [3] = 1 (reserved) hamster
+
+    x"1E37", -- MVFP Mirror/flip enable. Default 00
+             -- [7:6]= 00 : reserved
+             -- [5]= 1 : Mirror image
+             -- [4]= 1 : Flip image
+             -- [3] : Reserved
+             -- [2] : Black Sun Enable
+             -- [1:0] : Reserved
+
+    -- color from hamster
+    x"1438", -- COM9 reserved: default 4A
+             -- [6:4] Automatic Gain Ceiling - maximum AGC value
+             --   100 : 32x (default)
+             --   011 : 16x (default)
+             -- [3:1] Reserved (default 101)
+             --   100 : Hamster
+
+     --x"4F40", --x"4fb3", -- MTX1  - colour conversion matrix
+     --x"5034", --x"50b3", -- MTX2  - colour conversion matrix
+     --x"510C", --x"5100", -- MTX3  - colour conversion matrix
+     --x"5217", --x"523d", -- MTX4  - colour conversion matrix
+     --x"5329", --x"53a7", -- MTX5  - colour conversion matrix
+     --x"54E4", -- MTX6  - colour conversion matrix
+     --x"581E", --x"589e", -- MTXS  - Matrix sign and auto contrast
+
+     x"4FB3", -- MTX1  - colour conversion matrix
+     x"50B3", -- MTX2  - colour conversion matrix
+     x"5100", -- MTX3  - colour conversion matrix
+     x"523D", -- MTX4  - colour conversion matrix
+     x"53A7", -- MTX5  - colour conversion matrix
+     x"54E4", -- MTX6  - colour conversion matrix
+     x"589E", -- MTXS  - Matrix sign and auto contrast
+
+     x"3DC0", -- COM13: default 88
+              -- [7]=1 : Gamma enable (defaul)
+              -- [6]=1 : UV Saturation Level - UV autoadjustment
+              -- [5:1]: Reserved
+              -- [0]: UV swap
 
 
-    x"B084", -- recommended TFG
+    -- Trial and error
+    x"B084", -- recommended TFG (reserved)
+    -- hamster
+    x"0E61", -- COM5 reserved: default 01
+    x"1602", -- reserved
+    x"2102", -- ADCCTR0 (reserved): default 02 
+    x"2291", -- ADCCTR1 (reserved): default 01 
+    x"2907", -- RSVD (reserved): default XX 
+    x"330B", -- CHLF Array Current Control (reserved): default 08 
+    x"350B", -- RSVD (reserved): default XX
+    x"371D", -- ADC (reserved): default 3F
+    x"3871", -- ACOM (reserved): default 01. ADC and Analog Common Mode Control
+    x"392A", -- OFON (reserved): default 00. ADC Offset Control 
+    x"3C78", -- COM12 (default 69)
+             -- [7]= 0: No HREF when VSYNC is low
+             -- [6:0]: Reserved
+    x"4D40", -- RSVD (reserved): default XX
+    x"4E20", -- RSVD (reserved): default XX
+    x"7410", -- REG74 default 00
+             -- [4]=1 : Digital Gain control by REG74[1:0]
+             -- [1:0]=00: Bypass
+    x"8D4F", -- RSVD (reserved): default XX
+    x"8E00", -- RSVD (reserved): default XX
+    x"8F00", -- RSVD (reserved): default XX
+    x"9000", -- RSVD (reserved): default XX
+    x"9100", -- RSVD (reserved): default XX
+    x"9600", -- RSVD (reserved): default XX
+    x"9A00", -- RSVD (reserved): default XX
+    x"B10C", -- ABLC1: default 00. Automatic Black Level Calibration
+             -- [3]=1 : Reserved (hamster=1)
+             -- [2]=1 : Enable ABLC
+    x"B20E", -- RSVD (reserved): default XX
+    x"B382", -- THL_ST: ABLC Target: default 80
+             -- Lower limit of black leve +0x80
+    x"B80A", -- RSVD (reserved): default XX
+
     --x"1500", -- COM10 Use HREF not hSYNC
     x"1520", -- COM10 Use HREF not hSYNC
              -- [6]=0: Use HREF not HSYNC
@@ -189,13 +264,90 @@ architecture behav of ov7670_ctrl_reg is
              --           F(internal clk) = F(input clk)/([5:0]+1)
              --        [5:0]= 0: No prescale (internal clk)
 
-    x"0F43", -- COM6  
+    --x"0F43", -- COM6  
+    x"0F4B", -- COM6  (hamster)
                 -- [7] = 0 Disable HREF at optical black
                 -- [1] = 1 Resets timming when format changes
                 -- others reserved
+                -- [3] = 1 (reserved) hamster
 
+    x"1E37", -- MVFP Mirror/flip enable. Default 00
+             -- [7:6]= 00 : reserved
+             -- [5]= 1 : Mirror image
+             -- [4]= 1 : Flip image
+             -- [3] : Reserved
+             -- [2] : Black Sun Enable
+             -- [1:0] : Reserved
 
-    x"B084", -- recommended TFG
+    -- color from hamster
+    x"1438", -- COM9 reserved: default 4A
+             -- [6:4] Automatic Gain Ceiling - maximum AGC value
+             --   100 : 32x (default)
+             --   011 : 16x (default)
+             -- [3:1] Reserved (default 101)
+             --   100 : Hamster
+
+     --x"4F40", --x"4fb3", -- MTX1  - colour conversion matrix
+     --x"5034", --x"50b3", -- MTX2  - colour conversion matrix
+     --x"510C", --x"5100", -- MTX3  - colour conversion matrix
+     --x"5217", --x"523d", -- MTX4  - colour conversion matrix
+     --x"5329", --x"53a7", -- MTX5  - colour conversion matrix
+     --x"54E4", -- MTX6  - colour conversion matrix
+     --x"581E", --x"589e", -- MTXS  - Matrix sign and auto contrast
+
+     x"4FB3", -- MTX1  - colour conversion matrix
+     x"50B3", -- MTX2  - colour conversion matrix
+     x"5100", -- MTX3  - colour conversion matrix
+     x"523D", -- MTX4  - colour conversion matrix
+     x"53A7", -- MTX5  - colour conversion matrix
+     x"54E4", -- MTX6  - colour conversion matrix
+     x"589E", -- MTXS  - Matrix sign and auto contrast
+
+     x"3DC0", -- COM13: default 88
+              -- [7]=1 : Gamma enable (defaul)
+              -- [6]=1 : UV Saturation Level - UV autoadjustment
+              -- [5:1]: Reserved
+              -- [0]: UV swap
+
+    -- Trial and error
+    x"B084", -- recommended TFG (reserved)
+    -- hamster
+    x"0E61", -- COM5 reserved: default 01
+    x"1602", -- reserved
+    x"2102", -- ADCCTR0 (reserved): default 02 
+    x"2291", -- ADCCTR1 (reserved): default 01 
+    x"2907", -- RSVD (reserved): default XX 
+    x"330B", -- CHLF Array Current Control (reserved): default 08 
+    x"330B", -- CHLF Array Current Control (reserved): default 08 
+    x"350B", -- RSVD (reserved): default XX
+    x"371D", -- ADC (reserved): default 3F
+    x"3871", -- ACOM (reserved): default 01. ADC and Analog Common Mode Control
+    x"392A", -- OFON (reserved): default 00. ADC Offset Control 
+    x"3C78", -- COM12 (default 69)
+             -- [7]= 0: No HREF when VSYNC is low
+             -- [6:0]: Reserved
+    x"4D40", -- RSVD (reserved): default XX
+    x"4E20", -- RSVD (reserved): default XX
+    x"7410", -- REG74 default 00
+             -- [4]=1 : Digital Gain control by REG74[1:0]
+             -- [1:0]=00: Bypass
+    x"8D4F", -- RSVD (reserved): default XX
+    x"8E00", -- RSVD (reserved): default XX
+    x"8F00", -- RSVD (reserved): default XX
+    x"9000", -- RSVD (reserved): default XX
+    x"9100", -- RSVD (reserved): default XX
+    x"9600", -- RSVD (reserved): default XX
+    x"9A00", -- RSVD (reserved): default XX
+    x"B10C", -- ABLC1: default 00. Automatic Black Level Calibration
+             -- [3]=1 : Reserved (hamster=1)
+             -- [2]=1 : Enable ABLC
+    x"B20E", -- RSVD (reserved): default XX
+    x"B382", -- THL_ST: ABLC Target: default 80
+             -- Lower limit of black leve +0x80
+    x"B80A", -- RSVD (reserved): default XX
+    ------
+             
+
     --x"1500", -- COM10 Use HREF not hSYNC
     x"1520", -- COM10 Use HREF not hSYNC
              -- [6]=0: Use HREF not HSYNC
