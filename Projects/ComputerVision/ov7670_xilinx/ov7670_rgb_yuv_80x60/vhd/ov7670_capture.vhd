@@ -208,21 +208,21 @@ begin
         if pclk_rise_prev = '1' then
           if cnt_byte = '0' then 
             if rgbmode = '1' then -- RGB Mode ON
-              green <= data_rg3(3 downto 0);
               if swap_r_b = '0' then
-                red   <= data_rg3(7 downto 4);
+                red   <= data_rg3(3 downto 0);
               else
-                blue <= data_rg3(7 downto 4);
+                blue <= data_rg3(3 downto 0);
               end if;
             else -- YUV (gray first byte)
               gray  <= data_rg3;
             end if;
           else
             if rgbmode = '1' then -- RGB Mode ON
+              green <= data_rg3(7 downto 4);
               if swap_r_b = '0' then
-                blue <= data_rg3(7 downto 4);
+                blue <= data_rg3(3 downto 0);
               else
-                red <= data_rg3(7 downto 4);
+                red <= data_rg3(3 downto 0);
               end if;
             else -- YUV 
               null; -- we dont get U or V
