@@ -19,7 +19,8 @@ entity top_ov7670 is
       g_debug_oscop : natural := 1;
       g_debug_7seg  : natural := 1;
       --g_sample_freq : natural := 100_000_000
-      g_sample_freq : natural := c_clk_freq/8 -- x8
+      --g_sample_freq : natural := c_clk_freq/8 -- x8
+      g_sample_freq : natural := c_clk_freq/2 -- x2
     );
     port ( 
       rst          : in    std_logic;
@@ -360,6 +361,8 @@ begin
 
   signal2sample(6) <= ov7670_d(3);
   signal2sample(7) <= ov7670_d(2);
+  signal2sample(8) <= ov7670_d(1);
+  signal2sample(9) <= ov7670_d(0);
   
   g_osc: if g_debug_oscop = 1 generate
     i_osc: top_oscop

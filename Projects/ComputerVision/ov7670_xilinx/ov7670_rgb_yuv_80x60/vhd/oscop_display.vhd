@@ -105,57 +105,51 @@ begin
 
   PPinta: Process (visible,FilaPant_us, ColPant_us,inwaverow, ininwaverow )
   begin
-      red    <= (others=>'0');
-      green  <= (others=>'0');
-      blue   <= (others=>'0');
-      if visible = '1' then
-        red    <= "10000000";
-        green  <= "10000000";
-        blue   <= "10000000";
-        -- each 32 pixels, paint a blue column
-        if FilaPant_us < 256 then
-          red    <= (others => '1');
-          green  <= (others => '1');
-          blue   <= (others => '1');
-          if ColPant_us(4 downto 0) = "11111" then
-            red    <= (others=>'0');
+    red    <= (others=>'0');
+    green  <= (others=>'0');
+    blue   <= (others=>'0');
+    if visible = '1' then
+      red    <= (others => '1');
+      green  <= (others => '1');
+      blue   <= (others => '1');
+      if ColPant_us(4 downto 0) = "11111" then
+        red    <= (others=>'0');
+        green  <= (others=>'0');
+        blue   <= (others=>'1');  -- Blue vertical lines each 32 pixels
+      end if;
+      if drawave = '0' then -- the upper parte, no wave is here
+        red    <= "11000000";
+        green  <= "11000000";
+        blue   <= "11000000";
+      end if;
+      if ininwaverow = 0 then
+        red    <= (others=>'1');
+        blue   <= (others=>'1');
+        if ColPant_us(2) = '1' then
+          green  <= (others=>'1'); -- Green horizontal lines of 4 pixels
+          red    <= (others=>'0');
+          blue   <= (others=>'0');
+        else
+          green  <= (others=>'0');
+        end if;
+      end if;
+      if drawave = '1' then -- the lower part to be painted with a wave
+        if ininwaverow = 1 or ininwaverow = 2 then --top part of the wave ON
+          if data_ram(TO_INTEGER(wave(3 downto 0))) = '1' then
+            -- Wave is high
+            red    <= (others=>'0'); -- Paint in black
             green  <= (others=>'0');
-            blue   <= (others=>'1');  -- Blue vertical lines each 32 pixels
+            blue   <= (others=>'0');         
           end if;
-          if drawave = '0' then -- the upper parte, no wave is here
-            red    <= "11000000";
-            green  <= "11000000";
-            blue   <= "11000000";
-          end if;
-          if ininwaverow = 0 then
-            red    <= (others=>'1');
-            blue   <= (others=>'1');
-            if ColPant_us(2) = '1' then
-              green  <= (others=>'1'); -- Green horizontal lines of 4 pixels
-              red    <= (others=>'0');
-              blue   <= (others=>'0');
-            else
-              green  <= (others=>'0');
-            end if;
-          end if;
-          if drawave = '1' then -- the lower part to be painted with a wave
-            if ininwaverow = 1 or ininwaverow = 2 then --top part of the wave ON
-              if data_ram(TO_INTEGER(wave(2 downto 0))) = '1' then
-                -- Wave is high
-                red    <= (others=>'0'); -- Paint in black
-                green  <= (others=>'0');
-                blue   <= (others=>'0');         
-              end if;
-            elsif ininwaverow = 14 or ininwaverow = 15 then
-              if data_ram(TO_INTEGER(wave(2 downto 0))) = '0' then
-                red    <= (others=>'0');  -- Paint in black
-                green  <= (others=>'0');
-                blue   <= (others=>'0');         
-              end if;
-            end if;
+        elsif ininwaverow = 14 or ininwaverow = 15 then
+          if data_ram(TO_INTEGER(wave(3 downto 0))) = '0' then
+            red    <= (others=>'0');  -- Paint in black
+            green  <= (others=>'0');
+            blue   <= (others=>'0');         
           end if;
         end if;
       end if;
+    end if;
   end process;
 
 --  PPinta: Process (rst, Clk)

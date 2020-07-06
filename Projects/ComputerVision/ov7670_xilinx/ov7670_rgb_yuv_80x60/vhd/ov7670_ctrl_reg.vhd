@@ -68,11 +68,12 @@ architecture behav of ov7670_ctrl_reg is
              --   11: 4x
     x"40F0", -- 40:COM15  Full 0-255 output, RGB 444
              -- [7:6] = 11: Full output range. 12 (C)
-             -- [5:4] = x0: Normal RGB output (not what we want)
-             -- [5:4] = 11: RGB 55 only if RGB444 is low, we want RGB444
+             -- [5:4] = x0: Normal RGB output (not we want)
+             -- [5:4] = 11: RGB555 only if RGB444 is low, we want RGB444
              -- [3:0] = 0:  Reserved
 
-    x"8C02", -- RGB444 Set RGB format: RGB444
+    --x"8C02", -- RGB444 Set RGB format: RGB444
+    x"8C03", -- RGB444 Set RGB format: RGB444
              -- [1]= '1' RGB444 enable
              -- [0]= '0' word format: xR GB
     x"1180", -- CLKRC  6->0 External clock, pre-scale 
@@ -93,7 +94,8 @@ architecture behav of ov7670_ctrl_reg is
              -- [6]=0: Use HREF not HSYNC
              -- [5]=1 pclk does not toggle during horizontal blank
              -- others default
-    x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    --x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    x"1711", -- HSTART HREF start high 8-bit. The first pixels flicker
     x"1800", -- HSTOP HREF end high 8-bit. For windowing. Dont want to do
     x"1900", -- VSTRT VREF start high 8-bit. For windowing. Dont want to do
     x"1A00", -- VSTOP VREF end high 8-bit. For windowing. Dont want to do
@@ -176,7 +178,8 @@ architecture behav of ov7670_ctrl_reg is
                 -- [5:4] = 11: RGB 55 only if RGB444 is low, we want RGB444
                 -- [3:0] = 0:  Reserved
 
-    x"8C02", -- RGB444 Set RGB format: RGB444
+    --x"8C02", -- RGB444 Set RGB format: RGB444
+    x"8C03", -- RGB444 Set RGB format: RGB444
              -- [1]= '1' RGB444 enable
              -- [0]= '0' word format: xR GB
     x"1180", -- CLKRC  6->0 External clock, pre-scale 
@@ -197,7 +200,8 @@ architecture behav of ov7670_ctrl_reg is
              -- [6]=0: Use HREF not HSYNC
              -- [5]=1 pclk does not toggle during horizontal blank
              -- others default
-    x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    --x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    x"1711", -- HSTART HREF start high 8-bit. The first pixels flicker
     x"1800", -- HSTOP HREF end high 8-bit. For windowing. Dont want to do
     x"1900", -- VSTRT VREF start high 8-bit. For windowing. Dont want to do
     x"1A00", -- VSTOP VREF end high 8-bit. For windowing. Dont want to do
@@ -300,7 +304,8 @@ architecture behav of ov7670_ctrl_reg is
              -- [6]=0: Use HREF not HSYNC
              -- [5]=1 pclk does not toggle during horizontal blank
              -- others default
-    x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    --x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    x"1711", -- HSTART HREF start high 8-bit. The first pixels flicker
     x"1800", -- HSTOP HREF end high 8-bit. For windowing. Dont want to do
     x"1900", -- VSTRT VREF start high 8-bit. For windowing. Dont want to do
     x"1A00", -- VSTOP VREF end high 8-bit. For windowing. Dont want to do
@@ -413,7 +418,8 @@ architecture behav of ov7670_ctrl_reg is
              -- [6]=0: Use HREF not HSYNC
              -- [5]=1 pclk does not toggle during horizontal blank
              -- others default
-    x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    --x"1700", -- HSTART HREF start high 8-bit. For windowing. Dont want to do
+    x"1711", -- HSTART HREF start high 8-bit. The first pixels flicker
     x"1800", -- HSTOP HREF end high 8-bit. For windowing. Dont want to do
     x"1900", -- VSTRT VREF start high 8-bit. For windowing. Dont want to do
     x"1A00", -- VSTOP VREF end high 8-bit. For windowing. Dont want to do
