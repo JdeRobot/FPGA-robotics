@@ -699,6 +699,7 @@ module ov7670_ctrl_reg
                // others reserved
                // [3] = 1 (reserved) hamster
 
+      // check
       6'h08:
         reg_yuv422_test <= 16'h1E37;
              // MVFP Mirror/flip enable. Default 00
@@ -709,144 +710,45 @@ module ov7670_ctrl_reg
              // [2] : Black Sun Enable
              // [1:0] : Reserved
 
-      // color from hamster
+      // check
+
+      // check
       6'h09:
-        reg_yuv422_test <= 16'h1438;
-             // COM9 reserved: default 4A
-             // [6:4] Automatic Gain Ceiling - maximum AGC value
-             //   100 : 32x (default)
-             //   011 : 16x (default)
-             // [3:1] Reserved (default 101)
-             //   100 : Hamster
-
-     //x"4F40", --x"4fb3", -- MTX1  - colour conversion matrix
-     //x"5034", --x"50b3", -- MTX2  - colour conversion matrix
-     //x"510C", --x"5100", -- MTX3  - colour conversion matrix
-     //x"5217", --x"523d", -- MTX4  - colour conversion matrix
-     //x"5329", --x"53a7", -- MTX5  - colour conversion matrix
-     //x"54E4", -- MTX6  - colour conversion matrix
-     //x"581E", --x"589e", -- MTXS  - Matrix sign and auto contrast
-
-      6'h0A:
-        reg_yuv422_test <= 16'h4FB3; // MTX1  - colour conversion matrix
-      6'h0B:
-        reg_yuv422_test <= 16'h50B3; // MTX2  - colour conversion matrix
-      6'h0C:
-        reg_yuv422_test <= 16'h5100; // MTX3  - colour conversion matrix
-      6'h0D:
-        reg_yuv422_test <= 16'h523D; // MTX4  - colour conversion matrix
-      6'h0E:
-        reg_yuv422_test <= 16'h53A7; // MTX5  - colour conversion matrix
-      6'h0F:
-        reg_yuv422_test <= 16'h54E4; // MTX6  - colour conversion matrix
-      6'h10:
-        reg_yuv422_test <= 16'h589E; // MTXS  - Matrix sign and auto contrast
-
-      6'h11:
         reg_yuv422_test <= 16'h3DC0; // COM13: default 88
               // [7]=1 : Gamma enable (defaul)
               // [6]=1 : UV Saturation Level - UV autoadjustment
               // [5:1]: Reserved
               // [0]: UV swap
 
-
-    // Trial and error
-      6'h12:
-        reg_yuv422_test <= 16'hB084; // recommended TFG (reserved)
-    // hamster
-      6'h13:
-        reg_yuv422_test <= 16'h0E61; // COM5 reserved: default 01
-      6'h14:
-        reg_yuv422_test <= 16'h1602; // reserved
-      6'h15:
-        reg_yuv422_test <= 16'h2102; // ADCCTR0 (reserved): default 02 
-      6'h16:
-        reg_yuv422_test <= 16'h2291; // ADCCTR1 (reserved): default 01 
-      6'h17:
-        reg_yuv422_test <= 16'h2907; // RSVD (reserved): default XX 
-      6'h18:
-        reg_yuv422_test <= 16'h330B; // CHLF Array Current Control (reserved):
-                                     // default 08 
-      6'h19:
-        reg_yuv422_test <= 16'h350B; // RSVD (reserved): default XX
-      6'h1A:
-        reg_yuv422_test <= 16'h371D; // ADC (reserved): default 3F
-      6'h1B:
-        reg_yuv422_test <= 16'h3871; // ACOM (reserved): default 01.
-                                     // ADC and Analog Common Mode Control
-      6'h1C:
-        reg_yuv422_test <= 16'h392A; // OFON (reserved): default 00.
-                                     // ADC Offset Control 
-
-      6'h1D:
-        reg_yuv422_test <= 16'h3C78; // COM12 (default 69)
-             // [7]= 0: No HREF when VSYNC is low
-             // [6:0]: Reserved
-      6'h1E:
-        reg_yuv422_test <= 16'h4D40; // RSVD (reserved): default XX
-      6'h1F:
-        reg_yuv422_test <= 16'h4E20; // RSVD (reserved): default XX
-      6'h20:
-        reg_yuv422_test <= 16'h7410; // REG74 default 00
-             // [4]=1 : Digital Gain control by REG74[1:0]
-             // [1:0]=00: Bypass
-      6'h21:
-        reg_yuv422_test <= 16'h8D4F; // RSVD (reserved): default XX
-      6'h22:
-        reg_yuv422_test <= 16'h8E00; // RSVD (reserved): default XX
-      6'h23:
-        reg_yuv422_test <= 16'h8F00; // RSVD (reserved): default XX
-      6'h24:
-        reg_yuv422_test <= 16'h9000; // RSVD (reserved): default XX
-      6'h25:
-        reg_yuv422_test <= 16'h9100; // RSVD (reserved): default XX
-      6'h26:
-        reg_yuv422_test <= 16'h9600; // RSVD (reserved): default XX
-      6'h27:
-        reg_yuv422_test <= 16'h9A00; // RSVD (reserved): default XX
-      6'h28:
-        reg_yuv422_test <= 16'hB10C; // ABLC1: default 00.
-             // Automatic Black Level Calibration
-             // [3]=1 : Reserved (hamster=1)
-             // [2]=1 : Enable ABLC
-      6'h29:
-        reg_yuv422_test <= 16'hB20E; // RSVD (reserved): default XX
-      6'h2A:
-        reg_yuv422_test <= 16'hB382; // THL_ST: ABLC Target: default 80
-             // Lower limit of black leve +0x80
-      6'h2B:
-        reg_yuv422_test <= 16'hB80A; // RSVD (reserved): default XX
-
-
       // ---------
 
-      6'h2C:
+      6'h0A:
         reg_yuv422_test <= 16'h1520; // 15: COM10 Common Control 10
                              // [7]=0: Reserved
                              // [6]=0: Use HREF not HSYNC
                              // [5]=1: PCLK doesnt toggle during horizontl blank
                              // others default
-      6'h2D:
+      6'h0B:
         reg_yuv422_test <= 16'h1711; // HSTART HREF start high 8-bit.
               // The first pixels flicker
               // 1700; // HSTART HREF start high 8-bit.
               // For windowing. Dont want to do
-      6'h2E:
+      6'h0C:
         reg_yuv422_test <= 16'h1800; // HSTOP HREF end high 8-bit.
              // For windowing. Dont want to do
-      6'h2F:
+      6'h0D:
         reg_yuv422_test <= 16'h1900; // VSTRT VREF start high 8-bit.
              // For windowing. Dont want to do
-      6'h30:
+      6'h0E:
         reg_yuv422_test <= 16'h1A00; // VSTOP VREF end high 8-bit.
              // For windowing. Dont want to do
-      6'h31:
+      6'h0F:
         reg_yuv422_test <= 16'h3200; // HREF Control
              // [7:6] : HREF edge offset to data ouput
              // [5:3] : HREF end LSB (high 8MSB at HSTOP)
              // [2:0] : HREF start LSB (high 8MSB at HSTART
 
-      6'h32:
+      6'h10:
         reg_yuv422_test <= 16'h3A04; // TLSB: Line buffer test option
              // (default 0C)
              // [7:6] : reserved
@@ -863,12 +765,12 @@ module ov7670_ctrl_reg
 
 
       // -- QQVGA2
-      6'h33:
+      6'h11:
         reg_yuv422_test <= 16'h0C04; // 0C: COM3 Common Control 3
                              // [3]=1: Enable scale (for QQVGA/2)
                              // [2]=0: Disable DCW
                              // others default
-      6'h34:
+      6'h12:
         reg_yuv422_test <= 16'h3E1B; // 3E: COM14 Common Control 14
                              //    Scaling can be adjusted manually
                              // [7:5]: Reserved
@@ -878,7 +780,7 @@ module ov7670_ctrl_reg
                              //        modes such QVGA
                              // [2:0] PCLK divided when COM14[4]=1
                              // [2:0]=011: Divided by 8-> QQVGA/2: 80x60
-      6'h35:
+      6'h13:
         reg_yuv422_test <= 16'h703A; // 70: SCALING_XSC
                              // [7]: test_pattern[0], works with test_pattern[1]
                              //  00: No test output                            
@@ -887,7 +789,7 @@ module ov7670_ctrl_reg
                              //  11: Fade to gray color bar
                              // [7]= 0 -> 8-bar color bar (test_pattern[1]=1)
                              // [6:0]: default horizontal scale factor
-      6'h36:
+      6'h14:
         reg_yuv422_test <= 16'h71B5; // 71: SCALING_YSC
                              // [7]: test_pattern[1], works with test_pattern[0]
                              //  00: No test output                            
@@ -896,7 +798,7 @@ module ov7670_ctrl_reg
                              //  11: Fade to gray color bar
                              // [7]= 1 -> 8-bar color bar (test_pattern[0]=0)
                              // [6:0]: default vertical scale factor
-      6'h37:
+      6'h15:
         reg_yuv422_test <= 16'h7233; // 72: SCALING_DCWCTR DCW Control
                              // [7]=0: Vertical average calc truncation(default)
                              // [6]=0: Vertical truncation downsampling(default)
@@ -906,18 +808,18 @@ module ov7670_ctrl_reg
                              // [2]=0: Horztal truncation downsampling(default)
                              // [1:0]: Horztal down sampling rate
                              // [1:0]=11: Horztal down sampling by 8->QQVGA/2
-      6'h38:
+      6'h16:
         reg_yuv422_test <= 16'h73F3; // 73: SCALING_PCLK_DIV
                              // [7:4]=F: Reserved, and manual says default is 0
                              //          but IG says F
                              // [3]=0: Enable clk divider for DSP scale control
                              // [2:0]=011: Divided by 8 -> QQVGA/2
-      6'h39:
+      6'h17:
         reg_yuv422_test <= 16'hA202; // A2: SCALING_PCLK_DELAY Pixel Clock Delay
                              // [7]: Reserved
                              // [6:0]=02: Default scaling ouput delay
       //  end QQVGA
-      6'h3A:
+      6'h18:
         reg_yuv422_test <= 16'hFFFF;  // FINISH CONDITION, register FF doesnt exist
       default:
         reg_yuv422_test <= 16'hFFFF;  // FINISH CONDITION
@@ -995,40 +897,7 @@ module ov7670_ctrl_reg
              // [2] : Black Sun Enable
              // [1:0] : Reserved
 
-      // color from hamster
       6'h09:
-        reg_yuv422 <= 16'h1438;
-             // COM9 reserved: default 4A
-             // [6:4] Automatic Gain Ceiling - maximum AGC value
-             //   100 : 32x (default)
-             //   011 : 16x (default)
-             // [3:1] Reserved (default 101)
-             //   100 : Hamster
-
-     //x"4F40", --x"4fb3", -- MTX1  - colour conversion matrix
-     //x"5034", --x"50b3", -- MTX2  - colour conversion matrix
-     //x"510C", --x"5100", -- MTX3  - colour conversion matrix
-     //x"5217", --x"523d", -- MTX4  - colour conversion matrix
-     //x"5329", --x"53a7", -- MTX5  - colour conversion matrix
-     //x"54E4", -- MTX6  - colour conversion matrix
-     //x"581E", --x"589e", -- MTXS  - Matrix sign and auto contrast
-
-      6'h0A:
-        reg_yuv422 <= 16'h4FB3; // MTX1  - colour conversion matrix
-      6'h0B:
-        reg_yuv422 <= 16'h50B3; // MTX2  - colour conversion matrix
-      6'h0C:
-        reg_yuv422 <= 16'h5100; // MTX3  - colour conversion matrix
-      6'h0D:
-        reg_yuv422 <= 16'h523D; // MTX4  - colour conversion matrix
-      6'h0E:
-        reg_yuv422 <= 16'h53A7; // MTX5  - colour conversion matrix
-      6'h0F:
-        reg_yuv422 <= 16'h54E4; // MTX6  - colour conversion matrix
-      6'h10:
-        reg_yuv422 <= 16'h589E; // MTXS  - Matrix sign and auto contrast
-
-      6'h11:
         reg_yuv422 <= 16'h3DC0; // COM13: default 88
               // [7]=1 : Gamma enable (defaul)
               // [6]=1 : UV Saturation Level - UV autoadjustment
@@ -1036,103 +905,35 @@ module ov7670_ctrl_reg
               // [0]: UV swap
 
 
-    // Trial and error
-      6'h12:
-        reg_yuv422 <= 16'hB084; // recommended TFG (reserved)
-    // hamster
-      6'h13:
-        reg_yuv422 <= 16'h0E61; // COM5 reserved: default 01
-      6'h14:
-        reg_yuv422 <= 16'h1602; // reserved
-      6'h15:
-        reg_yuv422 <= 16'h2102; // ADCCTR0 (reserved): default 02 
-      6'h16:
-        reg_yuv422 <= 16'h2291; // ADCCTR1 (reserved): default 01 
-      6'h17:
-        reg_yuv422 <= 16'h2907; // RSVD (reserved): default XX 
-      6'h18:
-        reg_yuv422 <= 16'h330B; // CHLF Array Current Control (reserved):
-                                     // default 08 
-      6'h19:
-        reg_yuv422 <= 16'h350B; // RSVD (reserved): default XX
-      6'h1A:
-        reg_yuv422 <= 16'h371D; // ADC (reserved): default 3F
-      6'h1B:
-        reg_yuv422 <= 16'h3871; // ACOM (reserved): default 01.
-                                     // ADC and Analog Common Mode Control
-      6'h1C:
-        reg_yuv422 <= 16'h392A; // OFON (reserved): default 00.
-                                     // ADC Offset Control 
-
-      6'h1D:
-        reg_yuv422 <= 16'h3C78; // COM12 (default 69)
-             // [7]= 0: No HREF when VSYNC is low
-             // [6:0]: Reserved
-      6'h1E:
-        reg_yuv422 <= 16'h4D40; // RSVD (reserved): default XX
-      6'h1F:
-        reg_yuv422 <= 16'h4E20; // RSVD (reserved): default XX
-      6'h20:
-        reg_yuv422 <= 16'h7410; // REG74 default 00
-             // [4]=1 : Digital Gain control by REG74[1:0]
-             // [1:0]=00: Bypass
-      6'h21:
-        reg_yuv422 <= 16'h8D4F; // RSVD (reserved): default XX
-      6'h22:
-        reg_yuv422 <= 16'h8E00; // RSVD (reserved): default XX
-      6'h23:
-        reg_yuv422 <= 16'h8F00; // RSVD (reserved): default XX
-      6'h24:
-        reg_yuv422 <= 16'h9000; // RSVD (reserved): default XX
-      6'h25:
-        reg_yuv422 <= 16'h9100; // RSVD (reserved): default XX
-      6'h26:
-        reg_yuv422 <= 16'h9600; // RSVD (reserved): default XX
-      6'h27:
-        reg_yuv422 <= 16'h9A00; // RSVD (reserved): default XX
-      6'h28:
-        reg_yuv422 <= 16'hB10C; // ABLC1: default 00.
-             // Automatic Black Level Calibration
-             // [3]=1 : Reserved (hamster=1)
-             // [2]=1 : Enable ABLC
-      6'h29:
-        reg_yuv422 <= 16'hB20E; // RSVD (reserved): default XX
-      6'h2A:
-        reg_yuv422 <= 16'hB382; // THL_ST: ABLC Target: default 80
-             // Lower limit of black leve +0x80
-      6'h2B:
-        reg_yuv422 <= 16'hB80A; // RSVD (reserved): default XX
-
-
       // ---------
 
-      6'h2C:
+      6'h0A:
         reg_yuv422 <= 16'h1520; // 15: COM10 Common Control 10
                              // [7]=0: Reserved
                              // [6]=0: Use HREF not HSYNC
                              // [5]=1: PCLK doesnt toggle during horizontl blank
                              // others default
-      6'h2D:
+      6'h0B:
         reg_yuv422 <= 16'h1711; // HSTART HREF start high 8-bit.
               // The first pixels flicker
               // 1700; // HSTART HREF start high 8-bit.
               // For windowing. Dont want to do
-      6'h2E:
+      6'h0C:
         reg_yuv422 <= 16'h1800; // HSTOP HREF end high 8-bit.
              // For windowing. Dont want to do
-      6'h2F:
+      6'h0D:
         reg_yuv422 <= 16'h1900; // VSTRT VREF start high 8-bit.
              // For windowing. Dont want to do
-      6'h30:
+      6'h0E:
         reg_yuv422 <= 16'h1A00; // VSTOP VREF end high 8-bit.
              // For windowing. Dont want to do
-      6'h31:
+      6'h0F:
         reg_yuv422 <= 16'h3200; // HREF Control
              // [7:6] : HREF edge offset to data ouput
              // [5:3] : HREF end LSB (high 8MSB at HSTOP)
              // [2:0] : HREF start LSB (high 8MSB at HSTART
 
-      6'h32:
+      6'h10:
         reg_yuv422 <= 16'h3A04; // TLSB: Line buffer test option
              // (default 0C)
              // [7:6] : reserved
@@ -1149,12 +950,12 @@ module ov7670_ctrl_reg
 
 
       // -- QQVGA2
-      6'h33:
+      6'h11:
         reg_yuv422 <= 16'h0C04; // 0C: COM3 Common Control 3
                              // [3]=1: Enable scale (for QQVGA/2)
                              // [2]=0: Disable DCW
                              // others default
-      6'h34:
+      6'h12:
         reg_yuv422 <= 16'h3E1B; // 3E: COM14 Common Control 14
                              //    Scaling can be adjusted manually
                              // [7:5]: Reserved
@@ -1164,7 +965,7 @@ module ov7670_ctrl_reg
                              //        modes such QVGA
                              // [2:0] PCLK divided when COM14[4]=1
                              // [2:0]=011: Divided by 8-> QQVGA/2: 80x60
-      6'h35:
+      6'h13:
         reg_yuv422 <= 16'h703A; // 70: SCALING_XSC
                              // [7]: test_pattern[0], works with test_pattern[1]
                              //  00: No test output <-
@@ -1173,7 +974,7 @@ module ov7670_ctrl_reg
                              //  11: Fade to gray color bar
                              // [7]= 0 -> 8-bar color bar (test_pattern[1]=1)
                              // [6:0]: default horizontal scale factor
-      6'h36:
+      6'h14:
         reg_yuv422 <= 16'h7135; // 71: SCALING_YSC
                              // [7]: test_pattern[1], works with test_pattern[0]
                              //  00: No test output  <-
@@ -1182,7 +983,7 @@ module ov7670_ctrl_reg
                              //  11: Fade to gray color bar
                              // [7]= 1 -> 8-bar color bar (test_pattern[0]=0)
                              // [6:0]: default vertical scale factor
-      6'h37:
+      6'h15:
         reg_yuv422 <= 16'h7233; // 72: SCALING_DCWCTR DCW Control
                              // [7]=0: Vertical average calc truncation(default)
                              // [6]=0: Vertical truncation downsampling(default)
@@ -1192,18 +993,18 @@ module ov7670_ctrl_reg
                              // [2]=0: Horztal truncation downsampling(default)
                              // [1:0]: Horztal down sampling rate
                              // [1:0]=11: Horztal down sampling by 8->QQVGA/2
-      6'h38:
+      6'h16:
         reg_yuv422 <= 16'h73F3; // 73: SCALING_PCLK_DIV
                              // [7:4]=F: Reserved, and manual says default is 0
                              //          but IG says F
                              // [3]=0: Enable clk divider for DSP scale control
                              // [2:0]=011: Divided by 8 -> QQVGA/2
-      6'h39:
+      6'h17:
         reg_yuv422 <= 16'hA202; // A2: SCALING_PCLK_DELAY Pixel Clock Delay
                              // [7]: Reserved
                              // [6:0]=02: Default scaling ouput delay
       //  end QQVGA
-      6'h3A:
+      6'h18:
         reg_yuv422 <= 16'hFFFF;  // FINISH CONDITION, register FF doesnt exist
       default:
         reg_yuv422 <= 16'hFFFF;  // FINISH CONDITION

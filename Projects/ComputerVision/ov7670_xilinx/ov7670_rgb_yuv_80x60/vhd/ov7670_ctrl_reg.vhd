@@ -564,10 +564,28 @@ architecture behav of ov7670_ctrl_reg is
              --        [5:0]: Interal clock pre-scalar
              --           F(internal clk) = F(input clk)/([5:0]+1)
              --        [5:0]= 0: no prescale (internal clk)
-    x"0F43", -- COM6  
+    x"0F43", -- COM6  ** check 0F4B
                 -- [7] = 0 Disable HREF at optical black
                 -- [1] = 1 Resets timming when format changes
                 -- others reserved
+                -- [3] = 1 (reserved) hamster
+
+
+    -- check
+    -- x"1E37", -- MVFP Mirror/flip enable. Default 00
+             -- [7:6]= 00 : reserved
+             -- [5]= 1 : Mirror image
+             -- [4]= 1 : Flip image
+             -- [3] : Reserved
+             -- [2] : Black Sun Enable
+             -- [1:0] : Reserved
+
+    -- check
+    -- x"3DC0", -- COM13: default 88
+              -- [7]=1 : Gamma enable (defaul)
+              -- [6]=1 : UV Saturation Level - UV autoadjustment
+              -- [5:1]: Reserved
+              -- [0]: UV swap
 
     --x"1500", -- COM10 Use HREF not hSYNC
     x"1520", -- COM10 Use HREF not hSYNC
