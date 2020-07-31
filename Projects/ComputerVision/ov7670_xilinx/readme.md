@@ -12,4 +12,11 @@ It puts the camera in test mode with a 8-color bar and QQVGA/2 (80x60), and show
 
 ## ov7670_rgb_yuv_80x60:  
 Selects between RGB and YUV using SW1
+
 Selects test mode and normal capture using SW2
+
+SW3 swaps red-blue (it works)
+
+SW4 in VHDL: oscilloscope
+
+SW15: reset

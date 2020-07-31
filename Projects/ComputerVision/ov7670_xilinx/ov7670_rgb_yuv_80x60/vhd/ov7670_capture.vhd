@@ -85,6 +85,7 @@ begin
     if rst = c_on then
       cnt_clk <= (others => '0');
       cnt_pclk_max <= (others => '0');
+      cnt_pclk_max_freeze <= (others => '0');
       led_test(0) <= '0';
     elsif clk'event and clk='1' then
       if href_rg2 = '1' then 

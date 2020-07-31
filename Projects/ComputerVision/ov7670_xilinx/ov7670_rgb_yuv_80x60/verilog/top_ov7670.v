@@ -35,12 +35,11 @@ module top_ov7670
     )
     (input        rst,
      input        clk,
+
      input        sw0_test_cmd, //if '1', step by step SCCB instructions
-     //  always RGB444 for now
-     // input [2:0]  sw13_rgbmode,
-     input        sw4_test_osc, //if '1' show oscilloscope
-     input [1:0]  sw56_regs,    //choose regs sccb
+     input [2:0]  sw13_regs,
      input        btnr_test,          //if sw='1', SCCB sent one by one
+
      output       ov7670_sioc,
      output       ov7670_siod,
 
@@ -99,6 +98,7 @@ module top_ov7670
     wire [11:0]   ov_capture_datatest;
 
     wire          rgbmode;
+    wire          swap_r_b;
 
     debounce_1pulse btn_deb1 
     (
@@ -128,7 +128,10 @@ module top_ov7670
      .row     (vga_row)
   );
 
-  assign rgbmode   = (sw13_rgbmode < 3) ? 1'b1 : 1'b0;
+  // if sw1 == 0 -> RGB mode
+  assign rgbmode   = (sw13_regs[0] == 1'b0) ? 1'b1 : 1'b0;
+  // if sw3 == 1 -> swap Red with Blue
+  assign swap_r_b  = sw13_regs[2];
 
   vga_display I_ov_display 
   (
@@ -168,7 +171,8 @@ module top_ov7670
      .pclk         (ov7670_pclk),
      .vsync        (ov7670_vsync),
      .href         (ov7670_href),
-     .sw13_rgbmode (sw13_rgbmode),
+     .rgbmode      (rgbmode),
+     .swap_r_b     (swap_r_b),
      .dataout_test (ov_capture_datatest),
      .led_test     (led[3:0]),
      .data         (ov7670_d),
@@ -183,7 +187,7 @@ module top_ov7670
      .clk          (clk),
      .test_mode    (sw0_test_cmd),
      .test_send    (btnr_test_1p),
-     .sw_regs      (sw56_regs),
+     .sw_regs      (sw13_regs[1:0]),
      .resend       (resend),
      .done         (config_finished),
      .sclk         (ov7670_sioc),

@@ -315,12 +315,12 @@ begin
   
   capture: ov7670_capture
     port map(
-      rst   => rst,
-      clk   => clk,
-      pclk  => ov7670_pclk,
-      vsync => ov7670_vsync,
-      href  => ov7670_href,
-      rgbmode      => rgbmode,
+      rst      => rst,
+      clk      => clk,
+      pclk     => ov7670_pclk,
+      vsync    => ov7670_vsync,
+      href     => ov7670_href,
+      rgbmode  => rgbmode,
       swap_r_b     => swap_r_b,
       dataout_test => ov_capture_datatest,
       led_test  => led(3 downto 0),

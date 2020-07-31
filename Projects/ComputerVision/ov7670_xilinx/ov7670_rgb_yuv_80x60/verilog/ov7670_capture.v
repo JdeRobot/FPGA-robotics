@@ -38,20 +38,21 @@ module ov7670_capture
     c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
   )
   (
-   input          rst,    // FPGA reset
-   input          clk,    // FPGA clock
+   input              rst,    // FPGA reset
+   input              clk,    // FPGA clock
     // camera pclk (byte clock) (~40ns)  
     // 2 bytes is a pixel
-    input         pclk,
-    input         href,
-    input         vsync,
-    input  [2:0]  sw13_rgbmode,
-    output [11:0] dataout_test,
+    input             pclk,
+    input             href,
+    input             vsync,
+    input             rgbmode,   // RGB444 or YUV422
+    input             swap_r_b,  // swaps red with blue
+    output     [11:0] dataout_test,
     output reg [3:0]  led_test,
-    input  [7:0]  data,
-    output [c_nb_img_pxls-1:0] addr,
-    output [c_nb_buf-1:0]  dout,
-    output        we
+    input      [7:0]  data,
+    output     [c_nb_img_pxls-1:0] addr,
+    output     [c_nb_buf-1:0]      dout,
+    output            we
   );
 
   reg        pclk_rg1, pclk_rg2;  // registered pclk
@@ -82,7 +83,6 @@ module ov7670_capture
   reg [4:0]    cnt_pclk_max;
   reg [4:0]    cnt_pclk_max_freeze;
 
-  reg [25:0]   cnt_05seg;
   parameter    c_cnt_05seg_end = 50_000_000;
 
   reg  [7:0]   gray;
@@ -96,32 +96,22 @@ module ov7670_capture
     if (rst) begin
       cnt_clk <= 0;
       cnt_pclk_max <= 0;
+      cnt_pclk_max_freeze <= 0;
       led_test[0] <= 1'b0;
     end
     else begin
-      if (pclk_fall) begin
-        cnt_clk <= 0;
-        led_test[0] <= 1'b1;
-        cnt_pclk_max <= cnt_clk;
+      if (href_rg2) begin
+        if (pclk_rise) begin
+          cnt_clk <= 0;
+          led_test[0] <= 1'b1;
+          cnt_pclk_max <= cnt_clk;
+          cnt_pclk_max_freeze <= cnt_pclk_max;
+        end
+        else
+          cnt_clk <= cnt_clk + 1;
       end
       else
         cnt_clk <= cnt_clk + 1;
-    end
-  end
-
-  always @ (posedge rst, posedge clk)
-  begin
-    if (rst) begin
-      cnt_pclk_max_freeze <= 0;
-      cnt_05seg <= 0;
-    end
-    else begin
-      if (cnt_05seg == c_cnt_05seg_end) begin
-        cnt_05seg <= 0;
-        cnt_pclk_max_freeze <= cnt_pclk_max;
-      end
-      else
-        cnt_05seg <= cnt_05seg + 1;
     end
   end
 
@@ -203,6 +193,7 @@ module ov7670_capture
           // some lines have more other less
           cnt_pxl <= cnt_pxl_base + c_img_cols;
           cnt_pxl_base <= cnt_pxl_base + c_img_cols;
+          cnt_line_pxl <= 0;
         end
       end
       else begin
@@ -221,49 +212,32 @@ module ov7670_capture
       red   <= 0;
       green <= 0;
       blue  <= 0;
+      gray  <= 0;
     end
     else begin
       if (href_rg3) begin  // visible
         //if (cnt_clk == 3'b001) begin // I think this is the safest
         if (pclk_rise_prev == 1'b1) begin
           if (cnt_byte == 1'b0) begin
-             case (sw13_rgbmode)
-               3'b000: // RGB444
-                 red <= data_rg3[3:0];
-               3'b001: begin // RGB555
-                 red  <= data_rg3[6:3];
-                 green[3:2] <= data_rg3[1:0];
-               end
-               3'b010: begin // RGB565
-                 red   <= data_rg3[7:4];
-                 green[3:1] <= data_rg3[2:0];
-               end
-               3'b011: // YUV (gray first byte)
-                 gray  <= data_rg3;
-               //default:
-               //  null;
-             endcase
+            if (rgbmode) begin
+              if (swap_r_b == 1'b0)
+                red <= data_rg3[3:0];
+              else
+                blue <= data_rg3[3:0];
+            end
+            else  // YUV (gray first byte)
+              gray  <= data_rg3;
           end
           else begin
-             case (sw13_rgbmode)
-               3'b000: begin // RGB444
-                 green <= data_rg3[7:4];
-                 blue <= data_rg3[3:0];
-               end
-               3'b001: begin // RGB555
-                 green [1:0] <= data_rg3[7:6];
-                 blue <= data_rg3[4:1];
-               end
-               3'b010: begin // RGB565
-                 blue <= data_rg3[4:1];
-                 green [0] <= data_rg3[7];
-               end
-               3'b011: begin// YUV (gray first byte)
-                 // do nothing
-               end
-               default: // YUV (Y gray second byte)
-                 gray  <= data_rg3;
-             endcase
+            if (rgbmode) begin
+              green <= data_rg3[7:4];
+              if (swap_r_b == 1'b0)
+                blue <= data_rg3[3:0];
+              else
+                red <= data_rg3[3:0];
+            end
+            //else
+               // do nothing, not getting U or V
           end
         end
       end
@@ -271,7 +245,7 @@ module ov7670_capture
   end
 
   //dout <= (red & green & blue) when unsigned(sw13_rgbmode) < 3 else gray;
-  assign dout = (sw13_rgbmode < 3) ? {red, green, blue} : {4'b000, gray};
+  assign dout = (rgbmode) ? {red, green, blue} : {4'b000, gray};
   //dout <= std_logic_vector(cnt_pxl(7 downto 0));
   assign addr = cnt_pxl;
 

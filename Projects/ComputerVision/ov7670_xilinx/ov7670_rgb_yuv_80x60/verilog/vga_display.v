@@ -72,7 +72,7 @@ module vga_display
   end
 
 
-  always @ (visible, col, row, frame_pixel, rgbmode)
+  always @ (*)
   begin
     vga_red   = 0;
     vga_green = 0;

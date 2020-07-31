@@ -167,6 +167,7 @@ architecture behav of ov7670_ctrl_reg is
 
     --x"1500", -- COM10 Use HREF not hSYNC
     x"1520", -- COM10 Use HREF not hSYNC
+             -- [7]=0: Reserved
              -- [6]=0: Use HREF not HSYNC
              -- [5]=1 pclk does not toggle during horizontal blank
              -- others default
@@ -377,7 +378,7 @@ architecture behav of ov7670_ctrl_reg is
              -- [2:0]-> 011: pclk divided by 8 -> QQVGA/2: 80x60   
     x"703A", -- SCALING_XSC 
              -- [7]: test_pattern[0], works with test_pattern[1]
-             --  00: No test output                            
+             --  00: No test output  <-
              --  01: Shifting "1"
              --  10: 8-bar color bar
              --  11: Fade to gray color bar
@@ -388,7 +389,7 @@ architecture behav of ov7670_ctrl_reg is
     --x"7135", -- SCALING_YSC (default)
     x"7135", -- SCALING_YSC (default)
              -- [7]: test_pattern[1], works with test_pattern[0]
-             --  00: No test output                            
+             --  00: No test output <-                         
              --  01: Shifting "1"
              --  10: 8-bar color bar
              --  11: Fade to gray color bar
