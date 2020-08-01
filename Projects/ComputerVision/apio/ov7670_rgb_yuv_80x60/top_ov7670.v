@@ -4,12 +4,23 @@
 //   Universidad Rey Juan Carlos
 //   https://github.com/felipe-m
 //
-//   top module 
-//   Add second memory and color processing
-//---------------------------------------------------------------------------//
+//   top module with debuging modules
+//------------------------------------------------------------------------------//
 
 module top_ov7670
   # (parameter
+      // VGA
+      //c_img_cols    = 640, // 10 bits
+      //c_img_rows    = 480, //  9 bits
+      //c_img_pxls    = c_img_cols * c_img_rows,
+      //c_nb_line_pxls = 10, // log2i(c_img_cols-1) + 1;
+      // c_nb_img_pxls = log2i(c_img_pxls-1) + 1
+      //c_nb_img_pxls =  19,  //640*480=307,200 -> 2^19=524,288
+      // QQVGA
+      //c_img_cols    = 160, // 8 bits
+      //c_img_rows    = 120, //  7 bits
+      //c_img_pxls    = c_img_cols * c_img_rows,
+      //c_nb_img_pxls =  15,  //160*120=19.200 -> 2^15
       // QQVGA /2
       c_img_cols    = 80, // 7 bits
       c_img_rows    = 60, //  6 bits
@@ -24,10 +35,14 @@ module top_ov7670
     )
     (input        rst,
      input        clk,
+
+     input        sw2,          //select RGB -> YUV -> RGB test -> YUV test
+
      output       ov7670_sioc,
      output       ov7670_siod,
-     output       ov7670_rst_n,
 
+     output       ov7670_rst_n,
+     // output       ov7670_pwdn,  // not used, not enough pins
      input        ov7670_vsync,
      input        ov7670_href,
      input        ov7670_pclk,
@@ -36,14 +51,17 @@ module top_ov7670
      input  [1:0] ov7670_d_lsb, // bits 3:2
 
      output [7:0] led,
-     input        proc_ctrl,  //control of the color processing
 
      output [1:0] vga_red_2b, //just 2 bits
      output [1:0] vga_green_2b,
      output [1:0] vga_blue_2b,
+
      output       vga_hsync,
      output       vga_vsync
+
     );
+
+    wire          ov7670_pwdn; // not used, not enough pins
 
     wire [7:0]    ov7670_d;  // not enough pins
 
@@ -56,19 +74,12 @@ module top_ov7670
     wire [10-1:0] vga_col;
     wire [10-1:0] vga_row;
    
-    wire [c_nb_img_pxls-1:0] display_img_addr;
-    wire [c_nb_buf-1:0]      display_img_pxl;
+    wire [c_nb_img_pxls-1:0] frame_addr;
+    wire [c_nb_buf-1:0]    frame_pixel;
 
     wire [c_nb_img_pxls-1:0] capture_addr;
     wire [c_nb_buf-1:0]    capture_data;
     wire          capture_we;
-
-    wire [c_nb_img_pxls-1:0] orig_img_addr;
-    wire [c_nb_buf-1:0]      orig_img_pxl;
-    wire          proc_we;
-    wire [c_nb_img_pxls-1:0] proc_img_addr;
-    wire [c_nb_buf-1:0]      proc_img_pxl;
-
     wire          resend;
     wire          config_finished;
 
@@ -77,14 +88,9 @@ module top_ov7670
 
     wire          clk100mhz;
 
-
-    wire [7:0]    cnt_vsync_max_test;
-
-    wire [11:0]   ov_capture_datatest;
     wire          rgbmode;
-
-    wire [2:0]    sw13_rgbmode;
-
+    wire          testmode;
+    parameter     swap_r_b = 1'b1; // red and blue are swapped
 
   assign vga_red_2b   = vga_red[3:2];
   assign vga_green_2b = vga_green[3:2];
@@ -93,9 +99,7 @@ module top_ov7670
   assign ov7670_d[7:5] =  ov7670_d_msb;
   assign ov7670_d[4] = 1'b0; // cannot get it, with the available pins
   assign ov7670_d[3:2] =  ov7670_d_lsb;
-  assign ov7670_d[1:0] = 2'b00; // cannot get them, with avialable pins
-
-  assign sw13_rgbmode = 3'b000;
+  assign ov7670_d[1:0] = 2'b10; // cannot get them, with avialable pins
 
   // 100 MHz clock
    SB_PLL40_CORE
@@ -115,6 +119,15 @@ module top_ov7670
              );
 
 
+    mode_sel sw2_mode_sel 
+    (
+      .rst     (rst),
+      .clk     (clk100mhz),
+      .sig_in  (sw2),
+      .rgbmode (rgbmode),
+      .testmode(testmode)
+    );
+
    vga_sync i_vga 
    (
      .rst     (rst),
@@ -127,7 +140,6 @@ module top_ov7670
      .row     (vga_row)
   );
 
-  assign rgbmode   = 1'b1;
 
   vga_display I_ov_display 
   (
@@ -138,58 +150,26 @@ module top_ov7670
      .hsync      (vga_hsync),
      .vsync      (vga_vsync),
      .rgbmode    (rgbmode),
+     .testmode   (testmode),
      .col        (vga_col),
      .row        (vga_row),
-     .frame_pixel(display_img_pxl),
-     .frame_addr (display_img_addr),
+     .frame_pixel(frame_pixel),
+     .frame_addr (frame_addr),
      .vga_red    (vga_red),
      .vga_green  (vga_green),
      .vga_blue   (vga_blue)
   );
 
 
-  // frame buffer from the camera, before processing
-  frame_buffer cam_fb  
+  frame_buffer fb  
   (
      .clk     (clk100mhz),
-     // ports from camera capture
      .wea     (capture_we),
      .addra   (capture_addr),
      .dina    (capture_data),
-     // ports to processing module
-     .addrb   (orig_img_addr),
-     .doutb   (orig_img_pxl)
+     .addrb   (frame_addr),
+     .doutb   (frame_pixel)
    );
-
-  // image processing module
-  color_proc img_proc
-  (
-     .rst        (rst),
-     .clk        (clk100mhz),
-     .proc_ctrl  (proc_ctrl),
-     // from original image frame buffer
-     .orig_addr  (orig_img_addr),
-     .orig_pxl   (orig_img_pxl),
-     // to processed image frame buffer
-     .proc_we        (proc_we),
-     .proc_addr  (proc_img_addr),
-     .proc_pxl   (proc_img_pxl)
-  );
-
-
-  // processed frame buffer, to display on VGA
-  frame_buffer proc_fb  
-  (
-     .clk     (clk100mhz),
-     // ports from processing module
-     .wea     (proc_we),
-     .addra   (proc_img_addr),
-     .dina    (proc_img_pxl),
-     // ports to display
-     .addrb   (display_img_addr),
-     .doutb   (display_img_pxl)
-   );
-
 
   ov7670_capture capture 
   (
@@ -198,7 +178,8 @@ module top_ov7670
      .pclk         (ov7670_pclk),
      .vsync        (ov7670_vsync),
      .href         (ov7670_href),
-     .sw13_rgbmode (sw13_rgbmode),
+     .rgbmode      (rgbmode),
+     .swap_r_b     (swap_r_b),
      //.dataout_test (ov_capture_datatest),
      //.led_test     (led[3:0]),
      .data         (ov7670_d),
@@ -212,6 +193,8 @@ module top_ov7670
      .rst          (rst),
      .clk          (clk100mhz),
      .resend       (resend),
+     .rgbmode      (rgbmode),
+     .testmode     (testmode),
      .cnt_reg_test (led[5:0]),
      .done         (config_finished),
      .sclk         (ov7670_sioc),
@@ -222,11 +205,14 @@ module top_ov7670
      .ov7670_pwdn  (ov7670_pwdn)
   );
 
+  assign ov7670_siod = sdat_on ? sdat_out : 1'bz;
+
   assign resend = 1'b0;
   assign ov7670_siod = sdat_on ? sdat_out : 1'bz;
 
   assign led[7] = config_finished;
   assign led[6] = 1'b0;
+
 
 endmodule
 
