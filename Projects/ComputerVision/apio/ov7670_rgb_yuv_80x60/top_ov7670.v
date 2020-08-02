@@ -99,7 +99,7 @@ module top_ov7670
   assign ov7670_d[7:5] =  ov7670_d_msb;
   assign ov7670_d[4] = 1'b0; // cannot get it, with the available pins
   assign ov7670_d[3:2] =  ov7670_d_lsb;
-  assign ov7670_d[1:0] = 2'b10; // cannot get them, with avialable pins
+  assign ov7670_d[1:0] = 2'b01; // cannot get them, with available pins
 
   // 100 MHz clock
    SB_PLL40_CORE

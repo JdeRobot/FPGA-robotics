@@ -1,6 +1,6 @@
 # Icestudio Basic test pattern with OV7670 camera and Alhambra II FPGA
   
-Top module: ov7670_vga_top_icestudio.ice
+Top module: ov7670_vga_top.ice
 
   Same project as the Apio ov7670_rgb444_80x60_color_proc adapted for icestudio.
   ![OV7670 test icestudio](ov7670_vga_top_icestudio.png)

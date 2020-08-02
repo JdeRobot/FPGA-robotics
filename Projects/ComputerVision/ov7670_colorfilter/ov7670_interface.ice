@@ -134,6 +134,26 @@
           }
         },
         {
+          "id": "17cbaf9a-48b6-4f84-a9c2-6df9d928d021",
+          "type": "basic.input",
+          "data": {
+            "name": "clk100mhz",
+            "pins": [
+              {
+                "index": "0",
+                "name": "",
+                "value": ""
+              }
+            ],
+            "virtual": true,
+            "clock": true
+          },
+          "position": {
+            "x": 16,
+            "y": 112
+          }
+        },
+        {
           "id": "c1e4faf5-6809-4479-91e0-ba807320a78f",
           "type": "basic.output",
           "data": {
@@ -172,23 +192,23 @@
           }
         },
         {
-          "id": "17cbaf9a-48b6-4f84-a9c2-6df9d928d021",
+          "id": "de11fb70-f8d9-4ed4-b41d-3322f166017b",
           "type": "basic.input",
           "data": {
-            "name": "clk100mhz",
+            "name": "testmode",
             "pins": [
               {
                 "index": "0",
-                "name": "",
-                "value": ""
+                "name": "NULL",
+                "value": "NULL"
               }
             ],
             "virtual": true,
-            "clock": true
+            "clock": false
           },
           "position": {
-            "x": 8,
-            "y": 192
+            "x": 32,
+            "y": 224
           }
         },
         {
@@ -520,15 +540,35 @@
           }
         },
         {
+          "id": "aa530509-0752-4ebf-bb9c-bd9c2014bad2",
+          "type": "basic.input",
+          "data": {
+            "name": "rgbmode",
+            "pins": [
+              {
+                "index": "0",
+                "name": "NULL",
+                "value": "NULL"
+              }
+            ],
+            "virtual": true,
+            "clock": false
+          },
+          "position": {
+            "x": -152,
+            "y": 560
+          }
+        },
+        {
           "id": "8bccd0ca-fdfc-4ce3-a065-e02af95e233d",
           "type": "9d9474044436a4b68de35890bda35a2f396613ba",
           "position": {
-            "x": 280,
+            "x": 288,
             "y": 376
           },
           "size": {
             "width": 96,
-            "height": 192
+            "height": 224
           }
         },
         {
@@ -744,6 +784,36 @@
             "block": "3f5cf141-30a5-4632-8608-37c5427134f9",
             "port": "in"
           }
+        },
+        {
+          "source": {
+            "block": "aa530509-0752-4ebf-bb9c-bd9c2014bad2",
+            "port": "out"
+          },
+          "target": {
+            "block": "8bccd0ca-fdfc-4ce3-a065-e02af95e233d",
+            "port": "4f2fa73f-3858-4bd7-8fb7-8876d104519d"
+          }
+        },
+        {
+          "source": {
+            "block": "aa530509-0752-4ebf-bb9c-bd9c2014bad2",
+            "port": "out"
+          },
+          "target": {
+            "block": "65311cd6-0ea0-43e9-82a8-aa407e7b3a1d",
+            "port": "0eede1f6-a152-43dc-8b3a-e3c92cbf35fd"
+          }
+        },
+        {
+          "source": {
+            "block": "de11fb70-f8d9-4ed4-b41d-3322f166017b",
+            "port": "out"
+          },
+          "target": {
+            "block": "65311cd6-0ea0-43e9-82a8-aa407e7b3a1d",
+            "port": "f87cbc2f-23c5-49c5-84ac-113c13d348dd"
+          }
         }
       ]
     }
@@ -794,7 +864,7 @@
               },
               "position": {
                 "x": 96,
-                "y": 216
+                "y": 200
               }
             },
             {
@@ -805,8 +875,8 @@
                 "clock": false
               },
               "position": {
-                "x": 80,
-                "y": 280
+                "x": 96,
+                "y": 256
               }
             },
             {
@@ -830,8 +900,8 @@
                 "clock": false
               },
               "position": {
-                "x": 64,
-                "y": 344
+                "x": 96,
+                "y": 320
               }
             },
             {
@@ -842,8 +912,22 @@
                 "clock": false
               },
               "position": {
-                "x": 64,
-                "y": 416
+                "x": 88,
+                "y": 376
+              }
+            },
+            {
+              "id": "d0b9ffdd-61d6-4bcc-aaf9-ecf5407bcfd7",
+              "type": "basic.input",
+              "data": {
+                "name": "ov7670_d",
+                "range": "[7:0]",
+                "clock": false,
+                "size": 8
+              },
+              "position": {
+                "x": 88,
+                "y": 432
               }
             },
             {
@@ -858,16 +942,22 @@
               }
             },
             {
-              "id": "d0b9ffdd-61d6-4bcc-aaf9-ecf5407bcfd7",
+              "id": "4f2fa73f-3858-4bd7-8fb7-8876d104519d",
               "type": "basic.input",
               "data": {
-                "name": "ov7670_d",
-                "range": "[7:0]",
-                "clock": false,
-                "size": 8
+                "name": "rgbmode",
+                "pins": [
+                  {
+                    "index": "0",
+                    "name": "NULL",
+                    "value": "NULL"
+                  }
+                ],
+                "virtual": true,
+                "clock": false
               },
               "position": {
-                "x": 48,
+                "x": 88,
                 "y": 488
               }
             },
@@ -875,7 +965,7 @@
               "id": "0a902920-d58a-4157-bf37-a86e6fb383f5",
               "type": "basic.code",
               "data": {
-                "code": "// @include ov7670_capture.v\n\nwire [2:0]    sw13_rgbmode;\nassign sw13_rgbmode = 3'b000;\n\n  ov7670_capture lnk2vrlg \n  (\n     .rst          (rst),\n     .clk          (clk100mhz),\n     .pclk         (ov7670_pclk),\n     .vsync        (ov7670_vsync),\n     .href         (ov7670_href),\n     .sw13_rgbmode (sw13_rgbmode),\n     .data         (ov7670_d),\n     .addr         (capture_addr),\n     .dout         (capture_data),\n     .we           (capture_we)\n  );\n  ",
+                "code": "// @include ov7670_capture.v\n\nwire    swap_r_b;\nassign  swap_r_b = 1'b1;\n\n  ov7670_capture lnk2vrlg \n  (\n     .rst          (rst),\n     .clk          (clk100mhz),\n     .pclk         (ov7670_pclk),\n     .vsync        (ov7670_vsync),\n     .href         (ov7670_href),\n     .rgbmode      (rgbmode),\n     .swap_r_b     (swap_r_b),\n     .data         (ov7670_d),\n     .addr         (capture_addr),\n     .dout         (capture_data),\n     .we           (capture_we)\n  );\n  ",
                 "params": [],
                 "ports": {
                   "in": [
@@ -898,6 +988,9 @@
                       "name": "ov7670_d",
                       "range": "[7:0]",
                       "size": 8
+                    },
+                    {
+                      "name": "rgbmode"
                     }
                   ],
                   "out": [
@@ -1020,6 +1113,16 @@
                 "block": "11962766-de30-4117-96ce-859e68ae6514",
                 "port": "in"
               }
+            },
+            {
+              "source": {
+                "block": "4f2fa73f-3858-4bd7-8fb7-8876d104519d",
+                "port": "out"
+              },
+              "target": {
+                "block": "0a902920-d58a-4157-bf37-a86e6fb383f5",
+                "port": "rgbmode"
+              }
             }
           ]
         }
@@ -1084,6 +1187,18 @@
               }
             },
             {
+              "id": "cd42d85e-f5a1-4da3-af0f-2cf2df5ae69f",
+              "type": "basic.input",
+              "data": {
+                "name": "clk100mhz",
+                "clock": true
+              },
+              "position": {
+                "x": 32,
+                "y": 120
+              }
+            },
+            {
               "id": "08b8aa22-8b87-435a-b790-ef8822895486",
               "type": "basic.output",
               "data": {
@@ -1092,18 +1207,6 @@
               "position": {
                 "x": 800,
                 "y": 168
-              }
-            },
-            {
-              "id": "cd42d85e-f5a1-4da3-af0f-2cf2df5ae69f",
-              "type": "basic.input",
-              "data": {
-                "name": "clk100mhz",
-                "clock": true
-              },
-              "position": {
-                "x": 40,
-                "y": 200
               }
             },
             {
@@ -1129,6 +1232,26 @@
               }
             },
             {
+              "id": "0eede1f6-a152-43dc-8b3a-e3c92cbf35fd",
+              "type": "basic.input",
+              "data": {
+                "name": "rgbmode",
+                "pins": [
+                  {
+                    "index": "0",
+                    "name": "NULL",
+                    "value": "NULL"
+                  }
+                ],
+                "virtual": true,
+                "clock": false
+              },
+              "position": {
+                "x": 24,
+                "y": 272
+              }
+            },
+            {
               "id": "b5cbb24e-4c52-4963-aeb6-30a84f977c1b",
               "type": "basic.output",
               "data": {
@@ -1137,6 +1260,26 @@
               "position": {
                 "x": 800,
                 "y": 320
+              }
+            },
+            {
+              "id": "f87cbc2f-23c5-49c5-84ac-113c13d348dd",
+              "type": "basic.input",
+              "data": {
+                "name": "testmode",
+                "pins": [
+                  {
+                    "index": "0",
+                    "name": "NULL",
+                    "value": "NULL"
+                  }
+                ],
+                "virtual": true,
+                "clock": false
+              },
+              "position": {
+                "x": 24,
+                "y": 352
               }
             },
             {
@@ -1155,7 +1298,7 @@
               "type": "c4dd08263a85a91ba53e2ae2b38de344c5efcb52",
               "position": {
                 "x": 24,
-                "y": 328
+                "y": 200
               },
               "size": {
                 "width": 96,
@@ -1166,7 +1309,7 @@
               "id": "3bf759e1-2e82-41de-b330-93b35fcfe7ff",
               "type": "basic.code",
               "data": {
-                "code": "  // @include ov7670_top_ctrl.v\r\n  // @include ov7670_ctrl_reg.v\r\n  // @include sccb_master.v\r\n  \r\n  ov7670_top_ctrl lnk2vrlg \r\n  (\r\n     .rst          (rst),\r\n     .clk          (clk100mhz),\r\n     .resend       (resend),\r\n     .cnt_reg_test (cnt_reg_test[5:0]),\r\n     .done         (ov7670_cfgdone),\r\n     .sclk         (ov7670_sioc),\r\n     .sdat_on      (sdat_on),\r\n     .sdat_out     (sdat_out),\r\n     .ov7670_rst_n (ov7670_rst_n),\r\n     .ov7670_clk   (ov7670_xclk),\r\n     .ov7670_pwdn  (ov7670_pwdn)\r\n  );",
+                "code": "  // @include ov7670_top_ctrl.v\r\n  // @include ov7670_ctrl_reg.v\r\n  // @include sccb_master.v\r\n  \r\n  ov7670_top_ctrl lnk2vrlg \r\n  (\r\n     .rst          (rst),\r\n     .clk          (clk100mhz),\r\n     .resend       (resend),\r\n     .rgbmode      (rgbmode),\r\n     .testmode     (testmode),         \r\n     .cnt_reg_test (cnt_reg_test[5:0]),\r\n     .done         (ov7670_cfgdone),\r\n     .sclk         (ov7670_sioc),\r\n     .sdat_on      (sdat_on),\r\n     .sdat_out     (sdat_out),\r\n     .ov7670_rst_n (ov7670_rst_n),\r\n     .ov7670_clk   (ov7670_xclk),\r\n     .ov7670_pwdn  (ov7670_pwdn)\r\n  );",
                 "params": [],
                 "ports": {
                   "in": [
@@ -1178,6 +1321,12 @@
                     },
                     {
                       "name": "resend"
+                    },
+                    {
+                      "name": "rgbmode"
+                    },
+                    {
+                      "name": "testmode"
                     }
                   ],
                   "out": [
@@ -1330,6 +1479,26 @@
               "target": {
                 "block": "b5cbb24e-4c52-4963-aeb6-30a84f977c1b",
                 "port": "in"
+              }
+            },
+            {
+              "source": {
+                "block": "0eede1f6-a152-43dc-8b3a-e3c92cbf35fd",
+                "port": "out"
+              },
+              "target": {
+                "block": "3bf759e1-2e82-41de-b330-93b35fcfe7ff",
+                "port": "rgbmode"
+              }
+            },
+            {
+              "source": {
+                "block": "f87cbc2f-23c5-49c5-84ac-113c13d348dd",
+                "port": "out"
+              },
+              "target": {
+                "block": "3bf759e1-2e82-41de-b330-93b35fcfe7ff",
+                "port": "testmode"
               }
             }
           ]
