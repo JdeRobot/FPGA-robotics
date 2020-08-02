@@ -42,7 +42,7 @@ module color_proc
   (
     input          rst,       //reset, active high
     input          clk,       //fpga clock
-    input          proc_ctrl, //input to control the processing (select color)
+    input  [2:0]   rgbfilter, // color filter to be applied
     // Address and pixel of original image
     input  [c_nb_buf-1:0]      orig_pxl,  //pixel from original image
     output [c_nb_img_pxls-1:0] orig_addr, //pixel mem address original img
@@ -56,60 +56,10 @@ module color_proc
   reg [c_nb_img_pxls-1:0]  cnt_pxl;
   reg [c_nb_img_pxls-1:0]  cnt_pxl_proc;
   // indicates which colors will filter RGB
-  reg [2:0] rgb_filter;
 
   wire end_pxl_cnt;
 
-  reg  proc_ctrl_rg1, proc_ctrl_rg2;
-  wire pulse_proc_ctrl;
-
   parameter  BLACK_PXL = {c_nb_img_pxls{1'b0}};
-
-  always @ (posedge rst, posedge clk)
-  begin
-    if (rst) begin
-      proc_ctrl_rg1 <= 1'b0;
-      proc_ctrl_rg2 <= 1'b0;
-    end
-    else begin
-      proc_ctrl_rg1 <= proc_ctrl;
-      proc_ctrl_rg2 <= proc_ctrl_rg1;
-    end
-  end
-
-  // detect a pulse in proc_ctrl
-  assign pulse_proc_ctrl = (proc_ctrl_rg1 & ~proc_ctrl_rg2);
-  
-  // changes the filter
-  always @ (posedge rst, posedge clk)
-  begin
-    if (rst) begin
-      rgb_filter <= 3'b000; // no filter
-    end
-    else begin
-      if (pulse_proc_ctrl) begin
-        case (rgb_filter)
-          3'b000: // no filter, output same as input
-            rgb_filter <= 3'b100; // red filter
-          3'b100: // red filter
-            rgb_filter <= 3'b010; // green filter
-          3'b010: // green filter
-            rgb_filter <= 3'b001; // blue filter
-          3'b001: // blue filter
-            rgb_filter <= 3'b110; // red and green filter
-          3'b110: // red and green filter
-            rgb_filter <= 3'b101; // red and blue filter
-          3'b101: // red and blue filter
-            rgb_filter <= 3'b011; // green and blue filter
-          3'b011: // green and blue filter
-            rgb_filter <= 3'b111; // red, green and blue filter
-          3'b111: // red, green and blue filter
-            rgb_filter <= 3'b000; // no filter
-        endcase
-      end
-    end
-  end
-         
 
 
   // memory address count
@@ -135,10 +85,10 @@ module color_proc
   assign orig_addr = cnt_pxl;
   assign proc_addr = cnt_pxl_proc;
 
-  always @ (orig_pxl, rgb_filter) // should include RGB mode
+  always @ (orig_pxl, rgbfilter) // should include RGB mode
   begin
     // check on RED
-    case (rgb_filter)
+    case (rgbfilter)
       3'b000: // no filter, output same as input
         proc_pxl <= orig_pxl;
       3'b100: begin // red filter

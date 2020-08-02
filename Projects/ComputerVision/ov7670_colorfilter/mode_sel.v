@@ -11,68 +11,97 @@ module mode_sel
   #(parameter
     c_on    = 1'b1
    )
-   (input      rst,
-    input      clk,
-    input      sig_in,
+   (input        rst,
+    input        clk,
+    input        sig_in,
     output reg   rgbmode,
-    output reg   testmode);
+    output reg   testmode,
+    output [2:0] rgbfilter);
 
-  reg    [23:0]  count;
-  reg            counting;
-  reg            sig_in_rg1;
-  reg            sig_in_rg2;
-  reg            sig_pulse;
-  wire           sig_risevent;
-  wire           sig_fallevent;
+  reg    [23:0]  count_16ms;  // 16.7 million count
+  reg    [5:0]   count_2sec;  // count for a seconds aprox (64 x 16ms)
+  wire           pulse_16ms;
+  wire           pulse_1sec;
+  wire           end1sec;
 
   reg    [1:0]   mode;
+  reg    [2:0]   rgb_filter;
 
+  assign rgbfilter = rgb_filter;
+
+  // count around 16 ms approx
   always @(posedge rst, posedge clk)
   begin
     if (rst) begin
-      counting <= 1'b0;
-      sig_pulse  <= 1'b0;
-      count <= 24'hFF_FFFF;
+      count_16ms <= 24'hFF_FFFF;
     end
-    else if (sig_in) begin
-      sig_pulse <= 1'b0;
-      if (sig_risevent) 
-        counting <= 1'b1;
-      else if (sig_fallevent) begin
-        counting <= 1'b0;
-        count <= 24'hFF_FFFF;
+    else begin
+      if (sig_in) begin
+        if (count_16ms == 0) begin
+          count_16ms <= 24'hFF_FFFF;
+        end
+        else 
+          count_16ms <= count_16ms - 1;
       end
-      else if (count == 0) begin
-        sig_pulse <= 1'b1;
-        counting <= 1'b0;
-        count <= 24'hFF_FFFF;
-      end
-      else if (counting)
-        count <= count - 1;
-      else begin
-        counting <= 1'b0;
-        count <= 24'hFF_FFFF;
-      end
+      else
+        count_16ms <= 24'hFF_FFFF;
     end
   end
+
+  assign pulse_16ms = (count_16ms == 0) ? 1'b1 : 1'b0;
+
+  // to see if it has been pulsed for more than a second
+  // the count is of 2 seconds to give time to release the button
+  always @(posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      count_2sec    <= 6'b00_0000;
+    end
+    else begin
+      if (sig_in) begin
+        if (pulse_16ms) begin
+          if (count_2sec == 6'b11_1111)
+            count_2sec    <= 6'b00_0000;
+          else
+            count_2sec <= count_2sec + 1;
+        end
+      end
+      else 
+        count_2sec  <= 6'b00_0000;
+    end
+  end
+
+  assign end1sec = (count_2sec == 7'b01_1111) ? 1'b1 : 1'b0;
+  assign pulse_1sec = ((end1sec==1'b1) && (pulse_16ms==1'b1)) ? 1'b1 : 1'b0;
 
   always @ (posedge rst, posedge clk)
   begin
     if (rst) begin
-      sig_in_rg1 <= 1'b0;
-      sig_in_rg2 <= 1'b0;
+      rgb_filter <= 3'b000; // no filter
     end
     else begin
-      sig_in_rg1 <= sig_in;
-      sig_in_rg2 <= sig_in_rg1;
+      if (pulse_16ms && count_2sec == 0) begin
+        case (rgb_filter)
+          3'b000: // no filter, output same as input
+            rgb_filter <= 3'b100; // red filter
+          3'b100: // red filter
+            rgb_filter <= 3'b010; // green filter
+          3'b010: // green filter
+            rgb_filter <= 3'b001; // blue filter
+          3'b001: // blue filter
+            rgb_filter <= 3'b110; // red and green filter
+          3'b110: // red and green filter
+            rgb_filter <= 3'b101; // red and blue filter
+          3'b101: // red and blue filter
+            rgb_filter <= 3'b011; // green and blue filter
+          3'b011: // green and blue filter
+            rgb_filter <= 3'b111; // red, green and blue filter
+          3'b111: // red, green and blue filter
+            rgb_filter <= 3'b000; // no filter
+        endcase
+      end
     end
   end
-
-  assign sig_risevent = ((sig_in_rg1 == 1'b1) && (sig_in_rg2 == 1'b0)) ?
-                        1'b1 : 1'b0;
-  assign sig_fallevent = ((sig_in_rg1 == 1'b0) && (sig_in_rg2 == 1'b1)) ?
-                        1'b1 : 1'b0;
-
 
   always @ (posedge rst, posedge clk)
   begin
@@ -80,7 +109,7 @@ module mode_sel
       mode <= 2'b0;
     end
     else begin
-      if (sig_pulse) begin
+      if (pulse_1sec) begin
         if (mode == 2'b11) 
           mode <= 2'b0;
         else
@@ -88,6 +117,7 @@ module mode_sel
       end
     end
   end
+
 
   always @(*)
   begin

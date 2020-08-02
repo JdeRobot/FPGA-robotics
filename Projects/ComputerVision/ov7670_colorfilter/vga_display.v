@@ -45,6 +45,7 @@ module vga_display
     input          vsync,
     input          rgbmode,
     input          testmode,
+    input [2:0]    rgbfilter,
     input [10-1:0] col,
     input [10-1:0] row,
     input  [c_nb_buf-1:0] frame_pixel,
@@ -162,7 +163,7 @@ module vga_display
          vga_green = 4'b0000;
          vga_blue  = 4'b1000;
       end
-      else if ((row > 255) && (row < 256 + 8)) begin
+      else if ((row > 63) && (row < 64 + 8)) begin
          if ((col > 7) && (col < 16)) begin // RGB MODE
            if (char_rgbmode[7-char_col]) begin
              vga_red   = 4'b1111;
@@ -186,6 +187,11 @@ module vga_display
              vga_green = 4'b0000;
              vga_blue  = 4'b0000;
            end
+         end
+         else if ((col > 23) && (col < 32)) begin // Color Filter
+           vga_red   = {4{rgbfilter[2]}};
+           vga_green = {4{rgbfilter[1]}};
+           vga_blue  = {4{rgbfilter[0]}};
          end
       end
       else begin
