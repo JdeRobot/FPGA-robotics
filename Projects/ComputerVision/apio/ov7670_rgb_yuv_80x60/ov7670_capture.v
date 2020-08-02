@@ -220,21 +220,21 @@ module ov7670_capture
         if (pclk_rise_prev == 1'b1) begin
           if (cnt_byte == 1'b0) begin
             if (rgbmode) begin
+              green <= data_rg3[3:0];
               if (swap_r_b == 1'b0)
-                red <= data_rg3[3:0];
+                red <= data_rg3[7:4];
               else
-                blue <= data_rg3[3:0];
+                blue <= data_rg3[7:4];
             end
             else  // YUV (gray first byte)
               gray  <= data_rg3;
           end
           else begin
             if (rgbmode) begin
-              green <= data_rg3[7:4];
               if (swap_r_b == 1'b0)
-                blue <= data_rg3[3:0];
+                blue <= data_rg3[7:4];
               else
-                red <= data_rg3[3:0];
+                red <= data_rg3[7:4];
             end
             //else
                // do nothing, not getting U or V

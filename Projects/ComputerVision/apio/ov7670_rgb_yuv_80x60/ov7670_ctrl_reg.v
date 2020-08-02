@@ -133,11 +133,12 @@ module ov7670_ctrl_reg
                //             so, this is to have RGB444
                // [3:0]=0: Reserved
       6'h05:
-        reg_rgb444_test <= 16'h8C02;
+        reg_rgb444_test <= 16'h8C03;
                // 8C: RGB444
                // [7:2]=0: Reserved
                // [1]=1: Enable RGB444
                // [0]=0: word format: xR GB
+               //    =1: word format: RG Bx
       6'h06:
         reg_rgb444_test <= 16'h1180;
                // 11: CLKRC Internal Clock
@@ -408,11 +409,12 @@ module ov7670_ctrl_reg
                //             so, this is to have RGB444
                // [3:0]=0: Reserved
       6'h05:
-        reg_rgb444 <= 16'h8C02;
+        reg_rgb444 <= 16'h8C03;
                // 8C: RGB444
                // [7:2]=0: Reserved
                // [1]=1: Enable RGB444
                // [0]=0: word format: xR GB
+               //    =1: word format: RG Bx
       6'h06:
         reg_rgb444 <= 16'h1180;
                // 11: CLKRC Internal Clock
