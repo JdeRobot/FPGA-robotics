@@ -13,8 +13,9 @@ module ov7670_top_ctrl
   (input        rst,              //reset, active high
    input        clk,              //FPGA clock
    input        resend,           //resend the sequence
+   input        rgbmode,         //if '1': in RGB, else YUV
+   input        testmode,        //if '1': in test mode
    output [5:0] cnt_reg_test,     //to test the count
-
    output       done,             //all transmission done
    output       sclk,             //sccb clock
    output       sdat_on,          //transmitting serial ('1')
@@ -53,6 +54,8 @@ module ov7670_top_ctrl
   (
     .rst          (rst),
     .clk          (clk),
+    .rgbmode      (rgbmode),
+    .testmode     (testmode),
     .resend       (resend),
     .sccb_ready   (sccb_ready),
     .cnt_reg_test (cnt_reg_test), //test
