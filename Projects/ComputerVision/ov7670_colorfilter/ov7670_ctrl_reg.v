@@ -158,7 +158,7 @@ module ov7670_ctrl_reg
                // [3] = 1 (reserved) hamster
 
       6'h08:
-        reg_rgb444_test <= 16'h1E37;
+        reg_rgb444_test <= 16'h1E07;
              // MVFP Mirror/flip enable. Default 00
              // [7:6]= 00 : reserved
              // [5]= 1 : Mirror image
@@ -434,7 +434,7 @@ module ov7670_ctrl_reg
                // [3] = 1 (reserved) hamster
 
       6'h08:
-        reg_rgb444 <= 16'h1E37;
+        reg_rgb444 <= 16'h1E07;
              // MVFP Mirror/flip enable. Default 00
              // [7:6]= 00 : reserved
              // [5]= 1 : Mirror image
@@ -706,7 +706,7 @@ module ov7670_ctrl_reg
 
       // check
       6'h08:
-        reg_yuv422_test <= 16'h1E37;
+        reg_yuv422_test <= 16'h1E07;
              // MVFP Mirror/flip enable. Default 00
              // [7:6]= 00 : reserved
              // [5]= 1 : Mirror image
@@ -893,7 +893,7 @@ module ov7670_ctrl_reg
                // [3] = 1 (reserved) hamster
 
       6'h08:
-        reg_yuv422 <= 16'h1E37;
+        reg_yuv422 <= 16'h1E07;
              // MVFP Mirror/flip enable. Default 00
              // [7:6]= 00 : reserved
              // [5]= 1 : Mirror image
