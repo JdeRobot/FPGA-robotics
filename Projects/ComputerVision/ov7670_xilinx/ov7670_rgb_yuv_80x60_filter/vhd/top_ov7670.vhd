@@ -28,6 +28,8 @@ entity top_ov7670 is
 
       sw0_test_cmd : in    std_logic; --if '1', step by step SCCB instructions
       sw4_test_osc : in    std_logic; --if '1' show oscilloscope
+      -- sw1=0 -> RGB (and color filter)
+      -- sw1=1 -> YUV (and sobel filter)
       sw13_regs    : in    std_logic_vector(2 downto 0); --choose regs sccb
 
       sw57_rgbfilter: in    std_logic_vector(2 downto 0); --rgbfilter
@@ -102,7 +104,7 @@ architecture struct of top_ov7670 is
     );
   end component;
 
-  component color_proc is
+  component color_proc
     port (
       rst      : in   std_logic;
       clk      : in   std_logic;
@@ -115,6 +117,21 @@ architecture struct of top_ov7670 is
       proc_pxl : out  std_logic_vector(c_nb_buf-1 downto 0);
       proc_addr: out  std_logic_vector(c_nb_img_pxls-1 downto 0)
     );
+  end component;
+
+  component edge_proc
+    port (
+      rst      : in   std_logic;    -- FPGA reset
+      clk      : in   std_logic;    -- FPGA clock
+      vfilter  : in   std_logic;    -- 0:horizontal, 1:vertical
+      -- address and pixel of original image
+      orig_pxl : in   std_logic_vector(c_nb_buf-1 downto 0);   --orig img pixel
+      orig_addr: out  std_logic_vector(c_nb_img_pxls-1 downto 0);--orig img addr
+      -- address and pixel of processed image
+      proc_we  : out  std_logic;    -- write enable
+      proc_pxl : out  std_logic_vector(c_nb_buf_gray-1 downto 0);--proc pixel 
+      proc_addr: out  std_logic_vector(c_nb_img_pxls-1 downto 0) --address
+  );
   end component;
 
   component ov7670_capture
@@ -222,11 +239,21 @@ architecture struct of top_ov7670 is
    signal capture_we    : std_logic;
 
    signal orig_addr  : std_logic_vector(c_nb_img_pxls-1 downto 0);
+   signal orig_addr_edge  : std_logic_vector(c_nb_img_pxls-1 downto 0);
+   signal orig_addr_color : std_logic_vector(c_nb_img_pxls-1 downto 0);
    signal orig_pxl   : std_logic_vector(c_nb_buf-1 downto 0);
 
    signal proc_addr  : std_logic_vector(c_nb_img_pxls-1 downto 0);
    signal proc_pxl   : std_logic_vector(c_nb_buf-1 downto 0);
    signal proc_we    : std_logic;
+
+   signal proc_addr_color : std_logic_vector(c_nb_img_pxls-1 downto 0);
+   signal proc_pxl_color  : std_logic_vector(c_nb_buf-1 downto 0);
+   signal proc_we_color   : std_logic;
+
+   signal proc_addr_edge : std_logic_vector(c_nb_img_pxls-1 downto 0);
+   signal proc_pxl_edge  : std_logic_vector(c_nb_buf_gray-1 downto 0);
+   signal proc_we_edge   : std_logic;
 
    signal resend        : std_logic;
    signal config_finished : std_logic;
@@ -246,6 +273,8 @@ architecture struct of top_ov7670 is
    signal seg7_num5 : std_logic_vector(3 downto 0);
    signal seg7_num6 : std_logic_vector(3 downto 0);
    signal seg7_num7 : std_logic_vector(3 downto 0);
+
+   signal sw5_vfilter : std_logic;
 
 
   signal ov_vga_red, ov_vga_green, ov_vga_blue: std_logic_vector(3 downto 0);
@@ -344,12 +373,35 @@ begin
       rgbfilter => sw57_rgbfilter,
       -- address and pixel of original image
       orig_pxl  => orig_pxl,
-      orig_addr => orig_addr,
+      orig_addr => orig_addr_color,
       -- address and pixel of processed image
-      proc_we   => proc_we,
-      proc_pxl  => proc_pxl,
-      proc_addr => proc_addr
+      proc_we   => proc_we_color,
+      proc_pxl  => proc_pxl_color,
+      proc_addr => proc_addr_color
     );
+
+  sw5_vfilter <= sw57_rgbfilter(0);
+
+  I_edge_proc : edge_proc
+    port map (
+      rst       => rst,
+      clk       => clk,
+      vfilter   => sw5_vfilter, -- 0: horizontal ; 1: vertical
+      -- address and pixel of original image
+      orig_pxl  => orig_pxl,
+      orig_addr => orig_addr_edge,
+      -- address and pixel of processed image
+      proc_we   => proc_we_edge,
+      proc_pxl  => proc_pxl_edge,
+      proc_addr => proc_addr_edge
+    );
+
+  -- mux to select which processing: color or edge
+  orig_addr <= orig_addr_color when rgbmode ='1' else orig_addr_edge;
+  proc_we   <= proc_we_color   when rgbmode ='1' else proc_we_edge;
+  proc_pxl  <= proc_pxl_color  when rgbmode ='1' else "0000" & proc_pxl_edge;
+  proc_addr <= proc_addr_color when rgbmode ='1' else proc_addr_edge;
+
 
   -- processed image to be shown in VGA
   I_fb_proc : frame_buffer

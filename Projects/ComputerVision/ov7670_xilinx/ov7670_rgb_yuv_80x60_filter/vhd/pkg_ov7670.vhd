@@ -54,6 +54,9 @@ package ov7670_pkg is
   -- number of bits to count the pixels of a line
   constant c_nb_line_pxls : natural := log2i(c_img_cols-1) + 1;
 
+  -- number of bits to count the rows of a image
+  constant c_nb_rows : natural := log2i(c_img_rows-1) + 1;
+
   constant c_img_pxls : natural := c_img_cols * c_img_rows;
 
   -- number of bits necessary to represent c_img_pxls in binary
@@ -69,6 +72,8 @@ package ov7670_pkg is
   constant c_msb_blue   : natural := c_nb_buf_blue-1;
   constant c_msb_red    : natural := c_nb_buf-1;
   constant c_msb_green  : natural := c_msb_blue + c_nb_buf_green;
+  -- when keeping the gray level, only 8 bits
+  constant c_nb_buf_gray  : natural := 8;
 
 ---------- Pixels. 1 Pixel = 2 Pclk (horizontal, columns) -----------------|
 --         Each pixel have 2 bytes (2 Pclk)
