@@ -224,7 +224,7 @@ begin
                         p_sobel_hor, p_sobel_ver)
   begin
     if filter_on = '0' then -- no filter -> central pixel of the window
-      proc_pxl <= p11;
+      proc_pxl <= std_logic_vector(p11);
     else  -- filter ON
       if image_border = '1' then -- black pixel in image border
         proc_pxl <= (others =>'0');

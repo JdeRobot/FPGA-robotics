@@ -31,7 +31,8 @@ module top_ov7670
        c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
        c_nb_buf_blue  =  4,  // n bits for blue in the buffer (memory)
        // word width of the memory (buffer)
-       c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
+       c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue,
+       c_nb_buf_gray  =  8  // n bits for gray level
     )
     (input        rst,
      input        clk,
@@ -178,12 +179,28 @@ module top_ov7670
      .rgbfilter  (sw57_rgbfilter),
      // address and pixel of original image
      .orig_pxl   (orig_pxl),
-     .orig_addr  (orig_addr),
+     .orig_addr  (orig_addr_color),
      // address and pixel of processed image
-     .proc_we    (proc_we),
-     .proc_pxl   (proc_pxl),
-     .proc_addr  (proc_addr)
+     .proc_we    (proc_we_color),
+     .proc_pxl   (proc_pxl_color),
+     .proc_addr  (proc_addr_color)
   );
+
+  edge_proc I_edge_proc
+  (
+     .rst        (rst),
+     .clk        (clk),
+     .rgbfilter  (sw57_vfilter),
+     // address and pixel of original image
+     .orig_pxl   (orig_pxl),
+     .orig_addr  (orig_addr_edge),
+     // address and pixel of processed image
+     .proc_we    (proc_we_edge),
+     .proc_pxl   (proc_pxl_edge),
+     .proc_addr  (proc_addr_edge)
+  );
+
+
 
   frame_buffer I_fb_proc
   (
