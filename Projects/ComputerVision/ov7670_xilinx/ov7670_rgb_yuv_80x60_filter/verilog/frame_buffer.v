@@ -43,7 +43,7 @@ module frame_buffer
    output reg [c_nb_buf-1:0]             doutb
    );
 
-  reg  [c_nb_buf-1:0] ram[c_img_pxls-1:0];
+  reg  [c_nb_buf-1:0] ram[0:c_img_pxls-1];
 
   always @ (posedge clk)
   begin

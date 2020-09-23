@@ -22,7 +22,8 @@ entity edge_proc is
   port (
     rst      : in   std_logic;    -- FPGA reset
     clk      : in   std_logic;    -- FPGA clock
-    edgefilter: in   std_logic_vector(1 downto 0);    -- 0:horizontal, 1:vertical
+    -- x0: no filter; 01: horizontal; 11: vertical
+    edgefilter: in   std_logic_vector(1 downto 0);
     -- address and pixel of original image
     orig_pxl : in   std_logic_vector(c_nb_buf-1 downto 0);   --orig img pixel
     orig_addr: out  std_logic_vector(c_nb_img_pxls-1 downto 0);--orig img addr
@@ -155,7 +156,7 @@ begin
   begin
     if clk'event and clk='1' then
       if receiving = '1' then
-        cirbuf1(to_integer(buf_pt)) <= P20;
+        cirbuf1(to_integer(buf_pt)) <= p20;
         cirbuf2(to_integer(buf_pt)) <= p10;
       end if;
     end if;
@@ -218,7 +219,8 @@ begin
   vfilter   <= edgefilter(1);
 
 
-  proc_addr  <= std_logic_vector(pxl_in_num - c_nb_line_pxls - 1);
+  -- the central pixel of the kernel is one row and one pixel behind
+  proc_addr  <= std_logic_vector(pxl_in_num - (c_img_cols + 1));
   proc_we    <= receiving;
   P_pixelvalue: Process(filter_on, vfilter, image_border,
                         p_sobel_hor, p_sobel_ver)
