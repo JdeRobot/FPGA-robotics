@@ -108,6 +108,9 @@ module edge_proc
   wire last_col, last_row, first_col, first_row;
   wire image_border;
 
+  // when the pxl0 (left-upper corner of image) is in the center of the kernel
+  wire    pxl0_p11;
+
 
   // memory address count
   always @ (posedge rst, posedge clk)
@@ -131,26 +134,41 @@ module edge_proc
   assign end_pxl_cnt = (cnt_pxl == c_img_pxls-1) ? 1'b1 : 1'b0;
   assign orig_addr = cnt_pxl;
 
+
+  // when the last pixel of the image is in the center of the kernel
+  assign lastpxl_p11 = (pxl_in_num == c_img_cols + 1)? 1'b1 : 1'b0;
+
   // buffer pointer, row and column count
   always @ (posedge rst, posedge clk)
   begin
-    if (rst) begin
+    if (rst)
       buf_pt   <= 0;
-      colnum   <= 0;
-      rownum   <= 0;
-    end
     else begin
       if (receiving) begin
         if (end_buf_cnt)
           buf_pt <= 0;
         else
           buf_pt <= buf_pt + 1;
-        if (last_col) begin
+      end
+    end
+  end
+
+  // col and row numbers, to avoid division
+  always @ (posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      colnum   <= 0;
+      rownum   <= 0;
+    end
+    else begin
+      if (receiving) begin
+        if (lastpxl_p11) begin // last row and last column (last pixel)
+          rownum <= 0;
           colnum <= 0;
-          if (last_row)
-            rownum <= 0;
-          else
-            rownum <= rownum + 1;
+        end
+        else if (last_col) begin
+          colnum <= 0;
+          rownum <= rownum + 1;
         end
         else
           colnum <= colnum + 1;
