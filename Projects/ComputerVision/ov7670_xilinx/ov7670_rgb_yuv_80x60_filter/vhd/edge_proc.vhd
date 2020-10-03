@@ -220,7 +220,9 @@ begin
 
 
   -- the central pixel of the kernel is one row and one pixel behind
-  proc_addr  <= std_logic_vector(pxl_in_num - (c_img_cols + 1));
+  proc_addr  <= std_logic_vector(pxl_in_num - (c_img_cols + 1)) when
+                                 pxl_in_num > c_img_cols else 
+                std_logic_vector(pxl_in_num+((c_img_pxls-1)-c_img_cols));                 ;
   proc_we    <= receiving;
   P_pixelvalue: Process(filter_on, vfilter, image_border,
                         p_sobel_hor, p_sobel_ver)

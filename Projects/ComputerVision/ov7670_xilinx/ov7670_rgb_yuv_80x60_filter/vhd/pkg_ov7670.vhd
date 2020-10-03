@@ -43,7 +43,7 @@ package ov7670_pkg is
   -- QQVGA
   constant c_cols_qqvga : natural := 160;
   constant c_rows_qqvga : natural := 120;
-  -- QQVGA
+  -- QQVGA2
   constant c_cols_qqvga2 : natural := 80;
   constant c_rows_qqvga2 : natural := 60;
 

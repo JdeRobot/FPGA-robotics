@@ -77,14 +77,24 @@ module top_ov7670
 
     wire [c_nb_img_pxls-1:0] capture_addr;
     wire [c_nb_buf-1:0]      capture_data;
-    wire          capture_we;
+    wire                     capture_we;
 
     wire [c_nb_img_pxls-1:0] orig_addr;
+    wire [c_nb_img_pxls-1:0] orig_addr_edge;
+    wire [c_nb_img_pxls-1:0] orig_addr_color;
     wire [c_nb_buf-1:0]      orig_pxl;
 
     wire [c_nb_img_pxls-1:0] proc_addr;
     wire [c_nb_buf-1:0]      proc_pxl;
-    wire          proc_we;
+    wire                     proc_we;
+
+    wire [c_nb_img_pxls-1:0] proc_addr_color;
+    wire [c_nb_buf-1:0]      proc_pxl_color;
+    wire                     proc_we_color;
+
+    wire [c_nb_img_pxls-1:0] proc_addr_edge;
+    wire [c_nb_buf_gray-1:0] proc_pxl_edge;
+    wire                     proc_we_edge;
 
     wire          resend;
     wire          config_finished;
@@ -104,6 +114,8 @@ module top_ov7670
     wire [3:0]    seg7_num5;
     wire [3:0]    seg7_num6;
     wire [3:0]    seg7_num7;
+
+    wire [1:0]    sw56_edgefilter;
 
     wire [11:0]   ov_capture_datatest;
 
@@ -172,6 +184,8 @@ module top_ov7670
      .doutb   (orig_pxl)
    );
 
+  assign sw56_edgefilter = sw57_rgbfilter[1:0];
+
   color_proc I_color_proc
   (
      .rst        (rst),
@@ -190,7 +204,7 @@ module top_ov7670
   (
      .rst        (rst),
      .clk        (clk),
-     .rgbfilter  (sw57_vfilter),
+     .edgefilter  (sw56_edgefilter),
      // address and pixel of original image
      .orig_pxl   (orig_pxl),
      .orig_addr  (orig_addr_edge),
@@ -200,6 +214,10 @@ module top_ov7670
      .proc_addr  (proc_addr_edge)
   );
 
+  assign orig_addr = (rgbmode) ? orig_addr_color : orig_addr_edge;
+  assign proc_we   = (rgbmode) ? proc_we_color   : proc_we_edge;
+  assign proc_pxl  = (rgbmode) ? proc_pxl_color  : {4'b0000, proc_pxl_edge};
+  assign proc_addr = (rgbmode) ? proc_addr_color : proc_addr_edge;
 
 
   frame_buffer I_fb_proc
