@@ -76,6 +76,7 @@ ARCHITECTURE behavior OF tb_edge_proc IS
    signal rst : std_logic := '0';
    signal clk : std_logic := '0';
    signal edgefilter : std_logic_vector(1 downto 0) := (others => '0');
+   signal cntedgefilter : unsigned(2 downto 0) := (others => '0');
    signal orig_pxl : std_logic_vector(11 downto 0) := (others => '0');
 
  	--Outputs
@@ -131,20 +132,23 @@ BEGIN
    --tb_colnum <= tb_addr mod c_img_cols;
    --tb_rownum <= tb_addr / c_img_cols;
 
+   edgefilter <= std_logic_vector(cntedgefilter(2 downto 1));
+
    -- processing
    proc: process (rst, clk)
    begin
      if rst = '1' then
         tb_addr <= (others=>'0');
-        edgefilter <= "00"; -- no filter
+        cntedgefilter <= "000";
         tb_colnum <= (others=>'0');
         tb_rownum <= (others=>'0');
      elsif clk'event and clk='1' then
        tb_addr <= unsigned(orig_addr);
        if unsigned(orig_addr) = c_img_pxls -1 then -- change the processing when finish image
-          edgefilter(0) <= not edgefilter(0);
-          if (edgefilter(0) = '1') then
-             edgefilter(1) <= not edgefilter(1);
+          if cntedgefilter = "101" then
+            cntedgefilter <= "000";
+          else
+            cntedgefilter<= cntedgefilter + 1;
           end if;
           tb_colnum <= (others=>'0');
           tb_rownum <= (others=>'0');

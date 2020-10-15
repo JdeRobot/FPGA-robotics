@@ -75,6 +75,7 @@ module edge_proc
   // Horizontal
   wire [c_nb_buf_gray:0]   p_22_20, p_02_00; //1bit more
   wire [c_nb_buf_gray+1:0] p_top, p_bot;     //2bits more
+  reg  [c_nb_buf_gray+1:0] p_top_rg, p_bot_rg;  //segmentation
   // one more bit for the sign
   //wire [c_nb_buf_gray+2:0] p_sobel_hor_sign; //3bits more
   wire [c_nb_buf_gray+2:0] p_sobel_hor_abs;  //3bits more
@@ -84,6 +85,7 @@ module edge_proc
   // Vertical
   wire [c_nb_buf_gray:0]   p_22_02, p_20_00; //1bit more
   wire [c_nb_buf_gray+1:0] p_left, p_right;  //2bits more
+  reg  [c_nb_buf_gray+1:0] p_left_rg, p_right_rg;  //segmentation
   // one more bit for the sign
   //wire [c_nb_buf_gray+2:0] p_sobel_ver_sign; //3bits more
   wire [c_nb_buf_gray+2:0] p_sobel_ver_abs;  //3bits more
@@ -108,9 +110,8 @@ module edge_proc
   wire last_col, last_row, first_col, first_row;
   wire image_border;
 
-  // when the pxl0 (left-upper corner of image) is in the center of the kernel
-  wire    pxl0_p11;
-
+  // when the last pixel is at the center of the kernel
+  wire    lastpxl_p11;
 
   // memory address count
   always @ (posedge rst, posedge clk)
@@ -154,6 +155,7 @@ module edge_proc
   end
 
   // col and row numbers, to avoid division
+  // referred to the central pixel p11
   always @ (posedge rst, posedge clk)
   begin
     if (rst) begin
@@ -228,14 +230,6 @@ module edge_proc
   assign p_02_00 = p02 + p00; // p02 + p00
   assign p_bot   = p_02_00 + (2*p01); // (p02+p00)+ 2xp01
 
-  assign p_sobel_hor_abs = (p_top > p_bot) ? {1'b0, p_top} - {1'b0, p_bot}:
-                                             {1'b0, p_bot} - {1'b0, p_top};
-          
-  // check if the result has overflown
-  assign p_sobel_hor =(p_sobel_hor_abs[c_nb_buf_gray+2:c_nb_buf_gray]==3'b000) ?
-                             p_sobel_hor_abs[c_nb_buf_gray-1:0]:
-                             {(c_nb_buf_gray){1'b1}}; //max value (unsigned)
-          
   // Vertical   |(p22 + 2xp12 + p02) - (p20 + 2xp10 + p00)|
   // Vertical right
   assign p_22_02 = p22 + p02; // p22 + p02
@@ -244,8 +238,40 @@ module edge_proc
   assign p_20_00 = p20 + p00; // p20 + p00
   assign p_left  = p_20_00 + (2*p10); // (p20+p00)+ 2xp10
 
-  assign p_sobel_ver_abs = (p_right > p_left) ? {1'b0, p_right}-{1'b0, p_left}:
-                                                {1'b0, p_left}-{1'b0, p_right};
+
+  // segmentation
+  always @ (posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      p_bot_rg <= 0;
+      p_top_rg <= 0;
+      p_right_rg <= 0;
+      p_left_rg  <= 0;
+      //lastpxl_p11_rg  <= 1'b0;
+    end
+    else begin
+      p_bot_rg <= p_bot;
+      p_top_rg <= p_top;
+      p_right_rg <= p_right;
+      p_left_rg  <= p_left;
+      //lastpxl_p11_rg  <= lastpxl_p11;
+    end
+  end
+
+
+  assign p_sobel_hor_abs = (p_top_rg > p_bot_rg) ?
+                           {1'b0, p_top_rg} - {1'b0, p_bot_rg}:
+                           {1'b0, p_bot_rg} - {1'b0, p_top_rg};
+          
+  // check if the result has overflown
+  assign p_sobel_hor =(p_sobel_hor_abs[c_nb_buf_gray+2:c_nb_buf_gray]==3'b000) ?
+                             p_sobel_hor_abs[c_nb_buf_gray-1:0]:
+                             {(c_nb_buf_gray){1'b1}}; //max value (unsigned)
+          
+
+  assign p_sobel_ver_abs = (p_right_rg > p_left_rg) ?
+                           {1'b0, p_right_rg}-{1'b0, p_left_rg}:
+                           {1'b0, p_left_rg}-{1'b0, p_right_rg};
 
   // check if the result has overflown
   assign p_sobel_ver =(p_sobel_ver_abs[c_nb_buf_gray+2:c_nb_buf_gray]==3'b000) ?
@@ -257,14 +283,17 @@ module edge_proc
 
   // the central pixel of the kernel is one row and one pixel behind
   // and one pixel behind the pixel is comming (pxl_in_num)
-  assign proc_addr = (pxl_in_num>=(c_img_cols+2)) ? pxl_in_num-(c_img_cols + 2):
-                                     pxl_in_num+((c_img_pxls)-(c_img_cols+2));
+  // and another pixel more behind due to segmentation
+  assign proc_addr = (pxl_in_num>=(c_img_cols+3)) ? pxl_in_num-(c_img_cols + 3):
+                                     pxl_in_num+((c_img_pxls)-(c_img_cols+3));
   assign proc_we   = receiving;
 
   always @ (*)
   begin
     if (filter_on == 1'b0)
-      proc_pxl <= p11; //Filter off, the same pixel
+      //Filter off, the same pixel (p11), but due segmentation, we take
+      // the previous, since p10 <= p11
+      proc_pxl <= p10; //Filter off, the same pixel, but due segmentation
     else begin // filter ON
       if (image_border) 
         proc_pxl <= 0;
