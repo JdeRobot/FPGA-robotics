@@ -122,6 +122,10 @@ begin
   end_pxl_cnt <= '1' when cnt_pxl = c_img_pxls-1 else '0';
   orig_addr   <= std_logic_vector(cnt_pxl);
 
+  -- when the last pixel of the image is in the center of the kernel
+  lastpxl_p11 <=  '1' when (pxl_in_num = c_img_cols + 1) else '0';
+
+
   -- 
   -- buffer pointer
   P_buff_pt: process(rst, clk)

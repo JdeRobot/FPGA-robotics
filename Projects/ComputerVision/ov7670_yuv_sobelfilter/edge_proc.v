@@ -29,31 +29,24 @@ module edge_proc
       c_img_pxls    = c_img_cols * c_img_rows,
       c_nb_img_pxls =  13,  //80*60=4800 -> 2^13
       c_nb_line_pxls = 7, // log2i(c_img_cols-1) + 1;
-      c_nb_rows     = 6, // log2i(c_img_rows-1) + 1;
+      c_nb_rows      = 6, // log2i(c_img_rows-1) + 1;
 
-    c_nb_buf_gray  =  8,  // n bits for gray in the buffer (memory)
-    c_nb_buf_red   =  4,  // n bits for red in the buffer (memory)
-    c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
-    c_nb_buf_blue  =  4,  // n bits for blue in the buffer (memory)
-    // word width of the memory (buffer)
-    c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
+      c_nb_buf       =  8 // n bits for gray in the buffer (memory)
   )
   (
     input          rst,       //reset, active high
     input          clk,       //fpga clock
     // x0: no filter; 01: horizontal; 11: vertical
-    input  [1:0]   edgefilter, // edge filter to be applied
+    input          filter_on,   // 1: edge filter ; 0: no filter
+    input          vfilter,  // (if filter_on): 1: vertical filter; 0 horizontal
     // Address and pixel of original image
     input  [c_nb_buf-1:0]      orig_pxl,  //pixel from original image
     output [c_nb_img_pxls-1:0] orig_addr, //pixel mem address original img
     // Address and pixel of processed image
     output                     proc_we,  //write enable, to write processed pxl
-    output reg [c_nb_buf_gray-1:0] proc_pxl, // processed pixel to be written
+    output reg [c_nb_buf-1:0] proc_pxl, // processed pixel to be written
     output [c_nb_img_pxls-1:0] proc_addr // address of processed pixel
   );
-
-  wire        filter_on;  // edge filter on
-  wire        vfilter;    // vertical filter
 
   reg [c_nb_img_pxls-1:0]  cnt_pxl;
   // this is the pixel number entering, since it comes delayed from the memory
@@ -67,35 +60,35 @@ module edge_proc
   //  p00 p01 p02
   //  p10 p11 p12
   //  p20 p21 p22
-  reg [c_nb_buf_gray-1:0]  p00, p01, p02;
-  reg [c_nb_buf_gray-1:0]  p10, p11, p12;
-  reg [c_nb_buf_gray-1:0]  p20, p21, p22;
+  reg [c_nb_buf-1:0]  p00, p01, p02;
+  reg [c_nb_buf-1:0]  p10, p11, p12;
+  reg [c_nb_buf-1:0]  p20, p21, p22;
 
   // sobel operations
   // Horizontal
-  wire [c_nb_buf_gray:0]   p_22_20, p_02_00; //1bit more
-  wire [c_nb_buf_gray+1:0] p_top, p_bot;     //2bits more
-  reg  [c_nb_buf_gray+1:0] p_top_rg, p_bot_rg;  //segmentation
+  wire [c_nb_buf:0]   p_22_20, p_02_00; //1bit more
+  wire [c_nb_buf+1:0] p_top, p_bot;     //2bits more
+  reg  [c_nb_buf+1:0] p_top_rg, p_bot_rg;  //segmentation
   // one more bit for the sign
-  //wire [c_nb_buf_gray+2:0] p_sobel_hor_sign; //3bits more
-  wire [c_nb_buf_gray+2:0] p_sobel_hor_abs;  //3bits more
+  //wire [c_nb_buf+2:0] p_sobel_hor_sign; //3bits more
+  wire [c_nb_buf+2:0] p_sobel_hor_abs;  //3bits more
   // final result, same number of bits
-  wire [c_nb_buf_gray-1:0] p_sobel_hor; 
+  wire [c_nb_buf-1:0] p_sobel_hor; 
 
   // Vertical
-  wire [c_nb_buf_gray:0]   p_22_02, p_20_00; //1bit more
-  wire [c_nb_buf_gray+1:0] p_left, p_right;  //2bits more
-  reg  [c_nb_buf_gray+1:0] p_left_rg, p_right_rg;  //segmentation
+  wire [c_nb_buf:0]   p_22_02, p_20_00; //1bit more
+  wire [c_nb_buf+1:0] p_left, p_right;  //2bits more
+  reg  [c_nb_buf+1:0] p_left_rg, p_right_rg;  //segmentation
   // one more bit for the sign
-  //wire [c_nb_buf_gray+2:0] p_sobel_ver_sign; //3bits more
-  wire [c_nb_buf_gray+2:0] p_sobel_ver_abs;  //3bits more
+  //wire [c_nb_buf+2:0] p_sobel_ver_sign; //3bits more
+  wire [c_nb_buf+2:0] p_sobel_ver_abs;  //3bits more
   // final result, same number of bits
-  wire [c_nb_buf_gray-1:0] p_sobel_ver;
+  wire [c_nb_buf-1:0] p_sobel_ver;
 
   
   // substract 3 because 3 pixels are out of the buffer to compute the kernel
-  reg   [c_nb_buf_gray-1:0] cirbuf1[0:c_img_cols-1-3];
-  reg   [c_nb_buf_gray-1:0] cirbuf2[0:c_img_cols-1-3];
+  reg   [c_nb_buf-1:0] cirbuf1[0:c_img_cols-1-3];
+  reg   [c_nb_buf-1:0] cirbuf2[0:c_img_cols-1-3];
 
   // buffers' pointer
   reg   [c_nb_line_pxls-1:0] buf_pt;
@@ -139,7 +132,7 @@ module edge_proc
   // when the last pixel of the image is in the center of the kernel
   assign lastpxl_p11 = (pxl_in_num == c_img_cols + 1)? 1'b1 : 1'b0;
 
-  // buffer pointer
+  // buffer pointer, row and column count
   always @ (posedge rst, posedge clk)
   begin
     if (rst)
@@ -209,7 +202,7 @@ module edge_proc
       p00 <= 0;
     end
     else begin
-      p22 <= orig_pxl[c_nb_buf_gray-1:0];
+      p22 <= orig_pxl[c_nb_buf-1:0];
       p21 <= p22;
       p20 <= p21;
       p12 <= cirbuf1[buf_pt];
@@ -264,9 +257,9 @@ module edge_proc
                            {1'b0, p_bot_rg} - {1'b0, p_top_rg};
           
   // check if the result has overflown
-  assign p_sobel_hor =(p_sobel_hor_abs[c_nb_buf_gray+2:c_nb_buf_gray]==3'b000) ?
-                             p_sobel_hor_abs[c_nb_buf_gray-1:0]:
-                             {(c_nb_buf_gray){1'b1}}; //max value (unsigned)
+  assign p_sobel_hor =(p_sobel_hor_abs[c_nb_buf+2:c_nb_buf]==3'b000) ?
+                             p_sobel_hor_abs[c_nb_buf-1:0]:
+                             {(c_nb_buf){1'b1}}; //max value (unsigned)
           
 
   assign p_sobel_ver_abs = (p_right_rg > p_left_rg) ?
@@ -274,18 +267,15 @@ module edge_proc
                            {1'b0, p_left_rg}-{1'b0, p_right_rg};
 
   // check if the result has overflown
-  assign p_sobel_ver =(p_sobel_ver_abs[c_nb_buf_gray+2:c_nb_buf_gray]==3'b000) ?
-                             p_sobel_ver_abs[c_nb_buf_gray-1 :0]:
-                             {(c_nb_buf_gray){1'b1}}; //max value (unsigned)
-
-  assign filter_on = edgefilter[0];
-  assign vfilter   = edgefilter[1];
+  assign p_sobel_ver =(p_sobel_ver_abs[c_nb_buf+2:c_nb_buf]==3'b000) ?
+                             p_sobel_ver_abs[c_nb_buf-1 :0]:
+                             {(c_nb_buf){1'b1}}; //max value (unsigned)
 
   // the central pixel of the kernel is one row and one pixel behind
   // and one pixel behind the pixel is comming (pxl_in_num)
   // and another pixel more behind due to segmentation
   assign proc_addr = (pxl_in_num>=(c_img_cols+3)) ? pxl_in_num-(c_img_cols + 3):
-                                     pxl_in_num+(c_img_pxls-(c_img_cols+3));
+                                     pxl_in_num+((c_img_pxls)-(c_img_cols+3));
   assign proc_we   = receiving;
 
   always @ (*)
