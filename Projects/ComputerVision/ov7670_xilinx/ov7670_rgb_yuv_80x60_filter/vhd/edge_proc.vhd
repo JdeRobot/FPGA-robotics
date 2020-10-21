@@ -57,6 +57,8 @@ architecture behav of edge_proc is
   -- Horizontal
   signal p_22_20, p_02_00: unsigned(c_nb_buf_gray downto 0); --1bit more
   signal p_top, p_bot:   unsigned(c_nb_buf_gray+1 downto 0); --2bits more
+  -- segmentation
+  signal p_top_rg, p_bot_rg:   unsigned(c_nb_buf_gray+1 downto 0); --2bits more
   -- one more bit for the sign
   signal p_sobel_hor_sign: signed(c_nb_buf_gray+2 downto 0); --3bits more
   signal p_sobel_hor_abs : signed(c_nb_buf_gray+2 downto 0); --3bits more
@@ -66,6 +68,8 @@ architecture behav of edge_proc is
   -- Vertical
   signal p_22_02, p_20_00: unsigned(c_nb_buf_gray downto 0); --1bit more
   signal p_left, p_right:   unsigned(c_nb_buf_gray+1 downto 0); --2bits more
+  -- segmentation
+  signal p_left_rg, p_right_rg: unsigned(c_nb_buf_gray+1 downto 0); --2bits more
   -- one more bit for the sign
   signal p_sobel_ver_sign: signed(c_nb_buf_gray+2 downto 0); --3bits more
   signal p_sobel_ver_abs : signed(c_nb_buf_gray+2 downto 0); --3bits more
@@ -90,6 +94,9 @@ architecture behav of edge_proc is
   -- borders of the image
   signal last_col, last_row, first_col, first_row : std_logic;
   signal image_border : std_logic;
+
+  -- indicates when the last pixel is at the center of the kernel
+  signal lastpxl_p11 : std_logic;
 
 begin
 
@@ -116,13 +123,11 @@ begin
   orig_addr   <= std_logic_vector(cnt_pxl);
 
   -- 
-  -- buffer pointer, row and column count
-  P_img_cnt: process(rst, clk)
+  -- buffer pointer
+  P_buff_pt: process(rst, clk)
   begin
     if rst = c_on then
       buf_pt   <= (others => '0');
-      colnum   <= (others => '0');
-      rownum   <= (others => '0');
     elsif clk'event and clk='1' then
       if receiving = '1' then
         if end_buf_cnt = '1' then
@@ -130,19 +135,32 @@ begin
         else
           buf_pt <= buf_pt + 1;
         end if;
-        if last_col = '1' then
+      end if;
+    end if;
+  end process;
+
+  -- col and row count to avoid make a division
+  -- referred to the cenral pixel p11
+  P_img_cnt: process(rst, clk)
+  begin
+    if rst = c_on then
+      colnum   <= (others => '0');
+      rownum   <= (others => '0');
+    elsif clk'event and clk='1' then
+      if receiving = '1' then
+        if lastpxl_p11 = '1' then --last row and last column (last pixel)
           colnum <= (others => '0');
-          if last_row = '1' then
-            rownum <= (others => '0');
-          else
-            rownum <= rownum + 1;
-          end if;
+          rownum <= (others => '0');
+        elsif last_col = '1' then
+          colnum <= (others => '0');
+          rownum <= rownum + 1;
         else
           colnum <= colnum + 1;
         end if;
       end if;
     end if;
   end process;
+
 
   end_buf_cnt <= '1' when (buf_pt = c_img_cols-1-3) else '0';
   first_col <= '1' when (colnum = 0) else '0';
@@ -196,11 +214,6 @@ begin
   p_02_00 <= ('0' & p02) + ('0' & p00); -- p02 + p00
   p_bot <= ('0' & p_02_00) + ('0' & p01 & '0'); -- (p02+p00)+ 2xp01
 
-  p_sobel_hor_sign <= signed('0' & p_top) - signed('0' & p_bot);
-  p_sobel_hor_abs <= abs (p_sobel_hor_sign); 
-  p_sobel_hor <= unsigned(p_sobel_hor_abs(c_nb_buf_gray-1 downto 0)) 
-                   when p_sobel_hor_abs < 255 else (others=>'1');
-
   -- Vertical   |(p22 + 2xp12 + p02) - (p20 + 2xp10 + p00)|
   -- Vertical right
   p_22_02 <= ('0' & p22) + ('0' & p02); -- p22 + p02
@@ -209,10 +222,33 @@ begin
   p_20_00 <= ('0' & p20) + ('0' & p00); -- p20 + p00
   p_left  <= ('0' & p_20_00) + ('0' & p10 & '0'); -- (p20+p00)+ 2xp10
 
-  p_sobel_ver_sign <= signed('0' & p_right) - signed('0' & p_left);
+  -- segmentation
+  p_seg: process(rst, clk)
+  begin
+    if rst = '1' then
+      p_bot_rg   <= (others =>'0');
+      p_top_rg   <= (others =>'0');
+      p_right_rg <= (others =>'0');
+      p_left_rg  <= (others =>'0');
+    elsif clk'event and clk='1' then 
+      p_bot_rg   <= p_bot;
+      p_top_rg   <= p_top;
+      p_right_rg <= p_right;
+      p_left_rg  <= p_left;
+    end if;
+  end process;
+
+
+  p_sobel_hor_sign <= signed('0' & p_top_rg) - signed('0' & p_bot_rg);
+  p_sobel_hor_abs <= abs (p_sobel_hor_sign); 
+  p_sobel_hor <= unsigned(p_sobel_hor_abs(c_nb_buf_gray-1 downto 0)) 
+                   when p_sobel_hor_abs < 256 else (others=>'1');
+
+
+  p_sobel_ver_sign <= signed('0' & p_right_rg) - signed('0' & p_left_rg);
   p_sobel_ver_abs <= abs (p_sobel_ver_sign); 
   p_sobel_ver <= unsigned(p_sobel_ver_abs(c_nb_buf_gray-1 downto 0)) 
-                   when p_sobel_ver_abs < 255 else (others=>'1');
+                   when p_sobel_ver_abs < 256 else (others=>'1');
 
 
   filter_on <= edgefilter(0);
@@ -220,15 +256,21 @@ begin
 
 
   -- the central pixel of the kernel is one row and one pixel behind
-  proc_addr  <= std_logic_vector(pxl_in_num - (c_img_cols + 1)) when
-                                 pxl_in_num > c_img_cols else 
-                std_logic_vector(pxl_in_num+((c_img_pxls-1)-c_img_cols));                 ;
+  -- and one pixel behind the pixel is comming (pxl_in_num)
+  -- and another pixel more behind due to segmentation
+  proc_addr  <= std_logic_vector(pxl_in_num - (c_img_cols + 3)) when
+                                 pxl_in_num > (c_img_cols+3) else 
+                std_logic_vector(pxl_in_num+(c_img_pxls-(c_img_cols+3))); 
+
   proc_we    <= receiving;
+
   P_pixelvalue: Process(filter_on, vfilter, image_border,
-                        p_sobel_hor, p_sobel_ver)
+                        p_sobel_hor, p_sobel_ver, p10)
   begin
     if filter_on = '0' then -- no filter -> central pixel of the window
-      proc_pxl <= p11;
+      --Filter off, the same pixel (p11), but due segmentation, we take
+      --// the previous, since p10 <= p11
+      proc_pxl <= std_logic_vector(p10);
     else  -- filter ON
       if image_border = '1' then -- black pixel in image border
         proc_pxl <= (others =>'0');
