@@ -7,7 +7,7 @@
 //   top module with debuging modules
 //------------------------------------------------------------------------------//
 
-module top_ov7670
+module top_ov7670_nexys
   # (parameter
       // VGA
       //c_img_cols    = 640, // 10 bits

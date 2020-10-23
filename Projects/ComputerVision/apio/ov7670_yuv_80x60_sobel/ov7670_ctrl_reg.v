@@ -112,7 +112,7 @@ module ov7670_ctrl_reg
                // 12: COM7 Common Control 7
                // [2,0]= 00 : Output format YUV 
       6'h03:
-        reg_yuv422_test <= 16'h0902; 
+        reg_yuv422_test <= 16'h0900; //works much better with 00
                // 09:COM2 Common Control 2. Default: 01 
                // [7:5] : Reserved
                // [4]   : Soft sleep mode
@@ -300,7 +300,7 @@ module ov7670_ctrl_reg
                // 12: COM7 Common Control 7
                // [2,0]= 00 : Output format YUV 
       6'h03:
-        reg_yuv422 <= 16'h0902; 
+        reg_yuv422 <= 16'h0900;  //works much better with 00
                // 09:COM2 Common Control 2. Default: 01 
                // [7:5] : Reserved
                // [4]   : Soft sleep mode
