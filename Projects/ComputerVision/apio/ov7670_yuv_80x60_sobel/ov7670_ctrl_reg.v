@@ -203,7 +203,7 @@ module ov7670_ctrl_reg
              // [2:0] : HREF start LSB (high 8MSB at HSTART
 
       6'h10:
-        reg_yuv422_test <= 16'h3A04; // TLSB: Line buffer test option
+        reg_yuv422_test <= 16'h3A0C; // TLSB: Line buffer test option
              // (default 0C)
              // [7:6] : reserved
              // [5]   : negative image enable
@@ -215,6 +215,7 @@ module ov7670_ctrl_reg
              //    01: Y U Y V
              //    10: U Y V Y
              //    11: V Y U Y
+             // [2:1] : Reserved
 
 
 
@@ -388,7 +389,7 @@ module ov7670_ctrl_reg
              // [2:0] : HREF start LSB (high 8MSB at HSTART
 
       6'h10:
-        reg_yuv422 <= 16'h3A04; // TLSB: Line buffer test option
+        reg_yuv422 <= 16'h3A0C; // TLSB: Line buffer test option
              // (default 0C)
              // [7:6] : reserved
              // [5]   : negative image enable
@@ -400,6 +401,8 @@ module ov7670_ctrl_reg
              //    01: Y U Y V
              //    10: U Y V Y
              //    11: V Y U Y
+             // [2:1] : Reserved
+
 
 
 
@@ -557,7 +560,7 @@ module ov7670_ctrl_reg
   end
 
   // FSM combinatorial process
-  always @ (pr_ctrl_st or alltx_done or sccb_ready or test_mode or end300ms)
+  always @ (pr_ctrl_st or alltx_done or sccb_ready or end300ms)
   begin
     // default values
     nx_ctrl_st <= pr_ctrl_st;

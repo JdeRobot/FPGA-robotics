@@ -112,13 +112,13 @@ module ov7670_ctrl_reg
                //        because a 0 also shows the test 8bar
                // [2,0]="10": Output format RGB 
       6'h03:
-        reg_rgb444_test <= 16'h0902; 
+        reg_rgb444_test <= 16'h0900; 
                // 09:COM2 Common Control 2. Default: 01 
                // [7:5] : Reserved
                // [4]   : Soft sleep mode
                // [3:2] : Reserved
                // [1:0] : output drive capability, to increase IOL/OH drive
-               //   00: 1x
+               //   00: 1x: works best
                //   01: 2x
                //   10: 3x
                //   11: 4x
@@ -387,13 +387,13 @@ module ov7670_ctrl_reg
                //        because a 0 also shows the test 8bar
                // [2,0]="10": Output format RGB 
       6'h03:
-        reg_rgb444 <= 16'h0902; 
+        reg_rgb444 <= 16'h0900; 
                // 09:COM2 Common Control 2. Default: 01 
                // [7:5] : Reserved
                // [4]   : Soft sleep mode
                // [3:2] : Reserved
                // [1:0] : output drive capability, to increase IOL/OH drive
-               //   00: 1x
+               //   00: 1x: works best
                //   01: 2x
                //   10: 3x
                //   11: 4x
@@ -658,13 +658,13 @@ module ov7670_ctrl_reg
                // 12: COM7 Common Control 7
                // [2,0]= 00 : Output format YUV 
       6'h03:
-        reg_yuv422_test <= 16'h0902; 
+        reg_yuv422_test <= 16'h0900; 
                // 09:COM2 Common Control 2. Default: 01 
                // [7:5] : Reserved
                // [4]   : Soft sleep mode
                // [3:2] : Reserved
                // [1:0] : output drive capability, to increase IOL/OH drive
-               //   00: 1x
+               //   00: 1x: works best
                //   01: 2x
                //   10: 3x
                //   11: 4x
@@ -846,13 +846,13 @@ module ov7670_ctrl_reg
                // 12: COM7 Common Control 7
                // [2,0]= 00 : Output format YUV 
       6'h03:
-        reg_yuv422 <= 16'h0902; 
+        reg_yuv422 <= 16'h0900; 
                // 09:COM2 Common Control 2. Default: 01 
                // [7:5] : Reserved
                // [4]   : Soft sleep mode
                // [3:2] : Reserved
                // [1:0] : output drive capability, to increase IOL/OH drive
-               //   00: 1x
+               //   00: 1x: works best
                //   01: 2x
                //   10: 3x
                //   11: 4x
