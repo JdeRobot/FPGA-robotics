@@ -1,0 +1,43 @@
+set_io rst 34
+set_io clk 49
+
+#set_io ov7670_d[7] 20
+#set_io ov7670_d[6] 19
+#set_io ov7670_d[5] 22
+
+# only 5 bits
+set_io ov7670_d_msb[4] 20
+set_io ov7670_d_msb[3] 19
+set_io ov7670_d_msb[2] 22
+set_io ov7670_d_msb[1] 21
+set_io ov7670_d_msb[0] 63
+
+set_io ov7670_rst_n 64
+
+set_io ov7670_sioc 119
+set_io ov7670_siod 118
+set_io ov7670_vsync 117
+set_io ov7670_href 116
+set_io ov7670_pclk 115
+set_io ov7670_xclk 114
+
+set_io vga_hsync 10
+set_io vga_vsync 9
+set_io vga_red_2b[0] 1
+set_io vga_red_2b[1] 2
+set_io vga_green_2b[0] 3
+set_io vga_green_2b[1] 4
+set_io vga_blue_2b[0] 7
+set_io vga_blue_2b[1] 8
+
+set_io led[0] 45
+set_io led[1] 44
+set_io led[2] 43
+set_io led[3] 42
+set_io led[4] 41
+set_io led[5] 39
+set_io led[6] 38
+set_io led[7] 37
+
+
+set_io proc_ctrl 33
