@@ -155,7 +155,7 @@ module ov7670_ctrl_reg
 
       // check
       6'h08:
-        reg_yuv422_test <= 16'h1E07;
+        reg_yuv422_test <= 16'h1E37;
              // MVFP Mirror/flip enable. Default 00
              // [7:6]= 00 : reserved
              // [5]= 1 : Mirror image
@@ -203,7 +203,7 @@ module ov7670_ctrl_reg
              // [2:0] : HREF start LSB (high 8MSB at HSTART
 
       6'h10:
-        reg_yuv422_test <= 16'h3A03; // TLSB: Line buffer test option
+        reg_yuv422_test <= 16'h3A0C; // TLSB: Line buffer test option
              // (default 0C)
              // [7:6] : reserved
              // [5]   : negative image enable
@@ -343,7 +343,7 @@ module ov7670_ctrl_reg
                // [3] = 1 (reserved) hamster
 
       6'h08:
-        reg_yuv422 <= 16'h1E07;
+        reg_yuv422 <= 16'h1E37;
              // MVFP Mirror/flip enable. Default 00
              // [7:6]= 00 : reserved
              // [5]= 1 : Mirror image
@@ -389,7 +389,7 @@ module ov7670_ctrl_reg
              // [2:0] : HREF start LSB (high 8MSB at HSTART
 
       6'h10:
-        reg_yuv422 <= 16'h3A03; // TLSB: Line buffer test option
+        reg_yuv422 <= 16'h3A0C; // TLSB: Line buffer test option
              // (default 0C)
              // [7:6] : reserved
              // [5]   : negative image enable
