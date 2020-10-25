@@ -203,8 +203,8 @@ module ov7670_ctrl_reg
              // [2:0] : HREF start LSB (high 8MSB at HSTART
 
       6'h10:
-        reg_yuv422_test <= 16'h3A03; // TLSB: Line buffer test option
-             // (default 0C)
+        reg_yuv422_test <= 16'h3A04; // TLSB: Line buffer test option
+             // (default 0C (1100) implementation guide -0D in datasheet)
              // [7:6] : reserved
              // [5]   : negative image enable
              // [5]=0 : Normal image 
@@ -216,6 +216,7 @@ module ov7670_ctrl_reg
              //    10: U Y V Y
              //    11: V Y U Y
              // [2:1] : Reserved
+             // [0]   : Auto output window
 
 
 
@@ -389,8 +390,8 @@ module ov7670_ctrl_reg
              // [2:0] : HREF start LSB (high 8MSB at HSTART
 
       6'h10:
-        reg_yuv422 <= 16'h3A03; // TLSB: Line buffer test option
-             // (default 0C)
+        reg_yuv422 <= 16'h3A04; // TLSB: Line buffer test option
+             // (default 0C (1100) implementation guide -0D in datasheet)
              // [7:6] : reserved
              // [5]   : negative image enable
              // [5]=0 : Normal image 
@@ -402,6 +403,7 @@ module ov7670_ctrl_reg
              //    10: U Y V Y
              //    11: V Y U Y
              // [2:1] : Reserved
+             // [0]   : Auto output window
 
 
 
