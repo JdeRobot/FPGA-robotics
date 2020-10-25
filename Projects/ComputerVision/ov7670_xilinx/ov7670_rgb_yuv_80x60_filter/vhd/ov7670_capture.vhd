@@ -52,6 +52,7 @@ architecture Behavioral of ov7670_capture is
    signal pclk_fall  : std_logic;
    signal pclk_rise  : std_logic; -- with reg 2 and 3
    signal pclk_rise_prev  : std_logic; -- with reg 1 and 2, so in 3 is ready
+   signal pclk_rise_post  : std_logic; -- after pclk_rise
 
    signal cnt_byte  : std_logic; -- count to 2: 2 bytes per pixel
    signal cnt_pxl      : unsigned (c_nb_img_pxls-1 downto 0);
@@ -120,6 +121,7 @@ begin
       href_rg3  <= '0';
       vsync_rg3 <= '0';
       data_rg3 <= (others=>'0');
+      pclk_rise_post <= '0';
     elsif clk'event and clk='1' then
       pclk_rg1  <= pclk;
       pclk_rg2  <= pclk_rg1;
@@ -134,6 +136,7 @@ begin
       href_rg3  <= href_rg2;
       vsync_rg3 <= vsync_rg2;
       data_rg3  <= data_rg2;
+      pclk_rise_post <= pclk_rise;
     end if;
   end process;
 
@@ -165,7 +168,7 @@ begin
         cnt_byte <= '0';
       elsif href_rg3 = '1' then -- is zero at optical blank COM[6]
         --if img_inframe = '1' then -- not necessary
-          if pclk_fall = '1' then
+          if pclk_rise = '1' then
             if cnt_byte = '1' then
               cnt_pxl <= cnt_pxl + 1;
               cnt_line_pxl <= cnt_line_pxl + 1;
@@ -206,7 +209,7 @@ begin
         --if cnt_clk = "01" then -- I think this is the safest
         --if cnt_clk(2 downto 0) = "011" then -- I think this is the safest
         --if pclk_fall = '1' then
-        if pclk_rise_prev = '1' then
+        if pclk_rise = '1' then
           if cnt_byte = '0' then 
             if rgbmode = '1' then -- RGB Mode ON
               if swap_r_b = '0' then
@@ -236,7 +239,7 @@ begin
 
   dout <= (red & green & blue) when (rgbmode = '1') else "0000" & gray;
   addr <= std_logic_vector(cnt_pxl);
-  we <= '1' when (href_rg3 ='1' and cnt_byte='1' and pclk_rise='1')
+  we <= '1' when (href_rg3 ='1' and cnt_byte='1' and pclk_rise_post='1')
             -- not necessary
             --      and col_inframe = '1' and img_inframe = '1')
          else '0';
