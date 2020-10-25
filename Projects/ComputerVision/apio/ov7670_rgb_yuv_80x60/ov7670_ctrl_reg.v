@@ -115,7 +115,7 @@ module ov7670_ctrl_reg
                //        because a 0 also shows the test 8bar
                // [2,0]="10": Output format RGB 
       6'h03:
-        reg_rgb444_test <= 16'h0902; 
+        reg_rgb444_test <= 16'h0900; 
                // 09:COM2 Common Control 2. Default: 01 
                // [7:5] : Reserved
                // [4]   : Soft sleep mode
@@ -133,7 +133,7 @@ module ov7670_ctrl_reg
                //             so, this is to have RGB444
                // [3:0]=0: Reserved
       6'h05:
-        reg_rgb444_test <= 16'h8C03;
+        reg_rgb444_test <= 16'h8C02;
                // 8C: RGB444
                // [7:2]=0: Reserved
                // [1]=1: Enable RGB444
@@ -391,13 +391,13 @@ module ov7670_ctrl_reg
                //        because a 0 also shows the test 8bar
                // [2,0]="10": Output format RGB 
       6'h03:
-        reg_rgb444 <= 16'h0902; 
+        reg_rgb444 <= 16'h0900; 
                // 09:COM2 Common Control 2. Default: 01 
                // [7:5] : Reserved
                // [4]   : Soft sleep mode
                // [3:2] : Reserved
                // [1:0] : output drive capability, to increase IOL/OH drive
-               //   00: 1x
+               //   00: 1x : works best
                //   01: 2x
                //   10: 3x
                //   11: 4x
@@ -409,7 +409,7 @@ module ov7670_ctrl_reg
                //             so, this is to have RGB444
                // [3:0]=0: Reserved
       6'h05:
-        reg_rgb444 <= 16'h8C03;
+        reg_rgb444 <= 16'h8C02;
                // 8C: RGB444
                // [7:2]=0: Reserved
                // [1]=1: Enable RGB444
@@ -434,7 +434,7 @@ module ov7670_ctrl_reg
                // [3] = 1 (reserved) hamster
 
       6'h08:
-        reg_rgb444 <= 16'h1E27;
+        reg_rgb444 <= 16'h1E37;
              // MVFP Mirror/flip enable. Default 00
              // [7:6]= 00 : reserved
              // [5]= 1 : Mirror image
@@ -663,13 +663,13 @@ module ov7670_ctrl_reg
                // 12: COM7 Common Control 7
                // [2,0]= 00 : Output format YUV 
       6'h03:
-        reg_yuv422_test <= 16'h0902; 
+        reg_yuv422_test <= 16'h0900; 
                // 09:COM2 Common Control 2. Default: 01 
                // [7:5] : Reserved
                // [4]   : Soft sleep mode
                // [3:2] : Reserved
                // [1:0] : output drive capability, to increase IOL/OH drive
-               //   00: 1x
+               //   00: 1x : works best
                //   01: 2x
                //   10: 3x
                //   11: 4x
@@ -766,6 +766,8 @@ module ov7670_ctrl_reg
              //    01: Y U Y V
              //    10: U Y V Y
              //    11: V Y U Y
+             // [2:1] : Reserved
+
 
 
 
@@ -851,7 +853,7 @@ module ov7670_ctrl_reg
                // 12: COM7 Common Control 7
                // [2,0]= 00 : Output format YUV 
       6'h03:
-        reg_yuv422 <= 16'h0902; 
+        reg_yuv422 <= 16'h0900; 
                // 09:COM2 Common Control 2. Default: 01 
                // [7:5] : Reserved
                // [4]   : Soft sleep mode
@@ -951,6 +953,8 @@ module ov7670_ctrl_reg
              //    01: Y U Y V
              //    10: U Y V Y
              //    11: V Y U Y
+             // [2:1] : Reserved
+
 
 
 

@@ -205,8 +205,6 @@ module top_ov7670
      .ov7670_pwdn  (ov7670_pwdn)
   );
 
-  assign ov7670_siod = sdat_on ? sdat_out : 1'bz;
-
   assign resend = 1'b0;
   assign ov7670_siod = sdat_on ? sdat_out : 1'bz;
 

@@ -1,0 +1,91 @@
+
+icetime topological timing analysis report
+==========================================
+
+Info: max_span_hack is enabled: estimate is conservative.
+
+Report for critical path:
+-------------------------
+
+        lc40_3_26_2 (LogicCell40) [clk] -> lcout: 0.640 ns
+     0.640 ns net_11339 (vga_col[0])
+        t1637 (LocalMux) I -> O: 0.330 ns
+        inmux_4_27_19681_19725 (InMux) I -> O: 0.260 ns
+        lc40_4_27_6 (LogicCell40) in1 -> lcout: 0.400 ns
+     1.629 ns net_15543 (vga_red_2b_SB_LUT4_O_I3_SB_LUT4_O_I2_SB_LUT4_O_I3_SB_LUT4_O_I1_SB_CARRY_CO_CI_SB_CARRY_CO_I1_SB_CARRY_I1_1_CO[1])
+        t1885 (LocalMux) I -> O: 0.330 ns
+        inmux_4_26_19546_19566 (InMux) I -> O: 0.260 ns
+        lc40_4_26_0 (LogicCell40) in1 -> carryout: 0.260 ns
+     2.478 ns t314
+        lc40_4_26_1 (LogicCell40) carryin -> carryout: 0.126 ns
+     2.604 ns t315
+        lc40_4_26_2 (LogicCell40) carryin -> carryout: 0.126 ns
+     2.730 ns t316
+        lc40_4_26_3 (LogicCell40) carryin -> carryout: 0.126 ns
+     2.856 ns t317
+        lc40_4_26_4 (LogicCell40) carryin -> carryout: 0.126 ns
+     2.983 ns t318
+        lc40_4_26_5 (LogicCell40) carryin -> carryout: 0.126 ns
+     3.109 ns t319
+        lc40_4_26_6 (LogicCell40) carryin -> carryout: 0.126 ns
+     3.235 ns t320
+        lc40_4_26_7 (LogicCell40) carryin -> carryout: 0.126 ns
+     3.361 ns net_19606 (vga_red_2b_SB_LUT4_O_I3_SB_LUT4_O_I2_SB_LUT4_O_I3_SB_LUT4_O_I1_SB_CARRY_CO_CI_SB_CARRY_CO_I1_SB_CARRY_I1_1_CO[8])
+        t321 (ICE_CARRY_IN_MUX) carryinitin -> carryinitout: 0.196 ns
+        lc40_4_27_0 (LogicCell40) carryin -> carryout: 0.126 ns
+     3.684 ns t322
+        lc40_4_27_1 (LogicCell40) carryin -> carryout: 0.126 ns
+     3.810 ns net_19693 ($nextpnr_ICESTORM_LC_15$I3)
+        inmux_4_27_19693_19703 (InMux) I -> O: 0.260 ns
+        lc40_4_27_2 (LogicCell40) in3 -> lcout: 0.316 ns
+     4.385 ns net_15539 (vga_blue_2b_SB_LUT4_O_I2_SB_LUT4_O_I2_SB_LUT4_I1_I0_SB_LUT4_O_I2)
+        odrv_4_27_15539_19524 (Odrv4) I -> O: 0.372 ns
+        t1887 (Span4Mux_h4) I -> O: 0.316 ns
+        t1886 (LocalMux) I -> O: 0.330 ns
+        inmux_2_28_11629_11701 (InMux) I -> O: 0.260 ns
+        t215 (CascadeMux) I -> O: 0.000 ns
+        lc40_2_28_7 (LogicCell40) in2 -> lcout: 0.379 ns
+     6.040 ns net_7440 (vga_blue_2b_SB_LUT4_O_I2_SB_LUT4_O_I2_SB_LUT4_I1_I0)
+        t1453 (LocalMux) I -> O: 0.330 ns
+        inmux_1_27_7374_7385 (InMux) I -> O: 0.260 ns
+        lc40_1_27_0 (LogicCell40) in1 -> lcout: 0.400 ns
+     7.029 ns net_2912 (vga_red_2b_SB_LUT4_O_I3_SB_LUT4_O_I2_SB_LUT4_O_I0)
+        t1159 (LocalMux) I -> O: 0.330 ns
+        inmux_1_26_7216_7275 (InMux) I -> O: 0.260 ns
+        t58 (CascadeMux) I -> O: 0.000 ns
+        lc40_1_26_4 (LogicCell40) in2 -> lcout: 0.379 ns
+     7.997 ns net_2802 (vga_red_2b_SB_LUT4_O_I3_SB_LUT4_O_I3_SB_LUT4_O_I1)
+        t1153 (LocalMux) I -> O: 0.330 ns
+        inmux_2_27_11529_11559 (InMux) I -> O: 0.260 ns
+        lc40_2_27_4 (LogicCell40) in1 -> lcout: 0.400 ns
+     8.986 ns net_7302 (vga_red_2b_SB_LUT4_O_I3_SB_LUT4_O_I3)
+        t1434 (LocalMux) I -> O: 0.330 ns
+        inmux_1_28_7490_7543 (InMux) I -> O: 0.260 ns
+        lc40_1_28_4 (LogicCell40) in0 -> lcout: 0.449 ns
+    10.024 ns net_3030 (vga_green_2b_SB_LUT4_O_I3_SB_LUT4_I1_O)
+        t1177 (LocalMux) I -> O: 0.330 ns
+        inmux_1_28_7506_7538 (InMux) I -> O: 0.260 ns
+        lc40_1_28_3 (LogicCell40) in1 -> lcout: 0.400 ns
+    11.013 ns net_3029 (vga_green[3])
+        t1175 (LocalMux) I -> O: 0.330 ns
+        inmux_0_28_3135_3113 (IoInMux) I -> O: 0.260 ns
+    11.602 ns net_3113 (vga_green[3])
+        pre_io_0_28_0 (PRE_IO) DOUT0 [setup]: 0.070 ns
+    11.672 ns io_pad_0_28_0_din
+
+Resolvable net names on path:
+     0.640 ns ..  1.229 ns vga_col[0]
+     1.629 ns ..  2.218 ns vga_red_2b_SB_LUT4_O_I3_SB_LUT4_O_I2_SB_LUT4_O_I3_SB_LUT4_O_I1_SB_CARRY_CO_CI_SB_CARRY_CO_I1_SB_CARRY_I1_1_CO[1]
+     3.361 ns ..  3.558 ns vga_red_2b_SB_LUT4_O_I3_SB_LUT4_O_I2_SB_LUT4_O_I3_SB_LUT4_O_I1_SB_CARRY_CO_CI_SB_CARRY_CO_I1_SB_CARRY_I1_1_CO[8]
+     3.810 ns ..  4.070 ns $nextpnr_ICESTORM_LC_15$I3
+     4.385 ns ..  5.662 ns vga_blue_2b_SB_LUT4_O_I2_SB_LUT4_O_I2_SB_LUT4_I1_I0_SB_LUT4_O_I2
+     6.040 ns ..  6.630 ns vga_blue_2b_SB_LUT4_O_I2_SB_LUT4_O_I2_SB_LUT4_I1_I0
+     7.029 ns ..  7.618 ns vga_red_2b_SB_LUT4_O_I3_SB_LUT4_O_I2_SB_LUT4_O_I0
+     7.997 ns ..  8.586 ns vga_red_2b_SB_LUT4_O_I3_SB_LUT4_O_I3_SB_LUT4_O_I1
+     8.986 ns ..  9.575 ns vga_red_2b_SB_LUT4_O_I3_SB_LUT4_O_I3
+    10.024 ns .. 10.613 ns vga_green_2b_SB_LUT4_O_I3_SB_LUT4_I1_O
+    11.013 ns .. 11.602 ns vga_green[3]
+
+Total number of logic levels: 19
+Total path delay: 11.67 ns (85.67 MHz)
+
