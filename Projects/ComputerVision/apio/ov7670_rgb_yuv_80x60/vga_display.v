@@ -147,6 +147,11 @@ module vga_display
             vga_blue  = frame_pixel[7:4];
           end
       end
+      else if (row > 256 && row < 384 && col < 512) begin
+         vga_red   = {col[8:7],2'b00};
+         vga_green = {col[6:5],2'b00};
+         vga_blue  = {row[6:5],2'b00};
+      end
       else if ((col == c_img_cols) || (row == c_img_rows)) begin
          vga_red   = 4'b0000;
          vga_green = 4'b1000;
@@ -162,7 +167,7 @@ module vga_display
          vga_green = 4'b0000;
          vga_blue  = 4'b1000;
       end
-      else if ((row > 255) && (row < 256 + 8)) begin
+      else if ((row > 127) && (row < 128 + 8)) begin
          if ((col > 7) && (col < 16)) begin // RGB MODE
            if (char_rgbmode[7-char_col]) begin
              vga_red   = 4'b1111;
