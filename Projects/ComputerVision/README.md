@@ -42,12 +42,25 @@ It is important to connect the camera with short wires (10 cm at most)
   Camera in test mode QQVGA/2 (80x60)
 
 - ov7670_rgb_yuv_80x60
+  SW1: reset, necessary to start
   SW2 choose between:
     RGB -> RGB test -> YUV -> YUV test -> RGB
     The drawback of choosing is that you loose pins for YUV, and you can only get 3 bits of gray color, without choosing you could get 5
-  
+
+- ov7670_rgb_yuv_80x60_50mhz
+  The same as the previous, but configures the PLL to have a clock of 50MHz instead of 100MHz to see if there is any improvement. It doesnt seem to be; however, the timming analysis suggest a clock frequency of 80MHz (or less)
    ![OV7670 camera and alhambra pin connection](ov7670_alhambra_interface.png)
   
+
+- ov7670_yuv_80x60_sobel
+  SW1: reset, necessary to start
+  SW2 choose between:
+    No filter grayscale -> Sobel horizontal filter -> Sobel Vertical filter -> No filter grayscale
+    when pressed more than a second -> test mode
+  
+   ![OV7670 camera and alhambra pin connection for YUV](ov7670_alhambra_interface_yuv.png)
+
+
   
 ### ov7670_xilinx: 
 Interfacing the OV7670 camera with a Xilinx Nexys4 FPGA and displaying the video through VGA.  There are VHDL and verilog versions
