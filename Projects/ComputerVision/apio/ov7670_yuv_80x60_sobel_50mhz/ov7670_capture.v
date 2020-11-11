@@ -6,7 +6,6 @@
 //
 //   ov7670_capture.v
 //   
-// clk 50 MHz
 //-----------------------------------------------------------------------------
 
 module ov7670_capture
@@ -40,7 +39,7 @@ module ov7670_capture
   )
   (
    input              rst,    // FPGA reset
-   input              clk,    // FPGA clock: 50MHz - 20ns
+   input              clk,    // FPGA clock
     // camera pclk (byte clock) (~40ns)  
     // 2 bytes is a pixel
     input             pclk,
