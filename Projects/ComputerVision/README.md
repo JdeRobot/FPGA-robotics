@@ -73,6 +73,10 @@ It is important to connect the camera with short wires (10 cm at most)
     No filter grayscale -> Sobel horizontal filter -> Sobel Vertical filter -> No filter grayscale.
     
     When pressed more than a second -> test mode
+    
+- ov7670_yuv_80x60_sobel_50mhz
+
+  Same as previous, but configures the PLL to have a clock of 50MHz instead of 100MHz to see if there is any improvement. It doesnt seem to be; however, the timming analysis suggest a clock frequency of 80MHz (or less)
   
    ![OV7670 camera and alhambra pin connection for YUV](ov7670_alhambra_interface_yuv.png)
 
