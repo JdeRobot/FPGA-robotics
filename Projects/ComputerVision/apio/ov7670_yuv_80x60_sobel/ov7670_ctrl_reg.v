@@ -155,7 +155,7 @@ module ov7670_ctrl_reg
 
       // check
       6'h08:
-        reg_yuv422_test <= 16'h1E37;
+        reg_yuv422_test <= 16'h1E07;
              // MVFP Mirror/flip enable. Default 00
              // [7:6]= 00 : reserved
              // [5]= 1 : Mirror image
@@ -204,7 +204,7 @@ module ov7670_ctrl_reg
 
       6'h10:
         reg_yuv422_test <= 16'h3A04; // TLSB: Line buffer test option
-             // (default 0C)
+             // (default 0C (1100) implementation guide -0D in datasheet)
              // [7:6] : reserved
              // [5]   : negative image enable
              // [5]=0 : Normal image 
@@ -215,6 +215,8 @@ module ov7670_ctrl_reg
              //    01: Y U Y V
              //    10: U Y V Y
              //    11: V Y U Y
+             // [2:1] : Reserved
+             // [0]   : Auto output window
 
 
 
@@ -342,7 +344,7 @@ module ov7670_ctrl_reg
                // [3] = 1 (reserved) hamster
 
       6'h08:
-        reg_yuv422 <= 16'h1E37;
+        reg_yuv422 <= 16'h1E07;
              // MVFP Mirror/flip enable. Default 00
              // [7:6]= 00 : reserved
              // [5]= 1 : Mirror image
@@ -389,7 +391,7 @@ module ov7670_ctrl_reg
 
       6'h10:
         reg_yuv422 <= 16'h3A04; // TLSB: Line buffer test option
-             // (default 0C)
+             // (default 0C (1100) implementation guide -0D in datasheet)
              // [7:6] : reserved
              // [5]   : negative image enable
              // [5]=0 : Normal image 
@@ -400,6 +402,9 @@ module ov7670_ctrl_reg
              //    01: Y U Y V
              //    10: U Y V Y
              //    11: V Y U Y
+             // [2:1] : Reserved
+             // [0]   : Auto output window
+
 
 
 
@@ -557,7 +562,7 @@ module ov7670_ctrl_reg
   end
 
   // FSM combinatorial process
-  always @ (pr_ctrl_st or alltx_done or sccb_ready or test_mode or end300ms)
+  always @ (pr_ctrl_st or alltx_done or sccb_ready or end300ms)
   begin
     // default values
     nx_ctrl_st <= pr_ctrl_st;

@@ -57,7 +57,7 @@ architecture behav of ov7670_ctrl_reg is
              -- [7]=1: Reset all registers to default values
     x"1204", -- 12:COM7
              -- [2,0]="10": Output format RGB 
-    x"0902", -- 09:COM2 Common Control 2. Default: 01
+    x"0901", -- 09:COM2 Common Control 2. Default: 01
              -- [7:5] : Reserved
              -- [4]   : Soft sleep mode
              -- [3:2] : Reserved
@@ -239,7 +239,7 @@ architecture behav of ov7670_ctrl_reg is
              -- [7]=1: Reset all registers to default values
     x"1204", -- 12:COM7
              -- [2,0]="10": Output format RGB 
-    x"0902", -- 09:COM2 Common Control 2. Default: 01
+    x"0901", -- 09:COM2 Common Control 2. Default: 01
              -- [7:5] : Reserved
              -- [4]   : Soft sleep mode
              -- [3:2] : Reserved
@@ -427,7 +427,7 @@ architecture behav of ov7670_ctrl_reg is
              -- [7]=1: Reset all registers to default values
     x"1200", -- 12:COM7
              -- [2,0]="00": Output format YUV 
-    x"0902", -- 09:COM2 Common Control 2. Default: 01
+    x"0901", -- 09:COM2 Common Control 2. Default: 01
              -- [7:5] : Reserved
              -- [4]   : Soft sleep mode
              -- [3:2] : Reserved
@@ -541,7 +541,7 @@ architecture behav of ov7670_ctrl_reg is
              -- [7]=1: Reset all registers to default values
     x"1200", -- 12:COM7
              -- [2,0]="00": Output format YUV 
-    x"0902", -- 09:COM2 Common Control 2. Default: 01
+    x"0901", -- 09:COM2 Common Control 2. Default: 01
              -- [7:5] : Reserved
              -- [4]   : Soft sleep mode
              -- [3:2] : Reserved

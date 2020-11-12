@@ -57,12 +57,12 @@ architecture behav of ov7670_ctrl_reg is
              -- [7]=1: Reset all registers to default values
     x"1204", -- 12:COM7
              -- [2,0]="10": Output format RGB 
-    x"0902", -- 09:COM2 Common Control 2. Default: 01
+    x"0900", -- 09:COM2 Common Control 2. Default: 01
              -- [7:5] : Reserved
              -- [4]   : Soft sleep mode
              -- [3:2] : Reserved
              -- [1:0] : output drive capability, to increase IOL/OH drive
-             --   00: 1x
+             --   00: 1x:  works best
              --   01: 2x
              --   10: 3x
              --   11: 4x
@@ -239,12 +239,12 @@ architecture behav of ov7670_ctrl_reg is
              -- [7]=1: Reset all registers to default values
     x"1204", -- 12:COM7
              -- [2,0]="10": Output format RGB 
-    x"0902", -- 09:COM2 Common Control 2. Default: 01
+    x"0900", -- 09:COM2 Common Control 2. Default: 01
              -- [7:5] : Reserved
              -- [4]   : Soft sleep mode
              -- [3:2] : Reserved
              -- [1:0] : output drive capability, to increase IOL/OH drive
-             --   00: 1x
+             --   00: 1x : works best
              --   01: 2x
              --   10: 3x
              --   11: 4x
@@ -426,12 +426,12 @@ architecture behav of ov7670_ctrl_reg is
              -- [7]=1: Reset all registers to default values
     x"1200", -- 12:COM7
              -- [2,0]="00": Output format YUV 
-    x"0902", -- 09:COM2 Common Control 2. Default: 01
+    x"0900", -- 09:COM2 Common Control 2. Default: 01
              -- [7:5] : Reserved
              -- [4]   : Soft sleep mode
              -- [3:2] : Reserved
              -- [1:0] : output drive capability, to increase IOL/OH drive
-             --   00: 1x
+             --   00: 1x  : works best
              --   01: 2x
              --   10: 3x
              --   11: 4x
@@ -454,6 +454,15 @@ architecture behav of ov7670_ctrl_reg is
                 -- [7] = 0 Disable HREF at optical black
                 -- [1] = 1 Resets timming when format changes
                 -- others reserved
+
+    x"1E37", -- MVFP Mirror/flip enable. Default 00
+             -- [7:6]= 00 : reserved
+             -- [5]= 1 : Mirror image
+             -- [4]= 1 : Flip image
+             -- [3] : Reserved
+             -- [2] : Black Sun Enable
+             -- [1:0] : Reserved
+
 
     --x"1500", -- COM10 Use HREF not hSYNC
     x"1520", -- COM10 Use HREF not hSYNC
@@ -481,6 +490,7 @@ architecture behav of ov7670_ctrl_reg is
              --    01: Y U Y V
              --    10: U Y V Y
              --    11: V Y U Y
+             -- [2:1] : reserved
 
    --QQVGA2
     x"0C04", -- COM3
@@ -540,12 +550,12 @@ architecture behav of ov7670_ctrl_reg is
              -- [7]=1: Reset all registers to default values
     x"1200", -- 12:COM7
              -- [2,0]="00": Output format YUV 
-    x"0902", -- 09:COM2 Common Control 2. Default: 01
+    x"0900", -- 09:COM2 Common Control 2. Default: 01
              -- [7:5] : Reserved
              -- [4]   : Soft sleep mode
              -- [3:2] : Reserved
              -- [1:0] : output drive capability, to increase IOL/OH drive
-             --   00: 1x
+             --   00: 1x  : works best
              --   01: 2x
              --   10: 3x
              --   11: 4x
@@ -556,7 +566,7 @@ architecture behav of ov7670_ctrl_reg is
                 -- [5:4] = 11: RGB 55 only if RGB444 is low
                 -- [3:0] = 0:  Reserved
 
-    x"8C00", -- RGB444 Set RGB format: RGB444 (not in RGB44-> defaul)
+    x"8C00", -- RGB444 Set RGB format: RGB444 (not in RGB44-> default)
              -- [1]= '1' RGB444 enable
              -- [0]= '0' word format: xR GB
     x"1180", -- CLKRC  6->0 External clock, pre-scale
@@ -571,8 +581,7 @@ architecture behav of ov7670_ctrl_reg is
                 -- [3] = 1 (reserved) hamster
 
 
-    -- check
-    -- x"1E37", -- MVFP Mirror/flip enable. Default 00
+    x"1E37", -- MVFP Mirror/flip enable. Default 00
              -- [7:6]= 00 : reserved
              -- [5]= 1 : Mirror image
              -- [4]= 1 : Flip image
@@ -613,6 +622,7 @@ architecture behav of ov7670_ctrl_reg is
              --    01: Y U Y V
              --    10: U Y V Y
              --    11: V Y U Y
+             -- [2:1] : reserved
 
 
    --QQVGA2

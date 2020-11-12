@@ -69,6 +69,7 @@ module ov7670_capture
   wire       pclk_fall;
   wire       pclk_rise_prev;
   wire       pclk_rise;
+  reg        pclk_rise_post;
 
   reg        cnt_byte; // count to 2: 2 bytes per pixel
   reg [c_nb_img_pxls-1:0]  cnt_pxl;
@@ -132,6 +133,7 @@ module ov7670_capture
       href_rg3  <= 1'b0;
       vsync_rg3 <= 1'b0;
       data_rg3  <= 0;
+      pclk_rise_post <= 1'b0;
     end
     else begin
       pclk_rg1  <= pclk;
@@ -147,6 +149,7 @@ module ov7670_capture
       href_rg3  <= href_rg2;
       vsync_rg3 <= vsync_rg2;
       data_rg3  <= data_rg2;
+      pclk_rise_post <= pclk_rise;
     end
   end
 
@@ -180,7 +183,7 @@ module ov7670_capture
         cnt_byte     <= 1'b0;
       end
       else if (href_rg3) begin // is zero at optical blank COM[6]
-        if (pclk_fall) begin
+        if (pclk_rise) begin
           if (cnt_byte) begin
             cnt_pxl <= cnt_pxl + 1;
             cnt_line_pxl <= cnt_line_pxl + 1;
@@ -217,7 +220,7 @@ module ov7670_capture
     else begin
       if (href_rg3) begin  // visible
         //if (cnt_clk == 3'b001) begin // I think this is the safest
-        if (pclk_rise_prev == 1'b1) begin
+        if (pclk_rise == 1'b1) begin
           if (cnt_byte == 1'b0) begin
             if (rgbmode) begin
               if (swap_r_b == 1'b0)
@@ -249,7 +252,7 @@ module ov7670_capture
   //dout <= std_logic_vector(cnt_pxl(7 downto 0));
   assign addr = cnt_pxl;
 
-  assign we = (href_rg3 && cnt_byte && pclk_rise)? 1'b1 : 1'b0;
+  assign we = (href_rg3 && cnt_byte && pclk_rise_post)? 1'b1 : 1'b0;
 
 endmodule
 

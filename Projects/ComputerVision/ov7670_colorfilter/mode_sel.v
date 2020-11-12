@@ -18,9 +18,9 @@ module mode_sel
     output reg   testmode,
     output [2:0] rgbfilter);
 
-  reg    [23:0]  count_16ms;  // 16.7 million count
-  reg    [5:0]   count_2sec;  // count for a seconds aprox (64 x 16ms)
-  wire           pulse_16ms;
+  reg    [20-1:0]  count_10ms;  // ~1.05 million count -> 10 ms
+  reg    [8-1:0]   count_2sec;  // count for 2.5 seconds aprox (256 x 10ms)
+  wire           pulse_10ms;
   wire           pulse_1sec;
   wire           end1sec;
 
@@ -33,46 +33,46 @@ module mode_sel
   always @(posedge rst, posedge clk)
   begin
     if (rst) begin
-      count_16ms <= 24'hFF_FFFF;
+      count_10ms <= 20'hF_FFFF;
     end
     else begin
       if (sig_in) begin
-        if (count_16ms == 0) begin
-          count_16ms <= 24'hFF_FFFF;
+        if (count_10ms == 0) begin
+          count_10ms <= 20'hF_FFFF;
         end
         else 
-          count_16ms <= count_16ms - 1;
+          count_10ms <= count_10ms - 1;
       end
       else
-        count_16ms <= 24'hFF_FFFF;
+        count_10ms <= 20'hF_FFFF;
     end
   end
 
-  assign pulse_16ms = (count_16ms == 0) ? 1'b1 : 1'b0;
+  assign pulse_10ms = (count_10ms == 0) ? 1'b1 : 1'b0;
 
   // to see if it has been pulsed for more than a second
   // the count is of 2 seconds to give time to release the button
   always @(posedge rst, posedge clk)
   begin
     if (rst) begin
-      count_2sec    <= 6'b00_0000;
+      count_2sec    <= 8'b0000_0000;
     end
     else begin
       if (sig_in) begin
-        if (pulse_16ms) begin
-          if (count_2sec == 6'b11_1111)
-            count_2sec    <= 6'b00_0000;
+        if (pulse_10ms) begin
+          if (count_2sec == 8'b1111_1111)
+            count_2sec    <= 8'b0000_0000;
           else
             count_2sec <= count_2sec + 1;
         end
       end
       else 
-        count_2sec  <= 6'b00_0000;
+        count_2sec  <= 8'b0000_0000;
     end
   end
 
-  assign end1sec = (count_2sec == 7'b01_1111) ? 1'b1 : 1'b0;
-  assign pulse_1sec = ((end1sec==1'b1) && (pulse_16ms==1'b1)) ? 1'b1 : 1'b0;
+  assign end1sec = (count_2sec == 8'b0111_1111) ? 1'b1 : 1'b0;
+  assign pulse_1sec = ((end1sec==1'b1) && (pulse_10ms==1'b1)) ? 1'b1 : 1'b0;
 
   always @ (posedge rst, posedge clk)
   begin
@@ -80,7 +80,7 @@ module mode_sel
       rgb_filter <= 3'b000; // no filter
     end
     else begin
-      if (pulse_16ms && count_2sec == 0) begin
+      if (pulse_10ms && count_2sec == 0) begin
         case (rgb_filter)
           3'b000: // no filter, output same as input
             rgb_filter <= 3'b100; // red filter
