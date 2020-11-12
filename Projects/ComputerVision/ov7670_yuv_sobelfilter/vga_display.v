@@ -44,8 +44,6 @@ module vga_display
     input          hsync,
     input          vsync,
     input          rgbmode,
-    input          testmode,
-    input [2:0]    rgbfilter,
     input [10-1:0] col,
     input [10-1:0] row,
     input  [c_nb_buf-1:0] frame_pixel,
@@ -54,59 +52,6 @@ module vga_display
     output reg [4-1:0] vga_green,
     output reg [4-1:0] vga_blue
   );
-
-  reg  [7:0] char_rgbmode, char_testmode;
-  wire [2:0] char_row;
-  wire [2:0] char_col;
-  wire [3:0] addr_rom_rgb;
-  wire [3:0] addr_rom_test;
-
-  assign char_row = row[2:0];
-  assign char_col = col[2:0];
-  assign addr_rom_rgb = {~rgbmode, char_row};
-  assign addr_rom_test = {testmode, char_row};
-
-  always @ (addr_rom_rgb) begin
-    case (addr_rom_rgb)
-      4'h0: char_rgbmode <= 8'b11111100; // R: RGB
-      4'h1: char_rgbmode <= 8'b10000010;
-      4'h2: char_rgbmode <= 8'b10000010;
-      4'h3: char_rgbmode <= 8'b11111100;
-      4'h4: char_rgbmode <= 8'b10001000;
-      4'h5: char_rgbmode <= 8'b10000100;
-      4'h6: char_rgbmode <= 8'b10000010;
-      4'h7: char_rgbmode <= 8'b00000000;
-      4'h8: char_rgbmode <= 8'b10000010; // Y: YUV
-      4'h9: char_rgbmode <= 8'b01000100;
-      4'hA: char_rgbmode <= 8'b00111000;
-      4'hB: char_rgbmode <= 8'b00010000;
-      4'hC: char_rgbmode <= 8'b00010000;
-      4'hD: char_rgbmode <= 8'b00010000;
-      4'hE: char_rgbmode <= 8'b00010000;
-      4'hF: char_rgbmode <= 8'b00000000;
-    endcase
-  end
-
-  always @ (addr_rom_test) begin
-    case (addr_rom_test)
-      4'h0: char_testmode <= 8'b10000010; // N: Normal
-      4'h1: char_testmode <= 8'b11000010;
-      4'h2: char_testmode <= 8'b10100010;
-      4'h3: char_testmode <= 8'b10010010;
-      4'h4: char_testmode <= 8'b10001010;
-      4'h5: char_testmode <= 8'b10000110;
-      4'h6: char_testmode <= 8'b10000010;
-      4'h7: char_testmode <= 8'b00000000;
-      4'h8: char_testmode <= 8'b11111110; // T: Test
-      4'h9: char_testmode <= 8'b00010000;
-      4'hA: char_testmode <= 8'b00010000;
-      4'hB: char_testmode <= 8'b00010000;
-      4'hC: char_testmode <= 8'b00010000;
-      4'hD: char_testmode <= 8'b00010000;
-      4'hE: char_testmode <= 8'b00010000;
-      4'hF: char_testmode <= 8'b00000000;
-    endcase
-  end
 
 
   always @ (posedge rst, posedge clk)
@@ -148,6 +93,17 @@ module vga_display
             vga_blue  = frame_pixel[7:4];
           end
       end
+      else if (row > 224 && row < 256 && col < 128) begin
+         // Test grayscale  square of 32 pixels
+         vga_red    = {col[5:4],2'b00};
+         vga_green  = {col[5:4],2'b00};
+         vga_blue   = {col[5:4],2'b00};
+      else if (row > 256 && row < 320 && col < 384) begin
+         // Test colors
+         vga_red   = {col[7:6],2'b00};
+         vga_green = {col[5:4],2'b00};
+         vga_blue  = {row[5:4],2'b00};
+      end
       else if ((col == c_img_cols) || (row == c_img_rows)) begin
          vga_red   = 4'b0000;
          vga_green = 4'b1000;
@@ -162,42 +118,6 @@ module vga_display
          vga_red   = 4'b1000;
          vga_green = 4'b0000;
          vga_blue  = 4'b1000;
-      end
-      else if ((row > 63) && (row < 64 + 8)) begin
-         if ((col > 7) && (col < 16)) begin // RGB MODE
-           if (char_rgbmode[7-char_col]) begin
-             vga_red   = 4'b1111;
-             vga_green = 4'b1111;
-             vga_blue  = 4'b1111;
-           end
-           else begin
-             vga_red   = 4'b0000;
-             vga_green = 4'b0000;
-             vga_blue  = 4'b0000;
-           end
-         end
-         else if ((col > 15) && (col < 24)) begin // TEST MODE
-           if (char_testmode[7-char_col]) begin
-             vga_red   = 4'b1111;
-             vga_green = 4'b1111;
-             vga_blue  = 4'b1111;
-           end
-           else begin
-             vga_red   = 4'b0000;
-             vga_green = 4'b0000;
-             vga_blue  = 4'b0000;
-           end
-         end
-         else if ((col > 23) && (col < 32)) begin // Color Filter
-           vga_red   = {4{rgbfilter[2]}};
-           vga_green = {4{rgbfilter[1]}};
-           vga_blue  = {4{rgbfilter[0]}};
-         end
-      end
-      else begin
-         vga_red   = 4'b0000;
-         vga_green = 4'b0000;
-         vga_blue  = 4'b0000;
       end
     end
   end

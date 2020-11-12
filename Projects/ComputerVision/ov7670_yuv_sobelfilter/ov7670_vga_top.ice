@@ -1688,8 +1688,9 @@
               "id": "17cbaf9a-48b6-4f84-a9c2-6df9d928d021",
               "type": "basic.input",
               "data": {
-                "name": "clk100mhz",
-                "clock": true
+                "name": "clk",
+                "clock": true,
+                "virtual": true
               },
               "position": {
                 "x": 24,
@@ -1876,7 +1877,7 @@
               },
               "size": {
                 "width": 96,
-                "height": 224
+                "height": 192
               }
             },
             {
@@ -2095,26 +2096,6 @@
             },
             {
               "source": {
-                "block": "afd3f6c2-a0e9-4ccd-b964-dddf9262095d",
-                "port": "out"
-              },
-              "target": {
-                "block": "8bccd0ca-fdfc-4ce3-a065-e02af95e233d",
-                "port": "bfa1c852-d224-4f2a-be3f-78d1521e3f25"
-              }
-            },
-            {
-              "source": {
-                "block": "afd3f6c2-a0e9-4ccd-b964-dddf9262095d",
-                "port": "out"
-              },
-              "target": {
-                "block": "65311cd6-0ea0-43e9-82a8-aa407e7b3a1d",
-                "port": "dcf14357-6123-4a5d-a723-376d0b58069d"
-              }
-            },
-            {
-              "source": {
                 "block": "3d241f50-36c2-425a-8fed-1d5926f36bb9",
                 "port": "out"
               },
@@ -2167,12 +2148,13 @@
               "id": "ec9fab67-5ae0-4f7f-b4a9-addeaad534b6",
               "type": "basic.input",
               "data": {
-                "name": "clk100mhz",
-                "clock": true
+                "name": "clk",
+                "clock": true,
+                "virtual": true
               },
               "position": {
                 "x": 112,
-                "y": 200
+                "y": 216
               }
             },
             {
@@ -2183,8 +2165,8 @@
                 "clock": false
               },
               "position": {
-                "x": 96,
-                "y": 256
+                "x": 72,
+                "y": 280
               }
             },
             {
@@ -2208,8 +2190,8 @@
                 "clock": false
               },
               "position": {
-                "x": 88,
-                "y": 320
+                "x": 72,
+                "y": 352
               }
             },
             {
@@ -2220,22 +2202,8 @@
                 "clock": false
               },
               "position": {
-                "x": 96,
-                "y": 376
-              }
-            },
-            {
-              "id": "d0b9ffdd-61d6-4bcc-aaf9-ecf5407bcfd7",
-              "type": "basic.input",
-              "data": {
-                "name": "ov7670_d",
-                "range": "[7:0]",
-                "clock": false,
-                "size": 8
-              },
-              "position": {
                 "x": 80,
-                "y": 432
+                "y": 416
               }
             },
             {
@@ -2250,22 +2218,16 @@
               }
             },
             {
-              "id": "bfa1c852-d224-4f2a-be3f-78d1521e3f25",
+              "id": "d0b9ffdd-61d6-4bcc-aaf9-ecf5407bcfd7",
               "type": "basic.input",
               "data": {
-                "name": "rgbmode",
-                "pins": [
-                  {
-                    "index": "0",
-                    "name": "NULL",
-                    "value": "NULL"
-                  }
-                ],
-                "virtual": true,
-                "clock": false
+                "name": "ov7670_d",
+                "range": "[7:0]",
+                "clock": false,
+                "size": 8
               },
               "position": {
-                "x": 112,
+                "x": 64,
                 "y": 488
               }
             },
@@ -2273,7 +2235,7 @@
               "id": "0a902920-d58a-4157-bf37-a86e6fb383f5",
               "type": "basic.code",
               "data": {
-                "code": "// @include ov7670_capture.v\n\nwire    swap_r_b;\nassign  swap_r_b = 1'b1;\n\n  ov7670_capture lnk2vrlg \n  (\n     .rst          (rst),\n     .clk          (clk100mhz),\n     .pclk         (ov7670_pclk),\n     .vsync        (ov7670_vsync),\n     .href         (ov7670_href),\n     .rgbmode      (rgbmode),\n     .swap_r_b     (swap_r_b),\n     .data         (ov7670_d),\n     .addr         (capture_addr),\n     .dout         (capture_data),\n     .we           (capture_we)\n  );\n  ",
+                "code": "// @include ov7670_capture.v\n\nwire    swap_r_b;\nwire    rgbmode;\nassign  swap_r_b = 1'b0; //capture in YUV: doesnt matter\nassign  rgbmode = 1'b0;  //0 because in grayscale mode (YUV)\n\n  ov7670_capture lnk2vrlg \n  (\n     .rst          (rst),\n     .clk          (clk),\n     .pclk         (ov7670_pclk),\n     .vsync        (ov7670_vsync),\n     .href         (ov7670_href),\n     .rgbmode      (rgbmode),\n     .swap_r_b     (swap_r_b),\n     .data         (ov7670_d),\n     .addr         (capture_addr),\n     .dout         (capture_data),\n     .we           (capture_we)\n  );\n  ",
                 "params": [],
                 "ports": {
                   "in": [
@@ -2281,7 +2243,7 @@
                       "name": "rst"
                     },
                     {
-                      "name": "clk100mhz"
+                      "name": "clk"
                     },
                     {
                       "name": "ov7670_pclk"
@@ -2296,9 +2258,6 @@
                       "name": "ov7670_d",
                       "range": "[7:0]",
                       "size": 8
-                    },
-                    {
-                      "name": "rgbmode"
                     }
                   ],
                   "out": [
@@ -2337,16 +2296,6 @@
               "target": {
                 "block": "0a902920-d58a-4157-bf37-a86e6fb383f5",
                 "port": "rst"
-              }
-            },
-            {
-              "source": {
-                "block": "ec9fab67-5ae0-4f7f-b4a9-addeaad534b6",
-                "port": "out"
-              },
-              "target": {
-                "block": "0a902920-d58a-4157-bf37-a86e6fb383f5",
-                "port": "clk100mhz"
               }
             },
             {
@@ -2424,12 +2373,12 @@
             },
             {
               "source": {
-                "block": "bfa1c852-d224-4f2a-be3f-78d1521e3f25",
+                "block": "ec9fab67-5ae0-4f7f-b4a9-addeaad534b6",
                 "port": "out"
               },
               "target": {
                 "block": "0a902920-d58a-4157-bf37-a86e6fb383f5",
-                "port": "rgbmode"
+                "port": "clk"
               }
             }
           ]
@@ -2468,8 +2417,8 @@
                 "clock": false
               },
               "position": {
-                "x": 40,
-                "y": 64
+                "x": 48,
+                "y": 48
               }
             },
             {
@@ -2498,12 +2447,13 @@
               "id": "cd42d85e-f5a1-4da3-af0f-2cf2df5ae69f",
               "type": "basic.input",
               "data": {
-                "name": "clk100mhz",
-                "clock": true
+                "name": "clk",
+                "clock": true,
+                "virtual": true
               },
               "position": {
-                "x": 32,
-                "y": 120
+                "x": 40,
+                "y": 144
               }
             },
             {
@@ -2540,26 +2490,6 @@
               }
             },
             {
-              "id": "dcf14357-6123-4a5d-a723-376d0b58069d",
-              "type": "basic.input",
-              "data": {
-                "name": "rgbmode",
-                "pins": [
-                  {
-                    "index": "0",
-                    "name": "NULL",
-                    "value": "NULL"
-                  }
-                ],
-                "virtual": true,
-                "clock": false
-              },
-              "position": {
-                "x": 24,
-                "y": 272
-              }
-            },
-            {
               "id": "b5cbb24e-4c52-4963-aeb6-30a84f977c1b",
               "type": "basic.output",
               "data": {
@@ -2574,7 +2504,7 @@
               "id": "80010459-89ed-4c6d-8b2d-808b5578ffdd",
               "type": "basic.input",
               "data": {
-                "name": "testmode",
+                "name": "test_mode",
                 "pins": [
                   {
                     "index": "0",
@@ -2586,8 +2516,8 @@
                 "clock": false
               },
               "position": {
-                "x": 32,
-                "y": 352
+                "x": 24,
+                "y": 344
               }
             },
             {
@@ -2605,8 +2535,8 @@
               "id": "df66099b-afea-4d27-85fe-cc32c7645103",
               "type": "c4dd08263a85a91ba53e2ae2b38de344c5efcb52",
               "position": {
-                "x": 32,
-                "y": 200
+                "x": 40,
+                "y": 248
               },
               "size": {
                 "width": 96,
@@ -2617,7 +2547,7 @@
               "id": "3bf759e1-2e82-41de-b330-93b35fcfe7ff",
               "type": "basic.code",
               "data": {
-                "code": "  // @include ov7670_top_ctrl.v\r\n  // @include ov7670_ctrl_reg.v\r\n  // @include sccb_master.v\r\n  \r\n  ov7670_top_ctrl lnk2vrlg \r\n  (\r\n     .rst          (rst),\r\n     .clk          (clk100mhz),\r\n     .resend       (resend),\r\n     .rgbmode      (rgbmode),\r\n     .testmode     (testmode),     \r\n     .cnt_reg_test (cnt_reg_test[5:0]),\r\n     .done         (ov7670_cfgdone),\r\n     .sclk         (ov7670_sioc),\r\n     .sdat_on      (sdat_on),\r\n     .sdat_out     (sdat_out),\r\n     .ov7670_rst_n (ov7670_rst_n),\r\n     .ov7670_clk   (ov7670_xclk),\r\n     .ov7670_pwdn  (ov7670_pwdn)\r\n  );",
+                "code": "  // @include ov7670_top_ctrl.v\r\n  // @include ov7670_ctrl_reg.v\r\n  // @include sccb_master.v\r\n  \r\n  ov7670_top_ctrl lnk2vrlg \r\n  (\r\n     .rst          (rst),\r\n     .clk          (clk),\r\n     .resend       (resend),\r\n     .test_mode    (test_mode),     \r\n     .cnt_reg_test (cnt_reg_test[5:0]),\r\n     .done         (ov7670_cfgdone),\r\n     .sclk         (ov7670_sioc),\r\n     .sdat_on      (sdat_on),\r\n     .sdat_out     (sdat_out),\r\n     .ov7670_rst_n (ov7670_rst_n),\r\n     .ov7670_clk   (ov7670_xclk),\r\n     .ov7670_pwdn  (ov7670_pwdn)\r\n  );",
                 "params": [],
                 "ports": {
                   "in": [
@@ -2625,16 +2555,13 @@
                       "name": "rst"
                     },
                     {
-                      "name": "clk100mhz"
+                      "name": "clk"
                     },
                     {
                       "name": "resend"
                     },
                     {
-                      "name": "rgbmode"
-                    },
-                    {
-                      "name": "testmode"
+                      "name": "test_mode"
                     }
                   ],
                   "out": [
@@ -2686,16 +2613,6 @@
               "target": {
                 "block": "3bf759e1-2e82-41de-b330-93b35fcfe7ff",
                 "port": "rst"
-              }
-            },
-            {
-              "source": {
-                "block": "cd42d85e-f5a1-4da3-af0f-2cf2df5ae69f",
-                "port": "out"
-              },
-              "target": {
-                "block": "3bf759e1-2e82-41de-b330-93b35fcfe7ff",
-                "port": "clk100mhz"
               }
             },
             {
@@ -2791,12 +2708,12 @@
             },
             {
               "source": {
-                "block": "dcf14357-6123-4a5d-a723-376d0b58069d",
+                "block": "cd42d85e-f5a1-4da3-af0f-2cf2df5ae69f",
                 "port": "out"
               },
               "target": {
                 "block": "3bf759e1-2e82-41de-b330-93b35fcfe7ff",
-                "port": "rgbmode"
+                "port": "clk"
               }
             },
             {
@@ -2806,7 +2723,7 @@
               },
               "target": {
                 "block": "3bf759e1-2e82-41de-b330-93b35fcfe7ff",
-                "port": "testmode"
+                "port": "test_mode"
               }
             }
           ]
@@ -2877,9 +2794,9 @@
     },
     "73da7762740ae9875ecc8756beb7e143dd8a9528": {
       "package": {
-        "name": "12MHz to 100MHz",
-        "version": "1.0",
-        "description": "PLL converts the 12MHz clock to 100MHz",
+        "name": "12MHz to 50MHz",
+        "version": "1.1",
+        "description": "PLL converts the 12MHz clock to 50MHz",
         "author": "Felipe Machado",
         "image": ""
       },
@@ -2902,7 +2819,8 @@
               "id": "8d0df8c9-1809-40ec-b682-f010a899530b",
               "type": "basic.output",
               "data": {
-                "name": "clk100mhz"
+                "name": "clk50mhz",
+                "virtual": true
               },
               "position": {
                 "x": 752,
@@ -2910,10 +2828,26 @@
               }
             },
             {
+              "id": "1eab4c2c-99f1-48cd-ba6e-b6f9b72320ca",
+              "type": "basic.info",
+              "data": {
+                "info": "Generates a 50MHz clk from a 12MHz input clock",
+                "readonly": false
+              },
+              "position": {
+                "x": 248,
+                "y": 48
+              },
+              "size": {
+                "width": 424,
+                "height": 40
+              }
+            },
+            {
               "id": "0b16de18-4e1f-473b-9e42-eaf04c72d062",
               "type": "basic.code",
               "data": {
-                "code": "\r\n  // 100 MHz clock\r\n   SB_PLL40_CORE\r\n            #(.FEEDBACK_PATH(\"SIMPLE\"),\r\n                .PLLOUT_SELECT(\"GENCLK\"),\r\n                .DIVR(4'd2),\r\n                .DIVF(6'd49),\r\n                .DIVQ(3'd1),\r\n                .FILTER_RANGE(3'b001)\r\n            )\r\n            uut\r\n            (\r\n                .REFERENCECLK(clk_brd),\r\n                .PLLOUTCORE(clk100mhz),\r\n                .RESETB(1'b1),\r\n                .BYPASS(1'b0)\r\n             );",
+                "code": "\r\n  // 100 MHz clock\r\n   SB_PLL40_CORE\r\n            #(.FEEDBACK_PATH(\"SIMPLE\"),\r\n                .PLLOUT_SELECT(\"GENCLK\"),\r\n                .DIVR(4'd5),\r\n                .DIVF(6'd49),\r\n                .DIVQ(3'd1),\r\n                .FILTER_RANGE(3'b001)\r\n            )\r\n            uut\r\n            (\r\n                .REFERENCECLK(clk_brd),\r\n                .PLLOUTCORE(clk50mhz),\r\n                .RESETB(1'b1),\r\n                .BYPASS(1'b0)\r\n             );",
                 "params": [],
                 "ports": {
                   "in": [
@@ -2923,7 +2857,7 @@
                   ],
                   "out": [
                     {
-                      "name": "clk100mhz"
+                      "name": "clk50mhz"
                     }
                   ]
                 }
@@ -2935,22 +2869,6 @@
               "size": {
                 "width": 456,
                 "height": 328
-              }
-            },
-            {
-              "id": "1eab4c2c-99f1-48cd-ba6e-b6f9b72320ca",
-              "type": "basic.info",
-              "data": {
-                "info": "Generates a 100MHz clk from a 12MHz input clock",
-                "readonly": false
-              },
-              "position": {
-                "x": 248,
-                "y": 48
-              },
-              "size": {
-                "width": 424,
-                "height": 40
               }
             }
           ],
@@ -2968,7 +2886,7 @@
             {
               "source": {
                 "block": "0b16de18-4e1f-473b-9e42-eaf04c72d062",
-                "port": "clk100mhz"
+                "port": "clk50mhz"
               },
               "target": {
                 "block": "8d0df8c9-1809-40ec-b682-f010a899530b",
@@ -3496,7 +3414,7 @@
                 "clock": false
               },
               "position": {
-                "x": -48,
+                "x": -120,
                 "y": 8
               }
             },
@@ -3530,11 +3448,12 @@
               "id": "684a4969-01de-49e0-8962-35c1c389232c",
               "type": "basic.input",
               "data": {
-                "name": "clk100mhz",
-                "clock": true
+                "name": "clk",
+                "clock": true,
+                "virtual": true
               },
               "position": {
-                "x": -192,
+                "x": -128,
                 "y": 104
               }
             },
@@ -3680,7 +3599,13 @@
               "target": {
                 "block": "82b8ebcd-84e4-4399-8622-144e382dd5bb",
                 "port": "3bfd3aec-8bb8-4141-b4e6-dbeb43ab765e"
-              }
+              },
+              "vertices": [
+                {
+                  "x": 40,
+                  "y": 0
+                }
+              ]
             },
             {
               "source": {
@@ -3947,8 +3872,9 @@
               "id": "e87df823-810b-48be-bc92-7af912e59159",
               "type": "basic.input",
               "data": {
-                "name": "clk100mhz",
-                "clock": true
+                "name": "clk",
+                "clock": true,
+                "virtual": true
               },
               "position": {
                 "x": 136,
@@ -3985,7 +3911,7 @@
               "id": "bf281b20-4810-4198-be4f-463d409da391",
               "type": "basic.code",
               "data": {
-                "code": "   // @include vga_sync.v\r\n   \r\n   vga_sync link_vrlg\r\n   (\r\n     .rst     (rst),\r\n     .clk     (clk100mhz),\r\n     .visible (vga_visible),\r\n     .new_pxl (vga_new_pxl),\r\n     .hsync   (vga_hsync),\r\n     .vsync   (vga_vsync),\r\n     .col     (vga_col),\r\n     .row     (vga_row)\r\n  );",
+                "code": "   // @include vga_sync.v\r\n   \r\n   vga_sync link_vrlg\r\n   (\r\n     .rst     (rst),\r\n     .clk     (clk),\r\n     .visible (vga_visible),\r\n     .new_pxl (vga_new_pxl),\r\n     .hsync   (vga_hsync),\r\n     .vsync   (vga_vsync),\r\n     .col     (vga_col),\r\n     .row     (vga_row)\r\n  );",
                 "params": [],
                 "ports": {
                   "in": [
@@ -3993,7 +3919,7 @@
                       "name": "rst"
                     },
                     {
-                      "name": "clk100mhz"
+                      "name": "clk"
                     }
                   ],
                   "out": [
@@ -4041,16 +3967,6 @@
               "target": {
                 "block": "bf281b20-4810-4198-be4f-463d409da391",
                 "port": "rst"
-              }
-            },
-            {
-              "source": {
-                "block": "e87df823-810b-48be-bc92-7af912e59159",
-                "port": "out"
-              },
-              "target": {
-                "block": "bf281b20-4810-4198-be4f-463d409da391",
-                "port": "clk100mhz"
               }
             },
             {
@@ -4114,6 +4030,16 @@
                 "port": "in"
               },
               "size": 10
+            },
+            {
+              "source": {
+                "block": "e87df823-810b-48be-bc92-7af912e59159",
+                "port": "out"
+              },
+              "target": {
+                "block": "bf281b20-4810-4198-be4f-463d409da391",
+                "port": "clk"
+              }
             }
           ]
         }
@@ -4146,8 +4072,9 @@
               "id": "4786cc9e-bfa2-40f4-af3e-759c5de4b48d",
               "type": "basic.input",
               "data": {
-                "name": "clk100mhz",
-                "clock": true
+                "name": "clk",
+                "clock": true,
+                "virtual": true
               },
               "position": {
                 "x": 176,
@@ -4397,7 +4324,7 @@
               "id": "238f5dfb-5373-4e94-8a9d-82da055fa809",
               "type": "basic.code",
               "data": {
-                "code": "  // @include vga_display.v\r\n  \r\n  vga_display link2vrlg \r\n  (\r\n     .rst        (rst),\r\n     .clk        (clk100mhz),\r\n     .visible    (vga_visible),\r\n     .new_pxl    (vga_new_pxl),\r\n     .hsync      (vga_hsync),\r\n     .vsync      (vga_vsync),\r\n     .rgbmode    (rgbmode),\r\n     .testmode   (testmode),\r\n     .rgbfilter  (rgbfilter),\r\n     .col        (vga_col),\r\n     .row        (vga_row),\r\n     .frame_pixel(frame_pixel),\r\n     .frame_addr (frame_addr),\r\n     .vga_red    (vga_red),\r\n     .vga_green  (vga_green),\r\n     .vga_blue   (vga_blue)\r\n  );",
+                "code": "  // @include vga_display.v\r\n  \r\n  vga_display link2vrlg \r\n  (\r\n     .rst        (rst),\r\n     .clk        (clk),\r\n     .visible    (vga_visible),\r\n     .new_pxl    (vga_new_pxl),\r\n     .hsync      (vga_hsync),\r\n     .vsync      (vga_vsync),\r\n     .rgbmode    (rgbmode),\r\n     .testmode   (testmode),\r\n     .rgbfilter  (rgbfilter),\r\n     .col        (vga_col),\r\n     .row        (vga_row),\r\n     .frame_pixel(frame_pixel),\r\n     .frame_addr (frame_addr),\r\n     .vga_red    (vga_red),\r\n     .vga_green  (vga_green),\r\n     .vga_blue   (vga_blue)\r\n  );",
                 "params": [
                   {
                     "name": "c_img_cols"
@@ -4412,7 +4339,7 @@
                       "name": "rst"
                     },
                     {
-                      "name": "clk100mhz"
+                      "name": "clk"
                     },
                     {
                       "name": "vga_visible"
@@ -4516,16 +4443,6 @@
               "target": {
                 "block": "238f5dfb-5373-4e94-8a9d-82da055fa809",
                 "port": "rst"
-              }
-            },
-            {
-              "source": {
-                "block": "4786cc9e-bfa2-40f4-af3e-759c5de4b48d",
-                "port": "out"
-              },
-              "target": {
-                "block": "238f5dfb-5373-4e94-8a9d-82da055fa809",
-                "port": "clk100mhz"
               }
             },
             {
@@ -4675,6 +4592,16 @@
                 "port": "rgbfilter"
               },
               "size": 3
+            },
+            {
+              "source": {
+                "block": "4786cc9e-bfa2-40f4-af3e-759c5de4b48d",
+                "port": "out"
+              },
+              "target": {
+                "block": "238f5dfb-5373-4e94-8a9d-82da055fa809",
+                "port": "clk"
+              }
             }
           ]
         }
@@ -5183,7 +5110,8 @@
               "id": "ecd97962-3a35-4477-bb4a-4e4832bce1e7",
               "type": "basic.output",
               "data": {
-                "name": "testmode"
+                "name": "test_mode",
+                "virtual": true
               },
               "position": {
                 "x": 704,
@@ -5207,7 +5135,7 @@
               "id": "20509680-33a3-44cd-a346-35da07f0b9b5",
               "type": "basic.code",
               "data": {
-                "code": " // @include mode_sel.v\n \n    mode_sel lnk2vrlg \n    (\n      .rst     (rst),\n      .clk     (clk),\n      .btn_in  (btn_in),\n      .filter_on (filter_on),\n      .vfilter (vfilter),\n      .testmode(testmode)\n    );",
+                "code": " // @include mode_sel.v\n \n    mode_sel lnk2vrlg \n    (\n      .rst      (rst),\n      .clk      (clk),\n      .btn_in   (btn_in),\n      .filter_on (filter_on),\n      .vfilter  (vfilter),\n      .test_mode(test_mode)\n    );",
                 "params": [],
                 "ports": {
                   "in": [
@@ -5229,7 +5157,7 @@
                       "name": "vfilter"
                     },
                     {
-                      "name": "testmode"
+                      "name": "test_mode"
                     }
                   ]
                 }
@@ -5298,7 +5226,7 @@
             {
               "source": {
                 "block": "20509680-33a3-44cd-a346-35da07f0b9b5",
-                "port": "testmode"
+                "port": "test_mode"
               },
               "target": {
                 "block": "ecd97962-3a35-4477-bb4a-4e4832bce1e7",

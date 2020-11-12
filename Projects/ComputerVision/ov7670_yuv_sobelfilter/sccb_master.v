@@ -57,16 +57,16 @@ module sccb_master
   #(parameter
     c_off                  = 1'b0, // push button off
     c_on                   = ~c_off, // push button on
-    c_clk_period           = 10, // fpga clk peridod in ns
+    c_clk_period           = 20, // fpga clk peridod in ns
     // quarter of a period in ns
     c_sclk_period_div4     = 650, // see explanation above
     // frequency divider counter end value. Divided by 4 to have it divided
     // in 4 slots
     // we use div_ceil, to avoid having a smaller end count,
     // which would mean higher frequency
-    c_sclk_div4_endcnt     = 65, // div_ceil(c_sclk_period_div4,c_clk_period);
+    c_sclk_div4_endcnt     = 33, // div_ceil(c_sclk_period_div4,c_clk_period);
     // number of bits necessary to represent c_sclk_endcont in binary
-    c_nb_cnt_sclk_div4     =  7  // log2i(c_sclk_div4_endcnt-1) + 1;
+    c_nb_cnt_sclk_div4     =  6  // log2i(c_sclk_div4_endcnt-1) + 1;
    )
    (
     input         rst,       //reset, active high
@@ -253,8 +253,7 @@ module sccb_master
     send_data   = 1'b0;
     new_phase   = 1'b0;
     finish_tx   = 1'b0;
-	//<SC> 
-	sclk		= 1'b1;
+    sclk        = 1'b1;
     case (pr_sccb_st)
       IDLE_ST: begin  // waiting to send, not busy
         ready_aux = 1'b1;  // ready to send

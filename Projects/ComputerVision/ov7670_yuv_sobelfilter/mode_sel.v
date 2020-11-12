@@ -14,13 +14,13 @@ module mode_sel
     c_on    = 1'b1
    )
    (input        rst,
-    input        clk,
+    input        clk,  // 50MHz 
     input        btn_in,  // input
     output reg   filter_on,
     output reg   vfilter,
     output reg   test_mode);
 
-  reg    [20-1:0]  count_10ms;  // ~1.05 million count -> 10 ms
+  reg    [19-1:0]  count_10ms;  // ~1.05 million count -> 10 ms
   reg    [8-1:0]   count_2sec;  // count for 2.5 seconds aprox (256 x 10ms)
   wire           pulse_10ms;
   wire           pulse_1sec;
@@ -30,18 +30,18 @@ module mode_sel
   always @(posedge rst, posedge clk)
   begin
     if (rst) begin
-      count_10ms <= 20'hF_FFFF;
+      count_10ms <= 20'h7_FFFF;
     end
     else begin
       if (btn_in) begin
         if (count_10ms == 0) begin
-          count_10ms <= 20'hF_FFFF;
+          count_10ms <= 20'h7_FFFF;
         end
         else 
           count_10ms <= count_10ms - 1;
       end
       else
-        count_10ms <= 20'hF_FFFF;
+        count_10ms <= 20'h7_FFFF;
     end
   end
 

@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 // Felipe Machado Sanchez
-// Departameto de Tecnologia Electronica
+// Area de Tecnologia Electronica
 // Universidad Rey Juan Carlos
 // https://github.com/felipe-m
-//
+// using a 50 MHz clk
 
 module vga_sync
   #(parameter
@@ -58,7 +58,7 @@ module vga_sync
    );
   
 
-  reg     [1:0]  cnt_clk; // count 0 to 3: 4 clk cycles, from 100MHz to 15MHz
+  reg            cnt_clk; // count 0 to 1: 2 clk cycles, from 50MHz to 25MHz
   reg  [10-1:0]  cnt_pxl;
   reg  [10-1:0]  cnt_line;
 
@@ -69,20 +69,16 @@ module vga_sync
   reg    visible_pxl;  
   reg    visible_line;
 
-  // count 4 clock cycles to get a pixel cycle
+  // count 2 clock cycles to get a pixel cycle
   always @ (posedge rst, posedge clk)
   begin
     if (rst)
-      cnt_clk <= 2'd0;
-    else begin
-      if (new_pxl) 
-        cnt_clk <= 2'd0;
-      else
-        cnt_clk <= cnt_clk + 1;
-    end
+      cnt_clk <= 1'b0;
+    else
+      cnt_clk <= ~cnt_clk;
   end 
 
-  assign new_pxl =  (cnt_clk==3) ? 1'b1 : 1'b0; 
+  assign new_pxl =  cnt_clk;
 
   assign col     = cnt_pxl;
   assign row     = cnt_line;
@@ -105,7 +101,7 @@ module vga_sync
 
   // end of pixel count
   assign end_cnt_pxl =  (cnt_pxl == c_pxl_total-1) ? 1'b1 : 1'b0;
-  // nueva linea: cuando es el fin de cuenta y llega un nuevo pixel
+  // new line: when in the end of the count and there is a new pixel
   assign new_line = end_cnt_pxl && new_pxl;
 
   // combinational outputs of pixel count (horizontal)

@@ -63,6 +63,9 @@ module top_ov7670
     wire          vga_new_pxl;
     wire [10-1:0] vga_col;
     wire [10-1:0] vga_row;
+
+    wire          vga_hsync_wr; // intermediate signal, not registered (wire)
+    wire          vga_vsync_wr; // intermediate signal, not registered (wire)
  
     wire [c_nb_img_pxls-1:0] display_img_addr;
     wire [c_nb_buf-1:0]      display_img_pxl;
@@ -95,10 +98,12 @@ module top_ov7670
     wire          filter_on;
     wire          vfilter;
     wire          rgbmode; // 0 because in gray mode
-    wire          test_mode; // 0 because in gray mode
+    wire          swap_r_b; // 0 because in gray mode
+    wire          test_mode;
     wire          ov7670_pwdn; // not going out -> not enough pins
 
   assign rgbmode = 1'b0;
+  assign swap_r_b = 1'b0; // it doesnt matter: using YUV
 
 
   assign vga_red_2b   = vga_red[3:2];
@@ -141,8 +146,8 @@ module top_ov7670
      .clk     (clk50mhz),
      .visible (vga_visible),
      .new_pxl (vga_new_pxl),
-     .hsync   (vga_hsync),
-     .vsync   (vga_vsync),
+     .hsync   (vga_hsync_wr),
+     .vsync   (vga_vsync_wr),
      .col     (vga_col),
      .row     (vga_row)
   );
@@ -153,16 +158,18 @@ module top_ov7670
      .clk        (clk50mhz),
      .visible    (vga_visible),
      .new_pxl    (vga_new_pxl),
-     .hsync      (vga_hsync),
-     .vsync      (vga_vsync),
+     .hsync      (vga_hsync_wr),
+     .vsync      (vga_vsync_wr),
      .rgbmode    (rgbmode),
      .col        (vga_col),
      .row        (vga_row),
-     .frame_pixel(display_img_pxl_12),
-     .frame_addr (display_img_addr),
-     .vga_red    (vga_red),
-     .vga_green  (vga_green),
-     .vga_blue   (vga_blue)
+     .frame_pixel   (display_img_pxl_12),
+     .frame_addr    (display_img_addr),
+     .hsync_out     (vga_hsync),
+     .vsync_out     (vga_vsync),
+     .vga_red_out   (vga_red),
+     .vga_green_out (vga_green),
+     .vga_blue_out  (vga_blue)
   );
   assign display_img_pxl_12 = {4'b0 , display_img_pxl};
 
@@ -212,7 +219,7 @@ module top_ov7670
      .vsync        (ov7670_vsync),
      .href         (ov7670_href),
      .rgbmode      (rgbmode), // 0 because it is in YUV
-     //.swap_r_b     (swap_r_b),
+     .swap_r_b     (swap_r_b),
      //.dataout_test (ov_capture_datatest),
      //.led_test     (led[3:0]),
      .data         (ov7670_d),

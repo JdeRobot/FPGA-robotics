@@ -11,6 +11,8 @@
 module vga_display
   # (parameter
       // VGA
+      // active level of synchronization
+      c_synch_act      = 0,
       //c_img_cols    = 640, // 10 bits
       //c_img_rows    = 480, //  9 bits
       //c_img_pxls    = c_img_cols * c_img_rows,
@@ -48,11 +50,18 @@ module vga_display
     input [10-1:0] row,
     input  [c_nb_buf-1:0] frame_pixel,
     output reg [c_nb_img_pxls-1:0] frame_addr,
-    output reg [4-1:0] vga_red,
-    output reg [4-1:0] vga_green,
-    output reg [4-1:0] vga_blue
+    output reg     hsync_out, // registered for synchronization
+    output reg     vsync_out,
+    output reg [4-1:0] vga_red_out,
+    output reg [4-1:0] vga_green_out,
+    output reg [4-1:0] vga_blue_out
   );
 
+  reg [4-1:0] vga_red_rg;
+  reg [4-1:0] vga_green_rg;
+  reg [4-1:0] vga_blue_rg;
+  reg         hsync_rg;
+  reg         vsync_rg;
 
   always @ (posedge rst, posedge clk)
   begin
@@ -71,48 +80,110 @@ module vga_display
     end
   end
 
-
-  always @ (*)
+  // registering the combinational part, the part that comes from memory
+  // is already registered, and registering it would lead to unsynchronization
+  always @ (posedge rst, posedge clk)
   begin
-    vga_red   = 0;
-    vga_green = 0;
-    vga_blue  = 0;
-    if (visible) begin
-      vga_red   = {4{1'b0}};
-      vga_green = {4{1'b0}};
-      vga_blue  = {4{1'b0}};
-      if ((col < c_img_cols) && (row < c_img_rows)) begin
-          if (rgbmode) begin
-            vga_red   = frame_pixel[c_nb_buf-1: c_nb_buf-c_nb_buf_red];
-            vga_green = frame_pixel[c_nb_buf-c_nb_buf_red-1:c_nb_buf_blue];
-            vga_blue  = frame_pixel[c_nb_buf_blue-1:0];
-          end
-          else begin
-            vga_red   = frame_pixel[7:4];
-            vga_green = frame_pixel[7:4];
-            vga_blue  = frame_pixel[7:4];
-          end
+    if (rst) begin
+      vga_red_rg   <= {4{1'b0}};
+      vga_green_rg <= {4{1'b0}};
+      vga_blue_rg  <= {4{1'b0}};
+    end
+    else begin
+      vga_red_rg   <= {4{1'b0}};
+      vga_green_rg <= {4{1'b0}};
+      vga_blue_rg  <= {4{1'b0}};
+      if (row > 240 && row < 256) begin
+        if (col < 64) begin
+          // Test grayscale  square of 16 pixels
+          vga_red_rg    <= {col[5:4],2'b00};
+          vga_green_rg  <= {col[5:4],2'b00};
+          vga_blue_rg   <= {col[5:4],2'b00};
+        end 
+        else begin// black
+          vga_red_rg   <= {4{1'b0}};
+          vga_green_rg <= {4{1'b0}};
+          vga_blue_rg  <= {4{1'b0}};
+        end
       end
-      else if (row > 256 && row < 384 && col < 512) begin
-         vga_red   = {col[8:7],2'b00};
-         vga_green = {col[6:5],2'b00};
-         vga_blue  = {row[6:5],2'b00};
+      else if (row >= 256 && row < 320 && col < 256) begin
+         // Test colors
+         vga_red_rg   <= {col[7:6],2'b00};
+         vga_green_rg <= {col[5:4],2'b00};
+         vga_blue_rg  <= {row[5:4],2'b00};
+      end
+      else if (row >= 256 || col > 4*c_img_cols) begin
+        //black below 256 or right of 4**cimgrows (if not test)
+        vga_red_rg   <= {4{1'b0}};
+        vga_green_rg <= {4{1'b0}};
+        vga_blue_rg  <= {4{1'b0}};
       end
       else if ((col == c_img_cols) || (row == c_img_rows)) begin
-         vga_red   = 4'b0000;
-         vga_green = 4'b1000;
-         vga_blue  = 4'b1000;
+        vga_red_rg   <= 4'b0000;
+        vga_green_rg <= 4'b1000;
+        vga_blue_rg  <= 4'b1000;
       end
       else if ((col == 2*c_img_cols) || (row == 2*c_img_rows)) begin
-         vga_red   = 4'b1000;
-         vga_green = 4'b1000;
-         vga_blue  = 4'b0000;
+        vga_red_rg   <= 4'b1000;
+        vga_green_rg <= 4'b1000;
+        vga_blue_rg  <= 4'b0000;
       end
       else if ((col == 4*c_img_cols) || (row == 4*c_img_rows)) begin
-         vga_red   = 4'b1000;
-         vga_green = 4'b0000;
-         vga_blue  = 4'b1000;
+        vga_red_rg   <= 4'b1000;
+        vga_green_rg <= 4'b0000;
+        vga_blue_rg  <= 4'b1000;
       end
+    end
+  end
+
+  // registering twice to have the outputs totally registered
+  always @ (posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      vga_red_out   <= {4{1'b0}};
+      vga_green_out <= {4{1'b0}};
+      vga_blue_out  <= {4{1'b0}};
+    end
+    else begin
+      vga_red_out   <= {4{1'b0}};
+      vga_green_out <= {4{1'b0}};
+      vga_blue_out  <= {4{1'b0}};
+      if (visible) begin
+        if ((col < c_img_cols) && (row < c_img_rows)) begin
+          if (rgbmode) begin
+            vga_red_out   <= frame_pixel[c_nb_buf-1: c_nb_buf-c_nb_buf_red];
+            vga_green_out <= frame_pixel[c_nb_buf-c_nb_buf_red-1:c_nb_buf_blue];
+            vga_blue_out  <= frame_pixel[c_nb_buf_blue-1:0];
+          end
+          else begin
+            vga_red_out   <= frame_pixel[7:4];
+            vga_green_out <= frame_pixel[7:4];
+            vga_blue_out  <= frame_pixel[7:4];
+          end
+        end
+        else begin
+          vga_red_out   <= vga_red_rg;
+          vga_green_out <= vga_green_rg;
+          vga_blue_out  <= vga_blue_rg;
+        end
+      end
+    end
+  end
+
+  // register twice
+  always @ (posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      hsync_rg  <= ~c_synch_act;
+      hsync_out <= ~c_synch_act;
+      vsync_rg  <= ~c_synch_act;
+      vsync_out <= ~c_synch_act;
+    end
+    else begin
+      hsync_rg  <= hsync;
+      hsync_out <= hsync_rg;
+      vsync_rg  <= vsync;
+      vsync_out <= vsync_rg;
     end
   end
 
