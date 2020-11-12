@@ -7,6 +7,8 @@
 
 module vga_sync
   #(parameter
+    // option 2: using front porch with 10 rows instead of 9,so it is 32 ms more
+    // so it is 59,981 Hz instead of 60.096Hz
     c_pxl_visible    = 640,
     c_pxl_fporch     = 16,
     // from 0 to front porch
@@ -20,14 +22,14 @@ module vga_sync
     c_pxl_bporch     = c_pxl_total - c_pxl_2_synch,  //  48
     // --------------- Number of rows (Vertical) ----------
     c_line_visible   = 480,
-    c_line_fporch    = 9,
+    c_line_fporch    = 10, // 9 would be also ok
     // from 0 to front porch (vertical)
-    c_line_2_fporch  = c_line_visible + c_line_fporch, // 489
+    c_line_2_fporch  = c_line_visible + c_line_fporch, // 490
     c_line_synch     = 2,
     // from init to synchro (vertical)
-    c_line_2_synch   = c_line_2_fporch + c_line_synch, // 491
+    c_line_2_synch   = c_line_2_fporch + c_line_synch, // 492
     // total number of lines
-    c_line_total     = 520,
+    c_line_total     = 521, // since we took 10 for c_line_fporch
     // number of lines of the back porch
     c_line_bporch    = c_line_total - c_line_2_synch,  //  29
 
