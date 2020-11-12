@@ -10,6 +10,6 @@ Top module: ov7670_sobel.ice
   
   Press SW2 to change to Sobel Horizontal Filter -> Sobel Vertical Filter -> No filter (in gray scale)
   
-  ![OV7670 camera and alhambra pin connection](../ov7670_alhambra_interface.png)
+  ![OV7670 camera and alhambra pin connection](../ov7670_alhambra_interface_yuv.png)
   
   
