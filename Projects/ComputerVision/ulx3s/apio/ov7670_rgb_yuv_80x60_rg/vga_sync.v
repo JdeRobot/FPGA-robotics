@@ -3,7 +3,7 @@
 // Departameto de Tecnologia Electronica
 // Universidad Rey Juan Carlos
 // https://github.com/felipe-m
-//
+// registering outputs to reduce timming
 
 module vga_sync
   #(parameter
@@ -49,12 +49,12 @@ module vga_sync
    (
     input           rst,
     input           clk,
-    output          visible,
-    output          new_pxl,
+    output  reg     visible,
+    output  reg     new_pxl,
     output  reg     hsync,
     output  reg     vsync,
-    output [10-1:0] col,
-    output [10-1:0] row
+    output  reg [10-1:0] col,
+    output  reg [10-1:0] row
    );
   
 
@@ -65,6 +65,10 @@ module vga_sync
   wire   end_cnt_pxl;
   wire   end_cnt_line;
   wire   new_line;
+  wire   new_pxl_wr;
+
+  reg   hsync_wr;
+  reg   vsync_wr;
 
   reg    visible_pxl;  
   reg    visible_line;
@@ -75,18 +79,15 @@ module vga_sync
     if (rst)
       cnt_clk <= 2'd0;
     else begin
-      if (new_pxl) 
+      if (new_pxl_wr) 
         cnt_clk <= 2'd0;
       else
         cnt_clk <= cnt_clk + 1;
     end
   end 
 
-  assign new_pxl =  (cnt_clk==3) ? 1'b1 : 1'b0; 
+  assign new_pxl_wr =  (cnt_clk==3) ? 1'b1 : 1'b0; 
 
-  assign col     = cnt_pxl;
-  assign row     = cnt_line;
-  assign visible = visible_pxl && visible_line;
 
   // counting 800 pixels (columns)
   always @ (posedge rst, posedge clk)
@@ -113,23 +114,23 @@ module vga_sync
   begin
     if (rst) begin
       visible_pxl = 1'b0;
-      hsync = ~c_synch_act;
+      hsync_wr = ~c_synch_act;
     end
     else if (cnt_pxl < c_pxl_visible) begin
       visible_pxl = 1'b1;
-      hsync = ~c_synch_act;
+      hsync_wr = ~c_synch_act;
     end
     else if (cnt_pxl < c_pxl_2_fporch) begin
       visible_pxl = 1'b0;
-      hsync = ~c_synch_act;
+      hsync_wr = ~c_synch_act;
     end
     else if (cnt_pxl < c_pxl_2_synch) begin
       visible_pxl = 1'b0;
-      hsync = c_synch_act; // synch active
+      hsync_wr = c_synch_act; // synch active
     end
     else begin
       visible_pxl = 1'b0;
-      hsync = ~c_synch_act; 
+      hsync_wr = ~c_synch_act; 
     end
   end
 
@@ -156,24 +157,49 @@ module vga_sync
   begin
     if (rst) begin
       visible_line = 1'b0;
-      vsync = ~c_synch_act;
+      vsync_wr = ~c_synch_act;
     end
     else if (cnt_line < c_line_visible) begin
       visible_line = 1'b1;
-      vsync = ~c_synch_act;
+      vsync_wr = ~c_synch_act;
     end
     else if (cnt_line < c_line_2_fporch) begin
       visible_line = 1'b0;
-      vsync = ~c_synch_act;
+      vsync_wr = ~c_synch_act;
     end
     else if (cnt_line < c_line_2_synch) begin
       visible_line = 1'b0;
-      vsync = c_synch_act; // synch active
+      vsync_wr = c_synch_act; // synch active
     end
     else begin
       visible_line = 1'b0;
-      vsync = ~c_synch_act; 
+      vsync_wr = ~c_synch_act; 
     end
   end
+
+
+  // registering outputs to reduce timming
+  always @ (posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      col <= 10'd0;
+      row <= 10'd0;
+      visible <= 1'b0;
+      vsync = ~c_synch_act;
+      hsync = ~c_synch_act;
+      new_pxl <= 1'b0;
+    end
+    else begin
+      col     <= cnt_pxl;
+      row     <= cnt_line;
+      visible <= visible_pxl && visible_line;
+      new_pxl <= new_pxl_wr;
+      vsync   <= vsync_wr;
+      hsync   <= hsync_wr;
+    end
+  end 
+
+
+
 
 endmodule

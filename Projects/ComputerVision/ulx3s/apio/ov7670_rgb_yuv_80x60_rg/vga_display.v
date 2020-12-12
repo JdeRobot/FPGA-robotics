@@ -142,28 +142,54 @@ module vga_display
     end
   end
 
-
   // registering the combinational part, the part that comes from memory
   // is already registered, and registering it would lead to unsynchronization
   always @ (*)
   begin
-    if (rst) begin
-      vga_red_wr   = {4{1'b0}};
-      vga_green_wr = {4{1'b0}};
-      vga_blue_wr  = {4{1'b0}};
-    end
-    else begin
-      vga_red_wr   = {4{1'b0}};
-      vga_green_wr = {4{1'b0}};
-      vga_blue_wr  = {4{1'b0}};
-      if (visible && col < 512) begin
-        if ((col < c_img_cols) && (row < c_img_rows)) begin
-           // frame, not painting here
-          vga_red_wr   = {4{1'b0}};
-          vga_green_wr = {4{1'b0}};
-          vga_blue_wr  = {4{1'b0}};
+    vga_red_wr   = {4{1'b0}};
+    vga_green_wr = {4{1'b0}};
+    vga_blue_wr  = {4{1'b0}};
+    if (col < 256) begin
+        //if ((col < c_img_cols) && (row < c_img_rows)) begin
+        //   // frame, not painting here
+        //  vga_red_wr   = {4{1'b0}};
+        //  vga_green_wr = {4{1'b0}};
+        //  vga_blue_wr  = {4{1'b0}};
+        //end
+        //else if (row > 240 && row < 256) begin
+      if (row < 256) begin
+        if ((row >= 128) && (row < 128 + 8)) begin
+          if ((col > 7) && (col < 16)) begin // RGB MODE
+            if (char_rgbmode[7-char_col]) begin
+              vga_red_wr   = 4'b1111;
+              vga_green_wr = 4'b1111;
+              vga_blue_wr  = 4'b1111;
+            end
+          end
+          else if ((col > 15) && (col < 24)) begin // TEST MODE
+            if (char_testmode[7-char_col]) begin
+              vga_red_wr   = 4'b1111;
+              vga_green_wr = 4'b1111;
+              vga_blue_wr  = 4'b1111;
+            end
+          end
         end
-        else if (row > 240 && row < 256) begin
+        //else if ((col == c_img_cols) || (row == c_img_rows)) begin
+        //   vga_red_wr   = 4'b0000;
+        //   vga_green_wr = 4'b1000;
+        //   vga_blue_wr  = 4'b1000;
+        //end
+        //else if ((col == 2*c_img_cols) || (row == 2*c_img_rows)) begin
+        //   vga_red_wr   = 4'b1000;
+        //   vga_green_wr = 4'b1000;
+        //   vga_blue_wr  = 4'b0000;
+        //end
+        //else if ((col == 4*c_img_cols) || (row == 4*c_img_rows)) begin
+        //   vga_red_wr   = 4'b1000;
+        //   vga_green_wr = 4'b0000;
+        //   vga_blue_wr  = 4'b1000;
+        //end
+        else if (row > 240) begin
           if (col < 64) begin
             // Test grayscale  square of 16 pixels
             vga_red_wr    = {col[5:4],2'b00};
@@ -176,59 +202,12 @@ module vga_display
             vga_blue_wr  = {4{1'b0}};
           end
         end
-        else if (row > 256 && row < 384 && col < 256) begin
-           vga_red_wr   = col[7:4];
-           vga_green_wr = col[5:2];
-           vga_blue_wr  = row[5:2];
-        end
-        else if ((col == c_img_cols) || (row == c_img_rows)) begin
-           vga_red_wr   = 4'b0000;
-           vga_green_wr = 4'b1000;
-           vga_blue_wr  = 4'b1000;
-        end
-        else if (row >= 256 || col > 4*c_img_cols) begin
-          //black below 256 or right of 4**cimgrows (if not test)
-          vga_red_wr   = {4{1'b0}};
-          vga_green_wr = {4{1'b0}};
-          vga_blue_wr  = {4{1'b0}};
-        end
-        else if ((col == 2*c_img_cols) || (row == 2*c_img_rows)) begin
-           vga_red_wr   = 4'b1000;
-           vga_green_wr = 4'b1000;
-           vga_blue_wr  = 4'b0000;
-        end
-        else if ((col == 4*c_img_cols) || (row == 4*c_img_rows)) begin
-           vga_red_wr   = 4'b1000;
-           vga_green_wr = 4'b0000;
-           vga_blue_wr  = 4'b1000;
-        end
-        else if ((row > 127) && (row < 128 + 8)) begin
-          if ((col > 7) && (col < 16)) begin // RGB MODE
-            if (char_rgbmode[7-char_col]) begin
-              vga_red_wr   = 4'b1111;
-              vga_green_wr = 4'b1111;
-              vga_blue_wr  = 4'b1111;
-            end
-            else begin
-              vga_red_wr   = 4'b0000;
-              vga_green_wr = 4'b0000;
-              vga_blue_wr  = 4'b0000;
-            end
-          end
-          else if ((col > 15) && (col < 24)) begin // TEST MODE
-            if (char_testmode[7-char_col]) begin
-              vga_red_wr   = 4'b1111;
-              vga_green_wr = 4'b1111;
-              vga_blue_wr  = 4'b1111;
-            end
-            else begin
-              vga_red_wr   = 4'b0000;
-              vga_green_wr = 4'b0000;
-              vga_blue_wr  = 4'b0000;
-            end
-          end
-        end
-        else begin
+      end
+      else begin // if (row >= 256) begin
+        vga_red_wr   = col[7:4];
+        vga_green_wr = col[5:2];
+        vga_blue_wr  = row[5:2];
+        if (row >= 384) begin
           vga_red_wr   = {4{1'b0}};
           vga_green_wr = {4{1'b0}};
           vga_blue_wr  = {4{1'b0}};
