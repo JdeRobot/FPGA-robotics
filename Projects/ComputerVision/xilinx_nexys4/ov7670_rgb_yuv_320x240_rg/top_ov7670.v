@@ -21,6 +21,7 @@ module top_ov7670
       c_img_rows    = 240, // 8 bits
       c_img_pxls    = c_img_cols * c_img_rows,
       c_nb_img_pxls =  17,  //320*240=76,800 -> 2^17
+
       // QQVGA
       //c_img_cols    = 160, // 8 bits
       //c_img_rows    = 120, //  7 bits
@@ -39,15 +40,15 @@ module top_ov7670
        c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
     )
     (input        rst,
-     input        clk25mhz,    // 25mhz clk
+     input        clk100mhz,    // 25mhz clk
 
-     input        btn2,          //select RGB -> YUV -> RGB test -> YUV test
+     input        btnc,          //select RGB -> YUV -> RGB test -> YUV test
 
      output       ov7670_sioc,
      output       ov7670_siod,
 
      output       ov7670_rst_n,
-     output       ov7670_pwdn,
+     output       ov7670_pwdn,  // not used, not enough pins
      input        ov7670_vsync,
      input        ov7670_href,
      input        ov7670_pclk,
@@ -56,19 +57,15 @@ module top_ov7670
 
      output [7:0] led,
 
-     output [1:0] vga_red_2b, //just 2 bits
-     output [1:0] vga_green_2b,
-     output [1:0] vga_blue_2b,
+     output [3:0] vga_red,
+     output [3:0] vga_green,
+     output [3:0] vga_blue,
 
      output       vga_hsync,
      output       vga_vsync
 
     );
 
-
-    wire  [4-1:0] vga_red;
-    wire  [4-1:0] vga_green;
-    wire  [4-1:0] vga_blue;
 
     wire          vga_visible;
     wire          vga_new_pxl;
@@ -90,31 +87,28 @@ module top_ov7670
     wire          sdat_on;
     wire          sdat_out;  // not making it INOUT, just out, but 3-state
 
-    wire          clk100mhz;
+    //wire          clk100mhz;
 
     wire          rgbmode;
     wire          testmode;
     wire          locked_wire;
     parameter     swap_r_b = 1'b1; // red and blue are swapped
 
-  assign vga_red_2b   = vga_red[3:2];
-  assign vga_green_2b = vga_green[3:2];
-  assign vga_blue_2b  = vga_blue[3:2];
 
-  // 100 MHz clock
-   pll i_pll
-     (
-      .clkin(clk25mhz),
-      .clkout0(clk100mhz),
-      .locked(locked_wire)
-             );
+  // 100 MHz clock (already is, only difference with ULX3S
+   //pll i_pll
+     //(
+      //.clkin(clk25mhz),
+      //.clkout0(clk100mhz),
+      //.locked(locked_wire)
+             //);
 
 
     mode_sel sw2_mode_sel 
     (
       .rst     (rst),
       .clk     (clk100mhz),
-      .sig_in  (btn2),
+      .sig_in  (btnc),
       .rgbmode (rgbmode),
       .testmode(testmode)
     );
