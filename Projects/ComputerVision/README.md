@@ -23,6 +23,21 @@ Projects for the ULX3S. There are two folders
 * [icestudio](ulx3s/icestudio): projects using Icestudio: https://icestudio.io/
 * [apio](ulx3s/apio): projects in verilog using Apio: https://apiodoc.readthedocs.io
 
+## ULX3S Icestudio projects
+
+### [ov7670_rgb_yuv_320x240_rg](ulx3s/apio/ov7670_rgb_yuv_320x240_rg)
+
+Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both
+btn1 is reset
+
+
+### [ov7670_rgb_yuv_320x240_rg_50mhz](ulx3s/apio/ov7670_rgb_yuv_320x240_rg_50mhz)
+
+Same as previous but using a 50MHz clock, since there were timming warnings at 100MHz
+Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both
+btn1 is reset
+
+
 
 ---  
   
@@ -139,4 +154,9 @@ Option to choose between RGB or YUV (only Y). Also camera can be in test mode or
 ### [ov7670_rgb_yuv_80x60_filter](xilinx_nexys4/ov7670_rgb_yuv_80x60_filter)   
 
 Option to choose between RGB or YUV (only Y). Also, camera cab be in test mode or normal capture. And choose color filter when in RGB and edge Sobel filter when in YUV
+
+### [ov7670_rgb_yuv_320x240_rg](xilinx_nexys4/ov7670_rgb_yuv_320x240_rg)
+
+Same as [ULX3S](ulx3s/apio/ov7670_rgb_yuv_320x240_rg) project but for Xilinx Nexys4DDR. Only in verilog
+
   
