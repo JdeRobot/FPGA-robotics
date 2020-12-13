@@ -1026,8 +1026,9 @@ module ov7670_ctrl_reg
   //     freq   :  min: 10 MHz  -- typ: 24 MHz  -- Max: 48 MHz
   //     Period : max: 100 ns   -- typ: 42 ns   -- Max: 21 ns
   // duty cycle between 45% and 55%
-  // Since our clock is 10 ns (100 MHz), we have to divide frequency by:
-  //  4: 25 MHz - 40 ns
+  // Since our clock is 20 ns (50 MHz), we have to divide frequency by:
+  //  // 2: 25 MHz - 40 ns
+  //  4: 1.25 MHz - 80 ns --> divide by 4
   always @ (posedge rst, posedge clk)
   begin
     if (rst)
@@ -1041,7 +1042,7 @@ module ov7670_ctrl_reg
   end
 
   // when cnt_cam_clk = 0 | 1 => '0', when 2 | 3 => '1'
-  assign ov7670_clk = cnt_cam_clk[1];
+  assign ov7670_clk = cnt_cam_clk[1]; // divide by 4
 
   // camera reset and power down
   assign ov7670_pwdn  = 1'b0;
