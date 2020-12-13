@@ -56,9 +56,9 @@ module top_ov7670
 
      output [7:0] led,
 
-     output [1:0] vga_red_2b, //just 2 bits
-     output [1:0] vga_green_2b,
-     output [1:0] vga_blue_2b,
+     output [2:0] vga_red_3b, //just 3 bits
+     output [2:0] vga_green_3b,
+     output [2:0] vga_blue_3b,
 
      output       vga_hsync,
      output       vga_vsync
@@ -88,7 +88,7 @@ module top_ov7670
     wire          config_finished;
 
     wire          sdat_on;
-    wire          sdat_out;  // not making it INOUT, just out, but 3-state
+    wire          sdat_out;  //  not making it INOUT, just out, but 3-state
 
     wire          clk100mhz;
 
@@ -97,9 +97,9 @@ module top_ov7670
     wire          locked_wire;
     parameter     swap_r_b = 1'b1; // red and blue are swapped
 
-  assign vga_red_2b   = vga_red[3:2];
-  assign vga_green_2b = vga_green[3:2];
-  assign vga_blue_2b  = vga_blue[3:2];
+  assign vga_red_3b   = vga_red[3:1];
+  assign vga_green_3b = vga_green[3:1];
+  assign vga_blue_3b  = vga_blue[3:1];
 
   // 100 MHz clock
    pll i_pll

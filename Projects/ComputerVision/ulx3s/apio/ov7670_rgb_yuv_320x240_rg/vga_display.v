@@ -279,10 +279,10 @@ module vga_display
         vga_blue_wr  = 4'b1111;
       end
     end
-    else if (bwt_rg) begin // Test grayscale  square of 16 pixels
-      vga_red_wr    = {col[5:4],2'b00};
-      vga_green_wr  = {col[5:4],2'b00};
-      vga_blue_wr   = {col[5:4],2'b00};
+    else if (bwt_rg) begin // Test grayscale square of 16 pixels
+      vga_red_wr    = col[5:2];
+      vga_green_wr  = col[5:2];
+      vga_blue_wr   = col[5:2];
     end 
     else if (clt_rg) begin // Test color
       vga_red_wr   = col[7:4];

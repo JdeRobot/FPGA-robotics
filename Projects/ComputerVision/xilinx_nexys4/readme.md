@@ -20,3 +20,7 @@ SW3 swaps red-blue (it works)
 SW4 in VHDL: oscilloscope
 
 SW15: reset
+
+## ov7670_rgb_yuv_320x240_rg
+
+Same as ULX3S version, but for Nexys4DDR

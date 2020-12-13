@@ -101,8 +101,8 @@ module vga_display
   // indicates if it is the area of the black and white test
   parameter   C_BWT_ROW_MIN = 240;
   parameter   C_BWT_ROW_MAX = 256;
-  parameter   C_BWT_COL_MIN = 64;
-  parameter   C_BWT_COL_MAX = 128;
+  parameter   C_BWT_COL_MIN = 128;
+  parameter   C_BWT_COL_MAX = 256;
   reg         bwt_col_wr;
   reg         bwt_row_wr;
   reg         bwt_rg;
@@ -280,9 +280,9 @@ module vga_display
       end
     end
     else if (bwt_rg) begin // Test grayscale  square of 16 pixels
-      vga_red_wr    = {col[5:4],2'b00};
-      vga_green_wr  = {col[5:4],2'b00};
-      vga_blue_wr   = {col[5:4],2'b00};
+      vga_red_wr    = col[6:3];
+      vga_green_wr  = col[6:3];
+      vga_blue_wr   = col[6:3];
     end 
     else if (clt_rg) begin // Test color
       vga_red_wr   = col[7:4];
