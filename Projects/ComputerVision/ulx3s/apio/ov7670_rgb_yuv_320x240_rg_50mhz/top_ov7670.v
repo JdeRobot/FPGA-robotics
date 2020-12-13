@@ -42,6 +42,7 @@ module top_ov7670
      input        clk25mhz,    // 25mhz clk
 
      input        btn2,          //select RGB -> YUV -> RGB test -> YUV test
+     input        btnd,          // stop capture
 
      output       ov7670_sioc,
      output       ov7670_siod,
@@ -84,6 +85,7 @@ module top_ov7670
     wire [c_nb_img_pxls-1:0] capture_addr;
     wire [c_nb_buf-1:0]    capture_data;
     wire          capture_we;
+    wire          capture_wen;
     wire          resend;
     wire          config_finished;
 
@@ -157,12 +159,16 @@ module top_ov7670
   frame_buffer fb  
   (
      .clk     (clk50mhz),
-     .wea     (capture_we),
+     .wea     (capture_wen),
      .addra   (capture_addr),
      .dina    (capture_data),
      .addrb   (frame_addr),
      .doutb   (frame_pixel)
    );
+
+  // stop capturing to see what happens with the image
+  // if btnd is not pressed -> normal capture
+  assign capture_wen = (btnd==1'b0) ? capture_we : 1'b0;
 
   ov7670_capture capture 
   (
@@ -202,7 +208,7 @@ module top_ov7670
   assign ov7670_siod = sdat_on ? sdat_out : 1'bz;
 
   assign led[7] = config_finished;
-  assign led[6] = 1'b0;
+  assign led[6] = btnd;
 
 
 endmodule
