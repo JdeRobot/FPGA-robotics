@@ -57,19 +57,15 @@ module top_ov7670
 
      output [7:0] led,
 
-     output [2:0] vga_red_3b, //just 3 bits
-     output [2:0] vga_green_3b,
-     output [2:0] vga_blue_3b,
+     output [3:0] vga_red,
+     output [3:0] vga_green,
+     output [3:0] vga_blue,
 
      output       vga_hsync,
      output       vga_vsync
 
     );
 
-
-    wire  [4-1:0] vga_red;
-    wire  [4-1:0] vga_green;
-    wire  [4-1:0] vga_blue;
 
     wire          vga_visible;
     wire          vga_new_pxl;
@@ -98,10 +94,6 @@ module top_ov7670
     wire          testmode;
     wire          locked_wire;
     parameter     swap_r_b = 1'b1; // red and blue are swapped
-
-  assign vga_red_3b   = vga_red[3:1];
-  assign vga_green_3b = vga_green[3:1];
-  assign vga_blue_3b  = vga_blue[3:1];
 
   // 50 MHz clock
    pll i_pll
