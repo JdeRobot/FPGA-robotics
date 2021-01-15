@@ -38,6 +38,12 @@ Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color tes
 btn1 is reset
 
 
+### [ov7670_rgb_yuv_320x240_colorpr](ulx3s/apio/ov7670_rgb_yuv_320x240_colorpr)
+
+Color processing with a 50MHz clock
+Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both
+btn1 is reset
+
 
 ---  
   
