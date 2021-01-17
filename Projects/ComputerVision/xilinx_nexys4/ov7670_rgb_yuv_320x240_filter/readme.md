@@ -27,10 +27,9 @@ SW15:
 
 ---
 
-ov7670_ctrl_reg_linux.vhd: ov7670 registers from linux driver: https://github.com/yandex/smart/blob/master/drivers/media/i2c/ov7670.c
+ * ov7670_ctrl_reg_linux.vhd: similar to ov7670_ctrl_reg.vhd but using ov7670 registers from linux driver: https://github.com/yandex/smart/blob/master/drivers/media/i2c/ov7670.c
 
 It works better at night, but in daylight it seems that is better the older one:
-
 
 Left: old
 Right: linux
