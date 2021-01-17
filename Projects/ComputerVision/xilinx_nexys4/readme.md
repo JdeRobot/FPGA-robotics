@@ -24,3 +24,8 @@ SW15: reset
 ## ov7670_rgb_yuv_320x240_rg
 
 Same as ULX3S version, but for Nexys4DDR
+
+There is the regs folder in which has the 2 versions of the OV7670 registers.
+The original one, and the one copied from the linux driver:
+
+https://github.com/yandex/smart/blob/master/drivers/media/i2c/ov7670.c
