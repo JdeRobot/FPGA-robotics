@@ -27,21 +27,24 @@ Projects for the ULX3S. There are two folders
 
 ### [ov7670_rgb_yuv_320x240_rg](ulx3s/apio/ov7670_rgb_yuv_320x240_rg)
 
-Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both
+Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both.
+
 btn1 is reset
 
 
 ### [ov7670_rgb_yuv_320x240_rg_50mhz](ulx3s/apio/ov7670_rgb_yuv_320x240_rg_50mhz)
 
 Same as previous but using a 50MHz clock, since there were timming warnings at 100MHz
-Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both
+Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both.
+
 btn1 is reset
 
 
-### [ov7670_rgb_yuv_320x240_colorpr](ulx3s/apio/ov7670_rgb_yuv_320x240_colorpr)
+### [ov7670_rgb_yuv_320x240_colorpr](ulx3s/apio/ov7670_rgb_yuv_320x240_colorproc)
 
 Color processing with a 50MHz clock
-Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both
+Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both.
+
 btn1 is reset
 
 
