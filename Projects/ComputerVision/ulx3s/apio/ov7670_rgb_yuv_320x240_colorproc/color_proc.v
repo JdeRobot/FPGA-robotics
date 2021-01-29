@@ -49,19 +49,22 @@ module color_proc
     // Address and pixel of processed image
     output reg                 proc_we,  //write enable, to write processed pxl
     output reg [c_nb_buf-1:0]  proc_pxl, // processed pixel to be written
-    output [c_nb_img_pxls-1:0] proc_addr // address of processed pixel
+    output [c_nb_img_pxls-1:0] proc_addr, // address of processed pixel
+    output [2:0]               rgbfilter// information about the filter used
   );
 
 
   reg [c_nb_img_pxls-1:0]  cnt_pxl;
   reg [c_nb_img_pxls-1:0]  cnt_pxl_proc;
   // indicates which colors will filter RGB
-  reg [2:0] rgb_filter;
+  reg [2:0] rgb_filter_aux;
 
   wire end_pxl_cnt;
 
   reg  proc_ctrl_rg1, proc_ctrl_rg2;
   wire pulse_proc_ctrl;
+
+  assign rgbfilter = rgb_filter_aux;
 
   parameter  BLACK_PXL = {c_nb_img_pxls{1'b0}};
 
@@ -84,27 +87,27 @@ module color_proc
   always @ (posedge rst, posedge clk)
   begin
     if (rst) begin
-      rgb_filter <= 3'b000; // no filter
+      rgb_filter_aux <= 3'b000; // no filter
     end
     else begin
       if (pulse_proc_ctrl) begin
-        case (rgb_filter)
+        case (rgb_filter_aux)
           3'b000: // no filter, output same as input
-            rgb_filter <= 3'b100; // red filter
+            rgb_filter_aux <= 3'b100; // red filter
           3'b100: // red filter
-            rgb_filter <= 3'b010; // green filter
+            rgb_filter_aux <= 3'b010; // green filter
           3'b010: // green filter
-            rgb_filter <= 3'b001; // blue filter
+            rgb_filter_aux <= 3'b001; // blue filter
           3'b001: // blue filter
-            rgb_filter <= 3'b110; // red and green filter
+            rgb_filter_aux <= 3'b110; // red and green filter
           3'b110: // red and green filter
-            rgb_filter <= 3'b101; // red and blue filter
+            rgb_filter_aux <= 3'b101; // red and blue filter
           3'b101: // red and blue filter
-            rgb_filter <= 3'b011; // green and blue filter
+            rgb_filter_aux <= 3'b011; // green and blue filter
           3'b011: // green and blue filter
-            rgb_filter <= 3'b111; // red, green and blue filter
+            rgb_filter_aux <= 3'b111; // red, green and blue filter
           3'b111: // red, green and blue filter
-            rgb_filter <= 3'b000; // no filter
+            rgb_filter_aux <= 3'b000; // no filter
         endcase
       end
     end
@@ -135,10 +138,10 @@ module color_proc
   assign orig_addr = cnt_pxl;
   assign proc_addr = cnt_pxl_proc;
 
-  always @ (orig_pxl, rgb_filter) // should include RGB mode
+  always @ (orig_pxl, rgb_filter_aux) // should include RGB mode
   begin
     // check on RED
-    case (rgb_filter)
+    case (rgb_filter_aux)
       3'b000: // no filter, output same as input
         proc_pxl <= orig_pxl;
       3'b100: begin // red filter

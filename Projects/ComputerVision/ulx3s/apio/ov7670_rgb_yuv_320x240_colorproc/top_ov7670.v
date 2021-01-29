@@ -103,6 +103,7 @@ module top_ov7670
     wire          clk50mhz;
 
     wire          rgbmode;
+    wire [2:0]    rgbfilter;
     wire          testmode;
     wire          locked_wire;
     parameter     swap_r_b = 1'b1; // red and blue are swapped
@@ -148,6 +149,7 @@ module top_ov7670
      .vsync      (vga_vsync_wr),
      .rgbmode    (rgbmode),
      .testmode   (testmode),
+     .rgbfilter  (rgbfilter),
      .col        (vga_col),
      .row        (vga_row),
      .frame_pixel(display_img_pxl),
@@ -173,7 +175,7 @@ module top_ov7670
 
   // image processing module
   color_proc
-  #(.c_img_cols(c_img_cols),
+  #(.c_img_cols(c_img_cols),  // passing parameters
     .c_img_rows(c_img_rows),
     .c_img_pxls(c_img_pxls),
     .c_nb_img_pxls(c_nb_img_pxls)
@@ -189,7 +191,8 @@ module top_ov7670
      // to processed image frame buffer
      .proc_we    (proc_we),
      .proc_addr  (proc_img_addr),
-     .proc_pxl   (proc_img_pxl)
+     .proc_pxl   (proc_img_pxl),
+     .rgbfilter  (rgbfilter)
   );
 
 

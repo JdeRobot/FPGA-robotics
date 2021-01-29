@@ -54,6 +54,7 @@ module vga_display
     input          vsync,
     input          rgbmode,
     input          testmode,
+    input [2:0]    rgbfilter,
     input [10-1:0] col,
     input [10-1:0] row,
     input  [c_nb_buf-1:0] frame_pixel,
@@ -89,11 +90,16 @@ module vga_display
   parameter   C_TXT1_COL_MAX = 16;
   parameter   C_TXT2_COL_MIN = C_TXT1_COL_MAX;
   parameter   C_TXT2_COL_MAX = 24;
+  parameter   C_CLRBOX_COL_MIN = C_TXT2_COL_MAX; // color box indicating filter
+  parameter   C_CLRBOX_COL_MAX = 32;
   reg         txt1_col_wr;
   reg         txt2_col_wr;
+  reg         clrbox_col_wr;  // color box to show if there is any color filter
   reg         txt_row_wr;
+
   reg         txt1_rg;
   reg         txt2_rg;
+  reg         clrbox_rg;
   // indicates if it is the area of the frame buffer image
   reg         img_col_wr;
   reg         img_row_wr;
@@ -174,6 +180,7 @@ module vga_display
     txt1_col_wr = 1'b0;
     txt2_col_wr = 1'b0;
     txt_row_wr = 1'b0;
+    clrbox_col_wr = 1'b0;
     // indicates if it is the area of the frame buffer image
     img_col_wr = 1'b0;
     img_row_wr = 1'b0;
@@ -192,6 +199,8 @@ module vga_display
       txt2_col_wr = 1'b1;
     if (col >= C_TXT2_COL_MIN && col < C_TXT2_COL_MAX)
       txt2_col_wr = 1'b1;
+    if (col >= C_CLRBOX_COL_MIN && col < C_CLRBOX_COL_MAX)
+      clrbox_col_wr = 1'b1;
     // Image conditions
     if (row < c_img_rows)
       img_row_wr = 1'b1;
@@ -217,6 +226,7 @@ module vga_display
       // indicates if the the area of the text (characters)
       txt1_rg <= 1'b0;
       txt2_rg <= 1'b0;
+      clrbox_rg <= 1'b0;
       img_rg <= 1'b0;
       bwt_rg <= 1'b0;
       clt_rg <= 1'b0;
@@ -224,6 +234,7 @@ module vga_display
     else begin
       txt1_rg <= txt1_col_wr && txt_row_wr;
       txt2_rg <= txt2_col_wr && txt_row_wr;
+      clrbox_rg <= clrbox_col_wr && txt_row_wr;
       img_rg  <= img_col_wr  && img_row_wr;
       bwt_rg  <= bwt_col_wr  && bwt_row_wr;
       clt_rg  <= clt_col_wr  && clt_row_wr;
@@ -279,6 +290,12 @@ module vga_display
         vga_blue_wr  = 4'b1111;
       end
     end
+    else if (clrbox_rg) begin // text 2
+       vga_red_wr   = {4{rgbfilter[2]}};
+       vga_green_wr = {4{rgbfilter[1]}};
+       vga_blue_wr  = {4{rgbfilter[0]}};
+    end
+
     else if (bwt_rg) begin // Test grayscale square of 16 pixels
       vga_red_wr    = col[5:2];
       vga_green_wr  = col[5:2];
