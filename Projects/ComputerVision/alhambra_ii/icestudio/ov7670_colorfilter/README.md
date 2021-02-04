@@ -10,5 +10,5 @@
 
   The drawback of choosing is that you loose pins for YUV, and you can only get 3 bits of gray color, without choosing you could get 5
   
-  ![OV7670 camera and alhambra pin connection](../ov7670_alhambra_interface.png)
+  ![OV7670 camera and alhambra pin connection](ov7670_alhambra_interface.png)
 

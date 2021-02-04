@@ -25,24 +25,58 @@ Projects for the ULX3S. There are two folders
 
 ## ULX3S Icestudio projects
 
+### [ov7670_rgb_yuv_320x240_colorfilter](ulx3s/icestudio/ov7670_rgb_yuv_320x240_colorfilter)
+
+Same as Apio project but in Icestudio. Color from camera needs some improvement.
+Color filter with a 50MHz clock
+
+Capture 320x240 image from ov7670
+
+btn2 switches between RGB (RN), YUV (YN), and color test bar for both (RT and YT).
+
+btn6 (right) switches between color filters. If color filter active, there will be a smal square with the active color filter (after RN, YN, RT, YT).
+The color filter will not have effect in YUV mode because the only the Y is taken, so there is no color in the image.
+
+btn1 is reset
+
+To programm the FPGA fujprog is used after generating the .bit file with Icestudio.
+https://github.com/kost/fujprog
+
+Video: https://youtu.be/PyhVvvYumsc
+
+![OV7670 camera and ULX3S pin connection](ulx3s_ov7670_vga_interface_tr.png)
+
+## ULX3S Apio projects
+
+
 ### [ov7670_rgb_yuv_320x240_rg](ulx3s/apio/ov7670_rgb_yuv_320x240_rg)
 
-Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both
-btn1 is reset
+Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both.
+
+btn1 is reset. It should be reset for a second, then wait around 30 seconds until led[6] is ON
 
 
 ### [ov7670_rgb_yuv_320x240_rg_50mhz](ulx3s/apio/ov7670_rgb_yuv_320x240_rg_50mhz)
 
 Same as previous but using a 50MHz clock, since there were timming warnings at 100MHz
-Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both
+Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both.
+
 btn1 is reset
 
 
-### [ov7670_rgb_yuv_320x240_colorpr](ulx3s/apio/ov7670_rgb_yuv_320x240_colorpr)
+### [ov7670_rgb_yuv_320x240_colorfilter](ulx3s/apio/ov7670_rgb_yuv_320x240_colorfilter)
 
+Same as Icestudio project.
 Color processing with a 50MHz clock
-Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both
-btn1 is reset
+Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both.
+
+btn1 is reset. It should be reset for a second, then wait around 30 seconds until led[6] is ON
+
+
+btn2 switches between RGB (RN), YUV (YN), and color test bar for both (RT and YT).
+
+btn6 (right) switches between color filters. If color filter active, there will be a smal square with the active color filter (after RN, YN, RT, YT).
+The color filter will not have effect in YUV mode because the only the Y is taken, so there is no color in the image.
 
 
 ---  
