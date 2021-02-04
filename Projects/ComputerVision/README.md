@@ -25,11 +25,29 @@ Projects for the ULX3S. There are two folders
 
 ## ULX3S Icestudio projects
 
+### [ov7670_rgb_yuv_320x240_colorfilter](ulx3s/icestudio/ov7670_rgb_yuv_320x240_colorfilter)
+
+Same as Apio project but in Icestudio.
+Color processing with a 50MHz clock
+
+Capture 320x240 image from ov7670
+
+btn2 switches between RGB, YUV, and color test bar for both.
+
+btn6 (right) switches between color processing
+
+btn1 is reset
+
+![OV7670 camera and ULX3S pin connection](ulx3s_ov7670_vga_interface_tr.png)
+
+## ULX3S Apio projects
+
+
 ### [ov7670_rgb_yuv_320x240_rg](ulx3s/apio/ov7670_rgb_yuv_320x240_rg)
 
 Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both.
 
-btn1 is reset
+btn1 is reset. It should be reset for a second, then wait around 30 seconds until led[6] is ON
 
 
 ### [ov7670_rgb_yuv_320x240_rg_50mhz](ulx3s/apio/ov7670_rgb_yuv_320x240_rg_50mhz)
@@ -40,12 +58,17 @@ Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color tes
 btn1 is reset
 
 
-### [ov7670_rgb_yuv_320x240_colorpr](ulx3s/apio/ov7670_rgb_yuv_320x240_colorproc)
+### [ov7670_rgb_yuv_320x240_colorfilter](ulx3s/apio/ov7670_rgb_yuv_320x240_colorfilter)
 
+Same as Icestudio project.
 Color processing with a 50MHz clock
 Capture 320x240 image from ov7670, btn2 switches between RGB, YUV, and color test bar for both.
 
-btn1 is reset
+btn6 (right) switches between color processing
+
+btn2 switches between RGB, YUV, and color test bar for both.
+
+btn1 is reset. It should be reset for a second, then wait around 30 seconds until led[6] is ON
 
 
 ---  
