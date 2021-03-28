@@ -1,0 +1,12 @@
+
+set_io led[7] 37
+set_io led[6] 38
+set_io led[5] 39
+set_io led[4] 41
+set_io led[3] 42
+set_io led[2] 43
+set_io led[1] 44
+set_io led[0] 45
+set_io clk 49
+set_io rst 34   #SW1
+set_io uart_rx 62 #RX (it says TX)
