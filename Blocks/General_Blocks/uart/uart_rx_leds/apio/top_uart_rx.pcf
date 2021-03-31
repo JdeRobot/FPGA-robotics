@@ -9,4 +9,4 @@ set_io led[1] 44
 set_io led[0] 45
 set_io clk 49
 set_io rst 34   #SW1
-set_io uart_rx 62 #RX (it says TX)
+set_io uart_rx_i 62 #RX (it says TX)

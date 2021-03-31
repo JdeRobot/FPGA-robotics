@@ -1,0 +1,20 @@
+
+set_io led[7] 37
+set_io led[6] 38
+set_io led[5] 39
+set_io led[4] 41
+set_io led[3] 42
+set_io led[2] 43
+set_io led[1] 44
+set_io led[0] 45
+set_io clk 49
+set_io rst 34   #SW1
+set_io uart_rx_i 62 #RX (it says TX)
+
+# motor outputs
+set_io motor1_dir1  7 # D5 : IN1
+set_io motor1_dir2  8 # D4 : IN2
+set_io motor2_dir1  3 # D3 : IN3
+set_io motor2_dir2  4 # D2 : IN4
+set_io motor1_pwm   1 # D1 : EN1
+set_io motor2_pwm   2 # D0 : EN2

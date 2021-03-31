@@ -2,7 +2,7 @@ module top_uart_rx
   (
     input            rst,
     input            clk,
-    input            uart_rx,
+    input            uart_rx_i,
     output [7:0]     led
   );
 
@@ -13,11 +13,11 @@ module top_uart_rx
     //#(.G_FREQ_CLK(10**8),  // nexys4
     #(.G_FREQ_CLK(12*(10**6)), // alhambra 2
       .G_BAUD (115200)
-    ) i_uart_rg
+    ) i_uart_rx
     (
       .rst       (rst),
       .clk       (clk),
-      .uart_rx   (uart_rx),
+      .uart_rx_i   (uart_rx_i),
       .receiving (uart_receiving),
       .dat_ready (uart_dat_ready),
       .dat_o     (uart_data)
