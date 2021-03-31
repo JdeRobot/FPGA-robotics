@@ -3,7 +3,7 @@ module pwm_motor
   #(parameter
     //G_FREQ_CLK  = 10**8,  // clock frequency -- 100MHz for Nexys4
     G_FREQ_CLK  = 12000000,  // clock frequency -- 12 MHz for Alhambra II
-    G_PWM_FRQ   = 25000   // PWM frequency
+    G_PWM_FRQ   = 500   // PWM frequency
   )
   (
     input            rst,
@@ -95,7 +95,7 @@ module pwm_motor
       dir_o2 <= 1'b0;
     end
     else begin
-      if (vel_rg > pwm_cnt) // when pwm_cnt is 7, it is off 87,5%
+      if (vel_rg >= pwm_cnt) // when pwm_cnt is 7, it is off 87,5%
         pwm <= 1'b1;
       else
         pwm <= 1'b0;
