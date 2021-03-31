@@ -1,0 +1,11 @@
+
+set_io led 45
+set_io sw1 34   #SW1
+
+# motor outputs
+set_io motor1_dir1  7 # D5 : IN1
+set_io motor1_dir2  8 # D4 : IN2
+set_io motor2_dir1  3 # D3 : IN3
+set_io motor2_dir2  4 # D2 : IN4
+set_io motor1_pwm   1 # D1 : EN1
+set_io motor2_pwm   2 # D0 : EN2
