@@ -1,13 +1,15 @@
 
 module uart_rx
   #(parameter
-    G_FREQ_CLK  = 10**8,  // clock frequency
-    G_BAUD      = 9600    // baud
+    //G_FREQ_CLK  = 10**8,  // clock frequency 100 MHz Nexys 4 
+    G_FREQ_CLK  = 12000000,  // clock frequency 12 MHz Alhambra II
+    //G_BAUD      = 9600    // baud
+    G_BAUD      = 115200    // baud
   )
   (
     input            rst,
     input            clk,
-    input            uart_rx,
+    input            uart_rx_i,
     output reg       receiving,
     output reg       dat_ready,
     output     [7:0] dat_o
@@ -20,7 +22,7 @@ module uart_rx
   reg [1:0] e_act, e_nxt; // actual state, next state
 
   // end of the counter of the frequency divider
-  parameter C_DIV_END = G_FREQ_CLK/G_BAUD-1;
+  parameter C_DIV_END = G_FREQ_CLK/G_BAUD;
   parameter C_HALFDIV_END = C_DIV_END/2;
   
   wire   baud_pulse;
@@ -108,7 +110,7 @@ module uart_rx
     if (rst)
       rxdata_rg <= 1'b1;
     else
-      rxdata_rg <= uart_rx;
+      rxdata_rg <= uart_rx_i;
   end
   
   always @ (posedge rst, posedge clk)
