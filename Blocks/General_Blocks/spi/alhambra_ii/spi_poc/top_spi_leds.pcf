@@ -1,0 +1,16 @@
+
+set_io leds[7] 37
+set_io leds[6] 38
+set_io leds[5] 39
+set_io leds[4] 41
+set_io leds[3] 42
+set_io leds[2] 43
+set_io leds[1] 44
+set_io leds[0] 45
+set_io clk 49
+set_io rst 34   #SW1
+set_io ssb 8    #D4
+set_io rpi_running 3 #D3
+set_io mosi_o 4 #D2
+set_io miso_i 1 #D1
+set_io sclk_o 2 #D0
