@@ -6,7 +6,7 @@ In the original GoPiGo Robot, the Raspberry Pi and the GoPiGo3 board communicati
 In this proof of concept we just turn on a led, using the same commands as the Raspberry. Similar to this: https://github.com/DexterInd/GoPiGo3/blob/master/Software/Python/gopigo3.py
 
 
-Connection Alhambra II with GoPiGo3:
+Alhambra II - GoPiGo3 connection:
 
 
 

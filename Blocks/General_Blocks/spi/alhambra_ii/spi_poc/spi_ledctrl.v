@@ -186,7 +186,7 @@ module spi_ledctrl
       end
       6'd3: begin
         SSBar <= 1'b0;        // Activar el protocolo SPI en el esclavo (Bot).
-        data_spi <= 8'h04;    // set led left eye
+        data_spi <= 8'h04;    // set led blinker left
         if (!busy_spi_rg) begin
           start <= 1'b1;
           leds[3] <= 1'b1;
