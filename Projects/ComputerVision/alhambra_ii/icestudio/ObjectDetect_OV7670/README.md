@@ -14,6 +14,3 @@ The objective of this project is to track an object using the 0V7670 camera and 
 
 #### OV7670 Camera and Alhambra II pin connection
 ![OV7670 camera and alhambra pin connection](https://github.com/Javi-Garci/ObjectDetect_OV7670/blob/master/IMG/ov7670_alhambra_interface.png)
-
-#### OV7670 Camera and Nexys 4 DDR pin connection
-(Coming Soon)
