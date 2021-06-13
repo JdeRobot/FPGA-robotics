@@ -97,26 +97,26 @@ module btntest_spi_controller
               motor_pwm_rght <= motor_pwm_rght + 6'd32;
           end
           LED_EYE_LEFT: begin
-            if (led_eye_left_rgb[7:0] >= 192)
+            if (led_eye_left_rgb[7:0] >= 128)
               led_eye_left_rgb <= 0;
             else
               led_eye_left_rgb[7:0] <= led_eye_left_rgb[7:0] + 6'd32;
           end
           LED_EYE_RGHT: begin
-            if (led_eye_rght_rgb[15:8] >= 192)
-              led_eye_rght_rgb <= 0;
+            if (led_eye_rght_rgb[15:8] >= 128)
+              led_eye_rght_rgb <= 24'd0;
             else
               led_eye_rght_rgb[15:8] <= led_eye_rght_rgb[15:8] + 6'd32;
           end
           LED_BLINK_LEFT: begin
-            if (led_blink_left_rgb[23:16] >= 192)
-              led_blink_left_rgb <= 0;
+            if (led_blink_left_rgb[23:16] >= 128)
+              led_blink_left_rgb <= 24'd0;
             else
               led_blink_left_rgb[23:16] <= led_blink_left_rgb[23:16] + 6'd32;
           end
           LED_BLINK_RGHT: begin
-            if (led_blink_rght_rgb[7:0] >= 192)
-              led_blink_rght_rgb <= 0;
+            if (led_blink_rght_rgb[7:0] >= 128)
+              led_blink_rght_rgb <= 24'd0;
             else begin
               led_blink_rght_rgb[7:0] <= led_blink_rght_rgb[7:0] + 6'd32;
               led_blink_rght_rgb[15:8] <= led_blink_rght_rgb[15:8] + 6'd32;
