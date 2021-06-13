@@ -40,3 +40,9 @@ https://github.com/DexterInd/GoPiGo3/blob/master/Software/Python/gopigo3.py
 SPI bytes to send are stored in a ROM, what gives more flexibility in order to modify the commands than in the SPI POC.
 The ROM is in the spi_romctrl.v file
 
+## SPI CONTROLLER
+
+A version oriented for hardware. It receives the values of the leds and PWM for motors, and check if they have changed since the last SPI message to the GoPiGo3. If changed, it will send a new SPI command.
+
+It seems that the LED EYES are not correct: left turn on right and viceversa.
+
