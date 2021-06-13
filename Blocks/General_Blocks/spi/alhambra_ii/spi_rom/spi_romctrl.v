@@ -75,6 +75,7 @@ module spi_romctrl
   reg [3:0] cnt_spi_clk;  // count to 12 for the spi clock divider
   //wire end_ena_2clk;
   reg  ena_spi_clk;  // enable SPI clk
+  wire end_cnt_spi_clk;
 
   // counter that has a variable end of the count
   reg [28:0] cnt_var; // to have time before sending the commands
