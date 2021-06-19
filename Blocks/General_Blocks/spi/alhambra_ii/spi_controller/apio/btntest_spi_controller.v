@@ -21,6 +21,8 @@ module btntest_spi_controller
    reg [7:0] motor_pwm_left;  // left pwm motor ca2: -100 to 100
    reg [7:0] motor_pwm_rght; // right pwm motor ca2: -100 to 100
 
+   reg [15:0] motor_dps_limit; // DPS limit of the 2 motors
+
    // led eye left rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
    reg [24-1:0] led_eye_left_rgb; 
    // led eye right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
@@ -35,12 +37,13 @@ module btntest_spi_controller
 
    reg [2:0] cnt_rg;
   parameter
-    MOTOR_PWM_LEFT = 0,
-    MOTOR_PWM_RGHT = 1,
-    LED_EYE_LEFT   = 2,
-    LED_EYE_RGHT   = 3,
-    LED_BLINK_LEFT = 4,
-    LED_BLINK_RGHT = 5;
+    MOTOR_PWM_LEFT  = 0,
+    MOTOR_PWM_RGHT  = 1,
+    MOTOR_DPS_LIMIT = 2,
+    LED_EYE_LEFT    = 3,
+    LED_EYE_RGHT    = 4,
+    LED_BLINK_LEFT  = 5,
+    LED_BLINK_RGHT  = 6;
 
   // btn2 will change the values of motor_pwm_left_
   always @ (posedge rst, posedge clk)
@@ -76,6 +79,7 @@ module btntest_spi_controller
     if (rst) begin
       motor_pwm_left <= 0;
       motor_pwm_rght <= 0;
+      motor_dps_limit <= 16'h000F; // very limited, to test
       led_eye_left_rgb <= 0;
       led_eye_rght_rgb <= 0;
       led_blink_left_rgb <= 0;
@@ -96,6 +100,12 @@ module btntest_spi_controller
             else
               motor_pwm_rght <= motor_pwm_rght + 6'd32;
           end
+          //MOTOR_DPS_LIMIT: begin
+            //if (motor_dps_limit >= 1000)
+              //motor_dps_limit <= 0;
+            //else
+              //motor_dps_limit <= motor_dps_limit + 6'd16;
+          //end
           LED_EYE_LEFT: begin
             if (led_eye_left_rgb[7:0] >= 128)
               led_eye_left_rgb <= 0;
@@ -137,6 +147,7 @@ module btntest_spi_controller
     .clk         (clk),
     .motor_pwm_left_i     (motor_pwm_left),
     .motor_pwm_rght_i     (motor_pwm_rght),
+    .motor_dps_limit_i    (motor_dps_limit),
     .led_eye_left_rgb_i   (led_eye_left_rgb),
     .led_eye_rght_rgb_i   (led_eye_rght_rgb),
     .led_blink_left_rgb_i (led_blink_left_rgb),

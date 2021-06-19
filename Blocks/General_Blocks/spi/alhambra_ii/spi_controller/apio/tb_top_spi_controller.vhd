@@ -45,6 +45,7 @@ ARCHITECTURE behavior OF tb_top_spi_controller IS
          rst : IN  std_logic;
          motor_pwm_left_i : IN  std_logic_vector(7 downto 0);
          motor_pwm_rght_i : IN  std_logic_vector(7 downto 0);
+         motor_dps_limit_i : IN  std_logic_vector(15 downto 0);
          led_eye_left_rgb_i : IN  std_logic_vector(23 downto 0);
          led_eye_rght_rgb_i : IN  std_logic_vector(23 downto 0);
          led_blink_left_rgb_i : IN  std_logic_vector(23 downto 0);
@@ -64,6 +65,7 @@ ARCHITECTURE behavior OF tb_top_spi_controller IS
    signal rst : std_logic := '0';
    signal motor_pwm_left_i : std_logic_vector(7 downto 0) := (others => '0');
    signal motor_pwm_rght_i : std_logic_vector(7 downto 0) := (others => '0');
+   signal motor_dps_limit_i : std_logic_vector(15 downto 0) := (others => '0');
    signal led_eye_left_rgb_i : std_logic_vector(23 downto 0) := (others => '0');
    signal led_eye_rght_rgb_i : std_logic_vector(23 downto 0) := (others => '0');
    signal led_blink_left_rgb_i : std_logic_vector(23 downto 0) := (others => '0');
@@ -88,6 +90,7 @@ BEGIN
           rst => rst,
           motor_pwm_left_i => motor_pwm_left_i,
           motor_pwm_rght_i => motor_pwm_rght_i,
+          motor_dps_limit_i => motor_dps_limit_i,
           led_eye_left_rgb_i => led_eye_left_rgb_i,
           led_eye_rght_rgb_i => led_eye_rght_rgb_i,
           led_blink_left_rgb_i => led_blink_left_rgb_i,
@@ -126,6 +129,8 @@ BEGIN
 		motor_pwm_left_i <= x"55"; -- "01010101";
       wait for clk_period*10000;
 		motor_pwm_rght_i <= x"D5"; --"11010101";
+      wait for clk_period*10000;
+		motor_dps_limit_i <= x"012C"; --"00000001_00101100";
       wait for clk_period*10000;
 		led_eye_left_rgb_i <= x"1132CC"; -- "00010001_00110010_11001100";
       wait;
