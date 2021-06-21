@@ -37,4 +37,4 @@ Same as Alhambra II version, but for Nexys4DDR.
 As there are more pins available on the Nexys 4 all the data pins of the OV7670 camara will be used.
 The Nexys4DDR board has twice as many LEDs as the Alhambra II, therefore, it will have twice the precision to locate the object's centroid.
 
-![OV7670 camera and Nexys4DDR pin connection](https://github.com/JdeRobot/FPGA-robotics/tree/javi_garci/Projects/ComputerVision/xilinx_nexys4/ov7670_ObjectDetect)
+![OV7670 camera and Nexys4DDR pin connection](https://github.com/JdeRobot/FPGA-robotics/tree/javi_garci/Projects/ComputerVision/xilinx_nexys4/ov7670_ObjectDetect/OV7670_Nexys_interface.png)
