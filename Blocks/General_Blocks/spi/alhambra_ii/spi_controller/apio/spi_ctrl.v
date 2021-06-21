@@ -21,6 +21,11 @@ module spi_ctrl
   // Default speed is 300: 0x012C. MSB: 8'h01  LSB: 8'h2C
   input  [15:0] motor_dps_limit_i,
 
+  input  [15:0] motor_dps_left_i, // left motor DPS (degrees per second)
+                                  // limited by motor_dps_limit_i
+  input  [15:0] motor_dps_rght_i, // right motor DPS (degrees per second)
+
+
   // led eye left rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
   input  [24-1:0] led_eye_left_rgb_i, 
 
@@ -45,6 +50,8 @@ module spi_ctrl
   reg  [7:0] motor_pwm_rght_rg; // 1: right pwm motor ca2: -100 to 100
 
   reg  [15:0] motor_dps_limit_rg; // DPS limit for both motors (degrees/second)
+  reg  [15:0] motor_dps_left_rg; // DPS for left motor (degrees/second)
+  reg  [15:0] motor_dps_rght_rg; // DPS for right motor (degrees/second)
 
   // led eye left rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
   reg  [24-1:0] led_eye_left_rgb_rg; // 2
@@ -63,13 +70,15 @@ module spi_ctrl
     MOTOR_PWM_LEFT  = 0,
     MOTOR_PWM_RGHT  = 1,
     MOTOR_DPS_LIMIT = 2,
-    LED_EYE_LEFT    = 3,
-    LED_EYE_RGHT    = 4,
-    LED_BLINK_LEFT  = 5,
-    LED_BLINK_RGHT  = 6;
+    MOTOR_DPS_LEFT  = 3,
+    MOTOR_DPS_RGHT  = 4,
+    LED_EYE_LEFT    = 5,
+    LED_EYE_RGHT    = 6,
+    LED_BLINK_LEFT  = 7,
+    LED_BLINK_RGHT  = 8;
 
   parameter NUM_RGS = LED_BLINK_RGHT;
-  // counter to check all the register 0 to 6
+  // counter to check all the register 0 to 8
   reg  [3:0] cnt_chk_rgs; // range depends on NUM_RGS
   // indicates if there has been any change in the registers having checked all
   // of them
@@ -178,10 +187,25 @@ module spi_ctrl
           MOTOR_DPS_LIMIT: begin
             spi_bytes[1] <= 8'h0F; // SPI Message type SET_MOTOR_LIMITS
             spi_bytes[2] <= 8'h03; // For both motors: MOTOR_RIGHT & MOTOR_LEFT
-            spi_bytes[3] <= 8'h00; // Power limit in percent=0. Limit in DPS not power
+            spi_bytes[3] <= 8'h00; // Power limit in percent=0. Limit in DPS
+                                   // not power
             spi_bytes[4] <= motor_dps_limit_i[15:8]; // MSB DPS limit
             spi_bytes[5] <= motor_dps_limit_i[7:0]; // LSB DPS limit
             last_spi_byte <= 5;
+          end
+          MOTOR_DPS_LEFT: begin
+            spi_bytes[1] <= 8'h0E; // SPI Message type SET_MOTOR_DPS
+            spi_bytes[2] <= 8'h01; // For left motor: MOTOR_LEFT
+            spi_bytes[3] <= motor_dps_left_i[15:8]; // MSB DPS left
+            spi_bytes[4] <= motor_dps_left_i[7:0]; // LSB DPS left
+            last_spi_byte <= 4;
+          end
+          MOTOR_DPS_RGHT: begin
+            spi_bytes[1] <= 8'h0E; // SPI Message type SET_MOTOR_DPS
+            spi_bytes[2] <= 8'h02; // For left motor: MOTOR_RIGHT
+            spi_bytes[3] <= motor_dps_rght_i[15:8]; // MSB DPS right
+            spi_bytes[4] <= motor_dps_rght_i[7:0]; // LSB DPS right
+            last_spi_byte <= 4;
           end
           LED_EYE_LEFT: begin
             spi_bytes[1] <= 8'h06; // SPI Message type SET_LED
@@ -227,10 +251,12 @@ module spi_ctrl
       motor_pwm_left_rg <= 0;      // 0
       motor_pwm_rght_rg <= 0;      // 1
       motor_dps_limit_rg <= 0;     // 2
-      led_eye_left_rgb_rg <= 0;    // 3
-      led_eye_rght_rgb_rg <= 0;    // 4
-      led_blink_left_rgb_rg <= 0;  // 5
-      led_blink_rght_rgb_rg <= 0;  // 6
+      motor_dps_left_rg <= 0;      // 3
+      motor_dps_rght_rg <= 0;      // 4
+      led_eye_left_rgb_rg <= 0;    // 5
+      led_eye_rght_rgb_rg <= 0;    // 6
+      led_blink_left_rgb_rg <= 0;  // 7
+      led_blink_rght_rgb_rg <= 0;  // 8
     end
     else begin
       if (spi_state == UPDATE_SPI_RGS) begin
@@ -241,6 +267,10 @@ module spi_ctrl
             motor_pwm_rght_rg <= motor_pwm_rght_i;
           MOTOR_DPS_LIMIT:
             motor_dps_limit_rg <= motor_dps_limit_i;
+          MOTOR_DPS_LEFT:
+            motor_dps_left_rg <= motor_dps_left_i;
+          MOTOR_DPS_RGHT:
+            motor_dps_rght_rg <= motor_dps_rght_i;
           LED_EYE_LEFT:
             led_eye_left_rgb_rg <= led_eye_left_rgb_i;
           LED_EYE_RGHT:
@@ -296,6 +326,14 @@ module spi_ctrl
       MOTOR_DPS_LIMIT: begin // two bytes
         compare_port[16-1:0] = motor_dps_limit_i;
         compare_reg [16-1:0] = motor_dps_limit_rg;
+      end
+      MOTOR_DPS_LEFT: begin // two bytes
+        compare_port[16-1:0] = motor_dps_left_i;
+        compare_reg [16-1:0] = motor_dps_left_rg;
+      end
+      MOTOR_DPS_RGHT: begin // two bytes
+        compare_port[16-1:0] = motor_dps_rght_i;
+        compare_reg [16-1:0] = motor_dps_rght_rg;
       end
       LED_EYE_LEFT: begin // 3 bytes
         compare_port[24-1:0] = led_eye_left_rgb_i;

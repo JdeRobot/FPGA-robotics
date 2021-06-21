@@ -16,6 +16,10 @@ module top_spi_controller
   // Default speed is 300: 0x012C. MSB: 8'h01  LSB: 8'h2C
   input  [15:0] motor_dps_limit_i,
 
+  input  [15:0] motor_dps_left_i, // left motor DPS (degrees per second)
+                                  // limited by motor_dps_limit_i
+  input  [15:0] motor_dps_rght_i, // right motor DPS (degrees per second)
+
   // led eye left rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
   input  [24-1:0] led_eye_left_rgb_i, 
   // led eye right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
@@ -56,6 +60,8 @@ module top_spi_controller
     .motor_pwm_left_i     (motor_pwm_left_i),
     .motor_pwm_rght_i     (motor_pwm_rght_i),
     .motor_dps_limit_i    (motor_dps_limit_i),
+    .motor_dps_left_i     (motor_dps_left_i),
+    .motor_dps_rght_i     (motor_dps_rght_i),
     .led_eye_left_rgb_i   (led_eye_left_rgb_i),
     .led_eye_rght_rgb_i   (led_eye_rght_rgb_i),
     .led_blink_left_rgb_i (led_blink_left_rgb_i),
