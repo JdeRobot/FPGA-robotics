@@ -18,10 +18,10 @@ module btntest_spi_controller
     output rpi_running  // 1 when running, to inform gopigo
    );
 
-   reg [7:0] motor_pwm_left;  // left pwm motor ca2: -100 to 100
-   reg [7:0] motor_pwm_rght; // right pwm motor ca2: -100 to 100
+   //reg [7:0] motor_pwm_left;  // left pwm motor ca2: -100 to 100
+   //reg [7:0] motor_pwm_rght; // right pwm motor ca2: -100 to 100
 
-   reg [15:0] motor_dps_limit; // DPS limit of the 2 motors
+   //reg [15:0] motor_dps_limit; // DPS limit of the 2 motors
 
    reg [15:0] motor_dps_left; // DPS for the left motor
    reg [15:0] motor_dps_rght; // DPS for the right motor
@@ -68,7 +68,7 @@ module btntest_spi_controller
   always @ (posedge rst, posedge clk)
   begin
     if (rst)
-      cnt_rg <= 0;
+      cnt_rg <= MOTOR_DPS_LEFT; // the first 3 commands are internal (not used)
     else begin
       if (puls_btn2) begin
         if (cnt_rg == LED_BLINK_RGHT) 
@@ -82,9 +82,9 @@ module btntest_spi_controller
   always @ (posedge rst, posedge clk)
   begin
     if (rst) begin
-      motor_pwm_left <= 0;
-      motor_pwm_rght <= 0;
-      motor_dps_limit <= 16'd0100; 
+      //motor_pwm_left <= 0;
+      //motor_pwm_rght <= 0;
+      //motor_dps_limit <= 16'd0100; 
       motor_dps_left <= 0;
       motor_dps_rght <= 0;
       led_eye_left_rgb <= 0;
@@ -107,6 +107,12 @@ module btntest_spi_controller
           //  else
           //    motor_pwm_rght <= motor_pwm_rght + 6'd32;
           //end
+          //MOTOR_DPS_LIMIT: begin
+            //if (motor_dps_limit >= 1000)
+              //motor_dps_limit <= 0;
+            //else
+              //motor_dps_limit <= motor_dps_limit + 6'd16;
+          //end
           MOTOR_DPS_LEFT: begin
             if (motor_dps_left >= 900)
               motor_dps_left <= 0;
@@ -119,20 +125,15 @@ module btntest_spi_controller
             else
               motor_dps_rght <= motor_dps_rght + 16'd400;
           end
-          //MOTOR_DPS_LIMIT: begin
-            //if (motor_dps_limit >= 1000)
-              //motor_dps_limit <= 0;
-            //else
-              //motor_dps_limit <= motor_dps_limit + 6'd16;
-          //end
+ 
           LED_EYE_LEFT: begin
-            if (led_eye_left_rgb[7:0] >= 128)
+            if (led_eye_left_rgb[7:0] >= 64)
               led_eye_left_rgb <= 0;
             else
               led_eye_left_rgb[7:0] <= led_eye_left_rgb[7:0] + 6'd32;
           end
           LED_EYE_RGHT: begin
-            if (led_eye_rght_rgb[15:8] >= 128)
+            if (led_eye_rght_rgb[15:8] >= 64)
               led_eye_rght_rgb <= 24'd0;
             else
               led_eye_rght_rgb[15:8] <= led_eye_rght_rgb[15:8] + 6'd32;
@@ -160,13 +161,13 @@ module btntest_spi_controller
 
 
 
-  top_spi_controller i_top_spi_ctrl
+  top_spi_controller_wrp i_top_spi_ctrl_wrp
   (
     .rst         (rst),
     .clk         (clk),
-    .motor_pwm_left_i     (motor_pwm_left),
-    .motor_pwm_rght_i     (motor_pwm_rght),
-    .motor_dps_limit_i    (motor_dps_limit),
+    //.motor_pwm_left_i     (motor_pwm_left),
+    //.motor_pwm_rght_i     (motor_pwm_rght),
+    //.motor_dps_limit_i    (motor_dps_limit),
     .motor_dps_left_i     (motor_dps_left),
     .motor_dps_rght_i     (motor_dps_rght),
     .led_eye_left_rgb_i   (led_eye_left_rgb),
