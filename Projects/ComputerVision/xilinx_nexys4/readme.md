@@ -34,7 +34,7 @@ https://github.com/yandex/smart/blob/master/drivers/media/i2c/ov7670.c
 
 Same as Alhambra II version, but for Nexys4DDR.
 
-As there are more pins available on the Nexys 4 all the data pins of the OV7670 camara will be used.
+As there are more pins available on the Nexys 4 all the data pins of the OV7670 camera will be used.
 
 The Nexys4DDR board has twice as many LEDs as the Alhambra II, therefore, it will have twice the precision to locate the object's centroid.
 
