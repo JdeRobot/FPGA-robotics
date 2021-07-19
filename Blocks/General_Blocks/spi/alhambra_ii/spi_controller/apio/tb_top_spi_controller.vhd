@@ -46,6 +46,8 @@ ARCHITECTURE behavior OF tb_top_spi_controller IS
          motor_pwm_left_i : IN  std_logic_vector(7 downto 0);
          motor_pwm_rght_i : IN  std_logic_vector(7 downto 0);
          motor_dps_limit_i : IN  std_logic_vector(15 downto 0);
+         motor_dps_left_i : IN  std_logic_vector(15 downto 0);
+         motor_dps_rght_i : IN  std_logic_vector(15 downto 0);
          led_eye_left_rgb_i : IN  std_logic_vector(23 downto 0);
          led_eye_rght_rgb_i : IN  std_logic_vector(23 downto 0);
          led_blink_left_rgb_i : IN  std_logic_vector(23 downto 0);
@@ -66,6 +68,8 @@ ARCHITECTURE behavior OF tb_top_spi_controller IS
    signal motor_pwm_left_i : std_logic_vector(7 downto 0) := (others => '0');
    signal motor_pwm_rght_i : std_logic_vector(7 downto 0) := (others => '0');
    signal motor_dps_limit_i : std_logic_vector(15 downto 0) := (others => '0');
+   signal motor_dps_left_i : std_logic_vector(15 downto 0) := (others => '0');
+   signal motor_dps_rght_i : std_logic_vector(15 downto 0) := (others => '0');
    signal led_eye_left_rgb_i : std_logic_vector(23 downto 0) := (others => '0');
    signal led_eye_rght_rgb_i : std_logic_vector(23 downto 0) := (others => '0');
    signal led_blink_left_rgb_i : std_logic_vector(23 downto 0) := (others => '0');
@@ -91,6 +95,8 @@ BEGIN
           motor_pwm_left_i => motor_pwm_left_i,
           motor_pwm_rght_i => motor_pwm_rght_i,
           motor_dps_limit_i => motor_dps_limit_i,
+          motor_dps_left_i => motor_dps_left_i,
+          motor_dps_rght_i => motor_dps_rght_i,
           led_eye_left_rgb_i => led_eye_left_rgb_i,
           led_eye_rght_rgb_i => led_eye_rght_rgb_i,
           led_blink_left_rgb_i => led_blink_left_rgb_i,
