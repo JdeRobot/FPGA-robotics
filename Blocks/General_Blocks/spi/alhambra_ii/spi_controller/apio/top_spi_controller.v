@@ -1,5 +1,13 @@
 
 module top_spi_controller
+  #(
+    // it has to be an integer number, if not integer, round it to the closest
+    // if using the PLL, use the resulting pll clock
+    parameter G_CLK_FREQ_MHZ = 12  // Alhambra II 12MHz
+    //parameter G_CLK_FREQ_MHZ = 25  // ULX3S 25MHz
+    //parameter G_CLK_FREQ_MHZ = 100  // using PLL (use the generated frequency)
+  )
+
 (
   input  clk,
   input  rst,
@@ -52,7 +60,9 @@ module top_spi_controller
   assign rpi_running = ~rst;
   assign leds[7:1] = 0;
 
-  spi_ctrl i_spi_ctrl
+  spi_ctrl
+  #(.G_CLK_FREQ_MHZ(G_CLK_FREQ_MHZ)
+  ) i_spi_ctrl
   (
     .rst         (rst),
     .clk         (clk),

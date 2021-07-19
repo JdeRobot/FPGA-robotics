@@ -1,48 +1,53 @@
 //////////////////////////////////////////////////////////////////////////////////
-// 12MHz clock 
-// Receives Motor PWM and leds commands for the GoPiGo3, and send them via SPI
-// before sending them, check if there has been any change since the last sending
+// Clock frequency defined with parameter G_CLK_FREQ_MHZ
+
+//Receives Motor PWM and leds commands for the GoPiGo3, and send them via SPI
+//before sending them, check if there has been any change since the last sending
 
 module spi_ctrl
-(
-  input            rst,
-  input            clk,
-  input            busy_spi,
+  #(
+    // it has to be an integer number, if not integer, round it to the closest
+    parameter G_CLK_FREQ_MHZ = 12  // Alhambra II 12MHz
+  )
+  (
+    input            rst,
+    input            clk,
+    input            busy_spi,
 
-  input  [7:0] motor_pwm_left_i,  // left pwm motor ca2: -100 to 100
-  input  [7:0] motor_pwm_rght_i, // right pwm motor ca2: -100 to 100
+    input  [7:0] motor_pwm_left_i,  // left pwm motor ca2: -100 to 100
+    input  [7:0] motor_pwm_rght_i, // right pwm motor ca2: -100 to 100
 
-  // DPS (degrees per second) Limits for both of the motors.
-  // for our purposes, no need to have a different limit for right and left
-  // 0-1000 is the preferred speed under standard conditions.
-  // 0: no limit
-  // Any value over 32 767 will be capped down (not that the motor is capable
-  // of going at that speed.
-  // Default speed is 300: 0x012C. MSB: 8'h01  LSB: 8'h2C
-  input  [15:0] motor_dps_limit_i,
+    // DPS (degrees per second) Limits for both of the motors.
+    // for our purposes, no need to have a different limit for right and left
+    // 0-1000 is the preferred speed under standard conditions.
+    // 0: no limit
+    // Any value over 32 767 will be capped down (not that the motor is capable
+    // of going at that speed.
+    // Default speed is 300: 0x012C. MSB: 8'h01  LSB: 8'h2C
+    input  [15:0] motor_dps_limit_i,
 
-  input  [15:0] motor_dps_left_i, // left motor DPS (degrees per second)
-                                  // limited by motor_dps_limit_i
-  input  [15:0] motor_dps_rght_i, // right motor DPS (degrees per second)
+    input  [15:0] motor_dps_left_i, // left motor DPS (degrees per second)
+                                    // limited by motor_dps_limit_i
+    input  [15:0] motor_dps_rght_i, // right motor DPS (degrees per second)
 
 
-  // led eye left rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
-  input  [24-1:0] led_eye_left_rgb_i, 
+    // led eye left rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
+    input  [24-1:0] led_eye_left_rgb_i, 
 
-  // led eye right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
-  input  [24-1:0] led_eye_rght_rgb_i,
+    // led eye right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
+    input  [24-1:0] led_eye_rght_rgb_i,
 
-  // led blink left rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
-  input  [24-1:0] led_blink_left_rgb_i,
+    // led blink left rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
+    input  [24-1:0] led_blink_left_rgb_i,
 
-  // led blink right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
-  input  [24-1:0] led_blink_rght_rgb_i,
+    // led blink right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
+    input  [24-1:0] led_blink_rght_rgb_i,
   
-  output reg       spi_ss_n, // spi slave select, active low
-  output reg       spi_send, // command to send a new SPI byte
-  output           ena_2clk, // ena spi, twice the frequency
-  output     [7:0] data_spi
-);
+    output reg       spi_ss_n, // spi slave select, active low
+    output reg       spi_send, // command to send a new SPI byte
+    output           ena_2clk, // ena spi, twice the frequency
+    output     [7:0] data_spi
+  );
 
   // register of the inputs, to check if they have been modified since
   // the last update to the SPI
@@ -123,7 +128,10 @@ module spi_ctrl
   parameter C_SPI_SS_ON  = 1'b0; // active low
   parameter C_SPI_SS_OFF = 1'b1;
 
-  reg [3:0] cnt_spi_clk;  // count to 12 for the spi clock divider
+  // number of bits of the counter for the SPI clock
+  parameter NB_CNT_SPICLK = $clog2(G_CLK_FREQ_MHZ);
+
+  reg [NB_CNT_SPICLK-1:0] cnt_spi_clk;  // count to 12 for the spi clock divider
   //wire end_ena_2clk;
   reg  ena_spi_clk;  // enable SPI clk
   wire end_cnt_spi_clk;
@@ -379,23 +387,23 @@ module spi_ctrl
 
 
   // -------------- SPI clock generation -----------------------
-  // clk divider. Alhambra clock is 12 MHz, 
+  // clk divider. 
   // from the logic analyzer, SCK is 500 kHz, then ena_2clk has to be 1MHz
-  // count to 12
+  // count to G_CLK_FREQ_MHZ
   always @(posedge rst, posedge clk)
   begin
     if (rst)
-      cnt_spi_clk <= 3'b0;
+      cnt_spi_clk <= 0;
     else begin
       if ((end_cnt_spi_clk) || (ena_spi_clk == 1'b0))
-        cnt_spi_clk <= 3'b0;
+        cnt_spi_clk <= 0;
       else
         cnt_spi_clk <= cnt_spi_clk + 1'b1;
     end
   end
 
-  // end of the count 0 to 11: 1 MHz signal
-  assign end_cnt_spi_clk = (cnt_spi_clk == 12-1) ? 1'b1 : 1'b0;
+  // end of the count 0 to G_CLK_FREQ_MHZ-1: 1 MHz signal
+  assign end_cnt_spi_clk = (cnt_spi_clk == G_CLK_FREQ_MHZ-1) ? 1'b1 : 1'b0;
   assign ena_2clk = end_cnt_spi_clk;
 
   
