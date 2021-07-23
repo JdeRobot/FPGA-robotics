@@ -46,3 +46,5 @@ A version oriented for hardware. It receives the values of the leds and PWM for 
 
 It seems that the LED EYES are not correct: left turn on right and viceversa.
 
+Change parameter G_CLK_FREQ_MHZ for different input clock frequencies
+
