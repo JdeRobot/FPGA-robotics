@@ -78,7 +78,13 @@ btn2 switches between RGB (RN), YUV (YN), and color test bar for both (RT and YT
 btn6 (right) switches between color filters. If color filter active, there will be a smal square with the active color filter (after RN, YN, RT, YT).
 The color filter will not have effect in YUV mode because the only the Y is taken, so there is no color in the image.
 
+### [ov7670_rgb_yuv_320x240_colorfilter_pmodcam](ulx3s/apio/ov7670_rgb_yuv_320x240_colorfilter_pmdocam)
 
+Same as ov7670_rgb_yuv_320x240_colorfilter but usign the camera PMOD
+
+Port GP17-OV7670_PWDN didn't work when camera powerdown was assigned deep in the hierarchy, but when assigned in the top module it worked
+
+![OV7670 camera and ULX3S pin connection](ulx3s_camera_vga_pmods.jpg)
 ---  
   
 # Alhambra II
