@@ -1,3 +1,28 @@
+// ----------------------
+// Felipe Machado Sanchez
+// Area de Tecnologia Electronica
+// Universidad Rey Juan Carlos
+// https://github.com/felipe-m
+
+// FPGA-GoPiGo3 SPI interface
+
+// There are 2 kind of commands, SET and GET.
+// +SET commands establish a new value, for example motor_dps or led_brightness
+// +GET commands ask GoPiGo3 to send the value
+
+// For SET commands, this module routinely checks if input ports have changed
+// if there is any change, it will send the new value to the GoPiGo3 via SPI
+// These ports have different widths, which depend on the GoPiGo3 specifications
+
+// For GET commands, this module checks if its corresponding input is '1'
+// in that case, this module will send the reading command to de SPI
+// The input should only be '1' a clock cycle. This inputs are just one bit
+// Once the SPI command is received, it will be available in parallel at its
+// corresponding output port.
+// There will be also a output bit port that indicates that output value is
+// valid. This signal will be available for just one clock cycle
+
+
 
 module top_spi_controller
   #(
@@ -12,6 +37,7 @@ module top_spi_controller
   input  clk,
   input  rst,
 
+  // SET commands
   input  [7:0] motor_pwm_left_i,  // left pwm motor ca2: -100 to 100
   input  [7:0] motor_pwm_rght_i, // right pwm motor ca2: -100 to 100
 
@@ -36,6 +62,17 @@ module top_spi_controller
   input  [24-1:0] led_blink_left_rgb_i,
   // led blink right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
   input  [24-1:0] led_blink_rght_rgb_i,
+
+  // GET commands
+  // get left motor ticks. Active just one clock cycle
+  input     get_motor_ticks_left_i,  // get left motor ticks 
+  input     get_motor_ticks_rght_i,  // get right motor ticks
+
+  output     motor_ticks_left_rdy_o,  // left motor ticks are ready (one clk)
+  output     motor_ticks_rght_rdy_o,  // right motor ticks are ready (one clk)
+  // motor ticks value are 32 bits in 2's complement
+  output [32-1:0] motor_ticks_left_o,  // left motor ticks value
+  output [32-1:0] motor_ticks_rght_o,  // right motor ticks value
   
   output [7:0] leds,
   // SPI
@@ -47,11 +84,13 @@ module top_spi_controller
   output rpi_running  // 1 when running, to inform gopigo
 );
 
-  wire       busy_spi;
+  wire       spi_busy;
   wire       spi_send; // command to send a new SPI byte
-  wire       end_tx;  // end of transmission
+  wire       spi_end;  // end of transimission, has to be acknowledged
   wire       ena_2clk;
-  wire [7:0] data_spi;
+  wire       spi_ack;  // ackknowledgment of the end of transmission
+  wire [7:0] data_to_spi;   // data to send out to SPI
+  wire [7:0] data_from_spi; // data received from the SPI
 
   wire       cpol = 1'b0;
   wire       dord = 1'b0;
@@ -66,7 +105,6 @@ module top_spi_controller
   (
     .rst         (rst),
     .clk         (clk),
-    .busy_spi    (busy_spi),
     .motor_pwm_left_i     (motor_pwm_left_i),
     .motor_pwm_rght_i     (motor_pwm_rght_i),
     .motor_dps_limit_i    (motor_dps_limit_i),
@@ -76,10 +114,22 @@ module top_spi_controller
     .led_eye_rght_rgb_i   (led_eye_rght_rgb_i),
     .led_blink_left_rgb_i (led_blink_left_rgb_i),
     .led_blink_rght_rgb_i (led_blink_rght_rgb_i),
-    .spi_ss_n    (spi_ss_n), // spi slave select
-    .spi_send    (spi_send),
-    .ena_2clk    (ena_2clk),
-    .data_spi    (data_spi)
+
+    .get_motor_ticks_left_i (get_motor_ticks_left_i),
+    .get_motor_ticks_rght_i (get_motor_ticks_rght_i),
+    .motor_ticks_left_rdy_o (motor_ticks_left_rdy_o),
+    .motor_ticks_rght_rdy_o (motor_ticks_rght_rdy_o),
+    .motor_ticks_left_o     (motor_ticks_left_o),
+    .motor_ticks_rght_o     (motor_ticks_rght_o),
+
+    .spi_ss_n      (spi_ss_n), // spi slave select
+    .spi_busy      (spi_busy),
+    .spi_end       (spi_end),
+    .data_from_spi (data_from_spi),
+    .ena_2clk      (ena_2clk),
+    .spi_send      (spi_send),
+    .spi_ack       (spi_ack),
+    .data_to_spi   (data_to_spi)
   );
 
 
@@ -89,11 +139,13 @@ module top_spi_controller
     .clk_i      (clk),
     .rst_i      (rst),
     .ena_i      (ena_2clk),  // 2*SCK
-    // Interface
+    // Interface SPI master-FPGA control
     .start_i    (spi_send),
-    //.ack_i      (spi_end_tx),  // IRQ Ack
-    .tx_i       (data_spi),
-    .busy_o     (busy_spi), 
+    .tx_i       (data_to_spi),
+    .rx_o       (data_from_spi),
+    .busy_o     (spi_busy), 
+    .irq_o      (spi_end), 
+    .ack_i      (spi_ack),
     // Mode options
     .cpol_i     (cpol),  // SCK value for idle
     .dord_i     (dord),  // 1 LSB first

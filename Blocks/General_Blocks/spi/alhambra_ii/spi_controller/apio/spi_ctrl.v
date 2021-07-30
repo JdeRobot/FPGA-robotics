@@ -1,4 +1,9 @@
-//////////////////////////////////////////////////////////////////////////////////
+// ----------------------
+// Felipe Machado Sanchez
+// Area de Tecnologia Electronica
+// Universidad Rey Juan Carlos
+// https://github.com/felipe-m
+
 // Clock frequency defined with parameter G_CLK_FREQ_MHZ
 
 //Receives Motor PWM and leds commands for the GoPiGo3, and send them via SPI
@@ -12,8 +17,8 @@ module spi_ctrl
   (
     input            rst,
     input            clk,
-    input            busy_spi,
 
+    // SET commands
     input  [7:0] motor_pwm_left_i,  // left pwm motor ca2: -100 to 100
     input  [7:0] motor_pwm_rght_i, // right pwm motor ca2: -100 to 100
 
@@ -42,11 +47,27 @@ module spi_ctrl
 
     // led blink right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
     input  [24-1:0] led_blink_rght_rgb_i,
-  
+
+    // GET commands
+    // get left motor ticks. Active just one clock cycle
+    input     get_motor_ticks_left_i,  // get left motor ticks 
+    input     get_motor_ticks_rght_i,  // get right motor ticks
+
+    output reg motor_ticks_left_rdy_o,  // left motor ticks are ready (one clk)
+    output reg motor_ticks_rght_rdy_o,  // right motor ticks are ready (one clk)
+    // motor ticks value are 32 bits in 2's complement
+    output reg [32-1:0] motor_ticks_left_o,  // left motor ticks value
+    output reg [32-1:0] motor_ticks_rght_o,  // right motor ticks value
+
     output reg       spi_ss_n, // spi slave select, active low
-    output reg       spi_send, // command to send a new SPI byte
+
+    input            spi_busy,
+    input            spi_end,  // transmission finished
+    input      [7:0] data_from_spi,
     output           ena_2clk, // ena spi, twice the frequency
-    output     [7:0] data_spi
+    output reg       spi_send, // command to send a new SPI byte
+    output           spi_ack,
+    output     [7:0] data_to_spi
   );
 
   // register of the inputs, to check if they have been modified since
@@ -70,25 +91,37 @@ module spi_ctrl
   // led blink right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
   reg  [24-1:0] led_blink_rght_rgb_rg; // 5
 
-  // Register type
-  parameter
-    MOTOR_PWM_LEFT  = 0,
-    MOTOR_PWM_RGHT  = 1,
-    MOTOR_DPS_LIMIT = 2,
-    MOTOR_DPS_LEFT  = 3,
-    MOTOR_DPS_RGHT  = 4,
-    LED_EYE_LEFT    = 5,
-    LED_EYE_RGHT    = 6,
-    LED_BLINK_LEFT  = 7,
-    LED_BLINK_RGHT  = 8;
+  // registering the get commands. Get commands input ports are only active one
+  // clock cycle. These registers are '1' until they have been attended
+  reg  get_motor_ticks_left_rg; 
+  reg  get_motor_ticks_rght_rg; 
 
-  parameter NUM_RGS = LED_BLINK_RGHT;
-  // counter to check all the register 0 to 8
+  // register to save the 4 bytes received from the SPI
+  reg  [32-1:0] motor_ticks_left_rg;
+  reg  [32-1:0] motor_ticks_rght_rg;
+
+  // Register type
+  localparam
+    MOTOR_PWM_LEFT    =  0,
+    MOTOR_PWM_RGHT    =  1,
+    MOTOR_DPS_LIMIT   =  2,
+    MOTOR_DPS_LEFT    =  3,
+    MOTOR_DPS_RGHT    =  4,
+    LED_EYE_LEFT      =  5,
+    LED_EYE_RGHT      =  6,
+    LED_BLINK_LEFT    =  7,
+    LED_BLINK_RGHT    =  8,
+    GET_MOT_TCKS_LEFT =  9,
+    GET_MOT_TCKS_RGHT = 10;
+
+  localparam NUM_RGS = GET_MOT_TCKS_RGHT;
+  // counter to check all the register 0 to 10
   reg  [3:0] cnt_chk_rgs; // range depends on NUM_RGS
   // indicates if there has been any change in the registers having checked all
   // of them
   wire   cnt_chk_rgs_ended;
   // comparison between the input and the last sent command (registered)
+  // This is for SET commands
   reg [32-1:0] compare_port; // input port to compare
   reg [32-1:0] compare_reg;  // The largest argument so far has 4 bytes
   //reg    any_rg_change;
@@ -104,7 +137,7 @@ module spi_ctrl
   reg       incr_spi_byte; // increment the the SPI byte counter
 
   // FSM states to send SPI
-  parameter
+  localparam
      CHK_NEW_SPI    = 0, // check if there is any new SPI command to be sent
      UPDATE_SPI_RGS = 1, // update the SPI registers, to send them
      EN_SPI_ST      = 2, // to have some time to active the SPI enable
@@ -119,7 +152,7 @@ module spi_ctrl
 
   // Maximum number of bytes to be sent in a command to SPI
   // dont think there are more than 15 bytes to be sent via SPI
-  parameter N_SPI_BYTES = 16;
+  localparam N_SPI_BYTES = 16;
   reg [8-1:0] spi_bytes [N_SPI_BYTES-1:0];
   parameter NB_SPI_BYTES = $clog2(N_SPI_BYTES); // number of bits
   reg [NB_SPI_BYTES-1:0] last_spi_byte; // indicates the last SPI byte to be sent
@@ -143,6 +176,11 @@ module spi_ctrl
   //reg [28:0] end_cnt_val;   // indicates the value at the count finish
   reg  ena_cnt_var;  // enable of the counter
 
+  reg  spi_end_rg ; // register spi_end
+  // done sending a full SPI command (composed by various bytes)
+  reg  spi_cmd_done;
+  reg  spi_cmd_done_rg;
+
   //parameter C_STARTUP_END = 2**25-1; // for synthesis
                                       // 12MHz -> 83.3 ns  x 33,554,432 ->
                                       // 0,36Hz  -> 2,8 s
@@ -159,6 +197,99 @@ module spi_ctrl
                                       // 183Hz -> 5.5 ms
   parameter C_EN_SPI_END = 500-1; // for simulation
 
+
+  always @(posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      motor_ticks_left_rg <= 32'h00000000;  // left motor ticks value
+      motor_ticks_rght_rg <= 32'h00000000;  // right motor ticks value
+    end
+    else begin
+      if (spi_end) begin
+        case (cnt_spi_byte)
+          8'h03: begin // in this case we should check if the SPI data is 0xA5
+                    // which is the code sent by GoPiGo to acknowledge
+            if (data_from_spi != 8'hA5) begin
+              if (cnt_chk_rgs == GET_MOT_TCKS_LEFT)
+                motor_ticks_left_rg <= 32'hFFFFFFFF; // to indicate an error
+              else if (cnt_chk_rgs == GET_MOT_TCKS_RGHT)
+                motor_ticks_rght_rg <= 32'hFFFFFFFF; // to indicate an error
+            end
+          end
+          8'h04: begin // MS byte (byte 3)
+            if (cnt_chk_rgs == GET_MOT_TCKS_LEFT)
+              motor_ticks_left_rg[31:24] <= data_from_spi;
+            else if (cnt_chk_rgs == GET_MOT_TCKS_RGHT)
+              motor_ticks_rght_rg[31:24] <= data_from_spi;
+          end
+          8'h05: begin // byte 2
+            if (cnt_chk_rgs == GET_MOT_TCKS_LEFT)
+              motor_ticks_left_rg[23:16] <= data_from_spi;
+            else if (cnt_chk_rgs == GET_MOT_TCKS_RGHT)
+              motor_ticks_rght_rg[23:16] <= data_from_spi;
+          end
+          8'h06: begin // byte 1
+            if (cnt_chk_rgs == GET_MOT_TCKS_LEFT)
+              motor_ticks_left_rg[15:8] <= data_from_spi;
+            else if (cnt_chk_rgs == GET_MOT_TCKS_RGHT)
+              motor_ticks_rght_rg[15:8] <= data_from_spi;
+          end
+          8'h07: begin // byte 0 (LS byte)
+            if (cnt_chk_rgs == GET_MOT_TCKS_LEFT)
+              motor_ticks_left_rg[7:0] <= data_from_spi;
+            else if (cnt_chk_rgs == GET_MOT_TCKS_RGHT)
+              motor_ticks_rght_rg[7:0] <= data_from_spi;
+          end
+        endcase
+      end
+    end
+  end
+
+  // update new received values
+  always @(posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      motor_ticks_left_o <= 32'h00000000;  // left motor ticks value
+      motor_ticks_rght_o <= 32'h00000000;  // right motor ticks value
+      motor_ticks_left_rdy_o <= 1'b0;
+      motor_ticks_rght_rdy_o <= 1'b0;
+    end
+    else begin
+      motor_ticks_left_rdy_o <= 1'b0;
+      motor_ticks_rght_rdy_o <= 1'b0; // active just one clock cycle
+      // spi_cmd_done is one clock cycle early, data not ready
+      if (spi_cmd_done_rg) begin
+        if (cnt_chk_rgs == GET_MOT_TCKS_LEFT) begin
+          motor_ticks_left_o <= motor_ticks_left_rg;
+          motor_ticks_left_rdy_o <= 1'b1;
+        end
+        else if (cnt_chk_rgs == GET_MOT_TCKS_RGHT) begin
+          motor_ticks_rght_o <= motor_ticks_rght_rg;
+          motor_ticks_rght_rdy_o <= 1'b1;
+        end
+      end
+    end
+  end
+
+  // pulse detect of spi_end, and registering spi_cmd_done
+  always @(posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      spi_end_rg <= 1'b0;
+      spi_cmd_done_rg <= 1'b0;
+    end
+    else begin
+      spi_end_rg <= spi_end;
+      spi_cmd_done_rg <= spi_cmd_done;
+    end
+  end
+    
+  // edge detector for spi_end, since it is an interal signal,
+  // just with one flip-flop. Used also to acknowledge, thats why the name
+  assign spi_ack = (spi_end & ~spi_end_rg) ? 1'b1 : 1'b0;
+ 
+
+      
 
   always @(posedge rst, posedge clk)
   begin
@@ -184,13 +315,13 @@ module spi_ctrl
             spi_bytes[1] <= 8'h0A; // SPI Message type SET_MOTOR_PWM
             spi_bytes[2] <= 8'h01; // MOTOR_LEFT
             spi_bytes[3] <= motor_pwm_left_i; // PWM speed -100 to 100
-            last_spi_byte <= 3;
+            last_spi_byte <= 3; //4 bytes
           end
           MOTOR_PWM_RGHT: begin
             spi_bytes[1] <= 8'h0A; // SPI Message type SET_MOTOR_PWM
             spi_bytes[2] <= 8'h02; // MOTOR_RIGHT
             spi_bytes[3] <= motor_pwm_rght_i; // PWM speed -100 to 100
-            last_spi_byte <= 3;
+            last_spi_byte <= 3; //4 bytes
           end
           MOTOR_DPS_LIMIT: begin
             spi_bytes[1] <= 8'h0F; // SPI Message type SET_MOTOR_LIMITS
@@ -199,21 +330,21 @@ module spi_ctrl
                                    // not power
             spi_bytes[4] <= motor_dps_limit_i[15:8]; // MSB DPS limit
             spi_bytes[5] <= motor_dps_limit_i[7:0]; // LSB DPS limit
-            last_spi_byte <= 5;
+            last_spi_byte <= 5; // 6 bytes
           end
           MOTOR_DPS_LEFT: begin
             spi_bytes[1] <= 8'h0E; // SPI Message type SET_MOTOR_DPS
             spi_bytes[2] <= 8'h01; // For left motor: MOTOR_LEFT
             spi_bytes[3] <= motor_dps_left_i[15:8]; // MSB DPS left
             spi_bytes[4] <= motor_dps_left_i[7:0]; // LSB DPS left
-            last_spi_byte <= 4;
+            last_spi_byte <= 4; // 5 bytes
           end
           MOTOR_DPS_RGHT: begin
             spi_bytes[1] <= 8'h0E; // SPI Message type SET_MOTOR_DPS
             spi_bytes[2] <= 8'h02; // For left motor: MOTOR_RIGHT
             spi_bytes[3] <= motor_dps_rght_i[15:8]; // MSB DPS right
             spi_bytes[4] <= motor_dps_rght_i[7:0]; // LSB DPS right
-            last_spi_byte <= 4;
+            last_spi_byte <= 4; // 5 bytes
           end
           LED_EYE_LEFT: begin
             spi_bytes[1] <= 8'h06; // SPI Message type SET_LED
@@ -221,7 +352,7 @@ module spi_ctrl
             spi_bytes[3] <= led_eye_left_rgb_i[23:16]; // Red 0 to 255
             spi_bytes[4] <= led_eye_left_rgb_i[15:8];  // Green 0 to 255
             spi_bytes[5] <= led_eye_left_rgb_i[7:0];   // Blue 0 to 255
-            last_spi_byte <= 5;
+            last_spi_byte <= 5; // 6 bytes
           end
           LED_EYE_RGHT: begin
             spi_bytes[1] <= 8'h06; // SPI Message type SET_LED
@@ -229,7 +360,7 @@ module spi_ctrl
             spi_bytes[3] <= led_eye_rght_rgb_i[23:16]; // Red 0 to 255
             spi_bytes[4] <= led_eye_rght_rgb_i[15:8];  // Green 0 to 255
             spi_bytes[5] <= led_eye_rght_rgb_i[7:0];   // Blue 0 to 255
-            last_spi_byte <= 5;
+            last_spi_byte <= 5; // 6 bytes
           end
           LED_BLINK_LEFT: begin
             spi_bytes[1] <= 8'h06; // SPI Message type SET_LED
@@ -237,7 +368,7 @@ module spi_ctrl
             spi_bytes[3] <= led_blink_left_rgb_i[23:16]; // Red 0 to 255
             spi_bytes[4] <= led_blink_left_rgb_i[15:8];  // Green 0 to 255
             spi_bytes[5] <= led_blink_left_rgb_i[7:0];   // Blue 0 to 255
-            last_spi_byte <= 5;
+            last_spi_byte <= 5; // 6 bytes
           end
           LED_BLINK_RGHT: begin
             spi_bytes[1] <= 8'h06; // SPI Message type SET_LED
@@ -245,14 +376,38 @@ module spi_ctrl
             spi_bytes[3] <= led_blink_rght_rgb_i[23:16]; // Red 0 to 255
             spi_bytes[4] <= led_blink_rght_rgb_i[15:8];  // Green 0 to 255
             spi_bytes[5] <= led_blink_rght_rgb_i[7:0];   // Blue 0 to 255
-            last_spi_byte <= 5;
+            last_spi_byte <= 5; // 6 bytes
           end
+          GET_MOT_TCKS_LEFT: begin
+            spi_bytes[1] <= 8'h11; // SPI Message type GET_MOTOR_ENCODER_LEFT
+            spi_bytes[2] <= 8'h00; // 1: 6 bytes to zero to receive
+            spi_bytes[3] <= 8'h00; // 2: 6 bytes to zero to receive 
+            spi_bytes[4] <= 8'h00; // 3: 6 bytes to zero to receive
+            spi_bytes[5] <= 8'h00; // 4: 6 bytes to zero to receive
+            spi_bytes[5] <= 8'h00; // 5: 6 bytes to zero to receive
+            spi_bytes[5] <= 8'h00; // 6: 6 bytes to zero to receive
+            last_spi_byte <= 7; // total of 8 bytes
+          end
+          GET_MOT_TCKS_RGHT: begin
+            spi_bytes[1] <= 8'h12; // SPI Message type GET_MOTOR_ENCODER_RIGHT
+            spi_bytes[2] <= 8'h00; // 1: 6 bytes to zero to receive
+            spi_bytes[3] <= 8'h00; // 2: 6 bytes to zero to receive 
+            spi_bytes[4] <= 8'h00; // 3: 6 bytes to zero to receive
+            spi_bytes[5] <= 8'h00; // 4: 6 bytes to zero to receive
+            spi_bytes[5] <= 8'h00; // 5: 6 bytes to zero to receive
+            spi_bytes[5] <= 8'h00; // 6: 6 bytes to zero to receive
+            last_spi_byte <= 7; // total of 8 bytes
+          end
+
         endcase
       end
     end
   end
 
   // register the new commands that have been sent (are just going to be sent)
+  // The GET commands work differently, they are kept active (1) until sent
+  // the inputs are only active one clock cycle, but the registered are kept
+  // active until sent
   always @(posedge rst, posedge clk)
   begin
     if (rst) begin
@@ -265,6 +420,8 @@ module spi_ctrl
       led_eye_rght_rgb_rg <= 0;    // 6
       led_blink_left_rgb_rg <= 0;  // 7
       led_blink_rght_rgb_rg <= 0;  // 8
+      get_motor_ticks_left_rg <= 1'b0; // 9
+      get_motor_ticks_rght_rg <= 1'b0; //10
     end
     else begin
       if (spi_state == UPDATE_SPI_RGS) begin
@@ -287,15 +444,22 @@ module spi_ctrl
             led_blink_left_rgb_rg <= led_blink_left_rgb_i;
           LED_BLINK_RGHT:
             led_blink_rght_rgb_rg <= led_blink_rght_rgb_i;
+          GET_MOT_TCKS_LEFT:
+            get_motor_ticks_left_rg <= 1'b0;
+          GET_MOT_TCKS_RGHT:
+            get_motor_ticks_rght_rg <= 1'b0;
         endcase
       end
+      // if a new GET command, set to one, they are sent back to inactive
+      // when sent
+      if (get_motor_ticks_left_i)
+        get_motor_ticks_left_rg <= 1'b1;
+      if (get_motor_ticks_rght_i)
+        get_motor_ticks_rght_rg <= 1'b1;
     end
   end
 
-
-
   // counter to check all the registers
-
   always @(posedge rst, posedge clk)
   begin
     if (rst)
@@ -359,10 +523,20 @@ module spi_ctrl
         compare_port[24-1:0] = led_blink_rght_rgb_i;
         compare_reg [24-1:0] = led_blink_rght_rgb_rg;
       end
+      GET_MOT_TCKS_LEFT: begin // just one bit
+        compare_port[0] = 1'b0; // check if get_motor_ticks_left_rg==1'b1
+        compare_reg [0] = get_motor_ticks_left_rg;
+      end
+      GET_MOT_TCKS_RGHT: begin // just one bit
+        compare_port[0] = 1'b0; // check if get_motor_ticks_rght_rg==1'b1
+        compare_reg [0] = get_motor_ticks_rght_rg;
+      end
     endcase
   end
 
   // -- compare if the actual command is the same as the last command sent
+  // it is a large comparator, and sometimes it just for one bit (GET commands)
+  // but since it is already there, it will be used as is
   assign rg_change = (compare_port == compare_reg) ? 1'b0 : 1'b1;
 
   // -------------- timer (counter) to wait a configurable amount of time
@@ -440,6 +614,7 @@ module spi_ctrl
     incr_spi_byte = 1'b0;
     spi_send  = 1'b0;
     ena_spi_clk = 1'b0; // disable the generation of the SPI clock
+    spi_cmd_done = 1'b0;
     case (spi_state)
       CHK_NEW_SPI: begin // check if there is a new SPI command
         if (rg_change) begin // There is a new SPI command to send
@@ -461,10 +636,12 @@ module spi_ctrl
       WAIT_SPI_ST: begin
         ena_spi_clk = 1'b1; // enable the generation of the SPI clock
         spi_ss_n  = C_SPI_SS_ON; // enable the slave SPI
-        if (!busy_spi) begin
+        if (!spi_busy) begin
           spi_state_nxt = SPI_SEND_ST;
-          if (cnt_spi_byte == last_spi_byte)
+          if (cnt_spi_byte == last_spi_byte) begin
             spi_state_nxt = EN_SPI2_ST; // we are done
+            spi_cmd_done = 1'b1; // done sending a whole command (various bytes)
+          end
           else // next byte
             incr_spi_byte = 1'b1; // increment the byte except when 1
         end
@@ -480,7 +657,7 @@ module spi_ctrl
         spi_ss_n  = C_SPI_SS_ON; // enable the slave SPI
         spi_send  = 1'b0;  // the send command was activated in the transition
         incr_spi_byte = 1'b0;
-        if (busy_spi)
+        if (spi_busy)
           spi_state_nxt = WAIT_SPI_ST;
       end
       EN_SPI2_ST: begin // finishing the transmission, enabling the SPI slave,
@@ -501,7 +678,7 @@ module spi_ctrl
   end
 
   // the SPI byte to send
-  assign data_spi = spi_bytes[cnt_spi_byte];
+  assign data_to_spi = spi_bytes[cnt_spi_byte];
 
 
 
