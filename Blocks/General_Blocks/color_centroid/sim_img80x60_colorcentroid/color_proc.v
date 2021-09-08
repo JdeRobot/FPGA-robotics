@@ -47,9 +47,9 @@ module color_proc
     output reg                 proc_we,  //write enable, to write processed pxl
     output reg [c_nb_buf-1:0]  proc_pxl, // processed pixel to be written
     output [c_nb_img_pxls-1:0] proc_addr, // address of processed pixel
-	 output [7-1:0] pos_col_ret,
-	 output reg [6-1:0] reg_histograma,
-	 output start
+   output [7-1:0] pos_col_ret,
+   output reg [6-1:0] reg_histograma,
+   output start
   );
 
 
@@ -59,22 +59,28 @@ module color_proc
   wire end_pxl_cnt;
   wire end_ln;
   wire tmpw;
-	
+  wire inner_frame; //if we are in the inner frame col=[8,71], row=[6,53]
+  wire color_threshold; // if color threshold is active
+  
   parameter limite_azul = 4'b1001; // 9 en decimal
   parameter limite_verde = 4'b1001; // 9 en decimal
   parameter  BLACK_PXL = {c_nb_img_pxls{1'b0}};
   
 
-  reg [5:0] histograma [79:0];
+  // from 0 to 79 columns, 0 to 7, and 72 to 79 are taken out
+  // so column  8 -> 0
+  //    column 71 -> 63
+  // In the inner frame In each column there are 48 rows (inner frame),
+  reg [5:0] histograma [63:0]; 
   integer i; 
   
   reg [6-1:0] prev_high;
-  reg [7-1:0] px_pos, px_pos_ret;
+  reg [7-1:0] col, col_rg, col_inframe;
 
-// Contador de filas para eliminar filas superiores e inferiores (Solo se examina 64x48 px)
-  reg [6-1:0] cnt_filas;
+  // Row number
+  reg [6-1:0] row_num;
 
-  // memory address count
+  // memory address count. Pixel counter from 0 to (80x60)-1 = 4799
   always @ (posedge rst, posedge clk)
   begin
     if (rst) begin
@@ -85,6 +91,7 @@ module color_proc
     else begin
       proc_we <= 1'b1;
       // data from memory received a clock cycle later
+      // data stored in processed memory is delayed one clock cycle
       cnt_pxl_proc <= cnt_pxl;
       if (end_pxl_cnt ) begin
         cnt_pxl <= 0;
@@ -95,101 +102,93 @@ module color_proc
   end
   
   assign start = end_pxl_cnt;
+  // end of the frame
   assign end_pxl_cnt = (cnt_pxl == c_img_pxls-1) ? 1'b1 : 1'b0;
   assign orig_addr = cnt_pxl;
   assign proc_addr = cnt_pxl_proc;
 
-  //wire para contar hasta 80
-  assign end_ln = (px_pos == c_img_cols-1)? 1'b1 : 1'b0;
-  //aqui intento hacer la comprobacion para asignar un nuevo maximo a prev_high
-	
-	
-
-//Contador filas hasta 63
-
-always @ (posedge clk, posedge rst) 
+  // end of the line (column number 79)
+  assign end_ln = (col == c_img_cols-1)? 1'b1 : 1'b0;
+  
+  //Row counter, from 0 to 59
+  always @ (posedge clk, posedge rst) 
   begin
     if (rst) begin   
-      cnt_filas <=0;
+      row_num <=0;
     end 
     else if (end_pxl_cnt) begin
-      cnt_filas <= 0;
+      row_num <= 0;
     end
     else if (end_ln) begin
-      cnt_filas <= cnt_filas +1'b1;
+      row_num <= row_num +1'b1;
     end 
-end
-	
+  end
 
-//Contador hasta 80 
-always @ (posedge clk, posedge rst) 
+  // number of column counter. Counts columns, from 0 to 79
+  always @ (posedge clk, posedge rst) 
   begin
     if (rst) begin   
-      px_pos <=0;
+      col <=0;
     end 
     else if (end_ln) begin
-      px_pos <= 0;
+      col <= 0;
     end
     else begin
-      px_pos <= px_pos +1'b1;
+      col <= col +1'b1;
     end 
-end
-
-
-	assign pos_col_ret = px_pos_ret;
-
-
-//Retrasar px_pos
-always @ (posedge clk, posedge rst)
-begin
-
-	if (rst) begin
-		px_pos_ret <= 0;
-	end
-	else begin
-		px_pos_ret <= px_pos;
-	end
-
-end 
-
-
-//reg [5:0] histograma [79:0];
-//histograma almacena los pixeles rojos en cada columna, se resetea cada frame
-always @ (posedge clk, posedge rst) 
-begin
-  if (rst) begin  
-    for(i=0;i<=79;i=i+1) begin
-      histograma[i] = 6'd0; 
-    end
-	 reg_histograma = 6'd0;
-  end 
-  else begin 
-	 if (end_pxl_cnt) begin
-	
-		 for(i=0;i<=79;i=i+1) begin
-			histograma[i] = 6'd0; 
-		 end
-		 reg_histograma = 6'd0;
-	 end
-	 else begin
-		 if (px_pos_ret >= 8 && px_pos_ret <= 71 && cnt_filas >= 6 && cnt_filas <= 53) begin
-			 if (orig_pxl[c_msb_red] && orig_pxl[7:4]< limite_verde && orig_pxl[3:0]< limite_azul) begin 
-				histograma[px_pos_ret] = histograma[px_pos_ret] + 1'b1;
-				reg_histograma = histograma[px_pos_ret];
-			 end
-			 else begin
-				reg_histograma = 6'd0;
-			 end
-		 end
-		 else begin 
-			reg_histograma = 6'd0;
-		 end
-	 end
   end
-end
+
+  assign pos_col_ret = col_rg;
+
+  //delay col, (columns)
+  always @ (posedge clk, posedge rst)
+  begin
+    if (rst) begin
+      col_rg <= 0;
+    end
+    else begin
+      col_rg <= col;
+    end
+  end 
+
+  //if we are in the inner frame col=[8,71], row=[6,53]
+  assign inner_frame = (col_rg >= 8 && col_rg <= 71 && row_num >= 6 && row_num <= 53) ? 1'b1 : 1'b0;
 
 
-  assign tmpw = (prev_high < histograma[px_pos_ret])? 1'b1 : 1'b0;
+  // inner column, when we are out of the range, it doesn't matter the value because shouldnt be used
+  assign col_inframe = col_rg - 7'd8;
+
+  assign color_threshold = (orig_pxl[c_msb_red] && orig_pxl[7:4]< limite_verde && orig_pxl[3:0]< limite_azul) ? 1'b1 : 1'b0;
+
+  //reg [5:0] histograma [63:0];
+  //histograma almacena los pixeles rojos en cada columna, se resetea cada frame
+  // saves how many red pixels are in each column. Reset in each frame
+  always @ (posedge clk, posedge rst) 
+  begin
+    if (rst) begin  
+      for(i=0;i<=63;i=i+1) begin
+        histograma[i] <= 6'd0; 
+      end
+    end 
+    else begin 
+      if (end_pxl_cnt) begin
+        for(i=0;i<=63;i=i+1) begin
+          histograma[i] <= 6'd0; 
+        end
+      end
+      else begin
+      // taking a inner frame from 8 to 71-> 64 columns. Taking away 8 columns at each end
+      // and 6 to 53-> 48 rows. Taking away 6 rows at each end
+      if (inner_frame == 1'b1) begin
+        if (color_threshold == 1'b1) begin 
+          histograma[col_inframe] <= histograma[col_inframe] + 1'b1;
+        end
+      end
+    end
+  end
+
+
+  assign tmpw = (prev_high < histograma[col_rg])? 1'b1 : 1'b0;
 
 //Si prev_high < el valor actual del histograma (tmpw) asignamos el nuevo maximo
 // y guardamos la columna en col
@@ -199,11 +198,11 @@ end
     if (rst) begin   
       prev_high <=0;
     end  
-	 else if (end_pxl_cnt) begin
-		prev_high <=0;
-	 end
+   else if (end_pxl_cnt) begin
+    prev_high <=0;
+   end
     else if(tmpw) begin
-        prev_high <= histograma[px_pos_ret];
+        prev_high <= histograma[col_rg];
     end 
   end
 
@@ -215,7 +214,7 @@ end
       3'b000: // no filter, output same as input
         proc_pxl <= orig_pxl;
       3'b100: begin // red filter
-        if (orig_pxl[c_msb_red] && orig_pxl[7:4]< limite_verde && orig_pxl[3:0]< limite_azul)
+        if (color_threshold)
           proc_pxl <= orig_pxl;
         else
           proc_pxl <= BLACK_PXL;
