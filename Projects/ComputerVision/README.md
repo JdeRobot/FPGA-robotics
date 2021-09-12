@@ -153,6 +153,14 @@ It is important to connect the camera with short wires (10 cm at most)
   
   Camera in test mode QQVGA/2 (80x60)
 
+### [ov7670_rgb444_80x60_color_centroid](alhambra_ii/apio/ov7670_rgb444_80x60_color_centroid)
+
+  50 MHz clock
+  ov7670 camera capture, color processing, 80x60 VGA display using Alhambra II, and shows on the leds where the horizontal centroid is
+  
+  sw2 selects the color for the filter
+  
+  
 ### [ov7670_rgb_yuv_80x60](alhambra_ii/apio/ov7670_rgb_yuv_80x60)  
   
   SW1: reset, necessary to start
@@ -161,7 +169,7 @@ It is important to connect the camera with short wires (10 cm at most)
   
   RGB -> RGB test -> YUV -> YUV test -> RGB
 
-  The drawback of choosing is that you loose pins for YUV, and you can only get 3 bits of gray color, without choosing you could get 5
+  The drawback of choosing is that you lose pins for YUV, and you can only get 3 bits of gray color, without choosing you could get 5
 
 ### [ov7670_rgb_yuv_80x60_50mhz](alhambra_ii/apio/ov7670_rgb_yuv_80x60_50mhz)      
 

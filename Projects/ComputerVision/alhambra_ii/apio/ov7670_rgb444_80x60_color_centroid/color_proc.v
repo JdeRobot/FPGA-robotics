@@ -75,7 +75,8 @@ module color_proc
     output reg [c_nb_buf-1:0]  proc_pxl, // processed pixel to be written
     output [c_nb_img_pxls-1:0] proc_addr, // address of processed pixel
     output reg [c_nb_centroid-1:0] centroid,
-    output reg new_centroid
+    output reg new_centroid,
+    output reg [2:0] rgbfilter
   );
 
   reg [c_nb_img_pxls-1:0]  cnt_pxl;
@@ -84,7 +85,15 @@ module color_proc
   wire end_pxl_cnt;
   wire end_ln;
   wire inner_frame; //if we are in the inner frame col=[8,71], row=[6,53]
-  wire color_threshold; // if color threshold is active
+
+  wire   red_limit;
+  wire   green_limit;
+  wire   blue_limit;
+  wire   yellow_limit;
+  wire   cyan_limit;
+  wire   magen_limit;
+  wire   white_limit;
+  reg    color_threshold; // if color threshold is active
   
   parameter limite_azul = 4'b1001; // 9 en decimal
   parameter limite_verde = 4'b1001; // 9 en decimal
@@ -147,7 +156,6 @@ module color_proc
 
   reg       proc_ctrl_rg1, proc_ctrl_rg2;
   wire      pulse_proc_ctrl;
-  reg [2:0] rgb_filter;
 
   // memory address count. Pixel counter from 0 to (80x60)-1 = 4799
   always @ (posedge rst, posedge clk)
@@ -228,8 +236,22 @@ module color_proc
   // divide col_inframe by 8, from 64 columns to 8 -> 3 bits
   assign hist_bin = col_inframe[c_nb_hist_bins+3-1:3];
 
-  assign color_threshold = (orig_pxl[c_msb_red] && orig_pxl[7:4]< limite_verde &&
-                            orig_pxl[3:0]< limite_azul) ? 1'b1 : 1'b0;
+  // color filter thresholds
+  assign red_limit = (orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign green_limit = (!orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign blue_limit = (!orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign yellow_limit = (orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign cyan_limit = (!orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign magen_limit = (orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign white_limit = (orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+
 
   //reg [c_nb_hist_val-1:0] histograma [c_hist_bins-1:0];
   // saves how many red pixels are in each column. Reset in each frame
@@ -395,80 +417,60 @@ module color_proc
   always @ (posedge rst, posedge clk)
   begin
     if (rst) begin
-      rgb_filter <= 3'b000; // no filter
+      rgbfilter <= 3'b000; // no filter
     end
     else begin
       if (pulse_proc_ctrl) begin
-        case (rgb_filter)
+        case (rgbfilter)
           3'b000: // no filter, output same as input
-            rgb_filter <= 3'b100; // red filter
+            rgbfilter <= 3'b100; // red filter
           3'b100: // red filter
-            rgb_filter <= 3'b010; // green filter
+            rgbfilter <= 3'b010; // green filter
           3'b010: // green filter
-            rgb_filter <= 3'b001; // blue filter
+            rgbfilter <= 3'b001; // blue filter
           3'b001: // blue filter
-            rgb_filter <= 3'b110; // red and green filter
+            rgbfilter <= 3'b110; // red and green filter
           3'b110: // red and green filter
-            rgb_filter <= 3'b101; // red and blue filter
+            rgbfilter <= 3'b101; // red and blue filter
           3'b101: // red and blue filter
-            rgb_filter <= 3'b011; // green and blue filter
+            rgbfilter <= 3'b011; // green and blue filter
           3'b011: // green and blue filter
-            rgb_filter <= 3'b111; // red, green and blue filter
+            rgbfilter <= 3'b111; // red, green and blue filter
           3'b111: // red, green and blue filter
-            rgb_filter <= 3'b000; // no filter
+            rgbfilter <= 3'b000; // no filter
         endcase
       end
     end
   end
+
+  assign proc_pxl = color_threshold ? orig_pxl : BLACK_PXL;
   
   always @ (*) // should include RGB mode
   begin
     // check on RED
-    case (rgb_filter)
+    case (rgbfilter)
       3'b000: // no filter, output same as input
-        proc_pxl = orig_pxl;
+        color_threshold = 1'b1;
       3'b100: begin // red filter
-        // red is different from the rest, the others should be modified
-        if (color_threshold)
-          proc_pxl = orig_pxl;
-        else
-          proc_pxl = BLACK_PXL;
+        color_threshold = red_limit;
       end
       3'b010: begin // green filter
-        if (orig_pxl[c_msb_green])
-          proc_pxl = orig_pxl;
-        else
-          proc_pxl = BLACK_PXL;
+        color_threshold = green_limit;
       end
       3'b001: begin // filter blue
-        if (orig_pxl[c_msb_blue])
-          proc_pxl = orig_pxl;
-        else
-          proc_pxl = BLACK_PXL;
+        color_threshold = blue_limit;
       end
       3'b110: begin // filter red and green
-        if (orig_pxl[c_msb_red] & orig_pxl[c_msb_green])
-          proc_pxl = orig_pxl;
-        else
-          proc_pxl = BLACK_PXL;
+        color_threshold = yellow_limit;
       end
       3'b101: begin // filter red and blue
-        if (orig_pxl[c_msb_red] & orig_pxl[c_msb_blue])
-          proc_pxl = orig_pxl;
-        else
-          proc_pxl = BLACK_PXL;
+        color_threshold = magen_limit;
       end
       3'b011: begin // filter green and blue
-        if (orig_pxl[c_msb_green] & orig_pxl[c_msb_blue])
-          proc_pxl = orig_pxl;
-        else
-          proc_pxl = BLACK_PXL;
+        color_threshold = green_limit;
       end
       3'b111: begin // red, green and blue filter
-        if (orig_pxl[c_msb_red] & orig_pxl[c_msb_green] & orig_pxl[c_msb_blue])
-          proc_pxl = orig_pxl;
-        else
-          proc_pxl = BLACK_PXL;
+        color_threshold = white_limit;
       end
     endcase
   end

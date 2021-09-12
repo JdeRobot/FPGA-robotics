@@ -89,6 +89,7 @@ module top_ov7670
     parameter     testmode = 1'b0; // no test mode
     parameter     swap_r_b = 1'b1; // red and blue are swapped
 
+    wire [2:0]    rgbfilter;
 
 
   assign vga_red_2b   = vga_red[3:2];
@@ -143,6 +144,7 @@ module top_ov7670
      .vsync      (vga_vsync),
      .rgbmode    (rgbmode),
      .testmode   (testmode),
+     .rgbfilter  (rgbfilter),
      .col        (vga_col),
      .row        (vga_row),
      .frame_pixel(display_img_pxl),
@@ -179,6 +181,7 @@ module top_ov7670
      .proc_we        (proc_we),
      .proc_addr  (proc_img_addr),
      .proc_pxl   (proc_img_pxl),
+     .rgbfilter  (rgbfilter),
      .centroid   (centroid)
   );
 

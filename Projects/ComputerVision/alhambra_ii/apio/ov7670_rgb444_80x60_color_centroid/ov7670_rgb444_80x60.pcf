@@ -5,15 +5,15 @@ set_io clk 49
 #set_io ov7670_d[6] 19
 #set_io ov7670_d[5] 22
 
-set_io ov7670_d_msb[2] 20
-set_io ov7670_d_msb[1] 19
-set_io ov7670_d_msb[0] 22
+set_io ov7670_d_msb[2] 20 # ov7670 data[7]
+set_io ov7670_d_msb[1] 19 # ov7670 data[6]
+set_io ov7670_d_msb[0] 22 # ov7670 data[5]
 
 #set_io ov7670_d[3] 21
 #set_io ov7670_d[2] 63
 #set_io ov7670_d[1] 64
-set_io ov7670_d_lsb[1] 21
-set_io ov7670_d_lsb[0] 63
+set_io ov7670_d_lsb[1] 21 # ov7670 data[3]
+set_io ov7670_d_lsb[0] 63 # ov7670 data[2]
 #set_io ov7670_d_lsb[0] 64
 set_io ov7670_rst_n 64
 
