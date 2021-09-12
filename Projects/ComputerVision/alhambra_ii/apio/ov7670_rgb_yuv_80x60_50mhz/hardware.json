@@ -7608,7 +7608,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -7632,7 +7632,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -7656,7 +7656,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -7680,7 +7680,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -7704,7 +7704,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -7828,7 +7828,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -7852,7 +7852,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -7876,7 +7876,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -7926,7 +7926,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -7950,7 +7950,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -8000,7 +8000,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8024,7 +8024,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -8099,7 +8099,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8124,7 +8124,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8148,7 +8148,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -8198,7 +8198,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8223,7 +8223,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8247,7 +8247,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -8297,7 +8297,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8322,7 +8322,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8346,7 +8346,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -8396,7 +8396,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8421,7 +8421,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8445,7 +8445,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -8495,7 +8495,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8520,7 +8520,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8544,7 +8544,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -8594,7 +8594,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8619,7 +8619,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8643,7 +8643,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -8693,7 +8693,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8718,7 +8718,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8742,7 +8742,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -8792,7 +8792,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8816,7 +8816,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -8866,7 +8866,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8916,7 +8916,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -8939,7 +8939,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -8960,7 +8960,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -8981,7 +8981,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9002,7 +9002,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9023,7 +9023,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9044,7 +9044,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9065,7 +9065,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9086,7 +9086,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9107,7 +9107,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9128,7 +9128,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9149,7 +9149,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9172,7 +9172,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:56"
           },
           "port_directions": {
             "I0": "input",
@@ -9195,7 +9195,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9216,7 +9216,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9237,7 +9237,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9258,7 +9258,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9279,7 +9279,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9300,7 +9300,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9321,7 +9321,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:47"
           },
           "port_directions": {
             "CI": "input",
@@ -9343,7 +9343,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9367,7 +9367,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9391,7 +9391,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9415,7 +9415,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9439,7 +9439,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9488,7 +9488,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9537,7 +9537,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9586,7 +9586,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9635,7 +9635,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9684,7 +9684,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9733,7 +9733,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9782,7 +9782,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9831,7 +9831,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:168|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -9880,7 +9880,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -9902,7 +9902,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -9924,7 +9924,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -9946,7 +9946,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -9968,7 +9968,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -9990,7 +9990,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10012,7 +10012,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10034,7 +10034,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10056,7 +10056,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10078,7 +10078,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10100,7 +10100,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10122,7 +10122,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10144,7 +10144,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10166,7 +10166,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10188,7 +10188,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10210,7 +10210,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10232,7 +10232,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10254,7 +10254,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10276,7 +10276,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10300,7 +10300,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10324,7 +10324,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10348,7 +10348,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10372,7 +10372,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10396,7 +10396,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10420,7 +10420,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10444,7 +10444,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10468,7 +10468,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10492,7 +10492,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10516,7 +10516,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10540,7 +10540,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10564,7 +10564,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10586,7 +10586,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10608,7 +10608,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10655,7 +10655,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10677,7 +10677,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10699,7 +10699,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10821,7 +10821,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -10893,7 +10893,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10917,7 +10917,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10941,7 +10941,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -10965,7 +10965,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:212|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
+            "src": "top_ov7670.v:174|ov7670_capture.v:213|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:27"
           },
           "port_directions": {
             "C": "input",
@@ -11014,7 +11014,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -11036,7 +11036,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -11058,7 +11058,7 @@
           },
           "attributes": {
             "module_not_derived": 1,
-            "src": "top_ov7670.v:174|ov7670_capture.v:120|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
+            "src": "top_ov7670.v:174|ov7670_capture.v:121|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/cells_map.v:17"
           },
           "port_directions": {
             "C": "input",
@@ -33333,14 +33333,14 @@
           "hide_name": 0,
           "bits": [ 105, 102, 96, 160, 156, 149, 142, 135, 128, 121, 114, 94, 92 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:53"
+            "src": "top_ov7670.v:174|ov7670_capture.v:54"
           }
         },
         "capture.blue": {
           "hide_name": 0,
           "bits": [ 81, 79, 78, 76 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:92"
+            "src": "top_ov7670.v:174|ov7670_capture.v:93"
           }
         },
         "capture.blue_SB_DFFER_Q_E": {
@@ -33353,21 +33353,21 @@
           "hide_name": 0,
           "bits": [ 32 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:42"
+            "src": "top_ov7670.v:174|ov7670_capture.v:43"
           }
         },
         "capture.cnt_byte": {
           "hide_name": 0,
           "bits": [ 84 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:74"
+            "src": "top_ov7670.v:174|ov7670_capture.v:75"
           }
         },
         "capture.cnt_byte_SB_DFFER_Q_D": {
           "hide_name": 0,
           "bits": [ 82 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_byte_SB_DFFER_Q_E": {
@@ -33380,7 +33380,7 @@
           "hide_name": 0,
           "bits": [ 88 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:255"
+            "src": "top_ov7670.v:174|ov7670_capture.v:256"
           }
         },
         "capture.cnt_byte_SB_DFFER_Q_E_SB_LUT4_I2_O": {
@@ -33393,371 +33393,371 @@
           "hide_name": 0,
           "bits": [ 105, 102, 96, 160, 156, 149, 142, 135, 128, 121, 114, 94, 92 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:75"
+            "src": "top_ov7670.v:174|ov7670_capture.v:76"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_10_D": {
           "hide_name": 0,
           "bits": [ 95 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_10_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 98 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_11_D": {
           "hide_name": 0,
           "bits": [ 101 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_11_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 103 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_12_D": {
           "hide_name": 0,
           "bits": [ 106 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_1_D": {
           "hide_name": 0,
           "bits": [ 93 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_1_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 108 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_1_D_SB_LUT4_O_I3": {
           "hide_name": 0,
           "bits": [ 109 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_2_D": {
           "hide_name": 0,
           "bits": [ 113 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_2_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 115 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_2_D_SB_LUT4_O_I3": {
           "hide_name": 0,
           "bits": [ 116 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_3_D": {
           "hide_name": 0,
           "bits": [ 120 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_3_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 122 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_3_D_SB_LUT4_O_I3": {
           "hide_name": 0,
           "bits": [ 123 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_4_D": {
           "hide_name": 0,
           "bits": [ 127 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_4_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 129 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_4_D_SB_LUT4_O_I3": {
           "hide_name": 0,
           "bits": [ 130 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_5_D": {
           "hide_name": 0,
           "bits": [ 134 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_5_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 136 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_5_D_SB_LUT4_O_I3": {
           "hide_name": 0,
           "bits": [ 137 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_6_D": {
           "hide_name": 0,
           "bits": [ 141 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_6_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 143 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_6_D_SB_LUT4_O_I3": {
           "hide_name": 0,
           "bits": [ 144 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_7_D": {
           "hide_name": 0,
           "bits": [ 148 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_7_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 150 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_7_D_SB_LUT4_O_I3": {
           "hide_name": 0,
           "bits": [ 151 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_8_D": {
           "hide_name": 0,
           "bits": [ 155 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_8_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 157 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_9_D": {
           "hide_name": 0,
           "bits": [ 159 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_9_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 161 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_D": {
           "hide_name": 0,
           "bits": [ 91 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_D_SB_LUT4_O_I2": {
           "hide_name": 0,
           "bits": [ 164 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_D_SB_LUT4_O_I2_SB_LUT4_O_I3": {
           "hide_name": 0,
           "bits": [ "0", 105, 100, 163, 158, 152, 145, 138, 131, 124, 117, 110, 166 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:188|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:43"
+            "src": "top_ov7670.v:174|ov7670_capture.v:189|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:43"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_D_SB_LUT4_O_I3": {
           "hide_name": 0,
           "bits": [ 165 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198"
           }
         },
         "capture.cnt_pxl_SB_DFFER_Q_D_SB_LUT4_O_I3_SB_LUT4_O_I3": {
           "hide_name": 0,
           "bits": [ "0", 154, 147, 140, 133, 126, 119, 112, 168 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:197|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:43"
+            "src": "top_ov7670.v:174|ov7670_capture.v:198|C:\\Users\\felipe\\APIO~1\\packages\\TOOLCH~4\\bin\\../share/yosys/ice40/arith_map.v:43"
           }
         },
         "capture.cnt_pxl_base": {
           "hide_name": 0,
           "bits": [ 107, 104, 99, 162, 154, 153, 146, 139, 132, 125, 118, 111, 167 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:77"
+            "src": "top_ov7670.v:174|ov7670_capture.v:78"
           }
         },
         "capture.cnt_pxl_base_SB_DFFER_Q_1_D": {
           "hide_name": 0,
           "bits": [ 170 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_base_SB_DFFER_Q_2_D": {
           "hide_name": 0,
           "bits": [ 171 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_base_SB_DFFER_Q_3_D": {
           "hide_name": 0,
           "bits": [ 172 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_base_SB_DFFER_Q_4_D": {
           "hide_name": 0,
           "bits": [ 173 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_base_SB_DFFER_Q_5_D": {
           "hide_name": 0,
           "bits": [ 174 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_base_SB_DFFER_Q_6_D": {
           "hide_name": 0,
           "bits": [ 175 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_base_SB_DFFER_Q_7_D": {
           "hide_name": 0,
           "bits": [ 176 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_base_SB_DFFER_Q_8_D": {
           "hide_name": 0,
           "bits": [ 177 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.cnt_pxl_base_SB_DFFER_Q_D": {
           "hide_name": 0,
           "bits": [ 169 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:168"
+            "src": "top_ov7670.v:174|ov7670_capture.v:169"
           }
         },
         "capture.data": {
           "hide_name": 0,
           "bits": [ "1", "0", 15, 16, "0", 12, 13, 14 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:52"
+            "src": "top_ov7670.v:174|ov7670_capture.v:53"
           }
         },
         "capture.data_rg1": {
           "hide_name": 0,
           "bits": [ 183, "0", 182, 181, "0", 180, 179, 178 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:61"
+            "src": "top_ov7670.v:174|ov7670_capture.v:62"
           }
         },
         "capture.data_rg2": {
           "hide_name": 0,
           "bits": [ 189, "0", 188, 187, "0", 186, 185, 184 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:61"
+            "src": "top_ov7670.v:174|ov7670_capture.v:62"
           }
         },
         "capture.data_rg3": {
           "hide_name": 0,
           "bits": [ 80, "0", 77, 74, "0", 192, 191, 190 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:64"
+            "src": "top_ov7670.v:174|ov7670_capture.v:65"
           }
         },
         "capture.dataout_test": {
           "hide_name": 0,
           "bits": [ "x", "x", "x", "x", "x", "0", "0", "0", "0", "0", "0", "0" ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:50"
+            "src": "top_ov7670.v:174|ov7670_capture.v:51"
           }
         },
         "capture.dout": {
           "hide_name": 0,
           "bits": [ 676, 675, 684, 683, 682, 681, 680, 679, 678, 677, 674, 673 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:54"
+            "src": "top_ov7670.v:174|ov7670_capture.v:55"
           }
         },
         "capture.gray": {
           "hide_name": 0,
           "bits": [ 201, 200, 199, 198, 197, 196, 195, 194 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:89"
+            "src": "top_ov7670.v:174|ov7670_capture.v:90"
           }
         },
         "capture.gray_SB_DFFER_Q_E": {
@@ -33770,35 +33770,35 @@
           "hide_name": 0,
           "bits": [ 206, 205, 204, 203 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:91"
+            "src": "top_ov7670.v:174|ov7670_capture.v:92"
           }
         },
         "capture.href": {
           "hide_name": 0,
           "bits": [ 9 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:46"
+            "src": "top_ov7670.v:174|ov7670_capture.v:47"
           }
         },
         "capture.href_rg1": {
           "hide_name": 0,
           "bits": [ 207 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:59"
+            "src": "top_ov7670.v:174|ov7670_capture.v:60"
           }
         },
         "capture.href_rg2": {
           "hide_name": 0,
           "bits": [ 97 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:59"
+            "src": "top_ov7670.v:174|ov7670_capture.v:60"
           }
         },
         "capture.href_rg3": {
           "hide_name": 0,
           "bits": [ 85 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:63"
+            "src": "top_ov7670.v:174|ov7670_capture.v:64"
           }
         },
         "capture.href_rg3_SB_LUT4_I2_O": {
@@ -33811,42 +33811,42 @@
           "hide_name": 0,
           "bits": [ 10 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:45"
+            "src": "top_ov7670.v:174|ov7670_capture.v:46"
           }
         },
         "capture.pclk_rg1": {
           "hide_name": 0,
           "bits": [ 208 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:58"
+            "src": "top_ov7670.v:174|ov7670_capture.v:59"
           }
         },
         "capture.pclk_rg2": {
           "hide_name": 0,
           "bits": [ 209 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:58"
+            "src": "top_ov7670.v:174|ov7670_capture.v:59"
           }
         },
         "capture.pclk_rg3": {
           "hide_name": 0,
           "bits": [ 210 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:63"
+            "src": "top_ov7670.v:174|ov7670_capture.v:64"
           }
         },
         "capture.pclk_rise": {
           "hide_name": 0,
           "bits": [ 90 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:71"
+            "src": "top_ov7670.v:174|ov7670_capture.v:72"
           }
         },
         "capture.pclk_rise_post": {
           "hide_name": 0,
           "bits": [ 211 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:72"
+            "src": "top_ov7670.v:174|ov7670_capture.v:73"
           }
         },
         "capture.pclk_rise_post_SB_LUT4_I0_1_O": {
@@ -33865,7 +33865,7 @@
           "hide_name": 0,
           "bits": [ 217, 216, 215, 214 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:90"
+            "src": "top_ov7670.v:174|ov7670_capture.v:91"
           }
         },
         "capture.red_SB_DFFER_Q_E": {
@@ -33878,56 +33878,56 @@
           "hide_name": 0,
           "bits": [ 73 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:48"
+            "src": "top_ov7670.v:174|ov7670_capture.v:49"
           }
         },
         "capture.rst": {
           "hide_name": 0,
           "bits": [ 2 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:41"
+            "src": "top_ov7670.v:174|ov7670_capture.v:42"
           }
         },
         "capture.swap_r_b": {
           "hide_name": 0,
           "bits": [ "1" ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:49"
+            "src": "top_ov7670.v:174|ov7670_capture.v:50"
           }
         },
         "capture.vsync": {
           "hide_name": 0,
           "bits": [ 8 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:47"
+            "src": "top_ov7670.v:174|ov7670_capture.v:48"
           }
         },
         "capture.vsync_3up": {
           "hide_name": 0,
           "bits": [ 86 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:67"
+            "src": "top_ov7670.v:174|ov7670_capture.v:68"
           }
         },
         "capture.vsync_rg1": {
           "hide_name": 0,
           "bits": [ 220 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:60"
+            "src": "top_ov7670.v:174|ov7670_capture.v:61"
           }
         },
         "capture.vsync_rg2": {
           "hide_name": 0,
           "bits": [ 218 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:60"
+            "src": "top_ov7670.v:174|ov7670_capture.v:61"
           }
         },
         "capture.vsync_rg3": {
           "hide_name": 0,
           "bits": [ 219 ],
           "attributes": {
-            "src": "top_ov7670.v:174|ov7670_capture.v:63"
+            "src": "top_ov7670.v:174|ov7670_capture.v:64"
           }
         },
         "capture_addr": {
