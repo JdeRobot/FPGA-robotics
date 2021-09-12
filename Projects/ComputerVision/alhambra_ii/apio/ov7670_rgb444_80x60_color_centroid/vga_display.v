@@ -46,6 +46,7 @@ module vga_display
     input          rgbmode,
     input          testmode,
     input [2:0]    rgbfilter,
+    input [7:0]    centroid,
     input [10-1:0] col,
     input [10-1:0] row,
     input  [c_nb_buf-1:0] frame_pixel,
@@ -167,6 +168,66 @@ module vga_display
          vga_red   = 4'b1000;
          vga_green = 4'b0000;
          vga_blue  = 4'b1000;
+      end
+      else if ((row > c_img_rows-1) && (row < c_img_rows + 8)) begin
+         if (col < c_img_cols) begin
+           if (col < 10) begin
+             if (centroid[0]) begin
+               vga_red   = {4{rgbfilter[2]}};
+               vga_green = {4{rgbfilter[1]}};
+               vga_blue  = {4{rgbfilter[0]}};
+             end
+           end
+           else if (col < 20) begin
+             if (centroid[1]) begin
+               vga_red   = {4{rgbfilter[2]}};
+               vga_green = {4{rgbfilter[1]}};
+               vga_blue  = {4{rgbfilter[0]}};
+             end
+           end
+           else if (col < 30) begin
+             if (centroid[2]) begin
+               vga_red   = {4{rgbfilter[2]}};
+               vga_green = {4{rgbfilter[1]}};
+               vga_blue  = {4{rgbfilter[0]}};
+             end
+           end
+           else if (col < 40) begin
+             if (centroid[3]) begin
+               vga_red   = {4{rgbfilter[2]}};
+               vga_green = {4{rgbfilter[1]}};
+               vga_blue  = {4{rgbfilter[0]}};
+             end
+           end
+           else if (col < 50) begin
+             if (centroid[4]) begin
+               vga_red   = {4{rgbfilter[2]}};
+               vga_green = {4{rgbfilter[1]}};
+               vga_blue  = {4{rgbfilter[0]}};
+             end
+           end
+           else if (col < 60) begin
+             if (centroid[5]) begin
+               vga_red   = {4{rgbfilter[2]}};
+               vga_green = {4{rgbfilter[1]}};
+               vga_blue  = {4{rgbfilter[0]}};
+             end
+           end
+           else if (col < 70) begin
+             if (centroid[6]) begin
+               vga_red   = {4{rgbfilter[2]}};
+               vga_green = {4{rgbfilter[1]}};
+               vga_blue  = {4{rgbfilter[0]}};
+             end
+           end
+           else begin // less than 80
+             if (centroid[7]) begin
+               vga_red   = {4{rgbfilter[2]}};
+               vga_green = {4{rgbfilter[1]}};
+               vga_blue  = {4{rgbfilter[0]}};
+             end
+           end
+         end
       end
       else if ((row > 127) && (row < 128 + 8)) begin
          if ((col > 7) && (col < 16)) begin // RGB MODE

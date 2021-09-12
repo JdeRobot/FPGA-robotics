@@ -144,6 +144,7 @@ module top_ov7670
      .vsync      (vga_vsync),
      .rgbmode    (rgbmode),
      .testmode   (testmode),
+     .centroid   (centroid),
      .rgbfilter  (rgbfilter),
      .col        (vga_col),
      .row        (vga_row),

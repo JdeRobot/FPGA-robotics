@@ -160,6 +160,8 @@ It is important to connect the camera with short wires (10 cm at most)
   
   sw2 selects the color for the filter
   
+  The VGA shows where the horizontal centroid is
+  
   
 ### [ov7670_rgb_yuv_80x60](alhambra_ii/apio/ov7670_rgb_yuv_80x60)  
   

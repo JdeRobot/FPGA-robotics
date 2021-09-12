@@ -448,6 +448,7 @@ module color_proc
   always @ (*) // should include RGB mode
   begin
     // check on RED
+    color_threshold = 1'b1;
     case (rgbfilter)
       3'b000: // no filter, output same as input
         color_threshold = 1'b1;
