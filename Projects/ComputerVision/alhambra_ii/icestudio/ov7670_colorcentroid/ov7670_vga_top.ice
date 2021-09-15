@@ -12,12 +12,22 @@
     "graph": {
       "blocks": [
         {
-          "id": "6a0e88eb-1641-4a08-a0b8-0f9f1fbbfc8f",
+          "id": "10d216b3-da0f-4d0e-bd00-17b199e21a89",
           "type": "basic.output",
           "data": {
-            "name": "led_cfgtest",
-            "range": "[5:0]",
+            "name": "led",
+            "range": "[7:0]",
             "pins": [
+              {
+                "index": "7",
+                "name": "LED7",
+                "value": "37"
+              },
+              {
+                "index": "6",
+                "name": "LED6",
+                "value": "38"
+              },
               {
                 "index": "5",
                 "name": "LED5",
@@ -52,8 +62,8 @@
             "virtual": false
           },
           "position": {
-            "x": 464,
-            "y": -56
+            "x": 1736,
+            "y": -336
           }
         },
         {
@@ -73,25 +83,6 @@
           "position": {
             "x": 1688,
             "y": -32
-          }
-        },
-        {
-          "id": "bfdb5492-73fd-4068-ba17-c0ca2126f027",
-          "type": "basic.output",
-          "data": {
-            "name": "ov7670_configdone",
-            "pins": [
-              {
-                "index": "0",
-                "name": "LED7",
-                "value": "37"
-              }
-            ],
-            "virtual": false
-          },
-          "position": {
-            "x": 592,
-            "y": 32
           }
         },
         {
@@ -678,6 +669,46 @@
             "width": 96,
             "height": 64
           }
+        },
+        {
+          "id": "8452adaa-e741-49a4-9792-3200a8dd1450",
+          "type": "basic.code",
+          "data": {
+            "code": "// To show the evolution of camera configuration, and when finhished, to show the centroid\nreg [7:0] led;\nassign leds = led;\nalways @ (*)\n  begin\n    led = 8'b0;\n    if (config_finish)\n      led = centroid;\n    else begin\n      led[7:6] = 1'b00;\n      led[5:0] = cam_cfg_steps;\n    end\n  end",
+            "params": [],
+            "ports": {
+              "in": [
+                {
+                  "name": "cam_cfg_steps",
+                  "range": "[5:0]",
+                  "size": 6
+                },
+                {
+                  "name": "centroid",
+                  "range": "[7:0]",
+                  "size": 8
+                },
+                {
+                  "name": "config_finish"
+                }
+              ],
+              "out": [
+                {
+                  "name": "leds",
+                  "range": "[7:0]",
+                  "size": 8
+                }
+              ]
+            }
+          },
+          "position": {
+            "x": 1272,
+            "y": -216
+          },
+          "size": {
+            "width": 336,
+            "height": 168
+          }
         }
       ],
       "wires": [
@@ -828,16 +859,6 @@
         {
           "source": {
             "block": "707be221-f975-4fff-acd4-4283cefeeb90",
-            "port": "aecc1de2-8c3f-49bf-a60c-7174416bee3a"
-          },
-          "target": {
-            "block": "bfdb5492-73fd-4068-ba17-c0ca2126f027",
-            "port": "in"
-          }
-        },
-        {
-          "source": {
-            "block": "707be221-f975-4fff-acd4-4283cefeeb90",
             "port": "3232cbf0-f394-44bc-95cb-73c28c42fa34"
           },
           "target": {
@@ -880,17 +901,6 @@
             "block": "707be221-f975-4fff-acd4-4283cefeeb90",
             "port": "e1a8af51-4d1c-48ad-9c1d-86be50a7db95"
           }
-        },
-        {
-          "source": {
-            "block": "707be221-f975-4fff-acd4-4283cefeeb90",
-            "port": "75402cb7-9429-4bc5-b9f4-7c786a4d6ed5"
-          },
-          "target": {
-            "block": "6a0e88eb-1641-4a08-a0b8-0f9f1fbbfc8f",
-            "port": "in"
-          },
-          "size": 6
         },
         {
           "source": {
@@ -948,7 +958,13 @@
           "target": {
             "block": "94304c33-b298-47c9-83ba-49c8c44636fc",
             "port": "8dec1622-1ecb-44dd-aa7c-6c08ce596226"
-          }
+          },
+          "vertices": [
+            {
+              "x": 360,
+              "y": 208
+            }
+          ]
         },
         {
           "source": {
@@ -1163,7 +1179,13 @@
           "target": {
             "block": "6c34015f-b145-4bcd-a6af-170eee5e79ca",
             "port": "528f5933-e16b-49ad-84ce-ea1ba898ae30"
-          }
+          },
+          "vertices": [
+            {
+              "x": 376,
+              "y": 208
+            }
+          ]
         },
         {
           "source": {
@@ -1320,6 +1342,55 @@
           "target": {
             "block": "94304c33-b298-47c9-83ba-49c8c44636fc",
             "port": "f3ef6eb6-a910-4cfe-b9ef-3d881707fd7a"
+          },
+          "size": 8
+        },
+        {
+          "source": {
+            "block": "707be221-f975-4fff-acd4-4283cefeeb90",
+            "port": "75402cb7-9429-4bc5-b9f4-7c786a4d6ed5"
+          },
+          "target": {
+            "block": "8452adaa-e741-49a4-9792-3200a8dd1450",
+            "port": "cam_cfg_steps"
+          },
+          "vertices": [
+            {
+              "x": 464,
+              "y": -48
+            }
+          ],
+          "size": 6
+        },
+        {
+          "source": {
+            "block": "6c34015f-b145-4bcd-a6af-170eee5e79ca",
+            "port": "d2aaf96a-627a-46e5-a45c-4f247247f53f"
+          },
+          "target": {
+            "block": "8452adaa-e741-49a4-9792-3200a8dd1450",
+            "port": "centroid"
+          },
+          "size": 8
+        },
+        {
+          "source": {
+            "block": "707be221-f975-4fff-acd4-4283cefeeb90",
+            "port": "aecc1de2-8c3f-49bf-a60c-7174416bee3a"
+          },
+          "target": {
+            "block": "8452adaa-e741-49a4-9792-3200a8dd1450",
+            "port": "config_finish"
+          }
+        },
+        {
+          "source": {
+            "block": "8452adaa-e741-49a4-9792-3200a8dd1450",
+            "port": "leds"
+          },
+          "target": {
+            "block": "10d216b3-da0f-4d0e-bd00-17b199e21a89",
+            "port": "in"
           },
           "size": 8
         }

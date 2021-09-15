@@ -15,9 +15,8 @@ module main (
  input vb17786,
  input v793d69,
  input vf9de2b,
- output [5:0] v096ab9,
+ output [7:0] vbb2135,
  output v5a25e4,
- output vcd2b88,
  output vff5579,
  output vf70424,
  output v938565,
@@ -47,17 +46,17 @@ module main (
  wire w14;
  wire w15;
  wire w16;
- wire w17;
- wire [0:5] w18;
- wire [0:7] w19;
+ wire [0:7] w17;
+ wire w18;
+ wire w19;
  wire w20;
  wire w21;
  wire w22;
- wire w23;
- wire w24;
+ wire [0:3] w23;
+ wire [0:3] w24;
  wire [0:3] w25;
- wire [0:3] w26;
- wire [0:3] w27;
+ wire w26;
+ wire w27;
  wire w28;
  wire w29;
  wire w30;
@@ -66,26 +65,28 @@ module main (
  wire w33;
  wire w34;
  wire w35;
- wire w36;
- wire w37;
- wire [0:11] w38;
- wire [0:12] w39;
- wire w40;
- wire w41;
- wire [0:11] w42;
+ wire [0:11] w36;
+ wire [0:12] w37;
+ wire w38;
+ wire w39;
+ wire [0:11] w40;
+ wire [0:12] w41;
+ wire w42;
  wire [0:12] w43;
- wire w44;
- wire [0:12] w45;
- wire [0:11] w46;
+ wire [0:11] w44;
+ wire w45;
+ wire w46;
  wire w47;
  wire w48;
  wire w49;
  wire w50;
  wire w51;
- wire w52;
- wire w53;
- wire [0:2] w54;
+ wire [0:2] w52;
+ wire [0:7] w53;
+ wire [0:5] w54;
  wire [0:7] w55;
+ wire w56;
+ wire [0:7] w57;
  assign w5 = v656efd;
  assign vff5579 = w6;
  assign v5a25e4 = w7;
@@ -94,52 +95,52 @@ module main (
  assign v44ff43 = w10;
  assign vfcb9c1 = w11;
  assign w12 = v0a90cf;
- assign vcd2b88 = w13;
- assign v938565 = w14;
- assign vc704f5 = w15;
- assign v3a4a1f = w16;
- assign w17 = v18f26f;
- assign v096ab9 = w18;
- assign w20 = vb17786;
- assign w21 = v875f83;
- assign w22 = vf9de2b;
- assign w23 = v18f26f;
- assign va5c337 = w28;
- assign v9246f1 = w29;
- assign vf70424 = w30;
- assign w33 = vff1459;
- assign w34 = v53b257;
- assign w35 = vd828fd;
- assign w36 = v793d69;
- assign w41 = v18f26f;
- assign w47 = vf9de2b;
- assign w48 = vd828fd;
- assign w49 = v875f83;
- assign w50 = v198630;
+ assign v938565 = w13;
+ assign vc704f5 = w14;
+ assign v3a4a1f = w15;
+ assign w16 = v18f26f;
+ assign w18 = vb17786;
+ assign w19 = v875f83;
+ assign w20 = vf9de2b;
+ assign w21 = v18f26f;
+ assign va5c337 = w26;
+ assign v9246f1 = w27;
+ assign vf70424 = w28;
+ assign w31 = vff1459;
+ assign w32 = v53b257;
+ assign w33 = vd828fd;
+ assign w34 = v793d69;
+ assign w39 = v18f26f;
+ assign w45 = vf9de2b;
+ assign w46 = vd828fd;
+ assign w47 = v875f83;
+ assign w48 = v198630;
+ assign vbb2135 = w57;
  assign w1 = w0;
- assign w23 = w17;
- assign w24 = w0;
- assign w24 = w1;
- assign w37 = w0;
- assign w37 = w1;
- assign w37 = w24;
- assign w40 = w0;
- assign w40 = w1;
- assign w40 = w24;
- assign w40 = w37;
- assign w41 = w17;
- assign w41 = w23;
- assign w47 = w22;
- assign w48 = w35;
- assign w49 = w21;
- assign w52 = w51;
+ assign w21 = w16;
+ assign w22 = w0;
+ assign w22 = w1;
+ assign w35 = w0;
+ assign w35 = w1;
+ assign w35 = w22;
+ assign w38 = w0;
+ assign w38 = w1;
+ assign w38 = w22;
+ assign w38 = w35;
+ assign w39 = w16;
+ assign w39 = w21;
+ assign w45 = w20;
+ assign w46 = w33;
+ assign w47 = w19;
+ assign w50 = w49;
+ assign w55 = w53;
  vb950e8 vf5324c (
   .v499c2a(w1),
   .v1d0cfa(w2),
   .v7b215d(w3),
   .v55be3f(w4),
-  .v53aa18(w42),
-  .vece592(w43)
+  .v53aa18(w40),
+  .vece592(w41)
  );
  vb0f50e v9d6c24 (
   .v502ac2(w0),
@@ -147,18 +148,18 @@ module main (
   .v08337c(w3),
   .vf4e7d4(w4),
   .vde95c3(w12),
-  .vce1a13(w13),
-  .v2de6ff(w14),
-  .vcf5c71(w15),
-  .v12de31(w16),
-  .vefc03a(w17),
-  .ve4f815(w18),
-  .vea74f7(w19),
-  .v342f42(w31),
-  .vea7dae(w32),
-  .v09dbd4(w33),
-  .vb30c03(w34),
-  .vdd2c1a(w51)
+  .v2de6ff(w13),
+  .vcf5c71(w14),
+  .v12de31(w15),
+  .vefc03a(w16),
+  .vea74f7(w17),
+  .v342f42(w29),
+  .vea7dae(w30),
+  .v09dbd4(w31),
+  .vb30c03(w32),
+  .vdd2c1a(w49),
+  .ve4f815(w54),
+  .vce1a13(w56)
  );
  v73da77 va05532 (
   .v73ce71(w0),
@@ -167,74 +168,80 @@ module main (
  v78c6f8 v701ea9 (
   .v52bdc9(w6),
   .v6945ea(w7),
-  .v15e3ad(w25)
+  .v15e3ad(w23)
  );
  v78c6f8 v8fbe82 (
   .v6945ea(w8),
   .v52bdc9(w9),
-  .v15e3ad(w26)
+  .v15e3ad(w24)
  );
  v78c6f8 v52ded8 (
   .v6945ea(w10),
   .v52bdc9(w11),
-  .v15e3ad(w27)
+  .v15e3ad(w25)
  );
  v1bed30 v5f9eb7 (
-  .v040cfe(w19),
-  .v217058(w20),
-  .v1135a2(w21),
-  .v306f98(w22),
-  .v2e06dc(w35),
-  .vdaab10(w36),
-  .v6ce758(w47),
-  .v67127b(w48),
-  .vd517c0(w49)
+  .v040cfe(w17),
+  .v217058(w18),
+  .v1135a2(w19),
+  .v306f98(w20),
+  .v2e06dc(w33),
+  .vdaab10(w34),
+  .v6ce758(w45),
+  .v67127b(w46),
+  .vd517c0(w47)
  );
  vf65fac ve64290 (
-  .v8d925d(w23),
-  .v025353(w24),
-  .v56f3c4(w25),
-  .v6f66ae(w26),
-  .vefb3e5(w27),
-  .v4006d4(w28),
-  .v06036e(w29),
-  .ve81328(w38),
-  .v27821c(w39),
-  .v675058(w52),
-  .v220422(w53),
-  .vf5a7d7(w54),
-  .ve3f8d2(w55)
+  .v8d925d(w21),
+  .v025353(w22),
+  .v56f3c4(w23),
+  .v6f66ae(w24),
+  .vefb3e5(w25),
+  .v4006d4(w26),
+  .v06036e(w27),
+  .ve81328(w36),
+  .v27821c(w37),
+  .v675058(w50),
+  .v220422(w51),
+  .vf5a7d7(w52),
+  .ve3f8d2(w53)
  );
  vd7e6ff ve07eb2 (
-  .v341fc3(w30),
-  .v248807(w31),
-  .vba979e(w32)
+  .v341fc3(w28),
+  .v248807(w29),
+  .vba979e(w30)
  );
  vb950e8 v79777f (
-  .v499c2a(w37),
-  .v53aa18(w38),
-  .vece592(w39),
-  .v1d0cfa(w44),
-  .v7b215d(w45),
-  .v55be3f(w46)
+  .v499c2a(w35),
+  .v53aa18(w36),
+  .vece592(w37),
+  .v1d0cfa(w42),
+  .v7b215d(w43),
+  .v55be3f(w44)
  );
  v728cc4 vc7cd83 (
-  .vd8b32e(w40),
-  .vd6d39e(w41),
-  .v693ffc(w42),
-  .v0d6545(w43),
-  .vfb9b9d(w44),
-  .v201920(w45),
-  .v8cca3e(w46),
-  .v34bbf1(w50),
-  .v83044f(w54),
-  .ve0b809(w55)
+  .vd8b32e(w38),
+  .vd6d39e(w39),
+  .v693ffc(w40),
+  .v0d6545(w41),
+  .vfb9b9d(w42),
+  .v201920(w43),
+  .v8cca3e(w44),
+  .v34bbf1(w48),
+  .v83044f(w52),
+  .ve0b809(w53)
  );
  vc83dcd vcc9a54 (
-  .v608bd9(w51)
+  .v608bd9(w49)
  );
  vc4dd08 v6a5548 (
-  .v608bd9(w53)
+  .v608bd9(w51)
+ );
+ main_vaa0edc vaa0edc (
+  .cam_cfg_steps(w54),
+  .centroid(w55),
+  .config_finish(w56),
+  .leds(w57)
  );
 endmodule
 
@@ -1222,4 +1229,25 @@ module vc83dcd_v68c173 (
  // Bit 1
  
  assign v = 1'b1;
+endmodule
+
+module main_vaa0edc (
+ input [5:0] cam_cfg_steps,
+ input [7:0] centroid,
+ input config_finish,
+ output [7:0] leds
+);
+ // To show the evolution of camera configuration, and when finhished, to show the centroid
+ reg [7:0] led;
+ assign leds = led;
+ always @ (*)
+   begin
+     led = 8'b0;
+     if (config_finish)
+       led = centroid;
+     else begin
+       led[7:6] = 1'b00;
+       led[5:0] = cam_cfg_steps;
+     end
+   end
 endmodule
