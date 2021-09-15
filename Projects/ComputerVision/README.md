@@ -158,7 +158,7 @@ It is important to connect the camera with short wires (10 cm at most)
   50 MHz clock
   ov7670 camera capture, color processing, 80x60 VGA display using Alhambra II, and shows on the leds where the horizontal centroid is
   
-  sw2 selects the color for the filter
+  sw2 selects the color for the filter, initially there is no filter, so press it once to have red filter, and then: green -> blue -> yellow -> magenta -> cyan -> white -> none -> red -> ... 
   
   The VGA shows where the horizontal centroid is
   
