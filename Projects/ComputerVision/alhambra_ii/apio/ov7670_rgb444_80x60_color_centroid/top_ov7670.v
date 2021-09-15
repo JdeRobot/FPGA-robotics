@@ -97,9 +97,14 @@ module top_ov7670
   assign vga_blue_2b  = vga_blue[3:2];
 
   assign ov7670_d[7:5] =  ov7670_d_msb;
-  assign ov7670_d[4] = 1'b0; // cannot get it, with the available pins
+  // instead of setting it to zero, copy the value of the most significant bit
+  // actually, it doesn't matter because we dont use it, but I think it's better
+  assign ov7670_d[4] = ov7670_d_msb[2]; //cannot get it, with the available pins
+  //assign ov7670_d[4] = 1'b0; //cannot get it, with the available pins
   assign ov7670_d[3:2] =  ov7670_d_lsb;
-  assign ov7670_d[1:0] = 2'b00; // cannot get them, with avialable pins
+  // instead of putting them to zero, copy the other bit 
+  assign ov7670_d[1:0] = ov7670_d_lsb; // cannot get them, with avialable pins
+  //assign ov7670_d[1:0] = 2'b00; // cannot get them, with avialable pins
 
 
   // 50 MHz clock
