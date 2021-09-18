@@ -47,6 +47,7 @@ module vga_display
     input          testmode,
     input [2:0]    rgbfilter,
     input [7:0]    centroid,
+    input [2:0]    proximity,
     input [10-1:0] col,
     input [10-1:0] row,
     input  [c_nb_buf-1:0] frame_pixel,
@@ -148,6 +149,22 @@ module vga_display
             vga_green = frame_pixel[7:4];
             vga_blue  = frame_pixel[7:4];
           end
+      end
+      else if (row < 64-8 && col >= 128 && col < 128+8) begin
+        // row 64 -> 6 bits, proximity is 3 bits. We want the bits 5:3
+        // this is a vertical bar, when closest the bar will reach the top
+        // proximity is 0 to 7, 7 maximum proximity
+        // row 0 is on top
+        // if proximity=7 -> ~proximity=0 -> all rows ON 
+        // if proximity=6 -> ~proximity=1 -> rows 7 to 1 ON 
+        // if proximity=5 -> ~proximity=2 -> rows 7 to 2 ON 
+
+        // if proximity=0 -> ~proximity=7 -> rows 7 to 2 ON 
+        if (~proximity <= row[5:3]) begin
+          vga_red   = {4{rgbfilter[2]}};
+          vga_green = {4{rgbfilter[1]}};
+          vga_blue  = {4{rgbfilter[0]}};
+        end
       end
       else if (row > 256 && row < 384 && col < 512) begin
          vga_red   = {col[8:7],2'b00};

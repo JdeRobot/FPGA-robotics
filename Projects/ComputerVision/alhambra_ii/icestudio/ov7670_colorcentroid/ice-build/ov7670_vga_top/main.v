@@ -87,6 +87,7 @@ module main (
  wire [0:7] w55;
  wire w56;
  wire [0:7] w57;
+ wire [0:2] w58;
  assign w5 = v656efd;
  assign vff5579 = w6;
  assign v5a25e4 = w7;
@@ -204,7 +205,8 @@ module main (
   .v675058(w50),
   .v220422(w51),
   .vf5a7d7(w52),
-  .ve3f8d2(w53)
+  .ve3f8d2(w53),
+  .v4514b7(w58)
  );
  vd7e6ff ve07eb2 (
   .v341fc3(w28),
@@ -229,7 +231,8 @@ module main (
   .v8cca3e(w44),
   .v34bbf1(w48),
   .v83044f(w52),
-  .ve0b809(w53)
+  .ve0b809(w53),
+  .v1274fb(w58)
  );
  vc83dcd vcc9a54 (
   .v608bd9(w49)
@@ -791,6 +794,7 @@ module vf65fac (
  input v220422,
  input [2:0] vf5a7d7,
  input [7:0] ve3f8d2,
+ input [2:0] v4514b7,
  output v06036e,
  output v4006d4,
  output [12:0] v27821c,
@@ -819,6 +823,7 @@ module vf65fac (
  wire w18;
  wire [0:2] w19;
  wire [0:7] w20;
+ wire [0:2] w21;
  assign w0 = v8d925d;
  assign w1 = v8d925d;
  assign w8 = v025353;
@@ -834,6 +839,7 @@ module vf65fac (
  assign w18 = v220422;
  assign w19 = vf5a7d7;
  assign w20 = ve3f8d2;
+ assign w21 = v4514b7;
  assign w1 = w0;
  assign w9 = w8;
  assign w15 = w4;
@@ -865,7 +871,8 @@ module vf65fac (
   .v784c55(w17),
   .veb370a(w18),
   .v44b91f(w19),
-  .v304877(w20)
+  .v304877(w20),
+  .ve5c1c0(w21)
  );
 endmodule
 
@@ -961,6 +968,7 @@ module ve98f0e #(
  input veb370a,
  input [2:0] v44b91f,
  input [7:0] v304877,
+ input [2:0] ve5c1c0,
  output [12:0] v226db0,
  output [3:0] vac7b6e,
  output [3:0] vc12384,
@@ -985,6 +993,7 @@ module ve98f0e #(
  wire [0:2] w16;
  wire w17;
  wire [0:7] w18;
+ wire [0:2] w19;
  assign w2 = v94fa0b;
  assign w3 = v81949b;
  assign w4 = vc09fd8;
@@ -1002,6 +1011,7 @@ module ve98f0e #(
  assign w16 = v44b91f;
  assign w17 = v22cead;
  assign w18 = v304877;
+ assign w19 = ve5c1c0;
  ve98f0e_v43e9e3 #(
   .c_img_cols(p0),
   .c_img_rows(p1)
@@ -1022,7 +1032,8 @@ module ve98f0e #(
   .testmode(w15),
   .rgbfilter(w16),
   .clk50mhz(w17),
-  .centroid(w18)
+  .centroid(w18),
+  .proximity(w19)
  );
 endmodule
 
@@ -1049,6 +1060,7 @@ module ve98f0e_v43e9e3 #(
  input testmode,
  input [2:0] rgbfilter,
  input [7:0] centroid,
+ input [2:0] proximity,
  output [12:0] frame_addr,
  output [3:0] vga_red,
  output [3:0] vga_green,
@@ -1068,6 +1080,7 @@ module ve98f0e_v43e9e3 #(
       .testmode   (testmode),
       .rgbfilter  (rgbfilter),
       .centroid   (centroid),
+      .proximity  (proximity),
       .col        (vga_col),
       .row        (vga_row),
       .frame_pixel(frame_pixel),
@@ -1133,7 +1146,8 @@ module v728cc4 (
  output [11:0] v8cca3e,
  output [12:0] v0d6545,
  output [2:0] v83044f,
- output [7:0] ve0b809
+ output [7:0] ve0b809,
+ output [2:0] v1274fb
 );
  wire w0;
  wire w1;
@@ -1145,6 +1159,7 @@ module v728cc4 (
  wire [0:12] w7;
  wire [0:7] w8;
  wire [0:2] w9;
+ wire [0:2] w10;
  assign w0 = vd6d39e;
  assign w1 = vd8b32e;
  assign w2 = v34bbf1;
@@ -1155,6 +1170,7 @@ module v728cc4 (
  assign v0d6545 = w7;
  assign ve0b809 = w8;
  assign v83044f = w9;
+ assign v1274fb = w10;
  v728cc4_ve7c06b ve7c06b (
   .rst(w0),
   .clk(w1),
@@ -1165,7 +1181,8 @@ module v728cc4 (
   .proc_img_addr(w6),
   .orig_img_addr(w7),
   .centroid(w8),
-  .rgbfilter(w9)
+  .rgbfilter(w9),
+  .proximity(w10)
  );
 endmodule
 
@@ -1186,7 +1203,8 @@ module v728cc4_ve7c06b (
  output [11:0] proc_img_pxl,
  output [12:0] orig_img_addr,
  output [2:0] rgbfilter,
- output [7:0] centroid
+ output [7:0] centroid,
+ output [2:0] proximity
 );
  // @include color_proc.v
  
@@ -1203,7 +1221,8 @@ module v728cc4_ve7c06b (
       .proc_addr  (proc_img_addr),
       .proc_pxl   (proc_img_pxl),
       .centroid   (centroid),
-      .rgbfilter  (rgbfilter)
+      .proximity  (proximity),
+      .rgbfilter  (rgbfilter)     
    );
 endmodule
 //---- Top entity
