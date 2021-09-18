@@ -8,7 +8,7 @@
 
   nofilter -> red -> green -> blue -> yellow -> magenta -> cyan -> white -> none -> red -> ... 
 
-  
+  Also calculates the distance to the object. In a simple way, just counting color pixels. Output in 8 bits, shown in VGA
   
   ![OV7670 camera and alhambra pin connection](ov7670_alhambra_interface.png)
 

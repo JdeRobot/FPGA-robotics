@@ -131,6 +131,9 @@ Projects for the Alhambra II FPGA. There are two folders:
   
   ![OV7670 camera and alhambra pin connection](ov7670_alhambra_interface_yuv.png)
 
+### [ov7670_colorcentroid](alhambra_ii/icestudio/ov7670_colorcentroid)
+
+  Same as the Apio ov7670_rgb444_80x60_color_centroid project
 
   
 ## Alhambra II Apio projects
@@ -160,7 +163,8 @@ It is important to connect the camera with short wires (10 cm at most)
   
   sw2 selects the color for the filter, initially there is no filter, so press it once to have red filter, and then: green -> blue -> yellow -> magenta -> cyan -> white -> none -> red -> ... 
   
-  The VGA shows where the horizontal centroid is and also the proximity of the object (counts how many pixels are detected), the result is reduced to 8 bits
+  The VGA shows where the horizontal centroid is and also the proximity of the object (counts how many pixels are detected), the result is reduced to 8 bits.
+  Maximum value is when half of the pixels are detected. Then 1/3, 1/6, 1/12, 1/24, 1/48, 1/96, and less.
   
   
 ### [ov7670_rgb_yuv_80x60](alhambra_ii/apio/ov7670_rgb_yuv_80x60)  
