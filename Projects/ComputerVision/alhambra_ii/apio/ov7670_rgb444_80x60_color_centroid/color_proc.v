@@ -399,39 +399,42 @@ module color_proc
   // lets say that we are too close if we have 2048 or more, that is,
   //    bit 12 is one
   // Total : 3072
-  // >= 2048            : 2/3 - bits: 11         ='1'    7 -> Max, very close
-  // >= 1536 = 1024+512 : 1/2 - bits:   10:9     ='11'   6
-  // >= 1024            : 1/3 - bits:   10       ='1'    5
-  // >=  768 = 512+256  : 1/4 - bits:      9:8   ='11'   4
-  // >=  512            : 1/6 - bits:      9     ='1'    3
-  // >=  384 = 256+128  : 1/8 - bits:        8:7 ='11'   2
-  // >=  256            : 1/9 - bits:        8   ='1'    1
-  // <   256                                             0 -> Min
+  // ---->= 2048            : 2/3 - bits: 11         ='1'    7 -> Max, very close
+  // >= 1536 = 1024+512 : 1/2 - bits:   10:9       ='11'   7 -> Max, very close
+  // >= 1024            : 1/3 - bits:   10         ='1'    6
+  // >=  512            : 1/6 - bits:      9       ='1'    5
+  // >=  256            : 1/12- bits:        8     ='1'    4
+  // >=  128            : 1/24- bits:         7    ='1'    3
+  // >=   64            : 1/48- bits:          6   ='1'    2
+  // >=   32            : 1/96- bits:           5  ='1'    1
+  // <    32                                               0 -> Min
 
   always @(*)
   begin
-    if (colorpxls[c_nb_inframe_pxls-1] == 1'b1) // bit 11
-      proximity_cmb <= 3'b111;  // 7: too close, min distance
-    else if (colorpxls[c_nb_inframe_pxls-2] == 1'b1) begin // bit 10
-      if (colorpxls[c_nb_inframe_pxls-3] == 1'b1) // bit 9
-        proximity_cmb <= 3'b110;  // 6: bits 10:9
+    if (colorpxls[c_nb_inframe_pxls-2] == 1'b1) begin // bit 10
+      if (colorpxls[c_nb_inframe_pxls-3] == 1'b1) begin // bit 9
+        proximity_cmb <= 3'd7;  // bits 10:9 too close, max proximity >=1536 : 1/2
+      end
       else
-        proximity_cmb <= 3'b101;  // 5: bit 10
+        proximity_cmb <= 3'd6;  // bit 10 too close, max proximity >=1024 : 1/3
     end
     else if (colorpxls[c_nb_inframe_pxls-3] == 1'b1) begin // bit 9
-      if (colorpxls[c_nb_inframe_pxls-4] == 1'b1) // bit 8
-        proximity_cmb <= 3'b100;  // 4: bits 9:8
-      else
-        proximity_cmb <= 3'b011;  // 3: bit  9
+      proximity_cmb <= 3'd5;  // 6: bit 9  >= 512 - 1/6
     end
     else if (colorpxls[c_nb_inframe_pxls-4] == 1'b1) begin // bit 8
-      if (colorpxls[c_nb_inframe_pxls-5] == 1'b1) // bit 7
-        proximity_cmb <= 3'b010;  // 2: bits 8:7
-      else
-        proximity_cmb <= 3'b001;  // 1: bit  7
+      proximity_cmb <= 3'd4;  // 5: bit 8  >= 256 - 1/12
     end
-    else 
-      proximity_cmb <= 3'b000;  // too far, less than 256 color pixels detected
+    else if (colorpxls[c_nb_inframe_pxls-5] == 1'b1) begin // bit 7
+      proximity_cmb <= 3'd3;  // 4: bit 7  >= 128 - 1/24
+    end
+    else if (colorpxls[c_nb_inframe_pxls-6] == 1'b1) begin // bit 6
+      proximity_cmb <= 3'd2;  // 3: bit 6  >= 64 - 1/48
+    end
+    else if (colorpxls[c_nb_inframe_pxls-7] == 1'b1) begin // bit 5
+      proximity_cmb <= 3'd1;  // bit 5  >= 32 - 1/96
+    end
+    else
+      proximity_cmb <= 3'd0;  // < 32
   end
 
   // save the centroid and proximity when finishing the frame
