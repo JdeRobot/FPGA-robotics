@@ -85,6 +85,7 @@ module top_ov7670
 
     wire [5:0]    camera_config_steps;
     wire [7:0]    centroid;
+    wire [2:0]    proximity; // how close the detected object is
 
     parameter     testmode = 1'b0; // no test mode
     parameter     swap_r_b = 1'b1; // red and blue are swapped
@@ -150,6 +151,7 @@ module top_ov7670
      .rgbmode    (rgbmode),
      .testmode   (testmode),
      .centroid   (centroid),
+     .proximity  (proximity),
      .rgbfilter  (rgbfilter),
      .col        (vga_col),
      .row        (vga_row),
@@ -188,7 +190,8 @@ module top_ov7670
      .proc_addr  (proc_img_addr),
      .proc_pxl   (proc_img_pxl),
      .rgbfilter  (rgbfilter),
-     .centroid   (centroid)
+     .centroid   (centroid),
+     .proximity  (proximity)
   );
 
 

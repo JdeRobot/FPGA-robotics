@@ -160,7 +160,7 @@ It is important to connect the camera with short wires (10 cm at most)
   
   sw2 selects the color for the filter, initially there is no filter, so press it once to have red filter, and then: green -> blue -> yellow -> magenta -> cyan -> white -> none -> red -> ... 
   
-  The VGA shows where the horizontal centroid is
+  The VGA shows where the horizontal centroid is and also the proximity of the object (counts how many pixels are detected)
   
   
 ### [ov7670_rgb_yuv_80x60](alhambra_ii/apio/ov7670_rgb_yuv_80x60)  
