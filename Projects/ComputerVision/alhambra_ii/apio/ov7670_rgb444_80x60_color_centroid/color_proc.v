@@ -49,6 +49,9 @@ module color_proc
       // centroid has 8 bits, it is decoded, so its not a number, to match the leds
       c_nb_centroid = 8,
 
+      // proximity calculation, for now just 3 bits 0 to 7 (0: far, 7:close)
+      c_nb_prox  = 3,
+
       // minimum number to consider an image detected and not being noise
       // change this value
       c_min_colorpixels = 32,
@@ -76,6 +79,7 @@ module color_proc
     output [c_nb_img_pxls-1:0] proc_addr, // address of processed pixel
     output reg [c_nb_centroid-1:0] centroid,
     output reg new_centroid,
+    output reg [c_nb_prox-1:0] proximity, //how close is the object 7:close, 0:far
     output reg [2:0] rgbfilter
   );
 
@@ -131,6 +135,9 @@ module color_proc
   // result of the division of the total number of threshold pixels
   // initially, divided by 16, could be 8
   wire [c_nb_inframe_pxls-2:0] colorpxls_div;
+
+  //proximity, combinational, value not valid until reaching the end of the frame
+  reg [c_nb_prox-1:0] proximity_cmb; //proximity, combinational, so 
 
   
   reg [c_nb_cols-1:0] col, col_rg;
@@ -381,17 +388,67 @@ module color_proc
     end
   end
 
+  // proximity measurement (color pixel count
+  // making the assumption that all pixels are together and that there is no 
+  // noise. In the future we will consider this
+  // only considering pixles in the inner frame
 
-  // save the centroid when finishing the frame
+  // distance: how many pixels are detected
+  // since in the inner frame there are 3072 pixels (64x48) -> 12 bits
+  // (c_nb_inframe_pxls),
+  // lets say that we are too close if we have 2048 or more, that is,
+  //    bit 12 is one
+  // Total : 3072
+  // ---->= 2048            : 2/3 - bits: 11         ='1'    7 -> Max, very close
+  // >= 1536 = 1024+512 : 1/2 - bits:   10:9       ='11'   7 -> Max, very close
+  // >= 1024            : 1/3 - bits:   10         ='1'    6
+  // >=  512            : 1/6 - bits:      9       ='1'    5
+  // >=  256            : 1/12- bits:        8     ='1'    4
+  // >=  128            : 1/24- bits:         7    ='1'    3
+  // >=   64            : 1/48- bits:          6   ='1'    2
+  // >=   32            : 1/96- bits:           5  ='1'    1
+  // <    32                                               0 -> Min
+
+  always @(*)
+  begin
+    if (colorpxls[c_nb_inframe_pxls-2] == 1'b1) begin // bit 10
+      if (colorpxls[c_nb_inframe_pxls-3] == 1'b1) begin // bit 9
+        proximity_cmb <= 3'd7;  // bits 10:9 too close, max proximity >=1536 : 1/2
+      end
+      else
+        proximity_cmb <= 3'd6;  // bit 10 too close, max proximity >=1024 : 1/3
+    end
+    else if (colorpxls[c_nb_inframe_pxls-3] == 1'b1) begin // bit 9
+      proximity_cmb <= 3'd5;  // 6: bit 9  >= 512 - 1/6
+    end
+    else if (colorpxls[c_nb_inframe_pxls-4] == 1'b1) begin // bit 8
+      proximity_cmb <= 3'd4;  // 5: bit 8  >= 256 - 1/12
+    end
+    else if (colorpxls[c_nb_inframe_pxls-5] == 1'b1) begin // bit 7
+      proximity_cmb <= 3'd3;  // 4: bit 7  >= 128 - 1/24
+    end
+    else if (colorpxls[c_nb_inframe_pxls-6] == 1'b1) begin // bit 6
+      proximity_cmb <= 3'd2;  // 3: bit 6  >= 64 - 1/48
+    end
+    else if (colorpxls[c_nb_inframe_pxls-7] == 1'b1) begin // bit 5
+      proximity_cmb <= 3'd1;  // bit 5  >= 32 - 1/96
+    end
+    else
+      proximity_cmb <= 3'd0;  // < 32
+  end
+
+  // save the centroid and proximity when finishing the frame
   always @ (posedge clk, posedge rst) 
   begin
     if (rst) begin
       centroid <= 0; 
       new_centroid <= 1'b0;
+      proximity <= 0;
     end
     else if (end_pxl_cnt) begin
       centroid <= centroid_tmp; 
       new_centroid <= 1'b1;
+      proximity <= proximity_cmb;
     end
     else
       new_centroid <= 1'b0;
