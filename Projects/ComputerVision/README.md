@@ -223,4 +223,7 @@ Same as [ULX3S](ulx3s/apio/ov7670_rgb_yuv_320x240_rg) project but for Xilinx Nex
 
 Same as [AlhambraII](alhambra_ii\apio\ov7670_rgb444_80x60_color_centroid) project but for Xilinx Nexys4DDR. Only in verilog. Using the same 50MHz clock
 
+### [ov7670_colorcentroid_160x120](xilinx_nexys4/ov7670_colorcentroid_160x120)
+
+Color centroid and proximity calculation using 160x120 image
   
