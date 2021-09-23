@@ -213,10 +213,22 @@ Option to choose between RGB or YUV (only Y). Also camera can be in test mode or
   
 ### [ov7670_rgb_yuv_80x60_filter](xilinx_nexys4/ov7670_rgb_yuv_80x60_filter)   
 
-Option to choose between RGB or YUV (only Y). Also, camera cab be in test mode or normal capture. And choose color filter when in RGB and edge Sobel filter when in YUV
+Option to choose between RGB or YUV (only Y). Also, camera can be in test mode or normal capture. And choose color filter when in RGB and edge Sobel filter when in YUV
 
 ### [ov7670_rgb_yuv_320x240_rg](xilinx_nexys4/ov7670_rgb_yuv_320x240_rg)
 
 Same as [ULX3S](ulx3s/apio/ov7670_rgb_yuv_320x240_rg) project but for Xilinx Nexys4DDR. Only in verilog
 
+### [ov7670_colorcentroid_80x60](xilinx_nexys4/ov7670_colorcentroid_80x60)
+
+Same as [AlhambraII](alhambra_ii\apio\ov7670_rgb444_80x60_color_centroid) project but for Xilinx Nexys4DDR. Only in verilog. Using the same 50MHz clock
+
+### [ov7670_colorcentroid_160x120](xilinx_nexys4/ov7670_colorcentroid_160x120)
+
+Color centroid and proximity calculation using 160x120 image
+
+
+### [ov7670x2_colorcentroid_160x120](xilinx_nexys4/ov7670x2_colorcentroid_160x120)
+
+Two cameras, color centroid and proximity calculation using 160x120 image
   

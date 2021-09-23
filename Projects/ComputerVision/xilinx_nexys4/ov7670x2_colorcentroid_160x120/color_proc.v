@@ -15,36 +15,36 @@ module color_proc
       // c_nb_img_pxls = log2i(c_img_pxls-1) + 1
       //c_nb_img_pxls =  19,  //640*480=307,200 -> 2^19=524,288
       // QQVGA
-      //c_img_cols    = 160, // 8 bits
-      //c_img_rows    = 120, //  7 bits
-      //c_img_pxls    = c_img_cols * c_img_rows,
-      //c_nb_img_pxls =  15,  //160*120=19.200 -> 2^15
-      // QQVGA /2
-      c_img_cols    = 80, // 7 bits
-      c_img_rows    = 60, //  6 bits
+      c_img_cols    = 160, // 8 bits
+      c_img_rows    = 120, //  7 bits
       c_img_pxls    = c_img_cols * c_img_rows,
-      c_nb_img_pxls = $clog2(c_img_pxls), // 13,  //80*60=4800 -> 2^13
+      c_nb_img_pxls = $clog2(c_img_pxls), // 15 -> 160*120=19.200 -> 2^15
+      // QQVGA /2
+      //c_img_cols    = 80, // 7 bits
+      //c_img_rows    = 60, //  6 bits
+      //c_img_pxls    = c_img_cols * c_img_rows,
+      //c_nb_img_pxls = $clog2(c_img_pxls), // 13,  //80*60=4800 -> 2^13
 
       // number of bits of the image colums and rows
-      c_nb_cols     = 7,
-      c_nb_rows     = 6,
+      c_nb_cols     = $clog2(c_img_cols),
+      c_nb_rows     = $clog2(c_img_rows),
 
       // inner frame size
-      c_inframe_cols = 64, // 6 bits (0 to 63)
-      c_inframe_rows = 48, // 6 bits (0 to 47)
+      c_inframe_cols = 128, // 7 bits (0 to 127) taking out 32, 16 each side
+      c_inframe_rows = 104, // 7 bits (0 to 107) taking out 16, 8 each side
       // total pixels in the inner frame
-      c_inframe_pxls = c_inframe_cols * c_inframe_rows, // 64x48 = 3072
+      c_inframe_pxls = c_inframe_cols * c_inframe_rows, // 128x104 = 13312
       // number of bits for the number of total pixels in the inner frame
-      c_nb_inframe_pxls = $clog2(c_inframe_pxls), // = 12
+      c_nb_inframe_pxls = $clog2(c_inframe_pxls), // = 14
 
       // histogram
       // number of bins (buckets)
       c_hist_bins = 8, // 7:0
       // number of bits needed for the histogram bins: 8 bins -> 3 bits
       c_nb_hist_bins = $clog2(c_hist_bins), // 3 bits
-      // since we have 48 rows and 8 column in each ben
-      // for each bin 384 (48 x 8) is the max number: 9 bits
-      c_nb_hist_val = $clog2(c_inframe_rows * (c_inframe_cols/c_hist_bins)), // = 9,
+      // since we have 104 rows and 8 column in each bin
+      // for each bin 832 (104 x 8) is the max number: 10 bits
+      c_nb_hist_val = $clog2(c_inframe_rows * (c_inframe_cols/c_hist_bins)), // = 10,
 
       // centroid has 8 bits, it is decoded, so its not a number, to match the leds
       c_nb_centroid = 8,
@@ -54,7 +54,7 @@ module color_proc
 
       // minimum number to consider an image detected and not being noise
       // change this value
-      c_min_colorpixels = 32,
+      c_min_colorpixels = 128,  // having 159744 pixels, 128 seems reasonable
 
     c_nb_buf_red   =  4,  // n bits for red in the buffer (memory)
     c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
@@ -75,7 +75,7 @@ module color_proc
     output [c_nb_img_pxls-1:0] orig_addr, //pixel mem address original img
     // Address and pixel of processed image
     output reg                 proc_we,  //write enable, to write processed pxl
-    output reg [c_nb_buf-1:0]  proc_pxl, // processed pixel to be written
+    output [c_nb_buf-1:0]  proc_pxl, // processed pixel to be written
     output [c_nb_img_pxls-1:0] proc_addr, // address of processed pixel
     output reg [c_nb_centroid-1:0] centroid,
     output reg new_centroid,
@@ -99,16 +99,14 @@ module color_proc
   wire   white_limit;
   reg    color_threshold; // if color threshold is active
   
-  parameter limite_azul = 4'b1001; // 9 en decimal
-  parameter limite_verde = 4'b1001; // 9 en decimal
   parameter  BLACK_PXL = {c_nb_img_pxls{1'b0}};
   
   integer ind; 
 
-  // from 0 to 79 columns, 0 to 7, and 72 to 79 are taken out
-  // so column  8 -> 0
-  //    column 71 -> 63
-  // In the inner frame In each column there are 48 rows (inner frame),
+  // from 0 to 159 columns, 0 to 15, and 144 to 159 are taken out
+  // so column  16  -> 0
+  //    column  143 -> 128
+  // In the inner frame In each column there are 104 rows (inner frame),
   // c_nb_hist_val: number of  bits for the value of the histogram bins
   // c_hist_bins: number of bins of the histogram
   reg [c_nb_hist_val-1:0] histogram [c_hist_bins-1:0]; 

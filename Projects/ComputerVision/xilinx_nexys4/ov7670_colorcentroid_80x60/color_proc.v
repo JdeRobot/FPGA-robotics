@@ -75,7 +75,7 @@ module color_proc
     output [c_nb_img_pxls-1:0] orig_addr, //pixel mem address original img
     // Address and pixel of processed image
     output reg                 proc_we,  //write enable, to write processed pxl
-    output reg [c_nb_buf-1:0]  proc_pxl, // processed pixel to be written
+    output [c_nb_buf-1:0]  proc_pxl, // processed pixel to be written
     output [c_nb_img_pxls-1:0] proc_addr, // address of processed pixel
     output reg [c_nb_centroid-1:0] centroid,
     output reg new_centroid,

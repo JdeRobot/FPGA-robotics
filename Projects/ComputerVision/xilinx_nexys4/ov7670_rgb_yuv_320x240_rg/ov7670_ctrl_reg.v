@@ -1103,7 +1103,7 @@ module ov7670_ctrl_reg
       // -- QVGA 320x240
       6'h11:
         reg_yuv422_test = 16'h0C04; // 0C: COM3 Common Control 3
-                             // [3]=1: Enable scale (for QQVGA/2)
+                             // [3]=1: Enable scale (for QVGA)
                              // [2]=0: Disable DCW
                              // others default
       6'h12:
