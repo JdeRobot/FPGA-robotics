@@ -525,7 +525,7 @@ module color_proc
         color_threshold = magen_limit;
       end
       3'b011: begin // filter green and blue
-        color_threshold = green_limit;
+        color_threshold = cyan_limit;
       end
       3'b111: begin // red, green and blue filter
         color_threshold = white_limit;

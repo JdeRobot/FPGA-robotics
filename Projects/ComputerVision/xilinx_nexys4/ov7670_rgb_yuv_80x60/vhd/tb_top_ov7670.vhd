@@ -84,6 +84,9 @@ ARCHITECTURE tb OF tb_top_ov7670 IS
    -- SCALING_DCWCTR OV7670 camera register, vertical downsampling
    constant V_DIV : natural := 8; -- divided by 8:
 
+  constant c_ov_lin_bpr     : natural := 17;
+   
+
    --Inputs
    signal rst : std_logic := '0';
    signal clk : std_logic := '0';

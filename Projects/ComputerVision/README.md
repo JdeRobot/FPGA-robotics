@@ -226,4 +226,9 @@ Same as [AlhambraII](alhambra_ii\apio\ov7670_rgb444_80x60_color_centroid) projec
 ### [ov7670_colorcentroid_160x120](xilinx_nexys4/ov7670_colorcentroid_160x120)
 
 Color centroid and proximity calculation using 160x120 image
+
+
+### [ov7670x2_colorcentroid_160x120](xilinx_nexys4/ov7670x2_colorcentroid_160x120)
+
+Two cameras, color centroid and proximity calculation using 160x120 image
   
