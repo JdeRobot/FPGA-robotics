@@ -20,7 +20,7 @@
           },
           "position": {
             "x": 1016,
-            "y": 136
+            "y": 72
           }
         },
         {
@@ -32,7 +32,7 @@
           },
           "position": {
             "x": 1016,
-            "y": 248
+            "y": 136
           }
         },
         {
@@ -604,6 +604,32 @@
             "port": "row"
           },
           "size": 10
+        },
+        {
+          "source": {
+            "block": "9232910f-a2a1-4927-9639-23aa2236fe75",
+            "port": "hsync"
+          },
+          "target": {
+            "block": "da91d9fd-3ca1-4af3-b290-efb6457958d1",
+            "port": "in"
+          }
+        },
+        {
+          "source": {
+            "block": "9232910f-a2a1-4927-9639-23aa2236fe75",
+            "port": "vsync"
+          },
+          "target": {
+            "block": "89bf4aeb-4e2e-4016-8c38-46b945330713",
+            "port": "in"
+          },
+          "vertices": [
+            {
+              "x": 320,
+              "y": 408
+            }
+          ]
         }
       ]
     }

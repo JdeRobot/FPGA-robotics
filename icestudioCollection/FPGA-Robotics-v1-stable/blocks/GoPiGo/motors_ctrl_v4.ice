@@ -385,6 +385,17 @@
             "port": "proximity"
           },
           "size": 3
+        },
+        {
+          "source": {
+            "block": "c4ddd126-7d64-451c-a9fa-e755548849c4",
+            "port": "out"
+          },
+          "target": {
+            "block": "5e1acbf3-4251-4082-b7cb-2b112485b1da",
+            "port": "centroid_i"
+          },
+          "size": 8
         }
       ]
     }
