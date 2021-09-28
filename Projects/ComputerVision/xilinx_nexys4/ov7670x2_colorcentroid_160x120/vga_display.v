@@ -28,6 +28,10 @@ module vga_display
       //c_img_pxls    = c_img_cols * c_img_rows,
       //c_nb_img_pxls =  13,  //80*60=4800 -> 2^13
 
+      c_col_cam_rght = 256, //column of camera on the right (camera 1)
+      // end pos column of camera on the right (camera 1), actually then next
+      // pixel after
+      c_col_cam_rght_end = 256+c_img_cols,
 
 
     c_nb_buf_red   =  4,  // n bits for red in the buffer (memory)
@@ -61,6 +65,44 @@ module vga_display
     output reg [4-1:0] vga_green,
     output reg [4-1:0] vga_blue
   );
+
+  parameter   C_IMG_RGTH_COL_MIN = 256;
+  parameter   C_IMG_RGTH_COL_MAX = 256+c_img_cols;
+  // indicates if the the area of the text (characters)
+  parameter   C_TXT_ROW_MIN = 128; //248;
+  parameter   C_TXT_ROW_MAX = C_TXT_ROW_MIN + 8; //256;
+  parameter   C_TXT1_COL_MIN = 8;
+  parameter   C_TXT1_COL_MAX = 16;
+  parameter   C_TXT2_COL_MIN = C_TXT1_COL_MAX;
+  parameter   C_TXT2_COL_MAX = 24;
+  parameter   C_FILTBOX_LFT_COL_MIN = C_TXT2_COL_MAX;
+  parameter   C_FILTBOX_LFT_COL_MAX = C_FILTBOX_LFT_COL_MIN + 8;
+  parameter   C_FILTBOX_RGHT_COL_MIN = C_IMG_RGTH_COL_MIN;
+  parameter   C_FILTBOX_RGHT_COL_MAX = C_FILTBOX_RGHT_COL_MIN + 8;
+  reg         txt1_col;
+  reg         txt2_col;
+  reg         filterboxleft_col;
+  reg         filterboxrght_col;
+  reg         txt_row;
+  // indicates if it is the area of the frame buffer image
+  reg         img_col_left;
+  reg         img_col_rght;
+  reg         img_row;
+  // indicates if it is the area of the black and white test
+  parameter   C_BWT_ROW_MIN = 240;
+  parameter   C_BWT_ROW_MAX = 256;
+  parameter   C_BWT_COL_MIN = 128;
+  parameter   C_BWT_COL_MAX = 256;
+  reg         bwt_col;
+  reg         bwt_row;
+  // indicates if it is the area of the color test
+  parameter   C_CLT_ROW_MIN = C_BWT_ROW_MAX;
+  parameter   C_CLT_ROW_MAX = 384;
+  parameter   C_CLT_COL_MIN = 0;
+  parameter   C_CLT_COL_MAX = 256;
+  reg         clt_col;
+  reg         clt_row;
+
 
   reg  [7:0] char_rgbmode, char_testmode;
   wire [2:0] char_row;
@@ -115,6 +157,58 @@ module vga_display
     endcase
   end
 
+  // indicates were we are in the VGA
+  always @ (*)
+  begin
+    // defautl conditions
+    txt1_col = 1'b0;
+    txt2_col = 1'b0;
+    txt_row = 1'b0;
+    // indicates if it is the area of the square that indicates which filter
+    // color is being used
+    filterboxleft_col = 1'b0;
+    filterboxrght_col = 1'b0;
+    // indicates if it is the area of the frame buffer image
+    img_col_left = 1'b0;
+    img_col_rght = 1'b0;
+    img_row = 1'b0;
+    // indicates if it is the area of the black and white test
+    bwt_col = 1'b0;
+    bwt_row = 1'b0;
+    // indicates if it is the area of the color test
+    clt_col = 1'b0;
+    clt_row = 1'b0;
+    // Text conditions
+    if (row >= C_TXT_ROW_MIN && row < C_TXT_ROW_MAX)
+      txt_row = 1'b1;
+    if (col >= C_TXT1_COL_MIN && col < C_TXT1_COL_MAX)
+      txt1_col = 1'b1;
+    if (col >= C_TXT2_COL_MIN && col < C_TXT2_COL_MAX)
+      txt2_col = 1'b1;
+    if (col >= C_FILTBOX_LFT_COL_MIN && col < C_FILTBOX_LFT_COL_MAX)
+      filterboxleft_col = 1'b1;
+    if (col >= C_FILTBOX_RGHT_COL_MIN && col < C_FILTBOX_RGHT_COL_MAX)
+      filterboxrght_col = 1'b1;
+    if (row < c_img_rows)
+      img_row = 1'b1;
+    // left image condition
+    if (col < c_img_cols)
+      img_col_left = 1'b1;
+    // right image condition
+    if (col >= C_IMG_RGTH_COL_MIN && col < C_IMG_RGTH_COL_MAX)
+      img_col_rght = 1'b1;
+    // Gray scale (BW) test conditions
+    if (row >= C_BWT_ROW_MIN && row < C_BWT_ROW_MAX)
+      bwt_row = 1'b1;
+    if (col >= C_BWT_COL_MIN && col < C_BWT_COL_MAX)
+      bwt_col = 1'b1;
+    // color scale (CL) test conditions
+    if (row >= C_CLT_ROW_MIN && row < C_CLT_ROW_MAX)
+      clt_row = 1'b1;
+    if (col >= C_CLT_COL_MIN && col < C_CLT_COL_MAX)
+      clt_col = 1'b1;
+  end
+
 
   always @ (posedge rst, posedge clk)
   begin
@@ -124,7 +218,7 @@ module vga_display
     end
     else begin
       if (row < c_img_rows) begin
-        if (col < c_img_cols) begin
+        if (img_col_left) begin // LEFT CAMERA
           if (new_pxl)
             //it may have a simulation problem in the last pixel of the last row
             frame_addr_2 <= frame_addr_2 + 1;
@@ -132,7 +226,7 @@ module vga_display
         // at 256
         //else if (col >= 256 && col < 256 + c_img_cols) begin
         //else if ((col[8] == 1'b1) && (col[7:0] < c_img_cols)) begin
-        else if ((col >= 256) && (col < 256 + c_img_cols)) begin
+        else if (img_col_rght) begin //RIGHT CAMERA
           if (new_pxl)
             frame_addr_1 <= frame_addr_1 + 1;
         end
@@ -154,167 +248,224 @@ module vga_display
       vga_red   = {4{1'b0}};
       vga_green = {4{1'b0}};
       vga_blue  = {4{1'b0}};
-      // cam 2 LEFT
-      if ((col < c_img_cols) && (row < c_img_rows)) begin
-        if (rgbmode) begin
-          vga_red   = frame_pixel_2[c_nb_buf-1: c_nb_buf-c_nb_buf_red];
-          vga_green = frame_pixel_2[c_nb_buf-c_nb_buf_red-1:c_nb_buf_blue];
-          vga_blue  = frame_pixel_2[c_nb_buf_blue-1:0];
+      if (img_row) begin // TOP PART: CAMERA IMAGE & PROXIMIY
+        if (img_col_left) begin // cam 2 LEFT
+          if (rgbmode) begin
+            vga_red   = frame_pixel_2[c_nb_buf-1: c_nb_buf-c_nb_buf_red];
+            vga_green = frame_pixel_2[c_nb_buf-c_nb_buf_red-1:c_nb_buf_blue];
+            vga_blue  = frame_pixel_2[c_nb_buf_blue-1:0];
+          end
+          else begin
+            vga_red   = frame_pixel_2[7:4];
+            vga_green = frame_pixel_2[7:4];
+            vga_blue  = frame_pixel_2[7:4];
+          end
         end
-        else begin
-          vga_red   = frame_pixel_2[7:4];
-          vga_green = frame_pixel_2[7:4];
-          vga_blue  = frame_pixel_2[7:4];
+        else if (col < c_img_cols+8) begin // LEFT CAM proximity
+          // row 128 -> 7 bits, proximity is 3 bits. We want the bits 6:4
+          // this is a vertical bar, when closest the bar will reach the top
+          // proximity is 0 to 7, 7 maximum proximity
+          // row 0 is on top
+          // if proximity=7 -> ~proximity=0 -> all rows ON 
+          // if proximity=6 -> ~proximity=1 -> rows 7 to 1 ON 
+          // if proximity=5 -> ~proximity=2 -> rows 7 to 2 ON 
+          // if proximity=0 -> ~proximity=7 -> rows 7 to 2 ON 
+          if (~proximity_2 <= row[6:4]) begin
+            vga_red   = {4{rgbfilter_2[2]}};
+            vga_green = {4{rgbfilter_2[1]}};
+            vga_blue  = {4{rgbfilter_2[0]}};
+          end
         end
-      end
-      // cam 1 RIGHT
-      else if ((col[8]   == 1'b1) &&  // greater than 256
-               (col[7:0] < c_img_cols) &&
-               (row < c_img_rows)) begin
-        if (rgbmode) begin
-          vga_red   = frame_pixel_1[c_nb_buf-1: c_nb_buf-c_nb_buf_red];
-          vga_green = frame_pixel_1[c_nb_buf-c_nb_buf_red-1:c_nb_buf_blue];
-          vga_blue  = frame_pixel_1[c_nb_buf_blue-1:0];
-        end
-        else begin
-          vga_red   = frame_pixel_1[7:4];
-          vga_green = frame_pixel_1[7:4];
-          vga_blue  = frame_pixel_1[7:4];
+        else if (img_col_rght) begin// cam 1 RIGHT
+          if (rgbmode) begin
+            vga_red   = frame_pixel_1[c_nb_buf-1: c_nb_buf-c_nb_buf_red];
+            vga_green = frame_pixel_1[c_nb_buf-c_nb_buf_red-1:c_nb_buf_blue];
+            vga_blue  = frame_pixel_1[c_nb_buf_blue-1:0];
+          end
+          else begin
+            vga_red   = frame_pixel_1[7:4];
+            vga_green = frame_pixel_1[7:4];
+            vga_blue  = frame_pixel_1[7:4];
+          end   
         end   
+        else if (col >= C_IMG_RGTH_COL_MAX &&
+                 col < C_IMG_RGTH_COL_MAX + 8) begin // RIGTH CAM PROXIMIY
+          if (~proximity_1 <= row[6:4]) begin
+            vga_red   = {4{rgbfilter_1[2]}};
+            vga_green = {4{rgbfilter_1[1]}};
+            vga_blue  = {4{rgbfilter_1[0]}};
+          end
+        end
       end
-      // proximity cam 2 (left)
-      else if (row < 128-8 && col >= 240 && col < 240+8) begin
-        // row 128 -> 7 bits, proximity is 3 bits. We want the bits 6:4
-        // this is a vertical bar, when closest the bar will reach the top
-        // proximity is 0 to 7, 7 maximum proximity
-        // row 0 is on top
-        // if proximity=7 -> ~proximity=0 -> all rows ON 
-        // if proximity=6 -> ~proximity=1 -> rows 7 to 1 ON 
-        // if proximity=5 -> ~proximity=2 -> rows 7 to 2 ON 
-
-        // if proximity=0 -> ~proximity=7 -> rows 7 to 2 ON 
-        if (~proximity_2 <= row[6:4]) begin
+      else if (row < c_img_rows + 8) begin // CENTROID ROWS
+        if (img_col_left) begin // LEFT CENTROID
+          if (col < 20) begin
+            if (centroid_2[0]) begin
+              vga_red   = {4{rgbfilter_2[2]}};
+              vga_green = {4{rgbfilter_2[1]}};
+              vga_blue  = {4{rgbfilter_2[0]}};
+             end
+          end
+          else if (col < 40) begin
+            if (centroid_2[1]) begin
+              vga_red   = {4{rgbfilter_2[2]}};
+              vga_green = {4{rgbfilter_2[1]}};
+              vga_blue  = {4{rgbfilter_2[0]}};
+            end
+          end
+          else if (col < 60) begin
+            if (centroid_2[2]) begin
+              vga_red   = {4{rgbfilter_2[2]}};
+              vga_green = {4{rgbfilter_2[1]}};
+              vga_blue  = {4{rgbfilter_2[0]}};
+            end
+          end
+          else if (col < 80) begin
+            if (centroid_2[3]) begin
+              vga_red   = {4{rgbfilter_2[2]}};
+              vga_green = {4{rgbfilter_2[1]}};
+              vga_blue  = {4{rgbfilter_2[0]}};
+            end
+          end
+          else if (col < 100) begin
+            if (centroid_2[4]) begin
+              vga_red   = {4{rgbfilter_2[2]}};
+              vga_green = {4{rgbfilter_2[1]}};
+              vga_blue  = {4{rgbfilter_2[0]}};
+            end
+          end
+          else if (col < 120) begin
+            if (centroid_2[5]) begin
+              vga_red   = {4{rgbfilter_2[2]}};
+              vga_green = {4{rgbfilter_2[1]}};
+              vga_blue  = {4{rgbfilter_2[0]}};
+            end
+          end
+          else if (col < 140) begin
+            if (centroid_2[6]) begin
+              vga_red   = {4{rgbfilter_2[2]}};
+              vga_green = {4{rgbfilter_2[1]}};
+              vga_blue  = {4{rgbfilter_2[0]}};
+            end
+          end
+          else begin // less than 160
+            if (centroid_2[7]) begin
+              vga_red   = {4{rgbfilter_2[2]}};
+              vga_green = {4{rgbfilter_2[1]}};
+              vga_blue  = {4{rgbfilter_2[0]}};
+            end
+          end
+        end                
+        else if (img_col_rght) begin // RIGHT CENTROID
+          if (col < 20 + C_IMG_RGTH_COL_MIN) begin
+            if (centroid_1[0]) begin
+              vga_red   = {4{rgbfilter_1[2]}};
+              vga_green = {4{rgbfilter_1[1]}};
+              vga_blue  = {4{rgbfilter_1[0]}};
+             end
+          end
+          else if (col < 40 +C_IMG_RGTH_COL_MIN) begin
+            if (centroid_1[1]) begin
+              vga_red   = {4{rgbfilter_1[2]}};
+              vga_green = {4{rgbfilter_1[1]}};
+              vga_blue  = {4{rgbfilter_1[0]}};
+            end
+          end
+          else if (col < 60 + C_IMG_RGTH_COL_MIN) begin
+            if (centroid_1[2]) begin
+              vga_red   = {4{rgbfilter_1[2]}};
+              vga_green = {4{rgbfilter_1[1]}};
+              vga_blue  = {4{rgbfilter_1[0]}};
+            end
+          end
+          else if (col < 80 + C_IMG_RGTH_COL_MIN) begin
+            if (centroid_1[3]) begin
+              vga_red   = {4{rgbfilter_1[2]}};
+              vga_green = {4{rgbfilter_1[1]}};
+              vga_blue  = {4{rgbfilter_1[0]}};
+            end
+          end
+          else if (col < 100 + C_IMG_RGTH_COL_MIN) begin
+            if (centroid_1[4]) begin
+              vga_red   = {4{rgbfilter_1[2]}};
+              vga_green = {4{rgbfilter_1[1]}};
+              vga_blue  = {4{rgbfilter_1[0]}};
+            end
+          end
+          else if (col < 120 + C_IMG_RGTH_COL_MIN) begin
+            if (centroid_1[5]) begin
+              vga_red   = {4{rgbfilter_1[2]}};
+              vga_green = {4{rgbfilter_1[1]}};
+              vga_blue  = {4{rgbfilter_1[0]}};
+            end
+          end
+          else if (col < 140 + C_IMG_RGTH_COL_MIN) begin
+            if (centroid_1[6]) begin
+              vga_red   = {4{rgbfilter_1[2]}};
+              vga_green = {4{rgbfilter_1[1]}};
+              vga_blue  = {4{rgbfilter_1[0]}};
+            end
+          end
+          else begin // less than 160
+            if (centroid_1[7]) begin
+              vga_red   = {4{rgbfilter_1[2]}};
+              vga_green = {4{rgbfilter_1[1]}};
+              vga_blue  = {4{rgbfilter_1[0]}};
+            end
+          end
+        end                
+      end
+      // CHARACTERS
+      else if (row < C_TXT_ROW_MAX) begin
+        if (txt1_col) begin // RGB MODE CHARACTER
+          if (char_rgbmode[7-char_col]) begin
+            vga_red   = 4'b1111;
+            vga_green = 4'b1111;
+            vga_blue  = 4'b1111;
+          end
+          else begin
+            vga_red   = 4'b0000;
+            vga_green = 4'b0000;
+            vga_blue  = 4'b0000;
+          end
+        end
+        else if (txt2_col) begin // TEST MODE CHARACTER
+          if (char_testmode[7-char_col]) begin
+            vga_red   = 4'b1111;
+            vga_green = 4'b1111;
+            vga_blue  = 4'b1111;
+          end
+          else begin
+            vga_red   = 4'b0000;
+            vga_green = 4'b0000;
+            vga_blue  = 4'b0000;
+          end
+        end
+        else if (filterboxleft_col) begin // color box indicating filter LEFT
           vga_red   = {4{rgbfilter_2[2]}};
           vga_green = {4{rgbfilter_2[1]}};
           vga_blue  = {4{rgbfilter_2[0]}};
         end
+        else if (filterboxrght_col) begin // color box indicating filter RIGHT
+          vga_red   = {4{rgbfilter_1[2]}};
+          vga_green = {4{rgbfilter_1[1]}};
+          vga_blue  = {4{rgbfilter_1[0]}};
+        end
       end
-      else if (row > 256 && row < 384 && col < 512) begin
-         vga_red   = {col[8:7],2'b00};
-         vga_green = {col[6:5],2'b00};
-         vga_blue  = {row[6:5],2'b00};
-      end
-      else if ((col == c_img_cols) || (row == c_img_rows)) begin
-         vga_red   = 4'b0000;
-         vga_green = 4'b1000;
-         vga_blue  = 4'b1000;
-      end
-      else if ((col == 2*c_img_cols) || (row == 2*c_img_rows)) begin
-         vga_red   = 4'b1000;
-         vga_green = 4'b1000;
-         vga_blue  = 4'b0000;
-      end
-      else if ((col == 4*c_img_cols) || (row == 4*c_img_rows)) begin
-         vga_red   = 4'b1000;
-         vga_green = 4'b0000;
-         vga_blue  = 4'b1000;
-      end
-      // centroid 2 (left)
-      else if ((row > c_img_rows-1) && (row < c_img_rows + 8)) begin
-         if (col < c_img_cols) begin
-           if (col < 20) begin
-             if (centroid_2[0]) begin
-               vga_red   = {4{rgbfilter_2[2]}};
-               vga_green = {4{rgbfilter_2[1]}};
-               vga_blue  = {4{rgbfilter_2[0]}};
-             end
-           end
-           else if (col < 40) begin
-             if (centroid_2[1]) begin
-               vga_red   = {4{rgbfilter_2[2]}};
-               vga_green = {4{rgbfilter_2[1]}};
-               vga_blue  = {4{rgbfilter_2[0]}};
-             end
-           end
-           else if (col < 60) begin
-             if (centroid_2[2]) begin
-               vga_red   = {4{rgbfilter_2[2]}};
-               vga_green = {4{rgbfilter_2[1]}};
-               vga_blue  = {4{rgbfilter_2[0]}};
-             end
-           end
-           else if (col < 80) begin
-             if (centroid_2[3]) begin
-               vga_red   = {4{rgbfilter_2[2]}};
-               vga_green = {4{rgbfilter_2[1]}};
-               vga_blue  = {4{rgbfilter_2[0]}};
-             end
-           end
-           else if (col < 100) begin
-             if (centroid_2[4]) begin
-               vga_red   = {4{rgbfilter_2[2]}};
-               vga_green = {4{rgbfilter_2[1]}};
-               vga_blue  = {4{rgbfilter_2[0]}};
-             end
-           end
-           else if (col < 120) begin
-             if (centroid_2[5]) begin
-               vga_red   = {4{rgbfilter_2[2]}};
-               vga_green = {4{rgbfilter_2[1]}};
-               vga_blue  = {4{rgbfilter_2[0]}};
-             end
-           end
-           else if (col < 140) begin
-             if (centroid_2[6]) begin
-               vga_red   = {4{rgbfilter_2[2]}};
-               vga_green = {4{rgbfilter_2[1]}};
-               vga_blue  = {4{rgbfilter_2[0]}};
-             end
-           end
-           else begin // less than 160
-             if (centroid_2[7]) begin
-               vga_red   = {4{rgbfilter_2[2]}};
-               vga_green = {4{rgbfilter_2[1]}};
-               vga_blue  = {4{rgbfilter_2[0]}};
-             end
-           end
-         end
-      end
-      else if ((row > 127) && (row < 128 + 8)) begin
-         if ((col > 7) && (col < 16)) begin // RGB MODE
-           if (char_rgbmode[7-char_col]) begin
-             vga_red   = 4'b1111;
-             vga_green = 4'b1111;
-             vga_blue  = 4'b1111;
-           end
-           else begin
-             vga_red   = 4'b0000;
-             vga_green = 4'b0000;
-             vga_blue  = 4'b0000;
-           end
-         end
-         else if ((col > 15) && (col < 24)) begin // TEST MODE
-           if (char_testmode[7-char_col]) begin
-             vga_red   = 4'b1111;
-             vga_green = 4'b1111;
-             vga_blue  = 4'b1111;
-           end
-           else begin
-             vga_red   = 4'b0000;
-             vga_green = 4'b0000;
-             vga_blue  = 4'b0000;
-           end
-         end
-         else if ((col > 23) && (col < 32)) begin // color box indicating filter
-           vga_red   = {4{rgbfilter_2[2]}};
-           vga_green = {4{rgbfilter_2[1]}};
-           vga_blue  = {4{rgbfilter_2[0]}};
-         end
+      else if (bwt_col && bwt_row) begin // Test grayscale  square of 16 pixels
+        vga_red    = col[6:3];
+        vga_green  = col[6:3];
+        vga_blue   = col[6:3];
+      end 
+      else if (clt_col && clt_row) begin // Test color
+        vga_red   = col[7:4];
+        vga_green = col[5:2];
+        vga_blue  = row[5:2];
       end
       else begin
-         vga_red   = 4'b0000;
-         vga_green = 4'b0000;
-         vga_blue  = 4'b0000;
+        vga_red   = 4'b0000;
+        vga_green = 4'b0000;
+        vga_blue  = 4'b0000;
       end
     end
   end
