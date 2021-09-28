@@ -50,8 +50,8 @@ module top_ov7670x2_centroid
 
 
      output reg [7:0] led,
-     input        btnl_proc_ctrl_1,  //control of the color processing cam1
-     input        btnr_proc_ctrl_2,  //control of the color processing cam2
+     input        btnl_proc_ctrl_2,  //control color processing cam2 (left)
+     input        btnr_proc_ctrl_1,  //control color processing cam2 (right)
 
      output [3:0] vga_red,
      output [3:0] vga_green,
@@ -179,7 +179,7 @@ module top_ov7670x2_centroid
   );
 
 
-  // --------------------- camera 1
+  // --------------------- camera 1 RIGTH
   // frame buffer from the camera, before processing
   frame_buffer cam_fb_1  
   (
@@ -198,7 +198,7 @@ module top_ov7670x2_centroid
   (
      .rst        (rst),
      .clk        (clk50mhz),
-     .proc_ctrl  (btnl_proc_ctrl_1),
+     .proc_ctrl  (btnr_proc_ctrl_1),
      // from original image frame buffer
      .orig_addr  (orig_img_addr_1),
      .orig_pxl   (orig_img_pxl_1),
@@ -242,7 +242,7 @@ module top_ov7670x2_centroid
      .we           (capture_we_1)
   );   
 
-  // --------------------- camera 2
+  // --------------------- camera 2 LEFT
   // frame buffer from the camera, before processing
   frame_buffer cam_fb_2  
   (
@@ -261,7 +261,7 @@ module top_ov7670x2_centroid
   (
      .rst        (rst),
      .clk        (clk50mhz),
-     .proc_ctrl  (btnr_proc_ctrl_2),
+     .proc_ctrl  (btnl_proc_ctrl_2),
      // from original image frame buffer
      .orig_addr  (orig_img_addr_2),
      .orig_pxl   (orig_img_pxl_2),
