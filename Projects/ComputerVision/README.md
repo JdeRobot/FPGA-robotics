@@ -85,6 +85,14 @@ Same as ov7670_rgb_yuv_320x240_colorfilter but usign the camera PMOD
 Port GP17-OV7670_PWDN didn't work when camera powerdown was assigned deep in the hierarchy, but when assigned in the top module it worked
 
 ![OV7670 camera and ULX3S pin connection](ulx3s_camera_vga_pmods.jpg)
+
+
+### [ov7670x2_centroid_160x120](ulx3s/apio/ov7670x2_centroid_160x120)
+
+Two cameras and VGA. 50MHz clock. Same as Xilinx Nexys4DDR project
+
+![OV7670 2 cameras and ULX3S pin connection](ulx3s_ov7670x2_vga_interface.png)
+
 ---  
   
 # Alhambra II
