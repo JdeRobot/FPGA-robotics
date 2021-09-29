@@ -49,18 +49,18 @@ module vga_display
     input          vsync,
     input          rgbmode,
     input          testmode,
-    input [2:0]    rgbfilter_1,
-    input [7:0]    centroid_1,
-    input [2:0]    proximity_1,
-    input [2:0]    rgbfilter_2,
-    input [7:0]    centroid_2,
-    input [2:0]    proximity_2,
+    input [2:0]    rgbfilter_r, // right camera
+    input [7:0]    centroid_r,
+    input [2:0]    proximity_r,
+    input [2:0]    rgbfilter_l, // left camera
+    input [7:0]    centroid_l,
+    input [2:0]    proximity_l,
     input [10-1:0] col,
     input [10-1:0] row,
-    input  [c_nb_buf-1:0] frame_pixel_1, // cam 1
-    output reg [c_nb_img_pxls-1:0] frame_addr_1,
-    input  [c_nb_buf-1:0] frame_pixel_2, // cam 2
-    output reg [c_nb_img_pxls-1:0] frame_addr_2,
+    input  [c_nb_buf-1:0] frame_pixel_r, // right cam
+    output reg [c_nb_img_pxls-1:0] frame_addr_r,
+    input  [c_nb_buf-1:0] frame_pixel_l, // left cam
+    output reg [c_nb_img_pxls-1:0] frame_addr_l,
     output reg [4-1:0] vga_red,
     output reg [4-1:0] vga_green,
     output reg [4-1:0] vga_blue
@@ -213,27 +213,27 @@ module vga_display
   always @ (posedge rst, posedge clk)
   begin
     if (rst) begin
-      frame_addr_1 <= 0;
-      frame_addr_2 <= 0;
+      frame_addr_r <= 0;
+      frame_addr_l <= 0;
     end
     else begin
       if (row < c_img_rows) begin
         if (img_col_left) begin // LEFT CAMERA
           if (new_pxl)
             //it may have a simulation problem in the last pixel of the last row
-            frame_addr_2 <= frame_addr_2 + 1;
+            frame_addr_l <= frame_addr_l + 1;
         end
         // at 256
         //else if (col >= 256 && col < 256 + c_img_cols) begin
         //else if ((col[8] == 1'b1) && (col[7:0] < c_img_cols)) begin
         else if (img_col_rght) begin //RIGHT CAMERA
           if (new_pxl)
-            frame_addr_1 <= frame_addr_1 + 1;
+            frame_addr_r <= frame_addr_r + 1;
         end
       end
       else begin
-        frame_addr_1 <= 0;
-        frame_addr_2 <= 0;
+        frame_addr_r <= 0;
+        frame_addr_l <= 0;
       end
     end
   end
@@ -249,16 +249,16 @@ module vga_display
       vga_green = {4{1'b0}};
       vga_blue  = {4{1'b0}};
       if (img_row) begin // TOP PART: CAMERA IMAGE & PROXIMIY
-        if (img_col_left) begin // cam 2 LEFT
+        if (img_col_left) begin // cam LEFT
           if (rgbmode) begin
-            vga_red   = frame_pixel_2[c_nb_buf-1: c_nb_buf-c_nb_buf_red];
-            vga_green = frame_pixel_2[c_nb_buf-c_nb_buf_red-1:c_nb_buf_blue];
-            vga_blue  = frame_pixel_2[c_nb_buf_blue-1:0];
+            vga_red   = frame_pixel_l[c_nb_buf-1: c_nb_buf-c_nb_buf_red];
+            vga_green = frame_pixel_l[c_nb_buf-c_nb_buf_red-1:c_nb_buf_blue];
+            vga_blue  = frame_pixel_l[c_nb_buf_blue-1:0];
           end
           else begin
-            vga_red   = frame_pixel_2[7:4];
-            vga_green = frame_pixel_2[7:4];
-            vga_blue  = frame_pixel_2[7:4];
+            vga_red   = frame_pixel_l[7:4];
+            vga_green = frame_pixel_l[7:4];
+            vga_blue  = frame_pixel_l[7:4];
           end
         end
         else if (col < c_img_cols+8) begin // LEFT CAM proximity
@@ -270,147 +270,147 @@ module vga_display
           // if proximity=6 -> ~proximity=1 -> rows 7 to 1 ON 
           // if proximity=5 -> ~proximity=2 -> rows 7 to 2 ON 
           // if proximity=0 -> ~proximity=7 -> rows 7 to 2 ON 
-          if (~proximity_2 <= row[6:4]) begin
-            vga_red   = {4{rgbfilter_2[2]}};
-            vga_green = {4{rgbfilter_2[1]}};
-            vga_blue  = {4{rgbfilter_2[0]}};
+          if (~proximity_l <= row[6:4]) begin
+            vga_red   = {4{rgbfilter_l[2]}};
+            vga_green = {4{rgbfilter_l[1]}};
+            vga_blue  = {4{rgbfilter_l[0]}};
           end
         end
-        else if (img_col_rght) begin// cam 1 RIGHT
+        else if (img_col_rght) begin// cam RIGHT
           if (rgbmode) begin
-            vga_red   = frame_pixel_1[c_nb_buf-1: c_nb_buf-c_nb_buf_red];
-            vga_green = frame_pixel_1[c_nb_buf-c_nb_buf_red-1:c_nb_buf_blue];
-            vga_blue  = frame_pixel_1[c_nb_buf_blue-1:0];
+            vga_red   = frame_pixel_r[c_nb_buf-1: c_nb_buf-c_nb_buf_red];
+            vga_green = frame_pixel_r[c_nb_buf-c_nb_buf_red-1:c_nb_buf_blue];
+            vga_blue  = frame_pixel_r[c_nb_buf_blue-1:0];
           end
           else begin
-            vga_red   = frame_pixel_1[7:4];
-            vga_green = frame_pixel_1[7:4];
-            vga_blue  = frame_pixel_1[7:4];
+            vga_red   = frame_pixel_r[7:4];
+            vga_green = frame_pixel_r[7:4];
+            vga_blue  = frame_pixel_r[7:4];
           end   
         end   
         else if (col >= C_IMG_RGTH_COL_MAX &&
                  col < C_IMG_RGTH_COL_MAX + 8) begin // RIGTH CAM PROXIMIY
-          if (~proximity_1 <= row[6:4]) begin
-            vga_red   = {4{rgbfilter_1[2]}};
-            vga_green = {4{rgbfilter_1[1]}};
-            vga_blue  = {4{rgbfilter_1[0]}};
+          if (~proximity_r <= row[6:4]) begin
+            vga_red   = {4{rgbfilter_r[2]}};
+            vga_green = {4{rgbfilter_r[1]}};
+            vga_blue  = {4{rgbfilter_r[0]}};
           end
         end
       end
       else if (row < c_img_rows + 8) begin // CENTROID ROWS
         if (img_col_left) begin // LEFT CENTROID
           if (col < 20) begin
-            if (centroid_2[0]) begin
-              vga_red   = {4{rgbfilter_2[2]}};
-              vga_green = {4{rgbfilter_2[1]}};
-              vga_blue  = {4{rgbfilter_2[0]}};
+            if (centroid_l[0]) begin
+              vga_red   = {4{rgbfilter_l[2]}};
+              vga_green = {4{rgbfilter_l[1]}};
+              vga_blue  = {4{rgbfilter_l[0]}};
              end
           end
           else if (col < 40) begin
-            if (centroid_2[1]) begin
-              vga_red   = {4{rgbfilter_2[2]}};
-              vga_green = {4{rgbfilter_2[1]}};
-              vga_blue  = {4{rgbfilter_2[0]}};
+            if (centroid_l[1]) begin
+              vga_red   = {4{rgbfilter_l[2]}};
+              vga_green = {4{rgbfilter_l[1]}};
+              vga_blue  = {4{rgbfilter_l[0]}};
             end
           end
           else if (col < 60) begin
-            if (centroid_2[2]) begin
-              vga_red   = {4{rgbfilter_2[2]}};
-              vga_green = {4{rgbfilter_2[1]}};
-              vga_blue  = {4{rgbfilter_2[0]}};
+            if (centroid_l[2]) begin
+              vga_red   = {4{rgbfilter_l[2]}};
+              vga_green = {4{rgbfilter_l[1]}};
+              vga_blue  = {4{rgbfilter_l[0]}};
             end
           end
           else if (col < 80) begin
-            if (centroid_2[3]) begin
-              vga_red   = {4{rgbfilter_2[2]}};
-              vga_green = {4{rgbfilter_2[1]}};
-              vga_blue  = {4{rgbfilter_2[0]}};
+            if (centroid_l[3]) begin
+              vga_red   = {4{rgbfilter_l[2]}};
+              vga_green = {4{rgbfilter_l[1]}};
+              vga_blue  = {4{rgbfilter_l[0]}};
             end
           end
           else if (col < 100) begin
-            if (centroid_2[4]) begin
-              vga_red   = {4{rgbfilter_2[2]}};
-              vga_green = {4{rgbfilter_2[1]}};
-              vga_blue  = {4{rgbfilter_2[0]}};
+            if (centroid_l[4]) begin
+              vga_red   = {4{rgbfilter_l[2]}};
+              vga_green = {4{rgbfilter_l[1]}};
+              vga_blue  = {4{rgbfilter_l[0]}};
             end
           end
           else if (col < 120) begin
-            if (centroid_2[5]) begin
-              vga_red   = {4{rgbfilter_2[2]}};
-              vga_green = {4{rgbfilter_2[1]}};
-              vga_blue  = {4{rgbfilter_2[0]}};
+            if (centroid_l[5]) begin
+              vga_red   = {4{rgbfilter_l[2]}};
+              vga_green = {4{rgbfilter_l[1]}};
+              vga_blue  = {4{rgbfilter_l[0]}};
             end
           end
           else if (col < 140) begin
-            if (centroid_2[6]) begin
-              vga_red   = {4{rgbfilter_2[2]}};
-              vga_green = {4{rgbfilter_2[1]}};
-              vga_blue  = {4{rgbfilter_2[0]}};
+            if (centroid_l[6]) begin
+              vga_red   = {4{rgbfilter_l[2]}};
+              vga_green = {4{rgbfilter_l[1]}};
+              vga_blue  = {4{rgbfilter_l[0]}};
             end
           end
           else begin // less than 160
-            if (centroid_2[7]) begin
-              vga_red   = {4{rgbfilter_2[2]}};
-              vga_green = {4{rgbfilter_2[1]}};
-              vga_blue  = {4{rgbfilter_2[0]}};
+            if (centroid_l[7]) begin
+              vga_red   = {4{rgbfilter_l[2]}};
+              vga_green = {4{rgbfilter_l[1]}};
+              vga_blue  = {4{rgbfilter_l[0]}};
             end
           end
         end                
         else if (img_col_rght) begin // RIGHT CENTROID
           if (col < 20 + C_IMG_RGTH_COL_MIN) begin
-            if (centroid_1[0]) begin
-              vga_red   = {4{rgbfilter_1[2]}};
-              vga_green = {4{rgbfilter_1[1]}};
-              vga_blue  = {4{rgbfilter_1[0]}};
+            if (centroid_r[0]) begin
+              vga_red   = {4{rgbfilter_r[2]}};
+              vga_green = {4{rgbfilter_r[1]}};
+              vga_blue  = {4{rgbfilter_r[0]}};
              end
           end
           else if (col < 40 +C_IMG_RGTH_COL_MIN) begin
-            if (centroid_1[1]) begin
-              vga_red   = {4{rgbfilter_1[2]}};
-              vga_green = {4{rgbfilter_1[1]}};
-              vga_blue  = {4{rgbfilter_1[0]}};
+            if (centroid_r[1]) begin
+              vga_red   = {4{rgbfilter_r[2]}};
+              vga_green = {4{rgbfilter_r[1]}};
+              vga_blue  = {4{rgbfilter_r[0]}};
             end
           end
           else if (col < 60 + C_IMG_RGTH_COL_MIN) begin
-            if (centroid_1[2]) begin
-              vga_red   = {4{rgbfilter_1[2]}};
-              vga_green = {4{rgbfilter_1[1]}};
-              vga_blue  = {4{rgbfilter_1[0]}};
+            if (centroid_r[2]) begin
+              vga_red   = {4{rgbfilter_r[2]}};
+              vga_green = {4{rgbfilter_r[1]}};
+              vga_blue  = {4{rgbfilter_r[0]}};
             end
           end
           else if (col < 80 + C_IMG_RGTH_COL_MIN) begin
-            if (centroid_1[3]) begin
-              vga_red   = {4{rgbfilter_1[2]}};
-              vga_green = {4{rgbfilter_1[1]}};
-              vga_blue  = {4{rgbfilter_1[0]}};
+            if (centroid_r[3]) begin
+              vga_red   = {4{rgbfilter_r[2]}};
+              vga_green = {4{rgbfilter_r[1]}};
+              vga_blue  = {4{rgbfilter_r[0]}};
             end
           end
           else if (col < 100 + C_IMG_RGTH_COL_MIN) begin
-            if (centroid_1[4]) begin
-              vga_red   = {4{rgbfilter_1[2]}};
-              vga_green = {4{rgbfilter_1[1]}};
-              vga_blue  = {4{rgbfilter_1[0]}};
+            if (centroid_r[4]) begin
+              vga_red   = {4{rgbfilter_r[2]}};
+              vga_green = {4{rgbfilter_r[1]}};
+              vga_blue  = {4{rgbfilter_r[0]}};
             end
           end
           else if (col < 120 + C_IMG_RGTH_COL_MIN) begin
-            if (centroid_1[5]) begin
-              vga_red   = {4{rgbfilter_1[2]}};
-              vga_green = {4{rgbfilter_1[1]}};
-              vga_blue  = {4{rgbfilter_1[0]}};
+            if (centroid_r[5]) begin
+              vga_red   = {4{rgbfilter_r[2]}};
+              vga_green = {4{rgbfilter_r[1]}};
+              vga_blue  = {4{rgbfilter_r[0]}};
             end
           end
           else if (col < 140 + C_IMG_RGTH_COL_MIN) begin
-            if (centroid_1[6]) begin
-              vga_red   = {4{rgbfilter_1[2]}};
-              vga_green = {4{rgbfilter_1[1]}};
-              vga_blue  = {4{rgbfilter_1[0]}};
+            if (centroid_r[6]) begin
+              vga_red   = {4{rgbfilter_r[2]}};
+              vga_green = {4{rgbfilter_r[1]}};
+              vga_blue  = {4{rgbfilter_r[0]}};
             end
           end
           else begin // less than 160
-            if (centroid_1[7]) begin
-              vga_red   = {4{rgbfilter_1[2]}};
-              vga_green = {4{rgbfilter_1[1]}};
-              vga_blue  = {4{rgbfilter_1[0]}};
+            if (centroid_r[7]) begin
+              vga_red   = {4{rgbfilter_r[2]}};
+              vga_green = {4{rgbfilter_r[1]}};
+              vga_blue  = {4{rgbfilter_r[0]}};
             end
           end
         end                
@@ -442,14 +442,14 @@ module vga_display
           end
         end
         else if (filterboxleft_col) begin // color box indicating filter LEFT
-          vga_red   = {4{rgbfilter_2[2]}};
-          vga_green = {4{rgbfilter_2[1]}};
-          vga_blue  = {4{rgbfilter_2[0]}};
+          vga_red   = {4{rgbfilter_l[2]}};
+          vga_green = {4{rgbfilter_l[1]}};
+          vga_blue  = {4{rgbfilter_l[0]}};
         end
         else if (filterboxrght_col) begin // color box indicating filter RIGHT
-          vga_red   = {4{rgbfilter_1[2]}};
-          vga_green = {4{rgbfilter_1[1]}};
-          vga_blue  = {4{rgbfilter_1[0]}};
+          vga_red   = {4{rgbfilter_r[2]}};
+          vga_green = {4{rgbfilter_r[1]}};
+          vga_blue  = {4{rgbfilter_r[0]}};
         end
       end
       else if (bwt_col && bwt_row) begin // Test grayscale  square of 16 pixels

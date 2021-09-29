@@ -24,34 +24,34 @@ module top_ov7670x2_centroid
     )
     (input        rst,
      input        clk,
-     // camera 1
-     output       ov7670_1_sioc,
-     output       ov7670_1_siod,
-     output       ov7670_1_rst_n,
+     // left camera
+     output       ov7670_l_sioc,
+     output       ov7670_l_siod,
+     output       ov7670_l_rst_n,
 
-     input        ov7670_1_vsync,
-     input        ov7670_1_href,
-     input        ov7670_1_pclk,
-     output       ov7670_1_xclk,
-     output       ov7670_1_pwdn,
-     input  [7:0] ov7670_1_d,
+     input        ov7670_l_vsync,
+     input        ov7670_l_href,
+     input        ov7670_l_pclk,
+     output       ov7670_l_xclk,
+     output       ov7670_l_pwdn,
+     input  [7:0] ov7670_l_d,
 
-     // camera 2
-     output       ov7670_2_sioc,
-     output       ov7670_2_siod,
-     output       ov7670_2_rst_n,
+     // right camera
+     output       ov7670_r_sioc,
+     output       ov7670_r_siod,
+     output       ov7670_r_rst_n,
 
-     input        ov7670_2_vsync,
-     input        ov7670_2_href,
-     input        ov7670_2_pclk,
-     output       ov7670_2_xclk,
-     output       ov7670_2_pwdn,
-     input  [7:0] ov7670_2_d,
+     input        ov7670_r_vsync,
+     input        ov7670_r_href,
+     input        ov7670_r_pclk,
+     output       ov7670_r_xclk,
+     output       ov7670_r_pwdn,
+     input  [7:0] ov7670_r_d,
 
 
      output reg [7:0] led,
-     input        btnl_proc_ctrl_2,  //control color processing cam2 (left)
-     input        btnr_proc_ctrl_1,  //control color processing cam2 (right)
+     input        btnl_proc_ctrl,  //control color processing cam left
+     input        btnr_proc_ctrl,  //control color processing cam right
 
      output [3:0] vga_red,
      output [3:0] vga_green,
@@ -72,33 +72,33 @@ module top_ov7670x2_centroid
     wire [10-1:0] vga_col;
     wire [10-1:0] vga_row;
    
-    // camera 1
-    wire [c_nb_img_pxls-1:0] display_img_addr_1;
-    wire [c_nb_buf-1:0]      display_img_pxl_1;
+    // left camera
+    wire [c_nb_img_pxls-1:0] display_img_addr_l;
+    wire [c_nb_buf-1:0]      display_img_pxl_l;
 
-    wire [c_nb_img_pxls-1:0] capture_addr_1;
-    wire [c_nb_buf-1:0]    capture_data_1;
-    wire          capture_we_1;
+    wire [c_nb_img_pxls-1:0] capture_addr_l;
+    wire [c_nb_buf-1:0]    capture_data_l;
+    wire          capture_we_l;
 
-    wire [c_nb_img_pxls-1:0] orig_img_addr_1;
-    wire [c_nb_buf-1:0]      orig_img_pxl_1;
-    wire          proc_we_1;
-    wire [c_nb_img_pxls-1:0] proc_img_addr_1;
-    wire [c_nb_buf-1:0]      proc_img_pxl_1;
+    wire [c_nb_img_pxls-1:0] orig_img_addr_l;
+    wire [c_nb_buf-1:0]      orig_img_pxl_l;
+    wire          proc_we_l;
+    wire [c_nb_img_pxls-1:0] proc_img_addr_l;
+    wire [c_nb_buf-1:0]      proc_img_pxl_l;
 
-    // camera 1
-    wire [c_nb_img_pxls-1:0] display_img_addr_2;
-    wire [c_nb_buf-1:0]      display_img_pxl_2;
+    // right camera
+    wire [c_nb_img_pxls-1:0] display_img_addr_r;
+    wire [c_nb_buf-1:0]      display_img_pxl_r;
 
-    wire [c_nb_img_pxls-1:0] capture_addr_2;
-    wire [c_nb_buf-1:0]    capture_data_2;
-    wire          capture_we_2;
+    wire [c_nb_img_pxls-1:0] capture_addr_r;
+    wire [c_nb_buf-1:0]    capture_data_r;
+    wire          capture_we_r;
 
-    wire [c_nb_img_pxls-1:0] orig_img_addr_2;
-    wire [c_nb_buf-1:0]      orig_img_pxl_2;
-    wire          proc_we_2;
-    wire [c_nb_img_pxls-1:0] proc_img_addr_2;
-    wire [c_nb_buf-1:0]      proc_img_pxl_2;
+    wire [c_nb_img_pxls-1:0] orig_img_addr_r;
+    wire [c_nb_buf-1:0]      orig_img_pxl_r;
+    wire          proc_we_r;
+    wire [c_nb_img_pxls-1:0] proc_img_addr_r;
+    wire [c_nb_buf-1:0]      proc_img_pxl_r;
 
     wire          resend;
     wire          config_finished;
@@ -115,14 +115,14 @@ module top_ov7670x2_centroid
     wire          rgbmode;
 
     wire [5:0]    camera_config_steps;
-    wire [7:0]    centroid_1, centroid_2;
-    wire [2:0]    proximity_1, proximity_2; // how close the detected object is
+    wire [7:0]    centroid_l, centroid_r;
+    wire [2:0]    proximity_l, proximity_r; // how close the detected object is
 
     parameter     testmode = 1'b0; // no test mode
     parameter     swap_r_b = 1'b1; // red and blue are swapped
 
-    wire [2:0]    rgbfilter_1;
-    wire [2:0]    rgbfilter_2;
+    wire [2:0]    rgbfilter_l;
+    wire [2:0]    rgbfilter_r;
 
 
   // 50 MHz clock from a 100MHz clock
@@ -161,148 +161,148 @@ module top_ov7670x2_centroid
      .vsync      (vga_vsync),
      .rgbmode    (rgbmode),
      .testmode   (testmode),
-     .centroid_1 (centroid_1),  // camera 1
-     .proximity_1(proximity_1),
-     .rgbfilter_1(rgbfilter_1),
-     .centroid_2 (centroid_2),  // camera 2
-     .proximity_2(proximity_2),
-     .rgbfilter_2(rgbfilter_2),
+     .centroid_l (centroid_l),  // left camera
+     .proximity_l(proximity_l),
+     .rgbfilter_l(rgbfilter_l),
+     .centroid_r (centroid_r),  // right camera
+     .proximity_r(proximity_r),
+     .rgbfilter_r(rgbfilter_r),
      .col        (vga_col),
      .row        (vga_row),
-     .frame_pixel_1(display_img_pxl_1), // camera 1
-     .frame_addr_1 (display_img_addr_1),
-     .frame_pixel_2(display_img_pxl_2), // camera 2
-     .frame_addr_2 (display_img_addr_2),
+     .frame_pixel_l(display_img_pxl_l), // left camera
+     .frame_addr_l (display_img_addr_l),
+     .frame_pixel_r(display_img_pxl_r), // right camera
+     .frame_addr_r (display_img_addr_r),
      .vga_red    (vga_red),
      .vga_green  (vga_green),
      .vga_blue   (vga_blue)
   );
 
 
-  // --------------------- camera 1 RIGTH
+  // --------------------- camera RIGTH
   // frame buffer from the camera, before processing
-  frame_buffer cam_fb_1  
+  frame_buffer cam_fb_r  
   (
      .clk     (clk50mhz),
      // ports from camera capture
-     .wea     (capture_we_1),
-     .addra   (capture_addr_1),
-     .dina    (capture_data_1),
+     .wea     (capture_we_r),
+     .addra   (capture_addr_r),
+     .dina    (capture_data_r),
      // ports to processing module
-     .addrb   (orig_img_addr_1),
-     .doutb   (orig_img_pxl_1)
+     .addrb   (orig_img_addr_r),
+     .doutb   (orig_img_pxl_r)
    );
 
   // image processing module
-  color_proc img_proc_1
+  color_proc img_proc_r
   (
      .rst        (rst),
      .clk        (clk50mhz),
-     .proc_ctrl  (btnr_proc_ctrl_1),
+     .proc_ctrl  (btnr_proc_ctrl),
      // from original image frame buffer
-     .orig_addr  (orig_img_addr_1),
-     .orig_pxl   (orig_img_pxl_1),
+     .orig_addr  (orig_img_addr_r),
+     .orig_pxl   (orig_img_pxl_r),
      // to processed image frame buffer
-     .proc_we        (proc_we_1),
-     .proc_addr  (proc_img_addr_1),
-     .proc_pxl   (proc_img_pxl_1),
-     .rgbfilter  (rgbfilter_1),
-     .centroid   (centroid_1),
-     .proximity  (proximity_1)
+     .proc_we        (proc_we_r),
+     .proc_addr  (proc_img_addr_r),
+     .proc_pxl   (proc_img_pxl_r),
+     .rgbfilter  (rgbfilter_r),
+     .centroid   (centroid_r),
+     .proximity  (proximity_r)
   );
 
 
   // processed frame buffer, to display on VGA
-  frame_buffer proc_fb_1
+  frame_buffer proc_fb_r
   (
      .clk     (clk50mhz),
      // ports from processing module
-     .wea     (proc_we_1),
-     .addra   (proc_img_addr_1),
-     .dina    (proc_img_pxl_1),
+     .wea     (proc_we_r),
+     .addra   (proc_img_addr_r),
+     .dina    (proc_img_pxl_r),
      // ports to display
-     .addrb   (display_img_addr_1),
-     .doutb   (display_img_pxl_1)
+     .addrb   (display_img_addr_r),
+     .doutb   (display_img_pxl_r)
    );
 
-  ov7670_capture capture_1 
+  ov7670_capture capture_r 
   (
      .rst          (rst),
      .clk          (clk50mhz),
-     .pclk         (ov7670_1_pclk),
-     .vsync        (ov7670_1_vsync),
-     .href         (ov7670_1_href),
+     .pclk         (ov7670_r_pclk),
+     .vsync        (ov7670_r_vsync),
+     .href         (ov7670_r_href),
      .rgbmode      (rgbmode),
      .swap_r_b     (swap_r_b),
      //.dataout_test (ov_capture_datatest),
      //.led_test     (led[3:0]),
-     .data         (ov7670_1_d),
-     .addr         (capture_addr_1),
-     .dout         (capture_data_1),
-     .we           (capture_we_1)
+     .data         (ov7670_r_d),
+     .addr         (capture_addr_r),
+     .dout         (capture_data_r),
+     .we           (capture_we_r)
   );   
 
-  // --------------------- camera 2 LEFT
+  // --------------------- camera LEFT
   // frame buffer from the camera, before processing
-  frame_buffer cam_fb_2  
+  frame_buffer cam_fb_l  
   (
      .clk     (clk50mhz),
      // ports from camera capture
-     .wea     (capture_we_2),
-     .addra   (capture_addr_2),
-     .dina    (capture_data_2),
+     .wea     (capture_we_l),
+     .addra   (capture_addr_l),
+     .dina    (capture_data_l),
      // ports to processing module
-     .addrb   (orig_img_addr_2),
-     .doutb   (orig_img_pxl_2)
+     .addrb   (orig_img_addr_l),
+     .doutb   (orig_img_pxl_l)
    );
 
   // image processing module
-  color_proc img_proc_2
+  color_proc img_proc_l
   (
      .rst        (rst),
      .clk        (clk50mhz),
-     .proc_ctrl  (btnl_proc_ctrl_2),
+     .proc_ctrl  (btnl_proc_ctrl),
      // from original image frame buffer
-     .orig_addr  (orig_img_addr_2),
-     .orig_pxl   (orig_img_pxl_2),
+     .orig_addr  (orig_img_addr_l),
+     .orig_pxl   (orig_img_pxl_l),
      // to processed image frame buffer
-     .proc_we        (proc_we_2),
-     .proc_addr  (proc_img_addr_2),
-     .proc_pxl   (proc_img_pxl_2),
-     .rgbfilter  (rgbfilter_2),
-     .centroid   (centroid_2),
-     .proximity  (proximity_2)
+     .proc_we        (proc_we_l),
+     .proc_addr  (proc_img_addr_l),
+     .proc_pxl   (proc_img_pxl_l),
+     .rgbfilter  (rgbfilter_l),
+     .centroid   (centroid_l),
+     .proximity  (proximity_l)
   );
 
 
   // processed frame buffer, to display on VGA
-  frame_buffer proc_fb_2  
+  frame_buffer proc_fb_l  
   (
      .clk     (clk50mhz),
      // ports from processing module
-     .wea     (proc_we_2),
-     .addra   (proc_img_addr_2),
-     .dina    (proc_img_pxl_2),
+     .wea     (proc_we_l),
+     .addra   (proc_img_addr_l),
+     .dina    (proc_img_pxl_l),
      // ports to display
-     .addrb   (display_img_addr_2),
-     .doutb   (display_img_pxl_2)
+     .addrb   (display_img_addr_l),
+     .doutb   (display_img_pxl_l)
    );
    
-  ov7670_capture capture_2 
+  ov7670_capture capture_l 
   (
      .rst          (rst),
      .clk          (clk50mhz),
-     .pclk         (ov7670_2_pclk),
-     .vsync        (ov7670_2_vsync),
-     .href         (ov7670_2_href),
+     .pclk         (ov7670_l_pclk),
+     .vsync        (ov7670_l_vsync),
+     .href         (ov7670_l_href),
      .rgbmode      (rgbmode),
      .swap_r_b     (swap_r_b),
      //.dataout_test (ov_capture_datatest),
      //.led_test     (led[3:0]),
-     .data         (ov7670_2_d),
-     .addr         (capture_addr_2),
-     .dout         (capture_data_2),
-     .we           (capture_we_2)
+     .data         (ov7670_l_d),
+     .addr         (capture_addr_l),
+     .dout         (capture_data_l),
+     .we           (capture_we_l)
   );
   
   // same for both cameras
@@ -323,16 +323,16 @@ module top_ov7670x2_centroid
      .ov7670_pwdn  (ov7670_pwdn)
   );
   
-  assign ov7670_1_xclk = ov7670_xclk;  // same pins could be used
-  assign ov7670_2_xclk = ov7670_xclk;
-  assign ov7670_1_siod = ov7670_siod;
-  assign ov7670_2_siod = ov7670_siod;
-  assign ov7670_1_sioc = ov7670_sioc;
-  assign ov7670_2_sioc = ov7670_sioc;
-  assign ov7670_1_pwdn = ov7670_pwdn;
-  assign ov7670_2_pwdn = ov7670_pwdn;
-  assign ov7670_1_rst_n = ov7670_rst_n;
-  assign ov7670_2_rst_n = ov7670_rst_n;
+  assign ov7670_l_xclk = ov7670_xclk;  // same pins could be used
+  assign ov7670_r_xclk = ov7670_xclk;
+  assign ov7670_l_siod = ov7670_siod;
+  assign ov7670_r_siod = ov7670_siod;
+  assign ov7670_l_sioc = ov7670_sioc;
+  assign ov7670_r_sioc = ov7670_sioc;
+  assign ov7670_l_pwdn = ov7670_pwdn;
+  assign ov7670_r_pwdn = ov7670_pwdn;
+  assign ov7670_l_rst_n = ov7670_rst_n;
+  assign ov7670_r_rst_n = ov7670_rst_n;
 
   assign resend = 1'b0;
   assign ov7670_siod = sdat_on ? sdat_out : 1'bz;
@@ -340,7 +340,7 @@ module top_ov7670x2_centroid
   always @ (*)
   begin
     if (config_finished)
-      led = centroid_1; // could be centroid 2
+      led = centroid_l; // could be centroid right
     else begin
       led[7:6] = 1'b00;
       led[5:0] = camera_config_steps;
