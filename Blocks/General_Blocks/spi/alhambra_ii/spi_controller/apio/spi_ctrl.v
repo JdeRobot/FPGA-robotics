@@ -48,6 +48,11 @@ module spi_ctrl
     // led blink right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
     input  [24-1:0] led_blink_rght_rgb_i,
 
+    // Servo pulse length in us, even that is 16 bit. Range valid from 1000 to 2000
+    // 1000 is -90degrees, 1500 is 0 degrees, 2000 iis 90 degrees
+    input  [16-1:0] servo_spi_1_i,
+    input  [16-1:0] servo_spi_2_i,
+
     // GET commands
     // get left motor ticks. Active just one clock cycle
     input     get_motor_ticks_left_i,  // get left motor ticks 
@@ -72,12 +77,12 @@ module spi_ctrl
 
   // register of the inputs, to check if they have been modified since
   // the last update to the SPI
-  reg  [7:0] motor_pwm_left_rg; // 0: left pwm motor ca2: -100 to 100
-  reg  [7:0] motor_pwm_rght_rg; // 1: right pwm motor ca2: -100 to 100
+  reg  [8-1:0] motor_pwm_left_rg; // 0: left pwm motor ca2: -100 to 100
+  reg  [8-1:0] motor_pwm_rght_rg; // 1: right pwm motor ca2: -100 to 100
 
-  reg  [15:0] motor_dps_limit_rg; // DPS limit for both motors (degrees/second)
-  reg  [15:0] motor_dps_left_rg; // DPS for left motor (degrees/second)
-  reg  [15:0] motor_dps_rght_rg; // DPS for right motor (degrees/second)
+  reg  [16-1:0] motor_dps_limit_rg; // DPS limit for both motors (degrees/second)
+  reg  [16-1:0] motor_dps_left_rg; // DPS for left motor (degrees/second)
+  reg  [16-1:0] motor_dps_rght_rg; // DPS for right motor (degrees/second)
 
   // led eye left rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
   reg  [24-1:0] led_eye_left_rgb_rg; // 2
@@ -90,6 +95,9 @@ module spi_ctrl
 
   // led blink right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
   reg  [24-1:0] led_blink_rght_rgb_rg; // 5
+
+  reg  [16-1:0] servo_spi_1_rg; // 1
+  reg  [16-1:0] servo_spi_2_rg; // 2
 
   // registering the get commands. Get commands input ports are only active one
   // clock cycle. These registers are '1' until they have been attended
@@ -111,8 +119,10 @@ module spi_ctrl
     LED_EYE_RGHT      =  6,
     LED_BLINK_LEFT    =  7,
     LED_BLINK_RGHT    =  8,
-    GET_MOT_TCKS_LEFT =  9,
-    GET_MOT_TCKS_RGHT = 10;
+    SERVO_1           =  9,
+    SERVO_2           = 10,
+    GET_MOT_TCKS_LEFT = 11,
+    GET_MOT_TCKS_RGHT = 12;
 
   localparam NUM_RGS = GET_MOT_TCKS_RGHT;
   // counter to check all the register 0 to 10
@@ -378,6 +388,20 @@ module spi_ctrl
             spi_bytes[5] <= led_blink_rght_rgb_i[7:0];   // Blue 0 to 255
             last_spi_byte <= 5; // 6 bytes
           end
+          SERVO_1: begin
+            spi_bytes[1] <= 8'h09; // SPI Message type SET_SERVO
+            spi_bytes[2] <= 8'h01; // SERVO 1
+            spi_bytes[3] <= servo_spi_1_i[15:8]; // pulse us MSB
+            spi_bytes[4] <= servo_spi_1_i[7:0];  // pulse us LSB
+            last_spi_byte <= 4; // 5 bytes
+          end
+          SERVO_2: begin
+            spi_bytes[1] <= 8'h09; // SPI Message type SET_SERVO
+            spi_bytes[2] <= 8'h02; // SERVO 2
+            spi_bytes[3] <= servo_spi_2_i[15:8]; // pulse us MSB
+            spi_bytes[4] <= servo_spi_2_i[7:0];  // pulse us LSB
+            last_spi_byte <= 4; // 5 bytes
+          end
           GET_MOT_TCKS_LEFT: begin
             spi_bytes[1] <= 8'h11; // SPI Message type GET_MOTOR_ENCODER_LEFT
             spi_bytes[2] <= 8'h00; // 1: 6 bytes to zero to receive
@@ -420,8 +444,10 @@ module spi_ctrl
       led_eye_rght_rgb_rg <= 0;    // 6
       led_blink_left_rgb_rg <= 0;  // 7
       led_blink_rght_rgb_rg <= 0;  // 8
-      get_motor_ticks_left_rg <= 1'b0; // 9
-      get_motor_ticks_rght_rg <= 1'b0; //10
+      servo_spi_1_rg        <= 0;  // 9
+      servo_spi_2_rg        <= 0;  //10
+      get_motor_ticks_left_rg <= 1'b0; //11
+      get_motor_ticks_rght_rg <= 1'b0; //12
     end
     else begin
       if (spi_state == UPDATE_SPI_RGS) begin
@@ -444,6 +470,10 @@ module spi_ctrl
             led_blink_left_rgb_rg <= led_blink_left_rgb_i;
           LED_BLINK_RGHT:
             led_blink_rght_rgb_rg <= led_blink_rght_rgb_i;
+          SERVO_1:
+            servo_spi_1_rg <= servo_spi_1_i;
+          SERVO_2:
+            servo_spi_2_rg <= servo_spi_2_i;
           GET_MOT_TCKS_LEFT:
             get_motor_ticks_left_rg <= 1'b0;
           GET_MOT_TCKS_RGHT:
@@ -522,6 +552,14 @@ module spi_ctrl
       LED_BLINK_RGHT: begin // 3 bytes
         compare_port[24-1:0] = led_blink_rght_rgb_i;
         compare_reg [24-1:0] = led_blink_rght_rgb_rg;
+      end
+      SERVO_1: begin // two bytes
+        compare_port[16-1:0] = servo_spi_1_i;
+        compare_reg [16-1:0] = servo_spi_1_rg;
+      end
+      SERVO_2: begin // two bytes
+        compare_port[16-1:0] = servo_spi_2_i;
+        compare_reg [16-1:0] = servo_spi_2_rg;
       end
       GET_MOT_TCKS_LEFT: begin // just one bit
         compare_port[0] = 1'b0; // check if get_motor_ticks_left_rg==1'b1
