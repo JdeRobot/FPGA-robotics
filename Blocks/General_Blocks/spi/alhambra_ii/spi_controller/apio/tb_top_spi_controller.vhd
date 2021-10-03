@@ -53,6 +53,9 @@ ARCHITECTURE behavior OF tb_top_spi_controller IS
          led_blink_left_rgb_i : IN  std_logic_vector(23 downto 0);
          led_blink_rght_rgb_i : IN  std_logic_vector(23 downto 0);
 
+         servo_spi_1_i : IN  std_logic_vector(16-1 downto 0);
+         servo_spi_2_i : IN  std_logic_vector(16-1 downto 0);
+
          get_motor_ticks_left_i : in std_logic;  -- get left motor ticks 
          get_motor_ticks_rght_i : in std_logic;  -- get right motor ticks
          -- left motor ticks are ready (one clk)
@@ -85,6 +88,9 @@ ARCHITECTURE behavior OF tb_top_spi_controller IS
    signal led_eye_rght_rgb_i : std_logic_vector(23 downto 0) := (others => '0');
    signal led_blink_left_rgb_i:std_logic_vector(23 downto 0) := (others => '0');
    signal led_blink_rght_rgb_i:std_logic_vector(23 downto 0) := (others => '0');
+
+   signal servo_spi_1_i:std_logic_vector(16-1 downto 0) := (others => '0');
+   signal servo_spi_2_i:std_logic_vector(16-1 downto 0) := (others => '0');
 
    signal get_motor_ticks_left_i : std_logic := '0';-- get left motor ticks 
    signal get_motor_ticks_rght_i : std_logic := '0';-- get right motor ticks
@@ -124,6 +130,9 @@ BEGIN
           led_eye_rght_rgb_i => led_eye_rght_rgb_i,
           led_blink_left_rgb_i => led_blink_left_rgb_i,
           led_blink_rght_rgb_i => led_blink_rght_rgb_i,
+
+          servo_spi_1_i        => servo_spi_1_i,
+          servo_spi_2_i        => servo_spi_2_i,
 
           get_motor_ticks_left_i => get_motor_ticks_left_i,
           get_motor_ticks_rght_i => get_motor_ticks_rght_i,
@@ -181,6 +190,18 @@ BEGIN
       get_motor_ticks_rght_i <= '1';  -- get right motor ticks
       wait until clk'event and clk= '1';
       get_motor_ticks_rght_i <= '0';
+
+      wait for clk_period*10000;  -- servos
+      wait until clk'event and clk= '1';
+      servo_spi_1_i <= x"03E8"; -- 1000 us -> -90 degrees
+      servo_spi_2_i <= x"07D0"; -- 2000 us -> +90 degrees
+      wait for clk_period*10000;
+
+      wait for clk_period*10000;  -- servos
+      wait until clk'event and clk= '1';
+      servo_spi_1_i <= x"05DC"; -- 1500 us ->   0 degrees
+      servo_spi_2_i <= x"06D6"; -- 1750 us -> +45 degrees
+      wait for clk_period*10000;
       wait;
 
       wait;

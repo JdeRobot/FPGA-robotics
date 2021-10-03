@@ -63,6 +63,11 @@ module top_spi_controller
   // led blink right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
   input  [24-1:0] led_blink_rght_rgb_i,
 
+  // Servo pulse length in us, even that is 16 bit.Range valid from 1000 to 2000
+  // 1000 is -90degrees, 1500 is 0 degrees, 2000 iis 90 degrees
+  input  [16-1:0] servo_spi_1_i,
+  input  [16-1:0] servo_spi_2_i,
+
   // GET commands
   // get left motor ticks. Active just one clock cycle
   input     get_motor_ticks_left_i,  // get left motor ticks 
@@ -114,6 +119,8 @@ module top_spi_controller
     .led_eye_rght_rgb_i   (led_eye_rght_rgb_i),
     .led_blink_left_rgb_i (led_blink_left_rgb_i),
     .led_blink_rght_rgb_i (led_blink_rght_rgb_i),
+    .servo_spi_1_i        (servo_spi_1_i),
+    .servo_spi_2_i        (servo_spi_2_i),
 
     .get_motor_ticks_left_i (get_motor_ticks_left_i),
     .get_motor_ticks_rght_i (get_motor_ticks_rght_i),

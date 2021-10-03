@@ -35,6 +35,10 @@ module btntest_spi_controller
    // led blink right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
    reg [24-1:0] led_blink_rght_rgb;
 
+   // 2's complement number: -512 to 511
+   reg signed [10-1:0] servo_1;
+   reg signed [10-1:0] servo_2;
+
    reg btn2_rg1, btn2_rg2;
    wire puls_btn2;
 
@@ -48,7 +52,9 @@ module btntest_spi_controller
     LED_EYE_LEFT    = 5,
     LED_EYE_RGHT    = 6,
     LED_BLINK_LEFT  = 7,
-    LED_BLINK_RGHT  = 8;
+    LED_BLINK_RGHT  = 8,
+    SERVO_1         = 9,
+    SERVO_2         = 10;
 
   // btn2 will change the values of motor_pwm_left_
   always @ (posedge rst, posedge clk)
@@ -71,7 +77,7 @@ module btntest_spi_controller
       cnt_rg <= MOTOR_DPS_LEFT; // the first 3 commands are internal (not used)
     else begin
       if (puls_btn2) begin
-        if (cnt_rg == LED_BLINK_RGHT) 
+        if (cnt_rg == SERVO_2) 
           cnt_rg <= 0;
         else
           cnt_rg <= cnt_rg + 1'b1;
@@ -91,6 +97,8 @@ module btntest_spi_controller
       led_eye_rght_rgb <= 0;
       led_blink_left_rgb <= 0;
       led_blink_rght_rgb <= 0;
+      servo_1 <= 0;
+      servo_2 <= 0;
     end
     else begin
       if (puls_btn2) begin
@@ -153,6 +161,20 @@ module btntest_spi_controller
               led_blink_rght_rgb[23:16] <= led_blink_rght_rgb[23:16] + 6'd32;
             end
           end
+          SERVO_1: begin
+            if (servo_1 >= 480) //+511 is the upper limit of 10bit signed number
+              servo_1 <= -10'sd500; // -500 should be -90 degrees
+            else begin
+              servo_1 <= servo_1 + 32; // 5.76 degrees
+            end
+          end
+          SERVO_2: begin
+            if (servo_2 <= -480) // -512 is the lower limit of 10bit signed
+              servo_2 <= 10'sd500; // start in +90
+            else begin
+              servo_2 <= servo_2 - 32; // 5.76 degrees
+            end
+          end
         endcase
       end
     end
@@ -174,6 +196,8 @@ module btntest_spi_controller
     .led_eye_rght_rgb_i   (led_eye_rght_rgb),
     .led_blink_left_rgb_i (led_blink_left_rgb),
     .led_blink_rght_rgb_i (led_blink_rght_rgb),
+    .servo_1_i            (servo_1),
+    .servo_2_i            (servo_2),
     .sclk_o               (sclk_o), 
     .miso_i               (miso_i),
     //output mosi_en_o, 

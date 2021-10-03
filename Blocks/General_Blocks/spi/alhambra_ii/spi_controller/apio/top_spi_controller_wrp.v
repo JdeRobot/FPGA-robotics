@@ -8,6 +8,11 @@
 // This is wrapper for top_spi_controller, in order to have less ports
 // These port are not used in normal operation
 
+// Hidden Commands
+// motor_pwm_left_i
+// motor_pwm_rght_i
+// motor_dps_limit_i
+
 // There are 2 kind of commands, SET and GET.
 // +SET commands establish a new value, for example motor_dps or led_brightness
 // +GET commands ask GoPiGo3 to send the value
@@ -23,6 +28,18 @@
 // corresponding output port.
 // There will be also a output bit port that indicates that output value is
 // valid. This signal will be available for just one clock cycle
+
+// for servos servo1_i & servo2_i: 2'complement number, -1024 to 1023.
+// 0 is in the middle for each 50 adds 9 degrees. ie:
+//   50 is  9 degrees
+//  100 is 18 degrees
+//  150 is 27 degrees
+//  200 is 36 degrees
+//  250 is 45 degrees
+//  500 is 90 degrees
+//  -50 is -9 degrees
+// -100 is -18 degrees
+// -500 is -90 degrees....
 
 
 module top_spi_controller_wrp
@@ -51,6 +68,16 @@ module top_spi_controller_wrp
   input  [24-1:0] led_blink_left_rgb_i,
   // led blink right rgb color: 0 to 255 each channel R[23:16] G[15:8] B[7:0]
   input  [24-1:0] led_blink_rght_rgb_i,
+
+  // for servos: 2'complement number, -512 to 511. 0 is in the middle
+  // for each 50 adds 9 degrees. ie:
+  //   50 is  9 degrees
+  //  250 is 45 degrees
+  //  500 is 90 degrees
+  //  -50 is -9 degrees
+  // -500 is -90 degrees
+  input [10-1:0] servo_1_i, // 2'complement number, -512 to 511
+  input [10-1:0] servo_2_i,
 
   // GET commands
   // get left motor ticks. Active just one clock cycle
@@ -87,12 +114,30 @@ module top_spi_controller_wrp
   // of going at that speed.
   // Default speed is 300: 0x012C. MSB: 8'h01  LSB: 8'h2C
   wire  [15:0] motor_dps_limit_c;
+ 
+  // servo pulse length, range 1500-512 = 982 -> 1500 + 511 = 2011
+  // 12 bits, but since it is signed: 13 bits (although it will not be negative)
+  wire signed [13-1:0] servo_pulse_1;
+  wire signed [13-1:0] servo_pulse_2;
+
+  // Servo pulse length in SPI format: in us, even that is 16 bit, range valid
+  // from 1000 to 2000
+  // 1000 is -90degrees, 1500 is 0 degrees, 2000 is 90 degrees
+  wire  [16-1:0] servo_spi_1;
+  wire  [16-1:0] servo_spi_2;
 
   assign motor_pwm_left_c = 0;
   assign motor_pwm_rght_c = 0;
   assign motor_dps_limit_c = 16'h012C;   // 300 dps is the conservative speed
   //assign motor_dps_limit_c = 16'h03E8; // this is max recommended speed
  
+  // this should be a substraction if servo_1_i is negative (2's complement)
+  // 1500 -> 11 bits, but to have sign -> 13 bits
+  assign servo_pulse_1 = 12'sd1500 + $signed(servo_1_i);
+  assign servo_pulse_2 = 12'sd1500 + $signed(servo_2_i);
+
+  assign servo_spi_1 = {3'b000, servo_pulse_1};
+  assign servo_spi_2 = {3'b000, servo_pulse_2};
 
   top_spi_controller
   #(.G_CLK_FREQ_MHZ(G_CLK_FREQ_MHZ)
@@ -111,6 +156,8 @@ module top_spi_controller_wrp
     .led_blink_left_rgb_i (led_blink_left_rgb_i),
     .led_blink_rght_rgb_i (led_blink_rght_rgb_i),
 
+    .servo_spi_1_i         (servo_spi_1),
+    .servo_spi_2_i         (servo_spi_2),
 
     .get_motor_ticks_left_i (get_motor_ticks_left_i),
     .get_motor_ticks_rght_i (get_motor_ticks_rght_i),
