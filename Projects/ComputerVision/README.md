@@ -89,9 +89,15 @@ Port GP17-OV7670_PWDN didn't work when camera powerdown was assigned deep in the
 
 ### [ov7670x2_centroid_160x120](ulx3s/apio/ov7670x2_centroid_160x120)
 
-Two cameras and VGA. 50MHz clock. Same as Xilinx Nexys4DDR project
+Two cameras and VGA. 50MHz clock. Same as Xilinx Nexys4DDR project.
+Each camera image is 160x120. Color processing independently on each camera. Proximity and centroid.
 
 ![OV7670 2 cameras and ULX3S pin connection](ulx3s_ov7670x2_vga_interface.png)
+
+
+### [ov7670x3_centroid_160x120](ulx3s/apio/ov7670x3_centroid_160x120)
+
+Three cameras and VGA. 50MHz clock. Each camera image is 160x120. Color processing independently on each camera. Proximity and centroid.
 
 ---  
   
