@@ -2,8 +2,8 @@ ISO-10303-21;
 HEADER;
 FILE_DESCRIPTION(('FreeCAD Model'),'2;1');
 FILE_NAME(
-'C:/Users/felipe.machado/urjc/proyectos/cad/ov7670/soporte_ov7670_
-v3.step','2021-10-20T22:54:03',('Author'),(''),
+'C:/Users/felipe.machado/urjc/proyectos/jderobot/fpga-robot/utils/cad/ov
+7670/ov7670cam_servo_mount.step','2021-10-20T23:12:43',('Author'),(''),
   'Open CASCADE STEP processor 7.4','FreeCAD','Unknown');
 FILE_SCHEMA(('AUTOMOTIVE_DESIGN { 1 0 10303 214 1 1 1 1 }'));
 ENDSEC;
@@ -16,7 +16,7 @@ DATA;
 #4 = PRODUCT_DEFINITION_SHAPE('','',#5);
 #5 = PRODUCT_DEFINITION('design','',#6,#9);
 #6 = PRODUCT_DEFINITION_FORMATION('','',#7);
-#7 = PRODUCT('soporte_ov7670','soporte_ov7670','',(#8));
+#7 = PRODUCT('Cut004001','Cut004001','',(#8));
 #8 = PRODUCT_CONTEXT('',#2,'mechanical');
 #9 = PRODUCT_DEFINITION_CONTEXT('part definition',#2,'design');
 #10 = ADVANCED_BREP_SHAPE_REPRESENTATION('',(#11,#15),#4341);
