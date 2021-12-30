@@ -55,7 +55,7 @@
 //
 //  However the max frames per second of the camera is 30 fps, so it will be
 //  at 33.3 ms each new centroid. But it probably will be less than that.
-//  CHECK ACTUAL RATE for this case.
+//  I think it is 15 fps
 //  So signal new_centroid will have this period.
 //  Considering about ~50ms, so changing
 //  - 1 degree each 50ms: it would be 8 seconds for 180degrees, which could
@@ -66,7 +66,7 @@
 //  Input centroid shows where the centroid is
 //  It has 8 bits
 //
-//    7654 3210 :bit number (but the right-left is on the backwards)
+//    7654 3210 :bit number (but the right-left orientation is backwards)
 //    ----------
 //    0001 1000 : centered
 //

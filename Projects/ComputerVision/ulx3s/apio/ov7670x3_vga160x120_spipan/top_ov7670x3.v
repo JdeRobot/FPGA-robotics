@@ -259,8 +259,8 @@ module top_ov7670x3
      .doutb   (orig_img_pxl_r)
    );
 
-  // image processing module
-  color_proc img_proc_r
+  // image processing module, right camera is for camera pan on turret
+  color_proc_1cam img_proc_r
   (
      .rst        (rst),
      .clk        (clk50mhz),
@@ -437,7 +437,7 @@ module top_ov7670x3
      .we           (capture_we_l)
   );
   
-  // same for both cameras
+  // same for the 3 cameras
   ov7670_top_ctrl controller 
   (
      .rst          (rst),
@@ -507,9 +507,9 @@ module top_ov7670x3
   (
    .rst             (rst),
    .clk             (clk50mhz),
-   .centroid        (centroid_c), // using the central cam, in the future 2 cams
-   .new_centroid    (new_centroid_c), //central cam
-   .proximity       (proximity_c), // using central cam
+   .centroid        (centroid_r), // using the right cam
+   .new_centroid    (new_centroid_r), //right cam
+   .proximity       (proximity_r), // using right cam
    .servo_cam_pan_o (servo_1_cam_pan)
    //.servo_cam_tilt (servo_2_cam_tilt)
   );

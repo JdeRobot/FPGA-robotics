@@ -13,7 +13,7 @@
 //     - pwdn: power down mode selection
 //          0: normal mode
 //          1: power down mode
-//     - xclk: system clock input
+//     - ov7670_clk: xclk: system clock camera input
 //          freq   :  min: 10 MHz  -- typ: 24 MHz  -- Max: 48 MHz
 //          Period : max: 100 ns   -- typ: 42 ns   -- Max: 21 ns
 //   Register values taken from
@@ -418,7 +418,9 @@ module ov7670_ctrl_reg
       6'h06:
         reg_rgb444 <= 16'h1180;
                // 11: CLKRC Internal Clock
-               // [7]=1: Reserved  **IG says 0, but 1 seems stable
+               // [7]=1: Reserved  **IG says 0, but 1 seems stable in v1.1 says:
+               //     0: clock is half input.
+               //     1: clock is same as input
                // [6]=0: Use pre-scale
                // [5:0]: Interal clock pre-scalar
                //    F(internal clk) = F(input clk)/([5:0]+1)
@@ -1042,7 +1044,9 @@ module ov7670_ctrl_reg
   end
 
   // when cnt_cam_clk = 0 | 1 => '0', when 2 | 3 => '1'
-  assign ov7670_clk = cnt_cam_clk[1]; // divide by 4
+  // divide clock frequency by 4, since clk is 50MHz:
+  // cam xclk: 12.5 MHz -> 80 ns (max period is 100ns, min freq is 10 MHz)
+  assign ov7670_clk = cnt_cam_clk[1];
 
   // camera reset and power down
   assign ov7670_pwdn  = 1'b0;
