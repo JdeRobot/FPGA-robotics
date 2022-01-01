@@ -121,7 +121,9 @@ Three cameras and VGA. 50MHz clock. Each camera image is 160x120. Color processi
         - [2:0]=010: Divided by 4-> QQVGA: 160x12
 
 
-The resulting frames per seconds should be around 15 fps. Not sure because I don't get the same calculation as the datasheet
+The resulting frames per seconds should be around 15 fps (~67ms). Not sure because I don't get the same calculation as the datasheet.
+
+The FPGA process 160x120 pixels, at 20ns (50MHz) 384us, so more than 100 times faster than the camera.
 
 Left and center cameras are for the robot to follow an object.
 The right camera is to follow another object with a turret guided by a servo.
@@ -131,7 +133,11 @@ The commands are given to the GoPiGo3 board:
 - The servo is commanded by a 10-bit signed signal. 0: 0 degrees; -500: -90 degrees; 500: 90 degrees
 
  
+Other signals:
 
+**newframe**: this signal is generated in the ov7670 camera capture. Indicates when a complete frame has been received. This signal is just a clock cycle. After this signal is received, there are at least 30 camera lines.
+Each line is at least 784 x 2 ov7670_clk (pclk). Multiplied x2 because it takes 2 camera clk cycles to send a pixel
+Having pclk is 80ns (12.5 MHz), it would be around 125 us before the first pixel is received. So it will be around 6272 FPGA clock cycles (20ns-50MHz). With these times, the FPGA would be in the 39th line when the first pixel is received, and since the FPGA process the image faster than the pixels are received, the old frame will be processed before the new frame fills the buffer
 
 ---  
   

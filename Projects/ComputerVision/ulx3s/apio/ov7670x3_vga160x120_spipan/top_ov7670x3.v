@@ -110,6 +110,7 @@ module top_ov7670x3
 
     wire [c_nb_img_pxls-1:0] capture_addr_l;
     wire [c_nb_buf-1:0]    capture_data_l;
+    wire          capture_newframe_l;
     wire          capture_we_l;
 
     wire [c_nb_img_pxls-1:0] orig_img_addr_l;
@@ -124,6 +125,7 @@ module top_ov7670x3
 
     wire [c_nb_img_pxls-1:0] capture_addr_c;
     wire [c_nb_buf-1:0]    capture_data_c;
+    wire          capture_newframe_c;
     wire          capture_we_c;
 
     wire [c_nb_img_pxls-1:0] orig_img_addr_c;
@@ -138,6 +140,7 @@ module top_ov7670x3
 
     wire [c_nb_img_pxls-1:0] capture_addr_r;
     wire [c_nb_buf-1:0]    capture_data_r;
+    wire          capture_newframe_r;
     wire          capture_we_r;
 
     wire [c_nb_img_pxls-1:0] orig_img_addr_r;
@@ -245,7 +248,7 @@ module top_ov7670x3
      .vga_blue   (vga_blue)
   );
 
-  // --------------------- RIGHT camera
+  // --------------------- RIGHT camera. Turret camera on top of servo
   // frame buffer from the camera, before processing
   frame_buffer cam_fb_r  
   (
@@ -306,6 +309,7 @@ module top_ov7670x3
      .data         (ov7670_r_d),
      .addr         (capture_addr_r),
      .dout         (capture_data_r),
+     .newframe     (capture_newframe_r),
      .we           (capture_we_r)
   );   
 
@@ -371,6 +375,7 @@ module top_ov7670x3
      .data         (ov7670_c_d),
      .addr         (capture_addr_c),
      .dout         (capture_data_c),
+     .newframe     (capture_newframe_c),
      .we           (capture_we_c)
   );   
 
@@ -434,6 +439,7 @@ module top_ov7670x3
      .data         (ov7670_l_d),
      .addr         (capture_addr_l),
      .dout         (capture_data_l),
+     .newframe     (capture_newframe_l),
      .we           (capture_we_l)
   );
   

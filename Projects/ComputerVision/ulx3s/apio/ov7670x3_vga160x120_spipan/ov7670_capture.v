@@ -6,7 +6,7 @@
 //
 //   ov7670_capture.v
 //   
-// clk 50 MHz
+//   clk 50 MHz
 //-----------------------------------------------------------------------------
 
 module ov7670_capture
@@ -38,8 +38,8 @@ module ov7670_capture
     c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
   )
   (
-   input              rst,    // FPGA reset
-   input              clk,    // FPGA clock: 50MHz - 20ns
+    input             rst,    // FPGA reset
+    input             clk,    // FPGA clock: 50MHz - 20ns
     // camera pclk (byte clock) (~40ns)  
     // 2 bytes is a pixel
     input             pclk,
@@ -52,6 +52,7 @@ module ov7670_capture
     input      [7:0]  data,
     output     [c_nb_img_pxls-1:0] addr,
     output     [c_nb_buf-1:0]      dout,
+    output            newframe,  // when a new frame comes, one clk cycle
     output            we
   );
 
@@ -65,6 +66,7 @@ module ov7670_capture
 
   // it seems that vsync has some spurious 
   wire       vsync_3up;
+  reg        vsync_3up_rg;
 
   wire       pclk_fall;
   wire       pclk_rise_prev;
@@ -134,6 +136,8 @@ module ov7670_capture
       vsync_rg3 <= 1'b0;
       data_rg3  <= 0;
       pclk_rise_post <= 1'b0;
+      // to detect new frame
+      vsync_3up_rg <= 1'b0;
     end
     else begin
       pclk_rg1  <= pclk;
@@ -150,12 +154,18 @@ module ov7670_capture
       vsync_rg3 <= vsync_rg2;
       data_rg3  <= data_rg2;
       pclk_rise_post <= pclk_rise;
+      // to detect new frame
+      vsync_3up_rg <= vsync_3up;
     end
   end
 
   // since some times it is up up to 2 cycles, has to be '1' during
   // the 3 following cycles
   assign vsync_3up = vsync_rg3 && vsync_rg2 && vsync_rg1 && vsync;
+  //rising edge detection,
+  //when vsync_3up  is '1' and not the previous clock cycle
+  assign newframe = vsync_3up & ~vsync_3up_rg;
+
 
   // FPGA clock is 10ns and pclk is 40ns
   //pclk_fall <= '1' when (pclk_rg2='0' and pclk_rg3='1') else '0';
