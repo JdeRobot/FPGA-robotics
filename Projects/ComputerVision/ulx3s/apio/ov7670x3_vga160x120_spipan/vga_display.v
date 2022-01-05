@@ -36,13 +36,12 @@ module vga_display
       c_col_cam_cen_end = c_col_cam_cen+c_img_cols, //352 0x160
       c_col_cam_rght_end = c_col_cam_rght+c_img_cols, //544 0x220 
 
-
-    c_nb_buf_red   =  4,  // n bits for red in the buffer (memory)
-    c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
-    c_nb_buf_blue  =  4,  // n bits for blue in the buffer (memory)
-    // word width of the memory (buffer)
-    c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
-  )
+      c_nb_buf_red   =  4,  // n bits for red in the buffer (memory)
+      c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
+      c_nb_buf_blue  =  4,  // n bits for blue in the buffer (memory)
+      // word width of the memory (buffer)
+      c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
+    )
   (
     input          rst,       //reset, active high
     input          clk,       //fpga cloc

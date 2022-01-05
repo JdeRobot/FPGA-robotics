@@ -17,13 +17,19 @@ module top_ov7670x3
       c_img_cols    = 160, // 8 bits
       c_img_rows    = 120, //  7 bits
       c_img_pxls    = c_img_cols * c_img_rows,
-      c_nb_img_pxls =  15,  //160*120=19200 -> 2^15
+      c_nb_img_pxls =  $clog2(c_img_pxls), //  //160*120=19200 -> 2^15
 
-       c_nb_buf_red   =  4,  // n bits for red in the buffer (memory)
-       c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
-       c_nb_buf_blue  =  4,  // n bits for blue in the buffer (memory)
-       // word width of the memory (buffer)
-       c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
+      // number of bits of the image colums and rows
+      c_nb_img_cols     = $clog2(c_img_cols),
+      c_nb_img_rows     = $clog2(c_img_rows),
+
+      c_nb_camdata   = 8,  // n bits of the camera data port
+
+      c_nb_buf_red   =  4,  // n bits for red in the buffer (memory)
+      c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
+      c_nb_buf_blue  =  4,  // n bits for blue in the buffer (memory)
+      // word width of the memory (buffer)
+      c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
     )
     (input        rst,
      input        clk25mhz,
@@ -37,7 +43,7 @@ module top_ov7670x3
      input        ov7670_l_pclk,
      output       ov7670_l_xclk,
      //output       ov7670_l_pwdn,
-     input  [7:0] ov7670_l_d,
+     input  [c_nb_camdata-1:0] ov7670_l_d,
 
      // the 3 cameras share sioc and siod
      output       ov7670_sioc,
@@ -52,7 +58,7 @@ module top_ov7670x3
      input        ov7670_c_pclk,
      output       ov7670_c_xclk,
      //output       ov7670_c_pwdn,
-     input  [7:0] ov7670_c_d,
+     input  [c_nb_camdata-1:0] ov7670_c_d,
 
 
      // right camera
@@ -65,7 +71,7 @@ module top_ov7670x3
      input        ov7670_r_pclk,
      output       ov7670_r_xclk,
      //output       ov7670_r_pwdn,
-     input  [7:0] ov7670_r_d,
+     input  [c_nb_camdata-1:0] ov7670_r_d,
 
      output       ov7670_rst_n,  // for the 3 cameras
 
@@ -94,6 +100,8 @@ module top_ov7670x3
 
     );
 
+    localparam G_CLK_FREQ_MHZ = 50; // 50MHz clock
+
     //wire          ov7670_siod;
     //wire          ov7670_sioc;
     wire          ov7670_xclk;
@@ -101,8 +109,8 @@ module top_ov7670x3
 
     wire          vga_visible;
     wire          vga_new_pxl;
-    wire [10-1:0] vga_col;
-    wire [10-1:0] vga_row;
+    wire [10-1:0] vga_col; //VGA has 640 visible cols, and 800 total cols: 10bit
+    wire [10-1:0] vga_row; //VGA has 480 visible rows, and 520 total cols: 10bit
    
     // left camera
     wire [c_nb_img_pxls-1:0] display_img_addr_l;
@@ -159,7 +167,7 @@ module top_ov7670x3
 
     wire [7:0]    cnt_vsync_max_test;
 
-    wire [11:0]   ov_capture_datatest;
+    //wire [11:0]   ov_capture_datatest;
     wire          rgbmode;
 
     wire [5:0]    camera_config_steps;
@@ -188,36 +196,48 @@ module top_ov7670x3
     wire [10-1:0]   servo_2_cam_tilt; 
 
     //assign servo2_cam_tilt = 10'b0;  //not used yet
+    //
+    wire locked_wire;  // for the PLL
 
     assign vga_blue_3 = vga_blue[3];
     assign vga_blue_2 = vga_blue[2];
     assign vga_blue_1 = vga_blue[1];
 
   // 50 MHz clock from a 25MHz clock
-   pll i_pll
-   (
-      .clkin(clk25mhz),
-      .clkout0(clk50mhz),
-      .locked(locked_wire)
-   );
+  pll i_pll
+  (
+    .clkin(clk25mhz),
+    .clkout0(clk50mhz),
+    .locked(locked_wire)
+  );
 
-   // VGA Synchronization
-   vga_sync i_vga 
-   (
-     .rst     (rst),
-     .clk     (clk50mhz),
-     .visible (vga_visible),
-     .new_pxl (vga_new_pxl),
-     .hsync   (vga_hsync),
-     .vsync   (vga_vsync),
-     .col     (vga_col),
-     .row     (vga_row)
+  // VGA Synchronization
+  vga_sync i_vga 
+  (
+    .rst     (rst),
+    .clk     (clk50mhz),
+    .visible (vga_visible),
+    .new_pxl (vga_new_pxl),
+    .hsync   (vga_hsync),
+    .vsync   (vga_vsync),
+    .col     (vga_col),
+    .row     (vga_row)
   );
 
   assign rgbmode   = 1'b1;
 
-  vga_display I_ov_display 
-  (
+  vga_display
+    #( // parameters
+      .c_img_cols     (c_img_cols),
+      .c_img_rows     (c_img_rows),
+      .c_img_pxls     (c_img_pxls),
+      .c_nb_buf_red   (c_nb_buf_red),
+      .c_nb_buf_green (c_nb_buf_green),
+      .c_nb_buf_blue  (c_nb_buf_blue),
+      .c_nb_buf       (c_nb_buf)
+    )
+    i_vga_display 
+    (
      .rst        (rst),
      .clk        (clk50mhz),
      .visible    (vga_visible),
@@ -246,57 +266,106 @@ module top_ov7670x3
      .vga_red    (vga_red),
      .vga_green  (vga_green),
      .vga_blue   (vga_blue)
-  );
+    );
 
   // --------------------- RIGHT camera. Turret camera on top of servo
   // frame buffer from the camera, before processing
-  frame_buffer cam_fb_r  
-  (
-     .clk     (clk50mhz),
-     // ports from camera capture
-     .wea     (capture_we_r),
-     .addra   (capture_addr_r),
-     .dina    (capture_data_r),
-     // ports to processing module
-     .addrb   (orig_img_addr_r),
-     .doutb   (orig_img_pxl_r)
-   );
+  frame_buffer
+    #( // parameters
+       .c_img_cols     (c_img_cols),
+       .c_img_rows     (c_img_rows),
+       .c_img_pxls     (c_img_pxls),
+       .c_nb_buf_red   (c_nb_buf_red),
+       .c_nb_buf_green (c_nb_buf_green),
+       .c_nb_buf_blue  (c_nb_buf_blue),
+       .c_nb_buf       (c_nb_buf)
+    )
+    cam_fb_r  
+    (
+       .clk     (clk50mhz),
+       // ports from camera capture
+       .wea     (capture_we_r),
+       .addra   (capture_addr_r),
+       .dina    (capture_data_r),
+       // ports to processing module
+       .addrb   (orig_img_addr_r),
+       .doutb   (orig_img_pxl_r)
+     );
 
   // image processing module, right camera is for camera pan on turret
-  color_proc_1cam img_proc_r
-  (
-     .rst        (rst),
-     .clk        (clk50mhz),
-     .proc_ctrl  (btnr_proc_ctrl),
-     // from original image frame buffer
-     .orig_addr  (orig_img_addr_r),
-     .orig_pxl   (orig_img_pxl_r),
-     // to processed image frame buffer
-     .proc_we        (proc_we_r),
-     .proc_addr  (proc_img_addr_r),
-     .proc_pxl   (proc_img_pxl_r),
-     .rgbfilter  (rgbfilter_r),
-     .centroid   (centroid_r),
-     .new_centroid (new_centroid_r),
-     .proximity  (proximity_r)
-  );
+  color_proc_1cam
+    #( // parameters
+       .c_img_cols     (c_img_cols),
+       .c_img_rows     (c_img_rows),
+       .c_img_pxls     (c_img_pxls),
+       .c_nb_cols      (c_nb_img_cols),
+       .c_nb_rows      (c_nb_img_rows),
+
+       .c_nb_buf_red   (c_nb_buf_red),
+       .c_nb_buf_green (c_nb_buf_green),
+       .c_nb_buf_blue  (c_nb_buf_blue),
+       .c_nb_buf       (c_nb_buf)
+    )
+    img_proc_r
+    (
+      .rst        (rst),
+      .clk        (clk50mhz),
+      .proc_ctrl  (btnr_proc_ctrl),
+      // from original image frame buffer
+      .orig_addr  (orig_img_addr_r),
+      .orig_pxl   (orig_img_pxl_r),
+      // to processed image frame buffer
+      .proc_we        (proc_we_r),
+      .proc_addr  (proc_img_addr_r),
+      .proc_pxl   (proc_img_pxl_r),
+      .rgbfilter  (rgbfilter_r),
+      .centroid   (centroid_r),
+      .new_centroid (new_centroid_r),
+      .proximity  (proximity_r)
+    );
 
 
   // processed frame buffer, to display on VGA
-  frame_buffer proc_fb_r
-  (
-     .clk     (clk50mhz),
-     // ports from processing module
-     .wea     (proc_we_r),
-     .addra   (proc_img_addr_r),
-     .dina    (proc_img_pxl_r),
-     // ports to display
-     .addrb   (display_img_addr_r),
-     .doutb   (display_img_pxl_r)
-   );
+  frame_buffer
+    #( // parameters
+       .c_img_cols     (c_img_cols),
+       .c_img_rows     (c_img_rows),
+       .c_img_pxls     (c_img_pxls),
+       .c_nb_buf_red   (c_nb_buf_red),
+       .c_nb_buf_green (c_nb_buf_green),
+       .c_nb_buf_blue  (c_nb_buf_blue),
+       .c_nb_buf       (c_nb_buf)
+    )
+    proc_fb_r
+    (
+       .clk     (clk50mhz),
+       // ports from processing module
+       .wea     (proc_we_r),
+       .addra   (proc_img_addr_r),
+       .dina    (proc_img_pxl_r),
+       // ports to display
+       .addrb   (display_img_addr_r),
+       .doutb   (display_img_pxl_r)
+     );
 
-  ov7670_capture capture_r 
-  (
+  ov7670_capture
+   #( // parameters
+     .c_img_cols     (c_img_cols), // number of columns of the image
+     .c_img_rows     (c_img_rows), // number of rows of the image
+     .c_img_pxls     (c_img_pxls), // total number of pixels of image
+     .c_nb_img_cols  (c_nb_img_cols), //n.bits needed for number of columns
+     //.c_nb_img_rows  (c_nb_img_rows), //n.bits needed for number of rows
+     .c_nb_img_pxls  (c_nb_img_pxls), //n.bits needed for total image pixels
+
+     .c_nb_camdata   (c_nb_camdata), //n.bits of camera data port
+
+     .c_nb_buf_red   (c_nb_buf_red),  //n bits for red in the buffer (memory)
+     .c_nb_buf_green (c_nb_buf_green),// n bits for green in the buffer (memory)
+     .c_nb_buf_blue  (c_nb_buf_blue), // n bits for blue in the buffer (memory)
+     .c_nb_buf       (c_nb_buf)   //word width of the memory (buffer)
+    )
+   capture_r 
+   (
      .rst          (rst),
      .clk          (clk50mhz),
      .pclk         (ov7670_r_pclk),
@@ -311,22 +380,32 @@ module top_ov7670x3
      .dout         (capture_data_r),
      .newframe     (capture_newframe_r),
      .we           (capture_we_r)
-  );   
+   );   
 
 
   // --------------------- camera CENTER
   // frame buffer from the camera, before processing
-  frame_buffer cam_fb_c
-  (
-     .clk     (clk50mhz),
-     // ports from camera capture
-     .wea     (capture_we_c),
-     .addra   (capture_addr_c),
-     .dina    (capture_data_c),
-     // ports to processing module
-     .addrb   (orig_img_addr_c),
-     .doutb   (orig_img_pxl_c)
-   );
+  frame_buffer
+    #( // parameters
+       .c_img_cols     (c_img_cols),
+       .c_img_rows     (c_img_rows),
+       .c_img_pxls     (c_img_pxls),
+       .c_nb_buf_red   (c_nb_buf_red),
+       .c_nb_buf_green (c_nb_buf_green),
+       .c_nb_buf_blue  (c_nb_buf_blue),
+       .c_nb_buf       (c_nb_buf)
+    )
+    cam_fb_c
+    (
+       .clk     (clk50mhz),
+       // ports from camera capture
+       .wea     (capture_we_c),
+       .addra   (capture_addr_c),
+       .dina    (capture_data_c),
+       // ports to processing module
+       .addrb   (orig_img_addr_c),
+       .doutb   (orig_img_pxl_c)
+     );
 
   // image processing module
   color_proc img_proc_c
@@ -347,22 +426,47 @@ module top_ov7670x3
      .proximity  (proximity_c)
   );
 
-
   // processed frame buffer, to display on VGA
-  frame_buffer proc_fb_c
-  (
-     .clk     (clk50mhz),
-     // ports from processing module
-     .wea     (proc_we_c),
-     .addra   (proc_img_addr_c),
-     .dina    (proc_img_pxl_c),
-     // ports to display
-     .addrb   (display_img_addr_c),
-     .doutb   (display_img_pxl_c)
-   );
+  frame_buffer
+    #( // parameters
+       .c_img_cols     (c_img_cols),
+       .c_img_rows     (c_img_rows),
+       .c_img_pxls     (c_img_pxls),
+       .c_nb_buf_red   (c_nb_buf_red),
+       .c_nb_buf_green (c_nb_buf_green),
+       .c_nb_buf_blue  (c_nb_buf_blue),
+       .c_nb_buf       (c_nb_buf)
+    )
+    proc_fb_c
+    (
+       .clk     (clk50mhz),
+       // ports from processing module
+       .wea     (proc_we_c),
+       .addra   (proc_img_addr_c),
+       .dina    (proc_img_pxl_c),
+       // ports to display
+       .addrb   (display_img_addr_c),
+       .doutb   (display_img_pxl_c)
+     );
 
-  ov7670_capture capture_c
-  (
+  ov7670_capture
+     #( // parameters
+     .c_img_cols     (c_img_cols), // number of columns of the image
+     .c_img_rows     (c_img_rows), // number of rows of the image
+     .c_img_pxls     (c_img_pxls), // total number of pixels of image
+     .c_nb_img_cols  (c_nb_img_cols), //n.bits needed for number of columns
+     //.c_nb_img_rows  (c_nb_img_rows), //n.bits needed for number of rows
+     .c_nb_img_pxls  (c_nb_img_pxls), //n.bits needed for total image pixels
+
+     .c_nb_camdata   (c_nb_camdata), //n.bits of camera data port
+
+     .c_nb_buf_red   (c_nb_buf_red),  //n bits for red in the buffer (memory)
+     .c_nb_buf_green (c_nb_buf_green),// n bits for green in the buffer (memory)
+     .c_nb_buf_blue  (c_nb_buf_blue), // n bits for blue in the buffer (memory)
+     .c_nb_buf       (c_nb_buf)   //word width of the memory (buffer)
+    )
+   capture_c
+   (
      .rst          (rst),
      .clk          (clk50mhz),
      .pclk         (ov7670_c_pclk),
@@ -377,21 +481,31 @@ module top_ov7670x3
      .dout         (capture_data_c),
      .newframe     (capture_newframe_c),
      .we           (capture_we_c)
-  );   
+   );
 
   // --------------------- camera LEFT
   // frame buffer from the camera, before processing
-  frame_buffer cam_fb_l  
-  (
-     .clk     (clk50mhz),
-     // ports from camera capture
-     .wea     (capture_we_l),
-     .addra   (capture_addr_l),
-     .dina    (capture_data_l),
-     // ports to processing module
-     .addrb   (orig_img_addr_l),
-     .doutb   (orig_img_pxl_l)
-   );
+  frame_buffer
+    #( // parameters
+       .c_img_cols     (c_img_cols),
+       .c_img_rows     (c_img_rows),
+       .c_img_pxls     (c_img_pxls),
+       .c_nb_buf_red   (c_nb_buf_red),
+       .c_nb_buf_green (c_nb_buf_green),
+       .c_nb_buf_blue  (c_nb_buf_blue),
+       .c_nb_buf       (c_nb_buf)
+    )
+    cam_fb_l  
+    (
+       .clk     (clk50mhz),
+       // ports from camera capture
+       .wea     (capture_we_l),
+       .addra   (capture_addr_l),
+       .dina    (capture_data_l),
+       // ports to processing module
+       .addrb   (orig_img_addr_l),
+       .doutb   (orig_img_pxl_l)
+     );
 
   // image processing module
   color_proc img_proc_l
@@ -413,20 +527,46 @@ module top_ov7670x3
   );
 
   // processed frame buffer, to display on VGA
-  frame_buffer proc_fb_l  
-  (
-     .clk     (clk50mhz),
-     // ports from processing module
-     .wea     (proc_we_l),
-     .addra   (proc_img_addr_l),
-     .dina    (proc_img_pxl_l),
-     // ports to display
-     .addrb   (display_img_addr_l),
-     .doutb   (display_img_pxl_l)
-   );
+  frame_buffer
+    #( // parameters
+       .c_img_cols     (c_img_cols),
+       .c_img_rows     (c_img_rows),
+       .c_img_pxls     (c_img_pxls),
+       .c_nb_buf_red   (c_nb_buf_red),
+       .c_nb_buf_green (c_nb_buf_green),
+       .c_nb_buf_blue  (c_nb_buf_blue),
+       .c_nb_buf       (c_nb_buf)
+    )
+    proc_fb_l  
+    (
+       .clk     (clk50mhz),
+       // ports from processing module
+       .wea     (proc_we_l),
+       .addra   (proc_img_addr_l),
+       .dina    (proc_img_pxl_l),
+       // ports to display
+       .addrb   (display_img_addr_l),
+       .doutb   (display_img_pxl_l)
+     );
    
-  ov7670_capture capture_l 
-  (
+  ov7670_capture
+    #( // parameters
+     .c_img_cols     (c_img_cols), // number of columns of the image
+     .c_img_rows     (c_img_rows), // number of rows of the image
+     .c_img_pxls     (c_img_pxls), // total number of pixels of image
+     .c_nb_img_cols  (c_nb_img_cols), //n.bits needed for number of columns
+     //.c_nb_img_rows  (c_nb_img_rows), //n.bits needed for number of rows
+     .c_nb_img_pxls  (c_nb_img_pxls), //n.bits needed for total image pixels
+
+     .c_nb_camdata   (c_nb_camdata), //n.bits of camera data port
+
+     .c_nb_buf_red   (c_nb_buf_red),  //n bits for red in the buffer (memory)
+     .c_nb_buf_green (c_nb_buf_green),// n bits for green in the buffer (memory)
+     .c_nb_buf_blue  (c_nb_buf_blue), // n bits for blue in the buffer (memory)
+     .c_nb_buf       (c_nb_buf)   //word width of the memory (buffer)
+   )
+   capture_l 
+   (
      .rst          (rst),
      .clk          (clk50mhz),
      .pclk         (ov7670_l_pclk),
@@ -441,7 +581,7 @@ module top_ov7670x3
      .dout         (capture_data_l),
      .newframe     (capture_newframe_l),
      .we           (capture_we_l)
-  );
+   );
   
   // same for the 3 cameras
   ov7670_top_ctrl controller 
@@ -500,7 +640,7 @@ module top_ov7670x3
   motor_ctrl_spi i_motor_ctrl_spi
   (
    .rst            (rst),
-   .clk            (clk),
+   .clk            (clk50mhz),
    .centroid       (centroid_c), // using the central cam, in the future 2 cams
    .new_centroid   (new_centroid_c), //central cam
    .proximity      (proximity_c), // using central cam
@@ -526,9 +666,13 @@ module top_ov7670x3
   assign motor_dps_rght = {8'b0,motor_pwm_rght}; 
 
   // SPI communication with the GoPiGo
-  top_spi_controller_wrp i_top_spi_ctrl_wrp
-  (
-    .rst         (rst),
+  top_spi_controller_wrp
+    #( //parameters
+      .G_CLK_FREQ_MHZ(G_CLK_FREQ_MHZ) // clk frequency (after PLL)
+    )
+    i_top_spi_ctrl_wrp
+    (
+     .rst         (rst),
     .clk         (clk50mhz),
     //.motor_pwm_left_i     (motor_pwm_left),
     //.motor_pwm_rght_i     (motor_pwm_rght),

@@ -124,6 +124,7 @@ module servo_pan_ctrl_spi
   // Counter register
   reg [nb_cnt-1:0]  cnt;
   localparam [nb_cnt-1:0] c_end_cnt = {nb_cnt{1'b1}}; //to have all to 1
+  wire   cnt_end; // end of the count
 
   // an object is captured by the camera 
   assign tracking = (centroid == 10'b0) ? 1'b0 : 1'b1;
