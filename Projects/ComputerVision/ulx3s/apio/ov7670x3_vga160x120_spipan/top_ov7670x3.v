@@ -81,7 +81,10 @@ module top_ov7670x3
      input        btnr_proc_ctrl,  //control color processing cam right
 
      output [3:0] vga_red,
-     output [3:0] vga_green,
+     //output [3:0] vga_green,
+     output       vga_green_3,
+     output       vga_green_2,
+     output       vga_green_1,
      //output [3:0] vga_blue,
      output       vga_blue_3,
      output       vga_blue_2,
@@ -90,9 +93,9 @@ module top_ov7670x3
      output       vga_vsync,
 
     // SPI
-    output   sclk_o, 
-    input    miso_i,
-    output   mosi_o,
+    output   spi_clk_o, 
+    input    spi_miso_i,
+    output   spi_mosi_o,
     output   spi_ss_n,  // spi slave select , active low
     // rpi_running is 1 when running, to inform gopigo,  ov7670_rst_n could be
     // used to save one pin, but maybe it is too much for fanout
@@ -183,6 +186,7 @@ module top_ov7670x3
     wire [2:0]    rgbfilter_c;
     wire [2:0]    rgbfilter_r;
 
+    wire [3:0]    vga_green;
     wire [3:0]    vga_blue;
 
     wire [7:0]    motor_pwm_left;
@@ -198,6 +202,10 @@ module top_ov7670x3
     //assign servo2_cam_tilt = 10'b0;  //not used yet
     //
     wire locked_wire;  // for the PLL
+
+    assign vga_green_3 = vga_green[3];
+    assign vga_green_2 = vga_green[2];
+    assign vga_green_1 = vga_green[1];
 
     assign vga_blue_3 = vga_blue[3];
     assign vga_blue_2 = vga_blue[2];
@@ -685,7 +693,7 @@ module top_ov7670x3
     //.led_blink_rght_rgb_i (led_blink_rght_rgb),
     .servo_1_i            (servo_1_cam_pan),
     //.servo_2_i            (servo_2_cam_tilt), // unused, tilt in the future
-    .sclk_o               (sclk_o), 
+    .sclk_o               (spi_clk_o), 
     .miso_i               (miso_i),
     //output mosi_en_o, 
     .mosi_o               (mosi_o),
