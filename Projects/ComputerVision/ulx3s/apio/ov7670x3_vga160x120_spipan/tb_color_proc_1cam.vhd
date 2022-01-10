@@ -1,16 +1,8 @@
-------------------------------------------------------------------------------
---   Felipe Machado Sanchez
---   Area de Tecnologia Electronica
---   Universidad Rey Juan Carlos
---   https://github.com/felipe-m
---
--- VHDL Test Bench Created by ISE for module: color_proc_1cam
--- 
+--------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
  
---USE ieee.numeric_std.ALL;
  
 ENTITY tb_color_proc_1cam IS
 END tb_color_proc_1cam;
@@ -24,15 +16,28 @@ ARCHITECTURE behavior OF tb_color_proc_1cam IS
          rst : IN  std_logic;
          clk : IN  std_logic;
          proc_ctrl : IN  std_logic;
-         new_frame : IN  std_logic;
+         new_frame_i : IN  std_logic;
          orig_pxl : IN  std_logic_vector(11 downto 0);
          orig_addr : OUT  std_logic_vector(15-1 downto 0);
          proc_we : OUT  std_logic;
          proc_pxl : OUT  std_logic_vector(11 downto 0);
          proc_addr : OUT  std_logic_vector(15-1 downto 0);
-         centroid : OUT  std_logic_vector(7 downto 0);
-         new_centroid : OUT  std_logic;
-         proximity : OUT  std_logic_vector(2 downto 0);
+         new_frame_proc_o : OUT  std_logic;
+         colorpxls_bin0 : OUT  std_logic_vector(11-1 downto 0);
+         colorpxls_bin1 : OUT  std_logic_vector(11-1 downto 0);
+         colorpxls_bin2 : OUT  std_logic_vector(11-1 downto 0);
+         colorpxls_bin3 : OUT  std_logic_vector(11-1 downto 0);
+         colorpxls_bin4 : OUT  std_logic_vector(11-1 downto 0);
+         colorpxls_bin5 : OUT  std_logic_vector(11-1 downto 0);
+         colorpxls_bin6 : OUT  std_logic_vector(11-1 downto 0);
+         colorpxls_bin7 : OUT  std_logic_vector(11-1 downto 0);
+         colorpxls_o : OUT  std_logic_vector(14-1 downto 0);
+         colorpxls_left_o : OUT  std_logic_vector(14-2 downto 0);
+         colorpxls_rght_o : OUT  std_logic_vector(14-2 downto 0);
+         colorpxls_bin012_o : OUT  std_logic_vector(14-2 downto 0);
+         colorpxls_bin567_o : OUT  std_logic_vector(14-2 downto 0);
+         colorpxls_bin01_o : OUT  std_logic_vector(14-2 downto 0);
+         colorpxls_bin67_o : OUT  std_logic_vector(14-2 downto 0);
          rgbfilter : OUT  std_logic_vector(2 downto 0)
         );
     END COMPONENT;
@@ -42,7 +47,7 @@ ARCHITECTURE behavior OF tb_color_proc_1cam IS
    signal rst : std_logic := '0';
    signal clk : std_logic := '0';
    signal proc_ctrl : std_logic := '0';
-   signal new_frame : std_logic := '0';
+   signal new_frame_i : std_logic := '0';
    signal orig_pxl : std_logic_vector(11 downto 0) := (others => '0');
 
  	--Outputs
@@ -50,9 +55,22 @@ ARCHITECTURE behavior OF tb_color_proc_1cam IS
    signal proc_we : std_logic;
    signal proc_pxl : std_logic_vector(11 downto 0);
    signal proc_addr : std_logic_vector(15-1 downto 0);
-   signal centroid : std_logic_vector(7 downto 0);
-   signal new_centroid : std_logic;
-   signal proximity : std_logic_vector(2 downto 0);
+   signal new_frame_proc_o : std_logic;
+   signal colorpxls_bin0 : std_logic_vector(11-1 downto 0);
+   signal colorpxls_bin1 : std_logic_vector(11-1 downto 0);
+   signal colorpxls_bin2 : std_logic_vector(11-1 downto 0);
+   signal colorpxls_bin3 : std_logic_vector(11-1 downto 0);
+   signal colorpxls_bin4 : std_logic_vector(11-1 downto 0);
+   signal colorpxls_bin5 : std_logic_vector(11-1 downto 0);
+   signal colorpxls_bin6 : std_logic_vector(11-1 downto 0);
+   signal colorpxls_bin7 : std_logic_vector(11-1 downto 0);
+   signal colorpxls_o : std_logic_vector(14-1 downto 0);
+   signal colorpxls_left_o : std_logic_vector(14-2 downto 0);
+   signal colorpxls_rght_o : std_logic_vector(14-2 downto 0);
+   signal colorpxls_bin012_o : std_logic_vector(14-2 downto 0);
+   signal colorpxls_bin567_o : std_logic_vector(14-2 downto 0);
+   signal colorpxls_bin01_o : std_logic_vector(14-2 downto 0);
+   signal colorpxls_bin67_o : std_logic_vector(14-2 downto 0);
    signal rgbfilter : std_logic_vector(2 downto 0);
 
    -- Clock period definitions
@@ -65,15 +83,28 @@ BEGIN
           rst => rst,
           clk => clk,
           proc_ctrl => proc_ctrl,
-          new_frame => new_frame,
+          new_frame_i => new_frame_i,
           orig_pxl => orig_pxl,
           orig_addr => orig_addr,
           proc_we => proc_we,
           proc_pxl => proc_pxl,
           proc_addr => proc_addr,
-          centroid => centroid,
-          new_centroid => new_centroid,
-          proximity => proximity,
+          new_frame_proc_o => new_frame_proc_o,
+          colorpxls_bin0 => colorpxls_bin0,
+          colorpxls_bin1 => colorpxls_bin1,
+          colorpxls_bin2 => colorpxls_bin2,
+          colorpxls_bin3 => colorpxls_bin3,
+          colorpxls_bin4 => colorpxls_bin4,
+          colorpxls_bin5 => colorpxls_bin5,
+          colorpxls_bin6 => colorpxls_bin6,
+          colorpxls_bin7 => colorpxls_bin7,
+          colorpxls_o => colorpxls_o,
+          colorpxls_left_o => colorpxls_left_o,
+          colorpxls_rght_o => colorpxls_rght_o,
+          colorpxls_bin012_o => colorpxls_bin012_o,
+          colorpxls_bin567_o => colorpxls_bin567_o,
+          colorpxls_bin01_o => colorpxls_bin01_o,
+          colorpxls_bin67_o => colorpxls_bin67_o,
           rgbfilter => rgbfilter
         );
 
@@ -85,6 +116,7 @@ BEGIN
 		clk <= '0';
 		wait for clk_period/2;
    end process;
+ 
  
    -- reset process
    rst_proc: process
@@ -106,12 +138,12 @@ BEGIN
    -- new frame
    newframe_proc: process
    begin		
-     new_frame <= '0';
+     new_frame_i <= '0';
      wait for 66 ms; -- around 15 frames per second
      wait until clk'event and clk='1';
-     new_frame <= '1';
+     new_frame_i <= '1';
      wait until clk'event and clk='1';
-     new_frame <= '0';
+     new_frame_i <= '0';
    end process;
 
    -- proc control, to change the color
@@ -153,6 +185,7 @@ BEGIN
       wait for 10 us;	
       wait;
    end process;
+   
 
 
 END;
