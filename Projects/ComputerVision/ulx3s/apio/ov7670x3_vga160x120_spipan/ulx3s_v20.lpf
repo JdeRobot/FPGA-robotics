@@ -51,7 +51,7 @@ LOCATE COMP "rst" SITE "R1";  # FIRE1
 #LOCATE COMP "btn2" SITE "T1";  # FIRE2
 #LOCATE COMP "btn[3]" SITE "R18"; # UP W1->R18
 #LOCATE COMP "btn[4]" SITE "V1";  # DOWN
-LOCATE COMP "btnd_proc_ctrl" SITE "V1";  # DOWN -> CENTER
+LOCATE COMP "btnd_proc_ctrl" SITE "V1";  # DOWN -> PAN
 #LOCATE COMP "btn[5]" SITE "U1";  # LEFT
 LOCATE COMP "btnl_proc_ctrl" SITE "U1";  # LEFT
 #LOCATE COMP "btn[6]" SITE "H16"; # RIGHT Y2->H16
