@@ -5,7 +5,7 @@
 //   https://github.com/felipe-m
 //
 //   vga_display.vhd
-//   Displays 2 images from 2 on the frambuffer to the VGA
+//   Displays 3 images from 3 frambuffer to the VGA
 //
 
 module vga_display
@@ -74,24 +74,24 @@ module vga_display
   );
 
   // central image columns
-  parameter   C_IMG_CEN_COL_MIN = 192;
-  parameter   C_IMG_CEN_COL_MAX = C_IMG_CEN_COL_MIN+c_img_cols;  //352 0x160
+  localparam  C_IMG_CEN_COL_MIN = 192;
+  localparam  C_IMG_CEN_COL_MAX = C_IMG_CEN_COL_MIN+c_img_cols;  //352 0x160
   // right image columns
-  parameter   C_IMG_RGTH_COL_MIN = 2*C_IMG_CEN_COL_MIN; //384 0x180 1_1000_000
-  parameter   C_IMG_RGTH_COL_MAX = C_IMG_RGTH_COL_MIN + c_img_cols; //544 0x220
+  localparam  C_IMG_RGTH_COL_MIN = 2*C_IMG_CEN_COL_MIN; //384 0x180 1_1000_000
+  localparam  C_IMG_RGTH_COL_MAX = C_IMG_RGTH_COL_MIN + c_img_cols; //544 0x220
   // indicates if the the area of the text (characters)
-  parameter   C_TXT_ROW_MIN = 128; //248;
-  parameter   C_TXT_ROW_MAX = C_TXT_ROW_MIN + 8; //256;
-  parameter   C_TXT1_COL_MIN = 8;
-  parameter   C_TXT1_COL_MAX = 16;
-  parameter   C_TXT2_COL_MIN = C_TXT1_COL_MAX;
-  parameter   C_TXT2_COL_MAX = 24;
-  parameter   C_FILTBOX_LFT_COL_MIN = C_TXT2_COL_MAX;
-  parameter   C_FILTBOX_LFT_COL_MAX = C_FILTBOX_LFT_COL_MIN + 8;
-  parameter   C_FILTBOX_CEN_COL_MIN = C_IMG_CEN_COL_MIN;
-  parameter   C_FILTBOX_CEN_COL_MAX = C_FILTBOX_CEN_COL_MIN + 8;
-  parameter   C_FILTBOX_RGHT_COL_MIN = C_IMG_RGTH_COL_MIN;
-  parameter   C_FILTBOX_RGHT_COL_MAX = C_FILTBOX_RGHT_COL_MIN + 8;
+  localparam  C_TXT_ROW_MIN = 128; //248;
+  localparam  C_TXT_ROW_MAX = C_TXT_ROW_MIN + 8; //256;
+  localparam  C_TXT1_COL_MIN = 8;
+  localparam  C_TXT1_COL_MAX = 16;
+  localparam  C_TXT2_COL_MIN = C_TXT1_COL_MAX;
+  localparam  C_TXT2_COL_MAX = 24;
+  localparam  C_FILTBOX_LFT_COL_MIN = C_TXT2_COL_MAX;
+  localparam  C_FILTBOX_LFT_COL_MAX = C_FILTBOX_LFT_COL_MIN + 8;
+  localparam  C_FILTBOX_CEN_COL_MIN = C_IMG_CEN_COL_MIN;
+  localparam  C_FILTBOX_CEN_COL_MAX = C_FILTBOX_CEN_COL_MIN + 8;
+  localparam  C_FILTBOX_RGHT_COL_MIN = C_IMG_RGTH_COL_MIN;
+  localparam  C_FILTBOX_RGHT_COL_MAX = C_FILTBOX_RGHT_COL_MIN + 8;
   reg         txt1_col;
   reg         txt2_col;
   reg         filterboxleft_col;
@@ -104,17 +104,17 @@ module vga_display
   reg         img_col_rght;
   reg         img_row;
   // indicates if it is the area of the black and white test
-  parameter   C_BWT_ROW_MIN = 240;
-  parameter   C_BWT_ROW_MAX = 256;
-  parameter   C_BWT_COL_MIN = 128;
-  parameter   C_BWT_COL_MAX = 256;
+  localparam  C_BWT_ROW_MIN = 240;
+  localparam  C_BWT_ROW_MAX = 256;
+  localparam  C_BWT_COL_MIN = 128;
+  localparam  C_BWT_COL_MAX = 256;
   reg         bwt_col;
   reg         bwt_row;
   // indicates if it is the area of the color test
-  parameter   C_CLT_ROW_MIN = C_BWT_ROW_MAX;
-  parameter   C_CLT_ROW_MAX = 384;
-  parameter   C_CLT_COL_MIN = 0;
-  parameter   C_CLT_COL_MAX = 256;
+  localparam  C_CLT_ROW_MIN = C_BWT_ROW_MAX;
+  localparam  C_CLT_ROW_MAX = 384;
+  localparam  C_CLT_COL_MIN = 0;
+  localparam  C_CLT_COL_MAX = 256;
   reg         clt_col;
   reg         clt_row;
 

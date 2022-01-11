@@ -4,14 +4,14 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
  
  
-ENTITY tb_color_proc_1cam IS
-END tb_color_proc_1cam;
+ENTITY tb_color_proc IS
+END tb_color_proc;
  
-ARCHITECTURE behavior OF tb_color_proc_1cam IS 
+ARCHITECTURE behavior OF tb_color_proc IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT color_proc_1cam
+    COMPONENT color_proc
     PORT(
          rst : IN  std_logic;
          clk : IN  std_logic;
@@ -79,7 +79,7 @@ ARCHITECTURE behavior OF tb_color_proc_1cam IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: color_proc_1cam PORT MAP (
+   uut: color_proc PORT MAP (
           rst => rst,
           clk => clk,
           proc_ctrl => proc_ctrl,
@@ -147,7 +147,7 @@ BEGIN
    end process;
 
    -- proc control, to change the color
-   color_proc: process
+   p_color_proc: process
    begin		
       proc_ctrl <= '0';
       wait for 205 ns;	
