@@ -1,0 +1,8 @@
+project/boot
+project/project
+project/plugins/project
+target
+simWorkspace
+sim/obj_dir
+imgui.ini
+sim.vcd
