@@ -6,7 +6,7 @@
 //
 //   ov7670_capture.v
 //   
-// clk 50 MHz
+//   clk 50 MHz
 //-----------------------------------------------------------------------------
 
 module ov7670_capture
@@ -15,21 +15,22 @@ module ov7670_capture
     //c_img_cols    = 640, // 10 bits
     //c_img_rows    = 480, //  9 bits
     //c_img_pxls    = c_img_cols * c_img_rows,
-    //c_nb_line_pxls = 10, // log2i(c_img_cols-1) + 1;
+    //c_nb_img_cols = 10, // log2i(c_img_cols-1) + 1;
     // c_nb_img_pxls = log2i(c_img_pxls-1) + 1
     //c_nb_img_pxls =  19,  //640*480=307,200 -> 2^19=524,288
     // QQVGA
     c_img_cols    = 160, // 8 bits
     c_img_rows    = 120, //  7 bits
-    //c_nb_line_pxls = 8, // log2i(c_img_cols-1) + 1;
+    //c_nb_img_cols = 8, // log2i(c_img_cols-1) + 1;
     //c_nb_img_pxls =  15,  //160*120=19.200 -> 2^15
     // QQVGA/2
     //c_img_cols    = 80, // 7 bits
     //c_img_rows    = 60, // 6 bits
     c_img_pxls    = c_img_cols * c_img_rows,
-    c_nb_line_pxls = $clog2(c_img_cols), // 8 log2i(c_img_cols-1) + 1;
+    c_nb_img_cols = $clog2(c_img_cols), // 8 log2i(c_img_cols-1) + 1;
     c_nb_img_pxls =  $clog2(c_img_pxls), // 15  160*120=19.200 -> 2^15
 
+    c_nb_camdata   = 8,  // n bits of the camera data port
 
     c_nb_buf_red   =  4,  // n bits for red in the buffer (memory)
     c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
@@ -38,8 +39,8 @@ module ov7670_capture
     c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
   )
   (
-   input              rst,    // FPGA reset
-   input              clk,    // FPGA clock: 50MHz - 20ns
+    input             rst,    // FPGA reset
+    input             clk,    // FPGA clock: 50MHz - 20ns
     // camera pclk (byte clock) (~40ns)  
     // 2 bytes is a pixel
     input             pclk,
@@ -49,22 +50,24 @@ module ov7670_capture
     input             swap_r_b,  // swaps red with blue
     output     [11:0] dataout_test,
     output reg [3:0]  led_test,
-    input      [7:0]  data,
+    input      [c_nb_camdata-1:0]  data,
     output     [c_nb_img_pxls-1:0] addr,
     output     [c_nb_buf-1:0]      dout,
+    output            newframe,  // when a new frame comes, one clk cycle
     output            we
   );
 
   reg        pclk_rg1, pclk_rg2;  // registered pclk
   reg        href_rg1, href_rg2;  // registered href
   reg        vsync_rg1, vsync_rg2;// registered vsync
-  reg [7:0]  data_rg1, data_rg2;  //registered data
+  reg [c_nb_camdata-1:0]  data_rg1, data_rg2;  //registered data
 
   reg        pclk_rg3, href_rg3, vsync_rg3; //3rd
-  reg [7:0]  data_rg3;     // registered data 3rd
+  reg [c_nb_camdata-1:0]  data_rg3;     // registered data 3rd
 
   // it seems that vsync has some spurious 
   wire       vsync_3up;
+  reg        vsync_3up_rg;
 
   wire       pclk_fall;
   wire       pclk_rise_prev;
@@ -75,8 +78,8 @@ module ov7670_capture
   reg [c_nb_img_pxls-1:0]  cnt_pxl;
   // number of pixels in the previous lines, not considering the actual line
   reg [c_nb_img_pxls-1:0]  cnt_pxl_base;
-  reg [c_nb_line_pxls-1:0] cnt_line_pxl;
-  reg [c_nb_line_pxls-1:0] cnt_line_totpxls;
+  reg [c_nb_img_cols-1:0] cnt_line_pxl;
+  reg [c_nb_img_cols-1:0] cnt_line_totpxls;
 
    // there should be 4 clks in a pclk (byte), but just in case, make 
    // another bit to avoid overflow and go back in 0 before time
@@ -86,7 +89,7 @@ module ov7670_capture
 
   parameter    c_cnt_05seg_end = 50_000_000;
 
-  reg  [7:0]   gray;
+  reg  [c_nb_camdata-1:0]   gray;
   reg  [c_nb_buf_red-1:0]   red;
   reg  [c_nb_buf_red-1:0]   green;
   reg  [c_nb_buf_red-1:0]   blue;
@@ -134,6 +137,8 @@ module ov7670_capture
       vsync_rg3 <= 1'b0;
       data_rg3  <= 0;
       pclk_rise_post <= 1'b0;
+      // to detect new frame
+      vsync_3up_rg <= 1'b0;
     end
     else begin
       pclk_rg1  <= pclk;
@@ -150,12 +155,18 @@ module ov7670_capture
       vsync_rg3 <= vsync_rg2;
       data_rg3  <= data_rg2;
       pclk_rise_post <= pclk_rise;
+      // to detect new frame
+      vsync_3up_rg <= vsync_3up;
     end
   end
 
   // since some times it is up up to 2 cycles, has to be '1' during
   // the 3 following cycles
   assign vsync_3up = vsync_rg3 && vsync_rg2 && vsync_rg1 && vsync;
+  //rising edge detection,
+  //when vsync_3up  is '1' and not the previous clock cycle
+  assign newframe = vsync_3up & ~vsync_3up_rg;
+
 
   // FPGA clock is 10ns and pclk is 40ns
   //pclk_fall <= '1' when (pclk_rg2='0' and pclk_rg3='1') else '0';

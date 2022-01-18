@@ -32,13 +32,8 @@ module vga_sync
     c_line_bporch    = c_line_total - c_line_2_synch,  //  29
 
     // number of bits for each count
-    c_nb_pxls        = 10,  //c_pxl_total      :  800, 
-    c_nb_lines       = 10,  //c_line_total   :  520,
-
-    // number of bits for each color RGB
-    c_nb_red         = 4,
-    c_nb_green       = 4,
-    c_nb_blue        = 4,
+    c_nb_pxls        = $clog2(c_pxl_total), // 10,  //c_pxl_total      :  800, 
+    c_nb_lines       = $clog2(c_line_total), // 10,  //c_line_total   :  520,
 
     // VGA frequency
     c_freq_vga       = 25*10**6, // VGA 25MHz

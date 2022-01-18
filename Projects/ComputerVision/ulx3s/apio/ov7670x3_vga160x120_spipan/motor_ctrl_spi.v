@@ -9,8 +9,8 @@ module motor_ctrl_spi
    input  [7:0] centroid,
    input        new_centroid,
    input  [2:0] proximity,
-   output [7:0] v_left_motor_o,
-   output [7:0] v_rght_motor_o
+   output [nb_vel_motor-1:0] v_left_motor_o,
+   output [nb_vel_motor-1:0] v_rght_motor_o
   );
 
 
@@ -29,11 +29,11 @@ module motor_ctrl_spi
   reg [nb_counter-1:0] counter = 0;
 
   // Last known centroid
-  reg [nb_vel_motor-1:0] last_cent_valid;
+  reg [8-1:0] last_cent_valid;
 
   // Output assign 
   assign v_left_motor_o = (vel_motor_rgth + direction) * lost_obj;
-  assign v_rgth_motor_o = (vel_motor_left + direction) * lost_obj;
+  assign v_rght_motor_o = (vel_motor_left + direction) * lost_obj;
 
   always @(posedge clk)
   begin

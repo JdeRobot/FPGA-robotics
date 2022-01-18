@@ -10,6 +10,10 @@
 //------------------------------------------------------------------------------
 
 module ov7670_top_ctrl
+  # (parameter
+    c_nb_ov7670_sccb = 8, // number of bits for each SCCB transmision phase
+    c_nb_ov7670_sccb_id = 7 // number of bits for the camera id (slave) 
+  )
   (input        rst,              //reset, active high
    input        clk,              //FPGA clock
    input        resend,           //resend the sequence
@@ -29,28 +33,38 @@ module ov7670_top_ctrl
 
   wire         start_tx;
   wire         sccb_ready;
-  wire [6:0]   id;
-  wire [7:0]   addr;
-  wire [7:0]   data_wr;
+  wire [c_nb_ov7670_sccb_id-1:0]  id;
+  wire [c_nb_ov7670_sccb-1:0]     addr;
+  wire [c_nb_ov7670_sccb-1:0]     data_wr;
 
-  sccb_master i_sccb
-  (
-    .rst      (rst),
-    .clk      (clk),
-    .start_tx (start_tx),
-    .id       (id),
-    .addr     (addr),
-    .data_wr  (data_wr),
-    .ready    (sccb_ready),
-    //.finish_tx    
-    .sclk     (sclk),
-    .sdat_on  (sdat_on),
-    //sdat_in
-    .sdat_out (sdat_out)
-  );
+  sccb_master
+  #( //parameters
+    .c_nb_ov7670_sccb    (c_nb_ov7670_sccb),
+    .c_nb_ov7670_sccb_id (c_nb_ov7670_sccb_id)
+   )
+   i_sccb
+   (
+     .rst      (rst),
+     .clk      (clk),
+     .start_tx (start_tx),
+     .id       (id),
+     .addr     (addr),
+     .data_wr  (data_wr),
+     .ready    (sccb_ready),
+     //.finish_tx    
+     .sclk     (sclk),
+     .sdat_on  (sdat_on),
+     //sdat_in
+     .sdat_out (sdat_out)
+   );
 
 
-  ov7670_ctrl_reg i_regs
+  ov7670_ctrl_reg
+  #( //parameters
+    .c_nb_ov7670_sccb    (c_nb_ov7670_sccb),
+    .c_nb_ov7670_sccb_id (c_nb_ov7670_sccb_id)
+   )
+  i_regs
   (
     .rst          (rst),
     .clk          (clk),

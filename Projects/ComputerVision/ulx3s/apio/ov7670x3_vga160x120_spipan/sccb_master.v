@@ -57,7 +57,7 @@ module sccb_master
   #(parameter
     c_off                  = 1'b0, // push button off
     c_on                   = ~c_off, // push button on
-    c_clk_period           = 10, // fpga clk peridod in ns
+    c_clk_period           = 10, // fpga clk peridod in ns //CHECK now is 20
     // quarter of a period in ns
     c_sclk_period_div4     = 650, // see explanation above
     // frequency divider counter end value. Divided by 4 to have it divided
@@ -66,15 +66,18 @@ module sccb_master
     // which would mean higher frequency
     c_sclk_div4_endcnt     = 65, // div_ceil(c_sclk_period_div4,c_clk_period);
     // number of bits necessary to represent c_sclk_endcont in binary
-    c_nb_cnt_sclk_div4     =  7  // log2i(c_sclk_div4_endcnt-1) + 1;
+    c_nb_cnt_sclk_div4     =  7,  // log2i(c_sclk_div4_endcnt-1) + 1;
+
+    c_nb_ov7670_sccb = 8, // number of bits for each SCCB transmision phase
+    c_nb_ov7670_sccb_id = 7 // number of bits for the camera id (slave) 
    )
    (
     input         rst,       //reset, active high
     input         clk,       //fpga clock
     input         start_tx,  //start transmission
-    input  [6:0]  id,        //id of the slave
-    input  [7:0]  addr,      //address to be written
-    input  [7:0]  data_wr,   //data to write to slave
+    input [c_nb_ov7670_sccb_id-1:0] id,        //id of the slave
+    input [c_nb_ov7670_sccb-1:0]    addr,      //address to be written
+    input [c_nb_ov7670_sccb-1:0]    data_wr,   //data to write to slave
     output        ready,     //ready to send
     output reg    finish_tx, //transmission finished(pulse
     output reg    sclk,      //sccb clock
@@ -83,13 +86,15 @@ module sccb_master
     output reg    sdat_out   //sccb serial data out
    );
 
+  // the 3 bytes of a sending
+  localparam  c_nb_sccb3 = 3*c_nb_ov7670_sccb;
 
   // saving in registers the slave ID, address or the register
   // and data to be written. 8x3 = 24 bits
   //signal id_rg    : std_logic_vector(7 downto 0); //id of the slave
   //signal addr_rg  : std_logic_vector(7 downto 0); //address to be written
   //signal data_rg  : std_logic_vector(7 downto 0); //data to write to slave
-  reg [24-1:0] send_rg; //id, addr and data
+  reg [c_nb_sccb3-1:0] send_rg; //id, addr and data
 
 
   // frequency divider, but 4 time faster than the sccb period
@@ -140,18 +145,18 @@ module sccb_master
   begin
     if (rst)
       // the line is inactive at '1'
-      send_rg   <= {24{1'b1}}; // '1' in all 24 bits
+      send_rg   <= {c_nb_sccb3{1'b1}}; // '1' in all 24 bits
     else begin
       if (clr_datarg)
-        send_rg  <= {24{1'b1}}; // all to '1'
+        send_rg  <= {c_nb_sccb3{1'b1}}; // all to '1'
       else if (save_indata)
         //'0' indicates we are writting in the slave. Reading not implemented
         // id has 7 bits
         send_rg   <= {id, 1'b0, addr, data_wr};
       else if (send_data) begin
         if (sclk_end)
-          // rotate left, fillings with '1'
-          send_rg <= {send_rg[23-1:0], 1'b1};
+          // rotate left, fillings with '1' [22:0],1
+          send_rg <= {send_rg[c_nb_sccb3-2:0], 1'b1};
       end
     end
   end
