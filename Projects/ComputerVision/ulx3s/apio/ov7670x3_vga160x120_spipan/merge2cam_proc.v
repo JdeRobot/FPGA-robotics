@@ -61,9 +61,9 @@ module merge2cam_proc
       // number of bins (buckets)
       c_hist_bins = 8, // 7:0
 
-      // since we have 104 rows and 8 column in each bin
-      // for each bin 832 (104 x 8) is the max number: 10 bits
-      c_nb_hist_val = $clog2(c_inframe_rows *(c_inframe_cols/c_hist_bins))//=10
+      // since we have 104 rows and 16 column in each bin
+      // for each bin 1664 (104 x 16) is the max number: 10 bits
+      c_nb_hist_val = $clog2(c_inframe_rows *(c_inframe_cols/c_hist_bins))//=11
   )
   (
     input        rst,       //reset, active high
@@ -164,6 +164,14 @@ module merge2cam_proc
   reg [c_nb_inframe_pxls-2:0] colorpxls_left;
   reg [c_nb_inframe_pxls-2:0] colorpxls_rght;
 
+  // Middle camera
+  wire [c_nb_inframe_pxls-2:0] colorpxls_bin012_m;
+  wire [c_nb_inframe_pxls-2:0] colorpxls_bin567_m; // bins 5to7
+
+  // total number of pixels that are above the threshold on the bins 0,1
+  wire [c_nb_inframe_pxls-2:0] colorpxls_bin01_m;
+  wire [c_nb_inframe_pxls-2:0] colorpxls_bin67_m; // bins 6t
+
   // total number of pixels that are above the threshold on the bins 0to2
   reg [c_nb_inframe_pxls-2:0] colorpxls_bin012;
   reg [c_nb_inframe_pxls-2:0] colorpxls_bin567; // bins 5to7
@@ -191,7 +199,7 @@ module merge2cam_proc
       use_framepulse_l <= 1'b0;
       use_framepulse_r <= 1'b0;
     end
-    begin
+    else begin
       if (new_frame) begin 
         // second pulse has arrived or both pulses arrive: back to zero
         use_framepulse_l <= 1'b0;
@@ -300,7 +308,7 @@ module merge2cam_proc
       colorpxls_bin01  = colorpxls_bin01_l;
       colorpxls_bin67  = colorpxls_bin67_l;
     end
-    else if (rght_cam) begin
+    else begin // if (rght_cam) begin
       colorpxls        = colorpxls_r;
       colorpxls_bin0   = colorpxls_bin0_r;
       colorpxls_bin1   = colorpxls_bin1_r;
@@ -327,7 +335,7 @@ module merge2cam_proc
       left_cam_o         <= 1'b0;
       mid_cam_o          <= 1'b0;
       rght_cam_o         <= 1'b0;
-      colorpxls          <= 0; // c_nb_inframe_pxls'd0;
+      colorpxls_o        <= 0; // c_nb_inframe_pxls'd0;
       colorpxls_bin0_o   <= 0;
       colorpxls_bin1_o   <= 0;
       colorpxls_bin2_o   <= 0;

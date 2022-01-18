@@ -4,13 +4,20 @@
 //   Universidad Rey Juan Carlos
 //   https://github.com/felipe-m
 //
-//   centroid.v
-//   - Receives the x histogram of an image. 
+//   centroid_2cam.v
+//   - Receives the x histogram of a merged image. It comes from 2 cameras
+//     the histogram may come from left, right, o hypotetical middle camera
 //     This histogram is the image divided along the x axis (columns) in 8 bins
 //     and it indicates how many pixels in each bin has passed the color filter
 //   - Ouputs the centroid and also the proximity, which is calculated just
 //     counting pixels that have passed the filter
 //
+//     Camera bins of the histogram:
+//
+//         LEFT CAM         RIGHT CAM
+//      0 1 2 3 4 5 6 7  0 1 2 3 4 5 6 7
+//              0 1 2 3  4 5 6 7 -> MID CAM
+
 //   outputs:
 //   ----------
 //   centroid:
@@ -33,7 +40,7 @@
 //    
 //
 
-module centroid
+module centroid_2cam
   # (parameter
       // VGA
       //c_img_cols    = 640, // 10 bits
@@ -45,8 +52,8 @@ module centroid
       // QQVGA
       c_img_cols    = 160, // 8 bits
       c_img_rows    = 120, //  7 bits
-      c_img_pxls    = c_img_cols * c_img_rows,
-      c_nb_img_pxls = $clog2(c_img_pxls), // 15 -> 160*120=19,200 -> 2^15
+      //c_img_pxls    = c_img_cols * c_img_rows,
+      //c_nb_img_pxls = $clog2(c_img_pxls), // 15 -> 160*120=19,200 -> 2^15
       // QQVGA /2
       //c_img_cols    = 80, // 7 bits
       //c_img_rows    = 60, //  6 bits
@@ -69,7 +76,7 @@ module centroid
       // number of bins (buckets)
       c_hist_bins = 8, // 7:0
       // number of bits needed for the histogram bins: 8 bins -> 3 bits
-      c_nb_hist_bins = $clog2(c_hist_bins), // 3 bits
+      //c_nb_hist_bins = $clog2(c_hist_bins), // 3 bits
       // since we have 104 rows and 8 column in each bin
       // for each bin 832 (104 x 8) is the max number: 10 bits
       c_nb_hist_val = $clog2(c_inframe_rows *(c_inframe_cols/c_hist_bins)),//=10
@@ -89,10 +96,13 @@ module centroid
     input        rst,       //reset, active high
     input        clk,       //fpga clock
     input        new_frame_proc_i, // a new frame has been processed
+    input        left_cam_i,  // indicates from which camera comes the image
+    input        mid_cam_i,
+    input        rght_cam_i,
     // cannot have a port as an array. These are the 8 bins of the histogram
     // total number of pixels that are above the threshold
     input [c_nb_inframe_pxls-1:0] colorpxls_i,
-    //input [c_nb_hist_val-1:0] histogram_o [c_hist_bins-1:0], 
+    //input [c_nb_hist_val-1:0] histogram_i [c_hist_bins-1:0], 
     input [c_nb_hist_val-1:0] colorpxls_bin0_i,
     input [c_nb_hist_val-1:0] colorpxls_bin1_i,
     input [c_nb_hist_val-1:0] colorpxls_bin2_i,
@@ -142,6 +152,7 @@ module centroid
   // right and left
   wire [c_nb_inframe_pxls-2:0] absdif_lft_rght;
 
+  wire bin0_gth, bin01_gth, bin012_gth, bin7_gth, bin67_gth, bin567_gth;
   
   assign left = (colorpxls_left_i > colorpxls_rght_i) ? 1'b1 : 1'b0;
   assign absdif_lft_rght = (left == 1'b1) ? (colorpxls_left_i - colorpxls_rght_i) :
@@ -153,37 +164,78 @@ module centroid
   // divided by 16 -> 4 bits
   assign colorpxls_div = {4'b0 , colorpxls_i[c_nb_inframe_pxls-1:4]};
 
+  // comparators of bins to reuse them in all the comparisons:
+  // bins:  0 1 2 3  4 5 6 7
+  // gth: greather than the other half
+  assign bin0_gth   = (colorpxls_bin0_i   >= colorpxls_half) ? 1'b1 : 1'b0;
+  assign bin01_gth  = (colorpxls_bin01_i  >= colorpxls_half) ? 1'b1 : 1'b0;
+  assign bin012_gth = (colorpxls_bin012_i >= colorpxls_half) ? 1'b1 : 1'b0;
+
+  assign bin7_gth   = (colorpxls_bin7_i   >= colorpxls_half) ? 1'b1 : 1'b0;
+  assign bin67_gth  = (colorpxls_bin67_i  >= colorpxls_half) ? 1'b1 : 1'b0;
+  assign bin567_gth = (colorpxls_bin567_i >= colorpxls_half) ? 1'b1 : 1'b0;
+
   always @(*) 
   begin
     centroid_tmp = 0; // default assignment
-    // first if the difference between the colored pixels on de left is less than
+    //first if the difference between the colored pixels on de left is less than
     // 16 percent (maybe it could be 8%)
     if (colorpxls_i <= c_min_colorpxls) // not enough color pixels detected
       centroid_tmp = 0;
-    else if (absdif_lft_rght < colorpxls_div)  // consider in the middle
-      centroid_tmp[4:3] = 2'b11; // 0001 1000
-      //centroid_tmp = 8'b00011000;
-    else if (left) begin // more threshold pixels on the left
-      // start checking from the edges
-      if (colorpxls_bin0_i >= colorpxls_half) 
-        centroid_tmp[0] = 1'b1; // 1000 0000
-      else if (colorpxls_bin01_i >= colorpxls_half) 
-        centroid_tmp[1] = 1'b1; // 0100 0000
-      else if (colorpxls_bin012_i >= colorpxls_half) 
-        centroid_tmp[2] = 1'b1; // 0010 0000
-      else // if (colorpxls_left_i > colorpxls_half)  -- no other option
-        centroid_tmp[3] = 1'b1; // 0001 0000
+    else if (mid_cam_i) begin
+      if (absdif_lft_rght < colorpxls_div)  // consider in the middle
+        centroid_tmp[4:3] = 2'b11; // 0001 1000
+        //centroid_tmp = 8'b00011000;
+      else if (left) begin // more threshold pixels on the left
+        // start checking from the edges
+        if (colorpxls_bin0_i >= colorpxls_half) 
+          centroid_tmp[0] = 1'b1; // 1000 0000
+        else if (colorpxls_bin01_i >= colorpxls_half) 
+          centroid_tmp[1] = 1'b1; // 0100 0000
+        else if (colorpxls_bin012_i >= colorpxls_half) 
+          centroid_tmp[2] = 1'b1; // 0010 0000
+        else // if (colorpxls_left_i > colorpxls_half)  -- no other option
+          centroid_tmp[3] = 1'b1; // 0001 0000
+      end
+      else begin // more pixels on the right side
+        // start checking from the edges
+        if (colorpxls_bin7_i >= colorpxls_half) 
+          centroid_tmp[7] = 1'b1; // 0000 0001
+        else if (colorpxls_bin67_i >= colorpxls_half) 
+          centroid_tmp[6] = 1'b1; // 0000 0010
+        else if (colorpxls_bin567_i >= colorpxls_half) 
+          centroid_tmp[5] = 1'b1; // 0000 0100
+        else // if (colorpxls_rght_i > colorpxls_half)  -- no other option
+          centroid_tmp[4] = 1'b1; // 0000 1000
+      end
     end
-    else begin // more pixels on the right side
-      // start checking from the edges
-      if (colorpxls_bin7_i >= colorpxls_half) 
-        centroid_tmp[7] = 1'b1; // 0000 0001
-      else if (colorpxls_bin67_i >= colorpxls_half) 
-        centroid_tmp[6] = 1'b1; // 0000 0010
-      else if (colorpxls_bin567_i >= colorpxls_half) 
-        centroid_tmp[5] = 1'b1; // 0000 0100
-      else // if (colorpxls_rght_i > colorpxls_half)  -- no other option
+    else if (left_cam_i) begin
+      //         LEFT CAM         RIGHT CAM
+      //      0 1 2 3 4 5 6 7  0 1 2 3 4 5 6 7
+      //              0 1 2 3  4 5 6 7 -> MID CAM
+      if (bin7_gth)
+        centroid_tmp[3] = 1'b1; // 0001 0000
+      else if (bin67_gth)
+        centroid_tmp[2] = 1'b1; // 0010 0000
+      else if (bin567_gth)
+        centroid_tmp[1] = 1'b1; // 0100 0000
+      else
+        // In this first version, we consider the left part all the same
+        centroid_tmp[0] = 1'b1; // 1000 0000
+    end
+    else if (rght_cam_i) begin
+      //         LEFT CAM         RIGHT CAM
+      //      0 1 2 3 4 5 6 7  0 1 2 3 4 5 6 7
+      //              0 1 2 3  4 5 6 7 -> MID CAM
+      if (bin0_gth)
         centroid_tmp[4] = 1'b1; // 0000 1000
+      else if (bin01_gth)
+        centroid_tmp[5] = 1'b1; // 0000 0100
+      else if (bin012_gth)
+        centroid_tmp[6] = 1'b1; // 0000 0010
+      else
+        // In this first version, we consider the right part all the same
+        centroid_tmp[7] = 1'b1; // 0000 0001
     end
   end
 
@@ -241,13 +293,13 @@ module centroid
   begin
     if (rst) begin
       new_centroid_o <= 1'b0;
-      centroid_o <= 0; 
-      proximity_o <= 0;
+      centroid_o    <= 0; 
+      proximity_o   <= 0;
     end
     else begin
       new_centroid_o <= new_frame_proc_i;
-      centroid_o <= centroid_tmp; 
-      proximity_o <= proximity_tmp;
+      centroid_o    <= centroid_tmp; 
+      proximity_o   <= proximity_tmp;
     end
   end
 

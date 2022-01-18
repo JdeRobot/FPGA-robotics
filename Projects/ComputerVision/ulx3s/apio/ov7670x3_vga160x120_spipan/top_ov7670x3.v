@@ -48,9 +48,9 @@ module top_ov7670x3
       c_nb_hist_val = $clog2(c_inframe_rows * (c_inframe_cols/c_hist_bins)),//11
 
       // centroid has 8 bits, it is decoded, so its not a number
-      c_nb_centroid = 8
+      c_nb_centroid = 8,
       // proximity calculation, for now just 3 bits 0 to 7 (0: far, 7:close)
-      c_nb_prox  = 3
+      c_nb_prox  = 3,
       // minimum number to consider an image detected and not being noise
       // change this value
       c_min_colorpxls = 128,  // having 159744 pixels, 128 seems reasonable
@@ -155,6 +155,7 @@ module top_ov7670x3
     wire [c_nb_buf-1:0]    capture_data_l;
     wire          capture_newframe_l;
     wire          capture_we_l;
+    wire          new_frame_proc_l;
 
     wire [c_nb_img_pxls-1:0] orig_img_addr_l;
     wire [c_nb_buf-1:0]      orig_img_pxl_l;
@@ -170,6 +171,7 @@ module top_ov7670x3
     wire [c_nb_buf-1:0]    capture_data_r;
     wire          capture_newframe_r;
     wire          capture_we_r;
+    wire          new_frame_proc_r;
 
     wire [c_nb_img_pxls-1:0] orig_img_addr_r;
     wire [c_nb_buf-1:0]      orig_img_pxl_r;
@@ -196,26 +198,69 @@ module top_ov7670x3
     wire [c_nb_img_pxls-1:0] proc_img_addr_p;
     wire [c_nb_buf-1:0]      proc_img_pxl_p;
 
-    // pan camera processing
-    wire [c_nb_hist_val-1:0] colorpxls_bin0_p,
-    wire [c_nb_hist_val-1:0] colorpxls_bin1_p,
-    wire [c_nb_hist_val-1:0] colorpxls_bin2_p,
-    wire [c_nb_hist_val-1:0] colorpxls_bin3_p,
-    wire [c_nb_hist_val-1:0] colorpxls_bin4_p,
-    wire [c_nb_hist_val-1:0] colorpxls_bin5_p,
-    wire [c_nb_hist_val-1:0] colorpxls_bin6_p,
-    wire [c_nb_hist_val-1:0] colorpxls_bin7_p,
+    // left + right camera processing
+    wire [c_nb_hist_val-1:0] colorpxls_bin0_l, colorpxls_bin0_r;
+    wire [c_nb_hist_val-1:0] colorpxls_bin1_l, colorpxls_bin1_r;
+    wire [c_nb_hist_val-1:0] colorpxls_bin2_l, colorpxls_bin2_r;
+    wire [c_nb_hist_val-1:0] colorpxls_bin3_l, colorpxls_bin3_r;
+    wire [c_nb_hist_val-1:0] colorpxls_bin4_l, colorpxls_bin4_r;
+    wire [c_nb_hist_val-1:0] colorpxls_bin5_l, colorpxls_bin5_r;
+    wire [c_nb_hist_val-1:0] colorpxls_bin6_l, colorpxls_bin6_r;
+    wire [c_nb_hist_val-1:0] colorpxls_bin7_l, colorpxls_bin7_r;
     // total number of pixels that are above the threshold
-    wire [c_nb_inframe_pxls-1:0] colorpxls_p,
+    wire [c_nb_inframe_pxls-1:0] colorpxls_l, colorpxls_r;
     // total number of pixels that are above the threshold on the left side
-    wire [c_nb_inframe_pxls-2:0] colorpxls_left_p,
-    wire [c_nb_inframe_pxls-2:0] colorpxls_rght_p,
+    wire [c_nb_inframe_pxls-2:0] colorpxls_left_l, colorpxls_left_r;
+    wire [c_nb_inframe_pxls-2:0] colorpxls_rght_l, colorpxls_rght_r;
     // total number of pixels that are above the threshold on the bins 0to2
-    wire [c_nb_inframe_pxls-2:0] colorpxls_bin012_p,
-    wire [c_nb_inframe_pxls-2:0] colorpxls_bin567_p, // bins 5to7
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin012_l, colorpxls_bin012_r;
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin567_l, colorpxls_bin567_r;
     // total number of pixels that are above the threshold on the bins 0,1
-    wire [c_nb_inframe_pxls-2:0] colorpxls_bin01_p,
-    wire [c_nb_inframe_pxls-2:0] colorpxls_bin67_p, // bins 6to7
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin01_l, colorpxls_bin01_r;
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin67_l, colorpxls_bin67_r;
+
+    // merge left + right
+    wire [c_nb_hist_val-1:0] colorpxls_bin0_mrg;
+    wire [c_nb_hist_val-1:0] colorpxls_bin1_mrg;
+    wire [c_nb_hist_val-1:0] colorpxls_bin2_mrg;
+    wire [c_nb_hist_val-1:0] colorpxls_bin3_mrg;
+    wire [c_nb_hist_val-1:0] colorpxls_bin4_mrg;
+    wire [c_nb_hist_val-1:0] colorpxls_bin5_mrg;
+    wire [c_nb_hist_val-1:0] colorpxls_bin6_mrg;
+    wire [c_nb_hist_val-1:0] colorpxls_bin7_mrg;
+    // total number of pixels that are above the threshold
+    wire [c_nb_inframe_pxls-1:0] colorpxls_mrg;
+    // total number of pixels that are above the threshold on the left side
+    wire [c_nb_inframe_pxls-2:0] colorpxls_left_mrg;
+    wire [c_nb_inframe_pxls-2:0] colorpxls_rght_mrg;
+    // total number of pixels that are above the threshold on the bins 0to2
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin012_mrg;
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin567_mrg;
+    // total number of pixels that are above the threshold on the bins 0,1
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin01_mrg;
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin67_mrg;
+    wire new_mrgframe;
+
+    // pan camera processing
+    wire [c_nb_hist_val-1:0] colorpxls_bin0_p;
+    wire [c_nb_hist_val-1:0] colorpxls_bin1_p;
+    wire [c_nb_hist_val-1:0] colorpxls_bin2_p;
+    wire [c_nb_hist_val-1:0] colorpxls_bin3_p;
+    wire [c_nb_hist_val-1:0] colorpxls_bin4_p;
+    wire [c_nb_hist_val-1:0] colorpxls_bin5_p;
+    wire [c_nb_hist_val-1:0] colorpxls_bin6_p;
+    wire [c_nb_hist_val-1:0] colorpxls_bin7_p;
+    // total number of pixels that are above the threshold
+    wire [c_nb_inframe_pxls-1:0] colorpxls_p;
+    // total number of pixels that are above the threshold on the left side
+    wire [c_nb_inframe_pxls-2:0] colorpxls_left_p;
+    wire [c_nb_inframe_pxls-2:0] colorpxls_rght_p;
+    // total number of pixels that are above the threshold on the bins 0to2
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin012_p;
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin567_p; // bins 5to7
+    // total number of pixels that are above the threshold on the bins 0,1
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin01_p;
+    wire [c_nb_inframe_pxls-2:0] colorpxls_bin67_p; // bins 6to7
 
     wire          resend;
     wire          config_finished;
@@ -231,13 +276,14 @@ module top_ov7670x3
     wire          rgbmode;
 
     wire [5:0]    camera_config_steps;
-    wire [7:0]    centroid_l, centroid_r, centroid_p;
+    wire [7:0]    centroid_l, centroid_r, centroid_p, centroid_mrg;
     wire          new_centroid_l, new_centroid_r, new_centroid_p;
+    wire          new_centroid_mrg;
     // how close the detected object is
-    wire [2:0]    proximity_l, proximity_r, proximity_p;
+    wire [2:0]    proximity_l, proximity_r, proximity_p, proximity_mrg;
 
-    parameter     testmode = 1'b0; // no test mode
-    parameter     swap_r_b = 1'b1; // red and blue are swapped
+    localparam     testmode = 1'b0; // no test mode
+    localparam     swap_r_b = 1'b1; // red and blue are swapped
 
     wire [2:0]    rgbfilter_l;
     wire [2:0]    rgbfilter_r;
@@ -295,7 +341,7 @@ module top_ov7670x3
   );
   
   assign ov7670_l_xclk = ov7670_xclk;
-  assign ov7670_c_xclk = ov7670_xclk;
+  assign ov7670_p_xclk = ov7670_xclk;
   assign ov7670_r_xclk = ov7670_xclk;
 
   // the 3 cameras share this signals:
@@ -412,7 +458,7 @@ module top_ov7670x3
       .proc_addr  (proc_img_addr_l),
       .proc_pxl   (proc_img_pxl_l),
 
-      .new_frame_proc_o (new_frame_proc_l)
+      .new_frame_proc_o (new_frame_proc_l),
       .colorpxls_o    (colorpxls_l),
       .colorpxls_bin0 (colorpxls_bin0_l),
       .colorpxls_bin1 (colorpxls_bin1_l),
@@ -456,6 +502,9 @@ module top_ov7670x3
        .doutb   (display_img_pxl_l)
      );
 
+
+  // ------ just to show the centroid in the VGA
+  // ------ it can be taken away
   centroid
     #( // parameters
       .c_img_cols     (c_img_cols),
@@ -463,8 +512,6 @@ module top_ov7670x3
       .c_img_pxls     (c_img_pxls),
       .c_nb_cols      (c_nb_img_cols),
       .c_nb_rows      (c_nb_img_rows),
-      .c_outframe_cols(c_outframe_cols),
-      .c_outframe_rows(c_outframe_rows),
       .c_inframe_cols (c_inframe_cols),
       .c_inframe_rows (c_inframe_rows),
       .c_inframe_pxls (c_inframe_pxls),
@@ -473,34 +520,35 @@ module top_ov7670x3
       .c_nb_hist_val  (c_nb_hist_val),
       .c_nb_centroid  (c_nb_centroid),
       .c_nb_prox      (c_nb_prox),
-      .c_nb_colorpxls (c_nb_colorpxls)
+      .c_min_colorpxls(c_min_colorpxls)
     )
     centroid_left
-    (
+    (  // inputs
       .rst             (rst),
       .clk             (clk50mhz),
       .new_frame_proc_i(new_frame_proc_l),
-      .colorpxls      (colorpxls_l),
-      .colorpxls_bin0 (colorpxls_bin0_l),
-      .colorpxls_bin1 (colorpxls_bin1_l),
-      .colorpxls_bin2 (colorpxls_bin2_l),
-      .colorpxls_bin3 (colorpxls_bin3_l),
-      .colorpxls_bin4 (colorpxls_bin4_l),
-      .colorpxls_bin5 (colorpxls_bin5_l),
-      .colorpxls_bin6 (colorpxls_bin6_l),
-      .colorpxls_bin7 (colorpxls_bin7_l),
+      .colorpxls_i      (colorpxls_l),
+      .colorpxls_bin0_i (colorpxls_bin0_l),
+      .colorpxls_bin1_i (colorpxls_bin1_l),
+      .colorpxls_bin2_i (colorpxls_bin2_l),
+      .colorpxls_bin3_i (colorpxls_bin3_l),
+      .colorpxls_bin4_i (colorpxls_bin4_l),
+      .colorpxls_bin5_i (colorpxls_bin5_l),
+      .colorpxls_bin6_i (colorpxls_bin6_l),
+      .colorpxls_bin7_i (colorpxls_bin7_l),
 
-      .colorpxls_left_o  (colorpxls_left_l),
-      .colorpxls_rght_o  (colorpxls_rght_l),
-      .colorpxls_bin012_o (colorpxls_bin012_l),
-      .colorpxls_bin567_o (colorpxls_bin567_l),
-      .colorpxls_bin01_o (colorpxls_bin01_l),
-      .colorpxls_bin67_o (colorpxls_bin67_l)
+      .colorpxls_left_i  (colorpxls_left_l),
+      .colorpxls_rght_i  (colorpxls_rght_l),
+      .colorpxls_bin012_i(colorpxls_bin012_l),
+      .colorpxls_bin567_i(colorpxls_bin567_l),
+      .colorpxls_bin01_i (colorpxls_bin01_l),
+      .colorpxls_bin67_i (colorpxls_bin67_l),
+      // outputs
+      .centroid_o     (centroid_l),
+      .new_centroid_o (new_centroid_l),
+      .proximity_o    (proximity_l)
+    );
 
-      .centroid     (centroid_l),
-      .new_centroid (new_centroid_l),
-      .proximity    (proximity_l)
-    )
 
   // --------------------- Right robot camera
   ov7670_capture
@@ -593,7 +641,7 @@ module top_ov7670x3
       .proc_addr  (proc_img_addr_r),
       .proc_pxl   (proc_img_pxl_r),
 
-      .new_frame_proc_o (new_frame_proc_r)
+      .new_frame_proc_o (new_frame_proc_r),
       .colorpxls_o    (colorpxls_r),
       .colorpxls_bin0 (colorpxls_bin0_r),
       .colorpxls_bin1 (colorpxls_bin1_r),
@@ -636,6 +684,53 @@ module top_ov7670x3
        .addrb   (display_img_addr_r),
        .doutb   (display_img_pxl_r)
      );
+
+  // ------ just to show the centroid in the VGA
+  // ------ it can be taken away
+  centroid
+    #( // parameters
+      .c_img_cols     (c_img_cols),
+      .c_img_rows     (c_img_rows),
+      .c_img_pxls     (c_img_pxls),
+      .c_nb_cols      (c_nb_img_cols),
+      .c_nb_rows      (c_nb_img_rows),
+      .c_inframe_cols (c_inframe_cols),
+      .c_inframe_rows (c_inframe_rows),
+      .c_inframe_pxls (c_inframe_pxls),
+      .c_hist_bins    (c_hist_bins),
+      .c_nb_hist_bins (c_nb_hist_bins),
+      .c_nb_hist_val  (c_nb_hist_val),
+      .c_nb_centroid  (c_nb_centroid),
+      .c_nb_prox      (c_nb_prox),
+      .c_min_colorpxls(c_min_colorpxls)
+    )
+    centroid_rght
+    (  // inputs
+      .rst             (rst),
+      .clk             (clk50mhz),
+      .new_frame_proc_i(new_frame_proc_r),
+      .colorpxls_i      (colorpxls_r),
+      .colorpxls_bin0_i (colorpxls_bin0_r),
+      .colorpxls_bin1_i (colorpxls_bin1_r),
+      .colorpxls_bin2_i (colorpxls_bin2_r),
+      .colorpxls_bin3_i (colorpxls_bin3_r),
+      .colorpxls_bin4_i (colorpxls_bin4_r),
+      .colorpxls_bin5_i (colorpxls_bin5_r),
+      .colorpxls_bin6_i (colorpxls_bin6_r),
+      .colorpxls_bin7_i (colorpxls_bin7_r),
+
+      .colorpxls_left_i  (colorpxls_left_r),
+      .colorpxls_rght_i  (colorpxls_rght_r),
+      .colorpxls_bin012_i(colorpxls_bin012_r),
+      .colorpxls_bin567_i(colorpxls_bin567_r),
+      .colorpxls_bin01_i (colorpxls_bin01_r),
+      .colorpxls_bin67_i (colorpxls_bin67_r),
+      // outputs
+      .centroid_o      (centroid_r),
+      .new_centroid_o (new_centroid_r),
+      .proximity_o    (proximity_r)
+    );
+
 
   // ----- merge the processing results of left + right cameras
 
@@ -681,19 +776,19 @@ module top_ov7670x3
       .colorpxls_bin6_r (colorpxls_bin6_r),
       .colorpxls_bin7_r (colorpxls_bin7_r),
 
-      .colorpxls_left_l  (colorpxls_left_l),
-      .colorpxls_rght_l  (colorpxls_rght_l),
+      .colorpxls_left_l   (colorpxls_left_l),
+      .colorpxls_rght_l   (colorpxls_rght_l),
       .colorpxls_bin012_l (colorpxls_bin012_l),
       .colorpxls_bin567_l (colorpxls_bin567_l),
-      .colorpxls_bin01_l (colorpxls_bin01_l),
-      .colorpxls_bin67_l (colorpxls_bin67_l)
+      .colorpxls_bin01_l  (colorpxls_bin01_l),
+      .colorpxls_bin67_l  (colorpxls_bin67_l),
 
-      .colorpxls_left_r  (colorpxls_left_r),
-      .colorpxls_rght_r  (colorpxls_rght_r),
+      .colorpxls_left_r   (colorpxls_left_r),
+      .colorpxls_rght_r   (colorpxls_rght_r),
       .colorpxls_bin012_r (colorpxls_bin012_r),
       .colorpxls_bin567_r (colorpxls_bin567_r),
-      .colorpxls_bin01_r (colorpxls_bin01_r),
-      .colorpxls_bin67_r (colorpxls_bin67_r)
+      .colorpxls_bin01_r  (colorpxls_bin01_r),
+      .colorpxls_bin67_r  (colorpxls_bin67_r),
 
       .new_mergeframe_o (new_mrgframe),
 
@@ -702,28 +797,69 @@ module top_ov7670x3
       .rght_cam_o       (rght_cam),
 
       .colorpxls_o      (colorpxls_mrg),
-      .colorpxls_bin0_o (colorpxls_bin0_p),
-      .colorpxls_bin1_o (colorpxls_bin1_p),
-      .colorpxls_bin2_o (colorpxls_bin2_p),
-      .colorpxls_bin3_o (colorpxls_bin3_p),
-      .colorpxls_bin4_o (colorpxls_bin4_p),
-      .colorpxls_bin5_o (colorpxls_bin5_p),
-      .colorpxls_bin6_o (colorpxls_bin6_p),
-      .colorpxls_bin7_o (colorpxls_bin7_p),
+      .colorpxls_bin0_o (colorpxls_bin0_mrg),
+      .colorpxls_bin1_o (colorpxls_bin1_mrg),
+      .colorpxls_bin2_o (colorpxls_bin2_mrg),
+      .colorpxls_bin3_o (colorpxls_bin3_mrg),
+      .colorpxls_bin4_o (colorpxls_bin4_mrg),
+      .colorpxls_bin5_o (colorpxls_bin5_mrg),
+      .colorpxls_bin6_o (colorpxls_bin6_mrg),
+      .colorpxls_bin7_o (colorpxls_bin7_mrg),
 
+      .colorpxls_left_o  (colorpxls_left_mrg),
+      .colorpxls_rght_o  (colorpxls_rght_mrg),
+      .colorpxls_bin012_o (colorpxls_bin012_mrg),
+      .colorpxls_bin567_o (colorpxls_bin567_mrg),
+      .colorpxls_bin01_o (colorpxls_bin01_mrg),
+      .colorpxls_bin67_o (colorpxls_bin67_mrg)
 
-
-      .colorpxls_left_o  (colorpxls_left_r),
-      .colorpxls_rght_o  (colorpxls_rght_r),
-      .colorpxls_bin012_o (colorpxls_bin012_r),
-      .colorpxls_bin567_o (colorpxls_bin567_r),
-      .colorpxls_bin01_o (colorpxls_bin01_r),
-      .colorpxls_bin67_o (colorpxls_bin67_r)
-
-      .centroid     (centroid_r),
-      .new_centroid (new_centroid_r),
-      .proximity    (proximity_r)
     );
+
+  // -------------- centroid of the 2 merged cameras
+  centroid_2cam
+    #( // parameters
+      .c_img_cols     (c_img_cols),
+      .c_img_rows     (c_img_rows),
+      .c_nb_cols      (c_nb_img_cols),
+      .c_nb_rows      (c_nb_img_rows),
+      .c_inframe_cols (c_inframe_cols),
+      .c_inframe_rows (c_inframe_rows),
+      .c_inframe_pxls (c_inframe_pxls),
+      .c_hist_bins    (c_hist_bins),
+      .c_nb_hist_val  (c_nb_hist_val),
+      .c_nb_centroid  (c_nb_centroid),
+      .c_nb_prox      (c_nb_prox),
+      .c_min_colorpxls (c_min_colorpxls)
+    )
+    centroid_mrg2cam
+    (
+      .rst             (rst),
+      .clk             (clk50mhz),
+      .new_frame_proc_i(new_mrgframe),
+      .left_cam_i      (left_cam),
+      .mid_cam_i       (mid_cam),
+      .rght_cam_i      (rght_cam),
+      .colorpxls_i       (colorpxls_mrg),
+      .colorpxls_bin0_i  (colorpxls_bin0_mrg),
+      .colorpxls_bin1_i  (colorpxls_bin1_mrg),
+      .colorpxls_bin2_i  (colorpxls_bin2_mrg),
+      .colorpxls_bin3_i  (colorpxls_bin3_mrg),
+      .colorpxls_bin4_i  (colorpxls_bin4_mrg),
+      .colorpxls_bin5_i  (colorpxls_bin5_mrg),
+      .colorpxls_bin6_i  (colorpxls_bin6_mrg),
+      .colorpxls_bin7_i  (colorpxls_bin7_mrg),
+      .colorpxls_left_i   (colorpxls_left_mrg),
+      .colorpxls_rght_i   (colorpxls_rght_mrg),
+      .colorpxls_bin012_i (colorpxls_bin012_mrg),
+      .colorpxls_bin567_i (colorpxls_bin567_mrg),
+      .colorpxls_bin01_i  (colorpxls_bin01_mrg),
+      .colorpxls_bin67_i  (colorpxls_bin67_mrg),
+      // outputs
+      .centroid_o     (centroid_mrg),
+      .new_centroid_o (new_centroid_mrg),
+      .proximity_o    (proximity_mrg)
+    );
+
 
   // -------------- PAN camera. Turret camera on top of servo
   ov7670_capture
@@ -816,7 +952,7 @@ module top_ov7670x3
       .proc_addr  (proc_img_addr_p),
       .proc_pxl   (proc_img_pxl_p),
 
-      .new_frame_proc_o (new_frame_proc_p)
+      .new_frame_proc_o (new_frame_proc_p),
 
       .colorpxls_o    (colorpxls_p),
       .colorpxls_bin0 (colorpxls_bin0_p),
@@ -868,8 +1004,6 @@ module top_ov7670x3
       .c_img_pxls     (c_img_pxls),
       .c_nb_cols      (c_nb_img_cols),
       .c_nb_rows      (c_nb_img_rows),
-      .c_outframe_cols(c_outframe_cols),
-      .c_outframe_rows(c_outframe_rows),
       .c_inframe_cols (c_inframe_cols),
       .c_inframe_rows (c_inframe_rows),
       .c_inframe_pxls (c_inframe_pxls),
@@ -878,33 +1012,33 @@ module top_ov7670x3
       .c_nb_hist_val  (c_nb_hist_val),
       .c_nb_centroid  (c_nb_centroid),
       .c_nb_prox      (c_nb_prox),
-      .c_nb_colorpxls (c_nb_colorpxls)
+      .c_min_colorpxls(c_min_colorpxls)
     )
     centroid_pan
     (
       .rst             (rst),
       .clk             (clk50mhz),
       .new_frame_proc_i(new_frame_proc_p),
-      .colorpxls      (colorpxls_p),
-      .colorpxls_bin0 (colorpxls_bin0_p),
-      .colorpxls_bin1 (colorpxls_bin1_p),
-      .colorpxls_bin2 (colorpxls_bin2_p),
-      .colorpxls_bin3 (colorpxls_bin3_p),
-      .colorpxls_bin4 (colorpxls_bin4_p),
-      .colorpxls_bin5 (colorpxls_bin5_p),
-      .colorpxls_bin6 (colorpxls_bin6_p),
-      .colorpxls_bin7 (colorpxls_bin7_p),
+      .colorpxls_i      (colorpxls_p),
+      .colorpxls_bin0_i (colorpxls_bin0_p),
+      .colorpxls_bin1_i (colorpxls_bin1_p),
+      .colorpxls_bin2_i (colorpxls_bin2_p),
+      .colorpxls_bin3_i (colorpxls_bin3_p),
+      .colorpxls_bin4_i (colorpxls_bin4_p),
+      .colorpxls_bin5_i (colorpxls_bin5_p),
+      .colorpxls_bin6_i (colorpxls_bin6_p),
+      .colorpxls_bin7_i (colorpxls_bin7_p),
 
-      .colorpxls_left_o  (colorpxls_left_p),
-      .colorpxls_rght_o  (colorpxls_rght_p),
-      .colorpxls_bin012_o (colorpxls_bin012_p),
-      .colorpxls_bin567_o (colorpxls_bin567_p),
-      .colorpxls_bin01_o (colorpxls_bin01_p),
-      .colorpxls_bin67_o (colorpxls_bin67_p)
+      .colorpxls_left_i  (colorpxls_left_p),
+      .colorpxls_rght_i  (colorpxls_rght_p),
+      .colorpxls_bin012_i (colorpxls_bin012_p),
+      .colorpxls_bin567_i (colorpxls_bin567_p),
+      .colorpxls_bin01_i (colorpxls_bin01_p),
+      .colorpxls_bin67_i (colorpxls_bin67_p),
 
-      .centroid     (centroid_p),
-      .new_centroid (new_centroid_p),
-      .proximity    (proximity_p)
+      .centroid_o   (centroid_p),
+      .new_centroid_o (new_centroid_p),
+      .proximity_o    (proximity_p)
     );
 
   // -------------------------------- VGA Synchronization
@@ -983,9 +1117,9 @@ module top_ov7670x3
   (
    .rst            (rst),
    .clk            (clk50mhz),
-   .centroid       (centroid_c), // using the central cam, in the future 2 cams
-   .new_centroid   (new_centroid_c), //central cam
-   .proximity      (proximity_c), // using central cam
+   .centroid       (centroid_mrg), //merged centroid from left+right cameras
+   .new_centroid   (new_centroid_mrg), //merged cam
+   .proximity      (proximity_mrg), //
    .v_left_motor_o (motor_pwm_left),
    .v_rght_motor_o (motor_pwm_rght)
   );
@@ -1029,9 +1163,9 @@ module top_ov7670x3
     .servo_1_i            (servo_1_cam_pan),
     //.servo_2_i            (servo_2_cam_tilt), // unused, tilt in the future
     .sclk_o               (spi_clk_o), 
-    .miso_i               (miso_i),
+    .miso_i               (spi_miso_i),
     //output mosi_en_o, 
-    .mosi_o               (mosi_o),
+    .mosi_o               (spi_mosi_o),
     .spi_ss_n             (spi_ss_n),  // spi slave select , active low
     .rpi_running          (rpi_running) // 1 when running, to inform gopigo
   );
