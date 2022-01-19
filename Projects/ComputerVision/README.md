@@ -139,6 +139,14 @@ Other signals:
 Each line is at least 784 x 2 ov7670_clk (pclk). Multiplied x2 because it takes 2 camera clk cycles to send a pixel
 Having pclk is 80ns (12.5 MHz), it would be around 125 us before the first pixel is received. So it will be around 6272 FPGA clock cycles (20ns-50MHz). With these times, the FPGA would be in the 39th line when the first pixel is received, and since the FPGA process the image faster than the pixels are received, the old frame will be processed before the new frame fills the buffer
 
+**Blocks for 2 camera guiding robot:**
+
+![Blocks for 2 camera guiding robot](block2cam_guiderobot.png)
+
+**Blocks for 1 camera on turret:**
+
+![Blocks for 1 camera on turret](block_turret_cam.png)
+
 ---  
   
 # Alhambra II
