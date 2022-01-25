@@ -7,6 +7,10 @@
 //   ov7670_top_ctrl.v
 //   structural model, that controls the OV7670 camera, send the registers
 //   and controls the camera
+//
+//   output:
+//     done: stays at '1' when configuration is finished
+//
 //------------------------------------------------------------------------------
 
 module ov7670_top_ctrl
@@ -14,20 +18,20 @@ module ov7670_top_ctrl
     c_nb_ov7670_sccb = 8, // number of bits for each SCCB transmision phase
     c_nb_ov7670_sccb_id = 7 // number of bits for the camera id (slave) 
   )
-  (input        rst,              //reset, active high
-   input        clk,              //FPGA clock
-   input        resend,           //resend the sequence
-   input        rgbmode,         //if '1': in RGB, else YUV
-   input        testmode,        //if '1': in test mode
-   output [5:0] cnt_reg_test,     //to test the count
-   output       done,             //all transmission done
-   output       sclk,             //sccb clock
-   output       sdat_on,          //transmitting serial ('1')
-   //output       sdat_in,        //sccb serial data in
-   output       sdat_out,         //sccb serial data ou
-   output       ov7670_rst_n,     //camera reset
-   output       ov7670_clk,       //camera system clock
-   output       ov7670_pwdn       //camera power down
+  (input        rst,           //reset, active high
+   input        clk,           //FPGA clock
+   input        resend,        //resend the sequence
+   input        rgbmode,      //if '1': in RGB, else YUV
+   input        testmode,     //if '1': in test mode
+   output [5:0] cnt_reg_test,  //to test the count
+   output       done,          //all transmission done. Stays '1' when finish
+   output       sclk,          //sccb clock
+   output       sdat_on,       //transmitting serial ('1')
+   //output       sdat_in,     //sccb serial data in
+   output       sdat_out,      //sccb serial data ou
+   output       ov7670_rst_n,  //camera reset
+   output       ov7670_clk,    //camera system clock
+   output       ov7670_pwdn    //camera power down
   );
 
 

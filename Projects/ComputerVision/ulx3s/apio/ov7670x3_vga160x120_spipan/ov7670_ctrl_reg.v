@@ -16,6 +16,9 @@
 //     - ov7670_clk: xclk: system clock camera input
 //          freq   :  min: 10 MHz  -- typ: 24 MHz  -- Max: 48 MHz
 //          Period : max: 100 ns   -- typ: 42 ns   -- Max: 21 ns
+//   output:
+//     done: stays at '1' when configuration is finished
+//
 //   Register values taken from
 //   http://hamsterworks.co.nz/mediawiki/index.php/Zedboard_OV7670
 //   http://hamsterworks.co.nz/mediawiki/index.php/OV7670_camera
@@ -35,7 +38,7 @@ module ov7670_ctrl_reg
     input         sccb_ready,   //SCCB ready to transmit
     output [5:0]  cnt_reg_test,     //to test the count
     output        start_tx,     //start transmission
-    output        done,         //all the registers written
+    output        done,         //all the registers written. Stays at '1'
     output [c_nb_ov7670_sccb_id-1:0]  id,     //id of the slave
     output [c_nb_ov7670_sccb-1:0]  addr,      //address to be written
     output [c_nb_ov7670_sccb-1:0]  data_wr,   //data to write to slave

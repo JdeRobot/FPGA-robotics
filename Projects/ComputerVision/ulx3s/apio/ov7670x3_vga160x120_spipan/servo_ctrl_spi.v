@@ -90,6 +90,7 @@ module servo_pan_ctrl_spi
   )
   (input        rst,
    input        clk,
+   input        enable, // if 0, output servo_cam_pan_o will be disabled (0)
    input  [7:0] centroid,
    input        new_centroid,
    input  [2:0] proximity,
@@ -138,7 +139,10 @@ module servo_pan_ctrl_spi
       servo_cam_pan <= 0;
     end
     else begin
-      if (new_centroid) begin
+      if (~enable) begin  // not enable, output 0 (0 degrees)
+        servo_cam_pan <= 0;
+      end
+      else if (new_centroid) begin
         case (centroid[4:3])
           2'b11: // centered, do nothing
             servo_cam_pan <= servo_cam_pan;
