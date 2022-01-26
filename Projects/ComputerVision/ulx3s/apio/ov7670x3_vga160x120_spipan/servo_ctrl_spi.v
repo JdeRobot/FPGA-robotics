@@ -10,23 +10,29 @@
 //
 //   Servo angle is given by: 2'complement 10 bit number, -512 to 511.
 //     0 is in the middle for each 50 adds 9 degrees. ie:
-//    50 is   9 degrees
+//    50 is   9 degrees (counter clockwise)
 //   100 is  18 degrees
 //   150 is  27 degrees
 //   200 is  36 degrees
 //   250 is  45 degrees
 //   500 is  90 degrees
-//   -50 is  -9 degrees
+//   -50 is  -9 degrees (clock wise)
 //  -100 is -18 degrees
 //  -500 is -90 degrees...
+
+//                 0 degrees
+//                     |     
+//                     |     
+//   90 degrees _______|_______ -90 degrees
+
 //
 //  Servo starts in 0 degrees, and then it will follow the color object
 //  until reaching the limits (-90 : 90)
 //
 //  Servos pulses range from:
-//    1000 us:  -90 degrees (  0 degrees) leftmost
+//    1000 us:  -90 degrees (  0 degrees) rightmost
 //    1500 us:    0 degrees ( 90 degrees) center
-//    2000 us:   90 degrees (180 degrees) rightmost
+//    2000 us:   90 degrees (180 degrees) leftmost
 //
 //  Servo 2 ms pulse max, however the period of the servo is 20 ms
 //
@@ -65,21 +71,23 @@
 //  
 //  Input centroid shows where the centroid is
 //  It has 8 bits
+
+//   centroid:
 //
-//    7654 3210 :bit number (but the right-left orientation is backwards)
+//    0123 4567 :bit number
 //    ----------
 //    0001 1000 : centered
 //
-//    0001 0000 : slightly to the right
-//    0010 0000 : to the right
-//    0100 0000 : more to the right
-//    1000 0000 : to the right most
+//    0001 0000 : slightly to the left
+//    0010 0000 : to the left
+//    0100 0000 : more to the left
+//    1000 0000 : to the left most
 //   
-//    0000 1000 : slightly to the left
-//    0000 0100 : to the left
-//    0000 0010 : more to the left
-//    0000 0001 : to the left most
-//   
+//    0000 1000 : slightly to the right
+//    0000 0100 : to the right
+//    0000 0010 : more to the right
+//    0000 0001 : to the right most
+//
 //---------------------------------------------------------------------------//
 
 
@@ -99,6 +107,7 @@ module servo_pan_ctrl_spi
   );
 
   reg signed [10-1:0] servo_cam_pan;
+  reg signed [10-1:0] servo_cam_pan_neg;
 
 
   // degree steps depending on where the centroid is
@@ -130,9 +139,14 @@ module servo_pan_ctrl_spi
   // an object is captured by the camera 
   assign tracking = (centroid == 10'b0) ? 1'b0 : 1'b1;
 
+  // servo_cam_pan has considered clockwise as positive angles
+  assign servo_cam_pan_neg = - servo_cam_pan;
   // Output assign 
-  assign servo_cam_pan_o = servo_cam_pan;
+  assign servo_cam_pan_o   = servo_cam_pan_neg;
 
+  // these calculations are considering:
+  //    clockwise positive and counterclockwise negative
+  //    so servo_cam_pan has to be negated
   always @(posedge rst, posedge clk)
   begin
     if (rst) begin

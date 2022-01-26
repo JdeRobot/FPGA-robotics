@@ -29,17 +29,34 @@
 // There will be also a output bit port that indicates that output value is
 // valid. This signal will be available for just one clock cycle
 
-// for servos servo1_i & servo2_i: 2'complement number, -1024 to 1023.
+// for servos servo_1_i & servo_2_i: 2'complement number, -1024 to 1023.
 // 0 is in the middle for each 50 adds 9 degrees. ie:
-//   50 is  9 degrees
-//  100 is 18 degrees
-//  150 is 27 degrees
-//  200 is 36 degrees
-//  250 is 45 degrees
-//  500 is 90 degrees
-//  -50 is -9 degrees
-// -100 is -18 degrees
-// -500 is -90 degrees....
+//    50 is   9 degrees (counter clockwise)
+//   100 is  18 degrees
+//   150 is  27 degrees
+//   200 is  36 degrees
+//   250 is  45 degrees
+//   500 is  90 degrees
+//   -50 is  -9 degrees (clock wise)
+//  -100 is -18 degrees
+//  -500 is -90 degrees...
+
+//                 0 degrees
+//                     |     
+//                     |     
+//   90 degrees _______|_______ -90 degrees
+
+//
+//  Servo starts in 0 degrees, and then it will follow the color object
+//  until reaching the limits (-90 : 90)
+//
+//  Servos pulses range from:
+//    1000 us:  -90 degrees (  0 degrees) rightmost
+//    1500 us:    0 degrees ( 90 degrees) center
+//    2000 us:   90 degrees (180 degrees) leftmost
+//
+//  Servo 2 ms pulse max, however the period of the servo is 20 ms
+
 
 
 module top_spi_controller_wrp
