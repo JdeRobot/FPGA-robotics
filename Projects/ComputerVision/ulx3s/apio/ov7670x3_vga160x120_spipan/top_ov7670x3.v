@@ -263,7 +263,7 @@ module top_ov7670x3
     wire [c_nb_inframe_pxls-2:0] colorpxls_bin67_p; // bins 6to7
 
     wire          resend;
-    wire          config_finished;
+    wire          cam_cfg_done;
 
     wire          sdat_on;
     wire          sdat_out;  // not making it INOUT, just out, but 3-state
@@ -288,6 +288,11 @@ module top_ov7670x3
     wire [2:0]    rgbfilter_l;
     wire [2:0]    rgbfilter_r;
     wire [2:0]    rgbfilter_p; // pan camera
+
+    wire          filter_on_front;
+    wire          filter_on_pan;
+    wire          en_motor;
+    wire          en_servo;
 
     wire [3:0]    vga_green;
     wire [3:0]    vga_blue;
@@ -331,7 +336,7 @@ module top_ov7670x3
      .rgbmode      (rgbmode),
      .testmode     (testmode),
      .cnt_reg_test (camera_config_steps),
-     .done         (config_finished),
+     .done         (cam_cfg_done),
      .sclk         (ov7670_sioc),
      .sdat_on      (sdat_on),
      .sdat_out     (sdat_out),
@@ -1103,7 +1108,7 @@ module top_ov7670x3
 
   always @ (*)
   begin
-    if (config_finished)
+    if (cam_cfg_done)
       led = centroid_l; // could be any other centroid
     else begin
       led[7:6] = 1'b00;
@@ -1111,12 +1116,21 @@ module top_ov7670x3
     end
   end
 
+  // if rgbfilter is "000", filter is off. Both cameras have to have filter on
+  assign filter_on_front = ((rgbfilter_l != 3'b0) && (rgbfilter_r != 3'b0)) ?
+                              1'b1 : 1'b0; 
+  assign filter_on_pan = (rgbfilter_p != 3'b0) ?  1'b1 : 1'b0; 
+  // motor enabled if camera config is done and filters are on
+  assign en_motor = (cam_cfg_done & filter_on_front);
+  assign en_servo = (cam_cfg_done & filter_on_pan);
+
   // ---------- MOTOR CONTROL
   // this control is for PWM, it has to be changed for DPS, but just to test
   motor_ctrl_spi i_motor_ctrl_spi
   (
    .rst            (rst),
    .clk            (clk50mhz),
+   .enable         (en_motor),
    .centroid       (centroid_mrg), //merged centroid from left+right cameras
    .new_centroid   (new_centroid_mrg), //merged cam
    .proximity      (proximity_mrg), //
@@ -1129,6 +1143,7 @@ module top_ov7670x3
   (
    .rst             (rst),
    .clk             (clk50mhz),
+   .enable          (en_servo),
    .centroid        (centroid_p), // centroid from Pan camera
    .new_centroid    (new_centroid_p), // PAN camera
    .proximity       (proximity_p), // pan cam
