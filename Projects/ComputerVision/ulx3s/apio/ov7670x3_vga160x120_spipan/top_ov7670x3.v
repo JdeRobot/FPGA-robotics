@@ -1091,6 +1091,7 @@ module top_ov7670x3
      .centroid_r (centroid_p),  // pan camera, is drawn on the right
      .proximity_r(proximity_p),
      .rgbfilter_r(rgbfilter_p),
+     .centroid_mrg (centroid_mrg),  // left+right merged centroid
      .col        (vga_col),
      .row        (vga_row),
      .frame_pixel_l(display_img_pxl_l), // left camera
