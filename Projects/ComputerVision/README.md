@@ -293,4 +293,8 @@ Color centroid and proximity calculation using 160x120 image
 ### [ov7670x2_colorcentroid_160x120](xilinx_nexys4/ov7670x2_colorcentroid_160x120)
 
 Two cameras, color centroid and proximity calculation using 160x120 image
+
+There are 2 .ucf files, using the radiona PMOD for the OV7670 cameras or using cables. 
+
+![Nexys4DDR with the OV7670 pmods](nexys4ddr_2cam.jpg)
   
