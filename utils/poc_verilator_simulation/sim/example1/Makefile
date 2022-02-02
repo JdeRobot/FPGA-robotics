@@ -1,8 +1,8 @@
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
-SIM_DIR := $(realpath $(dir $(MKFILE_PATH)))
+SIM_DIR := $(realpath $(dir $(MKFILE_PATH))/..)
 PROJECT_DIR := $(realpath $(SIM_DIR)/..)
 IMGUI_DIR = $(SIM_DIR)/third_party/imgui
-RTL_DIR = $(PROJECT_DIR)/rtl
+RTL_DIR = $(PROJECT_DIR)/rtl/example1
 INC_DIR = $(SIM_DIR)/include
 SRC_DIR = $(SIM_DIR)/src
 ASSETS_DIR := $(SRC_DIR)

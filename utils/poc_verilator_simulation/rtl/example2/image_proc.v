@@ -52,7 +52,7 @@ module image_proc
 	wire tmpw;
 	parameter limite_azul = 4'b1001; // 9 en decimal
 	parameter limite_verde = 4'b1001; // 9 en decimal
-	parameter  BLACK_PXL = {c_nb_img_pxls-1{1'b0}};
+	parameter  BLACK_PXL = {c_nb_buf{1'b0}};
 	reg [5:0] histograma [79:0];
 	integer i; 
 	reg [6-1:0] prev_high;
