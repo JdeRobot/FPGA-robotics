@@ -35,13 +35,13 @@ module calc_filter
 	begin
 		if (rst) begin
 			for(i=0;i<=79;i=i+1) begin
-				histograma_aux[i] <= 6'd0; 
+				histograma_aux[i] = 6'd0; 
 			end
 		end
 		else begin 
 			if (start) begin 
 				for(i=0;i<=79;i=i+1) begin
-					histograma_aux[i] <= 6'd0; 
+					histograma_aux[i] = 6'd0; 
 				end			
 			end
 			else if (reg_histograma > histograma_aux[px_pos_ret2]) begin
@@ -103,7 +103,8 @@ module calc_filter
 		end
 		else begin 
 			if (activo) begin 
-				suma_areas <= suma_areas + histograma_calc[cont80];
+				suma_areas <= suma_areas + {{6{histograma_calc[cont80][5]}},histograma_calc[cont80]};
+				// suma_areas <= suma_areas + histograma_calc[cont80];
 			end
 			else begin
 				suma_areas <= 12'b0;
@@ -163,7 +164,7 @@ module calc_filter
 	assign leds = leds_r;
 	assign centroide = centroide_r;
 	// DIVISION
-	reg [4-1:0] bitsdesplaza;
+	reg [4:0] bitsdesplaza;
 parameter
 ESPERA = 0,
 DESPLAZA = 1,
@@ -179,7 +180,7 @@ begin
 	if (rst) begin
 		cociente <= 17'd0;
 		//resto <= 17'd0;
-		bitsdesplaza <= 4'd0;
+		bitsdesplaza <= 5'd0;
 		EstadoDiv <= 2'd0; // ESPERA
 		avisoDiv <= 1'b0;
 		Dsor <= 17'd0;
@@ -200,7 +201,7 @@ begin
 				end
 				else begin
 					EstadoDiv <= 2'd1; // Desplaza
-					bitsdesplaza <= 4'd0;
+					bitsdesplaza <= 5'd0;
 				end
 			end
 		end
@@ -225,7 +226,7 @@ begin
 				Ddo_aux = dividendo_reg - Dsor;
 				dividendo_reg <= Ddo_aux;
 				cociente[bitsdesplaza] <= 1'b1;
-				if (bitsdesplaza == 1'b0) begin
+				if (bitsdesplaza == 5'b0) begin
 					EstadoDiv <= ESPERA;
 					avisoDiv <= 1'b1;
 					//resto <= Ddo_aux;
@@ -238,7 +239,7 @@ begin
 				end
 			end
 			else begin
-				if (bitsdesplaza == 4'd0) begin
+				if (bitsdesplaza == 5'd0) begin
 					EstadoDiv <= ESPERA;
 					//resto <= Ddo_aux;
 					avisoDiv <= 1'b1;
@@ -254,7 +255,7 @@ begin
 		else begin
 			cociente <= 17'd0;
 			//resto <= 17'd0;
-			bitsdesplaza <= 4'd0;
+			bitsdesplaza <= 5'd0;
 			EstadoDiv <= 2'd0; // ESPERA
 			avisoDiv <= 1'b0;			
 		end

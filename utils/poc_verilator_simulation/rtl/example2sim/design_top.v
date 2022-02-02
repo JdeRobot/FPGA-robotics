@@ -32,7 +32,7 @@ module design_top
 	wire [c_nb_buf-1:0] procPixel;
 	wire procWe;
 	wire [5:0] histogram;
-	wire [7:0] pxColRet;
+	wire [c_nb_leds-2:0] pxColRet;
 	wire wStart;
 
   // frame buffer input
