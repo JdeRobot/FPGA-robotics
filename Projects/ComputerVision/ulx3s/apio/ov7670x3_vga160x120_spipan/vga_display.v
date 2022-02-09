@@ -61,6 +61,7 @@ module vga_display
     input [7:0]    centroid_r,
     input [2:0]    proximity_r,
     input [7:0]    centroid_mrg, // merged centroid
+    input [1:0]    mrg_cam, // indicates which merge cam is used
     input [10-1:0] col,
     input [10-1:0] row,
     input  [c_nb_buf-1:0] frame_pixel_r, // right cam
@@ -543,9 +544,9 @@ module vga_display
             if (col >= C_COL_CENTROID_MRG_MIN + C_CENTR_MRG_BIN_W*indx &&
                 col  < C_COL_CENTROID_MRG_MIN + C_CENTR_MRG_BIN_W*(indx+1)) begin
               if (centroid_mrg[indx]) begin
-                vga_red   = 4'b1100; //{4{rgbfilter_r[2]}};
-                vga_green = 4'b1000; // {4{rgbfilter_r[1]}};
-                vga_blue  = 4'b0000; //{4{rgbfilter_r[0]}};
+                vga_red   = {4{mrg_cam[0]}};
+                vga_green = {4{mrg_cam[1]}};
+                vga_blue  = 4'b0011; //{4{rgbfilter_r[0]}};
               end
             end
           end

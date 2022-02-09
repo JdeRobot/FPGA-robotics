@@ -181,6 +181,9 @@ module top_ov7670x3
 
     // indicates where the object is: left, right, or in the middle
     wire left_cam, mid_cam, rght_cam; // to choose wich cam
+    reg [1:0] mrg_cam; // [0]=1: left cam ;
+                          // [1]=1 : right cam
+                          // 11: center cam
 
     // pan camera: camera for the pan to follow an independent target
     wire [c_nb_img_pxls-1:0] display_img_addr_p;
@@ -865,6 +868,24 @@ module top_ov7670x3
       .proximity_o    (proximity_mrg)
     );
 
+  always @(*)
+  begin
+    if (left_cam) begin
+      mrg_cam[0] = 1'b1;
+      mrg_cam[1] = 1'b0;
+    end
+    if (rght_cam) begin
+      mrg_cam[0] = 1'b0;
+      mrg_cam[1] = 1'b1;
+    end
+    if (mid_cam) begin
+      mrg_cam = 2'b11;
+    end
+    else begin
+      mrg_cam = 2'b00;
+    end
+  end
+
 
   // -------------- PAN camera. Turret camera on top of servo
   ov7670_capture
@@ -1092,6 +1113,7 @@ module top_ov7670x3
      .proximity_r(proximity_p),
      .rgbfilter_r(rgbfilter_p),
      .centroid_mrg (centroid_mrg),  // left+right merged centroid
+     .mrg_cam    (mrg_cam), // indicates which merged cam is used
      .col        (vga_col),
      .row        (vga_row),
      .frame_pixel_l(display_img_pxl_l), // left camera

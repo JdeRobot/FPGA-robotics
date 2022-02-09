@@ -188,22 +188,22 @@ module centroid_2cam
         //centroid_tmp = 8'b00011000;
       else if (left) begin // more threshold pixels on the left
         // start checking from the edges
-        if (colorpxls_bin0_i >= colorpxls_half) 
+        if (bin0_gth) // (colorpxls_bin0_i >= colorpxls_half) 
           centroid_tmp[0] = 1'b1; // 1000 0000
-        else if (colorpxls_bin01_i >= colorpxls_half) 
+        else if (bin01_gth) // (colorpxls_bin01_i >= colorpxls_half) 
           centroid_tmp[1] = 1'b1; // 0100 0000
-        else if (colorpxls_bin012_i >= colorpxls_half) 
+        else if (bin012_gth) // (colorpxls_bin012_i >= colorpxls_half) 
           centroid_tmp[2] = 1'b1; // 0010 0000
         else // if (colorpxls_left_i > colorpxls_half)  -- no other option
           centroid_tmp[3] = 1'b1; // 0001 0000
       end
       else begin // more pixels on the right side
         // start checking from the edges
-        if (colorpxls_bin7_i >= colorpxls_half) 
+        if (bin7_gth) // (colorpxls_bin7_i >= colorpxls_half) 
           centroid_tmp[7] = 1'b1; // 0000 0001
-        else if (colorpxls_bin67_i >= colorpxls_half) 
+        else if (bin67_gth) // (colorpxls_bin67_i >= colorpxls_half) 
           centroid_tmp[6] = 1'b1; // 0000 0010
-        else if (colorpxls_bin567_i >= colorpxls_half) 
+        else if (bin567_gth) // (colorpxls_bin567_i >= colorpxls_half) 
           centroid_tmp[5] = 1'b1; // 0000 0100
         else // if (colorpxls_rght_i > colorpxls_half)  -- no other option
           centroid_tmp[4] = 1'b1; // 0000 1000

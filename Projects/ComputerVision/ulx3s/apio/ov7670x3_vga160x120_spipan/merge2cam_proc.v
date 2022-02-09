@@ -115,6 +115,7 @@ module merge2cam_proc
     input [c_nb_inframe_pxls-2:0] colorpxls_bin67_r, // rightmost bins 6to7
 
     output reg  new_mergeframe_o,
+    //output reg  cam_o;
     output reg  left_cam_o,
     output reg  mid_cam_o,
     output reg  rght_cam_o,
