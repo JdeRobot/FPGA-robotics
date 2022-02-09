@@ -1157,8 +1157,8 @@ module top_ov7670x3
    .centroid       (centroid_mrg), //merged centroid from left+right cameras
    .new_centroid   (new_centroid_mrg), //merged cam
    .proximity      (proximity_mrg), //
-   .v_left_motor_o (motor_pwm_left),
-   .v_rght_motor_o (motor_pwm_rght)
+   .motor_dps_left_o (motor_dps_left),
+   .motor_dps_rght_o (motor_dps_rght)
   );
 
   // Servo control for the camera pan
@@ -1174,10 +1174,6 @@ module top_ov7670x3
    //.servo_cam_tilt (servo_2_cam_tilt)
   );
 
-
-  // this control is for PWM, it has to be changed for DPS, but just to test
-  assign motor_dps_left = {8'b0,motor_pwm_left}; 
-  assign motor_dps_rght = {8'b0,motor_pwm_rght}; 
 
   // ----------------- GOPIGO Control -------------------
   // SPI communication with the GoPiGo
