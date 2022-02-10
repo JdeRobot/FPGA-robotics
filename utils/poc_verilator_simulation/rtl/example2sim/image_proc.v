@@ -52,7 +52,7 @@ module image_proc
 	wire tmpw;
 	parameter limite_azul = 4'b1001; // 9 en decimal
 	parameter limite_verde = 4'b1001; // 9 en decimal
-	parameter  BLACK_PXL = {c_nb_img_pxls{1'b0}};
+	parameter  BLACK_PXL = {c_nb_img_pxls-1{1'b0}};
 	reg [5:0] histograma [79:0];
 	integer i; 
 	reg [6-1:0] prev_high;
@@ -176,48 +176,48 @@ module image_proc
 		// check on RED
 		case (rgbfilter)
 			3'b000: // no filter, output same as input
-			proc_pxl_r <= orig_pxl;
+			proc_pxl_r = orig_pxl;
 			3'b100: begin // red filter
 				if (orig_pxl[c_msb_red] && orig_pxl[7:4]< limite_verde && orig_pxl[3:0]< limite_azul)
-				proc_pxl_r <= orig_pxl;
+				proc_pxl_r = orig_pxl;
 				else
-				proc_pxl_r <= BLACK_PXL;
+				proc_pxl_r = BLACK_PXL;
 			end
 			3'b010: begin // green filter
 				if (orig_pxl[c_msb_green])
-				proc_pxl_r <= orig_pxl;
+				proc_pxl_r = orig_pxl;
 				else
-				proc_pxl_r <= BLACK_PXL;
+				proc_pxl_r = BLACK_PXL;
 			end
 			3'b001: begin // filter blue
 				if (orig_pxl[c_msb_blue])
-				proc_pxl_r <= orig_pxl;
+				proc_pxl_r = orig_pxl;
 				else
-				proc_pxl_r <= BLACK_PXL;
+				proc_pxl_r = BLACK_PXL;
 			end
 			3'b110: begin // filter red and green
 				if (orig_pxl[c_msb_red] & orig_pxl[c_msb_green])
-				proc_pxl_r <= orig_pxl;
+				proc_pxl_r = orig_pxl;
 				else
-				proc_pxl_r <= BLACK_PXL;
+				proc_pxl_r = BLACK_PXL;
 			end
 			3'b101: begin // filter red and blue
 				if (orig_pxl[c_msb_red] & orig_pxl[c_msb_blue])
-				proc_pxl_r <= orig_pxl;
+				proc_pxl_r = orig_pxl;
 				else
-				proc_pxl_r <= BLACK_PXL;
+				proc_pxl_r = BLACK_PXL;
 			end
 			3'b011: begin // filter green and blue
 				if (orig_pxl[c_msb_green] & orig_pxl[c_msb_blue])
-				proc_pxl_r <= orig_pxl;
+				proc_pxl_r = orig_pxl;
 				else
-				proc_pxl_r <= BLACK_PXL;
+				proc_pxl_r = BLACK_PXL;
 			end
 			3'b111: begin // red, green and blue filter
 				if (orig_pxl[c_msb_red] & orig_pxl[c_msb_green] & orig_pxl[c_msb_blue])
-				proc_pxl_r <= orig_pxl;
+				proc_pxl_r = orig_pxl;
 				else
-				proc_pxl_r <= BLACK_PXL;
+				proc_pxl_r = BLACK_PXL;
 			end
 		endcase
 	end
