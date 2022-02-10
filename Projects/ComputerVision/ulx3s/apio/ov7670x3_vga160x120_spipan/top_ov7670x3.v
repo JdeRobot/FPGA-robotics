@@ -870,6 +870,7 @@ module top_ov7670x3
 
   always @(*)
   begin
+    mrg_cam = 2'b00;
     if (left_cam) begin
       mrg_cam[0] = 1'b1;
       mrg_cam[1] = 1'b0;
@@ -880,9 +881,6 @@ module top_ov7670x3
     end
     if (mid_cam) begin
       mrg_cam = 2'b11;
-    end
-    else begin
-      mrg_cam = 2'b00;
     end
   end
 
