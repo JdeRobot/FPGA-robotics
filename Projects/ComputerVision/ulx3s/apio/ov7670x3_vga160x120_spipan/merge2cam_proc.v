@@ -248,13 +248,13 @@ module merge2cam_proc
     end
     else begin // middle cam > left cam
       left_cam = 1'b0;
-      if (colorpxls_m > colorpxls_r) begin
-        mid_cam  = 1'b1;
-        rght_cam = 1'b0;
-      end
-      else begin // right came > mid cam
+      if (colorpxls_r > colorpxls_m) begin
         mid_cam  = 1'b0;
         rght_cam = 1'b1;
+      end
+      else begin // right came > mid cam
+        mid_cam  = 1'b1;
+        rght_cam = 1'b0;
       end
     end
   end

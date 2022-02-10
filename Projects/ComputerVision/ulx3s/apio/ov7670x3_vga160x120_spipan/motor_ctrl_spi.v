@@ -42,6 +42,8 @@ module motor_ctrl_spi
   localparam signed [nb_dps_motor-1:0] c_vel1_neg = -c_vel1; 
 
   // Output assign 
+  assign motor_dps_left_o = motor_dps_left;
+  assign motor_dps_rght_o = motor_dps_rght;
   //assign v_left_motor_o = (vel_motor_rgth + direction) * lost_obj;
   //assign v_rght_motor_o = (vel_motor_left + direction) * lost_obj;
 
@@ -66,7 +68,7 @@ module motor_ctrl_spi
       end
       else if (last_cent_valid[4:3] == 2'b11) begin
         // to simplify, for now only when centered can go back
-        if (proximity[2] == 1'b1) begin
+        if (proximity[2] == 1'b1) begin // to close, negative speed
           case (proximity[1:0])
             2'b00 : begin
               motor_dps_left <= 0;
@@ -86,7 +88,7 @@ module motor_ctrl_spi
             end
           endcase
         end
-        else begin // positive
+        else begin // it is far, positive speed
           case (proximity[1:0])
             2'b00 : begin
               motor_dps_left <= 0;
@@ -125,20 +127,20 @@ module motor_ctrl_spi
           motor_dps_rght <= c_vel3;
         end
         else if (last_cent_valid[4] ==  1'b1) begin //right, move left motor
-          motor_dps_left <= 0;
-          motor_dps_rght <= c_vel0;
+          motor_dps_left <= c_vel0;
+          motor_dps_rght <= 0;
         end
         else if (last_cent_valid[5] == 1'b1) begin
-          motor_dps_left <= 0;
-          motor_dps_rght <= c_vel1;
+          motor_dps_left <= c_vel1;
+          motor_dps_rght <= 0;
         end
         else if (last_cent_valid[6] == 1'b1) begin
-          motor_dps_left <= 0;
-          motor_dps_rght <= c_vel2;
+          motor_dps_left <= c_vel2;
+          motor_dps_rght <= 0;
         end
         else if (last_cent_valid[0] == 1'b1) begin
-          motor_dps_left <= 0;
-          motor_dps_rght <= c_vel3;
+          motor_dps_left <= c_vel3;
+          motor_dps_rght <= 0;
         end
       end
     end

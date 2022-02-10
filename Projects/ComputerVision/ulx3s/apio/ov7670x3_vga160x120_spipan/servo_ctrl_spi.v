@@ -107,7 +107,7 @@ module servo_pan_ctrl_spi
   );
 
   reg signed [10-1:0] servo_cam_pan;
-  reg signed [10-1:0] servo_cam_pan_neg;
+  wire signed [10-1:0] servo_cam_pan_neg;
 
 
   // degree steps depending on where the centroid is
