@@ -51,15 +51,17 @@ module vga_display
     input          vsync,
     input          rgbmode,
     input          testmode,
-    input [2:0]    rgbfilter_r, // right camera
-    input [7:0]    centroid_r,
-    input [2:0]    proximity_r,
-    input [2:0]    rgbfilter_c, // central camera
-    input [7:0]    centroid_c,
-    input [2:0]    proximity_c,
     input [2:0]    rgbfilter_l, // left camera
     input [7:0]    centroid_l,
     input [2:0]    proximity_l,
+    input [2:0]    rgbfilter_c, // central camera
+    input [7:0]    centroid_c,
+    input [2:0]    proximity_c,
+    input [2:0]    rgbfilter_r, // right camera
+    input [7:0]    centroid_r,
+    input [2:0]    proximity_r,
+    input [7:0]    centroid_mrg, // merged centroid
+    input [1:0]    mrg_cam, // indicates which merge cam is used
     input [10-1:0] col,
     input [10-1:0] row,
     input  [c_nb_buf-1:0] frame_pixel_r, // right cam
@@ -80,8 +82,10 @@ module vga_display
   localparam  C_IMG_RGTH_COL_MIN = 2*C_IMG_CEN_COL_MIN; //384 0x180 1_1000_000
   localparam  C_IMG_RGTH_COL_MAX = C_IMG_RGTH_COL_MIN + c_img_cols; //544 0x220
   // indicates if the the area of the text (characters)
-  localparam  C_TXT_ROW_MIN = 128; //248;
-  localparam  C_TXT_ROW_MAX = C_TXT_ROW_MIN + 8; //256;
+  localparam  C_ROW_CENTROID_MAX = c_img_rows + 8; // 128, MIN is c_img_rows
+  localparam  C_ROW_CENTROID_MRG_MAX = C_ROW_CENTROID_MAX + 8; // 136
+  localparam  C_TXT_ROW_MIN = C_ROW_CENTROID_MRG_MAX; //
+  localparam  C_TXT_ROW_MAX = C_TXT_ROW_MIN + 8; //144;
   localparam  C_TXT1_COL_MIN = 8;
   localparam  C_TXT1_COL_MAX = 16;
   localparam  C_TXT2_COL_MIN = C_TXT1_COL_MAX;
@@ -92,6 +96,16 @@ module vga_display
   localparam  C_FILTBOX_CEN_COL_MAX = C_FILTBOX_CEN_COL_MIN + 8;
   localparam  C_FILTBOX_RGHT_COL_MIN = C_IMG_RGTH_COL_MIN;
   localparam  C_FILTBOX_RGHT_COL_MAX = C_FILTBOX_RGHT_COL_MIN + 8;
+  // mid column of the merged centroid
+  localparam  C_COL_CENTROID_MRG_MID = C_IMG_CEN_COL_MIN -
+                                      (C_IMG_CEN_COL_MIN- c_img_cols)/2;
+  // width of each bin of the merged centroid
+  localparam  C_CENTR_MRG_BIN_W = 32;
+  // 4 bins
+  localparam  C_COL_CENTROID_MRG_MIN = C_COL_CENTROID_MRG_MID-4*C_CENTR_MRG_BIN_W;
+
+  integer indx; // for the loop
+
   reg         txt1_col;
   reg         txt2_col;
   reg         filterboxleft_col;
@@ -103,6 +117,8 @@ module vga_display
   reg         img_col_cen;
   reg         img_col_rght;
   reg         img_row;
+  reg         centroid_row; // row for centroid
+  reg         centroid_mrg_row; // row for merged centroid
   // indicates if it is the area of the black and white test
   localparam  C_BWT_ROW_MIN = 240;
   localparam  C_BWT_ROW_MAX = 256;
@@ -189,6 +205,8 @@ module vga_display
     img_col_cen  = 1'b0;
     img_col_rght = 1'b0;
     img_row = 1'b0;
+    centroid_row = 1'b0;
+    centroid_mrg_row = 1'b0;
     // indicates if it is the area of the black and white test
     bwt_col = 1'b0;
     bwt_row = 1'b0;
@@ -208,6 +226,10 @@ module vga_display
       filterboxrght_col = 1'b1;
     if (row < c_img_rows)
       img_row = 1'b1;
+    else if (row < C_ROW_CENTROID_MAX)
+      centroid_row = 1'b1;
+    else if (row < C_ROW_CENTROID_MRG_MAX)
+      centroid_mrg_row = 1'b1;
     // left image condition
     if (col < c_img_cols)
       img_col_left = 1'b1;
@@ -340,7 +362,7 @@ module vga_display
           end
         end
       end
-      else if (row < c_img_rows + 8) begin // CENTROID ROWS
+      else if (centroid_row) begin // CENTROID ROWS
         if (img_col_left) begin // LEFT CENTROID
           if (col < 20) begin
             if (centroid_l[0]) begin
@@ -515,6 +537,31 @@ module vga_display
             end
           end
         end                
+      end
+      else if (centroid_mrg_row) begin // merged centroid
+        if (col >= C_COL_CENTROID_MRG_MIN) begin // 
+          for (indx=0; indx<8; indx=indx+1) begin
+            if (col >= C_COL_CENTROID_MRG_MIN + C_CENTR_MRG_BIN_W*indx &&
+                col  < C_COL_CENTROID_MRG_MIN + C_CENTR_MRG_BIN_W*(indx+1)) begin
+              if (centroid_mrg[indx]) begin
+                vga_red   = {4{mrg_cam[0]}};
+                vga_green = {4{mrg_cam[1]}};
+                vga_blue  = 4'b0011; //{4{rgbfilter_r[0]}};
+              end
+            end
+          end
+        end
+//            if (centroid_mrg[0]) begin
+//              vga_red   = 4'b1100; //{4{rgbfilter_r[2]}};
+//              vga_green = 4'b1000; // {4{rgbfilter_r[1]}};
+//              vga_blue  = 4'b0000; //{4{rgbfilter_r[0]}};
+//            end
+//          if (col < C_COL_CENTROID_MRG_MIN + 2*C_CENTR_MRG_BIN_W) begin
+//            if (centroid_mrg[1]) begin
+//              vga_red   = 4'b1100; //{4{rgbfilter_r[2]}};
+//              vga_green = 4'b1000; // {4{rgbfilter_r[1]}};
+//              vga_blue  = 4'b0000; //{4{rgbfilter_r[0]}};
+//            end
       end
       // CHARACTERS
       else if (row < C_TXT_ROW_MAX) begin

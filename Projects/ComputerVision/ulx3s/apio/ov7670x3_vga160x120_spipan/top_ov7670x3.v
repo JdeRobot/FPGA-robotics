@@ -181,6 +181,9 @@ module top_ov7670x3
 
     // indicates where the object is: left, right, or in the middle
     wire left_cam, mid_cam, rght_cam; // to choose wich cam
+    reg [1:0] mrg_cam; // [0]=1: left cam ;
+                          // [1]=1 : right cam
+                          // 11: center cam
 
     // pan camera: camera for the pan to follow an independent target
     wire [c_nb_img_pxls-1:0] display_img_addr_p;
@@ -865,6 +868,22 @@ module top_ov7670x3
       .proximity_o    (proximity_mrg)
     );
 
+  always @(*)
+  begin
+    mrg_cam = 2'b00;
+    if (left_cam) begin
+      mrg_cam[0] = 1'b1;
+      mrg_cam[1] = 1'b0;
+    end
+    if (rght_cam) begin
+      mrg_cam[0] = 1'b0;
+      mrg_cam[1] = 1'b1;
+    end
+    if (mid_cam) begin
+      mrg_cam = 2'b11;
+    end
+  end
+
 
   // -------------- PAN camera. Turret camera on top of servo
   ov7670_capture
@@ -1091,6 +1110,8 @@ module top_ov7670x3
      .centroid_r (centroid_p),  // pan camera, is drawn on the right
      .proximity_r(proximity_p),
      .rgbfilter_r(rgbfilter_p),
+     .centroid_mrg (centroid_mrg),  // left+right merged centroid
+     .mrg_cam    (mrg_cam), // indicates which merged cam is used
      .col        (vga_col),
      .row        (vga_row),
      .frame_pixel_l(display_img_pxl_l), // left camera
@@ -1134,8 +1155,8 @@ module top_ov7670x3
    .centroid       (centroid_mrg), //merged centroid from left+right cameras
    .new_centroid   (new_centroid_mrg), //merged cam
    .proximity      (proximity_mrg), //
-   .v_left_motor_o (motor_pwm_left),
-   .v_rght_motor_o (motor_pwm_rght)
+   .motor_dps_left_o (motor_dps_left),
+   .motor_dps_rght_o (motor_dps_rght)
   );
 
   // Servo control for the camera pan
@@ -1151,10 +1172,6 @@ module top_ov7670x3
    //.servo_cam_tilt (servo_2_cam_tilt)
   );
 
-
-  // this control is for PWM, it has to be changed for DPS, but just to test
-  assign motor_dps_left = {8'b0,motor_pwm_left}; 
-  assign motor_dps_rght = {8'b0,motor_pwm_rght}; 
 
   // ----------------- GOPIGO Control -------------------
   // SPI communication with the GoPiGo

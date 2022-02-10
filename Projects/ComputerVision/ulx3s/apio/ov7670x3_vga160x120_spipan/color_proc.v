@@ -339,8 +339,12 @@ module color_proc
   // inner column, when we are out of the range it doesn't matter the value
   // because shouldnt be used
   assign col_inframe = col_rg - c_outframe_cols;
-  // divide col_inframe by 16, from 128 columns to 8 -> 4 bits
-  assign hist_bin = col_inframe[c_nb_inframe_cols-1:c_nb_inframe_cols-1-c_nb_hist_bins];  //[7:5]
+  // divide col_inframe by 16, from 128 columns to 8 -> 3 bits
+  // col_inframe has 8 bits, but bit 7 is not used
+  // it really has 7 bits (c_nb_inframe_cols)
+  // c_nb_hist_bins is 3 bits
+  // we go from bit 6 (7-1),  to (7-1)-(3-1) -> 4
+  assign hist_bin = col_inframe[c_nb_inframe_cols-1:c_nb_inframe_cols-c_nb_hist_bins];  //[6:4]  
 
   // color filter thresholds
   assign red_limit = (orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
