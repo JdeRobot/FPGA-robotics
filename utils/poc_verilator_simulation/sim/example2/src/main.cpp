@@ -4,6 +4,9 @@
 #include <assert.h>
 #include <stdio.h>
 
+#include <opencv2/core.hpp>
+#include <opencv2/imgcodecs.hpp>
+
 #ifndef ASSETS_DIR
 #error ASSETS_DIR undefined
 #endif
@@ -12,142 +15,146 @@
 #include "imgui_impl_opengl3.h"
 #include "imgui_impl_sdl.h"
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
-
 // verilator headers
-#include "VTopPixelProcessor.h"
+#include "Vdesign_top.h"
+#include "Vdesign_top___024root.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
-const int channels = 4;
+#define LED_ICON "\uf111"
+#define START_ICON "\uf04b"
+#define STOP_ICON "\uf04d"
+#define STEP_ICON "\uf051"
+#define RESET_ICON "\uf0e2"
+
+typedef cv::Vec<uint8_t, 3> BGRPixel;
+typedef cv::Vec<uint8_t, 4> BGRAPixel;
+
+const int n_leds = 8;
+const int cols = 80;
+const int rows = 60;
 const uint8_t ALPHA_SOLID = 255;
 
-const char input_image_path[] = ASSETS_DIR "/ebu_colorbars_96x72.png";
+const char input_image_1_path[] = ASSETS_DIR "/red_ball_left_80x60.png";
+const char input_image_2_path[] = ASSETS_DIR "/red_ball_center_80x60.png";
+const char input_image_3_path[] = ASSETS_DIR "/red_ball_right_80x60.png";
+
+const char font_awesome_path[] = ASSETS_DIR "/fa-solid-900.ttf";
 
 class SimElement {
  public:
-  virtual ~SimElement() {
-  }
-  virtual void onReset() {
-  }
-  virtual void postReset() {
-  }
-  virtual void preCycle() {
-  }
-  virtual void postCycle() {
-  }
+  virtual ~SimElement() {}
+  virtual void onReset() {}
+  virtual void postReset() {}
+  virtual void preCycle() {}
+  virtual void postCycle() {}
 };
 
 class InputDriver : public SimElement {
  public:
-  InputDriver(VTopPixelProcessor *top, uint8_t *filter_buffer, const size_t filter_buffer_size,
-              uint8_t *input_buffer, const size_t input_buffer_size, const uint8_t channels = 4)
+  InputDriver(Vdesign_top *top, const uint8_t *wRgbfilter,
+              const cv::Mat **input_image)
       : top{top},
-        filter_buffer{filter_buffer},
-        filter_buffer_size{filter_buffer_size},
-        input_buffer{input_buffer},
-        input_buffer_size{input_buffer_size},
-        channels{channels} {
-    assert(filter_buffer_size >= 3);
-  }
+        wRgbfilter{wRgbfilter},
+        input_image{input_image},
+        input_addr{0} {}
 
-  virtual ~InputDriver() {
-  }
+  virtual ~InputDriver() {}
 
-  virtual void onReset() {
-  }
+  virtual void onReset() { this->input_addr = 0; }
 
-  virtual void preCycle() {
-  }
+  virtual void preCycle() {}
 
   virtual void postCycle() {
-    auto px_idx = top->io_pixel_in_addr * this->channels;
-    assert(px_idx >= 0 && px_idx < this->input_buffer_size);
-    auto px = input_buffer + px_idx;
+    auto image_data = (*this->input_image)->ptr<BGRPixel>();
+    auto px = image_data[this->input_addr];
 
-    top->io_pixel_in_payload_r = px[0];
-    top->io_pixel_in_payload_g = px[1];
-    top->io_pixel_in_payload_b = px[2];
+    this->top->addrin = this->input_addr;
+    this->top->wea = 1;
+    
+    uint8_t b = (px[0] >> 4) & 0xF;
+    uint8_t g = (px[1] >> 4) & 0xF;
+    uint8_t r = (px[2] >> 4) & 0xF;
+    this->top->datain = (r << 8) | (g << 4) | b;
 
-    top->io_filter_r = filter_buffer[0];
-    top->io_filter_g = filter_buffer[1];
-    top->io_filter_b = filter_buffer[2];
+    this->top->wRgbfilter = *(this->wRgbfilter);
+
+    this->input_addr++;
+    if (this->input_addr >=
+        ((*this->input_image)->rows * (*this->input_image)->cols)) {
+      this->input_addr = 0;
+    }
   }
 
  private:
-  VTopPixelProcessor *const top;
-  uint8_t *const filter_buffer;
-  const size_t filter_buffer_size;
-  uint8_t *const input_buffer;
-  const size_t input_buffer_size;
-  const uint8_t channels = 4;
+  Vdesign_top *const top;
+  const uint8_t *wRgbfilter;
+  const cv::Mat **input_image;
+  size_t input_addr;
 };
 
 class OutputMonitor : public SimElement {
  public:
-  OutputMonitor(VTopPixelProcessor *top, uint8_t *output_buffer, const size_t output_buffer_size,
-                const uint8_t channels = 4)
-      : top{top},
-        output_buffer{output_buffer},
-        output_buffer_size{output_buffer_size},
-        channels{channels} {
-  }
+  OutputMonitor(Vdesign_top *top, cv::Mat &output_image)
+      : top{top}, output_image{output_image}, output_addr{0} {}
 
-  virtual ~OutputMonitor() {
-  }
+  virtual ~OutputMonitor() {}
 
-  virtual void onReset() {
-  }
+  virtual void onReset() { this->output_addr = 0; }
 
-  virtual void preCycle() {
-  }
+  virtual void preCycle() { this->top->addrout = this->output_addr; }
 
   virtual void postCycle() {
-    auto px_idx = top->io_pixel_out_addr * this->channels;
-    assert(px_idx >= 0 && px_idx < output_buffer_size);
-    auto px = output_buffer + px_idx;
+    auto image_data = this->output_image.ptr<BGRAPixel>();
+    auto px = &(image_data[this->output_addr]);
 
-    px[0] = top->io_pixel_out_payload_r;
-    px[1] = top->io_pixel_out_payload_g;
-    px[2] = top->io_pixel_out_payload_b;
-    px[3] = ALPHA_SOLID;
+    (*px)[0] = (top->dataout & 0xF) << 4; //b
+    (*px)[1] = ((top->dataout >> 4) & 0xF) << 4; //g
+    (*px)[2] = ((top->dataout >> 8) & 0xF) << 4; //r
+    (*px)[3] = ALPHA_SOLID; //alpha
+
+    this->output_addr++;
+    if (this->output_addr >=
+        (this->output_image.rows * this->output_image.cols)) {
+      this->output_addr = 0;
+    }
   }
 
  private:
-  VTopPixelProcessor *const top;
-  uint8_t *const output_buffer;
-  const size_t output_buffer_size;
-  const uint8_t channels = 4;
+  Vdesign_top *const top;
+  cv::Mat output_image;
+  size_t output_addr;
 };
 
-VTopPixelProcessor *initDut(int argc, char **argv) {
+Vdesign_top *initDut(int argc, char **argv) {
   Verilated::randReset(2);  // Randomize all bits
   Verilated::traceEverOn(true);
   Verilated::commandArgs(argc, argv);
-  VTopPixelProcessor *top = new VTopPixelProcessor;
+  Vdesign_top *top = new Vdesign_top;
 
   return top;
 }
 
-void deinitDut(VTopPixelProcessor **top, VerilatedVcdC *m_trace) {
+void deinitDut(Vdesign_top **top, VerilatedVcdC *m_trace) {
   if (m_trace != 0) {
     m_trace->flush();
     m_trace->close();
+    delete m_trace;
   }
   (*top)->final();
   delete *top;
   *top = 0;
 }
 
-VerilatedVcdC *initTrace(VTopPixelProcessor *top) {
+VerilatedVcdC *initTrace(Vdesign_top *top) {
   VerilatedVcdC *m_trace = new VerilatedVcdC;
   top->trace(m_trace, 99);
   m_trace->open("sim.vcd");
   return m_trace;
 }
 
-void dumpTrace(VerilatedVcdC *m_trace, vluint64_t *sim_time, bool flush = false) {
+void dumpTrace(VerilatedVcdC *m_trace, vluint64_t *sim_time,
+               bool flush = false) {
   if (m_trace != 0) {
     m_trace->dump(*sim_time);
     if (flush) m_trace->flush();
@@ -155,7 +162,7 @@ void dumpTrace(VerilatedVcdC *m_trace, vluint64_t *sim_time, bool flush = false)
   *sim_time += 1;
 }
 
-void tickDut(VTopPixelProcessor *top, const std::vector<SimElement *> &sim_elements,
+void tickDut(Vdesign_top *top, const std::vector<SimElement *> &sim_elements,
              vluint64_t *sim_time, VerilatedVcdC *m_trace = 0) {
   top->clk = 0;
   top->eval();
@@ -171,19 +178,20 @@ void tickDut(VTopPixelProcessor *top, const std::vector<SimElement *> &sim_eleme
   dumpTrace(m_trace, sim_time, true);
 }
 
-void resetDut(VTopPixelProcessor *top, const std::vector<SimElement *> &sim_elements,
-              vluint64_t *sim_time, VerilatedVcdC *m_trace = 0, int reset_cycles = 10) {
-  top->reset = 1;
+void resetDut(Vdesign_top *top, const std::vector<SimElement *> &sim_elements,
+              vluint64_t *sim_time, VerilatedVcdC *m_trace = 0,
+              int reset_cycles = 10) {
+  top->rst = 1;
   for (int i = 0; i < reset_cycles; i++) {
     tickDut(top, sim_elements, sim_time, m_trace);
   }
-  top->reset = 0;
+  top->rst = 0;
 
   for (SimElement *e : sim_elements) e->onReset();
 }
 
-GLuint create_texture(GLenum format, size_t width, size_t height, uint8_t *pixel_data) {
-  if (pixel_data == NULL) return 0;
+GLuint create_texture(GLenum format, const cv::Mat &texture) {
+  if (texture.data == NULL) return 0;
 
   // Create a OpenGL texture identifier
   GLuint image_texture;
@@ -193,32 +201,33 @@ GLuint create_texture(GLenum format, size_t width, size_t height, uint8_t *pixel
   // Setup filtering parameters for display
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // This is required on WebGL for non power-of-two textures
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
+                  GL_CLAMP_TO_EDGE);  // This is required on WebGL for non
+                                      // power-of-two textures
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);  // Same
 
   // Upload pixels into texture
 #if defined(GL_UNPACK_ROW_LENGTH) && !defined(__EMSCRIPTEN__)
   glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
 #endif
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, format, GL_UNSIGNED_BYTE, pixel_data);
-  
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.cols, texture.rows, 0,
+               format, GL_UNSIGNED_BYTE, texture.data);
+
   return image_texture;
 }
 
-bool update_texture(GLuint texture_id, GLenum format, size_t width, size_t height, uint8_t *pixel_data) {
-  if (pixel_data == NULL) return false;
+bool update_texture(GLuint texture_id, GLenum format, const cv::Mat &texture) {
+  if (texture.data == NULL) return 0;
 
   glBindTexture(GL_TEXTURE_2D, texture_id);
-  glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, format, GL_UNSIGNED_BYTE, pixel_data);
+  glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, texture.cols, texture.rows, format,
+                  GL_UNSIGNED_BYTE, texture.data);
 
   return true;
 }
 
 // Main code
 int main(int argc, char **argv) {
-  printf("input image path: %s\n", input_image_path);
-
-
   // init imgui
   //
   // Setup SDL
@@ -226,7 +235,8 @@ int main(int argc, char **argv) {
   // issues on a minority of Windows systems, depending on whether
   // SDL_INIT_GAMECONTROLLER is enabled or disabled.. updating to latest version
   // of SDL is recommended!)
-  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0) {
+  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) !=
+      0) {
     printf("Error: %s\n", SDL_GetError());
     return -1;
   }
@@ -235,8 +245,9 @@ int main(int argc, char **argv) {
 #if defined(__APPLE__)
   // GL 3.2 Core + GLSL 150
   const char *glsl_version = "#version 150";
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS,
-                      SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG);  // Always required on Mac
+  SDL_GL_SetAttribute(
+      SDL_GL_CONTEXT_FLAGS,
+      SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG);  // Always required on Mac
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
@@ -254,9 +265,11 @@ int main(int argc, char **argv) {
   SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
   SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
   SDL_WindowFlags window_flags =
-      (SDL_WindowFlags) (SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
-  SDL_Window *window = SDL_CreateWindow("Pixel Processor simulator", SDL_WINDOWPOS_CENTERED,
-                                        SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags);
+      (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE |
+                        SDL_WINDOW_ALLOW_HIGHDPI);
+  SDL_Window *window =
+      SDL_CreateWindow("Pixel Processor simulator", SDL_WINDOWPOS_CENTERED,
+                       SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags);
   SDL_GLContext gl_context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, gl_context);
   SDL_GL_SetSwapInterval(1);  // Enable vsync
@@ -265,10 +278,15 @@ int main(int argc, char **argv) {
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
   ImGuiIO &io = ImGui::GetIO();
-  (void) io;
-  // io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable
-  // Keyboard Controls io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad; //
-  // Enable Gamepad Controls
+  // Load a first font
+  ImFont *font = io.Fonts->AddFontDefault();
+
+  static const ImWchar icons_ranges[] = {0xe005, 0xf8ff, 0};  // Will not be copied by AddFont* so keep in scope.
+  ImFontConfig icons_config;
+  icons_config.MergeMode = true;
+  icons_config.PixelSnapH = true;
+  io.Fonts->AddFontFromFileTTF(font_awesome_path, 14.0f, &icons_config, icons_ranges);  // Merge into first font
+  io.Fonts->Build();
 
   // Setup Dear ImGui style
   ImGui::StyleColorsDark();
@@ -279,33 +297,36 @@ int main(int argc, char **argv) {
   ImGui_ImplOpenGL3_Init(glsl_version);
 
   // init buffers
-  uint8_t filter_buffer[3] = {0, 0, 0};
-  int input_width, input_height;
-  uint8_t *input_buffer;
+  const cv::Mat input_image_1 = cv::imread(cv::String{input_image_1_path});
+  assert(input_image_1.channels() == 3 && input_image_1.cols == cols &&
+         input_image_1.rows == rows && input_image_1.isContinuous());
+  const cv::Mat input_image_2 = cv::imread(cv::String{input_image_2_path});
+  assert(input_image_2.channels() == 3 && input_image_2.cols == cols &&
+         input_image_2.rows == rows && input_image_2.isContinuous());
+  const cv::Mat input_image_3 = cv::imread(cv::String{input_image_3_path});
+  assert(input_image_3.channels() == 3 && input_image_3.cols == cols &&
+         input_image_3.rows == rows && input_image_3.isContinuous());
 
-  input_buffer = stbi_load(input_image_path, &input_width, &input_height, NULL, channels);
-  assert(input_buffer != 0);
+  cv::Mat output_image(rows, cols, CV_8UC4);
 
-  const size_t input_buffer_size = input_width * input_height * channels;
-
-  const int output_width = input_width;
-  const int output_height = input_height;
-  const size_t output_buffer_size = output_width * output_height * channels;
-  uint8_t output_buffer[output_buffer_size];
+  uint8_t wRgbfilter = 0x00;  // no filter
 
   // create & load input/output textures
-  GLuint input_texture_id = create_texture(GL_RGBA, input_width, input_height, input_buffer);
-  GLuint output_texture_id = create_texture(GL_RGBA, output_width, output_height, output_buffer);
+  GLuint input_texture_1_id = create_texture(GL_BGR, input_image_1);
+  GLuint input_texture_2_id = create_texture(GL_BGR, input_image_2);
+  GLuint input_texture_3_id = create_texture(GL_BGR, input_image_3);
 
+  GLuint output_texture_id = create_texture(GL_BGRA, output_image);
 
   // init dut, tracing and sim elements
-  VTopPixelProcessor *top = initDut(argc, argv);
+  Vdesign_top *top = initDut(argc, argv);
   VerilatedVcdC *m_trace = initTrace(top);
 
+  const uint8_t *input_buffer = input_image_1.data;
+  const cv::Mat *input_image = &input_image_1;
   std::vector<SimElement *> simElements;
-  simElements.push_back(
-      new InputDriver(top, filter_buffer, sizeof(filter_buffer), input_buffer, input_buffer_size));
-  simElements.push_back(new OutputMonitor(top, output_buffer, output_buffer_size, channels));
+  simElements.push_back(new InputDriver(top, &wRgbfilter, &input_image));
+  simElements.push_back(new OutputMonitor(top, output_image));
 
   vluint64_t sim_time = 0;
   resetDut(top, simElements, &sim_time, m_trace);
@@ -316,7 +337,6 @@ int main(int argc, char **argv) {
   bool running = false;
   bool do_reset = false;
   int step_n_cycles = 0;
-  int filter_input[3] = {0, 0, 0};
   int cycles_per_iteration = 5;
 
   // Main loop
@@ -334,7 +354,8 @@ int main(int argc, char **argv) {
     while (SDL_PollEvent(&event)) {
       ImGui_ImplSDL2_ProcessEvent(&event);
       if (event.type == SDL_QUIT) done = true;
-      if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE &&
+      if (event.type == SDL_WINDOWEVENT &&
+          event.window.event == SDL_WINDOWEVENT_CLOSE &&
           event.window.windowID == SDL_GetWindowID(window))
         done = true;
     }
@@ -352,75 +373,68 @@ int main(int argc, char **argv) {
     // main window
     {
       ImGui::Begin("Main");
-      //ImGui::Checkbox("Demo Window", &show_demo_window);
+      ImGui::Checkbox("Demo Window", &show_demo_window);
 
       ImGui::InputInt("Cycles per iteration", &cycles_per_iteration);
-      running ^= ImGui::Button(running ? "Stop" : "Start");
-      do_reset = ImGui::Button("Reset");
+      running ^= ImGui::Button(running ? STOP_ICON " Stop" : START_ICON " Start");ImGui::SameLine();
+      do_reset = ImGui::Button(RESET_ICON " Reset");
 
-      if (running || ImGui::Button("Step")) {
+      if (running || ImGui::Button(STEP_ICON " Step")) {
         step_n_cycles = cycles_per_iteration;
-      }      
+      }
 
-      ImGui::Text("Input frame buffer %d x %d (tex id=%p)", input_width, input_height, (void *) (intptr_t) input_texture_id);
+      ImGui::Text("Input frame buffer %d x %d (tex id=%p)", input_image->cols,
+                  input_image->rows, (void *)(intptr_t)input_texture_1_id);
       ImVec2 pos = ImGui::GetCursorScreenPos();
-      ImGui::Image((void *) (intptr_t) input_texture_id, ImVec2(input_width, input_height));
-      ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);    // No tint
-      ImVec4 border_col = ImVec4(1.0f, 1.0f, 1.0f, 0.5f);  // 50% opaque white
-      if (ImGui::IsItemHovered()) {
-        ImGui::BeginTooltip();
-        float region_sz = 8.0f;
-        int px_x = io.MousePos.x - pos.x;
-        int px_y = io.MousePos.y - pos.y;
-        float region_x = px_x - region_sz * 0.5f;
-        float region_y = px_y - region_sz * 0.5f;
-        float zoom = 4.0f;
-        if (region_x < 0.0f) {
-          region_x = 0.0f;
-        } else if (region_x > input_width - region_sz) {
-          region_x = input_width - region_sz;
-        }
-        if (region_y < 0.0f) {
-          region_y = 0.0f;
-        } else if (region_y > input_height - region_sz) {
-          region_y = input_height - region_sz;
-        }
-
-        auto px_idx = (px_y * input_width + px_x) * channels;
-        assert(px_idx > 0 && px_idx < input_buffer_size);
-        auto px = input_buffer + px_idx;
-        uint8_t px_r = px[0];
-        uint8_t px_g = px[1];
-        uint8_t px_b = px[2];
-        //ImGui::Text("Px pos: (%d, %d)", px_x, px_y);
-        ImGui::Text("Px rgb: (%d, %d, %d)", px_r, px_g, px_b);
-
-        ImVec2 uv0 = ImVec2((region_x) / input_width, (region_y) / input_height);
-        ImVec2 uv1 =
-            ImVec2((region_x + region_sz) / input_width, (region_y + region_sz) / input_height);
-        ImGui::Image((void *) (intptr_t) input_texture_id,
-                     ImVec2(region_sz * zoom, region_sz * zoom), uv0, uv1, tint_col, border_col);
-        ImGui::EndTooltip();
+      if (ImGui::ImageButton((void *)(intptr_t)input_texture_1_id,
+                             ImVec2(input_image->cols, input_image->rows))) {
+        input_image = &input_image_1;
+      }
+      ImGui::SameLine();
+      if (ImGui::ImageButton((void *)(intptr_t)input_texture_2_id,
+                             ImVec2(input_image->cols, input_image->rows))) {
+        input_image = &input_image_2;
+      }
+      ImGui::SameLine();
+      if (ImGui::ImageButton((void *)(intptr_t)input_texture_3_id,
+                             ImVec2(input_image->cols, input_image->rows))) {
+        input_image = &input_image_3;
       }
 
-      if (ImGui::InputInt3("RGB filter", filter_input)) {
-        filter_input[0] = std::max(0, std::min(255, filter_input[0]));
-        filter_input[1] = std::max(0, std::min(255, filter_input[1]));
-        filter_input[2] = std::max(0, std::min(255, filter_input[2]));
-        filter_buffer[0] = (uint8_t) filter_input[0];
-        filter_buffer[1] = (uint8_t) filter_input[1];
-        filter_buffer[2] = (uint8_t) filter_input[2];
+      ImGui::Text("wRgbfilter=%x", wRgbfilter);
+      static bool red_filter_check = false;
+      static bool green_filter_check = false;
+      static bool blue_filter_check = false;
+      bool wRgbfilter_updated = false;
+      wRgbfilter_updated |= ImGui::Checkbox("red", &red_filter_check);
+      ImGui::SameLine();
+      wRgbfilter_updated |= ImGui::Checkbox("green", &green_filter_check);
+      ImGui::SameLine();
+      wRgbfilter_updated |= ImGui::Checkbox("blue", &blue_filter_check);
+
+      if (wRgbfilter_updated) {
+        wRgbfilter = (((uint8_t)blue_filter_check) << 2) |
+                     (((uint8_t)green_filter_check) << 1) |
+                     (uint8_t)red_filter_check;
       }
 
-      ImGui::Text("Output frame buffer %d x %d (tex id=%p)", output_width, output_height, (void *) (intptr_t) output_texture_id);
-      ImGui::Image((void *) (intptr_t) output_texture_id, ImVec2(output_width, output_height));
+      ImGui::Text("Output frame buffer %d x %d (tex id=%p)", output_image.cols,
+                  output_image.rows, (void *)(intptr_t)output_texture_id);
+      ImGui::Image((void *)(intptr_t)output_texture_id,
+                   ImVec2(output_image.cols, output_image.rows));
 
       ImGui::Text("Top level state");
-      ImGui::Text("[OUT] top->io_pixel_in_addr=%d", top->io_pixel_in_addr);
-      ImGui::Text("[OUT] top->io_pixel_out_payload_r=%d", top->io_pixel_out_payload_r);
-      ImGui::Text("[OUT] top->io_pixel_out_payload_g=%d", top->io_pixel_out_payload_g);
-      ImGui::Text("[OUT] top->io_pixel_out_payload_b=%d", top->io_pixel_out_payload_b);
-      ImGui::Text("[OUT] top->io_pixel_out_addr=%d", top->io_pixel_out_addr);
+      ImGui::Text("[Leds]");
+      ImGui::SameLine();
+      for (int i = n_leds; i > 0; i--) {
+        int led_n = i - 1;
+        bool led_on = top->leds & (1 << led_n);
+        auto gb = led_on ? 0 : 255;
+        ImGui::TextColored(ImVec4(255, gb, gb, ALPHA_SOLID), LED_ICON);
+        if (led_n > 0) {
+          ImGui::SameLine();
+        }
+      }
 
       ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
                   1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
@@ -437,11 +451,11 @@ int main(int argc, char **argv) {
       tickDut(top, simElements, &sim_time, m_trace);
     }
 
-    update_texture(output_texture_id, GL_RGBA, output_width, output_height, output_buffer);
+    update_texture(output_texture_id, GL_BGRA, output_image);
 
     // Rendering
     ImGui::Render();
-    glViewport(0, 0, (int) io.DisplaySize.x, (int) io.DisplaySize.y);
+    glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
     glClear(GL_COLOR_BUFFER_BIT);
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     SDL_GL_SwapWindow(window);
@@ -456,6 +470,7 @@ int main(int argc, char **argv) {
   SDL_DestroyWindow(window);
   SDL_Quit();
 
+  for (SimElement *e : simElements) delete e;
   deinitDut(&top, m_trace);
 
   return 0;

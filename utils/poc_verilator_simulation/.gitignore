@@ -3,6 +3,6 @@ project/project
 project/plugins/project
 target
 simWorkspace
-sim/obj_dir
+sim/*/obj_dir
 imgui.ini
 sim.vcd

@@ -352,7 +352,7 @@ int main(int argc, char **argv) {
     // main window
     {
       ImGui::Begin("Main");
-      //ImGui::Checkbox("Demo Window", &show_demo_window);
+      ImGui::Checkbox("Demo Window", &show_demo_window);
 
       ImGui::InputInt("Cycles per iteration", &cycles_per_iteration);
       running ^= ImGui::Button(running ? "Stop" : "Start");
