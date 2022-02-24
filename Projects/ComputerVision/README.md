@@ -147,6 +147,13 @@ Having pclk is 80ns (12.5 MHz), it would be around 125 us before the first pixel
 
 ![Blocks for 1 camera on turret](block_turret_cam.png)
 
+
+
+---
+## ULX3S programming using FTDI FT2232 Mini Module
+
+![FTDI FT2232 Mini Module connections with ULX3S](ulx3s_ftdi_ft2232.jpg)
+
 ---  
   
 # Alhambra II
