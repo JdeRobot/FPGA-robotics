@@ -129,11 +129,7 @@ module color_proc
     c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
     c_nb_buf_blue  =  4,  // n bits for blue in the buffer (memory)
     // word width of the memory (buffer)
-    c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue,
-    // position of the most significant bits of each color
-    c_msb_blue  = c_nb_buf_blue-1,
-    c_msb_red   = c_nb_buf-1,
-    c_msb_green = c_msb_blue + c_nb_buf_green
+    c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
   )
   (
     input        rst,       //reset, active high
@@ -177,6 +173,19 @@ module color_proc
     output reg [2:0] rgbfilter
   );
 
+    // position of the most significant bits of each color
+  localparam c_msb_red = c_nb_buf-1;
+  localparam c_msb_blu = c_nb_buf_blue-1;
+  localparam c_msb_grn = c_msb_blu + c_nb_buf_green;
+
+  // color thersholds would be similar, but camera is having more greens
+  // and less blues. Reds are more or less the in the middle,
+  // with this we adapt thershold. Normal threshold would be >= 8 HIGH, <8 LOW
+  // c_limit_red, c_limit_grn, c_limit_blu in normal conditions would be 8
+  localparam c_limit_red = 2**(c_nb_buf_red-1);  // would be 8
+  localparam c_limit_grn = 2**(c_nb_buf_green-1) +1; // adjusted to 9
+  localparam c_limit_blu = 2**(c_nb_buf_blue-1)  -1; // adjusted to 7
+
   reg [c_nb_img_pxls-1:0]  cnt_pxl;
   reg [c_nb_img_pxls-1:0]  cnt_pxl_proc;
 
@@ -184,13 +193,22 @@ module color_proc
   wire end_ln;
   wire inner_frame; //if we are in the inner frame col=[8,71], row=[6,53]
 
+  // RGB components
+  wire [c_nb_buf_red-1:0] red;
+  wire [c_nb_buf_green-1:0] grn;
+  wire [c_nb_buf_blue-1:0] blu;
+
+  wire   red_high;
+  wire   grn_high;
+  wire   blu_high;
+
   wire   red_limit;
-  wire   green_limit;
-  wire   blue_limit;
-  wire   yellow_limit;
-  wire   cyan_limit;
-  wire   magen_limit;
-  wire   white_limit;
+  wire   grn_limit; // green
+  wire   blu_limit; // blue
+  wire   yel_limit; // yellow
+  wire   cya_limit; // cyan
+  wire   mag_limit; // magenta
+  wire   whi_limit; // white
   reg    color_threshold; // if color threshold is active
   
   localparam  C_BLACK_PXL = {c_nb_img_pxls{1'b0}};
@@ -236,6 +254,11 @@ module color_proc
   wire      pulse_proc_ctrl;
 
   reg       processing; // indicates if it is processing
+
+  // get the RGB components
+  assign red = orig_pxl[c_msb_red:c_msb_grn+1];
+  assign grn = orig_pxl[c_msb_grn:c_msb_blu+1];
+  assign blu = orig_pxl[c_msb_blu:0];
 
   // memory address count. Pixel counter from 0 to (160x120)-1 = 19200-1
   always @ (posedge rst, posedge clk)
@@ -346,22 +369,21 @@ module color_proc
   // we go from bit 6 (7-1),  to (7-1)-(3-1) -> 4
   assign hist_bin = col_inframe[c_nb_inframe_cols-1:c_nb_inframe_cols-c_nb_hist_bins];  //[6:4]  
 
-  // color filter thresholds
-  assign red_limit = (orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign green_limit = (!orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign blue_limit = (!orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign yellow_limit = (orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign cyan_limit = (!orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign magen_limit = (orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign white_limit = (orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
+  // adjusted thersholds. Normal threshold would be >= 8 HIGH, <8 LOW
+  // c_limit_red, c_limit_grn, c_limit_blu in normal conditions would be 8
+  assign red_high = (red > c_limit_red) ? 1'b1 : 1'b0;
+  assign grn_high = (grn > c_limit_grn) ? 1'b1 : 1'b0;
+  assign blu_high = (blu > c_limit_blu) ? 1'b1 : 1'b0;
 
+  // color filter thresholds
+                     // >=8         <9            <7
+  assign red_limit =  red_high && ~grn_high && ~blu_high;
+  assign grn_limit = ~red_high &&  grn_high && ~blu_high;
+  assign blu_limit = ~red_high && ~grn_high &&  blu_high;
+  assign yel_limit =  red_high &&  grn_high && ~blu_high;
+  assign cya_limit = ~red_high &&  grn_high &&  blu_high;
+  assign mag_limit =  red_high && ~grn_high &&  blu_high;
+  assign whi_limit =  red_high &&  grn_high &&  blu_high;
 
   //reg [c_nb_hist_val-1:0] histograma [c_hist_bins-1:0];
   // saves how many red pixels are in each column. Reset in each frame
@@ -546,22 +568,22 @@ module color_proc
         color_threshold = red_limit;
       end
       3'b010: begin // green filter
-        color_threshold = green_limit;
+        color_threshold = grn_limit;
       end
       3'b001: begin // filter blue
-        color_threshold = blue_limit;
+        color_threshold = blu_limit;
       end
       3'b110: begin // filter red and green
-        color_threshold = yellow_limit;
+        color_threshold = yel_limit;
       end
       3'b101: begin // filter red and blue
-        color_threshold = magen_limit;
+        color_threshold = mag_limit;
       end
       3'b011: begin // filter green and blue
-        color_threshold = cyan_limit;
+        color_threshold = cya_limit;
       end
       3'b111: begin // red, green and blue filter
-        color_threshold = white_limit;
+        color_threshold = whi_limit;
       end
     endcase
   end
