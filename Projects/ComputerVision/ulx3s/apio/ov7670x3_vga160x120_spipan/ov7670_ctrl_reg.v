@@ -648,6 +648,10 @@ module ov7670_ctrl_reg
                              // [6:0]=02: Default scaling ouput delay
       //  end QQVGA
       6'h39:
+        reg_rgb444 <= 16'h13E7;  // AWB: Automatic White Balance ON
+      6'h3A:
+        reg_rgb444 <= 16'h6F9F;  // simple AWB
+      6'h3B:
         reg_rgb444 <= 16'hFFFF;  // FINISH CONDITION, register FF doesnt exist
       default:
         reg_rgb444 <= 16'hFFFF;  // FINISH CONDITION
