@@ -198,6 +198,13 @@ module color_proc
   wire [c_nb_buf_green-1:0] grn;
   wire [c_nb_buf_blue-1:0] blu;
 
+  wire  red_is2x_grn;
+  wire  red_is2x_blu;
+  wire  grn_is2x_red;
+  wire  grn_is2x_blu;
+  wire  blu_is2x_red;
+  wire  blu_is2x_grn;
+
   wire   red_high;
   wire   grn_high;
   wire   blu_high;
@@ -369,6 +376,25 @@ module color_proc
   // we go from bit 6 (7-1),  to (7-1)-(3-1) -> 4
   assign hist_bin = col_inframe[c_nb_inframe_cols-1:c_nb_inframe_cols-c_nb_hist_bins];  //[6:4]  
 
+  // define RED when red channel is at least 8 double than blue and green
+  //assign red_is2x_grn = ({1'b0, red[c_nb_buf_red-1:1]} >= grn) ? 1'b1 : 1'b0;
+  assign red_is2x_grn = ({1'b0, red[c_nb_buf_red-1:1]} >= grn-1) ? 1'b1 : 1'b0;
+
+  //assign red_is2x_blu = ({1'b0, red[c_nb_buf_red-1:1]} >= blu) ? 1'b1 : 1'b0;
+  assign red_is2x_blu = ({1'b0, red[c_nb_buf_red-1:1]} >= blu-1) ? 1'b1 : 1'b0;
+
+  //assign grn_is2x_red = ({1'b0, grn[c_nb_buf_green-1:1]} >= red) ? 1'b1 : 1'b0;
+  assign grn_is2x_red = ({1'b0, grn[c_nb_buf_green-1:1]} >= red-1) ? 1'b1 : 1'b0;
+
+  //assign grn_is2x_blu = ({1'b0, grn[c_nb_buf_green-1:1]} >= blu) ? 1'b1 : 1'b0;
+  assign grn_is2x_blu = ({1'b0, grn[c_nb_buf_green-1:1]} >= blu-1) ? 1'b1 : 1'b0;
+
+  //assign blu_is2x_red = ({1'b0, blu[c_nb_buf_blue-1:1]} >= red) ? 1'b1 : 1'b0;
+  assign blu_is2x_red = ({1'b0, blu[c_nb_buf_blue-1:1]} >= red-1) ? 1'b1 : 1'b0;
+
+  //assign blu_is2x_grn = ({1'b0, blu[c_nb_buf_blue-1:1]} >= grn) ? 1'b1 : 1'b0;
+  assign blu_is2x_grn = ({1'b0, blu[c_nb_buf_blue-1:1]} >= grn-1) ? 1'b1 : 1'b0;
+
   // adjusted thersholds. Normal threshold would be >= 8 HIGH, <8 LOW
   // c_limit_red, c_limit_grn, c_limit_blu in normal conditions would be 8
   assign red_high = (red > c_limit_red) ? 1'b1 : 1'b0;
@@ -377,13 +403,27 @@ module color_proc
 
   // color filter thresholds
                      // >=8         <9            <7
-  assign red_limit =  red_high && ~grn_high && ~blu_high;
-  assign grn_limit = ~red_high &&  grn_high && ~blu_high;
-  assign blu_limit = ~red_high && ~grn_high &&  blu_high;
-  assign yel_limit =  red_high &&  grn_high && ~blu_high;
-  assign cya_limit = ~red_high &&  grn_high &&  blu_high;
-  assign mag_limit =  red_high && ~grn_high &&  blu_high;
-  assign whi_limit =  red_high &&  grn_high &&  blu_high;
+  //assign red_limit =  red_high && ~grn_high && ~blu_high;
+  //assign grn_limit = ~red_high &&  grn_high && ~blu_high;
+  //assign blu_limit = ~red_high && ~grn_high &&  blu_high;
+  //assign yel_limit =  red_high &&  grn_high && ~blu_high;
+  //assign cya_limit = ~red_high &&  grn_high &&  blu_high;
+  //assign mag_limit =  red_high && ~grn_high &&  blu_high;
+  //assign whi_limit =  red_high &&  grn_high &&  blu_high;
+
+  assign red_limit = red_is2x_grn && red_is2x_blu;
+  assign grn_limit = grn_is2x_red && grn_is2x_blu;
+  assign blu_limit = blu_is2x_red && blu_is2x_grn;
+                     // red & green double blue, but they are not too different
+  assign yel_limit = red_is2x_blu && grn_is2x_blu && ~red_is2x_grn && ~grn_is2x_red;
+  assign cya_limit = grn_is2x_red && blu_is2x_red && ~grn_is2x_blu && ~blu_is2x_grn;
+  assign mag_limit = red_is2x_grn && blu_is2x_grn && ~red_is2x_blu && ~blu_is2x_red;
+                     // no one is double than he other and the are abover a minimum
+  assign whi_limit = (~red_is2x_grn  && ~grn_is2x_red &&
+                      ~grn_is2x_blu  && ~blu_is2x_grn &&
+                      ~red_is2x_blu  && ~blu_is2x_red &&
+                       red > 4'b0011); // checking one should be enough
+                      // && grn > 4'b0010 && blu > 4'b0010);
 
   //reg [c_nb_hist_val-1:0] histograma [c_hist_bins-1:0];
   // saves how many red pixels are in each column. Reset in each frame

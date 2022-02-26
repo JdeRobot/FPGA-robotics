@@ -154,7 +154,7 @@ module motor_ctrl_spi
           motor_dps_left <= c_vel2;
           motor_dps_rght <= 0;
         end
-        else if (last_cent_valid[0] == 1'b1) begin
+        else if (last_cent_valid[7] == 1'b1) begin
           motor_dps_left <= c_vel3;
           motor_dps_rght <= 0;
         end
