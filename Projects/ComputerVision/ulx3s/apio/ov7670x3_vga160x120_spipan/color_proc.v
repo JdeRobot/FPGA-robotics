@@ -178,13 +178,10 @@ module color_proc
   localparam c_msb_blu = c_nb_buf_blue-1;
   localparam c_msb_grn = c_msb_blu + c_nb_buf_green;
 
-  // color thersholds would be similar, but camera is having more greens
-  // and less blues. Reds are more or less the in the middle,
-  // with this we adapt thershold. Normal threshold would be >= 8 HIGH, <8 LOW
-  // c_limit_red, c_limit_grn, c_limit_blu in normal conditions would be 8
-  localparam c_limit_red = 2**(c_nb_buf_red-1);  // would be 8
-  localparam c_limit_grn = 2**(c_nb_buf_green-1) +1; // adjusted to 9
-  localparam c_limit_blu = 2**(c_nb_buf_blue-1)  -1; // adjusted to 7
+  // 4 is the mim value to considered colored
+  localparam c_limit_red = 2**(c_nb_buf_red-2);  // 4 
+  localparam c_limit_grn = 2**(c_nb_buf_green-2);
+  localparam c_limit_blu = 2**(c_nb_buf_blue-2);
 
   reg [c_nb_img_pxls-1:0]  cnt_pxl;
   reg [c_nb_img_pxls-1:0]  cnt_pxl_proc;
@@ -194,28 +191,59 @@ module color_proc
   wire inner_frame; //if we are in the inner frame col=[8,71], row=[6,53]
 
   // RGB components
-  wire [c_nb_buf_red-1:0] red;
+  wire [c_nb_buf_red-1:0]   red;
   wire [c_nb_buf_green-1:0] grn;
-  wire [c_nb_buf_blue-1:0] blu;
+  wire [c_nb_buf_blue-1:0]  blu;
 
-  wire  red_is2x_grn;
-  wire  red_is2x_blu;
-  wire  grn_is2x_red;
-  wire  grn_is2x_blu;
-  wire  blu_is2x_red;
-  wire  blu_is2x_grn;
+  wire [5:0] rgb222;
 
-  wire   red_high;
-  wire   grn_high;
-  wire   blu_high;
+  // component + 25%
+  wire [c_nb_buf_red:0]   red_125;
+  wire [c_nb_buf_green:0] grn_125;
+  wire [c_nb_buf_blue:0]  blu_125;
 
-  wire   red_limit;
-  wire   grn_limit; // green
-  wire   blu_limit; // blue
-  wire   yel_limit; // yellow
-  wire   cya_limit; // cyan
-  wire   mag_limit; // magenta
-  wire   whi_limit; // white
+  wire  red_gte_min;
+  wire  grn_gte_min;
+  wire  blu_gte_min;
+
+  wire  red_gte_grn125;
+  wire  red_gte_blu125;
+
+  wire  grn_gte_red125;
+  wire  grn_gte_blu125;
+
+  wire  blu_gte_red125;
+  wire  blu_gte_grn125;
+
+  wire  red_gt_grn125;
+  wire  red_gt_blu125;
+
+  wire  grn_gt_red125;
+  wire  grn_gt_blu125;
+
+  wire  blu_gt_red125;
+  wire  blu_gt_grn125;
+
+  wire  red_grn_sim, red_blu_sim, grn_blu_sim;
+
+  //wire  red_is2x_grn;
+  //wire  red_is2x_blu;
+  //wire  grn_is2x_red;
+  //wire  grn_is2x_blu;
+  //wire  blu_is2x_red;
+  //wire  blu_is2x_grn;
+
+  //wire   red_high;
+  //wire   grn_high;
+  //wire   blu_high;
+
+  reg    red_limit;
+  reg    grn_limit; // green
+  reg    blu_limit; // blue
+  reg    yel_limit; // yellow
+  reg    cya_limit; // cyan
+  reg    mag_limit; // magenta
+  reg    whi_limit; // white
   reg    color_threshold; // if color threshold is active
   
   localparam  C_BLACK_PXL = {c_nb_img_pxls{1'b0}};
@@ -366,6 +394,271 @@ module color_proc
                      ? 1'b1 : 1'b0;
 
 
+//  assign red_eq_grn  = (red == grn) ? 1'b1 : 1'b0;
+//  assign red_eq_blu  = (red == blu) ? 1'b1 : 1'b0;
+//  assign grn_eq_blu  = (grn == blu) ? 1'b1 : 1'b0;
+
+//  assign red_gt_grn  = (red > grn) ? 1'b1 : 1'b0;
+//  assign red_gt_blu  = (red > blu) ? 1'b1 : 1'b0;
+//  assign grn_gt_blu  = (grn > blu) ? 1'b1 : 1'b0;
+
+//  assign red_minus_grn = red - grn;
+//  assign red_minus_blu = red - blu;
+//  assign grn_minus_blu = grn - blu;
+
+//  assign grn_minus_red = grn - red; // could make - red_minus_grn
+//  assign blu_minus_red = blu - red;
+//  assign blu_minus_grn = blu - grn;
+
+  assign rgb222 = {red[c_nb_buf_red-1:c_nb_buf_red-2],
+                   grn[c_nb_buf_green-1:c_nb_buf_green-2],
+                   blu[c_nb_buf_blue-1:c_nb_buf_blue-2]};
+
+  always @ (*)
+  begin
+    red_limit = 1'b0;
+    grn_limit = 1'b0;
+    blu_limit = 1'b0;
+    yel_limit = 1'b0;
+    cya_limit = 1'b0;
+    mag_limit = 1'b0;
+    whi_limit = 1'b0;
+    case(rgb222)
+       //RRGGBB
+      6'b000000:            // 0 0 0 ---
+        whi_limit = 1'b0;
+      6'b000001:            // 0 0 1
+        blu_limit = 1'b1;
+      6'b000010:            // 0 0 2
+        blu_limit = 1'b1;
+      6'b000011:            // 0 0 3
+        blu_limit = 1'b1;
+      6'b000100:            // 0 1 0 ---
+        grn_limit = 1'b1;
+      6'b000101: begin      // 0 1 1
+        cya_limit = 1'b1;
+      end
+      6'b000110: begin      // 0 1 2
+        blu_limit = 1'b1;
+        cya_limit = 1'b1;
+      end
+      6'b000111: begin      // 0 1 3
+        blu_limit = 1'b1;
+      end
+      6'b001000:            // 0 2 0 ---
+        grn_limit = 1'b1;
+      6'b001001: begin      // 0 2 1
+        grn_limit = 1'b1;
+        cya_limit = 1'b1;
+      end
+      6'b001010: begin      // 0 2 2
+        //blu_limit = 1'b1;
+        //grn_limit = 1'b1;
+        cya_limit = 1'b1;
+      end
+      6'b001011: begin      // 0 2 3
+        blu_limit = 1'b1;
+        cya_limit = 1'b1;
+      end
+      6'b001100:            // 0 3 0 ---
+        grn_limit = 1'b1;
+      6'b001101: begin      // 0 3 1
+        grn_limit = 1'b1;
+      end
+      6'b001110: begin      // 0 3 2
+        //blu_limit = 1'b1;
+        grn_limit = 1'b1;
+        cya_limit = 1'b1;
+      end
+      6'b001111: begin      // 0 3 3
+        cya_limit = 1'b1;
+      end
+       //RRGGBB
+      6'b010000:            // 1 0 0 --- ---
+        red_limit = 1'b1;
+      6'b010001: begin      // 1 0 1
+        mag_limit = 1'b1;
+        //blu_limit = 1'b1;
+        //red_limit = 1'b1;
+      end
+      6'b010010: begin      // 1 0 2
+        blu_limit = 1'b1;
+        mag_limit = 1'b1;
+      end
+      6'b010011:            // 1 0 3
+        blu_limit = 1'b1;
+      6'b010100:            // 1 1 0 ---
+        yel_limit = 1'b1;
+      6'b010101: begin      // 1 1 1
+        whi_limit = 1'b1;
+      end
+      6'b010110: begin      // 1 1 2
+        blu_limit = 1'b1;
+        cya_limit = 1'b1;
+        mag_limit = 1'b1;
+        whi_limit = 1'b1;
+      end
+      6'b010111: begin      // 1 1 3
+        blu_limit = 1'b1;
+      end
+      6'b011000: begin      // 1 2 0 ---
+        grn_limit = 1'b1;
+        yel_limit = 1'b1;
+      end
+      6'b011001: begin      // 1 2 1
+        grn_limit = 1'b1;
+        //cya_limit = 1'b1; // check
+        //yel_limit = 1'b1; // check
+        whi_limit = 1'b1; // check
+      end
+      6'b011010: begin      // 1 2 2
+        //blu_limit = 1'b1;
+        //grn_limit = 1'b1;
+        cya_limit = 1'b1;
+      end
+      6'b011011: begin      // 1 2 3
+        blu_limit = 1'b1;
+        cya_limit = 1'b1;
+      end
+      6'b011100:            // 1 3 0 ---
+        grn_limit = 1'b1;
+      6'b011101: begin      // 1 3 1
+        grn_limit = 1'b1;
+      end
+      6'b011110: begin      // 1 3 2
+        grn_limit = 1'b1;
+        cya_limit = 1'b1;
+      end
+      6'b011111: begin      // 1 3 3
+        cya_limit = 1'b1;
+      end
+
+       //RRGGBB
+      6'b100000:            // 2 0 0 --- ---
+        red_limit = 1'b1;
+      6'b100001: begin      // 2 0 1
+        red_limit = 1'b1;
+        mag_limit = 1'b1;
+      end
+      6'b100010:            // 2 0 2
+        mag_limit = 1'b1;
+      6'b100011: begin      // 2 0 3
+        blu_limit = 1'b1;
+        mag_limit = 1'b1;
+      end
+      6'b100100: begin      // 2 1 0 ---
+        red_limit = 1'b1;
+        yel_limit = 1'b1;
+      end
+      6'b100101: begin      // 2 1 1
+        red_limit = 1'b1;
+        //yel_limit = 1'b1; // check
+        //mag_limit = 1'b1; // check
+        whi_limit = 1'b1; // check
+      end
+      6'b100110: begin      // 2 1 2
+        mag_limit = 1'b1;
+        //red_limit = 1'b1;
+        //blu_limit = 1'b1;
+      end
+      6'b100111: begin      // 2 1 3
+        blu_limit = 1'b1;
+        mag_limit = 1'b1;
+      end
+      6'b101000:            // 2 2 0 ---
+        yel_limit = 1'b1;
+      6'b101001: begin      // 2 2 1
+        yel_limit = 1'b1;
+      end
+      6'b101010: begin      // 2 2 2
+        whi_limit = 1'b1;
+      end
+      6'b101011: begin      // 2 2 3
+        blu_limit = 1'b1;
+        //cya_limit = 1'b1; // check
+        //mag_limit = 1'b1; // check
+        whi_limit = 1'b1; // check
+      end
+      6'b101100: begin      // 2 3 0 ---
+        grn_limit = 1'b1;
+        yel_limit = 1'b1; // check
+      end
+      6'b101101: begin      // 2 3 1
+        grn_limit = 1'b1;
+        yel_limit = 1'b1; // check
+      end
+      6'b101110: begin      // 2 3 2
+        grn_limit = 1'b1;
+        //cya_limit = 1'b1; // check
+        //yel_limit = 1'b1; // check
+        whi_limit = 1'b1; // check
+      end
+      6'b101111: begin      // 2 3 3
+        cya_limit = 1'b1;
+        whi_limit = 1'b1; // check
+      end
+       //RRGGBB
+      6'b110000:            // 3 0 0 --- ---
+        red_limit = 1'b1;
+      6'b110001: begin      // 3 0 1
+        red_limit = 1'b1;
+        //blu_limit = 1'b1;
+        //red_limit = 1'b1;
+      end
+      6'b110010: begin      // 3 0 2
+        red_limit = 1'b1;
+        mag_limit = 1'b1;
+      end
+      6'b110011:            // 3 0 3
+        mag_limit = 1'b1;
+      6'b110100:            // 3 1 0 ---
+        red_limit = 1'b1;
+      6'b110101: begin      // 3 1 1
+        red_limit = 1'b1;
+      end
+      6'b110110: begin      // 3 1 2
+        red_limit = 1'b1;
+        mag_limit = 1'b1;
+      end
+      6'b110111: begin      // 3 1 3
+        mag_limit = 1'b1;
+      end
+      6'b111000: begin      // 3 2 0 ---
+        red_limit = 1'b1;
+        yel_limit = 1'b1;
+      end
+      6'b111001: begin      // 3 2 1
+        red_limit = 1'b1;
+        yel_limit = 1'b1; // check
+      end
+      6'b111010: begin      // 3 2 2
+        red_limit = 1'b1;
+        //yel_limit = 1'b1; // check
+        //mag_limit = 1'b1; // check
+        whi_limit = 1'b1; // check
+      end
+      6'b111011: begin      // 3 2 3
+        mag_limit = 1'b1;
+        whi_limit = 1'b1;
+      end
+      6'b111100:            // 3 3 0 ---
+        yel_limit = 1'b1;
+      6'b111101: begin      // 3 3 1
+        yel_limit = 1'b1;
+      end
+      6'b111110: begin      // 3 3 2
+        yel_limit = 1'b1;
+        whi_limit = 1'b1; // check
+      end
+      6'b111111: begin      // 3 3 3
+        whi_limit = 1'b1;
+      end
+    endcase
+  end
+
+
+
+
   // inner column, when we are out of the range it doesn't matter the value
   // because shouldnt be used
   assign col_inframe = col_rg - c_outframe_cols;
@@ -374,32 +667,97 @@ module color_proc
   // it really has 7 bits (c_nb_inframe_cols)
   // c_nb_hist_bins is 3 bits
   // we go from bit 6 (7-1),  to (7-1)-(3-1) -> 4
-  assign hist_bin = col_inframe[c_nb_inframe_cols-1:c_nb_inframe_cols-c_nb_hist_bins];  //[6:4]  
+  assign hist_bin = col_inframe[c_nb_inframe_cols-1:c_nb_inframe_cols-c_nb_hist_bins];  //[6:4] 
+
+                                // red + red/4 :  when too small it doesnt add
+  assign red_125 = (red >= 4) ? red + red[c_nb_buf_red-1:2]   : red + 2'b10; 
+  assign grn_125 = (grn >= 4) ? grn + grn[c_nb_buf_green-1:2] : grn + 2'b10;
+  assign blu_125 = (blu >= 4) ? blu + blu[c_nb_buf_blue-1:2]  : blu + 2'b10;
+
+  assign red_gte_min = (red >= c_limit_red) ? 1'b1 : 1'b0;
+  assign grn_gte_min = (grn >= c_limit_grn) ? 1'b1 : 1'b0;
+  assign blu_gte_min = (blu >= c_limit_blu) ? 1'b1 : 1'b0;
+
+  assign red_gte_grn125 = (red >= grn_125) ? 1'b1 : 1'b0;
+  assign red_gte_blu125 = (red >= blu_125) ? 1'b1 : 1'b0;
+
+  assign grn_gte_red125 = (grn >= red_125) ? 1'b1 : 1'b0;
+  assign grn_gte_blu125 = (grn >= blu_125) ? 1'b1 : 1'b0;
+
+  assign blu_gte_red125 = (blu >= red_125) ? 1'b1 : 1'b0;
+  assign blu_gte_grn125 = (blu >= grn_125) ? 1'b1 : 1'b0;
+
+  assign red_gt_grn125 = (red > grn_125) ? 1'b1 : 1'b0;
+  assign red_gt_blu125 = (red > blu_125) ? 1'b1 : 1'b0;
+
+  assign grn_gt_red125 = (grn > red_125) ? 1'b1 : 1'b0;
+  assign grn_gt_blu125 = (grn > blu_125) ? 1'b1 : 1'b0;
+
+  assign blu_gt_red125 = (blu > red_125) ? 1'b1 : 1'b0;
+  assign blu_gt_grn125 = (blu > grn_125) ? 1'b1 : 1'b0;
+
+
+  // red and green are similar if both are less than the minimum OR
+  // if neither of them are greather than the 125% of the other
+  assign red_grn_sim = ((~red_gte_min && ~grn_gte_min) || 
+                        (~red_gt_grn125 && ~grn_gt_red125));
+
+  assign red_blu_sim = ((~red_gte_min && ~blu_gte_min) || 
+                        (~red_gt_blu125 && ~blu_gt_red125));
+
+  assign grn_blu_sim = ((~grn_gte_min && ~blu_gte_min) || 
+                        (~grn_gt_blu125 && ~blu_gt_grn125));
+
+
+  //assign red_limit = ( red_gte_min    &&
+  //                     red_gte_grn125 &&  red_gte_blu125 &&
+  //                     grn_blu_sim) ? 1'b1 : 1'b0;
+
+  //assign grn_limit = ( grn_gte_min    &&
+//                       grn_gte_red125 &&  grn_gte_blu125 &&
+//                       red_blu_sim) ? 1'b1 : 1'b0;
+
+//  assign blu_limit = ( blu_gte_min    &&
+//                       blu_gte_red125 &&  blu_gte_grn125 &&
+//                       red_grn_sim) ? 1'b1 : 1'b0;
+
+//  assign yel_limit = ( red_gte_min    &&  grn_gte_min && red_grn_sim &&
+//                       red_gte_blu125 &&  grn_gte_blu125) ? 1'b1 : 1'b0;
+
+//  assign cya_limit = ( grn_gte_min    &&  blu_gte_min && grn_blu_sim &&
+//                       grn_gte_red125 &&  blu_gte_red125) ? 1'b1 : 1'b0;
+
+//  assign mag_limit = ( red_gte_min    &&  blu_gte_min && red_blu_sim &&
+//                       red_gte_grn125 &&  blu_gte_grn125) ? 1'b1 : 1'b0;
+
+//  assign whi_limit = ( red_gte_min    &&  grn_gte_min && blu_gte_min &&
+//                       red_grn_sim    &&  grn_blu_sim) ? 1'b1 : 1'b0;
+
 
   // define RED when red channel is at least 8 double than blue and green
   //assign red_is2x_grn = ({1'b0, red[c_nb_buf_red-1:1]} >= grn) ? 1'b1 : 1'b0;
-  assign red_is2x_grn = ({1'b0, red[c_nb_buf_red-1:1]} >= grn-1) ? 1'b1 : 1'b0;
+  //assign red_is2x_grn = ({1'b0, red[c_nb_buf_red-1:1]} >= grn-1) ? 1'b1 : 1'b0;
 
   //assign red_is2x_blu = ({1'b0, red[c_nb_buf_red-1:1]} >= blu) ? 1'b1 : 1'b0;
-  assign red_is2x_blu = ({1'b0, red[c_nb_buf_red-1:1]} >= blu-1) ? 1'b1 : 1'b0;
+  //assign red_is2x_blu = ({1'b0, red[c_nb_buf_red-1:1]} >= blu-1) ? 1'b1 : 1'b0;
 
   //assign grn_is2x_red = ({1'b0, grn[c_nb_buf_green-1:1]} >= red) ? 1'b1 : 1'b0;
-  assign grn_is2x_red = ({1'b0, grn[c_nb_buf_green-1:1]} >= red-1) ? 1'b1 : 1'b0;
+  //assign grn_is2x_red = ({1'b0, grn[c_nb_buf_green-1:1]} >= red-1) ? 1'b1 : 1'b0;
 
   //assign grn_is2x_blu = ({1'b0, grn[c_nb_buf_green-1:1]} >= blu) ? 1'b1 : 1'b0;
-  assign grn_is2x_blu = ({1'b0, grn[c_nb_buf_green-1:1]} >= blu-1) ? 1'b1 : 1'b0;
+  //assign grn_is2x_blu = ({1'b0, grn[c_nb_buf_green-1:1]} >= blu-1) ? 1'b1 : 1'b0;
 
   //assign blu_is2x_red = ({1'b0, blu[c_nb_buf_blue-1:1]} >= red) ? 1'b1 : 1'b0;
-  assign blu_is2x_red = ({1'b0, blu[c_nb_buf_blue-1:1]} >= red-1) ? 1'b1 : 1'b0;
+  //assign blu_is2x_red = ({1'b0, blu[c_nb_buf_blue-1:1]} >= red-1) ? 1'b1 : 1'b0;
 
   //assign blu_is2x_grn = ({1'b0, blu[c_nb_buf_blue-1:1]} >= grn) ? 1'b1 : 1'b0;
-  assign blu_is2x_grn = ({1'b0, blu[c_nb_buf_blue-1:1]} >= grn-1) ? 1'b1 : 1'b0;
+  //assign blu_is2x_grn = ({1'b0, blu[c_nb_buf_blue-1:1]} >= grn-1) ? 1'b1 : 1'b0;
 
   // adjusted thersholds. Normal threshold would be >= 8 HIGH, <8 LOW
   // c_limit_red, c_limit_grn, c_limit_blu in normal conditions would be 8
-  assign red_high = (red > c_limit_red) ? 1'b1 : 1'b0;
-  assign grn_high = (grn > c_limit_grn) ? 1'b1 : 1'b0;
-  assign blu_high = (blu > c_limit_blu) ? 1'b1 : 1'b0;
+  //assign red_high = (red > c_limit_red) ? 1'b1 : 1'b0;
+  //assign grn_high = (grn > c_limit_grn) ? 1'b1 : 1'b0;
+  //assign blu_high = (blu > c_limit_blu) ? 1'b1 : 1'b0;
 
   // color filter thresholds
                      // >=8         <9            <7
@@ -411,18 +769,18 @@ module color_proc
   //assign mag_limit =  red_high && ~grn_high &&  blu_high;
   //assign whi_limit =  red_high &&  grn_high &&  blu_high;
 
-  assign red_limit = red_is2x_grn && red_is2x_blu;
-  assign grn_limit = grn_is2x_red && grn_is2x_blu;
-  assign blu_limit = blu_is2x_red && blu_is2x_grn;
+  //assign red_limit = red_is2x_grn && red_is2x_blu;
+  //assign grn_limit = grn_is2x_red && grn_is2x_blu;
+  //assign blu_limit = blu_is2x_red && blu_is2x_grn;
                      // red & green double blue, but they are not too different
-  assign yel_limit = red_is2x_blu && grn_is2x_blu && ~red_is2x_grn && ~grn_is2x_red;
-  assign cya_limit = grn_is2x_red && blu_is2x_red && ~grn_is2x_blu && ~blu_is2x_grn;
-  assign mag_limit = red_is2x_grn && blu_is2x_grn && ~red_is2x_blu && ~blu_is2x_red;
+  //assign yel_limit = red_is2x_blu && grn_is2x_blu && ~red_is2x_grn && ~grn_is2x_red;
+  //assign cya_limit = grn_is2x_red && blu_is2x_red && ~grn_is2x_blu && ~blu_is2x_grn;
+  //assign mag_limit = red_is2x_grn && blu_is2x_grn && ~red_is2x_blu && ~blu_is2x_red;
                      // no one is double than he other and the are abover a minimum
-  assign whi_limit = (~red_is2x_grn  && ~grn_is2x_red &&
-                      ~grn_is2x_blu  && ~blu_is2x_grn &&
-                      ~red_is2x_blu  && ~blu_is2x_red &&
-                       red > 4'b0011); // checking one should be enough
+  //assign whi_limit = (~red_is2x_grn  && ~grn_is2x_red &&
+                      //~grn_is2x_blu  && ~blu_is2x_grn &&
+                      //~red_is2x_blu  && ~blu_is2x_red &&
+                       //red > 4'b0011); // checking one should be enough
                       // && grn > 4'b0010 && blu > 4'b0010);
 
   //reg [c_nb_hist_val-1:0] histograma [c_hist_bins-1:0];
