@@ -418,7 +418,7 @@ module color_proc
         grn_limit = 1'b1;
       6'b001001: begin      // 0 2 1
         grn_limit = 1'b1;
-        cya_limit = 1'b1;
+        //cya_limit = 1'b1;
       end
       6'b001010: begin      // 0 2 2
         //blu_limit = 1'b1;
@@ -427,7 +427,7 @@ module color_proc
       end
       6'b001011: begin      // 0 2 3
         blu_limit = 1'b1;
-        cya_limit = 1'b1;
+        //cya_limit = 1'b1;
       end
       6'b001100:            // 0 3 0 ---
         grn_limit = 1'b1;
@@ -437,7 +437,7 @@ module color_proc
       6'b001110: begin      // 0 3 2
         //blu_limit = 1'b1;
         grn_limit = 1'b1;
-        cya_limit = 1'b1;
+        //cya_limit = 1'b1;
       end
       6'b001111: begin      // 0 3 3
         cya_limit = 1'b1;
@@ -451,7 +451,7 @@ module color_proc
         //red_limit = 1'b1;
       end
       6'b010010: begin      // 1 0 2
-        blu_limit = 1'b1;
+        //blu_limit = 1'b1;
         mag_limit = 1'b1;
       end
       6'b010011:            // 1 0 3
@@ -463,22 +463,22 @@ module color_proc
       end
       6'b010110: begin      // 1 1 2
         blu_limit = 1'b1;
-        cya_limit = 1'b1;
-        mag_limit = 1'b1;
-        whi_limit = 1'b1;
+        //cya_limit = 1'b1;
+        //mag_limit = 1'b1;
+        //whi_limit = 1'b1;
       end
       6'b010111: begin      // 1 1 3
         blu_limit = 1'b1;
       end
       6'b011000: begin      // 1 2 0 ---
         grn_limit = 1'b1;
-        yel_limit = 1'b1;
+        //yel_limit = 1'b1;
       end
       6'b011001: begin      // 1 2 1
         grn_limit = 1'b1;
         //cya_limit = 1'b1; // check
         //yel_limit = 1'b1; // check
-        whi_limit = 1'b1; // check
+        //whi_limit = 1'b1; // check
       end
       6'b011010: begin      // 1 2 2
         //blu_limit = 1'b1;
@@ -487,7 +487,7 @@ module color_proc
       end
       6'b011011: begin      // 1 2 3
         blu_limit = 1'b1;
-        cya_limit = 1'b1;
+        //cya_limit = 1'b1;
       end
       6'b011100:            // 1 3 0 ---
         grn_limit = 1'b1;
@@ -496,7 +496,7 @@ module color_proc
       end
       6'b011110: begin      // 1 3 2
         grn_limit = 1'b1;
-        cya_limit = 1'b1;
+        //cya_limit = 1'b1;
       end
       6'b011111: begin      // 1 3 3
         cya_limit = 1'b1;
@@ -506,24 +506,24 @@ module color_proc
       6'b100000:            // 2 0 0 --- ---
         red_limit = 1'b1;
       6'b100001: begin      // 2 0 1
-        red_limit = 1'b1;
+        //red_limit = 1'b1;
         mag_limit = 1'b1;
       end
       6'b100010:            // 2 0 2
         mag_limit = 1'b1;
       6'b100011: begin      // 2 0 3
         blu_limit = 1'b1;
-        mag_limit = 1'b1;
+        //mag_limit = 1'b1;
       end
       6'b100100: begin      // 2 1 0 ---
         red_limit = 1'b1;
-        yel_limit = 1'b1;
+        //yel_limit = 1'b1;
       end
       6'b100101: begin      // 2 1 1
         red_limit = 1'b1;
         //yel_limit = 1'b1; // check
         //mag_limit = 1'b1; // check
-        whi_limit = 1'b1; // check
+        //whi_limit = 1'b1; // check
       end
       6'b100110: begin      // 2 1 2
         mag_limit = 1'b1;
@@ -532,7 +532,7 @@ module color_proc
       end
       6'b100111: begin      // 2 1 3
         blu_limit = 1'b1;
-        mag_limit = 1'b1;
+        //mag_limit = 1'b1;
       end
       6'b101000:            // 2 2 0 ---
         yel_limit = 1'b1;
@@ -546,25 +546,25 @@ module color_proc
         blu_limit = 1'b1;
         //cya_limit = 1'b1; // check
         //mag_limit = 1'b1; // check
-        whi_limit = 1'b1; // check
+        //whi_limit = 1'b1; // check
       end
       6'b101100: begin      // 2 3 0 ---
         grn_limit = 1'b1;
-        yel_limit = 1'b1; // check
+        //yel_limit = 1'b1; // check
       end
       6'b101101: begin      // 2 3 1
         grn_limit = 1'b1;
-        yel_limit = 1'b1; // check
+        //yel_limit = 1'b1; // check
       end
       6'b101110: begin      // 2 3 2
         grn_limit = 1'b1;
         //cya_limit = 1'b1; // check
         //yel_limit = 1'b1; // check
-        whi_limit = 1'b1; // check
+        //whi_limit = 1'b1; // check
       end
       6'b101111: begin      // 2 3 3
         cya_limit = 1'b1;
-        whi_limit = 1'b1; // check
+        //whi_limit = 1'b1; // check
       end
        //RRGGBB
       6'b110000:            // 3 0 0 --- ---
@@ -576,7 +576,7 @@ module color_proc
       end
       6'b110010: begin      // 3 0 2
         red_limit = 1'b1;
-        mag_limit = 1'b1;
+        //mag_limit = 1'b1;
       end
       6'b110011:            // 3 0 3
         mag_limit = 1'b1;
@@ -587,28 +587,28 @@ module color_proc
       end
       6'b110110: begin      // 3 1 2
         red_limit = 1'b1;
-        mag_limit = 1'b1;
+        //mag_limit = 1'b1;
       end
       6'b110111: begin      // 3 1 3
         mag_limit = 1'b1;
       end
       6'b111000: begin      // 3 2 0 ---
         red_limit = 1'b1;
-        yel_limit = 1'b1;
+        //yel_limit = 1'b1;
       end
       6'b111001: begin      // 3 2 1
         red_limit = 1'b1;
-        yel_limit = 1'b1; // check
+        //yel_limit = 1'b1; // check
       end
       6'b111010: begin      // 3 2 2
         red_limit = 1'b1;
         //yel_limit = 1'b1; // check
         //mag_limit = 1'b1; // check
-        whi_limit = 1'b1; // check
+        //whi_limit = 1'b1; // check
       end
       6'b111011: begin      // 3 2 3
         mag_limit = 1'b1;
-        whi_limit = 1'b1;
+        //whi_limit = 1'b1;
       end
       6'b111100:            // 3 3 0 ---
         yel_limit = 1'b1;
@@ -617,7 +617,7 @@ module color_proc
       end
       6'b111110: begin      // 3 3 2
         yel_limit = 1'b1;
-        whi_limit = 1'b1; // check
+        //whi_limit = 1'b1; // check
       end
       6'b111111: begin      // 3 3 3
         whi_limit = 1'b1;

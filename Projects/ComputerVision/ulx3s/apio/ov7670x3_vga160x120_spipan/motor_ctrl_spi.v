@@ -26,6 +26,9 @@ module motor_ctrl_spi
   reg signed [nb_dps_motor-1:0] motor_dps_left;
   reg signed [nb_dps_motor-1:0] motor_dps_rght;
   //wire signed [nb_vel_motor-1:0] direction;
+  reg  signed [nb_dps_motor-1:0] vel;
+  reg  signed [nb_dps_motor-1:0] vel_addside;
+  reg  signed [nb_dps_motor-1:0] vel_slowside;
 
    // Proportional control variable
   //wire signed [nb_Pctrl-1:0] Prgth;
@@ -42,14 +45,26 @@ module motor_ctrl_spi
   // Last known centroid
   reg [8-1:0] last_cent_valid;
 
-  localparam signed [nb_dps_motor-1:0] c_vel3 = 16'd200; 
-  localparam signed [nb_dps_motor-1:0] c_vel2 = 16'd100; 
-  localparam signed [nb_dps_motor-1:0] c_vel1 = 16'd50; 
-  localparam signed [nb_dps_motor-1:0] c_vel0 = 16'd25; 
+  localparam signed [nb_dps_motor-1:0] c_vel3 = 16'd180; 
+  localparam signed [nb_dps_motor-1:0] c_vel2 = 16'd140; 
+  localparam signed [nb_dps_motor-1:0] c_vel1 = 16'd100;
+  localparam signed [nb_dps_motor-1:0] c_vel0 = 16'd60; 
+
+  localparam signed [nb_dps_motor-1:0] c_vel_add0 = 16'd15; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add1 = 16'd30; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add2 = 16'd45; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add3 = 16'd60; 
+
+  localparam signed [nb_dps_motor-1:0] c_vel_sub0 = - c_vel_add0;
+  localparam signed [nb_dps_motor-1:0] c_vel_sub1 = - c_vel_add1;
+  localparam signed [nb_dps_motor-1:0] c_vel_sub2 = - c_vel_add2;
+  localparam signed [nb_dps_motor-1:0] c_vel_sub3 = - c_vel_add3;
 
   localparam signed [nb_dps_motor-1:0] c_vel3_neg = -c_vel3; 
   localparam signed [nb_dps_motor-1:0] c_vel2_neg = -c_vel2; 
   localparam signed [nb_dps_motor-1:0] c_vel1_neg = -c_vel1; 
+  localparam signed [nb_dps_motor-1:0] c_vel0_neg = -c_vel0; 
+
 
   wire       tracking; // 0=lost; 1=tracking object
 
@@ -66,6 +81,46 @@ module motor_ctrl_spi
   //assign Pleft = {last_cent_valid[0], last_cent_valid[1], last_cent_valid[2]};
   //assign direction = (proximity - 3'd3) * (-7'd16);
 
+  always @(*)
+  begin
+    vel = 0;
+    case(proximity)
+      3'b000 : begin  // very far
+        vel = c_vel3; // positive
+        vel_addside = c_vel_sub3; // negative
+      end
+      3'b001 : begin  //
+        vel = c_vel2;
+        vel_addside = c_vel_sub2; // negative
+      end
+      3'b010 : begin  //
+        vel = c_vel1;
+        vel_addside = c_vel_sub1; // negative
+      end
+      3'b011 : begin  //
+        vel = c_vel0;
+        vel_addside = c_vel_sub0; // negative
+      end
+      3'b100 : begin  //
+        vel = c_vel0_neg;
+        vel_addside = c_vel_add0; // positive, to subtract
+      end
+      3'b101 : begin  //
+        vel = c_vel1_neg;
+        vel_addside = c_vel_add1; // positive, to subtract
+      end
+      3'b110 : begin  //
+        vel = c_vel2_neg;
+        vel_addside = c_vel_add2; // positive, to subtract
+      end
+      3'b111 : begin  //
+        vel = c_vel3_neg;
+        vel_addside = c_vel_add3; // positive, to subtract
+      end
+    endcase
+  end
+
+  assign vel_slowside = vel + vel_addside;
 
   always @(posedge rst, posedge clk)
   begin
@@ -83,80 +138,30 @@ module motor_ctrl_spi
         motor_dps_rght <= 0;
       end
       else if (last_cent_valid[4:3] == 2'b11) begin
-        // to simplify, for now only when centered can go back
-        if (proximity[2] == 1'b1) begin // to close, negative speed
-          case (proximity[1:0])
-            2'b00 : begin
-              motor_dps_left <= 0;
-              motor_dps_rght <= 0;
-            end
-            2'b01 : begin
-              motor_dps_left <= c_vel1_neg;
-              motor_dps_rght <= c_vel1_neg;
-            end
-            2'b10 : begin
-              motor_dps_left <= c_vel2_neg;
-              motor_dps_rght <= c_vel2_neg;
-            end
-            default: begin //2'b11 : begin
-              motor_dps_left <= c_vel3_neg;
-              motor_dps_rght <= c_vel3_neg;
-            end
-          endcase
-        end
-        else begin // it is far, positive speed
-          case (proximity[1:0])
-            2'b00 : begin
-              motor_dps_left <= 0;
-              motor_dps_rght <= 0;
-            end
-            2'b01 : begin
-              motor_dps_left <= c_vel1;
-              motor_dps_rght <= c_vel1;
-            end
-            2'b10 : begin
-              motor_dps_left <= c_vel2;
-              motor_dps_rght <= c_vel2;
-            end
-            default: begin //2'b11 : begin
-              motor_dps_left <= c_vel3;
-              motor_dps_rght <= c_vel3;
-            end
-          endcase
-        end
+        // centered, motors at same speed
+        motor_dps_left <= vel;
+        motor_dps_rght <= vel;
       end
-      else begin // not centered, positive speed
-        if (last_cent_valid[3] ==  1'b1) begin //slightly left, move rght motor
-          motor_dps_left <= 0;
-          motor_dps_rght <= c_vel0;
+      else begin 
+        if (last_cent_valid[0:3] !=  4'b0000) begin //slightly left, move rght motor
+          if (proximity[2] == 1'b0) begin // move forward
+            motor_dps_left <= vel_slowside; // slowlier
+            motor_dps_rght <= vel;
+          end
+          else  begin // move back
+            motor_dps_left <= vel;
+            motor_dps_rght <= vel_slowside; // slowlier
+          end
         end
-        if (last_cent_valid[2] ==  1'b1) begin
-          motor_dps_left <= 0;
-          motor_dps_rght <= c_vel1;
-        end
-        else if (last_cent_valid[1] == 1'b1) begin
-          motor_dps_left <= 0;
-          motor_dps_rght <= c_vel2;
-        end
-        else if (last_cent_valid[0] == 1'b1) begin
-          motor_dps_left <= 0;
-          motor_dps_rght <= c_vel3;
-        end
-        else if (last_cent_valid[4] ==  1'b1) begin //right, move left motor
-          motor_dps_left <= c_vel0;
-          motor_dps_rght <= 0;
-        end
-        else if (last_cent_valid[5] == 1'b1) begin
-          motor_dps_left <= c_vel1;
-          motor_dps_rght <= 0;
-        end
-        else if (last_cent_valid[6] == 1'b1) begin
-          motor_dps_left <= c_vel2;
-          motor_dps_rght <= 0;
-        end
-        else if (last_cent_valid[7] == 1'b1) begin
-          motor_dps_left <= c_vel3;
-          motor_dps_rght <= 0;
+        else begin // at the right of the gopigo
+          if (proximity[2] == 1'b0) begin // move forward
+            motor_dps_left <= vel;
+            motor_dps_rght <= vel_slowside; // slowlier
+          end
+          else  begin // move back
+            motor_dps_left <= vel_slowside; // slowlier
+            motor_dps_rght <= vel;
+          end
         end
       end
     end
