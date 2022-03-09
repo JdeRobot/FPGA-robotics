@@ -1,15 +1,15 @@
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
-SIM_DIR := $(realpath $(dir $(MKFILE_PATH)))
+SIM_DIR := $(realpath $(dir $(MKFILE_PATH))/..)
 PROJECT_DIR := $(realpath $(SIM_DIR)/..)
 IMGUI_DIR = $(SIM_DIR)/third_party/imgui
-RTL_DIR = $(PROJECT_DIR)/rtl
-INC_DIR = $(SIM_DIR)/include
-SRC_DIR = $(SIM_DIR)/src
+RTL_DIR = $(PROJECT_DIR)/rtl/example2
+INC_DIR = $(SIM_DIR)/example2/include
+SRC_DIR = $(SIM_DIR)/example2/src
 ASSETS_DIR := $(SRC_DIR)
 SOURCES = $(SRC_DIR)/main.cpp
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
 SOURCES += $(IMGUI_DIR)/backends/imgui_impl_sdl.cpp $(IMGUI_DIR)/backends/imgui_impl_opengl3.cpp
-V_SOURCES = $(RTL_DIR)/TopPixelProcessor.v
+V_SOURCES = $(RTL_DIR)/design_top.v
 UNAME_S := $(shell uname -s)
 LINUX_GL_LIBS = -lGL
 
@@ -22,9 +22,9 @@ LIBS =
 
 ifeq ($(UNAME_S), Linux) #LINUX
 	ECHO_MESSAGE = "Linux"
-	LIBS += $(LINUX_GL_LIBS) -ldl `sdl2-config --libs`
+	LIBS += $(LINUX_GL_LIBS) -ldl `sdl2-config --libs` `pkg-config --libs opencv4`
 
-	CXXFLAGS += `sdl2-config --cflags`
+	CXXFLAGS += `sdl2-config --cflags` `pkg-config --cflags opencv4`
 	CFLAGS = $(CXXFLAGS)
 endif
 
@@ -50,14 +50,14 @@ endif
 ## BUILD RULES
 ##---------------------------------------------------------------------
 
-all: obj_dir/VTopPixelProcessor
+all: obj_dir/Vdesign_top
 	@echo Build complete for $(ECHO_MESSAGE)
 
-obj_dir/VTopPixelProcessor.h: $(V_SOURCES)
-	verilator --cc $(V_SOURCES) -x-assign unique --trace -CFLAGS "$(CXXFLAGS)" --exe $(SOURCES)
+obj_dir/Vdesign_top.h: $(V_SOURCES)
+	verilator --cc $(V_SOURCES) -x-assign unique --trace -CFLAGS "$(CXXFLAGS)" --exe $(SOURCES) -I$(RTL_DIR)
 
-obj_dir/VTopPixelProcessor: obj_dir/VTopPixelProcessor.h $(SOURCES)
-	make -j 4 -C obj_dir/ -f VTopPixelProcessor.mk VTopPixelProcessor LIBS="$(LIBS)"
+obj_dir/Vdesign_top: obj_dir/Vdesign_top.h $(SOURCES)
+	make -j 4 -C obj_dir/ -f Vdesign_top.mk Vdesign_top LIBS="$(LIBS)"
 
 clean:
 	rm -rf obj_dir
