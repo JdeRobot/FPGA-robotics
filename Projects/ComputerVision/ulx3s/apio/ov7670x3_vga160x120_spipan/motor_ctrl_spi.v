@@ -45,20 +45,23 @@ module motor_ctrl_spi
   // Last known centroid
   reg [8-1:0] last_cent_valid;
 
+  localparam signed [nb_dps_motor-1:0] c_vel4 = 16'd200; 
   localparam signed [nb_dps_motor-1:0] c_vel3 = 16'd180; 
   localparam signed [nb_dps_motor-1:0] c_vel2 = 16'd140; 
   localparam signed [nb_dps_motor-1:0] c_vel1 = 16'd100;
   localparam signed [nb_dps_motor-1:0] c_vel0 = 16'd60; 
 
-  localparam signed [nb_dps_motor-1:0] c_vel_add0 = 16'd15; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add1 = 16'd30; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add2 = 16'd45; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add3 = 16'd60; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add0 = 16'd30; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add1 = 16'd50; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add2 = 16'd70; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add3 = 16'd90; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add4 = 16'd100; 
 
   localparam signed [nb_dps_motor-1:0] c_vel_sub0 = - c_vel_add0;
   localparam signed [nb_dps_motor-1:0] c_vel_sub1 = - c_vel_add1;
   localparam signed [nb_dps_motor-1:0] c_vel_sub2 = - c_vel_add2;
   localparam signed [nb_dps_motor-1:0] c_vel_sub3 = - c_vel_add3;
+  localparam signed [nb_dps_motor-1:0] c_vel_sub4 = - c_vel_add4;
 
   localparam signed [nb_dps_motor-1:0] c_vel3_neg = -c_vel3; 
   localparam signed [nb_dps_motor-1:0] c_vel2_neg = -c_vel2; 
@@ -84,38 +87,39 @@ module motor_ctrl_spi
   always @(*)
   begin
     vel = 0;
+    vel_addside = 0;
     case(proximity)
       3'b000 : begin  // very far
-        vel = c_vel3; // positive
-        vel_addside = c_vel_sub3; // negative
+        vel = c_vel4; // positive
+        vel_addside = c_vel_sub4; // negative
       end
       3'b001 : begin  //
-        vel = c_vel2;
-        vel_addside = c_vel_sub2; // negative
+        vel = c_vel4;
+        vel_addside = c_vel_sub4; // negative
       end
       3'b010 : begin  //
-        vel = c_vel1;
-        vel_addside = c_vel_sub1; // negative
+        vel = c_vel4;
+        vel_addside = c_vel_sub4; // negative
       end
       3'b011 : begin  //
-        vel = c_vel0;
-        vel_addside = c_vel_sub0; // negative
+        vel = c_vel3;
+        vel_addside = c_vel_sub3; // negative
       end
       3'b100 : begin  //
-        vel = c_vel0_neg;
-        vel_addside = c_vel_add0; // positive, to subtract
+        vel = c_vel2;
+        vel_addside = c_vel_sub2; // 
       end
       3'b101 : begin  //
-        vel = c_vel1_neg;
-        vel_addside = c_vel_add1; // positive, to subtract
+        vel = c_vel1;
+        vel_addside = c_vel_sub1; //
       end
       3'b110 : begin  //
-        vel = c_vel2_neg;
-        vel_addside = c_vel_add2; // positive, to subtract
+        vel = c_vel0;
+        vel_addside = c_vel_sub0; // positive, to subtract
       end
       3'b111 : begin  //
-        vel = c_vel3_neg;
-        vel_addside = c_vel_add3; // positive, to subtract
+        vel = c_vel1_neg;
+        vel_addside = c_vel_add1; // positive, to subtract
       end
     endcase
   end
@@ -143,8 +147,8 @@ module motor_ctrl_spi
         motor_dps_rght <= vel;
       end
       else begin 
-        if (last_cent_valid[0:3] !=  4'b0000) begin //slightly left, move rght motor
-          if (proximity[2] == 1'b0) begin // move forward
+        if (last_cent_valid[3:0] !=  4'b0000) begin //slightly left, move rght motor
+          if (proximity != 3'b111) begin // move forward
             motor_dps_left <= vel_slowside; // slowlier
             motor_dps_rght <= vel;
           end
@@ -154,7 +158,8 @@ module motor_ctrl_spi
           end
         end
         else begin // at the right of the gopigo
-          if (proximity[2] == 1'b0) begin // move forward
+          if (proximity != 3'b111) begin // move forward
+          //if (proximity[2] == 1'b0) begin // move forward
             motor_dps_left <= vel;
             motor_dps_rght <= vel_slowside; // slowlier
           end
