@@ -87,7 +87,7 @@ module ov7670_capture
   reg [4:0]    cnt_pclk_max;
   reg [4:0]    cnt_pclk_max_freeze;
 
-  parameter    c_cnt_05seg_end = 50_000_000;
+  localparam    c_cnt_05seg_end = 50_000_000;
 
   reg  [c_nb_camdata-1:0]   gray;
   reg  [c_nb_buf_red-1:0]   red;

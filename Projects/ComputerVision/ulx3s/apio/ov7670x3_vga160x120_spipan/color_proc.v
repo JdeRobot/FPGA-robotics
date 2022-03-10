@@ -200,8 +200,20 @@ module color_proc
   reg    yel_limit; // yellow
   reg    cya_limit; // cyan
   reg    mag_limit; // magenta
-  reg    whi_limit; // white
+  reg    gra_limit; // gray
   reg    color_threshold; // if color threshold is active
+  wire    whi_limit; // white
+
+  //wire red_grn_eq, red_blu_eq, grn_blu_eq;
+  wire red_gt_grn, red_gt_blu, grn_gt_blu;
+  wire [c_nb_buf_red-1:0]  red_grn_absdif;
+  wire [c_nb_buf_red-1:0]  red_blu_absdif;
+  wire [c_nb_buf_green-1:0] grn_blu_absdif;
+  localparam  [c_nb_buf_red-1:0] c_simil_limit = 2; // limit to consider similar
+  localparam  [c_nb_buf_red-1:0] c_vdif_limit = 7; // limit to consider very different
+
+  wire red_grn_simil, red_blu_simil, grn_blu_simil;
+  wire red_grn_vdif, red_blu_vdif, grn_blu_vdif;
   
   localparam  C_BLACK_PXL = {c_nb_img_pxls{1'b0}};
   
@@ -382,7 +394,26 @@ module color_proc
                    grn[c_nb_buf_green-1:c_nb_buf_green-2],
                    blu[c_nb_buf_blue-1:c_nb_buf_blue-2]};
 
-  // look-up table to calculate the color filter
+  //assign red_grn_eq = (red == grn) ? 1'b1 : 1'b0;
+  //assign red_blu_eq = (red == blu) ? 1'b1 : 1'b0;
+  //assign grn_blu_eq = (grn == blu) ? 1'b1 : 1'b0;
+
+  assign red_gt_grn = (red > grn) ? 1'b1 : 1'b0;
+  assign red_gt_blu = (red > blu) ? 1'b1 : 1'b0;
+  assign grn_gt_blu = (grn > blu) ? 1'b1 : 1'b0;
+
+  assign red_grn_absdif = red_gt_grn ? red - grn : grn - red;
+  assign red_blu_absdif = red_gt_blu ? red - blu : blu - red;
+  assign grn_blu_absdif = grn_gt_blu ? grn - blu : blu - grn;
+
+  assign red_grn_simil = (red_grn_absdif <= c_simil_limit) ? 1'b1 : 1'b0;
+  assign red_blu_simil = (red_blu_absdif <= c_simil_limit) ? 1'b1 : 1'b0;
+  assign grn_blu_simil = (grn_blu_absdif <= c_simil_limit) ? 1'b1 : 1'b0;
+
+  assign red_grn_vdif = (red_grn_absdif >= c_vdif_limit) ? 1'b1 : 1'b0;
+  assign red_blu_vdif = (red_blu_absdif >= c_vdif_limit) ? 1'b1 : 1'b0;
+  assign grn_blu_vdif = (grn_blu_absdif >= c_vdif_limit) ? 1'b1 : 1'b0;
+
   always @ (*)
   begin
     red_limit = 1'b0;
@@ -391,253 +422,104 @@ module color_proc
     yel_limit = 1'b0;
     cya_limit = 1'b0;
     mag_limit = 1'b0;
-    whi_limit = 1'b0;
-    case(rgb222)
-       //RRGGBB
-      6'b000000:            // 0 0 0 ---
-        whi_limit = 1'b0;
-      6'b000001:            // 0 0 1
-        //blu_limit = 1'b1;
-        blu_limit = 1'b0; // to cero
-      6'b000010:            // 0 0 2
-        blu_limit = 1'b1;
-      6'b000011:            // 0 0 3
-        blu_limit = 1'b1;
-      6'b000100:            // 0 1 0 ---
-        ///grn_limit = 1'b1;
-        grn_limit = 1'b0;  // to cero
-      6'b000101: begin      // 0 1 1
-        cya_limit = 1'b1;
+    gra_limit = 1'b0;
+    if (red_gt_grn) begin              // red > green
+      if (red_gt_blu) begin             // red > green ; red > blue
+        if (grn_gt_blu) begin             // red > green > blue
+          if (red_grn_vdif) begin           // red >> green > blue
+            red_limit = 1'b1;                // RED
+          end
+          else if (red_grn_simil) begin     // red ~> green > blue
+            if (red_blu_simil) begin        // red ~> green ~> blue
+              gra_limit = 1'b1;                // GRAY
+            end
+            else if (grn_blu_vdif) begin    // red ~> green >> blue
+              yel_limit = 1'b1;                // YELLOW
+            end
+          end
+        end
+        else begin                       // red > blue >= green
+          if (red_blu_vdif) begin           // red >> blue >= green
+            red_limit = 1'b1;                // RED
+          end
+          else if (red_blu_simil) begin     // red ~> blue >= green
+            if (red_grn_simil) begin        // red ~> blue ~>= green
+              gra_limit = 1'b1;                // GRAY
+            end
+            else if (grn_blu_vdif) begin    // red ~> blue >> green
+              mag_limit = 1'b1;                // MAGENTA
+            end
+          end
+        end
       end
-      6'b000110: begin      // 0 1 2
-        //blu_limit = 1'b1;
-        cya_limit = 1'b1;
+      else begin                         // blue >= red > green
+        if (red_blu_vdif) begin            // blue >> red > green
+          blu_limit = 1'b1;                  // BLUE
+        end
+        else if (red_blu_simil) begin      // blue ~>= red > green
+          if (grn_blu_simil) begin           // blue ~>= red ~> green
+            gra_limit = 1'b1;                  // GRAY
+          end
+          else if (red_grn_vdif) begin       // blue ~>= red >> green
+            mag_limit = 1'b1;                  // MAGENTA
+          end
+        end
       end
-      6'b000111: begin      // 0 1 3
-        blu_limit = 1'b1;
+    end
+    else begin                         // green >= red
+      if (red_gt_blu) begin              // green >= red > blue
+        if (red_grn_vdif) begin            // green >> red > blue
+          grn_limit = 1'b1;                 // GREEN
+        end
+        else if (red_grn_simil) begin    // green ~>= red > blue
+          if (red_blu_vdif) begin         // green ~>= red >> blue
+            yel_limit = 1'b1;              // YELOW
+          end
+          else if (grn_blu_simil) begin   // green ~>= red ~> blue
+            gra_limit = 1'b1;               //GRAY
+          end
+        end
       end
-      6'b001000:            // 0 2 0 ---
-        grn_limit = 1'b1;
-      6'b001001: begin      // 0 2 1
-        grn_limit = 1'b1;
-        //cya_limit = 1'b1;
+      else begin                         // green >= red ; blue >= red
+        if (grn_gt_blu) begin              // green > blue >= red
+          if (grn_blu_vdif) begin           // green >> blue >= red
+            grn_limit = 1'b1;                  // GREEN
+          end
+          else if (grn_blu_simil) begin      // green ~> blue >= red
+            if (red_blu_vdif) begin            // green ~> blue >> red
+              cya_limit = 1'b1;                 // CYAN
+            end
+            else if (red_grn_simil) begin      // green ~> blue ~> red
+              gra_limit = 1'b1;                  // GRAY
+            end
+          end
+        end
+        else begin                       // blue >= green >= red
+          if (grn_blu_vdif) begin         // blue >> green >= red
+            blu_limit = 1'b1;                  // BLUE
+          end
+          else if (grn_blu_simil) begin    // blue ~>= green >= red
+            if (red_blu_simil) begin        // blue ~>= green ~>= red
+              gra_limit = 1'b1;                  // GRAY
+            end
+            else if (red_grn_vdif) begin    // blue ~>= green >>= red
+              cya_limit = 1'b1;                 // CYAN
+            end
+          end
+        end
       end
-      6'b001010: begin      // 0 2 2
-        //blu_limit = 1'b1;
-        //grn_limit = 1'b1;
-        cya_limit = 1'b1;
-      end
-      6'b001011: begin      // 0 2 3
-        blu_limit = 1'b0;  // to cero
-        //blu_limit = 1'b1;
-        //cya_limit = 1'b1;
-      end
-      6'b001100:            // 0 3 0 ---
-        grn_limit = 1'b1;
-      6'b001101: begin      // 0 3 1
-        grn_limit = 1'b1;
-      end
-      6'b001110: begin      // 0 3 2
-        blu_limit = 1'b0;  // tocero
-        //blu_limit = 1'b1;
-        ///grn_limit = 1'b1;
-        //cya_limit = 1'b1;
-      end
-      6'b001111: begin      // 0 3 3
-        cya_limit = 1'b1;
-      end
-       //RRGGBB
-      6'b010000:            // 1 0 0 --- ---
-        red_limit = 1'b1;
-      6'b010001: begin      // 1 0 1
-        mag_limit = 1'b1;
-        //blu_limit = 1'b1;
-        //red_limit = 1'b1;
-      end
-      6'b010010: begin      // 1 0 2
-        //blu_limit = 1'b1;
-        mag_limit = 1'b1;
-      end
-      6'b010011:            // 1 0 3
-        blu_limit = 1'b1;
-      6'b010100:            // 1 1 0 ---
-        yel_limit = 1'b1;
-      6'b010101: begin      // 1 1 1
-        whi_limit = 1'b1;
-      end
-      6'b010110: begin      // 1 1 2
-        blu_limit = 1'b0; // tocero
-        //blu_limit = 1'b1;
-        //cya_limit = 1'b1;
-        //mag_limit = 1'b1;
-        //whi_limit = 1'b1;
-      end
-      6'b010111: begin      // 1 1 3
-        blu_limit = 1'b1;
-      end
-      6'b011000: begin      // 1 2 0 ---
-        grn_limit = 1'b0;  // tocero
-        ///grn_limit = 1'b1;
-        //yel_limit = 1'b1;
-      end
-      6'b011001: begin      // 1 2 1
-        grn_limit = 1'b0;  // tocero
-        ///grn_limit = 1'b1;
-        //cya_limit = 1'b1; // check
-        //yel_limit = 1'b1; // check
-        //whi_limit = 1'b1; // check
-      end
-      6'b011010: begin      // 1 2 2
-        //blu_limit = 1'b1;
-        //grn_limit = 1'b1;
-        cya_limit = 1'b1;
-      end
-      6'b011011: begin      // 1 2 3
-        blu_limit = 1'b0; // tocero
-        //blu_limit = 1'b1;
-        //cya_limit = 1'b1;
-      end
-      6'b011100:            // 1 3 0 ---
-        grn_limit = 1'b1;
-      6'b011101: begin      // 1 3 1
-        grn_limit = 1'b1;
-      end
-      6'b011110: begin      // 1 3 2
-        grn_limit = 1'b0; // tocero
-        ///grn_limit = 1'b1;
-        //cya_limit = 1'b1;
-      end
-      6'b011111: begin      // 1 3 3
-        cya_limit = 1'b1;
-      end
-
-       //RRGGBB
-      6'b100000:            // 2 0 0 --- ---
-        red_limit = 1'b1;
-      6'b100001: begin      // 2 0 1
-        //red_limit = 1'b1;
-        mag_limit = 1'b1;
-      end
-      6'b100010:            // 2 0 2
-        mag_limit = 1'b1;
-      6'b100011: begin      // 2 0 3
-        blu_limit = 1'b0;  // tocero
-        //blu_limit = 1'b1;
-        //mag_limit = 1'b1;
-      end
-      6'b100100: begin      // 2 1 0 ---
-        red_limit = 1'b1;
-        //yel_limit = 1'b1;
-      end
-      6'b100101: begin      // 2 1 1
-        red_limit = 1'b1;
-        //yel_limit = 1'b1; // check
-        //mag_limit = 1'b1; // check
-        //whi_limit = 1'b1; // check
-      end
-      6'b100110: begin      // 2 1 2
-        mag_limit = 1'b1;
-        //red_limit = 1'b1;
-        //blu_limit = 1'b1;
-      end
-      6'b100111: begin      // 2 1 3
-        blu_limit = 1'b0;  // tocero
-        //blu_limit = 1'b1;
-        //mag_limit = 1'b1;
-      end
-      6'b101000:            // 2 2 0 ---
-        yel_limit = 1'b1;
-      6'b101001: begin      // 2 2 1
-        yel_limit = 1'b1;
-      end
-      6'b101010: begin      // 2 2 2
-        whi_limit = 1'b1;
-      end
-      6'b101011: begin      // 2 2 3
-        blu_limit = 1'b1;
-        //cya_limit = 1'b1; // check
-        //mag_limit = 1'b1; // check
-        //whi_limit = 1'b1; // check
-      end
-      6'b101100: begin      // 2 3 0 ---
-        grn_limit = 1'b0;  // tocero
-        ///grn_limit = 1'b1;
-        //yel_limit = 1'b1; // check
-      end
-      6'b101101: begin      // 2 3 1
-        grn_limit = 1'b0;  // tocero
-        ///grn_limit = 1'b1;
-        //yel_limit = 1'b1; // check
-      end
-      6'b101110: begin      // 2 3 2
-        grn_limit = 1'b0;  // tocero
-        ///grn_limit = 1'b1;
-        //cya_limit = 1'b1; // check
-        //yel_limit = 1'b1; // check
-        //whi_limit = 1'b1; // check
-      end
-      6'b101111: begin      // 2 3 3
-        cya_limit = 1'b1;
-        //whi_limit = 1'b1; // check
-      end
-       //RRGGBB
-      6'b110000:            // 3 0 0 --- ---
-        red_limit = 1'b1;
-      6'b110001: begin      // 3 0 1
-        red_limit = 1'b1;
-        //blu_limit = 1'b1;
-        //red_limit = 1'b1;
-      end
-      6'b110010: begin      // 3 0 2
-        red_limit = 1'b1;
-        //mag_limit = 1'b1;
-      end
-      6'b110011:            // 3 0 3
-        mag_limit = 1'b1;
-      6'b110100:            // 3 1 0 ---
-        red_limit = 1'b1;
-      6'b110101: begin      // 3 1 1
-        red_limit = 1'b1;
-      end
-      6'b110110: begin      // 3 1 2
-        red_limit = 1'b1;
-        //mag_limit = 1'b1;
-      end
-      6'b110111: begin      // 3 1 3
-        mag_limit = 1'b1;
-      end
-      6'b111000: begin      // 3 2 0 ---
-        red_limit = 1'b1;
-        //yel_limit = 1'b1;
-      end
-      6'b111001: begin      // 3 2 1
-        red_limit = 1'b1;
-        //yel_limit = 1'b1; // check
-      end
-      6'b111010: begin      // 3 2 2
-        red_limit = 1'b1;
-        //yel_limit = 1'b1; // check
-        //mag_limit = 1'b1; // check
-        //whi_limit = 1'b1; // check
-      end
-      6'b111011: begin      // 3 2 3
-        mag_limit = 1'b1;
-        //whi_limit = 1'b1;
-      end
-      6'b111100:            // 3 3 0 ---
-        yel_limit = 1'b1;
-      6'b111101: begin      // 3 3 1
-        yel_limit = 1'b1;
-      end
-      6'b111110: begin      // 3 3 2
-        yel_limit = 1'b1;
-        //whi_limit = 1'b1; // check
-      end
-      6'b111111: begin      // 3 3 3
-        whi_limit = 1'b1;
-      end
-    endcase
+    end
   end
+            
+  // to be white, they have to be larger than 11
+  assign whi_limit = gra_limit &
+                     red[c_nb_buf_red-1]   &
+                     grn[c_nb_buf_green-1] &
+                     blu[c_nb_buf_blue-1]  &
+                     red[c_nb_buf_red-2]   &
+                     grn[c_nb_buf_green-2] &
+                     blu[c_nb_buf_blue-2];
+
 
   // inner column, when we are out of the range it doesn't matter the value
   // because shouldnt be used

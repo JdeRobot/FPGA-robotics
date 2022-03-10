@@ -28,7 +28,7 @@ module motor_ctrl_spi
   //wire signed [nb_vel_motor-1:0] direction;
   reg  signed [nb_dps_motor-1:0] vel;
   reg  signed [nb_dps_motor-1:0] vel_addside;
-  reg  signed [nb_dps_motor-1:0] vel_slowside;
+  wire  signed [nb_dps_motor-1:0] vel_slowside;
 
    // Proportional control variable
   //wire signed [nb_Pctrl-1:0] Prgth;
@@ -52,10 +52,10 @@ module motor_ctrl_spi
   localparam signed [nb_dps_motor-1:0] c_vel0 = 16'd60; 
 
   localparam signed [nb_dps_motor-1:0] c_vel_add0 = 16'd30; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add1 = 16'd50; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add2 = 16'd70; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add3 = 16'd90; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add4 = 16'd100; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add1 = 16'd60; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add2 = 16'd90; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add3 = 16'd120; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add4 = 16'd150; 
 
   localparam signed [nb_dps_motor-1:0] c_vel_sub0 = - c_vel_add0;
   localparam signed [nb_dps_motor-1:0] c_vel_sub1 = - c_vel_add1;
@@ -157,7 +157,8 @@ module motor_ctrl_spi
             motor_dps_rght <= vel_slowside; // slowlier
           end
         end
-        else begin // at the right of the gopigo
+        else if (last_cent_valid[7:4] !=  4'b0000) begin
+        //else begin // at the right of the gopigo
           if (proximity != 3'b111) begin // move forward
           //if (proximity[2] == 1'b0) begin // move forward
             motor_dps_left <= vel;
@@ -167,6 +168,10 @@ module motor_ctrl_spi
             motor_dps_left <= vel_slowside; // slowlier
             motor_dps_rght <= vel;
           end
+        end
+        else begin // in theory should never reach here, but to check
+          motor_dps_left <= 0;
+          motor_dps_rght <= 0;
         end
       end
     end
