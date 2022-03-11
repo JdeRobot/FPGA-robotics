@@ -108,9 +108,10 @@ module top_ov7670x3
      output       ov7670_rst_n,  // for the 3 cameras
 
      output reg [7:0] led,
-     input        btnl_proc_ctrl,  //control color processing cam left
-     input        btnr_proc_ctrl,  //control color processing cam right
-     input        btnd_proc_ctrl,  //control color processing pan cam
+     //Left pb: control color processing cam left & right
+     input        btnl_proc_ctrl_front,  //
+     input        btnr_proc_ctrl_pan,  //pb right: control color processing pan cam
+     input        btnup_en_motor,  //enable/disable motor (not servo)
 
      output [3:0] vga_red,
      //output [3:0] vga_green,
@@ -134,6 +135,14 @@ module top_ov7670x3
     output   rpi_running
 
     );
+
+    // pulse for the control of both front cameras
+    wire  pulse_proc_ctrl_front;
+    // pulse for the control of pan camera
+    wire  pulse_proc_ctrl_pan;
+    // motor enable from pushbuttons
+    wire  pb_en_motor;
+
 
     localparam G_CLK_FREQ_MHZ = 50; // 50MHz clock
 
@@ -330,6 +339,22 @@ module top_ov7670x3
     .locked(locked_wire)
   );
 
+  // ------ pulse detection for push buttons
+   pb_pulse pb_pulse_detect
+  (
+     .rst          (rst),
+     .clk          (clk50mhz),
+     // push buttons inputs
+     .pb1          (btnl_proc_ctrl_front),
+     .pb2          (btnr_proc_ctrl_pan),
+     .pb3          (btnup_en_motor),
+     // pulse detection outputs
+     .pulse_pb1     (pulse_proc_ctrl_front),
+     .pulse_pb2     (pulse_proc_ctrl_pan), 
+     // state: each pulse of pb3 changes its state. T-flipflop
+     .toggle_pb3    (pb_en_motor)
+  );
+
   // ------ Camera configuration, same for the 3 cameras
   ov7670_top_ctrl controller 
   (
@@ -456,7 +481,7 @@ module top_ov7670x3
     (
       .rst        (rst),
       .clk        (clk50mhz),
-      .proc_ctrl  (btnl_proc_ctrl),
+      .pulse_proc_ctrl  (pulse_proc_ctrl_front),
       .new_frame_i(capture_newframe_l),
       // from original image frame buffer
       .orig_addr  (orig_img_addr_l),
@@ -639,7 +664,7 @@ module top_ov7670x3
     (
       .rst        (rst),
       .clk        (clk50mhz),
-      .proc_ctrl  (btnr_proc_ctrl),
+      .pulse_proc_ctrl  (pulse_proc_ctrl_front),
       .new_frame_i(capture_newframe_r),
       // from original image frame buffer
       .orig_addr  (orig_img_addr_r),
@@ -966,7 +991,7 @@ module top_ov7670x3
     (
       .rst        (rst),
       .clk        (clk50mhz),
-      .proc_ctrl  (btnd_proc_ctrl),
+      .pulse_proc_ctrl  (pulse_proc_ctrl_pan),
       .new_frame_i(capture_newframe_p),
       // from original image frame buffer
       .orig_addr  (orig_img_addr_p),
@@ -1129,10 +1154,15 @@ module top_ov7670x3
 
   always @ (*)
   begin
-    if (cam_cfg_done)
-      led = centroid_l; // could be any other centroid
+    if (cam_cfg_done) begin
+      //led = centroid_l; // could be any other centroid
+      led[7:5] = rgbfilter_l; // front cameras filter
+      led[4]   = pb_en_motor;
+      led[3]   = 1'b0;
+      led[2:0] = rgbfilter_p; // pan camera filter
+    end
     else begin
-      led[7:6] = 1'b00;
+      led[7:6] = 2'b00;
       led[5:0] = camera_config_steps;
     end
   end
@@ -1142,7 +1172,7 @@ module top_ov7670x3
                               1'b1 : 1'b0; 
   assign filter_on_pan = (rgbfilter_p != 3'b0) ?  1'b1 : 1'b0; 
   // motor enabled if camera config is done and filters are on
-  assign en_motor = (cam_cfg_done & filter_on_front);
+  assign en_motor = (cam_cfg_done & filter_on_front & pb_en_motor);
   assign en_servo = (cam_cfg_done & filter_on_pan);
 
   // ---------- MOTOR CONTROL

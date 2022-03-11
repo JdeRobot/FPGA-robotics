@@ -129,22 +129,18 @@ module color_proc
     c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
     c_nb_buf_blue  =  4,  // n bits for blue in the buffer (memory)
     // word width of the memory (buffer)
-    c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue,
-    // position of the most significant bits of each color
-    c_msb_blue  = c_nb_buf_blue-1,
-    c_msb_red   = c_nb_buf-1,
-    c_msb_green = c_msb_blue + c_nb_buf_green
+    c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue
   )
   (
     input        rst,       //reset, active high
     input        clk,       //fpga clock
-    input        proc_ctrl, //input to control the processing (select color)
+    input        pulse_proc_ctrl, //input to control the processing (select color)
     input        new_frame_i, // a new frame has just ended
     // Address and pixel of original image
     input  [c_nb_buf-1:0]      orig_pxl,  //pixel from original image
     output [c_nb_img_pxls-1:0] orig_addr, //pixel mem address original img
     // Address and pixel of processed image
-    output reg                 proc_we,  //write enable, to write processed pxl
+    output                     proc_we,  //write enable, to write processed pxl
     output [c_nb_buf-1:0]      proc_pxl, // processed pixel to be written
     output [c_nb_img_pxls-1:0] proc_addr, // address of processed pixel
     output reg   new_frame_proc_o, // the frame has been processed
@@ -177,21 +173,47 @@ module color_proc
     output reg [2:0] rgbfilter
   );
 
+    // position of the most significant bits of each color
+  localparam c_msb_red = c_nb_buf-1;
+  localparam c_msb_blu = c_nb_buf_blue-1;
+  localparam c_msb_grn = c_msb_blu + c_nb_buf_green;
+
   reg [c_nb_img_pxls-1:0]  cnt_pxl;
   reg [c_nb_img_pxls-1:0]  cnt_pxl_proc;
+  reg [c_nb_img_pxls-1:0]  cnt_pxl_proc_rg; // delayed for 1 clk segmentation
 
   wire end_pxl_cnt;
   wire end_ln;
   wire inner_frame; //if we are in the inner frame col=[8,71], row=[6,53]
+  reg  inner_frame_rg; // registered for segmentation
 
-  wire   red_limit;
-  wire   green_limit;
-  wire   blue_limit;
-  wire   yellow_limit;
-  wire   cyan_limit;
-  wire   magen_limit;
-  wire   white_limit;
+  // RGB components
+  wire [c_nb_buf_red-1:0]   red;
+  wire [c_nb_buf_green-1:0] grn;
+  wire [c_nb_buf_blue-1:0]  blu;
+
+  wire [5:0] rgb222;
+
+  reg    red_limit;
+  reg    grn_limit; // green
+  reg    blu_limit; // blue
+  reg    yel_limit; // yellow
+  reg    cya_limit; // cyan
+  reg    mag_limit; // magenta
+  reg    gra_limit; // gray
   reg    color_threshold; // if color threshold is active
+  wire    whi_limit; // white
+
+  //wire red_grn_eq, red_blu_eq, grn_blu_eq;
+  wire red_gt_grn, red_gt_blu, grn_gt_blu;
+  wire [c_nb_buf_red-1:0]  red_grn_absdif;
+  wire [c_nb_buf_red-1:0]  red_blu_absdif;
+  wire [c_nb_buf_green-1:0] grn_blu_absdif;
+  localparam  [c_nb_buf_red-1:0] c_simil_limit = 2; // limit to consider similar
+  localparam  [c_nb_buf_red-1:0] c_vdif_limit = 7; // limit to consider very different
+
+  wire red_grn_simil, red_blu_simil, grn_blu_simil;
+  wire red_grn_vdif, red_blu_vdif, grn_blu_vdif;
   
   localparam  C_BLACK_PXL = {c_nb_img_pxls{1'b0}};
   
@@ -228,14 +250,43 @@ module color_proc
 
   // indicates in which bin we are
   wire [c_nb_hist_bins-1:0] hist_bin;
+  reg  [c_nb_hist_bins-1:0] hist_bin_rg; //registered for segmentation
 
   // Row number
   reg [c_nb_rows-1:0] row_num;
 
-  reg       proc_ctrl_rg1, proc_ctrl_rg2;
-  wire      pulse_proc_ctrl;
-
   reg       processing; // indicates if it is processing
+
+  //pixel from original image, registered for the segmentation delay
+  reg [c_nb_buf-1:0] orig_pxl_rg; 
+
+  // get the RGB components
+  assign red = orig_pxl[c_msb_red:c_msb_grn+1];
+  assign grn = orig_pxl[c_msb_grn:c_msb_blu+1];
+  assign blu = orig_pxl[c_msb_blu:0];
+
+  reg    proc_we_rg1, proc_we_rg2;
+
+  // register signals for segmentation
+  always @ (posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      orig_pxl_rg     <= 0;
+      inner_frame_rg  <= 1'b0;
+      hist_bin_rg     <= 0;
+      cnt_pxl_proc_rg <= 0;
+      proc_we_rg2     <= 0;
+    end
+    else begin
+      orig_pxl_rg    <= orig_pxl;
+      inner_frame_rg <= inner_frame;
+      hist_bin_rg    <= hist_bin;
+      cnt_pxl_proc_rg <= cnt_pxl_proc;
+      proc_we_rg2     <= proc_we_rg1;
+    end
+  end
+
+    
 
   // memory address count. Pixel counter from 0 to (160x120)-1 = 19200-1
   always @ (posedge rst, posedge clk)
@@ -244,13 +295,14 @@ module color_proc
       cnt_pxl    <= 0;
       cnt_pxl_proc <= 0;
       processing <= 1'b0;    
-      proc_we    <= 1'b0;    
+      proc_we_rg1 <= 1'b0;    
     end
     else begin
-      proc_we <= processing;  // proc_we is processing delayed 1 clk
+      proc_we_rg1 <= processing;  // proc_we is processing delayed 1 clk
       if (processing) begin
         // data from memory received a clock cycle later
         // data stored in processed memory is delayed one clock cycle
+        // and one more due segmentation
         cnt_pxl_proc <= cnt_pxl;
         if (end_pxl_cnt) begin
           cnt_pxl <= 0;
@@ -270,7 +322,7 @@ module color_proc
   // end of the frame  19200-1 = (160x120)-1
   assign end_pxl_cnt = (cnt_pxl == c_img_pxls-1) ? 1'b1 : 1'b0;
   assign orig_addr = cnt_pxl;
-  assign proc_addr = cnt_pxl_proc;
+  assign proc_addr = cnt_pxl_proc_rg;
 
   // end of the line (column number 79)
   assign end_ln = (col == c_img_cols-1)? 1'b1 : 1'b0;
@@ -335,6 +387,136 @@ module color_proc
                         row_num <  c_img_rows-c_outframe_rows)  // 112 = 120-8
                      ? 1'b1 : 1'b0;
 
+  assign rgb222 = {red[c_nb_buf_red-1:c_nb_buf_red-2],
+                   grn[c_nb_buf_green-1:c_nb_buf_green-2],
+                   blu[c_nb_buf_blue-1:c_nb_buf_blue-2]};
+
+  //assign red_grn_eq = (red == grn) ? 1'b1 : 1'b0;
+  //assign red_blu_eq = (red == blu) ? 1'b1 : 1'b0;
+  //assign grn_blu_eq = (grn == blu) ? 1'b1 : 1'b0;
+
+  assign red_gt_grn = (red > grn) ? 1'b1 : 1'b0;
+  assign red_gt_blu = (red > blu) ? 1'b1 : 1'b0;
+  assign grn_gt_blu = (grn > blu) ? 1'b1 : 1'b0;
+
+  assign red_grn_absdif = red_gt_grn ? red - grn : grn - red;
+  assign red_blu_absdif = red_gt_blu ? red - blu : blu - red;
+  assign grn_blu_absdif = grn_gt_blu ? grn - blu : blu - grn;
+
+  assign red_grn_simil = (red_grn_absdif <= c_simil_limit) ? 1'b1 : 1'b0;
+  assign red_blu_simil = (red_blu_absdif <= c_simil_limit) ? 1'b1 : 1'b0;
+  assign grn_blu_simil = (grn_blu_absdif <= c_simil_limit) ? 1'b1 : 1'b0;
+
+  assign red_grn_vdif = (red_grn_absdif >= c_vdif_limit) ? 1'b1 : 1'b0;
+  assign red_blu_vdif = (red_blu_absdif >= c_vdif_limit) ? 1'b1 : 1'b0;
+  assign grn_blu_vdif = (grn_blu_absdif >= c_vdif_limit) ? 1'b1 : 1'b0;
+
+  always @ (*)
+  begin
+    red_limit = 1'b0;
+    grn_limit = 1'b0;
+    blu_limit = 1'b0;
+    yel_limit = 1'b0;
+    cya_limit = 1'b0;
+    mag_limit = 1'b0;
+    gra_limit = 1'b0;
+    if (red_gt_grn) begin              // red > green
+      if (red_gt_blu) begin             // red > green ; red > blue
+        if (grn_gt_blu) begin             // red > green > blue
+          if (red_grn_vdif) begin           // red >> green > blue
+            red_limit = 1'b1;                // RED
+          end
+          else if (red_grn_simil) begin     // red ~> green > blue
+            if (red_blu_simil) begin        // red ~> green ~> blue
+              gra_limit = 1'b1;                // GRAY
+            end
+            else if (grn_blu_vdif) begin    // red ~> green >> blue
+              yel_limit = 1'b1;                // YELLOW
+            end
+          end
+        end
+        else begin                       // red > blue >= green
+          if (red_blu_vdif) begin           // red >> blue >= green
+            red_limit = 1'b1;                // RED
+          end
+          else if (red_blu_simil) begin     // red ~> blue >= green
+            if (red_grn_simil) begin        // red ~> blue ~>= green
+              gra_limit = 1'b1;                // GRAY
+            end
+            else if (grn_blu_vdif) begin    // red ~> blue >> green
+              mag_limit = 1'b1;                // MAGENTA
+            end
+          end
+        end
+      end
+      else begin                         // blue >= red > green
+        if (red_blu_vdif) begin            // blue >> red > green
+          blu_limit = 1'b1;                  // BLUE
+        end
+        else if (red_blu_simil) begin      // blue ~>= red > green
+          if (grn_blu_simil) begin           // blue ~>= red ~> green
+            gra_limit = 1'b1;                  // GRAY
+          end
+          else if (red_grn_vdif) begin       // blue ~>= red >> green
+            mag_limit = 1'b1;                  // MAGENTA
+          end
+        end
+      end
+    end
+    else begin                         // green >= red
+      if (red_gt_blu) begin              // green >= red > blue
+        if (red_grn_vdif) begin            // green >> red > blue
+          grn_limit = 1'b1;                 // GREEN
+        end
+        else if (red_grn_simil) begin    // green ~>= red > blue
+          if (red_blu_vdif) begin         // green ~>= red >> blue
+            yel_limit = 1'b1;              // YELOW
+          end
+          else if (grn_blu_simil) begin   // green ~>= red ~> blue
+            gra_limit = 1'b1;               //GRAY
+          end
+        end
+      end
+      else begin                         // green >= red ; blue >= red
+        if (grn_gt_blu) begin              // green > blue >= red
+          if (grn_blu_vdif) begin           // green >> blue >= red
+            grn_limit = 1'b1;                  // GREEN
+          end
+          else if (grn_blu_simil) begin      // green ~> blue >= red
+            if (red_blu_vdif) begin            // green ~> blue >> red
+              cya_limit = 1'b1;                 // CYAN
+            end
+            else if (red_grn_simil) begin      // green ~> blue ~> red
+              gra_limit = 1'b1;                  // GRAY
+            end
+          end
+        end
+        else begin                       // blue >= green >= red
+          if (grn_blu_vdif) begin         // blue >> green >= red
+            blu_limit = 1'b1;                  // BLUE
+          end
+          else if (grn_blu_simil) begin    // blue ~>= green >= red
+            if (red_blu_simil) begin        // blue ~>= green ~>= red
+              gra_limit = 1'b1;                  // GRAY
+            end
+            else if (red_grn_vdif) begin    // blue ~>= green >>= red
+              cya_limit = 1'b1;                 // CYAN
+            end
+          end
+        end
+      end
+    end
+  end
+            
+  // to be white, they have to be larger than 11
+  assign whi_limit = gra_limit &
+                     red[c_nb_buf_red-1]   &
+                     grn[c_nb_buf_green-1] &
+                     blu[c_nb_buf_blue-1]  &
+                     red[c_nb_buf_red-2]   &
+                     grn[c_nb_buf_green-2] &
+                     blu[c_nb_buf_blue-2];
+
 
   // inner column, when we are out of the range it doesn't matter the value
   // because shouldnt be used
@@ -344,24 +526,7 @@ module color_proc
   // it really has 7 bits (c_nb_inframe_cols)
   // c_nb_hist_bins is 3 bits
   // we go from bit 6 (7-1),  to (7-1)-(3-1) -> 4
-  assign hist_bin = col_inframe[c_nb_inframe_cols-1:c_nb_inframe_cols-c_nb_hist_bins];  //[6:4]  
-
-  // color filter thresholds
-  assign red_limit = (orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign green_limit = (!orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign blue_limit = (!orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign yellow_limit = (orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign cyan_limit = (!orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign magen_limit = (orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-  assign white_limit = (orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
-                      1'b1 : 1'b0;
-
+  assign hist_bin = col_inframe[c_nb_inframe_cols-1:c_nb_inframe_cols-c_nb_hist_bins];  //[6:4] 
 
   //reg [c_nb_hist_val-1:0] histograma [c_hist_bins-1:0];
   // saves how many red pixels are in each column. Reset in each frame
@@ -396,9 +561,9 @@ module color_proc
         // taking inner frame from 8 to 71-> 64 columns.
         // Taking away 8 columns at each end
         // and 6 to 53-> 48 rows. Taking away 6 rows at each end
-        if (inner_frame == 1'b1) begin
-          if (color_threshold == 1'b1) begin 
-            histogram_tmp[hist_bin] <= histogram_tmp[hist_bin] + 1'b1;
+        if (inner_frame_rg == 1'b1) begin
+          if (color_threshold == 1'b1) begin // this is already registered
+            histogram_tmp[hist_bin_rg] <= histogram_tmp[hist_bin_rg] + 1'b1;
             colorpxls <= colorpxls + 1;
             // these increments could be done combinationally by adding histograms
             // bins. not sure what is more efficient, and if done combinationally
@@ -488,21 +653,6 @@ module color_proc
   assign colorpxls_bin6 = histogram[6];
   assign colorpxls_bin7 = histogram[7];
 
-  always @ (posedge rst, posedge clk)
-  begin
-    if (rst) begin
-      proc_ctrl_rg1 <= 1'b0;
-      proc_ctrl_rg2 <= 1'b0;
-    end
-    else begin
-      proc_ctrl_rg1 <= proc_ctrl;
-      proc_ctrl_rg2 <= proc_ctrl_rg1;
-    end
-  end
-
-  // detect a pulse in proc_ctrl
-  assign pulse_proc_ctrl = (proc_ctrl_rg1 & ~proc_ctrl_rg2);
-  
   // changes the filter
   always @ (posedge rst, posedge clk)
   begin
@@ -533,35 +683,36 @@ module color_proc
     end
   end
 
-  assign proc_pxl = color_threshold ? orig_pxl : C_BLACK_PXL;
+  assign proc_pxl = color_threshold ? orig_pxl_rg : C_BLACK_PXL;
+  assign proc_we  = proc_we_rg2;
   
-  always @ (*) // should include RGB mode
+  // register for segmentation, it didn't get to 50MHz
+  always @ (posedge clk) // should include RGB mode
   begin
-    // check on RED
-    color_threshold = 1'b1;
+    color_threshold <= 1'b1;
     case (rgbfilter)
       3'b000: // no filter, output same as input
-        color_threshold = 1'b1;
+        color_threshold <= 1'b1;
       3'b100: begin // red filter
-        color_threshold = red_limit;
+        color_threshold <= red_limit;
       end
       3'b010: begin // green filter
-        color_threshold = green_limit;
+        color_threshold <= grn_limit;
       end
       3'b001: begin // filter blue
-        color_threshold = blue_limit;
+        color_threshold <= blu_limit;
       end
       3'b110: begin // filter red and green
-        color_threshold = yellow_limit;
+        color_threshold <= yel_limit;
       end
       3'b101: begin // filter red and blue
-        color_threshold = magen_limit;
+        color_threshold <= mag_limit;
       end
       3'b011: begin // filter green and blue
-        color_threshold = cyan_limit;
+        color_threshold <= cya_limit;
       end
       3'b111: begin // red, green and blue filter
-        color_threshold = white_limit;
+        color_threshold <= whi_limit;
       end
     endcase
   end

@@ -183,6 +183,11 @@ BEGIN
       wait for 500 ns;	
       proc_ctrl <= '0';
       wait for 10 us;	
+      -----
+      proc_ctrl <= '1';  -- back to change to red
+      wait for 500 ns;	
+      proc_ctrl <= '0';
+      wait for 10 us;	
       wait;
    end process;
    

@@ -70,7 +70,7 @@ module ov7670_ctrl_reg
   reg [24-1:0] cnt300ms;
   wire         end300ms;
   reg          ena_cnt300ms;
-  localparam   c_end300ms = 15000000;
+  localparam   c_end300ms = 5000000; // reduced, not needed that much time
   //parameter    c_end300ms = 30;
 
 
@@ -474,16 +474,21 @@ module ov7670_ctrl_reg
 
       6'h0A:
         reg_rgb444 <= 16'h4FB3; // MTX1  - colour conversion matrix
+        //reg_rgb444 <= 16'h4FC0; // MTX1  - colour conversion matrix bright
       6'h0B:
         reg_rgb444 <= 16'h50B3; // MTX2  - colour conversion matrix
+        //reg_rgb444 <= 16'h50C0; // MTX2  - colour conversion matrix bright
       6'h0C:
         reg_rgb444 <= 16'h5100; // MTX3  - colour conversion matrix
       6'h0D:
         reg_rgb444 <= 16'h523D; // MTX4  - colour conversion matrix
+        //reg_rgb444 <= 16'h5233; // MTX4  - colour conversion matrix bright
       6'h0E:
         reg_rgb444 <= 16'h53A7; // MTX5  - colour conversion matrix
+        //reg_rgb444 <= 16'h538D; // MTX5  - colour conversion matrix bright
       6'h0F:
         reg_rgb444 <= 16'h54E4; // MTX6  - colour conversion matrix
+        //reg_rgb444 <= 16'h54C0; // MTX6  - colour conversion matrix bright
       6'h10:
         reg_rgb444 <= 16'h589E; // MTXS  - Matrix sign and auto contrast
 
@@ -648,6 +653,38 @@ module ov7670_ctrl_reg
                              // [6:0]=02: Default scaling ouput delay
       //  end QQVGA
       6'h39:
+        //reg_rgb444 <= 16'h13E7;  // AWB: Automatic White Balance ON
+        reg_rgb444 <= 16'h13E5;  // AWB: Automatic White Balance OFF
+      6'h3A:
+        //reg_rgb444 <= 16'h6F9F;  // simple AWB
+        //reg_rgb444 <= 16'h0196;  // AWB Blue gain 
+        reg_rgb444 <= 16'h0190;  // AWB Blue gain 
+      6'h3B:
+        reg_rgb444 <= 16'h0260;  // AWB Red gain 
+      6'h3C:
+        reg_rgb444 <= 16'h6A60;  // AWB green gain 
+
+
+      //6'h3D:
+        //reg_rgb444 <= 16'h3A04; // TLSB: Line buffer test option
+             // (default 0C)
+             // [7:6] : reserved
+             // [5]   : negative image enable
+             // [5]=0 : Normal image 
+             // [4]=0 : Use normal UV output
+             // [3]   : Output sequence with COM13[1]
+             //      TSLB[3], COM13[1]:
+             //    00: Y U Y V
+             //    01: Y U Y V
+             //    10: U Y V Y
+             //    11: V Y U Y
+             // [2:1] : Reserved
+      //6'h3E:
+        //reg_rgb444 <= 16'h6780; // Normal U
+      //6'h3F:
+        //reg_rgb444 <= 16'h6880; // Normal V
+
+      6'h3D:
         reg_rgb444 <= 16'hFFFF;  // FINISH CONDITION, register FF doesnt exist
       default:
         reg_rgb444 <= 16'hFFFF;  // FINISH CONDITION

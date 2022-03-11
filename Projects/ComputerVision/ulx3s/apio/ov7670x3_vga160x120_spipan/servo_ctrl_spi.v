@@ -137,7 +137,7 @@ module servo_pan_ctrl_spi
   wire   cnt_end; // end of the count
 
   // an object is captured by the camera 
-  assign tracking = (centroid == 10'b0) ? 1'b0 : 1'b1;
+  assign tracking = (centroid == 8'h00) ? 1'b0 : 1'b1;
 
   // servo_cam_pan has considered clockwise as positive angles
   assign servo_cam_pan_neg = - servo_cam_pan;
