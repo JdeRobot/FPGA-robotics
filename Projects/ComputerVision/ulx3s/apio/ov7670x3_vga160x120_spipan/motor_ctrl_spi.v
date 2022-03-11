@@ -29,6 +29,7 @@ module motor_ctrl_spi
   reg  signed [nb_dps_motor-1:0] vel;
   reg  signed [nb_dps_motor-1:0] vel_addside;
   wire  signed [nb_dps_motor-1:0] vel_slowside;
+  reg neg_vel;
 
    // Proportional control variable
   //wire signed [nb_Pctrl-1:0] Prgth;
@@ -69,6 +70,7 @@ module motor_ctrl_spi
   localparam signed [nb_dps_motor-1:0] c_vel0_neg = -c_vel0; 
 
 
+
   wire       tracking; // 0=lost; 1=tracking object
 
   // Output assign 
@@ -87,44 +89,65 @@ module motor_ctrl_spi
   always @(*)
   begin
     vel = 0;
-    vel_addside = 0;
+    neg_vel = 1'b1;
     case(proximity)
       3'b000 : begin  // very far
         vel = c_vel4; // positive
-        vel_addside = c_vel_sub4; // negative
+        neg_vel = 1'b0;
       end
       3'b001 : begin  //
         vel = c_vel4;
-        vel_addside = c_vel_sub4; // negative
+        neg_vel = 1'b0;
       end
       3'b010 : begin  //
         vel = c_vel4;
-        vel_addside = c_vel_sub4; // negative
+        neg_vel = 1'b0;
       end
       3'b011 : begin  //
         vel = c_vel3;
-        vel_addside = c_vel_sub3; // negative
+        neg_vel = 1'b0;
       end
       3'b100 : begin  //
         vel = c_vel2;
-        vel_addside = c_vel_sub2; // 
+        neg_vel = 1'b0;
       end
       3'b101 : begin  //
         vel = c_vel1;
-        vel_addside = c_vel_sub1; //
+        neg_vel = 1'b0;
       end
       3'b110 : begin  //
         vel = c_vel0;
-        vel_addside = c_vel_sub0; // positive, to subtract
+        neg_vel = 1'b0;
       end
       3'b111 : begin  //
         vel = c_vel1_neg;
-        vel_addside = c_vel_add1; // positive, to subtract
+        neg_vel = 1'b1;
       end
     endcase
   end
 
-  assign vel_slowside = vel + vel_addside;
+  always @(*)
+  begin
+    vel_addside = 0;
+    case (last_cent_valid)
+      8'b10000000, 8'b00000001: begin
+        vel_addside = c_vel_sub4;
+      end
+      8'b01000000, 8'b00000010: begin
+        vel_addside = c_vel_sub3;
+      end
+      8'b00100000, 8'b00000100: begin
+        vel_addside = c_vel_sub2;
+      end
+      8'b00010000, 8'b00001000: begin
+        vel_addside = c_vel_sub1;
+      end
+      default:
+        vel_addside = 0;
+    endcase
+  end
+
+  assign vel_slowside = (neg_vel) ? vel - vel_addside : vel + vel_addside;
 
   always @(posedge rst, posedge clk)
   begin
