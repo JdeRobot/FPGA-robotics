@@ -70,7 +70,7 @@ module ov7670_ctrl_reg
   reg [24-1:0] cnt300ms;
   wire         end300ms;
   reg          ena_cnt300ms;
-  localparam   c_end300ms = 15000000;
+  localparam   c_end300ms = 5000000; // reduced, not needed that much time
   //parameter    c_end300ms = 30;
 
 

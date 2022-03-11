@@ -134,7 +134,7 @@ module color_proc
   (
     input        rst,       //reset, active high
     input        clk,       //fpga clock
-    input        proc_ctrl, //input to control the processing (select color)
+    input        pulse_proc_ctrl, //input to control the processing (select color)
     input        new_frame_i, // a new frame has just ended
     // Address and pixel of original image
     input  [c_nb_buf-1:0]      orig_pxl,  //pixel from original image
@@ -254,9 +254,6 @@ module color_proc
 
   // Row number
   reg [c_nb_rows-1:0] row_num;
-
-  reg       proc_ctrl_rg1, proc_ctrl_rg2;
-  wire      pulse_proc_ctrl;
 
   reg       processing; // indicates if it is processing
 
@@ -656,21 +653,6 @@ module color_proc
   assign colorpxls_bin6 = histogram[6];
   assign colorpxls_bin7 = histogram[7];
 
-  always @ (posedge rst, posedge clk)
-  begin
-    if (rst) begin
-      proc_ctrl_rg1 <= 1'b0;
-      proc_ctrl_rg2 <= 1'b0;
-    end
-    else begin
-      proc_ctrl_rg1 <= proc_ctrl;
-      proc_ctrl_rg2 <= proc_ctrl_rg1;
-    end
-  end
-
-  // detect a pulse in proc_ctrl
-  assign pulse_proc_ctrl = (proc_ctrl_rg1 & ~proc_ctrl_rg2);
-  
   // changes the filter
   always @ (posedge rst, posedge clk)
   begin
