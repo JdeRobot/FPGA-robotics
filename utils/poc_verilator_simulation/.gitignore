@@ -5,4 +5,5 @@ target
 simWorkspace
 sim/*/obj_dir
 imgui.ini
-sim.vcd
+*.vcd
+*.fst
