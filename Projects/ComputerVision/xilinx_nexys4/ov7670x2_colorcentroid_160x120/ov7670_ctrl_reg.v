@@ -13,15 +13,22 @@
 //     - pwdn: power down mode selection
 //          0: normal mode
 //          1: power down mode
-//     - xclk: system clock input
+//     - ov7670_clk: xclk: system clock camera input
 //          freq   :  min: 10 MHz  -- typ: 24 MHz  -- Max: 48 MHz
 //          Period : max: 100 ns   -- typ: 42 ns   -- Max: 21 ns
+//   output:
+//     done: stays at '1' when configuration is finished
+//
 //   Register values taken from
 //   http://hamsterworks.co.nz/mediawiki/index.php/Zedboard_OV7670
 //   http://hamsterworks.co.nz/mediawiki/index.php/OV7670_camera
 //------------------------------------------------------------------------------
 
 module ov7670_ctrl_reg
+  # (parameter
+    c_nb_ov7670_sccb = 8, // number of bits for each SCCB transmision phase
+    c_nb_ov7670_sccb_id = 7 // number of bits for the camera id (slave) 
+  )
   (
     input         rst,          //reset, active high
     input         clk,          //fpga clock
@@ -31,10 +38,10 @@ module ov7670_ctrl_reg
     input         sccb_ready,   //SCCB ready to transmit
     output [5:0]  cnt_reg_test,     //to test the count
     output        start_tx,     //start transmission
-    output        done,         //all the registers written
-    output [6:0]  id,           //id of the slave
-    output [7:0]  addr,         //address to be written
-    output [7:0]  data_wr,      //data to write to slave
+    output        done,         //all the registers written. Stays at '1'
+    output [c_nb_ov7670_sccb_id-1:0]  id,     //id of the slave
+    output [c_nb_ov7670_sccb-1:0]  addr,      //address to be written
+    output [c_nb_ov7670_sccb-1:0]  data_wr,   //data to write to slave
     output        ov7670_rst_n, //camera reset
     output        ov7670_clk,   //camera system clock
     output        ov7670_pwdn   //camera power down
@@ -63,18 +70,18 @@ module ov7670_ctrl_reg
   reg [24-1:0] cnt300ms;
   wire         end300ms;
   reg          ena_cnt300ms;
-  parameter    c_end300ms = 15000000;
+  localparam   c_end300ms = 5000000; // reduced, not needed that much time
   //parameter    c_end300ms = 30;
 
 
 
   //id of the slave; 0x21.
   // if adding the write bit, would be 0x42 for writing and 0x43 for reading
-  parameter c_id_write  = 7'b0100_001;
-  wire  [7:0]   addr_aux; //address to be written
+  localparam c_id_write  = 7'b0100_001;
+  wire  [c_nb_ov7670_sccb-1:0]   addr_aux; //address to be written
   //wire  [7:0]   data_aux; //data to write to slave
   // register from the register memory: address & data
-  reg  [15:0]   reg_i;
+  reg  [2*c_nb_ov7670_sccb-1:0]   reg_i;
 
   parameter RSTCAM_ST      = 0,  // Reset camera during 300ms
             WAIT_RSTCAM_ST = 1,  // Wait 300ms for the camera to be ready
@@ -90,7 +97,9 @@ module ov7670_ctrl_reg
   reg         testmode_old;
   wire        mode_change;
 
-  reg [15:0] reg_yuv422, reg_yuv422_test, reg_rgb444, reg_rgb444_test;
+  // contains address and data:
+  reg [2*c_nb_ov7670_sccb-1:0] reg_yuv422, reg_yuv422_test,
+                               reg_rgb444, reg_rgb444_test;
 
   assign cnt_reg_test = cnt_reg;
 
@@ -418,7 +427,9 @@ module ov7670_ctrl_reg
       6'h06:
         reg_rgb444 <= 16'h1180;
                // 11: CLKRC Internal Clock
-               // [7]=1: Reserved  **IG says 0, but 1 seems stable
+               // [7]=1: Reserved  **IG says 0, but 1 seems stable in v1.1 says:
+               //     0: clock is half input.
+               //     1: clock is same as input
                // [6]=0: Use pre-scale
                // [5:0]: Interal clock pre-scalar
                //    F(internal clk) = F(input clk)/([5:0]+1)
@@ -463,16 +474,21 @@ module ov7670_ctrl_reg
 
       6'h0A:
         reg_rgb444 <= 16'h4FB3; // MTX1  - colour conversion matrix
+        //reg_rgb444 <= 16'h4FC0; // MTX1  - colour conversion matrix bright
       6'h0B:
         reg_rgb444 <= 16'h50B3; // MTX2  - colour conversion matrix
+        //reg_rgb444 <= 16'h50C0; // MTX2  - colour conversion matrix bright
       6'h0C:
         reg_rgb444 <= 16'h5100; // MTX3  - colour conversion matrix
       6'h0D:
         reg_rgb444 <= 16'h523D; // MTX4  - colour conversion matrix
+        //reg_rgb444 <= 16'h5233; // MTX4  - colour conversion matrix bright
       6'h0E:
         reg_rgb444 <= 16'h53A7; // MTX5  - colour conversion matrix
+        //reg_rgb444 <= 16'h538D; // MTX5  - colour conversion matrix bright
       6'h0F:
         reg_rgb444 <= 16'h54E4; // MTX6  - colour conversion matrix
+        //reg_rgb444 <= 16'h54C0; // MTX6  - colour conversion matrix bright
       6'h10:
         reg_rgb444 <= 16'h589E; // MTXS  - Matrix sign and auto contrast
 
@@ -637,6 +653,38 @@ module ov7670_ctrl_reg
                              // [6:0]=02: Default scaling ouput delay
       //  end QQVGA
       6'h39:
+        //reg_rgb444 <= 16'h13E7;  // AWB: Automatic White Balance ON
+        reg_rgb444 <= 16'h13E5;  // AWB: Automatic White Balance OFF
+      6'h3A:
+        //reg_rgb444 <= 16'h6F9F;  // simple AWB
+        //reg_rgb444 <= 16'h0196;  // AWB Blue gain 
+        reg_rgb444 <= 16'h0190;  // AWB Blue gain 
+      6'h3B:
+        reg_rgb444 <= 16'h0260;  // AWB Red gain 
+      6'h3C:
+        reg_rgb444 <= 16'h6A60;  // AWB green gain 
+
+
+      //6'h3D:
+        //reg_rgb444 <= 16'h3A04; // TLSB: Line buffer test option
+             // (default 0C)
+             // [7:6] : reserved
+             // [5]   : negative image enable
+             // [5]=0 : Normal image 
+             // [4]=0 : Use normal UV output
+             // [3]   : Output sequence with COM13[1]
+             //      TSLB[3], COM13[1]:
+             //    00: Y U Y V
+             //    01: Y U Y V
+             //    10: U Y V Y
+             //    11: V Y U Y
+             // [2:1] : Reserved
+      //6'h3E:
+        //reg_rgb444 <= 16'h6780; // Normal U
+      //6'h3F:
+        //reg_rgb444 <= 16'h6880; // Normal V
+
+      6'h3D:
         reg_rgb444 <= 16'hFFFF;  // FINISH CONDITION, register FF doesnt exist
       default:
         reg_rgb444 <= 16'hFFFF;  // FINISH CONDITION
@@ -1042,7 +1090,9 @@ module ov7670_ctrl_reg
   end
 
   // when cnt_cam_clk = 0 | 1 => '0', when 2 | 3 => '1'
-  assign ov7670_clk = cnt_cam_clk[1]; // divide by 4
+  // divide clock frequency by 4, since clk is 50MHz:
+  // cam xclk: 12.5 MHz -> 80 ns (max period is 100ns, min freq is 10 MHz)
+  assign ov7670_clk = cnt_cam_clk[1];
 
   // camera reset and power down
   assign ov7670_pwdn  = 1'b0;
@@ -1050,9 +1100,11 @@ module ov7670_ctrl_reg
   //------ controlling the registers to be sent ------------
 
   assign id        = c_id_write; // 0x21
-  assign addr_aux  = reg_i[15:8];
+  // address is the MSB [15:8]
+  assign addr_aux  = reg_i[2*c_nb_ov7670_sccb-1:c_nb_ov7670_sccb];
   assign addr      = addr_aux;
-  assign data_wr   = reg_i[7:0];
+  // data is the LSB [7:0]
+  assign data_wr   = reg_i[c_nb_ov7670_sccb-1:0];
 
 
   assign ov7670_rst_n   = cam_rst_n;
