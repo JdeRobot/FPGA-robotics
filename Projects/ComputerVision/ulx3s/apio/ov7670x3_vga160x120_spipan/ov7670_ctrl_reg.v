@@ -658,11 +658,11 @@ module ov7670_ctrl_reg
       6'h3A:
         //reg_rgb444 <= 16'h6F9F;  // simple AWB
         //reg_rgb444 <= 16'h0196;  // AWB Blue gain 
-        reg_rgb444 <= 16'h0190;  // AWB Blue gain 
+        reg_rgb444 <= 16'h01A6;  // AWB Blue gain 
       6'h3B:
-        reg_rgb444 <= 16'h0260;  // AWB Red gain 
+        reg_rgb444 <= 16'h0250;  // AWB Red gain 
       6'h3C:
-        reg_rgb444 <= 16'h6A60;  // AWB green gain 
+        reg_rgb444 <= 16'h6A58;  // AWB green gain 
 
 
       //6'h3D:

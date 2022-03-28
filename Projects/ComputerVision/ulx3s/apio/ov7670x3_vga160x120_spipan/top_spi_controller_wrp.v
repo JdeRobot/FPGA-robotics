@@ -147,7 +147,8 @@ module top_spi_controller_wrp
 
   assign motor_pwm_left_c = 0;
   assign motor_pwm_rght_c = 0;
-  assign motor_dps_limit_c = 16'h012C;   // 300 dps is the conservative speed
+  assign motor_dps_limit_c = 16'h0200;   // 500 dps
+  //assign motor_dps_limit_c = 16'h012C;   // 300 dps is the conservative speed
   //assign motor_dps_limit_c = 16'h03E8; // this is max recommended speed
  
   // this should be a substraction if servo_1_i is negative (2's complement)
