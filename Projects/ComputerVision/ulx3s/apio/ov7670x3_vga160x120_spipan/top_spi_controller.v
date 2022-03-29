@@ -30,8 +30,9 @@ module top_spi_controller
     // if using the PLL, use the resulting pll clock
     //parameter G_CLK_FREQ_MHZ = 12  // Alhambra II 12MHz
     //parameter G_CLK_FREQ_MHZ = 25  // ULX3S 25MHz
-    parameter G_CLK_FREQ_MHZ = 50  // using PLL (use the generated frequency)
+    parameter G_CLK_FREQ_MHZ = 50, // using PLL (use the generated frequency)
     //parameter G_CLK_FREQ_MHZ = 100  // using PLL (use the generated frequency)
+    parameter G_GPG_TPD = 2 // gopigo motor ticks per degree
   )
 
 (
@@ -91,6 +92,15 @@ module top_spi_controller
   output rpi_running  // 1 when running, to inform gopigo
 );
 
+  wire  [15:0] motor_tps_limit; // Motor ticks per second limit
+                                  // after multipliying degrees per second
+                                  // by                 ticks per degree
+
+  wire  [15:0] motor_tps_left; // left motor DPS (degrees per second)
+                                  // limited by motor_dps_limit_i
+                                  // it is signed
+  wire  [15:0] motor_tps_rght; // right motor DPS (degrees per second)
+
   wire       spi_busy;
   wire       spi_send; // command to send a new SPI byte
   wire       spi_end;  // end of transimission, has to be acknowledged
@@ -106,6 +116,10 @@ module top_spi_controller
   assign rpi_running = ~rst;
   assign leds[7:1] = 0;
 
+  assign motor_tps_limit = motor_dps_limit_i * G_GPG_TPD;
+  assign motor_tps_left  = motor_dps_left_i  * G_GPG_TPD;
+  assign motor_tps_rght  = motor_dps_rght_i  * G_GPG_TPD;
+
   spi_ctrl
   #(.G_CLK_FREQ_MHZ(G_CLK_FREQ_MHZ)
   ) i_spi_ctrl
@@ -114,9 +128,9 @@ module top_spi_controller
     .clk         (clk),
     .motor_pwm_left_i     (motor_pwm_left_i),
     .motor_pwm_rght_i     (motor_pwm_rght_i),
-    .motor_dps_limit_i    (motor_dps_limit_i),
-    .motor_dps_left_i     (motor_dps_left_i),
-    .motor_dps_rght_i     (motor_dps_rght_i),
+    .motor_tps_limit_i    (motor_tps_limit),
+    .motor_tps_left_i     (motor_tps_left),
+    .motor_tps_rght_i     (motor_tps_rght),
     .led_eye_left_rgb_i   (led_eye_left_rgb_i),
     .led_eye_rght_rgb_i   (led_eye_rght_rgb_i),
     .led_blink_left_rgb_i (led_blink_left_rgb_i),
