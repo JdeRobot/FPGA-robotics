@@ -39,6 +39,8 @@ Right: linux
 ---
 [Nexys4 DDR configuration file using old registers for ov7670 camera](top_ov7670_nexys4ddr_oldregs.bit)
 
-[Nexys4 DDR configuration file using linux registers for ov7670 camera](top_ov7670_nexys4ddr_linuxregs.bit)
+[Nexys4 DDR configuration file using linux registers for ov7670 camera using Xilinx ISE](top_ov7670_nexys4ddr_linuxregs.bit)
 
+[Nexys4 DDR configuration file using linux registers for ov7670 camera synthetized with Vivado](top_ov7670_nexys4ddr_linuxregs_vivado.bit)
+It is strange, but it doesnt work the same using Vivado or ISE, using Vivado colors are not ok
 
