@@ -17,7 +17,7 @@
 
 // verilator headers
 #include "Vdesign_top.h"
-#include "Vdesign_top___024root.h"
+//#include "Vdesign_top___024root.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
