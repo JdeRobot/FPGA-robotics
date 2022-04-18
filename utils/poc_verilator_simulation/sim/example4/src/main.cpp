@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <stdio.h>
 
+#include <opencv2/opencv.hpp>
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 
@@ -35,9 +36,7 @@ const int cols = 80;
 const int rows = 60;
 const uint8_t ALPHA_SOLID = 255;
 
-const char input_image_1_path[] = ASSETS_DIR "/red_ball_left_80x60.png";
-const char input_image_2_path[] = ASSETS_DIR "/red_ball_center_80x60.png";
-const char input_image_3_path[] = ASSETS_DIR "/red_ball_right_80x60.png";
+const char input_image_1_path[] = ASSETS_DIR "/red_ball_center_80x60.png";
 
 const char font_awesome_path[] = ASSETS_DIR "/fa-solid-900.ttf";
 
@@ -297,15 +296,22 @@ int main(int argc, char **argv) {
   ImGui_ImplOpenGL3_Init(glsl_version);
 
   // init buffers
+
   const cv::Mat input_image_1 = cv::imread(cv::String{input_image_1_path});
   assert(input_image_1.channels() == 3 && input_image_1.cols == cols &&
          input_image_1.rows == rows && input_image_1.isContinuous());
-  const cv::Mat input_image_2 = cv::imread(cv::String{input_image_2_path});
-  assert(input_image_2.channels() == 3 && input_image_2.cols == cols &&
-         input_image_2.rows == rows && input_image_2.isContinuous());
-  const cv::Mat input_image_3 = cv::imread(cv::String{input_image_3_path});
-  assert(input_image_3.channels() == 3 && input_image_3.cols == cols &&
-         input_image_3.rows == rows && input_image_3.isContinuous());
+
+  
+  //Init Video Input 
+  cv::Mat input_feed;
+  cv::Mat resized_input_feed;
+  cv::VideoCapture cap(0);
+
+  if (!cap.isOpened()) {
+
+	  std::cout << "cannot open camera";
+  }
+
 
   cv::Mat output_image(rows, cols, CV_8UC4);
 
@@ -313,8 +319,6 @@ int main(int argc, char **argv) {
 
   // create & load input/output textures
   GLuint input_texture_1_id = create_texture(GL_BGR, input_image_1);
-  GLuint input_texture_2_id = create_texture(GL_BGR, input_image_2);
-  GLuint input_texture_3_id = create_texture(GL_BGR, input_image_3);
 
   GLuint output_texture_id = create_texture(GL_BGRA, output_image);
 
@@ -322,8 +326,8 @@ int main(int argc, char **argv) {
   Vdesign_top *top = initDut(argc, argv);
   VerilatedVcdC *m_trace = initTrace(top);
 
-  const uint8_t *input_buffer = input_image_1.data;
   const cv::Mat *input_image = &input_image_1;
+
   std::vector<SimElement *> simElements;
   simElements.push_back(new InputDriver(top, &wRgbfilter, &input_image));
   simElements.push_back(new OutputMonitor(top, output_image));
@@ -383,23 +387,13 @@ int main(int argc, char **argv) {
         step_n_cycles = cycles_per_iteration;
       }
 
-      ImGui::Text("Input frame buffer %d x %d (tex id=%p)", input_image->cols,
-                  input_image->rows, (void *)(intptr_t)input_texture_1_id);
-      ImVec2 pos = ImGui::GetCursorScreenPos();
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_1_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_1;
-      }
-      ImGui::SameLine();
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_2_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_2;
-      }
-      ImGui::SameLine();
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_3_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_3;
-      }
+      cap >> input_feed;
+      cv::resize(input_feed,resized_input_feed,cv::Size(cols,rows),cv::INTER_LINEAR);
+
+//      assert(input_feed.channels() == 3 && input_feed.cols == cols &&
+//         input_feed.rows == rows && input_feed.isContinuous());
+
+	    input_image = &resized_input_feed;
 
       ImGui::Text("wRgbfilter=%x", wRgbfilter);
       static bool red_filter_check = false;
