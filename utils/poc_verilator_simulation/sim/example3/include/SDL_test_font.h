@@ -1,1 +1,0 @@
-/usr/include/SDL2/SDL_test_font.h
