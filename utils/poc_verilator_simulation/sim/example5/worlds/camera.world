@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<sdf version='1.6'>
+  <world name='default'>
+      
+    <model name='unit_box'>
+      <pose>0 0 2.5 0 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <light name='user_directional_light_0' type='directional'>
+      <pose>0 0 1 0 0 0</pose>
+    </light>
+
+    <model name='camera'>
+      <static>true</static>
+      <pose>-2 0 4 0 1 0</pose>
+
+	<!-- Joint for the Camera and the "optical frame"-->
+
+<!--
+      <joint name="camera_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="-1.571 0 -1.571" />
+        <parent link="camera_link" />
+        <child link="camera_link_optical" />
+    </joint>
+	
+
+     <link name="camera_link_optical"></link>
+-->
+
+
+      <link name='camera_link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <material name="white" />
+        </visual>
+        <sensor name='my_camera' type='camera'>
+	  <update_rate>30</update_rate>
+	  <!--<visualize>true</visualize>-->
+          <camera>
+            <save enabled="true">
+              <path>/tmp/camera_save_tutorial</path>
+            </save>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>1920</width>
+              <height>1080</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+	  <always_on>1</always_on>
+
+ 	   <!-- Include plugin for Publishing ROS Topics-->
+           <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <frame_name>camera_link_optical</frame_name>
+                <min_depth>0.1</min_depth>
+                <max_depth>500</max_depth>
+            </plugin>
+
+        </sensor>
+    </link>
+
+   
+    </model>
+  </world>
+</sdf>
