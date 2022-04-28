@@ -38,6 +38,7 @@ module design_top
     wRgbfilter 111 > green, red, and blue filter
     */
 
+	wire [c_nb_leds-1:0] centroid_wire;
 	wire [c_nb_img_pxls-1:0] addrImg2Filt;
 	wire [c_nb_buf-1:0] doutImg2Filt;
 	wire [c_nb_img_pxls-1:0] procAddr;
@@ -221,10 +222,13 @@ module design_top
       .colorpxls_bin01_i (colorpxls_bin01),
       .colorpxls_bin67_i (colorpxls_bin67),
       // outputs
-      .centroid_o     (centroid_nop),
+      .centroid_o     (centroid_wire),
       .new_centroid_o (new_centroid),
       .proximity_o    (proximity)
     );
+
+   assign centroid_nop = centroid_wire;
+   assign leds = centroid_wire;
 
 
   // frame buffer
