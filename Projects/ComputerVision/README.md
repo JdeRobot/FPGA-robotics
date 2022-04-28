@@ -99,7 +99,7 @@ Each camera image is 160x120. Color processing independently on each camera. Pro
 
 Three cameras and VGA. 50MHz clock. Each camera image is 160x120. Color processing independently on each camera. Proximity and centroid.
 
-### [ov7670x3_ov7670x3_vga160x120_spipan](ulx3s/apio/ov7670x3_vga160x120_spipan)
+### [ov7670x3_vga160x120_spipan](ulx3s/apio/ov7670x3_vga160x120_spipan)
 
 Three cameras and VGA. 50MHz clock. Each camera image is 160x120. Color processing independently on each camera. Proximity and centroid.
 

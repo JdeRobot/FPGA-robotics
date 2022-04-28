@@ -31,3 +31,15 @@ sim/obj_dir/VTopPixelProcessor
 ```
 
 ![simulator running](./docs/sim_running.png "Simulator")
+
+---
+
+## Example 6
+Test the processing modules of:
+
+   FPGA-robotics/Projects/ComputerVision/ulx3s/apio/ov7670x3_vga160x120_spipan/
+
+Tested modules are inside the blue area:
+
+![Modules tested](example6.png)
+   
