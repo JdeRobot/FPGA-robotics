@@ -59,7 +59,7 @@ all: obj_dir/Vdesign_top
 
 
 obj_dir/Vdesign_top.h: $(V_SOURCES)
-	verilator --cc $(V_SOURCES) -x-assign unique -Wno-PINMISSING --trace -CFLAGS "$(CXXFLAGS)" --exe $(SOURCES) -I$(RTL_DIR)
+	verilator --cc $(V_SOURCES) -x-assign unique -Wno-PINMISSING -Wno-WIDTH --trace -CFLAGS "$(CXXFLAGS)" --exe $(SOURCES) -I$(RTL_DIR)
 
 
 obj_dir/Vdesign_top: obj_dir/Vdesign_top.h $(SOURCES)

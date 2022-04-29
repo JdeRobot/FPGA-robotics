@@ -18,7 +18,7 @@
 
 // verilator headers
 #include "Vdesign_top.h"
-#include "Vdesign_top___024root.h"
+//#include "Vdesign_top___024root.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
@@ -42,8 +42,8 @@ typedef cv::Vec<uint8_t, 4> BGRAPixel;
 
 const int n_pos_leds = 8;
 const int n_dis_leds = 3;
-const int cols = 80;
-const int rows = 60;
+const int cols = 160;
+const int rows = 120;
 const uint8_t ALPHA_SOLID = 255;
 
 const char input_image_1_path[] = ASSETS_DIR "/red_ball_center_80x60.png";
