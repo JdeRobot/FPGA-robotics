@@ -1,38 +1,18 @@
-# FPGA-Robotics
+# FPGA-robotics
 
-## Blocks
+## blocks
 
-### General Blocks
-- ASSIGN_8
-- ASSIGN_16
-- COUNT_4BITS_OUTPUT
-- I2C
-- I2C_ADC
-- MATHS
-- MULTIPLIER_4_BITS
-- NOT_REBOUNDS
-- PWM_CONTROLLER
-- SCCB_INTERFACE
-- START_MODULE
+Verilog and Icestudio blocks
 
-### Specific Blocks
+## phys_fpga
 
-- ARDUINO_COMMUNICATION
-- BI_DIRECTIONAL_ESC_CONTROLLER
-- I2C_ADC
-- I2C_IMU_Pololu
-- OV7670
-- PID
-- POTENTIOMETER
-- UNI_DIRECTIONAL_ESC_CONTROLLER
-- VGA
+Projects implemented in physical FPGAs
 
+## sim_fpga
 
+Simulated FPGA Projects using verilator
 
-## Projects
+## utils
 
-- Self-Balancing Robot
+Scripts and CAD files
 
-![Schematic Altium](/docs/Photos/final.PNG)
-
-- Quadcopter with artificial vision
