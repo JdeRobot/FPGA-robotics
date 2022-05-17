@@ -1,19 +1,23 @@
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
-SIM_DIR := $(realpath $(dir $(MKFILE_PATH))/..)
+SIM_DIR := $(realpath $(dir $(MKFILE_PATH))/../..)
 PROJECT_DIR := $(realpath $(SIM_DIR)/..)
-IMGUI_DIR = $(SIM_DIR)/third_party/imgui
-RTL_DIR = $(PROJECT_DIR)/rtl/example2
-INC_DIR = $(SIM_DIR)/example2/include
-SRC_DIR = $(SIM_DIR)/example2/src
+IMGUI_DIR = $(PROJECT_DIR)/third_party/imgui
+EXAMPLE_DIR = $(SIM_DIR)/examples/example1
+SIM_INC_DIR = $(SIM_DIR)/include
+RTL_DIR = $(EXAMPLE_DIR)/rtl
+INC_DIR = $(EXAMPLE_DIR)/include
+SRC_DIR = $(EXAMPLE_DIR)/src
 ASSETS_DIR := $(SRC_DIR)
-SOURCES = $(SRC_DIR)/main.cpp
+SOURCES = $(SRC_DIR)/input_driver.cpp $(SRC_DIR)/output_monitor.cpp $(SRC_DIR)/main.cpp
+SOURCES += $(SIM_DIR)/src/gl_texture_utils.cpp
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
 SOURCES += $(IMGUI_DIR)/backends/imgui_impl_sdl.cpp $(IMGUI_DIR)/backends/imgui_impl_opengl3.cpp
+HEADERS = $(INC_DIR)/
 V_SOURCES = $(RTL_DIR)/design_top.v
 UNAME_S := $(shell uname -s)
 LINUX_GL_LIBS = -lGL
 
-CXXFLAGS = -I$(INC_DIR) -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends -DASSETS_DIR=\\\"$(ASSETS_DIR)\\\" -g
+CXXFLAGS = -I$(INC_DIR) -I$(SIM_INC_DIR) -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends -DASSETS_DIR=\\\"$(ASSETS_DIR)\\\" -g
 LIBS =
 
 ##---------------------------------------------------------------------
@@ -54,7 +58,7 @@ all: obj_dir/Vdesign_top
 	@echo Build complete for $(ECHO_MESSAGE)
 
 obj_dir/Vdesign_top.h: $(V_SOURCES)
-	verilator --cc $(V_SOURCES) -x-assign unique --trace -CFLAGS "$(CXXFLAGS)" --exe $(SOURCES) -I$(RTL_DIR)
+	verilator --cc $(V_SOURCES) -x-assign unique --trace-fst -CFLAGS "$(CXXFLAGS)" --exe $(SOURCES) -I$(RTL_DIR)
 
 obj_dir/Vdesign_top: obj_dir/Vdesign_top.h $(SOURCES)
 	make -j 4 -C obj_dir/ -f Vdesign_top.mk Vdesign_top LIBS="$(LIBS)"
