@@ -1,10 +1,11 @@
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
-SIM_DIR := $(realpath $(dir $(MKFILE_PATH))/..)
+SIM_DIR := $(realpath $(dir $(MKFILE_PATH))/../../..)
 PROJECT_DIR := $(realpath $(SIM_DIR)/..)
-IMGUI_DIR = $(SIM_DIR)/third_party/imgui
-RTL_DIR = $(PROJECT_DIR)/rtl/example2
-INC_DIR = $(SIM_DIR)/example3/include
-SRC_DIR = $(SIM_DIR)/example3/src
+IMGUI_DIR = $(PROJECT_DIR)/third_party/imgui
+EXAMPLE_DIR = $(SIM_DIR)/examples/poc/example3
+RTL_DIR = $(EXAMPLE_DIR)/rtl
+INC_DIR = $(EXAMPLE_DIR)/include
+SRC_DIR = $(EXAMPLE_DIR)/src
 ASSETS_DIR := $(SRC_DIR)
 SOURCES = $(SRC_DIR)/input_driver.cpp $(SRC_DIR)/output_monitor.cpp $(SRC_DIR)/gl_texture_utils.cpp $(SRC_DIR)/main.cpp
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
