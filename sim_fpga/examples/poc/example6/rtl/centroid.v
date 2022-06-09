@@ -261,8 +261,10 @@ module centroid
     end
     else begin
       new_centroid_o <= new_frame_proc_i;
-      centroid_o <= centroid_tmp; 
-      proximity_o <= proximity_tmp;
+      if (new_frame_proc_i == 1'b1) begin
+        centroid_o <= centroid_tmp; 
+        proximity_o <= proximity_tmp;
+      end
     end
   end
 
