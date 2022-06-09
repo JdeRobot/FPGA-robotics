@@ -33,8 +33,10 @@ ARCHITECTURE behavior OF tb_design_top IS
   constant  c_img_pxls : natural := c_img_cols * c_img_rows;
   -- $clog2(c_img_pxls), //160*120=19200 -> 2^15
   constant  c_nb_img_pxls :natural :=  15;
+  constant  c_nb_img_cols :natural :=  8; -- 8 bits to count 160
 
   signal cnt_pxl : unsigned(c_nb_img_pxls-1 downto 0);
+  signal cnt_col : unsigned(c_nb_img_cols-1 downto 0);
    --Inputs
    signal clk : std_logic := '0';
    signal rst : std_logic := '0';
@@ -95,6 +97,7 @@ BEGIN
   pxl_proc: process
   begin
     cnt_pxl <= (others => '0');
+    cnt_col <= (others => '0');
     capture_newframe <= '0';
     wea <= '0';
     wait until rst = '0';
@@ -103,6 +106,12 @@ BEGIN
       capture_newframe <= '0';
       wea <= '1';
       wait until clk'event and clk = '1';
+      if cnt_col < c_img_cols-1 then
+        cnt_col <= cnt_col + 1;
+      else
+        cnt_col <= (others => '0');
+      end if;
+ 
       if cnt_pxl < c_img_pxls-1 then
         cnt_pxl <= cnt_pxl + 1;
       else
@@ -115,7 +124,9 @@ BEGIN
   end process;
 
   addrin <= std_logic_vector(cnt_pxl);
-  datain <= std_logic_vector(cnt_pxl(11 downto 0));
+  --datain <= std_logic_vector(cnt_pxl(11 downto 0));
+  datain <= std_logic_vector(cnt_pxl(11 downto 0)) when cnt_col < c_img_cols/2
+            else (others => '0');
   addrout <= std_logic_vector(cnt_pxl);
    
 END;
