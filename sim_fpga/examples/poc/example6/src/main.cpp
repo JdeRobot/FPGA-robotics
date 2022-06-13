@@ -23,14 +23,6 @@
 #include "verilated_vcd_c.h"
 
 
-//ROS & opencv
-#include <ros/ros.h>
-#include <image_transport/image_transport.h>
-#include <opencv2/highgui/highgui.hpp>
-#include <cv_bridge/cv_bridge.h>
-
-
-
 #define LED_ICON "\uf111"
 #define START_ICON "\uf04b"
 #define STOP_ICON "\uf04d"
@@ -242,24 +234,6 @@ bool update_texture(GLuint texture_id, GLenum format, const cv::Mat &texture) {
 
 cv::Mat input_feed;
 
-void imageCallback(const sensor_msgs::ImageConstPtr& msg)
-{
-  try
-  {
-
-  fprintf(stdout,"callback :D\n");
-
-     input_feed = cv_bridge::toCvCopy(msg, "bgr8")->image;
-
-  //    cv::imshow("view", cv_bridge::toCvShare(msg, "bgr8")->image);
-   cv::waitKey(30);
-  }
-  catch (cv_bridge::Exception& e)
-  {
-    ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
-  }
-}
-
 
 // Main code
 int main(int argc, char **argv) {
@@ -334,9 +308,9 @@ int main(int argc, char **argv) {
   // init buffers
 
   const cv::Mat input_image_1 = cv::imread(cv::String{input_image_1_path});
-  assert(input_image_1.channels() == 3 && input_image_1.cols == cols &&
+  /*assert(input_image_1.channels() == 3 && input_image_1.cols == cols &&
          input_image_1.rows == rows && input_image_1.isContinuous());
-
+*/
  /* Enable WEBCAM Feed*/
 
   cv::VideoCapture cap(0);
@@ -383,15 +357,6 @@ int main(int argc, char **argv) {
   int cycles_per_iteration = 5;
   
 
-  //ROS Integration
- /* 
-  ros::init(argc, argv, "image_listener");
-  ros::NodeHandle nh;
-
-  image_transport::ImageTransport it(nh);
-  image_transport::Subscriber sub = it.subscribe("image_raw", 1, imageCallback);
-*/
-
 
   // Main loop
   while (!done) {
@@ -413,9 +378,6 @@ int main(int argc, char **argv) {
           event.window.windowID == SDL_GetWindowID(window))
         done = true;
     }
-
-    //ROS Callback handling attached to the main loop
-   // ros::spinOnce();
 
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
