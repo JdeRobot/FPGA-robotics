@@ -14,6 +14,32 @@
 debug.log
 
 .vscode
+.idea
 obj_dir
 *.fst
 imgui.ini
+
+build
+
+*.d
+*.o
+*.bin
+*.elf
+*.map
+
+*.egg-info/
+
+# sbt specific
+.cache/
+.history/
+.lib/
+dist/*
+target
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+simWorkspace/
+tmp/
+null
