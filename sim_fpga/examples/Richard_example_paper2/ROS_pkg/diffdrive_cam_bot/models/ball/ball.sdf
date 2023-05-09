@@ -1,0 +1,59 @@
+<?xml version='1.0'?>
+
+<sdf version='1.4'>
+
+    <model name="ball">
+
+  <static>false</static>
+
+
+
+  <link name="ball_link">
+    <inertial>
+     <pose>1 0 0 0 0 0</pose>
+     <mass>2.0</mass>
+     <inertia>
+     <ixx>1.0</ixx>
+     <iyy>1.0</iyy>
+     <izz>1.0</izz>
+     </inertia>
+    </inertial>
+    <visual name='ball_vis'>
+     <pose>1 0 1 0 0 1</pose>
+      <geometry>
+        <sphere>
+	 <radius>0.1</radius>
+ 	</sphere>
+      </geometry>
+    <material>
+    <ambient>1 0 0 1</ambient>
+    <diffuse>1 0 0 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <emissive>0 0 0 0</emissive>
+    </material>
+
+    </visual>
+    <collision name='ball_collision'>
+     <pose>0 0 0 0 0 0</pose>
+      <geometry>
+        <sphere>
+	 <radius>0.1</radius>
+ 	</sphere>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--	  
+  <joint name="joint_baseLink_ball" type="continuous">
+    <parent link="baseLink"/>
+    <child link="ball"/>
+    <origin xyz="0.7 0 1"/>
+    <axis xyz="1 0 0"/>
+  </joint>
+	  -->
+
+
+    </model>
+
+
+</sdf>
