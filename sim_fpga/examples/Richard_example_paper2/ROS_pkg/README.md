@@ -1,5 +1,6 @@
 # ROS environment
 **ROS Distribution: Noetic**
+
 **Gazebo version: 11.12.0**
 
 **ROS dependencies:**
