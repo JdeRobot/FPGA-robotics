@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package>
+  <name>diffdrive_cam_bot</name>
+  <version>1.0.0</version>
+  <description>Differential Drive robot with Camera</description>
+
+  <maintainer email="rnicklasr@gmail.com">Richard A. Nicklas Rzepka</maintainer>
+  <author email="rnicklasr@gmail.com">Richard A. Nicklas Rzepka</author>
+
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>
