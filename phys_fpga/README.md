@@ -28,6 +28,8 @@ Video: https://youtu.be/PyhVvvYumsc
 
 ![OV7670 camera and ULX3S pin connection](ulx3s_ov7670_vga_interface_tr.png)
 
+See the [Alhambra II project](#alhambra-ii-icestudio-projects) to see the block diagram.
+
 ## ULX3S Apio projects
 
 
@@ -69,7 +71,7 @@ Port GP17-OV7670_PWDN didn't work when camera powerdown was assigned deep in the
 ![OV7670 camera and ULX3S pin connection](ulx3s_camera_vga_pmods.jpg)
 
 
-### [ov7670x2_colorcentroid_160x120](ulx3s/apio/ov7670x2_,colorcentroid_160x120)
+### [ov7670x2_colorcentroid_160x120](ulx3s/apio/ov7670x2_colorcentroid_160x120)
 
 Two cameras and VGA. 50MHz clock. Same as Xilinx Nexys4DDR project.
 Each camera image is 160x120. Color processing independently on each camera. Proximity and centroid.
@@ -168,6 +170,10 @@ Projects for the Alhambra II FPGA. There are two folders:
 
 
   ![OV7670 camera and alhambra pin connection](ov7670_alhambra_interface.png)
+
+  The block diagram is the following, which is the same for the Apio project, and also for the ULX3S examples
+
+  ![Block diagram of color filter](icestudio_colorproc.png)
 
 
 ### [ov7670_yuv_sobelfilter](alhambra_ii/icestudio/ov7670_yuv_sobelfilter)
