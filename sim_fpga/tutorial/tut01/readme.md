@@ -16,8 +16,8 @@ The input/output schematic of this module is shown in the following block diagra
 
 ![color processing module](color_proc_block.png)
 
-Our objective is to convert our UUT (Unit Under Test) into C++ using Verilator, and then create a testbench in C++ in which we provide the stimuli to the color processing module.
-Instead of generating the waveforms as in traditional testbenches, we are going to provide a real image and visualize the filtered image.
+Our objective is to convert the color processing block (the Unit Under Test: UUT) from Verilog into C++ using Verilator, and then create a testbench in C++ in which we provide the stimuli to the UUT.
+Instead of generating the waveforms as in traditional testbenches, we are going to provide a C++ generated image and visualize the filtered image.
 This is one of the great advantages of this approach because it is very difficult to appreciate the color filtering results by looking at waveforms.
 
 

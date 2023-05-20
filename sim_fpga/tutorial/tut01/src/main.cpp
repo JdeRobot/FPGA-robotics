@@ -36,8 +36,11 @@
 #define STOP_ICON "\uf04d"
 #define STEP_ICON "\uf051"
 #define RESET_ICON "\uf0e2"
+#define FILTER_ICON "\uf0b0"
+#define FILTERS_ICON "\ue17e"
 
 typedef cv::Vec<uint8_t, 3> BGRPixel;
+// the processed image has a 4th channel, which is Alpha: transparency
 typedef cv::Vec<uint8_t, 4> BGRAPixel;
 
 const int n_leds = 8;
@@ -46,9 +49,9 @@ const int IMG_ROWS = 60;
 const int IMG_PXLS = IMG_COLS * IMG_ROWS;
 const uint8_t ALPHA_SOLID = 255;
 
-const char input_image_1_path[] = ASSETS_DIR "/red_ball_left_80x60.png";
-const char input_image_2_path[] = ASSETS_DIR "/red_ball_center_80x60.png";
-const char input_image_3_path[] = ASSETS_DIR "/red_ball_right_80x60.png";
+// These images have been generated in utils/scripts/gen_test_img.py
+const char input_image_1_path[] = ASSETS_DIR "/colortest_80x60_div_r4g4b4.png";
+const char input_image_2_path[] = ASSETS_DIR "/colortest_80x60_div_r8g8b16.png";
 
 const char font_awesome_path[] = ASSETS_DIR "/fa-solid-900.ttf";
 
@@ -64,8 +67,10 @@ class SimElement {
 class InputDriver : public SimElement
 {
  public:
-  InputDriver(Vcolor_proc *uut)
+  InputDriver(Vcolor_proc *uut,
+              const cv::Mat **input_image)
       : uut{uut},
+        input_image{input_image},
         input_addr{0} {}
 
   virtual ~InputDriver() {}
@@ -77,11 +82,14 @@ class InputDriver : public SimElement
     }
 
   virtual void preCycle() {
+    auto image_data = (*this->input_image)->ptr<BGRPixel>();
+    auto px = image_data[this->input_addr];
     this->uut->orig_addr = this->input_addr;
-    // The image is 12-bit RGB444, we have 4096 (16x16x16) colors
-    // The image has 4800 pixels (80x60). Lets make the image change
-    // color every pixel
-    this->uut->orig_pxl = (this->input_addr) % IMG_PXLS;
+
+    uint8_t b = (px[0] >> 4) & 0xF;
+    uint8_t g = (px[1] >> 4) & 0xF;
+    uint8_t r = (px[2] >> 4) & 0xF;
+    this->uut->orig_pxl = (r << 8) | (g << 4) | b;
   }
 
   virtual void postCycle() {
@@ -120,7 +128,7 @@ class OutputMonitor : public SimElement {
 
   virtual void postCycle() {
     if (this->uut->proc_we == 1) { //if write enable
-      // We are going to save the pixels into an image:
+      // We are going to save the processed pixels from the UUT into an image:
       auto img_data = this->output_image.ptr<BGRAPixel>();
       // take the direction of the pixel that is being received:
       auto px = &(img_data[this->uut->proc_addr]);
@@ -202,14 +210,16 @@ void resetUUT(Vcolor_proc *uut, const std::vector<SimElement *> &sim_elements,
 }
 
 // Change the color filter byt having a pulse of proc_ctrl
+// to make it simpler, during this time, 
 //               __    __
 // clk        __|  |__|  |
 //            _____
 // proc_ctrl |     |______
 
-void change_filter_UUT(Vcolor_proc *uut, const std::vector<SimElement *> &sim_elements,
+void change_colorfilter_UUT(Vcolor_proc *uut, const std::vector<SimElement *> &sim_elements,
               vluint64_t *sim_time, VerilatedVcdC *m_trace = 0,
               int reset_cycles = 10) {
+  // Full clock cycle with proc_ctrl = '1'
   uut->clk = 0;
   uut->proc_ctrl = 1;
   uut->eval();
@@ -220,6 +230,7 @@ void change_filter_UUT(Vcolor_proc *uut, const std::vector<SimElement *> &sim_el
   uut->eval();
   dumpTrace(m_trace, sim_time, true);
 
+  // Full clock cycle with proc_ctrl = '0'
   uut->clk = 0;
   uut->proc_ctrl = 0;
   uut->eval();
@@ -316,7 +327,7 @@ int main(int argc, char **argv) {
                         SDL_WINDOW_ALLOW_HIGHDPI);
   SDL_Window *window =
       SDL_CreateWindow("Pixel Processor simulator", SDL_WINDOWPOS_CENTERED,
-                       SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags);
+                       SDL_WINDOWPOS_CENTERED, 640, 480, window_flags);
   SDL_GLContext gl_context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, gl_context);
   SDL_GL_SetSwapInterval(1);  // Enable vsync
@@ -328,11 +339,13 @@ int main(int argc, char **argv) {
   // Load a first font
   ImFont *font = io.Fonts->AddFontDefault();
 
-  static const ImWchar icons_ranges[] = {0xe005, 0xf8ff, 0};  // Will not be copied by AddFont* so keep in scope.
+  // Will not be copied by AddFont* so keep in scope.
+  static const ImWchar icons_ranges[] = {0xe005, 0xf8ff, 0};
   ImFontConfig icons_config;
   icons_config.MergeMode = true;
   icons_config.PixelSnapH = true;
-  io.Fonts->AddFontFromFileTTF(font_awesome_path, 14.0f, &icons_config, icons_ranges);  // Merge into first font
+  // Merge into first font
+  io.Fonts->AddFontFromFileTTF(font_awesome_path, 14.0f, &icons_config, icons_ranges);
   io.Fonts->Build();
 
   // Setup Dear ImGui style
@@ -350,9 +363,6 @@ int main(int argc, char **argv) {
   const cv::Mat input_image_2 = cv::imread(cv::String{input_image_2_path});
   assert(input_image_2.channels() == 3 && input_image_2.cols == IMG_COLS &&
          input_image_2.rows == IMG_ROWS && input_image_2.isContinuous());
-  const cv::Mat input_image_3 = cv::imread(cv::String{input_image_3_path});
-  assert(input_image_3.channels() == 3 && input_image_3.cols == IMG_COLS &&
-         input_image_3.rows == IMG_ROWS && input_image_3.isContinuous());
 
   // output image is cols x row, with 4 channels (C4) of 8-bit unsigned
   cv::Mat output_image(IMG_ROWS, IMG_COLS, CV_8UC4);
@@ -362,7 +372,6 @@ int main(int argc, char **argv) {
   // create & load input/output textures
   GLuint input_texture_1_id = create_texture(GL_BGR, input_image_1);
   GLuint input_texture_2_id = create_texture(GL_BGR, input_image_2);
-  GLuint input_texture_3_id = create_texture(GL_BGR, input_image_3);
 
   GLuint output_texture_id = create_texture(GL_BGRA, output_image);
 
@@ -372,11 +381,12 @@ int main(int argc, char **argv) {
 
   const uint8_t *input_buffer = input_image_1.data;
   const cv::Mat *input_image = &input_image_1;
+
   // create an array of simulation elements, which are the input driver
   // and the monitor of the outputs
   std::vector<SimElement *> simElements;
   // add these simulation elements to the array:
-  simElements.push_back(new InputDriver(uut));
+  simElements.push_back(new InputDriver(uut, &input_image));
   simElements.push_back(new OutputMonitor(uut, output_image));
 
   vluint64_t sim_time = 0;
@@ -425,14 +435,14 @@ int main(int argc, char **argv) {
 
     // main window
     {
-      ImGui::Begin("Main");
-      ImGui::Checkbox("Demo Window", &show_demo_window);
+      ImGui::Begin("Color processor");
+      //ImGui::Checkbox("Demo Window", &show_demo_window);
 
       ImGui::InputInt("Frames per iteration", &frames_per_iteration);
       running ^= ImGui::Button(running ? STOP_ICON " Stop" : START_ICON " Start");ImGui::SameLine();
       do_reset = ImGui::Button(RESET_ICON " Reset");
 
-      change_filter = ImGui::Button(RESET_ICON " Filter");
+      change_filter = ImGui::Button(FILTER_ICON " Change filter");
 
       if (running || ImGui::Button(STEP_ICON " Step frame")) {
         step_n_cycles = frames_per_iteration * IMG_PXLS;
@@ -449,11 +459,6 @@ int main(int argc, char **argv) {
       if (ImGui::ImageButton((void *)(intptr_t)input_texture_2_id,
                              ImVec2(input_image->cols, input_image->rows))) {
         input_image = &input_image_2;
-      }
-      ImGui::SameLine();
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_3_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_3;
       }
 
       ImGui::Text("wRgbfilter=%x", wRgbfilter);
@@ -479,7 +484,6 @@ int main(int argc, char **argv) {
                    ImVec2(output_image.cols, output_image.rows));
 
       ImGui::Text("Top level state");
-      ImGui::Text("[Leds]");
       ImGui::SameLine();
       /*
       for (int i = n_leds; i > 0; i--) {
@@ -503,7 +507,7 @@ int main(int argc, char **argv) {
     }
 
     if (change_filter) {
-      change_filter_UUT(uut, simElements, &sim_time, m_trace);
+      change_colorfilter_UUT(uut, simElements, &sim_time, m_trace);
     }
 
     while (!Verilated::gotFinish() && step_n_cycles > 0) {
