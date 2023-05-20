@@ -7,6 +7,12 @@ import imageio as iio
 N_COLS = 80 # works better with powers of 2
 N_ROWS = 60 # works better with powers of 2
 
+N_COLS = 128 # works better with powers of 2
+N_ROWS = 128 # works better with powers of 2
+
+N_COLS = 2048 # works better with powers of 2
+N_ROWS = 2048 # works better with powers of 2
+
 # Blue will be the large division. i.e:
 #
 #       x0        x1
@@ -45,7 +51,19 @@ COLOR_CH_BITS = 8  # bits for the color (dont change it for now)
 
 RED_DIV   = 4  # should be divisible by 2
 GREEN_DIV = 4  # should be divisible by 2
-BLUE_DIV  = 4  # should be divisible by 4
+BLUE_DIV  = 4  # should be powers of 4
+
+RED_DIV   = 8  # should be divisible by 2
+GREEN_DIV = 8  # should be divisible by 2
+BLUE_DIV  = 16  # should be powers of 4
+
+RED_DIV   = 16  # should be divisible by 2
+GREEN_DIV = 16  # should be divisible by 2
+BLUE_DIV  = 16  # should be divisible by 4
+
+RED_DIV   = 64  # should be divisible by 2
+GREEN_DIV = 64  # should be divisible by 2
+BLUE_DIV  = 64  # should be powers of 4
 
 # these are the number of MSB that will be used for the color
 red_bits   = int(math.log(RED_DIV,2))  # 2 bits (for div 4)
@@ -121,6 +139,13 @@ for row_i in range (N_ROWS):
     green_row_bin = min(in_row_i // green_row_height, GREEN_DIV-1) # equally divide the rows
     #print('green_row_bin: ' + str(green_row_bin))
     green_color = (green_row_bin << sh_green)
+    green_color_left = green_color
+    while green_color_left > 0: # the LSB are all zeros, so make them proportional to the MSB
+        # so if the MSB of the color is 10 make it 1010 1010, instead of 1000 0000
+        #                            is 11 make it 1111 1111, instead of 1100 0000
+        #                            is 01 make it 0101 0101, instead of 0100 0000
+        green_color_left = green_color_left >> green_bits
+        green_color += green_color_left
     #print('green color: ' + str(green_color))
     for col_i in range (N_COLS):
         blue_col_i = min(col_i // blue_col_width, BLUE_DIV/2-1) # which blue column grid
@@ -128,12 +153,20 @@ for row_i in range (N_ROWS):
         blue_col_color = blue_col_i << sh_blue
 
         #print('in_col_i: ' + str(in_col_i))
-        red_col_bin = in_col_i // red_col_width # equally divide the columns
+        red_col_bin = min(in_col_i // red_col_width, RED_DIV-1)  # equally divide the columns
         #print('red_col_bin: ' + str(red_col_bin))
-        red_color = min(255, (red_col_bin << sh_red))
+        red_color = red_col_bin << sh_red
+        red_color_left = red_color
+        while red_color_left > 0: # the LSB are all zeros, so make them proportional to the MSB
+            red_color_left = red_color_left >> red_bits
+            red_color += red_color_left
         #print('red color: ' + str(red_color))
 
         blue_color = blue_row_color + blue_col_color
+        blue_color_left = blue_color
+        while blue_color_left > 0: # the LSB are all zeros, so make them proportional to the MSB
+            blue_color_left = blue_color_left >> blue_bits
+            blue_color += blue_color_left
         #print('blue color: ' + str(blue_color))
         np_img[row_i, col_i] = (red_color, green_color, blue_color)
 
