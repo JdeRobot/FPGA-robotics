@@ -122,9 +122,10 @@ class FilterChange : public SimElement
 
     virtual ~FilterChange() {}
     virtual void onReset() {}
-    virtual void preCycle() {}
-    virtual void postCycle() {
+    virtual void preCycle() {
       this->uut->proc_ctrl = *(this->change_filter);
+    }
+    virtual void postCycle() {
       *change_filter = false; // change filter only once
     }
   private:
@@ -373,6 +374,7 @@ int main(int argc, char **argv) {
   bool show_demo_window = false;
   bool running = false;
   bool do_reset = false;
+  bool do_change_filter = false;
   bool change_filter = false;
   int step_n_cycles = 0;
   int frames_per_iteration = 1;
@@ -425,7 +427,6 @@ int main(int argc, char **argv) {
     // ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear
     // ImGui!).
     if (show_demo_window) ImGui::ShowDemoWindow(&show_demo_window);
-
     // main window
     {
       ImGui::Begin("Color processor");
@@ -435,7 +436,11 @@ int main(int argc, char **argv) {
       running ^= ImGui::Button(running ? STOP_ICON " Stop" : START_ICON " Start");ImGui::SameLine();
       do_reset = ImGui::Button(RESET_ICON " Reset");
 
-      change_filter = ImGui::Button(FILTER_ICON " Change filter");
+      do_change_filter = ImGui::Button(FILTER_ICON " Change filter");
+      if (do_change_filter) {
+        // if we dont do this, the filter change will be lost if not running the simulation
+        change_filter = true;
+      }
 
       if (running || ImGui::Button(STEP_ICON " Step frame")) {
         step_n_cycles = frames_per_iteration * IMG_PXLS;
@@ -454,7 +459,7 @@ int main(int argc, char **argv) {
         input_image = &input_image_2;
       }
 
-      ImGui::Text("RGB filter=%x", rgb_filter);
+      ImGui::Text("RGB filter: %x", rgb_filter);
       red_filter_on   = ((rgb_filter & 0x04) != 0);
       green_filter_on = ((rgb_filter & 0x02) != 0);
       blue_filter_on  = ((rgb_filter & 0x01) != 0);
@@ -463,19 +468,19 @@ int main(int argc, char **argv) {
         ImGui::SameLine();
       } 
       if (green_filter_on) {
-        ImGui::Text(" Green");
+        ImGui::Text("Green ");
         ImGui::SameLine();
       } 
       if (blue_filter_on) {
-        ImGui::Text(" Blue");
+        ImGui::Text("Blue ");
         ImGui::SameLine();
       } 
       if (rgb_filter == 0) {
-        ImGui::Text("No");
+        ImGui::Text("No ");
         ImGui::SameLine();
       } else {
       }
-      ImGui::Text(" filter");
+      ImGui::Text("Filter");
 
       ImGui::Text("Output frame buffer %d x %d (tex id=%p)", output_image.cols,
                   output_image.rows, (void *)(intptr_t)output_texture_id);
