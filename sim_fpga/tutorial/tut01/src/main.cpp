@@ -99,7 +99,6 @@ class InputDriver : public SimElement
 
  private:
   Vcolor_proc *const uut;
-  const uint8_t *wRgbfilter;
   const cv::Mat **input_image;
   size_t input_addr;
   size_t input_addr_delay;
@@ -135,8 +134,9 @@ class FilterChange : public SimElement
 
 class OutputMonitor : public SimElement {
  public:
-  OutputMonitor(Vcolor_proc *uut, cv::Mat &output_image)
-      : uut{uut}, output_image{output_image} {}
+  OutputMonitor(Vcolor_proc *uut, cv::Mat &output_image,
+        uint8_t *rgb_filter)
+      : uut{uut}, output_image{output_image}, rgb_filter(rgb_filter) {}
 
   virtual ~OutputMonitor() {}
 
@@ -156,11 +156,13 @@ class OutputMonitor : public SimElement {
       (*px)[2] = ((this->uut->proc_pxl >> 8) & 0xF) << 4; //red: bits 11..8
       (*px)[3] = ALPHA_SOLID; //alpha
     }
+    *(this->rgb_filter) = this->uut->rgbfilter;
   }
 
  private:
   Vcolor_proc *const uut;
   cv::Mat output_image;
+  uint8_t *rgb_filter;
 };
 
 Vcolor_proc *initUUT(int argc, char **argv) {
@@ -352,7 +354,6 @@ int main(int argc, char **argv) {
   // output image is cols x row, with 4 channels (C4) of 8-bit unsigned
   cv::Mat output_image(IMG_ROWS, IMG_COLS, CV_8UC4);
 
-  uint8_t wRgbfilter = 0x00;  // no filter
 
   // create & load input/output textures
   GLuint input_texture_1_id = create_texture(GL_BGR, input_image_1);
@@ -377,13 +378,19 @@ int main(int argc, char **argv) {
   int frames_per_iteration = 1;
   int cycles_per_iteration = frames_per_iteration * IMG_PXLS;
 
+  // filter, it is a 3 bit signal, 
+  uint8_t rgb_filter   = 0x00;  // no filter, it is a 3 bit signal
+  bool red_filter_on   = false;
+  bool green_filter_on = false;
+  bool blue_filter_on  = false;
+
   // create an array of simulation elements, which are the input driver
   // and the monitor of the outputs
   std::vector<SimElement *> simElements;
   // add these simulation elements to the array:
   simElements.push_back(new InputDriver(uut, &input_image));
   simElements.push_back(new FilterChange(uut, &change_filter));
-  simElements.push_back(new OutputMonitor(uut, output_image));
+  simElements.push_back(new OutputMonitor(uut, output_image, &rgb_filter));
 
   vluint64_t sim_time = 0;
   resetUUT(uut, simElements, &sim_time, m_trace); // reset unit under test
@@ -447,22 +454,28 @@ int main(int argc, char **argv) {
         input_image = &input_image_2;
       }
 
-      ImGui::Text("wRgbfilter=%x", wRgbfilter);
-      static bool red_filter_check = false;
-      static bool green_filter_check = false;
-      static bool blue_filter_check = false;
-      bool wRgbfilter_updated = false;
-      wRgbfilter_updated |= ImGui::Checkbox("red", &red_filter_check);
-      ImGui::SameLine();
-      wRgbfilter_updated |= ImGui::Checkbox("green", &green_filter_check);
-      ImGui::SameLine();
-      wRgbfilter_updated |= ImGui::Checkbox("blue", &blue_filter_check);
-
-      if (wRgbfilter_updated) {
-        wRgbfilter = (((uint8_t)blue_filter_check) << 2) |
-                     (((uint8_t)green_filter_check) << 1) |
-                     (uint8_t)red_filter_check;
+      ImGui::Text("RGB filter=%x", rgb_filter);
+      red_filter_on   = ((rgb_filter & 0x04) != 0);
+      green_filter_on = ((rgb_filter & 0x02) != 0);
+      blue_filter_on  = ((rgb_filter & 0x01) != 0);
+      if (red_filter_on) {
+        ImGui::Text("Red ");
+        ImGui::SameLine();
+      } 
+      if (green_filter_on) {
+        ImGui::Text(" Green");
+        ImGui::SameLine();
+      } 
+      if (blue_filter_on) {
+        ImGui::Text(" Blue");
+        ImGui::SameLine();
+      } 
+      if (rgb_filter == 0) {
+        ImGui::Text("No");
+        ImGui::SameLine();
+      } else {
       }
+      ImGui::Text(" filter");
 
       ImGui::Text("Output frame buffer %d x %d (tex id=%p)", output_image.cols,
                   output_image.rows, (void *)(intptr_t)output_texture_id);
