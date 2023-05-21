@@ -20,6 +20,12 @@ Our objective is to convert the color processing block (the Unit Under Test: UUT
 Instead of generating the waveforms as in traditional testbenches, we are going to provide a C++ generated image and visualize the filtered image.
 This is one of the great advantages of this approach because it is very difficult to appreciate the color filtering results by looking at waveforms.
 
+With this GUI, you can select any of the color test images and run a simulation in which the color processing is performed by the verilog module, which has been converted into C++ using Verilator.
+As a result you can view the processed image by the verilog module:
+
+![Simulationn GUI](tut01_gui.png)
+
+
 
 
 
