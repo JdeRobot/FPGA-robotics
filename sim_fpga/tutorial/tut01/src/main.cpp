@@ -71,38 +71,30 @@ class InputDriver : public SimElement
               const cv::Mat **input_image)
       : uut{uut},
         input_image{input_image},
-        input_addr{0} {}
+        input_addr{0},
+        input_addr_delay{0} {}
 
   virtual ~InputDriver() {}
 
   virtual void onReset() {
-    this->input_addr = 0;
-    this->uut->orig_addr = 0;
     this->uut->orig_pxl = 0;
-    }
+  }
 
   virtual void preCycle() {
+  }
+
+  virtual void postCycle() {
+    // take the address asked from the UUT
+    this->input_addr = this->uut->orig_addr;
+    // put the pixels of the address asked, after the clock is one
     auto image_data = (*this->input_image)->ptr<BGRPixel>();
-    auto px = image_data[this->input_addr];
-    this->uut->orig_addr = this->input_addr;
+    auto px = image_data[this->input_addr_delay];
 
     uint8_t b = (px[0] >> 4) & 0xF;
     uint8_t g = (px[1] >> 4) & 0xF;
     uint8_t r = (px[2] >> 4) & 0xF;
     this->uut->orig_pxl = (r << 8) | (g << 4) | b;
-  }
-
-  virtual void postCycle() {
-
-    this->input_addr++;
-    if (this->input_addr >= IMG_PXLS) {
-      this->input_addr = 0;
-      this->col_num = 0;
-      this->row_num = 0;
-    } else if (this->col_num >= IMG_COLS) {
-      this->col_num = 0;
-      this->row_num++;
-    }
+    this->input_addr_delay = this->input_addr;
   }
 
  private:
@@ -110,9 +102,35 @@ class InputDriver : public SimElement
   const uint8_t *wRgbfilter;
   const cv::Mat **input_image;
   size_t input_addr;
-  int col_num = 0;
-  int row_num = 0;
+  size_t input_addr_delay;
   
+};
+
+// Change the color filter byt having a pulse of proc_ctrl
+// to make it simpler, during this time, 
+//               __    __
+// clk        __|  |__|  |
+//            _____
+// proc_ctrl |     |______
+
+class FilterChange : public SimElement
+{
+  public:
+    FilterChange(Vcolor_proc *uut,
+                 bool *change_filter)
+      : uut{uut},
+        change_filter{change_filter} {}
+
+    virtual ~FilterChange() {}
+    virtual void onReset() {}
+    virtual void preCycle() {}
+    virtual void postCycle() {
+      this->uut->proc_ctrl = *(this->change_filter);
+      *change_filter = false; // change filter only once
+    }
+  private:
+    Vcolor_proc *const uut;
+    bool *change_filter;
 };
 
 class OutputMonitor : public SimElement {
@@ -207,39 +225,6 @@ void resetUUT(Vcolor_proc *uut, const std::vector<SimElement *> &sim_elements,
   uut->rst = 0;
 
   for (SimElement *e : sim_elements) e->onReset();
-}
-
-// Change the color filter byt having a pulse of proc_ctrl
-// to make it simpler, during this time, 
-//               __    __
-// clk        __|  |__|  |
-//            _____
-// proc_ctrl |     |______
-
-void change_colorfilter_UUT(Vcolor_proc *uut, const std::vector<SimElement *> &sim_elements,
-              vluint64_t *sim_time, VerilatedVcdC *m_trace = 0,
-              int reset_cycles = 10) {
-  // Full clock cycle with proc_ctrl = '1'
-  uut->clk = 0;
-  uut->proc_ctrl = 1;
-  uut->eval();
-  dumpTrace(m_trace, sim_time, true);
-
-  uut->clk = 1;
-  uut->proc_ctrl = 1;
-  uut->eval();
-  dumpTrace(m_trace, sim_time, true);
-
-  // Full clock cycle with proc_ctrl = '0'
-  uut->clk = 0;
-  uut->proc_ctrl = 0;
-  uut->eval();
-  dumpTrace(m_trace, sim_time, true);
-
-  uut->clk = 1;
-  uut->proc_ctrl = 0;
-  uut->eval();
-  dumpTrace(m_trace, sim_time, true);
 }
 
 GLuint create_texture(GLenum format, const cv::Mat &texture) {
@@ -382,16 +367,6 @@ int main(int argc, char **argv) {
   const uint8_t *input_buffer = input_image_1.data;
   const cv::Mat *input_image = &input_image_1;
 
-  // create an array of simulation elements, which are the input driver
-  // and the monitor of the outputs
-  std::vector<SimElement *> simElements;
-  // add these simulation elements to the array:
-  simElements.push_back(new InputDriver(uut, &input_image));
-  simElements.push_back(new OutputMonitor(uut, output_image));
-
-  vluint64_t sim_time = 0;
-  resetUUT(uut, simElements, &sim_time, m_trace); // reset unit under test
-
   // Our state
   bool done = false;
   bool show_demo_window = false;
@@ -401,6 +376,17 @@ int main(int argc, char **argv) {
   int step_n_cycles = 0;
   int frames_per_iteration = 1;
   int cycles_per_iteration = frames_per_iteration * IMG_PXLS;
+
+  // create an array of simulation elements, which are the input driver
+  // and the monitor of the outputs
+  std::vector<SimElement *> simElements;
+  // add these simulation elements to the array:
+  simElements.push_back(new InputDriver(uut, &input_image));
+  simElements.push_back(new FilterChange(uut, &change_filter));
+  simElements.push_back(new OutputMonitor(uut, output_image));
+
+  vluint64_t sim_time = 0;
+  resetUUT(uut, simElements, &sim_time, m_trace); // reset unit under test
 
   // Main loop
   while (!done) {
@@ -504,10 +490,6 @@ int main(int argc, char **argv) {
     // uut eval
     if (do_reset) {
       resetUUT(uut, simElements, &sim_time, m_trace);
-    }
-
-    if (change_filter) {
-      change_colorfilter_UUT(uut, simElements, &sim_time, m_trace);
     }
 
     while (!Verilated::gotFinish() && step_n_cycles > 0) {
