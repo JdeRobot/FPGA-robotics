@@ -141,7 +141,7 @@ module color_proc
 
   // This is a combinational process because orig_pxl is already delayed with
   // respect to the orig_addr
-  always @ (orig_pxl, rgb_filter_aux) // should include RGB mode
+  always @ (*) //
   begin
     // check on RED
     case (rgb_filter_aux)

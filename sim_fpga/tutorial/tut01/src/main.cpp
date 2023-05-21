@@ -1,9 +1,7 @@
-// 
-//    --------     --------      -------
-//   | Input  |    | 
-//   |        |--->
-//   | Driver |     
-//    --------      --------      -------
+//  Authors:
+//  Original version: David Lobato
+//  Modified: Felipe Machado, https://github.com/felipe-m
+
 // imgui headers
 #include <SDL.h>
 #include <SDL_opengl.h>
@@ -143,9 +141,8 @@ class OutputMonitor : public SimElement {
 
   virtual void onReset() {}
 
-  virtual void preCycle() { }
-
-  virtual void postCycle() {
+  virtual void preCycle() { // falling edge
+    // I would say
     if (this->uut->proc_we == 1) { //if write enable
       // We are going to save the processed pixels from the UUT into an image:
       auto img_data = this->output_image.ptr<BGRAPixel>();
@@ -157,6 +154,8 @@ class OutputMonitor : public SimElement {
       (*px)[2] = ((this->uut->proc_pxl >> 8) & 0xF) << 4; //red: bits 11..8
       (*px)[3] = ALPHA_SOLID; //alpha
     }
+  }
+  virtual void postCycle() {
     *(this->rgb_filter) = this->uut->rgbfilter;
   }
 
@@ -436,27 +435,17 @@ int main(int argc, char **argv) {
       running ^= ImGui::Button(running ? STOP_ICON " Stop" : START_ICON " Start");ImGui::SameLine();
       do_reset = ImGui::Button(RESET_ICON " Reset");
 
-      do_change_filter = ImGui::Button(FILTER_ICON " Change filter");
-      if (do_change_filter) {
-        // if we dont do this, the filter change will be lost if not running the simulation
-        change_filter = true;
-      }
-
       if (running || ImGui::Button(STEP_ICON " Step frame")) {
         step_n_cycles = frames_per_iteration * IMG_PXLS;
       }
-
-      ImGui::Text("Input frame buffer %d x %d (tex id=%p)", input_image->cols,
-                  input_image->rows, (void *)(intptr_t)input_texture_1_id);
-      ImVec2 pos = ImGui::GetCursorScreenPos();
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_1_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_1;
-      }
-      ImGui::SameLine();
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_2_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_2;
+      if (change_filter == false) {
+        do_change_filter = ImGui::Button(FILTER_ICON " Change filter");
+        if (do_change_filter) {
+          // if we dont do this, the filter change will be lost if not running the simulation
+          change_filter = true;
+        }
+      } else {
+        ImGui::TextColored(ImVec4(1.0f,0,0,1.0f),"Step or Start simulation to change filter");
       }
 
       ImGui::Text("RGB filter: %x", rgb_filter);
@@ -481,6 +470,20 @@ int main(int argc, char **argv) {
       } else {
       }
       ImGui::Text("Filter");
+
+      ImGui::Text("Input frame buffer %d x %d (tex id=%p)", input_image->cols,
+                  input_image->rows, (void *)(intptr_t)input_texture_1_id);
+      ImVec2 pos = ImGui::GetCursorScreenPos();
+      if (ImGui::ImageButton((void *)(intptr_t)input_texture_1_id,
+                             ImVec2(input_image->cols, input_image->rows))) {
+        input_image = &input_image_1;
+      }
+      ImGui::SameLine();
+      if (ImGui::ImageButton((void *)(intptr_t)input_texture_2_id,
+                             ImVec2(input_image->cols, input_image->rows))) {
+        input_image = &input_image_2;
+      }
+
 
       ImGui::Text("Output frame buffer %d x %d (tex id=%p)", output_image.cols,
                   output_image.rows, (void *)(intptr_t)output_texture_id);
