@@ -43,7 +43,8 @@ module color_proc
     input          rst,       //reset, active high
     input          clk,       //fpga clock
     input          proc_ctrl, //input to control the processing (select color)
-    // Address and pixel of original image
+    // Address and pixel of original image. The corresponding pixel arrives
+    // a clock cycle later than the requested address
     input  [c_nb_buf-1:0]      orig_pxl,  //pixel from original image
     output [c_nb_img_pxls-1:0] orig_addr, //pixel mem address original img
     // Address and pixel of processed image
@@ -66,7 +67,7 @@ module color_proc
 
   assign rgbfilter = rgb_filter_aux;
 
-  parameter  BLACK_PXL = {c_nb_img_pxls{1'b0}};
+  parameter  BLACK_PXL = {c_nb_buf{1'b0}};
 
   always @ (posedge rst, posedge clk)
   begin
@@ -138,53 +139,55 @@ module color_proc
   assign orig_addr = cnt_pxl;
   assign proc_addr = cnt_pxl_proc;
 
-  always @ (orig_pxl, rgb_filter_aux) // should include RGB mode
+  // This is a combinational process because orig_pxl is already delayed with
+  // respect to the orig_addr
+  always @ (*) //
   begin
     // check on RED
     case (rgb_filter_aux)
       3'b000: // no filter, output same as input
-        proc_pxl <= orig_pxl;
+        proc_pxl = orig_pxl;
       3'b100: begin // red filter
         if (orig_pxl[c_msb_red])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b010: begin // green filter
         if (orig_pxl[c_msb_green])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b001: begin // filter blue
         if (orig_pxl[c_msb_blue])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b110: begin // filter red and green
         if (orig_pxl[c_msb_red] & orig_pxl[c_msb_green])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b101: begin // filter red and blue
         if (orig_pxl[c_msb_red] & orig_pxl[c_msb_blue])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b011: begin // filter green and blue
         if (orig_pxl[c_msb_green] & orig_pxl[c_msb_blue])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b111: begin // red, green and blue filter
         if (orig_pxl[c_msb_red] & orig_pxl[c_msb_green] & orig_pxl[c_msb_blue])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
     endcase
   end
