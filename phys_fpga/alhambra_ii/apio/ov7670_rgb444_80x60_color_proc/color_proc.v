@@ -135,53 +135,53 @@ module color_proc
   assign orig_addr = cnt_pxl;
   assign proc_addr = cnt_pxl_proc;
 
-  always @ (orig_pxl, rgb_filter) // should include RGB mode
+  always @ (*) // should include RGB mode
   begin
     // check on RED
     case (rgb_filter)
       3'b000: // no filter, output same as input
-        proc_pxl <= orig_pxl;
+        proc_pxl = orig_pxl;
       3'b100: begin // red filter
         if (orig_pxl[c_msb_red])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b010: begin // green filter
         if (orig_pxl[c_msb_green])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b001: begin // filter blue
         if (orig_pxl[c_msb_blue])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b110: begin // filter red and green
         if (orig_pxl[c_msb_red] & orig_pxl[c_msb_green])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b101: begin // filter red and blue
         if (orig_pxl[c_msb_red] & orig_pxl[c_msb_blue])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b011: begin // filter green and blue
         if (orig_pxl[c_msb_green] & orig_pxl[c_msb_blue])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
       3'b111: begin // red, green and blue filter
         if (orig_pxl[c_msb_red] & orig_pxl[c_msb_green] & orig_pxl[c_msb_blue])
-          proc_pxl <= orig_pxl;
+          proc_pxl = orig_pxl;
         else
-          proc_pxl <= BLACK_PXL;
+          proc_pxl = BLACK_PXL;
       end
     endcase
   end
