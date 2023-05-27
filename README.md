@@ -11,19 +11,24 @@ Documentation License: [CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa
 
 ---
 
-## blocks
+## [blocks](./blocks)
 
 Verilog and Icestudio blocks
 
-## phys_fpga
+Includes Icestudio FPGA-Robotics Collection: [camera robot following an object](./blocks/icestudio/icestudioCollection/FPGA-Robotics-v1-stable)
 
-Projects implemented in physical FPGAs
 
-## sim_fpga
+## [phys_fpga](./phys_fpga)
 
-Simulated FPGA Projects using verilator
+Projects implemented in real(_physical_) FPGAs: Alhambra II, ULX3S and Nexys4
 
-## utils
+## [sim_fpga](./sim_fpga)
 
-Scripts and CAD files
+Simulated FPGA Projects using [Verilator](https://verilator.org/), C/C++ libraries, Gazebo and/or ROS.
+
+We simulate the behavior of the FPGA projects in an simulated environment interacting with either real or simulated cameras.
+
+## [utils](./utils)
+
+Some useful scripts and CAD files
 
