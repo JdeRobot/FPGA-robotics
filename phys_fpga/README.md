@@ -76,7 +76,15 @@ Port GP17-OV7670_PWDN didn't work when camera powerdown was assigned deep in the
 Two cameras and VGA. 50MHz clock. Same as Xilinx Nexys4DDR project.
 Each camera image is 160x120. Color processing independently on each camera. Proximity and centroid.
 
+
+Block diagram
+
+![Block diagram](./imgs/color_proc_2cam.png)
+
+Pin connection:
+
 ![OV7670 2 cameras and ULX3S pin connection](ulx3s_ov7670x2_vga_interface.png)
+
 
 
 ### [ov7670x3_colorcentroid_160x120](ulx3s/apio/ov7670x3_colorcentroid_160x120)
@@ -192,6 +200,8 @@ Projects for the Alhambra II FPGA. There are two folders:
 
   Same as the Apio ov7670_rgb444_80x60_color_centroid project
 
+  This project is included with motor control in the Icestudio FPGA-Robotics Collection: [../blocks/icestudio/icestudioCollection/FPGA-Robotics-v1-stable](../blocks/icestudio/icestudioCollection/FPGA-Robotics-v1-stable)
+
   
 ## Alhambra II Apio projects
 It is important to connect the camera with short wires (10 cm at most)
@@ -222,6 +232,11 @@ It is important to connect the camera with short wires (10 cm at most)
   
   The VGA shows where the horizontal centroid is and also the proximity of the object (counts how many pixels are detected), the result is reduced to 8 bits.
   Maximum value is when half of the pixels are detected. Then 1/3, 1/6, 1/12, 1/24, 1/48, 1/96, and less.
+
+
+    The simplified diagram is the following:
+
+  ![ov7670 color centroid diagram](./imgs/color_proc_1cam_sm.png)
   
   
 ### [ov7670_rgb_yuv_80x60](alhambra_ii/apio/ov7670_rgb_yuv_80x60)  
@@ -237,7 +252,7 @@ It is important to connect the camera with short wires (10 cm at most)
 ### [ov7670_rgb_yuv_80x60_50mhz](alhambra_ii/apio/ov7670_rgb_yuv_80x60_50mhz)      
 
   
-  The same as the previous, but configures the PLL to have a clock of 50MHz instead of 100MHz to see if there is any improvement. It doesnt seem to be; however, the timming analysis suggest a clock frequency of 80MHz (or less)
+  The same as the previous, but configures the PLL to have a clock of 50MHz instead of 100MHz to see if there is any improvement. It doesn't seem to be; however, the timming analysis suggest a clock frequency of 80MHz (or less)
 
   ![OV7670 camera and alhambra pin connection](ov7670_alhambra_interface.png)
   
@@ -253,8 +268,9 @@ It is important to connect the camera with short wires (10 cm at most)
 
 ### [ov7670_yuv_80x60_sobel_50mhz](alhambra_ii/apio/ov7670_yuv_80x60_sobel_50mhz)  
 
-  Same as previous, but configures the PLL to have a clock of 50MHz instead of 100MHz to see if there is any improvement. It doesnt seem to be; however, the timming analysis suggest a clock frequency of 80MHz (or less)
-  
+  Same as previous, but configures the PLL to have a clock of 50MHz instead of 100MHz to see if there is any improvement. It doesn't seem to be; however, the timing analysis suggest a clock frequency of 80MHz (or less).
+
+
    ![OV7670 camera and alhambra pin connection for YUV](ov7670_alhambra_interface_yuv.png)
 
 
@@ -262,7 +278,7 @@ It is important to connect the camera with short wires (10 cm at most)
   
 # Nexys4DDR Xilinx projects
 
-Interfacing the OV7670 camera with a Xilinx Nexys4 FPGA and displaying the video through VGA.  There are VHDL and verilog versions
+Interfacing the OV7670 camera with a Xilinx Nexys4 FPGA and displaying the video through VGA.  There are VHDL and Verilog versions
 
 ### [ov7670_rgb_yuv_80x60](xilinx_nexys4/ov7670_rgb_yuv_80x60) 
 
