@@ -79,7 +79,7 @@ Each camera image is 160x120. Color processing independently on each camera. Pro
 
 Block diagram
 
-![Block diagram](./imgs/color_proc_2cam.png)
+![Block diagram](./imgs/color_proc_2cam_bg.png)
 
 Pin connection:
 
@@ -234,7 +234,7 @@ It is important to connect the camera with short wires (10 cm at most)
   Maximum value is when half of the pixels are detected. Then 1/3, 1/6, 1/12, 1/24, 1/48, 1/96, and less.
 
 
-    The simplified diagram is the following:
+  The simplified diagram is the following:
 
   ![ov7670 color centroid diagram](./imgs/color_proc_1cam_sm.png)
   
