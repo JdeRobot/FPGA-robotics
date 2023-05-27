@@ -3,7 +3,7 @@
 [![Icestudio](https://img.shields.io/badge/collection-icestudio-blue.svg)](https://github.com/FPGAwars/icestudio)
 ![Version](https://img.shields.io/badge/version-v1.0-orange.svg)
 
-JdeRobot collection in the development area of Reconfigurable Computing in Robotics. FPGA-robotics try to design your robot intelligence with IceStudio blocks.
+JdeRobot collection in the development area of Reconfigurable Computing in Robotics. FPGA-robotics  designs the robot control using IceStudio blocks.
 
 This collection contains the necessary blocks for the GoPiGo3 robot and examples of how to use it with Alhambra II.
 
