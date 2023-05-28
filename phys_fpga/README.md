@@ -79,7 +79,7 @@ Each camera image is 160x120. Color processing independently on each camera. Pro
 
 Block diagram
 
-![Block diagram](./imgs/color_proc_2cam_bg.png)
+![Block diagram](./imgs/color_proc_2cam_vga_sm.png)
 
 Pin connection:
 

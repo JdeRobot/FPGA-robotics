@@ -50,7 +50,10 @@ Follow us:
 	
 ## Examples
 * **ov7670_vga**: Example to use the camera and display the image through the VGA on the screen.
-* **followRedBall_v7**: Example following an object with different colors depending on the filter selected with SW2 (red, green, blue, cyan, yellow, magenta and white).
+* **followRedBall_v7**: Example following an object with different colors depending on the filter selected with SW2 (red, green, blue, cyan, yellow, magenta and white).  
+ 
+    Diagram:
+  ![Diagram of followRedBall_v7](color_proc_2cam_bg.png)
 
 ## Authors
 * [JdeRobot](https://github.com/JdeRobot/FPGA-robotics)
