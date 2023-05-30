@@ -50,13 +50,27 @@ const int IMG_ROWS = 120;
 const int IMG_PXLS = IMG_COLS * IMG_ROWS;
 const uint8_t ALPHA_SOLID = 255;
 
-// These images have been generated in utils/scripts/gen_test_img.py
+// Original images to be processed
 const char input_image_1_path[] = ASSETS_DIR "/redball_160_120_left.png";
 const char input_image_2_path[] = ASSETS_DIR "/redball_160_120_right.png";
 const char input_image_3_path[] = ASSETS_DIR "/redball_160_120_med.png";
 const char input_image_4_path[] = ASSETS_DIR "/redball_160_120_close.png";
 
 const char font_awesome_path[] = ASSETS_DIR "/fa-solid-900.ttf";
+
+// Led images
+const char centroid_0000_0000_path[] = ASSETS_DIR "/leds_centroid_0000_0000.png";
+const char centroid_1000_0000_path[] = ASSETS_DIR "/leds_centroid_1000_0000.png";
+const char centroid_0100_0000_path[] = ASSETS_DIR "/leds_centroid_0100_0000.png";
+const char centroid_0010_0000_path[] = ASSETS_DIR "/leds_centroid_0010_0000.png";
+const char centroid_0001_0000_path[] = ASSETS_DIR "/leds_centroid_0001_0000.png";
+const char centroid_0001_1000_path[] = ASSETS_DIR "/leds_centroid_0001_1000.png";
+const char centroid_0000_1000_path[] = ASSETS_DIR "/leds_centroid_0000_1000.png";
+const char centroid_0000_0100_path[] = ASSETS_DIR "/leds_centroid_0000_0100.png";
+const char centroid_0000_0010_path[] = ASSETS_DIR "/leds_centroid_0000_0010.png";
+const char centroid_0000_0001_path[] = ASSETS_DIR "/leds_centroid_0000_0001.png";
+const int centroid_img_cols = 160;
+const int centroid_img_rows = 32;
 
 class SimElement {
  public:
@@ -380,6 +394,20 @@ int main(int argc, char **argv) {
   // output image is cols x row, with 4 channels (C4) of 8-bit unsigned
   cv::Mat output_image(IMG_ROWS, IMG_COLS, CV_8UC4);
 
+  // Centroid images
+  const cv::Mat centroid_0000_0000 = cv::imread(cv::String{centroid_0000_0000_path});
+  assert(centroid_0000_0000.channels() == 3 && centroid_0000_0000.cols == centroid_img_cols &&
+         centroid_0000_0000.rows == centroid_img_rows && centroid_0000_0000.isContinuous());
+  const cv::Mat centroid_1000_0000 = cv::imread(cv::String{centroid_1000_0000_path});
+  const cv::Mat centroid_0100_0000 = cv::imread(cv::String{centroid_0100_0000_path});
+  const cv::Mat centroid_0010_0000 = cv::imread(cv::String{centroid_0010_0000_path});
+  const cv::Mat centroid_0001_0000 = cv::imread(cv::String{centroid_0001_0000_path});
+  const cv::Mat centroid_0001_1000 = cv::imread(cv::String{centroid_0001_1000_path});
+  const cv::Mat centroid_0000_1000 = cv::imread(cv::String{centroid_0000_1000_path});
+  const cv::Mat centroid_0000_0100 = cv::imread(cv::String{centroid_0000_0100_path});
+  const cv::Mat centroid_0000_0010 = cv::imread(cv::String{centroid_0000_0010_path});
+  const cv::Mat centroid_0000_0001 = cv::imread(cv::String{centroid_0000_0001_path});
+
 
   // create & load input/output textures
   GLuint input_texture_1_id = create_texture(GL_BGR, input_image_1);
@@ -388,6 +416,17 @@ int main(int argc, char **argv) {
   GLuint input_texture_4_id = create_texture(GL_BGR, input_image_4);
 
   GLuint output_texture_id = create_texture(GL_BGRA, output_image);
+
+  GLuint centroid_0000_0000_texture = create_texture(GL_BGR, centroid_0000_0000);
+  GLuint centroid_1000_0000_texture = create_texture(GL_BGR, centroid_1000_0000);
+  GLuint centroid_0100_0000_texture = create_texture(GL_BGR, centroid_0100_0000);
+  GLuint centroid_0010_0000_texture = create_texture(GL_BGR, centroid_0010_0000);
+  GLuint centroid_0001_0000_texture = create_texture(GL_BGR, centroid_0001_0000);
+  GLuint centroid_0001_1000_texture = create_texture(GL_BGR, centroid_0001_1000);
+  GLuint centroid_0000_1000_texture = create_texture(GL_BGR, centroid_0000_1000);
+  GLuint centroid_0000_0100_texture = create_texture(GL_BGR, centroid_0000_0100);
+  GLuint centroid_0000_0010_texture = create_texture(GL_BGR, centroid_0000_0010);
+  GLuint centroid_0000_0001_texture = create_texture(GL_BGR, centroid_0000_0001);
 
   // init dut, tracing and sim elements
   Vcolor_proc *uut = initUUT(argc, argv);
@@ -538,6 +577,50 @@ int main(int argc, char **argv) {
       ImGui::Image((void *)(intptr_t)output_texture_id,
                    ImVec2(output_image.cols, output_image.rows));
 
+      switch (centroid) {
+        case 0:
+          ImGui::Image((void *)(intptr_t)centroid_0000_0000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 1:
+          ImGui::Image((void *)(intptr_t)centroid_0000_0001_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 2:
+          ImGui::Image((void *)(intptr_t)centroid_0000_0010_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 4:
+          ImGui::Image((void *)(intptr_t)centroid_0000_0100_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 8:
+          ImGui::Image((void *)(intptr_t)centroid_0000_1000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 16:
+          ImGui::Image((void *)(intptr_t)centroid_0001_0000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 24:
+          ImGui::Image((void *)(intptr_t)centroid_0001_1000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 32:
+          ImGui::Image((void *)(intptr_t)centroid_0010_0000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 64:
+          ImGui::Image((void *)(intptr_t)centroid_0100_0000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 128:
+          ImGui::Image((void *)(intptr_t)centroid_1000_0000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        default:
+          ImGui::Text("centroid wrong value %d", centroid);
+      }
       // left bits are the most significat: bit 7 is the leftmost
       // that is why we start with
       for (int bit_i = NBITS_CENTROID-1; bit_i >= 0; bit_i--) {
