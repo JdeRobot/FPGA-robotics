@@ -9,9 +9,10 @@ This collection contains the necessary blocks for the GoPiGo3 robot and examples
 
 **Create a .zip of the FPGA-Robotics-v1-stable folder to add the collection to icestudio.**
 
-Follow us: 
-* [Twitter](https://twitter.com/JdeRobot)
-* [YouTube](https://www.youtube.com/channel/UCgmUgpircYAv_QhLQziHJOQ/)
+Follow us:
+
+ * [Twitter](https://twitter.com/JdeRobot)
+ * [YouTube](https://www.youtube.com/channel/UCgmUgpircYAv_QhLQziHJOQ/) - [JdeRobot FPGA Playlist](https://youtube.com/playlist?list=PLGlX46StCA-S-c_dXHtn4Qiod5_lQgYn-)
 
 ## Install
 
@@ -54,6 +55,9 @@ Follow us:
  
     Diagram:
   ![Diagram of followRedBall_v7](color_proc_2cam_bg.png)
+
+   This is a video of the robot:
+   [Video of the robot following the ball](https://youtu.be/rbdQ36ZJ7Lo)
 
 ## Authors
 * [JdeRobot](https://github.com/JdeRobot/FPGA-robotics)
