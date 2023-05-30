@@ -139,15 +139,18 @@ class FilterChange : public SimElement
 class OutputMonitor : public SimElement {
  public:
   OutputMonitor(Vcolor_proc *uut, cv::Mat &output_image,
-        uint8_t *rgb_filter)
-      : uut{uut}, output_image{output_image}, rgb_filter(rgb_filter) {}
+        uint8_t *rgb_filter, uint8_t *centroid, uint8_t *proximity)
+      : uut{uut}, output_image{output_image}, rgb_filter(rgb_filter),
+        centroid(centroid), proximity(proximity) {}
 
   virtual ~OutputMonitor() {}
 
   virtual void onReset() {}
 
   virtual void preCycle() { // falling edge
-    // I would say
+    // I would say that this sould be on the postCycle, but having it just
+    // after the rising edge the values have not been updated. I think that it
+    // might be because they are combinational signals
     if (this->uut->proc_we == 1) { //if write enable
       // We are going to save the processed pixels from the UUT into an image:
       auto img_data = this->output_image.ptr<BGRAPixel>();
@@ -160,14 +163,22 @@ class OutputMonitor : public SimElement {
       (*px)[3] = ALPHA_SOLID; //alpha
     }
   }
-  virtual void postCycle() {
+  virtual void postCycle() { // rising edge
     *(this->rgb_filter) = this->uut->rgbfilter;
+    // the new_centroid signal indicates when they are updated
+    // but since they don't change when it is 0, it could be omitted
+    if (this->uut->new_centroid == 1) {
+      *(this->centroid)  = this->uut->centroid;
+      *(this->proximity) = this->uut->proximity;
+    }
   }
 
  private:
   Vcolor_proc *const uut;
   cv::Mat output_image;
   uint8_t *rgb_filter;
+  uint8_t *centroid;  // 8-bit
+  uint8_t *proximity; // actually it is just 3 bits
 };
 
 Vcolor_proc *initUUT(int argc, char **argv) {
@@ -319,7 +330,7 @@ int main(int argc, char **argv) {
                         SDL_WINDOW_ALLOW_HIGHDPI);
   SDL_Window *window =
       SDL_CreateWindow("Pixel Processor simulator", SDL_WINDOWPOS_CENTERED,
-                       SDL_WINDOWPOS_CENTERED, IMG_COLS*4+64, 480, window_flags);
+                       SDL_WINDOWPOS_CENTERED, IMG_COLS*4+64, 600, window_flags);
   SDL_GLContext gl_context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, gl_context);
   SDL_GL_SetSwapInterval(1);  // Enable vsync
@@ -342,7 +353,7 @@ int main(int argc, char **argv) {
 
   // Setup Dear ImGui style
   //ImGui::StyleColorsDark();
-  ImGui::StyleColorsClassic();
+  ImGui::StyleColorsLight();
 
   // Setup Platform/Renderer backends
   ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
@@ -402,13 +413,19 @@ int main(int argc, char **argv) {
   bool green_filter_on = false;
   bool blue_filter_on  = false;
 
+  // proximity and centroid values of the detected object
+  uint8_t centroid  = 0;
+  uint8_t proximity = 0;
+  const int NBITS_CENTROID = 8;
+
   // create an array of simulation elements, which are the input driver
   // and the monitor of the outputs
   std::vector<SimElement *> simElements;
   // add these simulation elements to the array:
   simElements.push_back(new InputDriver(uut, &input_image));
   simElements.push_back(new FilterChange(uut, &change_filter));
-  simElements.push_back(new OutputMonitor(uut, output_image, &rgb_filter));
+  simElements.push_back(new OutputMonitor(uut, output_image, &rgb_filter,
+                                          &centroid, &proximity));
 
   vluint64_t sim_time = 0;
   resetUUT(uut, simElements, &sim_time, m_trace); // reset unit under test
@@ -521,18 +538,18 @@ int main(int argc, char **argv) {
       ImGui::Image((void *)(intptr_t)output_texture_id,
                    ImVec2(output_image.cols, output_image.rows));
 
-      ImGui::Text("Top level state");
-      ImGui::SameLine();
-      /*
-      for (int i = n_leds; i > 0; i--) {
-        int led_n = i - 1;
-        bool led_on = uut->leds & (1 << led_n);
+      // left bits are the most significat: bit 7 is the leftmost
+      // that is why we start with
+      for (int bit_i = NBITS_CENTROID-1; bit_i >= 0; bit_i--) {
+        bool led_on = centroid & (1 << bit_i);
         auto gb = led_on ? 0 : 255;
         ImGui::TextColored(ImVec4(255, gb, gb, ALPHA_SOLID), LED_ICON);
-        if (led_n > 0) {
-          ImGui::SameLine();
-        }
-      }*/
+        //if (bit_i > 0) {
+        ImGui::SameLine();
+        //}
+      }
+      ImGui::Text("Centroid: 0x%x - Proximity: %i", centroid, proximity);
+      //ImGui::SameLine();
 
       ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
                   1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
