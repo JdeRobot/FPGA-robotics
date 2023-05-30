@@ -30,12 +30,19 @@ module color_proc
       c_nb_rows     = $clog2(c_img_rows),
 
       // inner frame size
-      c_inframe_cols = 128, // 7 bits (0 to 127) taking out 32, 16 each side
-      c_inframe_rows = 104, // 7 bits (0 to 107) taking out 16, 8 each side
+      // columns and rows taken away at each side
+      c_outframe_cols = 16, // each side of the columns, 32 total
+      c_outframe_rows = 8,  // each side of the rows 16 total
+      // columns in the inner frame
+      c_inframe_cols = c_img_cols-2*c_outframe_cols, // 128, 7 bits(0 to 127)
+                                             // taking out 32, 16 each side
+      c_inframe_rows = c_img_rows-2*c_outframe_rows, //104, 7 bits (0 to 107)
+                                             // taking out 16, 8 each side
       // total pixels in the inner frame
       c_inframe_pxls = c_inframe_cols * c_inframe_rows, // 128x104 = 13312
       // number of bits for the number of total pixels in the inner frame
       c_nb_inframe_pxls = $clog2(c_inframe_pxls), // = 14
+      c_nb_inframe_cols = $clog2(c_inframe_cols), // = 7
 
       // histogram
       // number of bins (buckets)
@@ -230,10 +237,12 @@ module color_proc
     end
   end 
 
-  //if we are in the inner frame col=[8,71], row=[6,53]
-  assign inner_frame = (col_rg >= 8 && col_rg <= 71 &&
-                        row_num >= 6 && row_num <= 53) ? 1'b1 : 1'b0;
-
+  //if we are in the inner frame col=[16,144(159-16)], row=[6,53]
+  assign inner_frame = (col_rg  >= c_outframe_cols  &&  // 16
+                        col_rg  <  c_img_cols-c_outframe_cols &&  // 144= 160-16
+                        row_num >= c_outframe_rows &&   // 8
+                        row_num <  c_img_rows-c_outframe_rows)  // 112 = 120-8
+                     ? 1'b1 : 1'b0;
 
   // inner column, when we are out of the range it doesn't matter the value
   // because shouldnt be used
