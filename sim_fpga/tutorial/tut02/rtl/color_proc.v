@@ -402,7 +402,7 @@ module color_proc
   // only considering pixles in the inner frame
 
   // distance: how many pixels are detected
-  // since in the inner frame there are 3072 pixels (64x48) -> 12 bits
+  // since in the inner frame there are 13312 pixels (128x104) -> 14 bits
   // (c_nb_inframe_pxls),
   // lets say that we are too close if we have 2048 or more, that is,
   //    bit 12 is one
@@ -419,7 +419,7 @@ module color_proc
 
   always @(*)
   begin
-    if (colorpxls[c_nb_inframe_pxls-2] == 1'b1) begin // bit 10
+    if (colorpxls[c_nb_inframe_pxls-2] == 1'b1) begin // bit 10 -- bit 12
       if (colorpxls[c_nb_inframe_pxls-3] == 1'b1) begin // bit 9
         proximity_cmb = 3'd7;  // bits 10:9 too close, max proximity >=1536 : 1/2
       end

@@ -6,6 +6,7 @@
 //   - the image is larger 160x120
 
 // imgui headers
+#include <iostream>
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <assert.h>
@@ -55,6 +56,8 @@ const char input_image_1_path[] = ASSETS_DIR "/redball_160_120_left.png";
 const char input_image_2_path[] = ASSETS_DIR "/redball_160_120_right.png";
 const char input_image_3_path[] = ASSETS_DIR "/redball_160_120_med.png";
 const char input_image_4_path[] = ASSETS_DIR "/redball_160_120_close.png";
+const char input_image_5_path[] = ASSETS_DIR "/test_img_color_160x120.png";
+const char input_image_6_path[] = ASSETS_DIR "/test_img_color_160x120_c.png";
 
 const char font_awesome_path[] = ASSETS_DIR "/fa-solid-900.ttf";
 
@@ -344,7 +347,7 @@ int main(int argc, char **argv) {
                         SDL_WINDOW_ALLOW_HIGHDPI);
   SDL_Window *window =
       SDL_CreateWindow("Pixel Processor simulator", SDL_WINDOWPOS_CENTERED,
-                       SDL_WINDOWPOS_CENTERED, IMG_COLS*4+64, 600, window_flags);
+                       SDL_WINDOWPOS_CENTERED, IMG_COLS*6+6*16, 600, window_flags);
   SDL_GLContext gl_context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, gl_context);
   SDL_GL_SetSwapInterval(1);  // Enable vsync
@@ -390,6 +393,15 @@ int main(int argc, char **argv) {
   const cv::Mat input_image_4 = cv::imread(cv::String{input_image_4_path});
   assert(input_image_4.channels() == 3 && input_image_4.cols == IMG_COLS &&
          input_image_4.rows == IMG_ROWS && input_image_4.isContinuous());
+  // image 5
+  const cv::Mat input_image_5 = cv::imread(cv::String{input_image_5_path});
+  assert(input_image_5.channels() == 3 && input_image_5.cols == IMG_COLS &&
+         input_image_5.rows == IMG_ROWS && input_image_5.isContinuous());
+  // image 6
+  const cv::Mat input_image_6 = cv::imread(cv::String{input_image_6_path});
+  //std::cout << input_image_6.channels() << std::endl;
+  assert(input_image_6.channels() == 3 && input_image_6.cols == IMG_COLS &&
+         input_image_6.rows == IMG_ROWS && input_image_6.isContinuous());
 
   // output image is cols x row, with 4 channels (C4) of 8-bit unsigned
   cv::Mat output_image(IMG_ROWS, IMG_COLS, CV_8UC4);
@@ -414,6 +426,8 @@ int main(int argc, char **argv) {
   GLuint input_texture_2_id = create_texture(GL_BGR, input_image_2);
   GLuint input_texture_3_id = create_texture(GL_BGR, input_image_3);
   GLuint input_texture_4_id = create_texture(GL_BGR, input_image_4);
+  GLuint input_texture_5_id = create_texture(GL_BGR, input_image_5);
+  GLuint input_texture_6_id = create_texture(GL_BGR, input_image_6);
 
   GLuint output_texture_id = create_texture(GL_BGRA, output_image);
 
@@ -569,6 +583,18 @@ int main(int argc, char **argv) {
       if (ImGui::ImageButton((void *)(intptr_t)input_texture_4_id,
                              ImVec2(input_image->cols, input_image->rows))) {
         input_image = &input_image_4;
+      }
+      ImGui::SameLine();
+      // -- image 5
+      if (ImGui::ImageButton((void *)(intptr_t)input_texture_5_id,
+                             ImVec2(input_image->cols, input_image->rows))) {
+        input_image = &input_image_5;
+      }
+      ImGui::SameLine();
+      // -- image 6
+      if (ImGui::ImageButton((void *)(intptr_t)input_texture_6_id,
+                             ImVec2(input_image->cols, input_image->rows))) {
+        input_image = &input_image_6;
       }
 
 
