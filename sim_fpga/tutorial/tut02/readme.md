@@ -1,4 +1,4 @@
-# Verliator+GUI Tutorial 2
+# Verilator+GUI Tutorial 2
 
 **Centroid** and **proximity** calculation of the color processing module is included
 
@@ -15,6 +15,19 @@ For the ULX3S the color processing module requests a 12-bit RGB444 pixel from a 
 The input/output schematic of this module is shown in the following block diagram:
 
 ![color processing module](color_proc_centr_block.png)
+
+
+## Easier GUI debugging
+
+The graphical interface allows debugging more easily. For example, the next screenshot shows how the centroid calculation was wrong.
+
+![wrong centroid calculation](imgs/centroid_wrong_ball_left_text)
+
+After analyzing the verilog code, the bug was found, and the centroid is now correctly calculated.
+
+![correct centroid calculation](imgs/centroid_ok_ball_left)
+
+Observe that in this new version, the proximity is also included
 
 
 
