@@ -60,7 +60,7 @@ const char input_image_6_path[] = ASSETS_DIR "/test_img_color_160x120_c.png";
 
 const char font_awesome_path[] = ASSETS_DIR "/fa-solid-900.ttf";
 
-// Led images
+// Led images (centroid)
 const char centroid_0000_0000_path[] = ASSETS_DIR "/leds_centroid_0000_0000.png";
 const char centroid_1000_0000_path[] = ASSETS_DIR "/leds_centroid_1000_0000.png";
 const char centroid_0100_0000_path[] = ASSETS_DIR "/leds_centroid_0100_0000.png";
@@ -71,8 +71,20 @@ const char centroid_0000_1000_path[] = ASSETS_DIR "/leds_centroid_0000_1000.png"
 const char centroid_0000_0100_path[] = ASSETS_DIR "/leds_centroid_0000_0100.png";
 const char centroid_0000_0010_path[] = ASSETS_DIR "/leds_centroid_0000_0010.png";
 const char centroid_0000_0001_path[] = ASSETS_DIR "/leds_centroid_0000_0001.png";
-const int centroid_img_cols = 160;
+const int centroid_img_cols = IMG_COLS;
 const int centroid_img_rows = 32;
+
+// Proximity level images
+const char prox0_path[] = ASSETS_DIR "/proximity_0.png";
+const char prox1_path[] = ASSETS_DIR "/proximity_1.png";
+const char prox2_path[] = ASSETS_DIR "/proximity_2.png";
+const char prox3_path[] = ASSETS_DIR "/proximity_3.png";
+const char prox4_path[] = ASSETS_DIR "/proximity_4.png";
+const char prox5_path[] = ASSETS_DIR "/proximity_5.png";
+const char prox6_path[] = ASSETS_DIR "/proximity_6.png";
+const char prox7_path[] = ASSETS_DIR "/proximity_7.png";
+const int prox_img_cols = 40;
+const int prox_img_rows = IMG_ROWS;
 
 class SimElement {
  public:
@@ -419,6 +431,17 @@ int main(int argc, char **argv) {
   const cv::Mat centroid_0000_0010 = cv::imread(cv::String{centroid_0000_0010_path});
   const cv::Mat centroid_0000_0001 = cv::imread(cv::String{centroid_0000_0001_path});
 
+  // Proximity images
+  const cv::Mat prox0 = cv::imread(cv::String{prox0_path});
+  assert(prox0.channels() == 3 && prox0.cols == prox_img_cols &&
+         prox0.rows == prox_img_rows && prox0.isContinuous());
+  const cv::Mat prox1 = cv::imread(cv::String{prox1_path});
+  const cv::Mat prox2 = cv::imread(cv::String{prox2_path});
+  const cv::Mat prox3 = cv::imread(cv::String{prox3_path});
+  const cv::Mat prox4 = cv::imread(cv::String{prox4_path});
+  const cv::Mat prox5 = cv::imread(cv::String{prox5_path});
+  const cv::Mat prox6 = cv::imread(cv::String{prox6_path});
+  const cv::Mat prox7 = cv::imread(cv::String{prox7_path});
 
   // create & load input/output textures
   GLuint input_texture_1_id = create_texture(GL_BGR, input_image_1);
@@ -440,6 +463,15 @@ int main(int argc, char **argv) {
   GLuint centroid_0000_0100_texture = create_texture(GL_BGR, centroid_0000_0100);
   GLuint centroid_0000_0010_texture = create_texture(GL_BGR, centroid_0000_0010);
   GLuint centroid_0000_0001_texture = create_texture(GL_BGR, centroid_0000_0001);
+
+  GLuint prox0_texture = create_texture(GL_BGR, prox0);
+  GLuint prox1_texture = create_texture(GL_BGR, prox1);
+  GLuint prox2_texture = create_texture(GL_BGR, prox2);
+  GLuint prox3_texture = create_texture(GL_BGR, prox3);
+  GLuint prox4_texture = create_texture(GL_BGR, prox4);
+  GLuint prox5_texture = create_texture(GL_BGR, prox5);
+  GLuint prox6_texture = create_texture(GL_BGR, prox6);
+  GLuint prox7_texture = create_texture(GL_BGR, prox7);
 
   // init dut, tracing and sim elements
   Vcolor_proc *uut = initUUT(argc, argv);
@@ -609,6 +641,45 @@ int main(int argc, char **argv) {
                   output_image.rows, (void *)(intptr_t)output_texture_id);
       ImGui::Image((void *)(intptr_t)output_texture_id,
                    ImVec2(output_image.cols, output_image.rows));
+      ImGui::SameLine();
+      
+      switch (proximity) {
+        case 0:
+          ImGui::Image((void *)(intptr_t)prox0_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 1:
+          ImGui::Image((void *)(intptr_t)prox1_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 2:
+          ImGui::Image((void *)(intptr_t)prox2_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 3:
+          ImGui::Image((void *)(intptr_t)prox3_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 4:
+          ImGui::Image((void *)(intptr_t)prox4_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 5:
+          ImGui::Image((void *)(intptr_t)prox5_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 6:
+          ImGui::Image((void *)(intptr_t)prox6_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 7:
+          ImGui::Image((void *)(intptr_t)prox7_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        default:
+          ImGui::Text("Proximity wrong value %d", proximity);
+      }
+      
 
       switch (centroid) {
         case 0:
@@ -654,7 +725,7 @@ int main(int argc, char **argv) {
         default:
           ImGui::Text("centroid wrong value %d", centroid);
       }
-      // left bits are the least significat: bit 0 is the leftmost
+      // left leds are the least significat bits: bit 0 is the leftmost
       for (int bit_i = NBITS_CENTROID-1; bit_i >= 0; bit_i--) {
         bool led_on = centroid & (128 >> bit_i);
         auto gb = led_on ? 0 : 255;
