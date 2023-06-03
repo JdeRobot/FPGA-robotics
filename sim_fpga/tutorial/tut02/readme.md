@@ -21,11 +21,11 @@ The input/output schematic of this module is shown in the following block diagra
 
 The graphical interface allows debugging more easily. For example, the next screenshot shows how the centroid calculation was wrong.
 
-![wrong centroid calculation](imgs/centroid_wrong_ball_left_text)
+![wrong centroid calculation](imgs/centroid_wrong_ball_left_text.png)
 
 After analyzing the verilog code, the bug was found, and the centroid is now correctly calculated.
 
-![correct centroid calculation](imgs/centroid_ok_ball_left)
+![correct centroid calculation](imgs/centroid_ok_ball_left.png)
 
 Observe that in this new version, the proximity is also included
 
