@@ -11,6 +11,9 @@
 # Apio
 .sconsign.dblite
 
+# simulation files
+*.vcd
+
 debug.log
 
 .vscode
