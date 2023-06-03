@@ -3,8 +3,53 @@
 //   color_proc.v
 //   Takes an image from a memory, light leds depending on red pixel position on frame
 //   
+//  The centroid is 8 bits, the MSB correspond to the right
 //
-
+//  for example, when the object is in the leftmost position
+//  the centroid will be centroid==1 -> 0x000 0001,
+//    _   _   _   _    _   _   _   _
+//   |X| |_| |_| |_| :|_| |_| |_| |_|  LEDS
+// 
+//  centroid==2 -> 0b 0000 0010
+//    _   _   _   _    _   _   _   _
+//   |_| |X| |_| |_| :|_| |_| |_| |_|  LEDS
+// 
+//  centroid==4 -> 0b 0000 0100
+//    _   _   _   _    _   _   _   _
+//   |_| | | |X| |_| :|_| |_| |_| |_|  LEDS
+// 
+//  centroid==8 -> 0b 0000 1000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |X| :|_| |_| |_| |_|  LEDS
+// 
+//  when the object is centered:
+//  centroid==24 -> 0b 0001 1000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |X| :|X| |_| |_| |_|  LEDS
+// 
+//  centroid==16 -> 0b 0001 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|X| |_| |_| |_|  LEDS
+//
+//  centroid==32 -> 0b 0010 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |X| |_| |_|  LEDS
+//
+//  centroid==64 -> 0b 0100 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |_| |X| |_|  LEDS
+//
+//  centroid==128 -> 0b 1000 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |_| |_| |X|  LEDS
+//
+//  if no object found:
+//  centroid==0 -> 0b 0000 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |_| |_| |_|  LEDS
+//
+// No othe values fo centroid are possible
+//
 module color_proc
   # (parameter
       // VGA
@@ -246,9 +291,11 @@ module color_proc
 
   // inner column, when we are out of the range it doesn't matter the value
   // because shouldnt be used
-  assign col_inframe = col_rg - 7'd8;
-  // divide col_inframe by 8, from 64 columns to 8 -> 3 bits
-  assign hist_bin = col_inframe[c_nb_hist_bins+3-1:3];
+  assign col_inframe = col_rg - (c_outframe_cols); // -16
+  // divide col_inframe by 16, from 128 columns to 8 -> 4 bits
+  //assign hist_bin = col_inframe[c_nb_hist_bins+4-1:4];
+  // 4 bits. col_inframe is one bit less than c_nb_cols. hist_bin is 3 bits (-2,-4):3bits
+  assign hist_bin = col_inframe[c_nb_cols-2:c_nb_cols-4]; // 3 bits. col_inframe is one bit less 
 
   // color filter thresholds
   assign red_limit = (orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
