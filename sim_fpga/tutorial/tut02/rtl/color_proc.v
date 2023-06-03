@@ -466,7 +466,10 @@ module color_proc
 
   always @(*)
   begin
-    if (colorpxls[c_nb_inframe_pxls-2] == 1'b1) begin // bit 10 -- bit 12
+    if (colorpxls[c_nb_inframe_pxls-1] == 1'b1) begin // bit 13
+        proximity_cmb = 3'd7;  // bits 10:9 too close, max proximity >=1536 : 1/2
+    end
+    else if (colorpxls[c_nb_inframe_pxls-2] == 1'b1) begin // bit 10 -- bit 12
       if (colorpxls[c_nb_inframe_pxls-3] == 1'b1) begin // bit 9
         proximity_cmb = 3'd7;  // bits 10:9 too close, max proximity >=1536 : 1/2
       end
