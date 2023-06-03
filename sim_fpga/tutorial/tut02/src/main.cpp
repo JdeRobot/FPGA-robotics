@@ -6,7 +6,6 @@
 //   - the image is larger 160x120
 
 // imgui headers
-#include <iostream>
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <assert.h>
@@ -448,6 +447,7 @@ int main(int argc, char **argv) {
 
   const uint8_t *input_buffer = input_image_1.data;
   const cv::Mat *input_image = &input_image_1;
+  int img_num = 1;
 
   // Our state
   bool done = false;
@@ -565,38 +565,45 @@ int main(int argc, char **argv) {
       if (ImGui::ImageButton((void *)(intptr_t)input_texture_1_id,
                              ImVec2(input_image->cols, input_image->rows))) {
         input_image = &input_image_1;
+        img_num = 1;
       }
       ImGui::SameLine();
       // -- image 2
       if (ImGui::ImageButton((void *)(intptr_t)input_texture_2_id,
                              ImVec2(input_image->cols, input_image->rows))) {
         input_image = &input_image_2;
+        img_num = 2;
       }
       ImGui::SameLine();
       // -- image 3
       if (ImGui::ImageButton((void *)(intptr_t)input_texture_3_id,
                              ImVec2(input_image->cols, input_image->rows))) {
         input_image = &input_image_3;
+        img_num = 3;
       }
       ImGui::SameLine();
       // -- image 4
       if (ImGui::ImageButton((void *)(intptr_t)input_texture_4_id,
                              ImVec2(input_image->cols, input_image->rows))) {
         input_image = &input_image_4;
+        img_num = 4;
       }
       ImGui::SameLine();
       // -- image 5
       if (ImGui::ImageButton((void *)(intptr_t)input_texture_5_id,
                              ImVec2(input_image->cols, input_image->rows))) {
         input_image = &input_image_5;
+        img_num = 5;
       }
       ImGui::SameLine();
       // -- image 6
       if (ImGui::ImageButton((void *)(intptr_t)input_texture_6_id,
                              ImVec2(input_image->cols, input_image->rows))) {
         input_image = &input_image_6;
+        img_num = 6;
       }
 
+      ImGui::Text("Image selected: %d", img_num);
 
       ImGui::Text("Output frame buffer %d x %d (tex id=%p)", output_image.cols,
                   output_image.rows, (void *)(intptr_t)output_texture_id);
@@ -609,23 +616,23 @@ int main(int argc, char **argv) {
                        ImVec2(centroid_img_cols, centroid_img_rows));
           break;
         case 1:
-          ImGui::Image((void *)(intptr_t)centroid_0000_0001_texture,
+          ImGui::Image((void *)(intptr_t)centroid_1000_0000_texture,
                        ImVec2(centroid_img_cols, centroid_img_rows));
           break;
         case 2:
-          ImGui::Image((void *)(intptr_t)centroid_0000_0010_texture,
+          ImGui::Image((void *)(intptr_t)centroid_0100_0000_texture,
                        ImVec2(centroid_img_cols, centroid_img_rows));
           break;
         case 4:
-          ImGui::Image((void *)(intptr_t)centroid_0000_0100_texture,
+          ImGui::Image((void *)(intptr_t)centroid_0010_0000_texture,
                        ImVec2(centroid_img_cols, centroid_img_rows));
           break;
         case 8:
-          ImGui::Image((void *)(intptr_t)centroid_0000_1000_texture,
+          ImGui::Image((void *)(intptr_t)centroid_0001_0000_texture,
                        ImVec2(centroid_img_cols, centroid_img_rows));
           break;
         case 16:
-          ImGui::Image((void *)(intptr_t)centroid_0001_0000_texture,
+          ImGui::Image((void *)(intptr_t)centroid_0000_1000_texture,
                        ImVec2(centroid_img_cols, centroid_img_rows));
           break;
         case 24:
@@ -633,24 +640,23 @@ int main(int argc, char **argv) {
                        ImVec2(centroid_img_cols, centroid_img_rows));
           break;
         case 32:
-          ImGui::Image((void *)(intptr_t)centroid_0010_0000_texture,
+          ImGui::Image((void *)(intptr_t)centroid_0000_0100_texture,
                        ImVec2(centroid_img_cols, centroid_img_rows));
           break;
         case 64:
-          ImGui::Image((void *)(intptr_t)centroid_0100_0000_texture,
+          ImGui::Image((void *)(intptr_t)centroid_0000_0010_texture,
                        ImVec2(centroid_img_cols, centroid_img_rows));
           break;
         case 128:
-          ImGui::Image((void *)(intptr_t)centroid_1000_0000_texture,
+          ImGui::Image((void *)(intptr_t)centroid_0000_0001_texture,
                        ImVec2(centroid_img_cols, centroid_img_rows));
           break;
         default:
           ImGui::Text("centroid wrong value %d", centroid);
       }
-      // left bits are the most significat: bit 7 is the leftmost
-      // that is why we start with
+      // left bits are the least significat: bit 0 is the leftmost
       for (int bit_i = NBITS_CENTROID-1; bit_i >= 0; bit_i--) {
-        bool led_on = centroid & (1 << bit_i);
+        bool led_on = centroid & (128 >> bit_i);
         auto gb = led_on ? 0 : 255;
         ImGui::TextColored(ImVec4(255, gb, gb, ALPHA_SOLID), LED_ICON);
         //if (bit_i > 0) {
