@@ -53,11 +53,6 @@ const uint8_t ALPHA_SOLID = 255;
 
 // Original images to be processed
 const char input_image_1_path[] = ASSETS_DIR "/redball_160_120_left.png";
-const char input_image_2_path[] = ASSETS_DIR "/redball_160_120_right.png";
-const char input_image_3_path[] = ASSETS_DIR "/redball_160_120_med.png";
-const char input_image_4_path[] = ASSETS_DIR "/redball_160_120_close.png";
-const char input_image_5_path[] = ASSETS_DIR "/test_img_color_160x120.png";
-const char input_image_6_path[] = ASSETS_DIR "/test_img_color_160x120_c.png";
 
 const char font_awesome_path[] = ASSETS_DIR "/fa-solid-900.ttf";
 
@@ -359,7 +354,7 @@ int main(int argc, char **argv) {
                         SDL_WINDOW_ALLOW_HIGHDPI);
   SDL_Window *window =
       SDL_CreateWindow("Pixel Processor simulator", SDL_WINDOWPOS_CENTERED,
-                       SDL_WINDOWPOS_CENTERED, IMG_COLS*7+7*16, 600, window_flags);
+                       SDL_WINDOWPOS_CENTERED, 640, 480, window_flags);
   SDL_GLContext gl_context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, gl_context);
   SDL_GL_SetSwapInterval(1);  // Enable vsync
@@ -393,27 +388,6 @@ int main(int argc, char **argv) {
   const cv::Mat input_image_1 = cv::imread(cv::String{input_image_1_path});
   assert(input_image_1.channels() == 3 && input_image_1.cols == IMG_COLS &&
          input_image_1.rows == IMG_ROWS && input_image_1.isContinuous());
-  // image 2
-  const cv::Mat input_image_2 = cv::imread(cv::String{input_image_2_path});
-  assert(input_image_2.channels() == 3 && input_image_2.cols == IMG_COLS &&
-         input_image_2.rows == IMG_ROWS && input_image_2.isContinuous());
-  // image 3
-  const cv::Mat input_image_3 = cv::imread(cv::String{input_image_3_path});
-  assert(input_image_3.channels() == 3 && input_image_3.cols == IMG_COLS &&
-         input_image_3.rows == IMG_ROWS && input_image_3.isContinuous());
-  // image 4
-  const cv::Mat input_image_4 = cv::imread(cv::String{input_image_4_path});
-  assert(input_image_4.channels() == 3 && input_image_4.cols == IMG_COLS &&
-         input_image_4.rows == IMG_ROWS && input_image_4.isContinuous());
-  // image 5
-  const cv::Mat input_image_5 = cv::imread(cv::String{input_image_5_path});
-  assert(input_image_5.channels() == 3 && input_image_5.cols == IMG_COLS &&
-         input_image_5.rows == IMG_ROWS && input_image_5.isContinuous());
-  // image 6
-  const cv::Mat input_image_6 = cv::imread(cv::String{input_image_6_path});
-  //std::cout << input_image_6.channels() << std::endl;
-  assert(input_image_6.channels() == 3 && input_image_6.cols == IMG_COLS &&
-         input_image_6.rows == IMG_ROWS && input_image_6.isContinuous());
 
   // output image is cols x row, with 4 channels (C4) of 8-bit unsigned
   cv::Mat output_image(IMG_ROWS, IMG_COLS, CV_8UC4);
@@ -446,11 +420,6 @@ int main(int argc, char **argv) {
 
   // create & load input/output textures
   GLuint input_texture_1_id = create_texture(GL_BGR, input_image_1);
-  GLuint input_texture_2_id = create_texture(GL_BGR, input_image_2);
-  GLuint input_texture_3_id = create_texture(GL_BGR, input_image_3);
-  GLuint input_texture_4_id = create_texture(GL_BGR, input_image_4);
-  GLuint input_texture_5_id = create_texture(GL_BGR, input_image_5);
-  GLuint input_texture_6_id = create_texture(GL_BGR, input_image_6);
 
   GLuint output_texture_id = create_texture(GL_BGRA, output_image);
 
@@ -488,7 +457,6 @@ int main(int argc, char **argv) {
   Vcolor_proc *uut = initUUT(argc, argv);
   VerilatedVcdC *m_trace = initTrace(uut);
 
-  const uint8_t *input_buffer = input_image_1.data;
   const cv::Mat *input_image = &input_image_1;
   int img_num = 1;
 
@@ -573,6 +541,7 @@ int main(int argc, char **argv) {
 
 //      assert(input_feed.channels() == 3 && input_feed.cols == cols &&
 //         input_feed.rows == rows && input_feed.isContinuous());
+      input_image = &resized_input_feed;
 
       GLuint input_texture_vid_id = create_texture(GL_BGR, resized_input_feed);
 
@@ -611,63 +580,13 @@ int main(int argc, char **argv) {
 
 
       // -- test images
-      ImGui::Text("Input test image %d x %d (tex id=%p)", input_image->cols,
+      ImGui::Text("Input test frame %d x %d (tex id=%p)", input_image->cols,
                   input_image->rows, (void *)(intptr_t)input_texture_1_id);
-      ImVec2 pos = ImGui::GetCursorScreenPos();
 
-      // -- image 1
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_1_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_1;
-        img_num = 1;
-      }
-      ImGui::SameLine();
-      // -- image 2
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_2_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_2;
-        img_num = 2;
-      }
-      ImGui::SameLine();
-      // -- image 3
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_3_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_3;
-        img_num = 3;
-      }
-      ImGui::SameLine();
-      // -- image 4
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_4_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_4;
-        img_num = 4;
-      }
-      ImGui::SameLine();
-      // -- image 5
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_5_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_5;
-        img_num = 5;
-      }
-      ImGui::SameLine();
-      // -- image 6
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_6_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-        input_image = &input_image_6;
-        img_num = 6;
-      }
-      ImGui::SameLine();
-      // -- video
+      // -- Input video
       if (ImGui::ImageButton((void *)(intptr_t)input_texture_vid_id,
                              ImVec2(input_image->cols, input_image->rows))) {
 	input_image = &resized_input_feed;
-        img_num = 0;
-      }
-
-      if (img_num == 0) {
-        ImGui::Text("Input video selected");
-      } else {
-        ImGui::Text("Image selected: %d", img_num);
       }
 
       ImGui::Text("Output frame buffer %d x %d (tex id=%p)", output_image.cols,
