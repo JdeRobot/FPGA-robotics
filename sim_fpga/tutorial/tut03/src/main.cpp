@@ -383,12 +383,6 @@ int main(int argc, char **argv) {
   ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
   ImGui_ImplOpenGL3_Init(glsl_version);
 
-  // init test images
-  // image 1
-  const cv::Mat input_image_1 = cv::imread(cv::String{input_image_1_path});
-  assert(input_image_1.channels() == 3 && input_image_1.cols == IMG_COLS &&
-         input_image_1.rows == IMG_ROWS && input_image_1.isContinuous());
-
   // output image is cols x row, with 4 channels (C4) of 8-bit unsigned
   cv::Mat output_image(IMG_ROWS, IMG_COLS, CV_8UC4);
 
@@ -418,9 +412,6 @@ int main(int argc, char **argv) {
   const cv::Mat prox6 = cv::imread(cv::String{prox6_path});
   const cv::Mat prox7 = cv::imread(cv::String{prox7_path});
 
-  // create & load input/output textures
-  GLuint input_texture_1_id = create_texture(GL_BGR, input_image_1);
-
   GLuint output_texture_id = create_texture(GL_BGRA, output_image);
 
   GLuint centroid_0000_0000_texture = create_texture(GL_BGR, centroid_0000_0000);
@@ -448,17 +439,19 @@ int main(int argc, char **argv) {
   cv::Mat resized_input_feed;
   cv::VideoCapture cap(0);
 
+
   if (!cap.isOpened()) {
       std::cout << "cannot open camera";
   }
 
+  cap >> input_feed;
+  cv::resize(input_feed,resized_input_feed,cv::Size(IMG_COLS,IMG_ROWS),cv::INTER_LINEAR);
 
   // init dut, tracing and sim elements
   Vcolor_proc *uut = initUUT(argc, argv);
   VerilatedVcdC *m_trace = initTrace(uut);
 
-  const cv::Mat *input_image = &input_image_1;
-  int img_num = 1;
+  const cv::Mat *input_image = &resized_input_feed;
 
   // Our state
   bool done = false;
@@ -580,14 +573,12 @@ int main(int argc, char **argv) {
 
 
       // -- test images
-      ImGui::Text("Input test frame %d x %d (tex id=%p)", input_image->cols,
-                  input_image->rows, (void *)(intptr_t)input_texture_1_id);
+      ImGui::Text("Input video frame %d x %d (tex id=%p)", input_image->cols,
+                  input_image->rows, (void *)(intptr_t)input_texture_vid_id);
 
       // -- Input video
-      if (ImGui::ImageButton((void *)(intptr_t)input_texture_vid_id,
-                             ImVec2(input_image->cols, input_image->rows))) {
-	input_image = &resized_input_feed;
-      }
+      ImGui::Image((void *)(intptr_t)input_texture_vid_id,
+                             ImVec2(input_image->cols, input_image->rows));
 
       ImGui::Text("Output frame buffer %d x %d (tex id=%p)", output_image.cols,
                   output_image.rows, (void *)(intptr_t)output_texture_id);
