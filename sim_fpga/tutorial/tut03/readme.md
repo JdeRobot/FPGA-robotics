@@ -1,4 +1,4 @@
-# Verilator+GUI Tutorial 2
+# Verilator+GUI Tutorial 3
 
 Instead of images, the program takes the live captures of the computer camera.
 
@@ -17,7 +17,7 @@ The input/output schematic is the same as in tutorial 2:
 
 ## Easier GUI debugging
 
-The graphical interface allows debugging more easily. For example, the next screenshot shows the processing of two camera captures. The verilator processing is performed on the fly.
+The graphical interface allows debugging more easily. For example, the next screenshots show the processing of two different camera captures. The verilator processing is performed on the fly.
 
 ![1st camera frame](imgs/camera_proc_03_sm.png)
 
