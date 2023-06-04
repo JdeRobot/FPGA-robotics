@@ -1,4 +1,4 @@
-# Verilator+GUI Tutorial 2
+# Verilator+GUI Tutorial 1
 Visually test the color processing module with [Verilator](https://www.veripool.org/verilator/) and a graphical interface.
 
 The color processing module has been taken from:

@@ -215,7 +215,7 @@ module color_proc
   wire red_grn_simil, red_blu_simil, grn_blu_simil;
   wire red_grn_vdif, red_blu_vdif, grn_blu_vdif;
   
-  localparam  C_BLACK_PXL = {c_nb_img_pxls{1'b0}};
+  localparam  C_BLACK_PXL = {c_nb_buf{1'b0}};
   
   integer ind; 
 
