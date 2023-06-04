@@ -1,10 +1,61 @@
 //------------------------------------------------------------------------------
-//
+//   Author: Felipe Machado
 //   color_proc.v
-//   Takes an image from a memory, light leds depending on red pixel position on frame
+//   Color processing of the pixels of an image
+//   - Takes an image from a memory
+//   - Applies a color filter to the image
+//   - Saves the processed image in another memory
+//   - Output the centroid of the color object 
+//     light leds depending on horixontal position
+//   - Shows the proximity (how many color pixels have been detected)
 //   
+//  The centroid is 8 bits, the MSB correspond to the right
 //
-
+//  for example, when the object is in the leftmost position
+//  the centroid will be centroid==1 -> 0x000 0001,
+//    _   _   _   _    _   _   _   _
+//   |X| |_| |_| |_| :|_| |_| |_| |_|  LEDS
+// 
+//  centroid==2 -> 0b 0000 0010
+//    _   _   _   _    _   _   _   _
+//   |_| |X| |_| |_| :|_| |_| |_| |_|  LEDS
+// 
+//  centroid==4 -> 0b 0000 0100
+//    _   _   _   _    _   _   _   _
+//   |_| | | |X| |_| :|_| |_| |_| |_|  LEDS
+// 
+//  centroid==8 -> 0b 0000 1000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |X| :|_| |_| |_| |_|  LEDS
+// 
+//  when the object is centered:
+//  centroid==24 -> 0b 0001 1000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |X| :|X| |_| |_| |_|  LEDS
+// 
+//  centroid==16 -> 0b 0001 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|X| |_| |_| |_|  LEDS
+//
+//  centroid==32 -> 0b 0010 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |X| |_| |_|  LEDS
+//
+//  centroid==64 -> 0b 0100 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |_| |X| |_|  LEDS
+//
+//  centroid==128 -> 0b 1000 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |_| |_| |X|  LEDS
+//
+//  if no object found:
+//  centroid==0 -> 0b 0000 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |_| |_| |_|  LEDS
+//
+// No othe values fo centroid are possible
+//
 module color_proc
   # (parameter
       // VGA
@@ -49,9 +100,9 @@ module color_proc
       c_hist_bins = 8, // 7:0
       // number of bits needed for the histogram bins: 8 bins -> 3 bits
       c_nb_hist_bins = $clog2(c_hist_bins), // 3 bits
-      // since we have 104 rows and 8 column in each bin
-      // for each bin 832 (104 x 8) is the max number: 10 bits
-      c_nb_hist_val = $clog2(c_inframe_rows * (c_inframe_cols/c_hist_bins)), // = 10,
+      // For a 160x120 image we have 104 rows and 16 column in each bin
+      // for each bin 1664 (104 x 16) is the max number: 11 bits
+      c_nb_hist_val = $clog2(c_inframe_rows * (c_inframe_cols/c_hist_bins)), // = 11
 
       // centroid has 8 bits, it is decoded, so its not a number, to match the leds
       c_nb_centroid = 8,
@@ -246,9 +297,11 @@ module color_proc
 
   // inner column, when we are out of the range it doesn't matter the value
   // because shouldnt be used
-  assign col_inframe = col_rg - 7'd8;
-  // divide col_inframe by 8, from 64 columns to 8 -> 3 bits
-  assign hist_bin = col_inframe[c_nb_hist_bins+3-1:3];
+  assign col_inframe = col_rg - c_outframe_cols; // -16
+  // divide col_inframe by 16, from 128 columns to 8 -> 4 bits
+  //assign hist_bin = col_inframe[c_nb_hist_bins+4-1:4];
+  // 4 bits. col_inframe is one bit less than c_nb_cols. hist_bin is 3 bits (-2,-4):3bits
+  assign hist_bin = col_inframe[c_nb_inframe_cols-1:c_nb_inframe_cols-c_nb_hist_bins]; // 3 bits
 
   // color filter thresholds
   assign red_limit = (orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
@@ -419,7 +472,10 @@ module color_proc
 
   always @(*)
   begin
-    if (colorpxls[c_nb_inframe_pxls-2] == 1'b1) begin // bit 10 -- bit 12
+    if (colorpxls[c_nb_inframe_pxls-1] == 1'b1) begin // bit 13
+        proximity_cmb = 3'd7;  // bits 10:9 too close, max proximity >=1536 : 1/2
+    end
+    else if (colorpxls[c_nb_inframe_pxls-2] == 1'b1) begin // bit 10 -- bit 12
       if (colorpxls[c_nb_inframe_pxls-3] == 1'b1) begin // bit 9
         proximity_cmb = 3'd7;  // bits 10:9 too close, max proximity >=1536 : 1/2
       end
