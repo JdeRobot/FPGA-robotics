@@ -1,8 +1,6 @@
-# A proof of concept on building simulators with verilator
-This is a proof of concept on how to build hardware simulators using [verilator](https://www.veripool.org/verilator/).
-The project includes a simple verilog rtl design that implements a pixel processor. 
-The design is as simplistic as possible, up to the point that it might not be correct nor very useful, 
-but enough to showcase a simulator where inputs and outputs are not straighforward, such us images.
+# Building simulators with verilator
+In this project we build hardware simulators using [Verilator](https://www.veripool.org/verilator/).
+The project includes verilog RTL designs that implements a pixel processor.
 
 In addition the verilated design is linked againts the popular [ImGui](https://github.com/ocornut/imgui) to create a simulation tool with a graphic UI.
 
@@ -34,6 +32,13 @@ sim/obj_dir/VTopPixelProcessor
 
 ---
 
+## Tutorial
+
+In [tutorial](./tutorial) there are some examples with more information on how to use [Verilator](https://www.veripool.org/verilator/) with [ImGui](https://github.com/ocornut/imgui)
+
+
+---
+
 ## Example 6
 Test the processing modules of:
 
@@ -41,5 +46,5 @@ Test the processing modules of:
 
 Tested modules are inside the blue area:
 
-![Modules tested](example6.png)
-   
+![Modules tested](./examples/poc/example6/example6.png)
+

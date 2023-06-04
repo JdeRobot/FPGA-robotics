@@ -14,3 +14,9 @@ More info in its [tutorial 1 readme](./tut01)
 We add and show in the GUI the centroid and proximity of the _verilated_ color processing Verilog module.
 
 More info in its [tutorial 2 readme](./tut02)
+
+## [Tutorial 3](./tut03)
+
+In this example, instead of processing still images, the frames from the computer camera is processed by the _verilated_ color processing Verilog module.
+
+More info in its [tutorial 3 readme](./tut03)
