@@ -112,7 +112,7 @@ module color_proc
 
       // minimum number to consider an image detected and not being noise
       // change this value
-      c_min_colorpixels = 128,  // having 159744 pixels, 128 seems reasonable
+      c_min_colorpixels = 128,  // having 13312 pixels, 128 seems reasonable
 
     c_nb_buf_red   =  4,  // n bits for red in the buffer (memory)
     c_nb_buf_green =  4,  // n bits for green in the buffer (memory)

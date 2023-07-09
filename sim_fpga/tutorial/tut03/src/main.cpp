@@ -1,7 +1,7 @@
 // Authors:
 //  - Based on original version of David Lobato
 //  - Modified: Felipe Machado, https://github.com/felipe-m
-// Tutorial 2:
+// Tutorial 3:
 //   - includes centroid and proximity
 //   - the image is larger 160x120
 
