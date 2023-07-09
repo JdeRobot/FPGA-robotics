@@ -1,0 +1,602 @@
+//------------------------------------------------------------------------------
+//   Author: Felipe Machado
+//   color_proc.v
+//   Color processing of the pixels of an image
+//   - Takes an image from a memory
+//   - Applies a color filter to the image
+//   - Saves the processed image in another memory
+//   - Output the centroid of the color object 
+//     light leds depending on horixontal position
+//   - Shows the proximity (how many color pixels have been detected)
+//   
+//  The centroid is 8 bits, the MSB correspond to the right
+//
+//  for example, when the object is in the leftmost position
+//  the centroid will be centroid==1 -> 0x000 0001,
+//    _   _   _   _    _   _   _   _
+//   |X| |_| |_| |_| :|_| |_| |_| |_|  LEDS
+// 
+//  centroid==2 -> 0b 0000 0010
+//    _   _   _   _    _   _   _   _
+//   |_| |X| |_| |_| :|_| |_| |_| |_|  LEDS
+// 
+//  centroid==4 -> 0b 0000 0100
+//    _   _   _   _    _   _   _   _
+//   |_| | | |X| |_| :|_| |_| |_| |_|  LEDS
+// 
+//  centroid==8 -> 0b 0000 1000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |X| :|_| |_| |_| |_|  LEDS
+// 
+//  when the object is centered:
+//  centroid==24 -> 0b 0001 1000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |X| :|X| |_| |_| |_|  LEDS
+// 
+//  centroid==16 -> 0b 0001 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|X| |_| |_| |_|  LEDS
+//
+//  centroid==32 -> 0b 0010 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |X| |_| |_|  LEDS
+//
+//  centroid==64 -> 0b 0100 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |_| |X| |_|  LEDS
+//
+//  centroid==128 -> 0b 1000 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |_| |_| |X|  LEDS
+//
+//  if no object found:
+//  centroid==0 -> 0b 0000 0000
+//    _   _   _   _    _   _   _   _
+//   |_| | | | | |_| :|_| |_| |_| |_|  LEDS
+//
+// No othe values fo centroid are possible
+//
+module color_proc
+  # (parameter
+      // VGA
+      c_img_cols    = 640, // 10 bits
+      c_img_rows    = 480, //  9 bits
+      c_img_pxls    = c_img_cols * c_img_rows,
+      //c_nb_line_pxls = 10, // log2i(c_img_cols-1) + 1;
+      c_nb_img_pxls = $clog2(c_img_pxls), // 19->640x480=307200
+      //c_nb_img_pxls =  19,  //640*480=307,200 -> 2^19=524,288
+      // QQVGA
+      //c_img_cols    = 160, // 8 bits
+      //c_img_rows    = 120, //  7 bits
+      //c_img_pxls    = c_img_cols * c_img_rows,
+      //c_nb_img_pxls = $clog2(c_img_pxls), // 15 -> 160*120=19.200 -> 2^15
+      // QQVGA /2
+      //c_img_cols    = 80, // 7 bits
+      //c_img_rows    = 60, //  6 bits
+      //c_img_pxls    = c_img_cols * c_img_rows,
+      //c_nb_img_pxls = $clog2(c_img_pxls), // 13,  //80*60=4800 -> 2^13
+
+      // number of bits of the image colums and rows
+      c_nb_cols     = $clog2(c_img_cols),
+      c_nb_rows     = $clog2(c_img_rows),
+
+      // inner frame size
+      // columns and rows taken away at each side
+      c_outframe_cols = 64, // each side of the columns, 128 total. So we have 512 efective columns
+      c_outframe_rows = 8,  // each side of the rows 16 total
+      // columns in the inner frame
+      c_inframe_cols = c_img_cols-2*c_outframe_cols, // 512, 9 bits(0 to 511)
+                                             // taking out 128, 64 each side
+      //c_inframe_cols = c_img_cols-2*c_outframe_cols, // 128, 7 bits(0 to 127)
+      c_inframe_rows = c_img_rows-2*c_outframe_rows, //464, 9 bits (0 to 463)
+      //c_inframe_rows = c_img_rows-2*c_outframe_rows, //104, 7 bits (0 to 107)
+      //                                       // taking out 16, 8 each side
+      // total pixels in the inner frame
+      c_inframe_pxls = c_inframe_cols * c_inframe_rows, // 512x464 = 237,568
+      // number of bits for the number of total pixels in the inner frame
+      c_nb_inframe_pxls = $clog2(c_inframe_pxls), // = 18
+      c_nb_inframe_cols = $clog2(c_inframe_cols), // = 9
+
+      // histogram
+      // number of bins (buckets)
+      c_hist_bins = 8, // 7:0
+      // number of bits needed for the histogram bins: 8 bins -> 3 bits
+      c_nb_hist_bins = $clog2(c_hist_bins), // 3 bits
+      // For a 512x464 image we have 464 rows and 64 column in each bin
+      // for each bin 29696 (464 x 64) is the max number: 15 bits
+      c_nb_hist_val = $clog2(c_inframe_rows * (c_inframe_cols/c_hist_bins)), // = 15
+
+      // centroid has 8 bits, it is decoded, so its not a number, to match the leds
+      c_nb_centroid = 8,
+
+      // proximity calculation, for now just 3 bits 0 to 7 (0: far, 7:close)
+      c_nb_prox  = 3,
+
+      // minimum number to consider an image detected and not being noise
+      // change this value
+      c_min_colorpixels = 1024,  // having 237,568 pixels, 1024 seems reasonable
+
+    c_nb_buf_red   =  4,  // n bits for red in the buffer (memory)
+    c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
+    c_nb_buf_blue  =  4,  // n bits for blue in the buffer (memory)
+    // word width of the memory (buffer)
+    c_nb_buf       =   c_nb_buf_red + c_nb_buf_green + c_nb_buf_blue,
+    // position of the most significant bits of each color
+    c_msb_blue  = c_nb_buf_blue-1,
+    c_msb_red   = c_nb_buf-1,
+    c_msb_green = c_msb_blue + c_nb_buf_green
+  )
+  (
+    input          rst,       //reset, active high
+    input          clk,       //fpga clock
+    input          proc_ctrl, //input to control the processing (select color)
+    // Address and pixel of original image
+    input  [c_nb_buf-1:0]      orig_pxl,  //pixel from original image
+    output [c_nb_img_pxls-1:0] orig_addr, //pixel mem address original img
+    // Address and pixel of processed image
+    output reg                 proc_we,  //write enable, to write processed pxl
+    output [c_nb_buf-1:0]  proc_pxl, // processed pixel to be written
+    output [c_nb_img_pxls-1:0] proc_addr, // address of processed pixel
+    output reg [c_nb_centroid-1:0] centroid,
+    output reg new_centroid,
+    output reg [c_nb_prox-1:0] proximity, //how close is the object 7:close, 0:far
+    output reg [2:0] rgbfilter
+  );
+
+  reg [c_nb_img_pxls-1:0]  cnt_pxl;
+  reg [c_nb_img_pxls-1:0]  cnt_pxl_proc;
+
+  wire end_pxl_cnt;
+  wire end_ln;
+  wire inner_frame; //if we are in the inner frame col=[8,71], row=[6,53]
+
+  wire   red_limit;
+  wire   green_limit;
+  wire   blue_limit;
+  wire   yellow_limit;
+  wire   cyan_limit;
+  wire   magen_limit;
+  wire   white_limit;
+  reg    color_threshold; // if color threshold is active
+  
+  parameter  BLACK_PXL = {c_nb_buf{1'b0}};
+  
+  integer ind; 
+
+  // from 0 to 640-1 columns, 0 to 64-1, and 448 to 640-1 are taken out
+  // so column  64  -> 0
+  //    column  447 -> 512
+  // In the inner frame In each column there are 104 rows (inner frame),
+  // c_nb_hist_val: number of  bits for the value of the histogram bins
+  // c_hist_bins: number of bins of the histogram
+  reg [c_nb_hist_val-1:0] histogram [c_hist_bins-1:0]; 
+
+  // total number of pixels that are above the threshold
+  reg [c_nb_inframe_pxls-1:0] colorpxls;
+
+  // total number of pixels that are above the threshold on the left side
+  // bins 0 to 3
+  reg [c_nb_inframe_pxls-2:0] colorpxls_left;
+  reg [c_nb_inframe_pxls-2:0] colorpxls_rght;
+
+  // total number of pixels that are above the threshold on the bins 0to2
+  reg [c_nb_inframe_pxls-2:0] colorpxls_bin012;
+  reg [c_nb_inframe_pxls-2:0] colorpxls_bin567; // bins 5to7
+
+  // total number of pixels that are above the threshold on the bins 0,1
+  reg [c_nb_inframe_pxls-2:0] colorpxls_bin01;
+  reg [c_nb_inframe_pxls-2:0] colorpxls_bin67; // bins 6to7
+
+  // total color pixels divided by 2
+  wire [c_nb_inframe_pxls-2:0] colorpxls_half;
+
+  // result of the division of the total number of threshold pixels
+  // initially, divided by 16, could be 8
+  wire [c_nb_inframe_pxls-4-1:0] colorpxls_div;
+
+  //proximity, combinational, value not valid until reaching the end of the frame
+  reg [c_nb_prox-1:0] proximity_cmb; //proximity, combinational, so 
+
+  
+  reg [c_nb_cols-1:0] col, col_rg;
+  // col_inframe is a bit less, but just in case
+  wire [c_nb_cols-1:0] col_inframe;
+
+  // indicates in which bin we are
+  wire [c_nb_hist_bins-1:0] hist_bin;
+
+  // Row number
+  reg [c_nb_rows-1:0] row_num;
+
+  // temporal calculation of the centroid
+  reg [c_nb_centroid-1:0] centroid_tmp;
+
+  // indicates if there are more threshold pixels on the left half of the
+  // inner frame
+  wire left;
+
+  // indicates the absolute difference (positive) between the pixels on the
+  // right and left
+  wire [c_nb_inframe_pxls-2:0] absdif_lft_rght;
+
+  reg       proc_ctrl_rg1, proc_ctrl_rg2;
+  wire      pulse_proc_ctrl;
+
+  // memory address count. Pixel counter from 0 to (80x60)-1 = 4799
+  always @ (posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      cnt_pxl <= 0;
+      cnt_pxl_proc <= 0;
+      proc_we <= 1'b0;    
+    end
+    else begin
+      proc_we <= 1'b1;
+      // data from memory received a clock cycle later
+      // data stored in processed memory is delayed one clock cycle
+      cnt_pxl_proc <= cnt_pxl;
+      if (end_pxl_cnt ) begin
+        cnt_pxl <= 0;
+      end
+      else
+        cnt_pxl <= cnt_pxl + 1'b1;
+    end
+  end
+  
+  // end of the frame
+  assign end_pxl_cnt = (cnt_pxl == c_img_pxls-1) ? 1'b1 : 1'b0;
+  assign orig_addr = cnt_pxl;
+  assign proc_addr = cnt_pxl_proc;
+
+  // end of the line (column number 640-1)
+  assign end_ln = (col == c_img_cols-1)? 1'b1 : 1'b0;
+  
+  //Row counter, from 0 to 480-1
+  always @ (posedge clk, posedge rst) 
+  begin
+    if (rst) begin   
+      row_num <=0;
+    end 
+    else if (end_pxl_cnt) begin
+      row_num <= 0;
+    end
+    else if (end_ln) begin
+      row_num <= row_num +1'b1;
+    end 
+  end
+
+  // number of column counter. Counts columns, from 0 to 640-1
+  always @ (posedge clk, posedge rst) 
+  begin
+    if (rst) begin   
+      col <=0;
+    end 
+    else if (end_ln) begin
+      col <= 0;
+    end
+    else begin
+      col <= col +1'b1;
+    end 
+  end
+
+  //delay col, (columns)
+  always @ (posedge clk, posedge rst)
+  begin
+    if (rst) begin
+      col_rg <= 0;
+    end
+    else begin
+      col_rg <= col;
+    end
+  end 
+
+  //if we are in the inner frame col=[64,575(639-64)], row=[6,53]
+  assign inner_frame = (col_rg  >= c_outframe_cols  &&  // 16
+                        col_rg  <  c_img_cols-c_outframe_cols &&  // 144= 160-16
+                        row_num >= c_outframe_rows &&   // 8
+                        row_num <  c_img_rows-c_outframe_rows)  // 112 = 120-8
+                     ? 1'b1 : 1'b0;
+
+  // inner column, when we are out of the range it doesn't matter the value
+  // because shouldnt be used
+  assign col_inframe = col_rg - c_outframe_cols; // -16
+  // divide col_inframe by 16, from 128 columns to 8 -> 4 bits
+  //assign hist_bin = col_inframe[c_nb_hist_bins+4-1:4];
+  // 4 bits. col_inframe is one bit less than c_nb_cols. hist_bin is 3 bits (-2,-4):3bits
+  assign hist_bin = col_inframe[c_nb_inframe_cols-1:c_nb_inframe_cols-c_nb_hist_bins]; // 3 bits
+
+  // color filter thresholds
+  assign red_limit = (orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign green_limit = (!orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign blue_limit = (!orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign yellow_limit = (orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && !orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign cyan_limit = (!orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign magen_limit = (orig_pxl[c_msb_red] && !orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+  assign white_limit = (orig_pxl[c_msb_red] && orig_pxl[c_msb_green] && orig_pxl[c_msb_blue]) ?
+                      1'b1 : 1'b0;
+
+
+  //reg [c_nb_hist_val-1:0] histograma [c_hist_bins-1:0];
+  // saves how many red pixels are in each column. Reset in each frame
+  always @ (posedge clk, posedge rst) 
+  begin
+    if (rst) begin  
+      for(ind=0;ind<c_hist_bins;ind=ind+1) begin
+        histogram[ind] <=  0; //c_nb_hist_val'd0; 
+      end
+      colorpxls         <= 0; // c_nb_inframe_pxls'd0;
+      colorpxls_left    <= 0; // (c_nb_inframe_pxls-2)'d0
+      colorpxls_rght    <= 0; // 4567
+      colorpxls_bin012 <= 0;
+      colorpxls_bin567 <= 0; 
+      colorpxls_bin01  <= 0; 
+      colorpxls_bin67  <= 0; 
+    end 
+    else begin 
+      if (end_pxl_cnt) begin
+        for(ind=0;ind<c_hist_bins;ind=ind+1) begin
+          histogram[ind]  <= 0; //  c_nb_hist_val'd0; 
+        end
+        colorpxls         <= 0; // c_nb_inframe_pxls'd0;
+        colorpxls_left    <= 0; // (c_nb_inframe_pxls-2)'d0
+        colorpxls_rght    <= 0; // 4567
+        colorpxls_bin012 <= 0;
+        colorpxls_bin567 <= 0; 
+        colorpxls_bin01  <= 0; 
+        colorpxls_bin67  <= 0; 
+      end
+      else begin
+        // taking inner frame from 8 to 71-> 64 columns.
+        // Taking away 8 columns at each end
+        // and 6 to 53-> 48 rows. Taking away 6 rows at each end
+        if (inner_frame == 1'b1) begin
+          if (color_threshold == 1'b1) begin 
+            histogram[hist_bin] <= histogram[hist_bin] + 1'b1;
+            colorpxls <= colorpxls + 1;
+            // these increments could be done combinationally by adding histograms
+            // bins. not sure what is more efficient, and if done combinationally
+            // it may add too many delays
+            case (hist_bin)
+              //c_nb_hist_bins'd0: begin
+              3'd0: begin
+                colorpxls_left    <= colorpxls_left + 1'b1;    //0123
+                colorpxls_bin012 <= colorpxls_bin012 + 1'b1; //012
+                colorpxls_bin01  <= colorpxls_bin01 + 1'b1;  //01
+              end
+              3'd1: begin
+                colorpxls_left    <= colorpxls_left + 1'b1;    //0123
+                colorpxls_bin012 <= colorpxls_bin012 + 1'b1; //012
+                colorpxls_bin01  <= colorpxls_bin01 + 1'b1;  //01
+              end
+              3'd2: begin
+                colorpxls_left    <= colorpxls_left + 1'b1;    //0123
+                colorpxls_bin012 <= colorpxls_bin012 + 1'b1; //012
+              end
+              3'd3: begin
+                colorpxls_left    <= colorpxls_left + 1'b1;    //0123
+              end
+              3'd4: begin
+                colorpxls_rght    <= colorpxls_rght + 1'b1;    //4567
+              end
+              3'd5: begin
+                colorpxls_rght    <= colorpxls_rght + 1'b1;     //4567
+                colorpxls_bin567 <= colorpxls_bin567 + 1'b1;  //567
+              end
+              3'd6: begin
+                colorpxls_rght    <= colorpxls_rght + 1'b1;     //4567
+                colorpxls_bin567 <= colorpxls_bin567 + 1'b1;  //567
+                colorpxls_bin67  <= colorpxls_bin67 + 1'b1;   //67
+              end
+              3'd7: begin
+                colorpxls_rght    <= colorpxls_rght + 1'b1;     //4567
+                colorpxls_bin567 <= colorpxls_bin567 + 1'b1;  //567
+                colorpxls_bin67  <= colorpxls_bin67 + 1'b1;   //67
+              end
+            endcase
+          end
+        end
+      end
+    end
+  end
+
+
+  assign left = (colorpxls_left > colorpxls_rght) ? 1'b1 : 1'b0;
+  assign absdif_lft_rght = (left == 1'b1) ? (colorpxls_left - colorpxls_rght) :
+                                            (colorpxls_rght - colorpxls_left);
+
+  // divided by 2 -> 1 bit
+  assign colorpxls_half = colorpxls[c_nb_inframe_pxls-1:1];
+
+  // divided by 16 -> 4 bits
+  //assign colorpxls_div = {4'b0 , colorpxls[c_nb_inframe_pxls-1:4]};
+  assign colorpxls_div = colorpxls[c_nb_inframe_pxls-1:4];
+
+  always @(*) 
+  begin
+    centroid_tmp = 0; // default assignment
+    if (colorpxls <= c_min_colorpixels) // not enough color pixels detected
+      centroid_tmp = 0;
+    // if the difference between the colored pixels on de left is less than
+    // 16 percent (maybe it could be 8%)
+    else if (absdif_lft_rght < {3'b0,colorpxls_div})  // consider in the middle
+      centroid_tmp[4:3] = 2'b11; // 0001 1000
+      //centroid_tmp = 8'b00011000;
+    else if (left) begin // more threshold pixels on the left
+      // start checking from the edges
+      if ({2'b0,histogram[0]} >= colorpxls_half) 
+        centroid_tmp[0] = 1'b1; // 1000 0000
+      else if (colorpxls_bin01 >= colorpxls_half) 
+        centroid_tmp[1] = 1'b1; // 0100 0000
+      else if (colorpxls_bin012 >= colorpxls_half) 
+        centroid_tmp[2] = 1'b1; // 0010 0000
+      else if (colorpxls_left > colorpxls_half) 
+        centroid_tmp[3] = 1'b1; // 0001 0000
+    end
+    else begin // more pixels on the right side
+      // start checking from the edges
+      if ({2'b0,histogram[7]} >= colorpxls_half) 
+        centroid_tmp[7] = 1'b1; // 0000 0001
+      else if (colorpxls_bin67 >= colorpxls_half) 
+        centroid_tmp[6] = 1'b1; // 0000 0010
+      else if (colorpxls_bin567 >= colorpxls_half) 
+        centroid_tmp[5] = 1'b1; // 0000 0100
+      else if (colorpxls_rght > colorpxls_half) 
+        centroid_tmp[4] = 1'b1; // 0000 1000
+    end
+  end
+
+  // proximity measurement (color pixel count
+  // making the assumption that all pixels are together and that there is no 
+  // noise. In the future we will consider this
+  // only considering pixles in the inner frame
+
+  // distance: how many pixels are detected
+  // since in the inner frame there are 13312 pixels (128x104) -> 14 bits
+  // (c_nb_inframe_pxls),
+  // lets say that we are too close if we have 2048 or more, that is,
+  //    bit 12 is one
+  // Total : 3072
+  // ---->= 2048            : 2/3 - bits: 11         ='1'    7 -> Max, very close
+  // >= 1536 = 1024+512 : 1/2 - bits:   10:9       ='11'   7 -> Max, very close
+  // >= 1024            : 1/3 - bits:   10         ='1'    6
+  // >=  512            : 1/6 - bits:      9       ='1'    5
+  // >=  256            : 1/12- bits:        8     ='1'    4
+  // >=  128            : 1/24- bits:         7    ='1'    3
+  // >=   64            : 1/48- bits:          6   ='1'    2
+  // >=   32            : 1/96- bits:           5  ='1'    1
+  // <    32                                               0 -> Min
+
+  always @(*)
+  begin
+    if (colorpxls[c_nb_inframe_pxls-1] == 1'b1) begin // bit 13
+        proximity_cmb = 3'd7;  // bits 10:9 too close, max proximity >=1536 : 1/2
+    end
+    else if (colorpxls[c_nb_inframe_pxls-2] == 1'b1) begin // bit 10 -- bit 12
+      if (colorpxls[c_nb_inframe_pxls-3] == 1'b1) begin // bit 9
+        proximity_cmb = 3'd7;  // bits 10:9 too close, max proximity >=1536 : 1/2
+      end
+      else
+        proximity_cmb = 3'd6;  // bit 10 too close, max proximity >=1024 : 1/3
+    end
+    else if (colorpxls[c_nb_inframe_pxls-3] == 1'b1) begin // bit 9
+      proximity_cmb = 3'd5;  // 6: bit 9  >= 512 - 1/6
+    end
+    else if (colorpxls[c_nb_inframe_pxls-4] == 1'b1) begin // bit 8
+      proximity_cmb = 3'd4;  // 5: bit 8  >= 256 - 1/12
+    end
+    else if (colorpxls[c_nb_inframe_pxls-5] == 1'b1) begin // bit 7
+      proximity_cmb = 3'd3;  // 4: bit 7  >= 128 - 1/24
+    end
+    else if (colorpxls[c_nb_inframe_pxls-6] == 1'b1) begin // bit 6
+      proximity_cmb = 3'd2;  // 3: bit 6  >= 64 - 1/48
+    end
+    else if (colorpxls[c_nb_inframe_pxls-7] == 1'b1) begin // bit 5
+      proximity_cmb = 3'd1;  // bit 5  >= 32 - 1/96
+    end
+    else
+      proximity_cmb = 3'd0;  // < 32
+  end
+
+  // save the centroid and proximity when finishing the frame
+  always @ (posedge clk, posedge rst) 
+  begin
+    if (rst) begin
+      centroid <= 0; 
+      new_centroid <= 1'b0;
+      proximity <= 0;
+    end
+    else if (end_pxl_cnt) begin
+      centroid <= centroid_tmp; 
+      new_centroid <= 1'b1;
+      proximity <= proximity_cmb;
+    end
+    else
+      new_centroid <= 1'b0;
+  end
+
+
+  always @ (posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      proc_ctrl_rg1 <= 1'b0;
+      proc_ctrl_rg2 <= 1'b0;
+    end
+    else begin
+      proc_ctrl_rg1 <= proc_ctrl;
+      proc_ctrl_rg2 <= proc_ctrl_rg1;
+    end
+  end
+
+  // detect a pulse in proc_ctrl
+  assign pulse_proc_ctrl = (proc_ctrl_rg1 & ~proc_ctrl_rg2);
+  
+  // changes the filter
+  always @ (posedge rst, posedge clk)
+  begin
+    if (rst) begin
+      rgbfilter <= 3'b000; // no filter
+    end
+    else begin
+      if (pulse_proc_ctrl) begin
+        case (rgbfilter)
+          3'b000: // no filter, output same as input
+            rgbfilter <= 3'b100; // red filter
+          3'b100: // red filter
+            rgbfilter <= 3'b010; // green filter
+          3'b010: // green filter
+            rgbfilter <= 3'b001; // blue filter
+          3'b001: // blue filter
+            rgbfilter <= 3'b110; // red and green filter
+          3'b110: // red and green filter
+            rgbfilter <= 3'b101; // red and blue filter
+          3'b101: // red and blue filter
+            rgbfilter <= 3'b011; // green and blue filter
+          3'b011: // green and blue filter
+            rgbfilter <= 3'b111; // red, green and blue filter
+          3'b111: // red, green and blue filter
+            rgbfilter <= 3'b000; // no filter
+        endcase
+      end
+    end
+  end
+
+  assign proc_pxl = color_threshold ? orig_pxl : BLACK_PXL;
+  
+  always @ (*) // should include RGB mode
+  begin
+    // check on RED
+    color_threshold = 1'b1;
+    case (rgbfilter)
+      3'b000: // no filter, output same as input
+        color_threshold = 1'b1;
+      3'b100: begin // red filter
+        color_threshold = red_limit;
+      end
+      3'b010: begin // green filter
+        color_threshold = green_limit;
+      end
+      3'b001: begin // filter blue
+        color_threshold = blue_limit;
+      end
+      3'b110: begin // filter red and green
+        color_threshold = yellow_limit;
+      end
+      3'b101: begin // filter red and blue
+        color_threshold = magen_limit;
+      end
+      3'b011: begin // filter green and blue
+        color_threshold = cyan_limit;
+      end
+      3'b111: begin // red, green and blue filter
+        color_threshold = white_limit;
+      end
+    endcase
+  end
+
+endmodule
