@@ -20,3 +20,9 @@ More info in its [tutorial 2 readme](./tut02)
 In this example, instead of processing still images, the frames from the computer camera is processed by the _verilated_ color processing Verilog module.
 
 More info in its [tutorial 3 readme](./tut03)
+
+## [Tutorial 4](./tut04)
+
+In this example, the video frame size has increased considerably, from 160x120 to 640x480. To test the performance with this size
+
+More info in its [tutorial 4 readme](./tut04)

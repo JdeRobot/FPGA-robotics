@@ -59,17 +59,17 @@
 module color_proc
   # (parameter
       // VGA
-      //c_img_cols    = 640, // 10 bits
-      //c_img_rows    = 480, //  9 bits
-      //c_img_pxls    = c_img_cols * c_img_rows,
+      c_img_cols    = 640, // 10 bits
+      c_img_rows    = 480, //  9 bits
+      c_img_pxls    = c_img_cols * c_img_rows,
       //c_nb_line_pxls = 10, // log2i(c_img_cols-1) + 1;
-      // c_nb_img_pxls = log2i(c_img_pxls-1) + 1
+      c_nb_img_pxls = $clog2(c_img_pxls), // 19->640x480=307200
       //c_nb_img_pxls =  19,  //640*480=307,200 -> 2^19=524,288
       // QQVGA
-      c_img_cols    = 160, // 8 bits
-      c_img_rows    = 120, //  7 bits
-      c_img_pxls    = c_img_cols * c_img_rows,
-      c_nb_img_pxls = $clog2(c_img_pxls), // 15 -> 160*120=19.200 -> 2^15
+      //c_img_cols    = 160, // 8 bits
+      //c_img_rows    = 120, //  7 bits
+      //c_img_pxls    = c_img_cols * c_img_rows,
+      //c_nb_img_pxls = $clog2(c_img_pxls), // 15 -> 160*120=19.200 -> 2^15
       // QQVGA /2
       //c_img_cols    = 80, // 7 bits
       //c_img_rows    = 60, //  6 bits
@@ -82,27 +82,29 @@ module color_proc
 
       // inner frame size
       // columns and rows taken away at each side
-      c_outframe_cols = 16, // each side of the columns, 32 total
+      c_outframe_cols = 64, // each side of the columns, 128 total. So we have 512 efective columns
       c_outframe_rows = 8,  // each side of the rows 16 total
       // columns in the inner frame
-      c_inframe_cols = c_img_cols-2*c_outframe_cols, // 128, 7 bits(0 to 127)
-                                             // taking out 32, 16 each side
-      c_inframe_rows = c_img_rows-2*c_outframe_rows, //104, 7 bits (0 to 107)
-                                             // taking out 16, 8 each side
+      c_inframe_cols = c_img_cols-2*c_outframe_cols, // 512, 9 bits(0 to 511)
+                                             // taking out 128, 64 each side
+      //c_inframe_cols = c_img_cols-2*c_outframe_cols, // 128, 7 bits(0 to 127)
+      c_inframe_rows = c_img_rows-2*c_outframe_rows, //464, 9 bits (0 to 463)
+      //c_inframe_rows = c_img_rows-2*c_outframe_rows, //104, 7 bits (0 to 107)
+      //                                       // taking out 16, 8 each side
       // total pixels in the inner frame
-      c_inframe_pxls = c_inframe_cols * c_inframe_rows, // 128x104 = 13312
+      c_inframe_pxls = c_inframe_cols * c_inframe_rows, // 512x464 = 237,568
       // number of bits for the number of total pixels in the inner frame
-      c_nb_inframe_pxls = $clog2(c_inframe_pxls), // = 14
-      c_nb_inframe_cols = $clog2(c_inframe_cols), // = 7
+      c_nb_inframe_pxls = $clog2(c_inframe_pxls), // = 18
+      c_nb_inframe_cols = $clog2(c_inframe_cols), // = 9
 
       // histogram
       // number of bins (buckets)
       c_hist_bins = 8, // 7:0
       // number of bits needed for the histogram bins: 8 bins -> 3 bits
       c_nb_hist_bins = $clog2(c_hist_bins), // 3 bits
-      // For a 160x120 image we have 104 rows and 16 column in each bin
-      // for each bin 1664 (104 x 16) is the max number: 11 bits
-      c_nb_hist_val = $clog2(c_inframe_rows * (c_inframe_cols/c_hist_bins)), // = 11
+      // For a 512x464 image we have 464 rows and 64 column in each bin
+      // for each bin 29696 (464 x 64) is the max number: 15 bits
+      c_nb_hist_val = $clog2(c_inframe_rows * (c_inframe_cols/c_hist_bins)), // = 15
 
       // centroid has 8 bits, it is decoded, so its not a number, to match the leds
       c_nb_centroid = 8,
@@ -112,7 +114,7 @@ module color_proc
 
       // minimum number to consider an image detected and not being noise
       // change this value
-      c_min_colorpixels = 128,  // having 13312 pixels, 128 seems reasonable
+      c_min_colorpixels = 1024,  // having 237,568 pixels, 1024 seems reasonable
 
     c_nb_buf_red   =  4,  // n bits for red in the buffer (memory)
     c_nb_buf_green =  4,  // n bits for green in the buffer (memory)
@@ -161,9 +163,9 @@ module color_proc
   
   integer ind; 
 
-  // from 0 to 159 columns, 0 to 15, and 144 to 159 are taken out
-  // so column  16  -> 0
-  //    column  143 -> 128
+  // from 0 to 640-1 columns, 0 to 64-1, and 448 to 640-1 are taken out
+  // so column  64  -> 0
+  //    column  447 -> 512
   // In the inner frame In each column there are 104 rows (inner frame),
   // c_nb_hist_val: number of  bits for the value of the histogram bins
   // c_hist_bins: number of bins of the histogram
@@ -246,10 +248,10 @@ module color_proc
   assign orig_addr = cnt_pxl;
   assign proc_addr = cnt_pxl_proc;
 
-  // end of the line (column number 79)
+  // end of the line (column number 640-1)
   assign end_ln = (col == c_img_cols-1)? 1'b1 : 1'b0;
   
-  //Row counter, from 0 to 59
+  //Row counter, from 0 to 480-1
   always @ (posedge clk, posedge rst) 
   begin
     if (rst) begin   
@@ -263,7 +265,7 @@ module color_proc
     end 
   end
 
-  // number of column counter. Counts columns, from 0 to 79
+  // number of column counter. Counts columns, from 0 to 640-1
   always @ (posedge clk, posedge rst) 
   begin
     if (rst) begin   
@@ -288,7 +290,7 @@ module color_proc
     end
   end 
 
-  //if we are in the inner frame col=[16,144(159-16)], row=[6,53]
+  //if we are in the inner frame col=[64,575(639-64)], row=[6,53]
   assign inner_frame = (col_rg  >= c_outframe_cols  &&  // 16
                         col_rg  <  c_img_cols-c_outframe_cols &&  // 144= 160-16
                         row_num >= c_outframe_rows &&   // 8

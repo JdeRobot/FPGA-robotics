@@ -1,9 +1,8 @@
 // Authors:
 //  - Based on original version of David Lobato
 //  - Modified: Felipe Machado, https://github.com/felipe-m
-// Tutorial 3:
-//   - includes centroid and proximity
-//   - the image is larger 160x120
+// Tutorial 4:
+//   - the image is larger than tutorial 3: 640x480
 
 // imgui headers
 #include <SDL.h>
@@ -46,13 +45,12 @@ typedef cv::Vec<uint8_t, 3> BGRPixel;
 typedef cv::Vec<uint8_t, 4> BGRAPixel;
 
 const int n_leds = 8;
-const int IMG_COLS = 160;
-const int IMG_ROWS = 120;
+const int IMG_COLS = 640;
+const int IMG_ROWS = 480;
 const int IMG_PXLS = IMG_COLS * IMG_ROWS;
 const uint8_t ALPHA_SOLID = 255;
 
 // Original images to be processed
-const char input_image_1_path[] = ASSETS_DIR "/redball_160_120_left.png";
 
 const char font_awesome_path[] = ASSETS_DIR "/fa-solid-900.ttf";
 
@@ -354,7 +352,7 @@ int main(int argc, char **argv) {
                         SDL_WINDOW_ALLOW_HIGHDPI);
   SDL_Window *window =
       SDL_CreateWindow("Pixel Processor simulator", SDL_WINDOWPOS_CENTERED,
-                       SDL_WINDOWPOS_CENTERED, 640, 480, window_flags);
+                       SDL_WINDOWPOS_CENTERED, 900, 900, window_flags);
   SDL_GLContext gl_context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, gl_context);
   SDL_GL_SetSwapInterval(1);  // Enable vsync
