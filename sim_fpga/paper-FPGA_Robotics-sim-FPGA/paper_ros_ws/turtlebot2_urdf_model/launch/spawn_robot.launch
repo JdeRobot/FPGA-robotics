@@ -1,0 +1,19 @@
+<!--
+  Spawns the Turtlebot 2 robot in a gazebo simulation
+  -->
+<launch>
+  <arg name="robot_name" value="turtlebot_2"/>
+   <arg name="urdf_file" default="cat $(find turtlebot2_urdf_model)/urdf/turtlebot2.urdf"/>
+  <param name="robot_description" command="$(arg urdf_file)"/>
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_$(arg robot_name)"
+        args="-x 0.0 -y -0.0 -z 0.0 -R 0.0 -P 0.0 -Y 1.4 -unpause -urdf -param robot_description -model $(arg robot_name)" respawn="false">
+  </node>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0"/>
+  </node>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="true"/>
+  </node>
+
+</launch>
