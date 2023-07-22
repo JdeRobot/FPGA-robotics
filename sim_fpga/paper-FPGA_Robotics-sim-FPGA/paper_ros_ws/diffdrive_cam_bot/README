@@ -1,0 +1,5 @@
+roslaunch diffdrive_cam_bot main.launch
+
+rostopic pub -1 /cmd_vel geometry_msgs/Twist -- '[0.2, 0.0, 0.0]' '[0.0, 0.0, 0.1]'
+
+in Gazebo 9, you can click on "View" and then activate "Collisions" to see the robot.

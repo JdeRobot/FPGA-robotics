@@ -1,0 +1,16 @@
+<package>
+  <name>turtlebot2_urdf_model</name>
+  <version>0.1.0</version>
+  <description>
+      Urdf model of the turtlebot 2 robot.
+  </description>
+  <author email="a.moncalvillo.2019@alumnos.urjc.es">Alejandro Moncalvillo</author>
+  <maintainer email="a.moncalvillo.2019@alumnos.urjc.es">Alejandro Moncalvillo</maintainer>
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>urdf</build_depend>
+
+  <run_depend>urdf</run_depend>
+
+</package>

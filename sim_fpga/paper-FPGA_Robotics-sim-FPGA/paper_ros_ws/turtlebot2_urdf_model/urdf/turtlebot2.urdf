@@ -1,0 +1,884 @@
+<?xml version="1.0" ?>
+
+<robot name="turtlebot2" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor">
+  <link name="base_footprint"/>
+  <!--
+       Base link is set at the bottom of the base mould.
+       This is done to be compatible with the way base link
+       was configured for turtlebot 1. Refer to
+
+       https://github.com/turtlebot/turtlebot/issues/40
+
+       To put the base link at the more oft used wheel
+       axis, set the z-distance from the base_footprint
+       to 0.352. 0.05949
+      -->
+  <joint name="base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.0102"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <!-- new mesh -->
+        <mesh filename="package://turtlebot2_urdf_model/meshes/main_body.dae"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.001 0 0.05199"/>
+    </visual>
+    <collision name="base">
+      <geometry>
+        <cylinder length="0.10938" radius="0.178"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0 0.06"/>
+    </collision>
+    <inertial>
+      <!-- COM experimentally determined -->
+      <origin xyz="0.01 0 0"/>
+      <mass value="2.4"/>
+      <!-- 2.4/2.6 kg for small/big battery pack -->
+      <!-- Kobuki's inertia tensor is approximated by a cylinder with homogeneous mass distribution
+             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors
+             m = 2.4 kg; h = 0.09 m; r = 0.175 m
+             ixx = 1/12 * m * (3 * r^2 + h^2)
+             iyy = 1/12 * m * (3 * r^2 + h^2)
+             izz = 1/2 * m * r^2
+          -->
+      <inertia ixx="0.019995" ixy="0.0" ixz="0.0" iyy="0.019995" iyz="0.0" izz="0.03675"/>
+    </inertial>
+  </link>
+  <joint name="wheel_left_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_left_link"/>
+    <origin rpy="-1.5707963267948966 0 0" xyz="0.00 0.115 0.0250"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="wheel_left_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://turtlebot2_urdf_model/meshes/wheel.dae"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.0206" radius="0.035"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  <joint name="wheel_right_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_right_link"/>
+    <origin rpy="-1.5707963267948966 0 0" xyz="0.00 -0.115 0.0250"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="wheel_right_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://turtlebot2_urdf_model/meshes/wheel.dae"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.0206" radius="0.035"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  <joint name="caster_front_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="caster_front_link"/>
+    <origin rpy="-1.5707963267948966 0 0" xyz="0.115 0.0 0.007"/>
+  </joint>
+  <link name="caster_front_link">
+    <collision>
+      <geometry>
+        <cylinder length="0.0176" radius="0.017"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  <joint name="caster_back_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="caster_back_link"/>
+    <origin rpy="-1.5707963267948966 0 0" xyz="-0.135 0.0 0.009"/>
+  </joint>
+  <link name="caster_back_link">
+    <collision>
+      <geometry>
+        <cylinder length="0.0176" radius="0.017"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  <!-- Kobuki's sensors -->
+  <joint name="gyro_joint" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.056 0.062 0.0202"/>
+    <parent link="base_link"/>
+    <child link="gyro_link"/>
+  </joint>
+  <link name="gyro_link">
+    <inertial>
+      <mass value="0.001"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+  <joint name="cliff_sensor_left_joint" type="fixed">
+    <origin rpy="0 1.5707963267948966 0" xyz="0.08734 0.13601 0.0214"/>
+    <parent link="base_link"/>
+    <child link="cliff_sensor_left_link"/>
+  </joint>
+  <link name="cliff_sensor_left_link">
+    <inertial>
+      <mass value="0.0001"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+  <joint name="cliff_sensor_right_joint" type="fixed">
+    <origin rpy="0 1.5707963267948966 0" xyz="0.085 -0.13601 0.0214"/>
+    <parent link="base_link"/>
+    <child link="cliff_sensor_right_link"/>
+  </joint>
+  <link name="cliff_sensor_right_link">
+    <inertial>
+      <mass value="0.0001"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+  <joint name="cliff_sensor_front_joint" type="fixed">
+    <origin rpy="0 1.5707963267948966 0" xyz="0.156 0.00 0.0214"/>
+    <parent link="base_link"/>
+    <child link="cliff_sensor_front_link"/>
+  </joint>
+  <link name="cliff_sensor_front_link">
+    <inertial>
+      <mass value="0.0001"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+  <gazebo reference="wheel_left_link">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+  </gazebo>
+  <gazebo reference="wheel_right_link">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+  </gazebo>
+  <gazebo reference="caster_front_link">
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+  </gazebo>
+  <gazebo reference="caster_back_link">
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+  </gazebo>
+  <gazebo reference="base_link">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <sensor name="bumpers" type="contact">
+      <always_on>1</always_on>
+      <update_rate>50.0</update_rate>
+      <visualize>true</visualize>
+      <contact>
+        <collision>base_footprint_fixed_joint_lump__base_collision</collision>
+      </contact>
+    </sensor>
+  </gazebo>
+  <gazebo reference="cliff_sensor_left_link">
+    <sensor name="cliff_sensor_left" type="ray">
+      <always_on>true</always_on>
+      <update_rate>50</update_rate>
+      <visualize>true</visualize>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>50</samples>
+            <resolution>1.0</resolution>
+            <min_angle>-0.0436</min_angle>
+            <!-- -2.5 degree -->
+            <max_angle>0.0436</max_angle>
+            <!-- 2.5 degree -->
+          </horizontal>
+          <!--            Can't use vertical rays until this bug is resolved: -->
+          <!--            https://bitbucket.org/osrf/gazebo/issue/509/vertical-sensor-doesnt-works -->
+          <!-- 	          <vertical> -->
+          <!-- 	            <samples>50</samples> -->
+          <!-- 	            <resolution>1.0</resolution> -->
+          <!-- 	            <min_angle>-0.0436</min_angle>  -2.5 degree -->
+          <!-- 	            <max_angle>0.0436</max_angle> 2.5 degree -->
+          <!-- 	          </vertical> -->
+        </scan>
+        <range>
+          <min>0.01</min>
+          <max>0.15</max>
+          <resolution>1.0</resolution>
+        </range>
+      </ray>
+    </sensor>
+  </gazebo>
+  <gazebo reference="cliff_sensor_right_link">
+    <sensor name="cliff_sensor_right" type="ray">
+      <always_on>true</always_on>
+      <update_rate>50</update_rate>
+      <visualize>true</visualize>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>50</samples>
+            <resolution>1.0</resolution>
+            <min_angle>-0.0436</min_angle>
+            <!-- -2.5 degree -->
+            <max_angle>0.0436</max_angle>
+            <!-- 2.5 degree -->
+          </horizontal>
+          <!--            Can't use vertical rays until this bug is resolved: -->
+          <!--            https://bitbucket.org/osrf/gazebo/issue/509/vertical-sensor-doesnt-works -->
+          <!-- 	          <vertical> -->
+          <!-- 	            <samples>50</samples> -->
+          <!-- 	            <resolution>1.0</resolution> -->
+          <!-- 	            <min_angle>-0.0436</min_angle>  -2.5 degree -->
+          <!-- 	            <max_angle>0.0436</max_angle> 2.5 degree -->
+          <!-- 	          </vertical> -->
+        </scan>
+        <range>
+          <min>0.01</min>
+          <max>0.15</max>
+          <resolution>1.0</resolution>
+        </range>
+      </ray>
+    </sensor>
+  </gazebo>
+  <gazebo reference="cliff_sensor_front_link">
+    <sensor name="cliff_sensor_front" type="ray">
+      <always_on>true</always_on>
+      <update_rate>50</update_rate>
+      <visualize>true</visualize>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>50</samples>
+            <resolution>1.0</resolution>
+            <min_angle>-0.0436</min_angle>
+            <!-- -2.5 degree -->
+            <max_angle>0.0436</max_angle>
+            <!-- 2.5 degree -->
+          </horizontal>
+          <!-- 	          Can't use vertical rays until this bug is resolved: -->
+          <!--            https://bitbucket.org/osrf/gazebo/issue/509/vertical-sensor-doesnt-works -->
+          <!-- 	          <vertical> -->
+          <!-- 	            <samples>50</samples> -->
+          <!-- 	            <resolution>1.0</resolution> -->
+          <!-- 	            <min_angle>-0.0436</min_angle>  -2.5 degree -->
+          <!-- 	            <max_angle>0.0436</max_angle> 2.5 degree -->
+          <!-- 	          </vertical> -->
+        </scan>
+        <range>
+          <min>0.01</min>
+          <max>0.15</max>
+          <resolution>1.0</resolution>
+        </range>
+      </ray>
+    </sensor>
+  </gazebo>
+  <gazebo reference="gyro_link">
+    <sensor name="imu" type="imu">
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="gazebo_ros_imu_controller">
+      	<robotNamespace>turtlebot2</robotNamespace>
+        <ros>
+          <argument>~/out:=imu</argument>
+        </ros>
+        <output_type>sensor_msgs/msg/Imu</output_type>
+        <bodyName>gyro_link</bodyName>
+        <frameName>gyro_link</frameName>
+        <topicName>imu_data</topicName>
+      </plugin>
+      <always_on>true</always_on>
+      <update_rate>50</update_rate>
+      <visualize>false</visualize>
+      <imu>
+        <noise>
+          <type>gaussian</type>
+          <rate>
+            <mean>0.0</mean>
+            <stddev>1.96e-06</stddev>
+            <!-- 0.25 x 0.25 (deg/s) -->
+            <bias_mean>0.0</bias_mean>
+            <bias_stddev>0.0</bias_stddev>
+          </rate>
+          <accel>
+            <!-- not used in the plugin and real robot, hence using tutorial values -->
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
+          </accel>
+        </noise>
+      </imu>
+    </sensor>
+  </gazebo>
+  <gazebo>
+    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
+      <robotNamespace>turtlebot2</robotNamespace>
+      <updateRate>10</updateRate>
+      <commandTopic>cmd_vel</commandTopic>
+      <leftJoint>wheel_left_joint</leftJoint>
+      <rightJoint>wheel_right_joint</rightJoint>
+      <wheelSeparation>0.230</wheelSeparation>
+      <wheelDiameter>0.070</wheelDiameter>
+      <wheelTorque>1.0</wheelTorque>
+      <wheelAcceleration>1.0</wheelAcceleration>
+      <!-- output -->
+      <publishOdom>true</publishOdom>
+      <publishOdomTF>true</publishOdomTF>
+      <publishWheelTF>true</publishWheelTF>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+  <material name="Gray">
+    <color rgba="0.5 0.5 0.5 1"/>
+  </material>
+  <material name="DarkGray">
+    <color rgba="0.1 0.1 0.1 0.5"/>
+  </material>
+  <material name="Black">
+    <color rgba="0 0 0 1"/>
+  </material>
+  <gazebo reference="base_tick1_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="base_tick2_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="base_tick3_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="base_tick4_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="base_tick5_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="camera_support_tick1_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="camera_support_tick2_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+  <gazebo reference="lower_base_link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="middle_base_link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="upper_base_link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="camera_support_base_link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="camera_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="lidar_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="dir_link">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <gazebo reference="dir_link2">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <link name="base_tick1_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.35" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.35" radius="0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="base_tick1_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.08 0.14 0.25"/>
+    <parent link="base_link"/>
+    <child link="base_tick1_link"/>
+  </joint>
+  <link name="base_tick2_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.35" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.35" radius="0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="base_tick2_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.09 0.12 0.25"/>
+    <parent link="base_link"/>
+    <child link="base_tick2_link"/>
+  </joint>
+  <link name="base_tick3_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.35" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.35" radius="0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="base_tick3_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.09 -0.12 0.25"/>
+    <parent link="base_link"/>
+    <child link="base_tick3_link"/>
+  </joint>
+  <link name="base_tick4_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.35" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.35" radius="0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="base_tick4_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.08 -0.14 0.25"/>
+    <parent link="base_link"/>
+    <child link="base_tick4_link"/>
+  </joint>
+  <link name="base_tick5_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.15" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.15" radius="0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="base_tick5_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.15 0.0 0.14"/>
+    <parent link="base_link"/>
+    <child link="base_tick5_link"/>
+  </joint>
+  <link name="camera_support_tick1_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="camera_support_tick1_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.13 0.05 0.05"/>
+    <parent link="middle_base_link"/>
+    <child link="camera_support_tick1_link"/>
+  </joint>
+  <link name="camera_support_tick2_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="camera_support_tick2_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.13 -0.05 0.05"/>
+    <parent link="middle_base_link"/>
+    <child link="camera_support_tick2_link"/>
+  </joint>
+  <link name="lower_base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.18"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.18"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="lower_base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.155"/>
+    <parent link="base_link"/>
+    <child link="lower_base_link"/>
+  </joint>
+  <link name="middle_base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.18"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.18"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="middle_base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.208"/>
+    <parent link="base_link"/>
+    <child link="middle_base_link"/>
+  </joint>
+  <link name="upper_base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.18"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.18"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <!-- cylindrical shell : Izz=m*r^2; Ixx=Iyy=1/12*m*(6*r^2+h^2) -->
+      <!-- solid cylinder : Izz=(m*r^2)/2; Ixx=Iyy=1/12*m*(3*r^2+h^2) -->
+      <inertia ixx="0.002385" ixy="0.00" ixz="0.00" iyy="0.002385" iyz="0.00" izz="0.00027"/>
+    </inertial>
+  </link>
+  <joint name="upper_base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.42"/>
+    <parent link="base_link"/>
+    <child link="upper_base_link"/>
+  </joint>
+  <link name="camera_support_base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.0175 0.15 0.005"/>
+      </geometry>
+    </visual>
+    <collision name="base">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.0175 0.15 0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="100.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <joint name="camera_support_base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.13 0 0.0975"/>
+    <parent link="middle_base_link"/>
+    <child link="camera_support_base_link"/>
+  </joint>
+  <link name="camera_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.015 0.130 0.022"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.015 0.130 0.022"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.035"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+  </link>
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+    <origin rpy="0 0 0" xyz="0.13 0 0.32"/>
+  </joint>
+  <link name="camera_depth_frame"/>
+  <joint name="camera_depth_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
+    <parent link="camera_link"/>
+    <child link="camera_depth_frame"/>
+  </joint>
+  <gazebo reference="camera_link">
+    <sensor name="depth_camera" type="depth">
+      <visualize>true</visualize>
+      <update_rate>30.0</update_rate>
+      <camera name="camera">
+        <horizontal_fov>1.047198</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>6</far>
+        </clip>
+      </camera>
+      <plugin filename="libgazebo_ros_camera.so" name="depth_camera_controller">
+        <robotNamespace>turtlebot2</robotNamespace>
+        <baseline>0.2</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>camera</cameraName>
+        <frameName>camera_depth_frame</frameName>
+        <pointCloudCutoff>0.5</pointCloudCutoff>
+        <pointCloudCutoffMax>6.0</pointCloudCutoffMax>
+        <distortionK1>0</distortionK1>
+        <distortionK2>0</distortionK2>
+        <distortionK3>0</distortionK3>
+        <distortionT1>0</distortionT1>
+        <distortionT2>0</distortionT2>
+        <CxPrime>0</CxPrime>
+        <Cx>0</Cx>
+        <Cy>0</Cy>
+        <focalLength>0</focalLength>
+        <hackBaseline>0</hackBaseline>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <link name="lidar_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.125"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.055" radius="0.0508"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.055" radius="0.0508"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="lidar_joint" type="fixed">
+    <parent link="upper_base_link"/>
+    <child link="lidar_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0275"/>
+  </joint>
+    <gazebo reference="lidar_link">
+    <sensor name="lidar" type="ray">
+      <always_on>false</always_on>
+      <visualize>false</visualize>
+      <update_rate>5</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1.000000</resolution>
+            <min_angle>0.000000</min_angle>
+            <max_angle>6.280000</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.120000</min>
+          <max>3.5</max>
+          <resolution>0.015000</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin filename="libgazebo_ros_ray_sensor.so" name="scan">
+        <ros>
+          <remapping>~/out:=scan</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
+        <frameName>lidar_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+   <link name="dir_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.0" iyz="0" izz="0.0"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.130 0.015 0.022"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.130 0.015 0.022"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="dir_link" type="fixed">
+    <parent link="lidar_link"/>
+    <child link="dir_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.038"/>
+  </joint>
+  
+	<link name="dir_link2">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.0" iyz="0" izz="0.0"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.03"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.03"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="dir_link2" type="fixed">
+    <parent link="lidar_link"/>
+    <child link="dir_link2"/>
+    <origin rpy="0 0 0" xyz="0.075 0 0.038"/>
+  </joint>
+</robot>
