@@ -65,12 +65,12 @@ namespace gazebo
             // std::cout << "Status " << state << " at [" << pose.Pos() << "]" << std::endl;
 
 
-            if (pose.Pos().X() >= 4) {
+            if (pose.Pos().X() >= 2) {
                 state = 1;
                 vel = VBASE_MIN + VRAND_MIN * double(rand()) / RAND_MAX * 1.0;
                 // std::cout << "Status " << state << " at [" << pose.Pos() << "]" << std::endl;
             }
-            if (pose.Pos().X() <= -4) {
+            if (pose.Pos().X() <= -2) {
                 state = 2;
                 vel = VBASE_MIN + VRAND_MIN * double(rand()) / RAND_MAX * 1.0;
                 // std::cout << "Status " << state << " at [" << pose.Pos() << "]" << std::endl;
@@ -85,12 +85,12 @@ namespace gazebo
                 vel = VBASE_MIN + VRAND_MIN * double(rand()) / RAND_MAX * 1.0;
                 // std::cout << "Status " << state << " at [" << pose.Pos() << "]" << std::endl;
             }
-            if (pose.Pos().Y() >= 8) {
+            if (pose.Pos().Y() >= 3) {
                 state = 5;
                 vel = VBASE_MIN + VRAND_MIN * double(rand()) / RAND_MAX * 1.0;
                 // std::cout << "Status " << state << " at [" << pose.Pos() << "]" << std::endl;
             }
-            if (state == 5 && pose.Pos().Y() <= 4) {
+            if (state == 5 && pose.Pos().Y() <= 2) {
                 state = 0;  // Reset
                 vel = VBASE_MIN + VRAND_MIN * double(rand()) / RAND_MAX * 1.0;
                 // std::cout << "Status " << state << " at [" << pose.Pos() << "]" << std::endl;
