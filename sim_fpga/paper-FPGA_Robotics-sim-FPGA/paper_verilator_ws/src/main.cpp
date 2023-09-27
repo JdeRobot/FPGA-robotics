@@ -335,8 +335,8 @@ int main(int argc, char **argv) {
   io.Fonts->Build();
 
   // Setup Dear ImGui style
-  ImGui::StyleColorsDark();
-  // ImGui::StyleColorsClassic();
+  // ImGui::StyleColorsDark();
+  ImGui::StyleColorsLight();
 
   // Setup Platform/Renderer backends
   ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
@@ -446,9 +446,10 @@ int main(int argc, char **argv) {
         step_n_cycles = cycles_per_iteration;
       }
 
-      cv::resize(input_feed,resized_input_feed,cv::Size(cols,rows),cv::INTER_LINEAR);
+// ImGui::Text("Original frame size %d x %d", input_feed.col,        input_feed.rows);
+      // cv::resize(input_feed,resized_input_feed,cv::Size(cols,rows),cv::INTER_LINEAR);
 
-      input_image = &resized_input_feed;
+      input_image = &input_feed;
 
       ImGui::Text("wRgbfilter=%x", wRgbfilter);
       static bool red_filter_check = false;
@@ -508,8 +509,8 @@ int main(int argc, char **argv) {
       
       // Check if the DPS is 0 to force a continuous locking of the target.
       if (x16R == -250 && x16L == -250) {
-      	  x16R = 250;
-      	  x16L = -250;
+      	  x16R = 75;
+      	  x16L = -75;
       }
       
       // Convert DPS to V and W to publish the topic

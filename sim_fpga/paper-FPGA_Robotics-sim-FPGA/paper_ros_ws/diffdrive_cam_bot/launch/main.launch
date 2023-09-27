@@ -14,13 +14,15 @@
     
     
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" default="$(find diffdrive_cam_bot)/worlds/follow_person.world"/>
+    <arg name="world_name" default="$(find aws_robomaker_small_house_world)/worlds/small_house.world"/>
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     <arg name="gui" value="$(arg gui)"/>
     <arg name="headless" value="$(arg headless)"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
+  
+  
     	
     <include file="$(find turtlebot2_urdf_model)/launch/spawn_robot.launch">
     </include>

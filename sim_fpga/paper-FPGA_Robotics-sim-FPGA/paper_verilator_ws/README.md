@@ -8,3 +8,5 @@ roslaunch display.launch
 
 
 rosrun gazebo_ros gazebo --verbose car.world
+
+  
