@@ -3,15 +3,16 @@
 [![Icestudio](https://img.shields.io/badge/collection-icestudio-blue.svg)](https://github.com/FPGAwars/icestudio)
 ![Version](https://img.shields.io/badge/version-v1.0-orange.svg)
 
-JdeRobot collection in the development area of Reconfigurable Computing in Robotics. FPGA-robotics try to design your robot intelligence with IceStudio blocks.
+JdeRobot collection in the development area of Reconfigurable Computing in Robotics. FPGA-robotics  designs the robot control using IceStudio blocks.
 
 This collection contains the necessary blocks for the GoPiGo3 robot and examples of how to use it with Alhambra II.
 
 **Create a .zip of the FPGA-Robotics-v1-stable folder to add the collection to icestudio.**
 
-Follow us: 
-* [Twitter](https://twitter.com/JdeRobot)
-* [YouTube](https://www.youtube.com/channel/UCgmUgpircYAv_QhLQziHJOQ/)
+Follow us:
+
+ * [Twitter](https://twitter.com/JdeRobot)
+ * [YouTube](https://www.youtube.com/channel/UCgmUgpircYAv_QhLQziHJOQ/) - [JdeRobot FPGA Playlist](https://youtube.com/playlist?list=PLGlX46StCA-S-c_dXHtn4Qiod5_lQgYn-)
 
 ## Install
 
@@ -50,7 +51,13 @@ Follow us:
 	
 ## Examples
 * **ov7670_vga**: Example to use the camera and display the image through the VGA on the screen.
-* **followRedBall_v7**: Example following an object with different colors depending on the filter selected with SW2 (red, green, blue, cyan, yellow, magenta and white).
+* **followRedBall_v7**: Example following an object with different colors depending on the filter selected with SW2 (red, green, blue, cyan, yellow, magenta and white).  
+ 
+    Diagram:
+  ![Diagram of followRedBall_v7](color_proc_2cam_bg.png)
+
+   This is a video of the robot:
+   [Video of the robot following the ball](https://youtu.be/rbdQ36ZJ7Lo)
 
 ## Authors
 * [JdeRobot](https://github.com/JdeRobot/FPGA-robotics)
