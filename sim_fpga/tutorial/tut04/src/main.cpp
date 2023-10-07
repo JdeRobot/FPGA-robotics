@@ -9,6 +9,7 @@
 #include <SDL_opengl.h>
 #include <assert.h>
 #include <stdio.h>
+#include <chrono> // to measure fps
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/core.hpp>
@@ -435,8 +436,15 @@ int main(int argc, char **argv) {
   // -------------------- Init Video Input 
   cv::Mat input_feed;
   cv::Mat resized_input_feed;
+  // start default camera
   cv::VideoCapture cap(0);
 
+  double timed_fps;
+  auto time_capture = std::chrono::high_resolution_clock::now();
+  auto old_time_capture = std::chrono::high_resolution_clock::now();
+
+  
+  double cam_fps = cap.get(cv::CAP_PROP_FPS);
 
   if (!cap.isOpened()) {
       std::cout << "cannot open camera";
@@ -485,6 +493,7 @@ int main(int argc, char **argv) {
   vluint64_t sim_time = 0;
   resetUUT(uut, simElements, &sim_time, m_trace); // reset unit under test
 
+  char is_1st_capture = 1;
   // Main loop
   while (!done) {
     // Poll and handle events (inputs, window resize, etc.)
@@ -527,6 +536,12 @@ int main(int argc, char **argv) {
         step_n_cycles = frames_per_iteration * IMG_PXLS;
       }
 
+      if (is_1st_capture == 0) {
+        old_time_capture = time_capture;
+      }
+      time_capture = std::chrono::high_resolution_clock::now();
+      
+  
       cap >> input_feed;
       cv::resize(input_feed,resized_input_feed,cv::Size(IMG_COLS,IMG_ROWS),cv::INTER_LINEAR);
 
@@ -678,8 +693,18 @@ int main(int argc, char **argv) {
       ImGui::Text("Centroid: 0x%x - Proximity: %i", centroid, proximity);
       //ImGui::SameLine();
 
+      if (is_1st_capture == 1) {
+        is_1st_capture = 0;
+      } else {
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(time_capture - old_time_capture);
+        double millis_elapsed = elapsed.count();
+        timed_fps = 1000 / millis_elapsed;
+        ImGui::Text("Timed %.3f (%.1f FPS)", millis_elapsed, timed_fps);
+      }
+      ImGui::Text("Camera frames per second %.1f", cam_fps);
       ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
                   1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+      
       ImGui::End();
     }
 
