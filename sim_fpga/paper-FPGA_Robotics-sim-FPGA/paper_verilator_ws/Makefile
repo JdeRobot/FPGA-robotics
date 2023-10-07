@@ -1,10 +1,11 @@
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
-SIM_DIR := $(realpath $(dir $(MKFILE_PATH))/..)
+SIM_DIR := $(realpath $(dir $(MKFILE_PATH))/.)
 PROJECT_DIR := $(realpath $(SIM_DIR)/..)
-IMGUI_DIR = $(SIM_DIR)/third_party/imgui
-RTL_DIR = $(SIM_DIR)/example10/rtl
-INC_DIR = $(SIM_DIR)/example10/include
-SRC_DIR = $(SIM_DIR)/example10/src
+#IMGUI_DIR = $(SIM_DIR)/third_party/imgui
+IMGUI_DIR = $(SIM_DIR)/../../../third_party/imgui
+RTL_DIR = $(SIM_DIR)/rtl
+INC_DIR = $(SIM_DIR)/include
+SRC_DIR = $(SIM_DIR)/src
 ASSETS_DIR := $(SRC_DIR)
 ##SOURCES = $(SRC_DIR)/main.cpp
 SOURCES = $(SRC_DIR)/main.cpp 
