@@ -24,6 +24,14 @@ The graphical interface allows debugging more easily. For example, the next scre
 
 ![2nd camera frame](imgs/camera_proc_06_sm.png)
 
+## Frames per second (FPS)
+
+Information about the frames per second processed is at the bottom, it includes two methods for calculating it.
+At this frame size (160x120) it gets around 6 fps, in [tutorial 4](../tut04) the frame size is 640x480, and the frame rate is around 2 fps.
+
+![Screenshot with frame period and fps](imgs/fps.jpg)
+
+
 
 
 
