@@ -7,6 +7,14 @@ The color processing is the same as in tutorial 3 and 2 (only changing some gene
 
 * [../../../phys_fpga/ulx3s/apio/ov7670x2_colorcentroid_160x120/color_proc.v](../../../phys_fpga/ulx3s/apio/ov7670x2_colorcentroid_160x120/color_proc.v)
 
+Frames per second has been included, they can be seen at the bottom of the window.
+It includes two measurement methods and the maximum fps reported by opencv.
+With this resolution around 2 frames per second can be achieved.
+
+Note that in [tutorial 3](../tut03) the frame size is 160x120, and the frame rate was above 6 fps.
+
+![Screenshot with frame period and fps](imgs/fps_sm.jpg)
+
 The rest is the same as in tutorial 3.
 
 
