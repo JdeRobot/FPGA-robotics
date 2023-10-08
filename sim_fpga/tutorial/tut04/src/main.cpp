@@ -441,17 +441,17 @@ int main(int argc, char **argv) {
 
   double timed_fps;
   unsigned int millis_elapsed = 0;
-  auto time_capture = std::chrono::high_resolution_clock::now();
-  auto old_time_capture = std::chrono::high_resolution_clock::now();
-
   
+  // get opencv frame per seconds (FPS)
   double cam_fps = cap.get(cv::CAP_PROP_FPS);
 
   if (!cap.isOpened()) {
       std::cout << "cannot open camera";
   }
 
-  cap >> input_feed;
+  auto time_capture = std::chrono::high_resolution_clock::now();
+  auto old_time_capture = std::chrono::high_resolution_clock::now();
+  cap >> input_feed; // capture image from camera
   cv::resize(input_feed,resized_input_feed,cv::Size(IMG_COLS,IMG_ROWS),cv::INTER_LINEAR);
 
   // init dut, tracing and sim elements
@@ -538,7 +538,7 @@ int main(int argc, char **argv) {
 
       old_time_capture = time_capture; // save old capture
       time_capture = std::chrono::high_resolution_clock::now(); // new time capture
-      cap >> input_feed; // capture
+      cap >> input_feed; // capture image from camera
       cv::resize(input_feed,resized_input_feed,cv::Size(IMG_COLS,IMG_ROWS),cv::INTER_LINEAR);
 
 //      assert(input_feed.channels() == 3 && input_feed.cols == cols &&
@@ -693,7 +693,7 @@ int main(int argc, char **argv) {
       auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
                                             time_capture - old_time_capture);
       millis_elapsed = elapsed.count();
-      timed_fps = 1000 / millis_elapsed;
+      timed_fps = 1000.0 / millis_elapsed;
       ImGui::Text("Timed %i ms (%.1f FPS)", millis_elapsed, timed_fps);
 
       ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",

@@ -696,7 +696,7 @@ int main(int argc, char **argv) {
       auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
                                             time_capture - old_time_capture);
       millis_elapsed = elapsed.count();
-      timed_fps = 1000 / millis_elapsed;
+      timed_fps = 1000.0 / millis_elapsed;
       ImGui::Text("Timed %i ms (%.1f FPS)", millis_elapsed, timed_fps);
       ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
                   1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
