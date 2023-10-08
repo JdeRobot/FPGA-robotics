@@ -440,6 +440,7 @@ int main(int argc, char **argv) {
   cv::VideoCapture cap(0);
 
   double timed_fps;
+  unsigned int millis_elapsed = 0;
   auto time_capture = std::chrono::high_resolution_clock::now();
   auto old_time_capture = std::chrono::high_resolution_clock::now();
 
@@ -493,7 +494,6 @@ int main(int argc, char **argv) {
   vluint64_t sim_time = 0;
   resetUUT(uut, simElements, &sim_time, m_trace); // reset unit under test
 
-  char is_1st_capture = 1;
   // Main loop
   while (!done) {
     // Poll and handle events (inputs, window resize, etc.)
@@ -536,13 +536,9 @@ int main(int argc, char **argv) {
         step_n_cycles = frames_per_iteration * IMG_PXLS;
       }
 
-      if (is_1st_capture == 0) {
-        old_time_capture = time_capture;
-      }
-      time_capture = std::chrono::high_resolution_clock::now();
-      
-  
-      cap >> input_feed;
+      old_time_capture = time_capture; // save old capture
+      time_capture = std::chrono::high_resolution_clock::now(); // new time capture
+      cap >> input_feed; // capture
       cv::resize(input_feed,resized_input_feed,cv::Size(IMG_COLS,IMG_ROWS),cv::INTER_LINEAR);
 
 //      assert(input_feed.channels() == 3 && input_feed.cols == cols &&
@@ -693,17 +689,17 @@ int main(int argc, char **argv) {
       ImGui::Text("Centroid: 0x%x - Proximity: %i", centroid, proximity);
       //ImGui::SameLine();
 
-      if (is_1st_capture == 1) {
-        is_1st_capture = 0;
-      } else {
-        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(time_capture - old_time_capture);
-        double millis_elapsed = elapsed.count();
-        timed_fps = 1000 / millis_elapsed;
-        ImGui::Text("Timed %.3f (%.1f FPS)", millis_elapsed, timed_fps);
-      }
-      ImGui::Text("Camera frames per second %.1f", cam_fps);
+      // the 1st capture will be wrong, but just only the first
+      auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+                                            time_capture - old_time_capture);
+      millis_elapsed = elapsed.count();
+      timed_fps = 1000 / millis_elapsed;
+      ImGui::Text("Timed %i ms (%.1f FPS)", millis_elapsed, timed_fps);
+
       ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
                   1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+
+      ImGui::Text("Maximum camera fps %.1f", cam_fps);
       
       ImGui::End();
     }
