@@ -1,9 +1,8 @@
 // Authors:
 //  - Based on original version of David Lobato
 //  - Modified: Felipe Machado, https://github.com/felipe-m
-// Tutorial 3:
-//   - includes centroid and proximity
-//   - the image is larger 160x120
+// Tutorial 5:
+//   - Testing verilated Sobel filter with camera
 
 // imgui headers
 #include <SDL.h>
@@ -53,8 +52,8 @@ typedef cv::Vec<uint8_t, 3> BGRPixel;
 // the processed image has a 4th channel, which is Alpha: transparency
 typedef cv::Vec<uint8_t, 4> BGRAPixel;
 
-const int IMG_COLS = 160;
-const int IMG_ROWS = 120;
+const int IMG_COLS = 640;  // change here frame size
+const int IMG_ROWS = 480;  // change here frame size
 const int IMG_PXLS = IMG_COLS * IMG_ROWS;
 const uint8_t ALPHA_SOLID = 255;
 

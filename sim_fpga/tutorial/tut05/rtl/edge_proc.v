@@ -12,11 +12,11 @@
 module edge_proc
   # (parameter
       // VGA
-      //c_img_cols    = 640, // 10 bits
-      //c_img_rows    = 480, //  9 bits
+      c_img_cols    = 640, // 10 bits
+      c_img_rows    = 480, //  9 bits
       // QQVGA
-      c_img_cols    = 160, // 8 bits
-      c_img_rows    = 120, //  7 bits
+      //c_img_cols    = 160, // 8 bits
+      //c_img_rows    = 120, //  7 bits
       // QQVGA /2
       //c_img_cols    = 80, // 7 bits
       //c_img_rows    = 60, //  6 bits
