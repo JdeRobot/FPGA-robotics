@@ -26,3 +26,13 @@ More info in its [tutorial 3 readme](./tut03)
 In this example, the video frame size has increased considerably, from 160x120 to 640x480. To test the performance with this size
 
 More info in its [tutorial 4 readme](./tut04)
+
+
+## [Tutorial 5](./tut05)
+
+Instead of a color filter, this example includes a more complex filter such as Sobel, to check the performance in simulation.
+
+More info in its [tutorial 5 readme](./tut05)
+
+The filter has been take from  [../../phys_fpga/alhambra_ii/apio/ov7670_yuv_80x60_sobel/edge_proc.v](../../phys_fpga/alhambra_ii/apio/ov7670_yuv_80x60_sobel/edge_proc.v)
+
