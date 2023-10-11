@@ -42,6 +42,7 @@ const int n_pos_leds = 8;
 const int n_dis_leds = 3;
 const int cols = 160;
 const int rows = 120;
+const int IMG_PXLS = cols * rows;
 const uint8_t ALPHA_SOLID = 255;
 
 const char input_image_1_path[] = ASSETS_DIR "/red_ball_center_80x60.png";
@@ -254,6 +255,7 @@ bool update_texture(GLuint texture_id, GLenum format, const cv::Mat &texture) {
 
 
 cv::Mat input_feed;
+cv::Mat resized_input_feed;
 
 void imageCallback(const sensor_msgs::ImageConstPtr& msg)
 {
@@ -262,6 +264,7 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
 
      input_feed = cv_bridge::toCvCopy(msg, "bgr8")->image;
 
+     cv::resize(input_feed,resized_input_feed,cv::Size(cols,rows),cv::INTER_LINEAR);
      // cv::imshow("view", cv_bridge::toCvShare(msg, "bgr8")->image);
      // cv::waitKey(10);
   }
@@ -350,7 +353,7 @@ int main(int argc, char **argv) {
 
 
   //Init Video Input 
-  cv::Mat resized_input_feed;
+  cv::Mat input_feed;
   
   input_feed = input_image_1;
   cv::Mat output_image(rows, cols, CV_8UC4);
@@ -382,7 +385,8 @@ int main(int argc, char **argv) {
   bool running = false;
   bool do_reset = false;
   int step_n_cycles = 0;
-  int cycles_per_iteration = 5;
+  int frames_per_iteration = 1;
+  int cycles_per_iteration = frames_per_iteration * IMG_PXLS;
   
 
   //ROS Integration
@@ -436,20 +440,19 @@ int main(int argc, char **argv) {
     // main window
     {
       ImGui::Begin("Main");
-      ImGui::Checkbox("Demo Window", &show_demo_window);
+      //ImGui::Checkbox("Demo Window", &show_demo_window);
 
-      ImGui::InputInt("Cycles per iteration", &cycles_per_iteration);
+      ImGui::InputInt("Frames per iteration", &frames_per_iteration);
+      //ImGui::InputInt("Cycles per iteration", &cycles_per_iteration);
       running ^= ImGui::Button(running ? STOP_ICON " Stop" : START_ICON " Start");ImGui::SameLine();
       do_reset = ImGui::Button(RESET_ICON " Reset");
 
-      if (running || ImGui::Button(STEP_ICON " Step")) {
-        step_n_cycles = cycles_per_iteration;
+      if (running || ImGui::Button(STEP_ICON " Step frame")) {
+        step_n_cycles = frames_per_iteration * IMG_PXLS;
       }
 
-// ImGui::Text("Original frame size %d x %d", input_feed.col,        input_feed.rows);
-      // cv::resize(input_feed,resized_input_feed,cv::Size(cols,rows),cv::INTER_LINEAR);
 
-      input_image = &input_feed;
+      input_image = &resized_input_feed;
 
       ImGui::Text("wRgbfilter=%x", wRgbfilter);
       static bool red_filter_check = false;
