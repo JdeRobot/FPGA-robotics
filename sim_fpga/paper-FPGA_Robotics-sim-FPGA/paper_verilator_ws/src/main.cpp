@@ -275,6 +275,38 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
 }
 
 
+int16_t twocompl16_toint(uint16_t data)
+{
+  // Not necessary, (uint16_t) will do
+  // if it is positive, just return the number
+  // if it is negative (convert to int to avoid overflow) flip the bits , add 1 and put a minus
+  // For example
+  // 1000 : -8 ->  0111 + 1 -> 1000 (8) -> (-1)-> -8
+  // 1001 : -7 ->  0110 + 1 -> 0111 (7) -> (-1)-> -7
+  // 1010 : -6 ->  0101 + 1 -> 0110 (6) -> (-1)-> -6
+  // 1111 : -1 ->  0000 + 1 -> 0001 (1) -> (-1)-> -1
+
+  // Take 15 bits of the data (last bit is the sign)
+  const uint16_t DATAMASK = 0x7FFF;
+  // Sign is bit 15 (starting from zero) with the 15 bit data
+  const uint16_t SIGNMASK = 0x8000;
+  const uint16_t SIGNBIT = 15;
+
+  int16_t sign;
+  int temp;
+  int sign_data;
+
+  sign  = (int16_t)((data & SIGNMASK) >> SIGNBIT); // get the sign
+  if (sign) { // if it is negative, get the data without sign, flip the bits and add 1
+      temp = (int) ((~data) & DATAMASK);
+      temp = temp + 1;
+      sign_data = - temp;
+  } else { // if it is positive, it is just the number
+    sign_data = (int) data;
+  }
+  return(sign_data);
+}
+
 // Main code
 int main(int argc, char **argv) {
   // init imgui
@@ -505,13 +537,21 @@ int main(int argc, char **argv) {
       }
       
       // Read the DPS from the Verilog Control
+      uint16_t dps_left_uint = (uint16_t) top->motor_dps_left_o;
+      int  dps_left = twocompl16_toint(top->motor_dps_left_o);
+      int16_t dps_left_c2 = top->motor_dps_left_o;
       std::bitset<16> MdpsL{top->motor_dps_left_o};
       int16_t x16L = (int16_t)(MdpsL.to_ulong() & 0xFFFF)-250;
+
+      //int16_t x16L = (int16_t)(MdpsL.to_ulong() & 0xFFFF);
       std::bitset<16> MdpsR{top->motor_dps_rght_o};
       int16_t x16R = (int16_t)(MdpsR.to_ulong() & 0xFFFF)-250;
+      //int16_t x16R = (int16_t)(MdpsR.to_ulong() & 0xFFFF);
       
+      ImGui::Text("x16R dps_l_uint=%i; dps_left_conv=%i ;previous= %i ",
+                  dps_left_uint, dps_left, x16L);
       // Check if the DPS is 0 to force a continuous locking of the target.
-      if (x16R == -250 && x16L == -250) {
+      if (x16R == 0 && x16L == 0) {
       	  x16R = 75;
       	  x16L = -75;
       }
@@ -520,7 +560,7 @@ int main(int argc, char **argv) {
       static double v;
       static double w;
       w = (float(x16R - x16L) * 0.0015 );
-      v = (float(x16R + x16L) / 3192);
+      v = 2* (float(x16R + x16L) / 3192);
 
       // ROS Publish
       publishVW(v,w,cmd_vel_pub_);
