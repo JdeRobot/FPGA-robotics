@@ -49,18 +49,18 @@ module motor_ctrl_spi
   reg [8-1:0] last_cent_valid;
   reg last_seen_left; // the object last seen was at the left
 
-  localparam signed [nb_dps_motor-1:0] c_vel5 = 16'd500; 
-  localparam signed [nb_dps_motor-1:0] c_vel4 = 16'd400; 
-  localparam signed [nb_dps_motor-1:0] c_vel3 = 16'd300; 
-  localparam signed [nb_dps_motor-1:0] c_vel2 = 16'd200; 
-  localparam signed [nb_dps_motor-1:0] c_vel1 = 16'd150;
-  localparam signed [nb_dps_motor-1:0] c_vel0 = 16'd100; 
+  localparam signed [nb_dps_motor-1:0] c_vel5 = 16'd600; 
+  localparam signed [nb_dps_motor-1:0] c_vel4 = 16'd550; 
+  localparam signed [nb_dps_motor-1:0] c_vel3 = 16'd450; 
+  localparam signed [nb_dps_motor-1:0] c_vel2 = 16'd350; 
+  localparam signed [nb_dps_motor-1:0] c_vel1 = 16'd250;
+  localparam signed [nb_dps_motor-1:0] c_vel0 = 16'd150; 
 
-  localparam signed [nb_dps_motor-1:0] c_vel_add0 = 16'd50; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add1 = 16'd100; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add2 = 16'd150; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add3 = 16'd200; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add4 = 16'd250; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add0 = 16'd75; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add1 = 16'd125; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add2 = 16'd175; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add3 = 16'd225; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add4 = 16'd275; 
 
   localparam signed [nb_dps_motor-1:0] c_vel_sub0 = - c_vel_add0;
   localparam signed [nb_dps_motor-1:0] c_vel_sub1 = - c_vel_add1;
@@ -99,35 +99,35 @@ module motor_ctrl_spi
     neg_vel = 1'b1;
     case(proximity)
       3'b000 : begin  // very far
-        vel = c_vel5; // positive
+        vel = c_vel4; // positive
         neg_vel = 1'b0;
       end
       3'b001 : begin  //
-        vel = c_vel4;
-        neg_vel = 1'b0;
-      end
-      3'b010 : begin  //
         vel = c_vel3;
         neg_vel = 1'b0;
       end
-      3'b011 : begin  //
+      3'b010 : begin  //
         vel = c_vel2;
         neg_vel = 1'b0;
       end
-      3'b100 : begin  //
+      3'b011 : begin  //
         vel = c_vel1;
         neg_vel = 1'b0;
       end
-      3'b101 : begin  //
+      3'b100 : begin  //
         vel = c_vel0;
         neg_vel = 1'b0;
       end
-      3'b110 : begin  //
+      3'b101 : begin  //
         vel = c_vel0_neg;
         neg_vel = 1'b1;
       end
+      3'b110 : begin  //
+        vel = c_vel1_neg;
+        neg_vel = 1'b1;
+      end
       3'b111 : begin  //
-        vel = c_vel2_neg;
+        vel = c_vel3_neg;
         neg_vel = 1'b1;
       end
     endcase
@@ -170,12 +170,12 @@ module motor_ctrl_spi
       if (lost_obj) begin
         // just stop and turn to look for it
         if (last_seen_left == 1'b1) begin
-          motor_dps_left <= c_vel0;
-          motor_dps_rght <= c_vel0_neg;
+          motor_dps_left <= c_vel1;
+          motor_dps_rght <= c_vel1_neg;
         end
         else begin
-          motor_dps_left <= c_vel0_neg;
-          motor_dps_rght <= c_vel0;
+          motor_dps_left <= c_vel1_neg;
+          motor_dps_rght <= c_vel1;
         end
       end
       else if (last_cent_valid[4:3] == 2'b11) begin
