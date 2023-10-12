@@ -277,7 +277,6 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
 
 int16_t twocompl16_toint(uint16_t data)
 {
-  // Not necessary, (uint16_t) will do
   // if it is positive, just return the number
   // if it is negative (convert to int to avoid overflow) flip the bits , add 1 and put a minus
   // For example
@@ -537,30 +536,22 @@ int main(int argc, char **argv) {
       }
       
       // Read the DPS from the Verilog Control
-      uint16_t dps_left_uint = (uint16_t) top->motor_dps_left_o;
-      int  dps_left = twocompl16_toint(top->motor_dps_left_o);
-      int16_t dps_left_c2 = top->motor_dps_left_o;
-      std::bitset<16> MdpsL{top->motor_dps_left_o};
-      int16_t x16L = (int16_t)(MdpsL.to_ulong() & 0xFFFF)-250;
+      int dps_lft = (int) twocompl16_toint(top->motor_dps_left_o);
+      int dps_rgt = (int) twocompl16_toint(top->motor_dps_rght_o);
 
-      //int16_t x16L = (int16_t)(MdpsL.to_ulong() & 0xFFFF);
-      std::bitset<16> MdpsR{top->motor_dps_rght_o};
-      int16_t x16R = (int16_t)(MdpsR.to_ulong() & 0xFFFF)-250;
-      //int16_t x16R = (int16_t)(MdpsR.to_ulong() & 0xFFFF);
       
-      ImGui::Text("x16R dps_l_uint=%i; dps_left_conv=%i ;previous= %i ",
-                  dps_left_uint, dps_left, x16L);
+      ImGui::Text("dps_lft =%i; dps_rght=%i ", dps_lft, dps_rgt);
       // Check if the DPS is 0 to force a continuous locking of the target.
-      if (x16R == 0 && x16L == 0) {
-      	  x16R = 75;
-      	  x16L = -75;
-      }
+      //if (x16R == 0 && x16L == 0) {
+      //  x16R = 75;
+      //  x16L = -75;
+      //}
       
       // Convert DPS to V and W to publish the topic
       static double v;
       static double w;
-      w = (float(x16R - x16L) * 0.0015 );
-      v = 2* (float(x16R + x16L) / 3192);
+      w = (float(dps_rgt - dps_lft) * 0.0015 );
+      v = (float(dps_rgt + dps_lft) / 3192);
 
       // ROS Publish
       publishVW(v,w,cmd_vel_pub_);
