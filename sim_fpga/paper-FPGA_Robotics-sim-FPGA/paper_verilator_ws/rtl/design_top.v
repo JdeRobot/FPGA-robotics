@@ -11,7 +11,7 @@ module design_top
       c_nb_buf      = 12, //4 bits for each color
       c_nb_leds     = 8, 
       c_nb_dps_motor = 16,
-      c_nb_cnt = 6
+      c_nb_cnt = 5
   )
   (
 	input clk,
