@@ -227,25 +227,25 @@ module centroid
     end
     else if (colorpxls_i[c_nb_inframe_pxls-2] == 1'b1) begin // bit 12
       if (colorpxls_i[c_nb_inframe_pxls-3] == 1'b1) begin // bit 11
-        proximity_tmp = 3'd5;  // bits 12:11 too close, max proximity >=6144 : 1/2
+        proximity_tmp = 3'd7;  // bits 12:11 too close, max proximity >=6144 : 1/2
       end
       else
         proximity_tmp = 3'd6;  // 6 : 1/3
     end
     else if (colorpxls_i[c_nb_inframe_pxls-3] == 1'b1) begin // bit 9
-      proximity_tmp = 3'd3;  // 5: bit 11  >= 2048 - 1/6
+      proximity_tmp = 3'd5;  // 5: bit 11  >= 2048 - 1/6
     end
     else if (colorpxls_i[c_nb_inframe_pxls-4] == 1'b1) begin // bit 8
-      proximity_tmp = 3'd2;  // 4: bit 10  >= 1024 - 1/12
+      proximity_tmp = 3'd4;  // 4: bit 10  >= 1024 - 1/12
     end
     else if (colorpxls_i[c_nb_inframe_pxls-5] == 1'b1) begin // bit 7
-      proximity_tmp = 3'd1;  // 3: bit 9  >= 512 - 1/24
+      proximity_tmp = 3'd3;  // 3: bit 9  >= 512 - 1/24
     end
     else if (colorpxls_i[c_nb_inframe_pxls-6] == 1'b1) begin // bit 6
-      proximity_tmp = 3'd1;  // 2: bit 8  >= 256 - 1/48
+      proximity_tmp = 3'd2;  // 2: bit 8  >= 256 - 1/48
     end
     else if (colorpxls_i[c_nb_inframe_pxls-7] == 1'b1) begin // bit 5
-      proximity_tmp = 3'd0;  // 1: bit 7  >= 128 - 1/96
+      proximity_tmp = 3'd1;  // 1: bit 7  >= 128 - 1/96
     end
     else
       proximity_tmp = 3'd0;  // < 128

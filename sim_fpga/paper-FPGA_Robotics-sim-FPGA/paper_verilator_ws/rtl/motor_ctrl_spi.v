@@ -99,31 +99,31 @@ module motor_ctrl_spi
     neg_vel = 1'b1;
     case(proximity)
       3'b000 : begin  // very far
-        vel = c_vel4; // positive
+        vel = c_vel5; // positive
         neg_vel = 1'b0;
       end
       3'b001 : begin  //
-        vel = c_vel3;
+        vel = c_vel4;
         neg_vel = 1'b0;
       end
       3'b010 : begin  //
-        vel = c_vel2;
+        vel = c_vel3;
         neg_vel = 1'b0;
       end
       3'b011 : begin  //
-        vel = c_vel1;
+        vel = c_vel2;
         neg_vel = 1'b0;
       end
       3'b100 : begin  //
-        vel = c_vel0;
+        vel = c_vel1;
         neg_vel = 1'b0;
       end
       3'b101 : begin  //
-        vel = c_vel0_neg;
-        neg_vel = 1'b1;
+        vel = c_vel0;
+        neg_vel = 1'b0;
       end
       3'b110 : begin  //
-        vel = c_vel1_neg;
+        vel = c_vel2_neg;
         neg_vel = 1'b1;
       end
       3'b111 : begin  //
