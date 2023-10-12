@@ -40,14 +40,42 @@ typedef cv::Vec<uint8_t, 4> BGRAPixel;
 
 const int n_pos_leds = 8;
 const int n_dis_leds = 3;
-const int cols = 160;
-const int rows = 120;
-const int IMG_PXLS = cols * rows;
+const int IMG_COLS = 160;
+const int IMG_ROWS = 120;
+const int IMG_PXLS = IMG_COLS * IMG_ROWS;
 const uint8_t ALPHA_SOLID = 255;
 
 const char input_image_1_path[] = ASSETS_DIR "/red_ball_center_80x60.png";
 
 const char font_awesome_path[] = ASSETS_DIR "/fa-solid-900.ttf";
+
+
+// Led images (centroid)
+const char centroid_0000_0000_path[] = ASSETS_DIR "/leds_centroid_0000_0000.png";
+const char centroid_1000_0000_path[] = ASSETS_DIR "/leds_centroid_1000_0000.png";
+const char centroid_0100_0000_path[] = ASSETS_DIR "/leds_centroid_0100_0000.png";
+const char centroid_0010_0000_path[] = ASSETS_DIR "/leds_centroid_0010_0000.png";
+const char centroid_0001_0000_path[] = ASSETS_DIR "/leds_centroid_0001_0000.png";
+const char centroid_0001_1000_path[] = ASSETS_DIR "/leds_centroid_0001_1000.png";
+const char centroid_0000_1000_path[] = ASSETS_DIR "/leds_centroid_0000_1000.png";
+const char centroid_0000_0100_path[] = ASSETS_DIR "/leds_centroid_0000_0100.png";
+const char centroid_0000_0010_path[] = ASSETS_DIR "/leds_centroid_0000_0010.png";
+const char centroid_0000_0001_path[] = ASSETS_DIR "/leds_centroid_0000_0001.png";
+const int centroid_img_cols = IMG_COLS;
+const int centroid_img_rows = 32;
+
+// Proximity level images
+const char prox0_path[] = ASSETS_DIR "/proximity_0.png";
+const char prox1_path[] = ASSETS_DIR "/proximity_1.png";
+const char prox2_path[] = ASSETS_DIR "/proximity_2.png";
+const char prox3_path[] = ASSETS_DIR "/proximity_3.png";
+const char prox4_path[] = ASSETS_DIR "/proximity_4.png";
+const char prox5_path[] = ASSETS_DIR "/proximity_5.png";
+const char prox6_path[] = ASSETS_DIR "/proximity_6.png";
+const char prox7_path[] = ASSETS_DIR "/proximity_7.png";
+const int prox_img_cols = 40;
+const int prox_img_rows = IMG_ROWS;
+
 
 class SimElement {
  public:
@@ -264,7 +292,7 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
 
      input_feed = cv_bridge::toCvCopy(msg, "bgr8")->image;
 
-     cv::resize(input_feed,resized_input_feed,cv::Size(cols,rows),cv::INTER_LINEAR);
+     cv::resize(input_feed,resized_input_feed,cv::Size(IMG_COLS,IMG_ROWS),cv::INTER_LINEAR);
      // cv::imshow("view", cv_bridge::toCvShare(msg, "bgr8")->image);
      // cv::waitKey(10);
   }
@@ -379,15 +407,65 @@ int main(int argc, char **argv) {
   // init buffers
 
   const cv::Mat input_image_1 = cv::imread(cv::String{input_image_1_path});
-  //assert(input_image_1.channels() == 3 && input_image_1.cols == cols &&
-  //       input_image_1.rows == rows && input_image_1.isContinuous());
+  //assert(input_image_1.channels() == 3 && input_image_1.cols == IMG_ROWS &&
+  //       input_image_1.rows == IMG_ROWS && input_image_1.isContinuous());
 
+  // Centroid images
+  const cv::Mat centroid_0000_0000 = cv::imread(cv::String{centroid_0000_0000_path});
+  assert(centroid_0000_0000.channels() == 3 && centroid_0000_0000.cols == centroid_img_cols &&
+         centroid_0000_0000.rows == centroid_img_rows && centroid_0000_0000.isContinuous());
+  const cv::Mat centroid_1000_0000 = cv::imread(cv::String{centroid_1000_0000_path});
+  const cv::Mat centroid_0100_0000 = cv::imread(cv::String{centroid_0100_0000_path});
+  const cv::Mat centroid_0010_0000 = cv::imread(cv::String{centroid_0010_0000_path});
+  const cv::Mat centroid_0001_0000 = cv::imread(cv::String{centroid_0001_0000_path});
+  const cv::Mat centroid_0001_1000 = cv::imread(cv::String{centroid_0001_1000_path});
+  const cv::Mat centroid_0000_1000 = cv::imread(cv::String{centroid_0000_1000_path});
+  const cv::Mat centroid_0000_0100 = cv::imread(cv::String{centroid_0000_0100_path});
+  const cv::Mat centroid_0000_0010 = cv::imread(cv::String{centroid_0000_0010_path});
+  const cv::Mat centroid_0000_0001 = cv::imread(cv::String{centroid_0000_0001_path});
+
+  // Proximity images
+  const cv::Mat prox0 = cv::imread(cv::String{prox0_path});
+  assert(prox0.channels() == 3 && prox0.cols == prox_img_cols &&
+         prox0.rows == prox_img_rows && prox0.isContinuous());
+  const cv::Mat prox1 = cv::imread(cv::String{prox1_path});
+  const cv::Mat prox2 = cv::imread(cv::String{prox2_path});
+  const cv::Mat prox3 = cv::imread(cv::String{prox3_path});
+  const cv::Mat prox4 = cv::imread(cv::String{prox4_path});
+  const cv::Mat prox5 = cv::imread(cv::String{prox5_path});
+  const cv::Mat prox6 = cv::imread(cv::String{prox6_path});
+  const cv::Mat prox7 = cv::imread(cv::String{prox7_path});
+
+
+  GLuint centroid_0000_0000_texture = create_texture(GL_BGR, centroid_0000_0000);
+  GLuint centroid_1000_0000_texture = create_texture(GL_BGR, centroid_1000_0000);
+  GLuint centroid_0100_0000_texture = create_texture(GL_BGR, centroid_0100_0000);
+  GLuint centroid_0010_0000_texture = create_texture(GL_BGR, centroid_0010_0000);
+  GLuint centroid_0001_0000_texture = create_texture(GL_BGR, centroid_0001_0000);
+  GLuint centroid_0001_1000_texture = create_texture(GL_BGR, centroid_0001_1000);
+  GLuint centroid_0000_1000_texture = create_texture(GL_BGR, centroid_0000_1000);
+  GLuint centroid_0000_0100_texture = create_texture(GL_BGR, centroid_0000_0100);
+  GLuint centroid_0000_0010_texture = create_texture(GL_BGR, centroid_0000_0010);
+  GLuint centroid_0000_0001_texture = create_texture(GL_BGR, centroid_0000_0001);
+
+  GLuint prox0_texture = create_texture(GL_BGR, prox0);
+  GLuint prox1_texture = create_texture(GL_BGR, prox1);
+  GLuint prox2_texture = create_texture(GL_BGR, prox2);
+  GLuint prox3_texture = create_texture(GL_BGR, prox3);
+  GLuint prox4_texture = create_texture(GL_BGR, prox4);
+  GLuint prox5_texture = create_texture(GL_BGR, prox5);
+  GLuint prox6_texture = create_texture(GL_BGR, prox6);
+  GLuint prox7_texture = create_texture(GL_BGR, prox7);
+
+  uint8_t centroid  = 0;
+  uint8_t proximity = 0;
+  const int NBITS_CENTROID = 8;
 
   //Init Video Input 
   cv::Mat input_feed;
   
   input_feed = input_image_1;
-  cv::Mat output_image(rows, cols, CV_8UC4);
+  cv::Mat output_image(IMG_ROWS, IMG_COLS, CV_8UC4);
 
 
   uint8_t wRgbfilter = 0x00;  // no filter
@@ -506,35 +584,103 @@ int main(int argc, char **argv) {
                   output_image.rows, (void *)(intptr_t)output_texture_id);
       ImGui::Image((void *)(intptr_t)output_texture_id,
                    ImVec2(output_image.cols, output_image.rows));
-
-      // Position LEDs
-      ImGui::Text("Top level state LEDs");
-      ImGui::Text("[Pos]");
       ImGui::SameLine();
-      for (int i = n_pos_leds; i > 0; i--) {
-        int led_n = i -1;
-        bool led_on = top->leds & (1 << (7 - led_n));
-        auto gb = led_on ? 0 : 255;
-        ImGui::TextColored(ImVec4(255, gb, gb, ALPHA_SOLID), LED_ICON);
-        if (led_n > 0) {
-          ImGui::SameLine();
-        }
-      }
-
-
-      // Distance LEDs
-      ImGui::Text("[Dis]");
-      ImGui::SameLine();
-      for (int i = n_dis_leds; i > 0; i--) {
-        int led_n = i - 1;
-        bool led_on = top->proximity & (1 << led_n);
-        auto gb = led_on ? 0 : 255;
-        ImGui::TextColored(ImVec4(255, gb, gb, ALPHA_SOLID), LED_ICON);
-        if (led_n > 0) {
-          ImGui::SameLine();
-        }
+      
+      centroid = top->leds;
+      proximity = top->proximity;
+      switch (proximity) {
+        case 0:
+          ImGui::Image((void *)(intptr_t)prox0_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 1:
+          ImGui::Image((void *)(intptr_t)prox1_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 2:
+          ImGui::Image((void *)(intptr_t)prox2_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 3:
+          ImGui::Image((void *)(intptr_t)prox3_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 4:
+          ImGui::Image((void *)(intptr_t)prox4_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 5:
+          ImGui::Image((void *)(intptr_t)prox5_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 6:
+          ImGui::Image((void *)(intptr_t)prox6_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        case 7:
+          ImGui::Image((void *)(intptr_t)prox7_texture,
+                       ImVec2(prox_img_cols, prox_img_rows));
+          break;
+        default:
+          ImGui::Text("Proximity wrong value %d", proximity);
       }
       
+      switch (centroid) {
+        case 0:
+          ImGui::Image((void *)(intptr_t)centroid_0000_0000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 1:
+          ImGui::Image((void *)(intptr_t)centroid_1000_0000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 2:
+          ImGui::Image((void *)(intptr_t)centroid_0100_0000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 4:
+          ImGui::Image((void *)(intptr_t)centroid_0010_0000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 8:
+          ImGui::Image((void *)(intptr_t)centroid_0001_0000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 16:
+          ImGui::Image((void *)(intptr_t)centroid_0000_1000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 24:
+          ImGui::Image((void *)(intptr_t)centroid_0001_1000_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 32:
+          ImGui::Image((void *)(intptr_t)centroid_0000_0100_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 64:
+          ImGui::Image((void *)(intptr_t)centroid_0000_0010_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        case 128:
+          ImGui::Image((void *)(intptr_t)centroid_0000_0001_texture,
+                       ImVec2(centroid_img_cols, centroid_img_rows));
+          break;
+        default:
+          ImGui::Text("centroid wrong value %d", centroid);
+      }
+      // left leds are the least significat bits: bit 0 is the leftmost
+      for (int bit_i = NBITS_CENTROID-1; bit_i >= 0; bit_i--) {
+        bool led_on = centroid & (128 >> bit_i);
+        auto gb = led_on ? 0 : 255;
+        ImGui::TextColored(ImVec4(255, gb, gb, ALPHA_SOLID), LED_ICON);
+        //if (bit_i > 0) {
+        ImGui::SameLine();
+        //}
+      }
+      ImGui::Text("Centroid: 0x%x - Proximity: %i", centroid, proximity);
+      //ImGui::SameLine();
+
       // Read the DPS from the Verilog Control
       int dps_lft = (int) twocompl16_toint(top->motor_dps_left_o);
       int dps_rgt = (int) twocompl16_toint(top->motor_dps_rght_o);
