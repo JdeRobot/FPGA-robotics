@@ -212,7 +212,7 @@ module color_proc
   wire [c_nb_buf_red-1:0]  red_blu_absdif;
   wire [c_nb_buf_green-1:0] grn_blu_absdif;
   localparam  [c_nb_buf_red-1:0] c_simil_limit = 2; // limit to consider similar
-  localparam  [c_nb_buf_red-1:0] c_vdif_limit = 4; // limit to consider very different
+  localparam  [c_nb_buf_red-1:0] c_vdif_limit = 6; // limit to consider very different
 
   wire red_grn_simil, red_blu_simil, grn_blu_simil;
   wire red_grn_vdif, red_blu_vdif, grn_blu_vdif;
