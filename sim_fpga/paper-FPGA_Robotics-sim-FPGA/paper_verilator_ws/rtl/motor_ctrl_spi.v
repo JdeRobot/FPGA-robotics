@@ -35,8 +35,10 @@ module motor_ctrl_spi
   //wire signed [nb_Pctrl-1:0] Prgth;
   //wire signed [nb_Pctrl-1:0] Pleft;
 
-  reg lost_obj_n; // 0=lost; 1=looking
+  reg lost_obj; // 1=lost; 0=looking
 
+
+  wire  [1:0] centroid2bit; // just two bit for the centroid
   // Counter register
   reg [nb_cnt-1:0]  cnt;
   localparam [nb_cnt-1:0] c_end_cnt = {nb_cnt{1'b1}}; //to have all to 1
@@ -45,19 +47,20 @@ module motor_ctrl_spi
 
   // Last known centroid
   reg [8-1:0] last_cent_valid;
+  reg last_seen_left; // the object last seen was at the left
 
-  localparam signed [nb_dps_motor-1:0] c_vel5 = 16'd500; 
-  localparam signed [nb_dps_motor-1:0] c_vel4 = 16'd400; 
-  localparam signed [nb_dps_motor-1:0] c_vel3 = 16'd300; 
-  localparam signed [nb_dps_motor-1:0] c_vel2 = 16'd200; 
-  localparam signed [nb_dps_motor-1:0] c_vel1 = 16'd150;
-  localparam signed [nb_dps_motor-1:0] c_vel0 = 16'd100; 
+  localparam signed [nb_dps_motor-1:0] c_vel5 = 16'd600; 
+  localparam signed [nb_dps_motor-1:0] c_vel4 = 16'd550; 
+  localparam signed [nb_dps_motor-1:0] c_vel3 = 16'd450; 
+  localparam signed [nb_dps_motor-1:0] c_vel2 = 16'd350; 
+  localparam signed [nb_dps_motor-1:0] c_vel1 = 16'd250;
+  localparam signed [nb_dps_motor-1:0] c_vel0 = 16'd150; 
 
-  localparam signed [nb_dps_motor-1:0] c_vel_add0 = 16'd50; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add1 = 16'd100; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add2 = 16'd150; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add3 = 16'd200; 
-  localparam signed [nb_dps_motor-1:0] c_vel_add4 = 16'd250; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add0 = 16'd75; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add1 = 16'd125; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add2 = 16'd175; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add3 = 16'd225; 
+  localparam signed [nb_dps_motor-1:0] c_vel_add4 = 16'd275; 
 
   localparam signed [nb_dps_motor-1:0] c_vel_sub0 = - c_vel_add0;
   localparam signed [nb_dps_motor-1:0] c_vel_sub1 = - c_vel_add1;
@@ -86,6 +89,9 @@ module motor_ctrl_spi
   //assign Prgth = last_cent_valid[7:5];
   //assign Pleft = {last_cent_valid[0], last_cent_valid[1], last_cent_valid[2]};
   //assign direction = (proximity - 3'd3) * (-7'd16);
+
+  assign centroid2bit[1] = centroid[7] | centroid[6] | centroid[5] | centroid[4];
+  assign centroid2bit[0] = centroid[3] | centroid[2] | centroid[1] | centroid[0];
 
   always @(*)
   begin
@@ -117,11 +123,11 @@ module motor_ctrl_spi
         neg_vel = 1'b0;
       end
       3'b110 : begin  //
-        vel = c_vel0_neg;
+        vel = c_vel1_neg;
         neg_vel = 1'b1;
       end
       3'b111 : begin  //
-        vel = c_vel1_neg;
+        vel = c_vel3_neg;
         neg_vel = 1'b1;
       end
     endcase
@@ -161,9 +167,16 @@ module motor_ctrl_spi
       motor_dps_rght <= 0;
     end
     else begin
-      if (~lost_obj_n) begin
-        motor_dps_left <= 0;
-        motor_dps_rght <= 0;
+      if (lost_obj) begin
+        // just stop and turn to look for it
+        if (last_seen_left == 1'b1) begin
+          motor_dps_left <= c_vel1;
+          motor_dps_rght <= c_vel1_neg;
+        end
+        else begin
+          motor_dps_left <= c_vel1_neg;
+          motor_dps_rght <= c_vel1;
+        end
       end
       else if (last_cent_valid[4:3] == 2'b11) begin
         // centered, motors at same speed
@@ -204,16 +217,16 @@ module motor_ctrl_spi
   always @(posedge rst, posedge clk)
   begin
     if(rst) begin
-      lost_obj_n <= 1'b0; // it doesnt matter, not looking
+      lost_obj <= 1'b1; // it doesnt matter, not looking
     end
     else if(~enable) begin
-      lost_obj_n <= 1'b0; // it doesnt matter, not looking
+      lost_obj <= 1'b1; // it doesnt matter, not looking
     end
     else if(cnt_end) begin
-      lost_obj_n <= 1'b0; // lost
+      lost_obj <= 1'b1; // lost
     end
     else begin
-      lost_obj_n <= 1'b1; // looking
+      lost_obj <= 1'b0; // looking
     end
   end
 
@@ -225,11 +238,19 @@ module motor_ctrl_spi
   always @(posedge rst, posedge clk)
   begin
     if (rst) begin
+      last_seen_left <= 1'b0; // just to put a value
       last_cent_valid <= 8'h00;
       cnt <= 0;
     end
     else begin
       if (new_centroid) begin
+        if (centroid2bit[1] == 1'b1) begin
+          last_seen_left <= 1'b1;
+        end
+        else if (centroid2bit[0] == 1'b1) begin
+          last_seen_left <= 1'b0;
+        end // if not in any centroid, leave the last seen
+
         if (~tracking) begin
           if (cnt_end) begin
             cnt <= cnt; // keep the count, to have cnt_end == 1
