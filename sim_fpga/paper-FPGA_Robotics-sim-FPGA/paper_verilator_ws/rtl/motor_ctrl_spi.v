@@ -123,7 +123,7 @@ module motor_ctrl_spi
         neg_vel = 1'b0;
       end
       3'b110 : begin  //
-        vel = c_vel2_neg;
+        vel = c_vel1_neg;
         neg_vel = 1'b1;
       end
       3'b111 : begin  //
