@@ -221,7 +221,33 @@ module centroid
 
   always @(*)
   begin
+                                          //  12
+                                          //  :
+    if (colorpxls_i >= 6144) begin       // 01 1000 0000 0000
+      proximity_tmp = 3'd7; 
+    end
+    else if (colorpxls_i >= 4096) begin  // 01 0000 0000 0000
+      proximity_tmp = 3'd6;  // 6 : 1/3
+    end                                   //          
+    else if (colorpxls_i >= 3840) begin  // 00 1111 0000 0000
+      proximity_tmp = 3'd5;  // 5 : very slow
+    end
+    else if (colorpxls_i >= 3072) begin  // 00 1100 0000 0000
+      proximity_tmp = 3'd4;  // 4 stop: good distance
+    end
+    else if (colorpxls_i >= 1792) begin  // 00 0111 0000 0000
+      proximity_tmp = 3'd3;  // 3: very slow
+    end
+    else if (colorpxls_i >= 768) begin  // 00 0011 0000 0000
+      proximity_tmp = 3'd3;  // 2: fast
+    end
+    else if (colorpxls_i >= 128) begin  // 00 0000 0100 0000
+      proximity_tmp = 3'd3;  // 1: very fast
+    end
+    else
+      proximity_tmp = 3'd0;  // < 128
 
+    /*
     if (colorpxls_i[c_nb_inframe_pxls-1] == 1'b1) begin // bit 13
         proximity_tmp = 3'd7; 
     end
@@ -249,6 +275,7 @@ module centroid
     end
     else
       proximity_tmp = 3'd0;  // < 128
+    */
   end
 
   // register the outputs
