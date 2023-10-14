@@ -436,7 +436,6 @@ int main(int argc, char **argv) {
   const cv::Mat prox6 = cv::imread(cv::String{prox6_path});
   const cv::Mat prox7 = cv::imread(cv::String{prox7_path});
 
-
   GLuint centroid_0000_0000_texture = create_texture(GL_BGR, centroid_0000_0000);
   GLuint centroid_1000_0000_texture = create_texture(GL_BGR, centroid_1000_0000);
   GLuint centroid_0100_0000_texture = create_texture(GL_BGR, centroid_0100_0000);
@@ -462,24 +461,24 @@ int main(int argc, char **argv) {
   const int NBITS_CENTROID = 8;
 
   //Init Video Input 
-  cv::Mat input_feed;
+  //cv::Mat input_feed;
   
   input_feed = input_image_1;
+  //cv::Mat resized_input_feed;
+
+
+  cv::resize(input_feed,resized_input_feed,cv::Size(IMG_COLS,IMG_ROWS),cv::INTER_LINEAR);
+  uint8_t wRgbfilter = 0x00;  // no filter
+  const cv::Mat *input_image = &resized_input_feed;
+
   cv::Mat output_image(IMG_ROWS, IMG_COLS, CV_8UC4);
 
-
-  uint8_t wRgbfilter = 0x00;  // no filter
-
-  // create & load input/output textures
-  GLuint input_texture_1_id = create_texture(GL_BGR, input_image_1);
 
   GLuint output_texture_id = create_texture(GL_BGRA, output_image);
 
   // init dut, tracing and sim elements
   Vdesign_top *top = initDut(argc, argv);
   VerilatedVcdC *m_trace = initTrace(top);
-
-  const cv::Mat *input_image = &input_image_1;
 
   std::vector<SimElement *> simElements;
   simElements.push_back(new InputDriver(top, &wRgbfilter, &input_image));
@@ -512,8 +511,6 @@ int main(int argc, char **argv) {
 
   ros::Publisher cmd_vel_pub_;
   cmd_vel_pub_ = motor_nh.advertise<geometry_msgs::Twist>("turtlebot2/cmd_vel", 1);
-  
-
 
   // Main loop
   while (!done) {
@@ -545,10 +542,9 @@ int main(int argc, char **argv) {
     ImGui::NewFrame();
 
     if (show_demo_window) ImGui::ShowDemoWindow(&show_demo_window);
-
     // main window
     {
-      ImGui::Begin("Main");
+      ImGui::Begin("Verilog Color Processor");
       //ImGui::Checkbox("Demo Window", &show_demo_window);
 
       ImGui::InputInt("Frames per iteration", &frames_per_iteration);
@@ -560,8 +556,7 @@ int main(int argc, char **argv) {
         step_n_cycles = frames_per_iteration * IMG_PXLS;
       }
 
-
-      input_image = &resized_input_feed;
+      //input_image = &resized_input_feed;
 
       ImGui::Text("wRgbfilter=%x", wRgbfilter);
       static bool red_filter_check = false;
@@ -579,6 +574,15 @@ int main(int argc, char **argv) {
                      (((uint8_t)green_filter_check) << 1) |
                      (uint8_t)blue_filter_check;
       }
+
+
+      // -- Input video
+      // create & load input/output textures
+      GLuint input_texture_id = create_texture(GL_BGR, resized_input_feed);
+      ImGui::Text("Input video frame %d x %d (tex id=%p)", input_image->cols,
+                  input_image->rows, (void *)(intptr_t)input_texture_id);
+      ImGui::Image((void *)(intptr_t)input_texture_id,
+                             ImVec2(input_image->cols, input_image->rows));
 
       ImGui::Text("Output frame buffer %d x %d (tex id=%p)", output_image.cols,
                   output_image.rows, (void *)(intptr_t)output_texture_id);
@@ -669,15 +673,6 @@ int main(int argc, char **argv) {
         default:
           ImGui::Text("centroid wrong value %d", centroid);
       }
-      // left leds are the least significat bits: bit 0 is the leftmost
-      for (int bit_i = NBITS_CENTROID-1; bit_i >= 0; bit_i--) {
-        bool led_on = centroid & (128 >> bit_i);
-        auto gb = led_on ? 0 : 255;
-        ImGui::TextColored(ImVec4(255, gb, gb, ALPHA_SOLID), LED_ICON);
-        //if (bit_i > 0) {
-        ImGui::SameLine();
-        //}
-      }
       ImGui::Text("Centroid: 0x%x - Proximity: %i", centroid, proximity);
       //ImGui::SameLine();
 
@@ -697,7 +692,7 @@ int main(int argc, char **argv) {
       static double v;
       static double w;
       w = (float(dps_rgt - dps_lft) * 0.0015 );
-      v = (float(dps_rgt + dps_lft) / 3192);
+      v = 2*(float(dps_rgt + dps_lft) / 3192);
 
       // ROS Publish
       publishVW(v,w,cmd_vel_pub_);

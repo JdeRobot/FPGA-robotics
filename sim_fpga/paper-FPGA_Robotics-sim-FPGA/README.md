@@ -47,16 +47,29 @@ If make is not working, check the imgui directory
     ./obj_dir/Vdesign_top
 
 ### Start it up all together:
-- Terminal 1: Launch ROS (`roscore`)
-- Terminal 2: Launch PoC verilator simFPGA (`paper_verilator_ws/obj_dir/Vdesign_top`)
-- Terminal 3: Launch Gazebo environment (`paper_simfpga_ws> roslaunch diffdrive_cam_bot main.launch`)
+
+#### Terminal 1: Launch ROS:
+
+    $HOME> source /opt/ros/noetic/setup.bash
+    $HOME> roscore
+
+#### Terminal 2: Launch verilator simFPGA:
+ 
+    paper_verilator_ws> ./obj_dir/Vdesign_top
+
+#### Terminal 3: Launch Gazebo environment:
+
+    paper_simfpga_ws> source ./devel/setup.bash
+    paper_simfpga_ws> roscd diffdrive_cam_bot
+    paper_simfpga_ws> roslaunch diffdrive_cam_bot main.launch
 
 ### Possible bug fixes
 
-Source before launching roslaunch
+Source before launching roslaunch:
+
     source /opt/ros/noetic/setup.bash
-    source ~/catkin_ws/devel/setup.bash
+    source ./devel/setup.bash
     roslaunch diffdrive_cam_bot main.launch
 
-Set the RED filter in the GUI options  `./obj_dir/Vdesign_top` set to 1000 fps
+Set the RED filter in the GUI options  `./obj_dir/Vdesign_top`
 
