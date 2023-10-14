@@ -45,7 +45,7 @@ const int IMG_ROWS = 120;
 const int IMG_PXLS = IMG_COLS * IMG_ROWS;
 const uint8_t ALPHA_SOLID = 255;
 
-const char input_image_1_path[] = ASSETS_DIR "/red_ball_center_80x60.png";
+const char input_image_1_path[] = ASSETS_DIR "/ebu_colorbars_nosign.png";
 
 const char font_awesome_path[] = ASSETS_DIR "/fa-solid-900.ttf";
 
