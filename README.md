@@ -32,3 +32,19 @@ We simulate the behavior of the FPGA projects in an simulated environment intera
 
 Some useful scripts and CAD files
 
+
+----
+
+## Citation
+
+If you use these repository, you may want to cite the research article:
+
+[Vision-based robotics using open FPGAs](https://doi.org/10.1016/j.micpro.2023.104974)
+
+F. Machado, R. Nieto, J. Fernández-Conde, D. Lobato, and J. M. Cañas, “Vision-based robotics using open FPGAs,” Microprocessors and Microsystems, vol. 103, p. 104974, Nov. 2023, doi: 10.1016/j.micpro.2023.104974.
+
+
+
+
+
+

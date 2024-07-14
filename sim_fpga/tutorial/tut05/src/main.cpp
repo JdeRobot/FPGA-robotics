@@ -1,9 +1,8 @@
 // Authors:
 //  - Based on original version of David Lobato
 //  - Modified: Felipe Machado, https://github.com/felipe-m
-// Tutorial 3:
-//   - includes centroid and proximity
-//   - the image is larger 160x120
+// Tutorial 5:
+//   - Testing verilated Sobel filter with camera
 
 // imgui headers
 #include <SDL.h>
@@ -25,7 +24,7 @@
 #include "imgui_impl_sdl.h"
 
 // verilator headers
-#include "Vcolor_proc.h"
+#include "Vedge_proc.h"
 // Acording to https://verilator.org/guide/latest/files.html#files-read-written
 // Vdesign_top___024root.h is a Top-level internal header file
 // (from SystemVerilog $root), but we are not using SystemVerilog, so no need
@@ -34,54 +33,32 @@
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
+// list of icons here:
+// https://github.com/Szahu/basicEngine/blob/master/Engine/src/Engine/Imgui/IconsFontAwesome5.h
 #define LED_ICON "\uf111"
 #define START_ICON "\uf04b"
 #define STOP_ICON "\uf04d"
 #define STEP_ICON "\uf051"
 #define RESET_ICON "\uf0e2"
 #define FILTER_ICON "\uf0b0"
-#define FILTERS_ICON "\ue17e"
+#define EQUAL_ICON "\uf52c"
+#define CAMERA_ICON "\uf030"
+#define TOGGLE_OFF_ICON "\uf204"
+#define GRIP_LINES_VERTICAL_ICON "\uf7a5"
+#define GRIP_LINES_HORIZONTAL_ICON "\uf58d"
+//#define FILTERS_ICON "\ue17e"
 
 typedef cv::Vec<uint8_t, 3> BGRPixel;
 // the processed image has a 4th channel, which is Alpha: transparency
 typedef cv::Vec<uint8_t, 4> BGRAPixel;
 
-const int n_leds = 8;
-const int IMG_COLS = 160;
-const int IMG_ROWS = 120;
+const int IMG_COLS = 640;  // change here frame size
+const int IMG_ROWS = 480;  // change here frame size
 const int IMG_PXLS = IMG_COLS * IMG_ROWS;
 const uint8_t ALPHA_SOLID = 255;
 
 // Original images to be processed
-const char input_image_1_path[] = ASSETS_DIR "/redball_160_120_left.png";
-
 const char font_awesome_path[] = ASSETS_DIR "/fa-solid-900.ttf";
-
-// Led images (centroid)
-const char centroid_0000_0000_path[] = ASSETS_DIR "/leds_centroid_0000_0000.png";
-const char centroid_1000_0000_path[] = ASSETS_DIR "/leds_centroid_1000_0000.png";
-const char centroid_0100_0000_path[] = ASSETS_DIR "/leds_centroid_0100_0000.png";
-const char centroid_0010_0000_path[] = ASSETS_DIR "/leds_centroid_0010_0000.png";
-const char centroid_0001_0000_path[] = ASSETS_DIR "/leds_centroid_0001_0000.png";
-const char centroid_0001_1000_path[] = ASSETS_DIR "/leds_centroid_0001_1000.png";
-const char centroid_0000_1000_path[] = ASSETS_DIR "/leds_centroid_0000_1000.png";
-const char centroid_0000_0100_path[] = ASSETS_DIR "/leds_centroid_0000_0100.png";
-const char centroid_0000_0010_path[] = ASSETS_DIR "/leds_centroid_0000_0010.png";
-const char centroid_0000_0001_path[] = ASSETS_DIR "/leds_centroid_0000_0001.png";
-const int centroid_img_cols = IMG_COLS;
-const int centroid_img_rows = 32;
-
-// Proximity level images
-const char prox0_path[] = ASSETS_DIR "/proximity_0.png";
-const char prox1_path[] = ASSETS_DIR "/proximity_1.png";
-const char prox2_path[] = ASSETS_DIR "/proximity_2.png";
-const char prox3_path[] = ASSETS_DIR "/proximity_3.png";
-const char prox4_path[] = ASSETS_DIR "/proximity_4.png";
-const char prox5_path[] = ASSETS_DIR "/proximity_5.png";
-const char prox6_path[] = ASSETS_DIR "/proximity_6.png";
-const char prox7_path[] = ASSETS_DIR "/proximity_7.png";
-const int prox_img_cols = 40;
-const int prox_img_rows = IMG_ROWS;
 
 class SimElement {
  public:
@@ -95,10 +72,14 @@ class SimElement {
 class InputDriver : public SimElement
 {
  public:
-  InputDriver(Vcolor_proc *uut,
-              const cv::Mat **input_image)
+  InputDriver(Vedge_proc *uut,
+              const cv::Mat **input_image,
+              bool *filter_on,
+              bool *ver_filter_on)
       : uut{uut},
         input_image{input_image},
+        filter_on{filter_on},
+        vfilter{ver_filter_on},
         input_addr{0},
         input_addr_delay{0} {}
 
@@ -112,61 +93,34 @@ class InputDriver : public SimElement
   }
 
   virtual void postCycle() {
-    // take the address asked from the UUT
+    // take the address asked from the UUT, it asks for a specific pixel,
+    // providing the address it needs
     this->input_addr = this->uut->orig_addr;
     // put the pixels of the address asked, after the clock is one
     auto image_data = (*this->input_image)->ptr<BGRPixel>();
     auto px = image_data[this->input_addr_delay];
 
-    uint8_t b = (px[0] >> 4) & 0xF;
-    uint8_t g = (px[1] >> 4) & 0xF;
-    uint8_t r = (px[2] >> 4) & 0xF;
-    this->uut->orig_pxl = (r << 8) | (g << 4) | b;
+    this->uut->orig_pxl = px[0]; // any of the 3 channels, they are the same
     this->input_addr_delay = this->input_addr;
+    // provide the desired filter configuration
+    this->uut->filter_on = *(this->filter_on);
+    this->uut->vfilter = *(this->vfilter);
   }
 
  private:
-  Vcolor_proc *const uut;
+  Vedge_proc *const uut;
   const cv::Mat **input_image;
   size_t input_addr;
   size_t input_addr_delay;
+  bool *filter_on;
+  bool *vfilter;
   
-};
-
-// Change the color filter byt having a pulse of proc_ctrl
-// to make it simpler, during this time, 
-//               __    __
-// clk        __|  |__|  |
-//            _____
-// proc_ctrl |     |______
-
-class FilterChange : public SimElement
-{
-  public:
-    FilterChange(Vcolor_proc *uut,
-                 bool *change_filter)
-      : uut{uut},
-        change_filter{change_filter} {}
-
-    virtual ~FilterChange() {}
-    virtual void onReset() {}
-    virtual void preCycle() {
-      this->uut->proc_ctrl = *(this->change_filter);
-    }
-    virtual void postCycle() {
-      *change_filter = false; // change filter only once
-    }
-  private:
-    Vcolor_proc *const uut;
-    bool *change_filter;
 };
 
 class OutputMonitor : public SimElement {
  public:
-  OutputMonitor(Vcolor_proc *uut, cv::Mat &output_image,
-        uint8_t *rgb_filter, uint8_t *centroid, uint8_t *proximity)
-      : uut{uut}, output_image{output_image}, rgb_filter(rgb_filter),
-        centroid(centroid), proximity(proximity) {}
+  OutputMonitor(Vedge_proc *uut, cv::Mat &output_image)
+      : uut{uut}, output_image{output_image}  {}
 
   virtual ~OutputMonitor() {}
 
@@ -182,40 +136,33 @@ class OutputMonitor : public SimElement {
       // take the direction of the pixel that is being received:
       auto px = &(img_data[this->uut->proc_addr]);
   
-      (*px)[0] = (this->uut->proc_pxl & 0xF) << 4; //blue. 4 LSB
-      (*px)[1] = ((this->uut->proc_pxl >> 4) & 0xF) << 4; //green: bits 7..4
-      (*px)[2] = ((this->uut->proc_pxl >> 8) & 0xF) << 4; //red: bits 11..8
+      (*px)[0] = (this->uut->proc_pxl); //blue (all the same)
+      (*px)[1] = (this->uut->proc_pxl); //green
+      (*px)[2] = (this->uut->proc_pxl); //red
       (*px)[3] = ALPHA_SOLID; //alpha
     }
   }
   virtual void postCycle() { // rising edge
-    *(this->rgb_filter) = this->uut->rgbfilter;
-    // the new_centroid signal indicates when they are updated
-    // but since they don't change when it is 0, it could be omitted
-    if (this->uut->new_centroid == 1) {
-      *(this->centroid)  = this->uut->centroid;
-      *(this->proximity) = this->uut->proximity;
-    }
   }
 
  private:
-  Vcolor_proc *const uut;
+  Vedge_proc *const uut;
   cv::Mat output_image;
   uint8_t *rgb_filter;
   uint8_t *centroid;  // 8-bit
   uint8_t *proximity; // actually it is just 3 bits
 };
 
-Vcolor_proc *initUUT(int argc, char **argv) {
+Vedge_proc *initUUT(int argc, char **argv) {
   Verilated::randReset(2);  // Randomize all bits
   Verilated::traceEverOn(true); // to generate waveforms
   Verilated::commandArgs(argc, argv);
-  Vcolor_proc *uut = new Vcolor_proc; // instantiates the uut verilog module
+  Vedge_proc *uut = new Vedge_proc; // instantiates the uut verilog module
 
   return uut;
 }
 
-void deinitUUT(Vcolor_proc **uut, VerilatedVcdC *m_trace) {
+void deinitUUT(Vedge_proc **uut, VerilatedVcdC *m_trace) {
   if (m_trace != 0) {
     m_trace->flush();
     m_trace->close();
@@ -226,7 +173,7 @@ void deinitUUT(Vcolor_proc **uut, VerilatedVcdC *m_trace) {
   *uut = 0;
 }
 
-VerilatedVcdC *initTrace(Vcolor_proc *uut) {
+VerilatedVcdC *initTrace(Vedge_proc *uut) {
   VerilatedVcdC *m_trace = new VerilatedVcdC; // create trace object
   // pass trace object to the uut verilog. 99 is the depth of the trace
   uut->trace(m_trace, 99);
@@ -243,7 +190,7 @@ void dumpTrace(VerilatedVcdC *m_trace, vluint64_t *sim_time,
   *sim_time += 1;
 }
 
-void tickUUT(Vcolor_proc *uut, const std::vector<SimElement *> &sim_elements,
+void tickUUT(Vedge_proc *uut, const std::vector<SimElement *> &sim_elements,
              vluint64_t *sim_time, VerilatedVcdC *m_trace = 0) {
   uut->clk = 0;
   uut->eval();
@@ -258,7 +205,7 @@ void tickUUT(Vcolor_proc *uut, const std::vector<SimElement *> &sim_elements,
 }
 
 // Reset the unit
-void resetUUT(Vcolor_proc *uut, const std::vector<SimElement *> &sim_elements,
+void resetUUT(Vedge_proc *uut, const std::vector<SimElement *> &sim_elements,
               vluint64_t *sim_time, VerilatedVcdC *m_trace = 0,
               int reset_cycles = 10) {
   uut->rst = 1;
@@ -386,59 +333,13 @@ int main(int argc, char **argv) {
 
   // output image is cols x row, with 4 channels (C4) of 8-bit unsigned
   cv::Mat output_image(IMG_ROWS, IMG_COLS, CV_8UC4);
-
-  // Centroid images
-  const cv::Mat centroid_0000_0000 = cv::imread(cv::String{centroid_0000_0000_path});
-  assert(centroid_0000_0000.channels() == 3 && centroid_0000_0000.cols == centroid_img_cols &&
-         centroid_0000_0000.rows == centroid_img_rows && centroid_0000_0000.isContinuous());
-  const cv::Mat centroid_1000_0000 = cv::imread(cv::String{centroid_1000_0000_path});
-  const cv::Mat centroid_0100_0000 = cv::imread(cv::String{centroid_0100_0000_path});
-  const cv::Mat centroid_0010_0000 = cv::imread(cv::String{centroid_0010_0000_path});
-  const cv::Mat centroid_0001_0000 = cv::imread(cv::String{centroid_0001_0000_path});
-  const cv::Mat centroid_0001_1000 = cv::imread(cv::String{centroid_0001_1000_path});
-  const cv::Mat centroid_0000_1000 = cv::imread(cv::String{centroid_0000_1000_path});
-  const cv::Mat centroid_0000_0100 = cv::imread(cv::String{centroid_0000_0100_path});
-  const cv::Mat centroid_0000_0010 = cv::imread(cv::String{centroid_0000_0010_path});
-  const cv::Mat centroid_0000_0001 = cv::imread(cv::String{centroid_0000_0001_path});
-
-  // Proximity images
-  const cv::Mat prox0 = cv::imread(cv::String{prox0_path});
-  assert(prox0.channels() == 3 && prox0.cols == prox_img_cols &&
-         prox0.rows == prox_img_rows && prox0.isContinuous());
-  const cv::Mat prox1 = cv::imread(cv::String{prox1_path});
-  const cv::Mat prox2 = cv::imread(cv::String{prox2_path});
-  const cv::Mat prox3 = cv::imread(cv::String{prox3_path});
-  const cv::Mat prox4 = cv::imread(cv::String{prox4_path});
-  const cv::Mat prox5 = cv::imread(cv::String{prox5_path});
-  const cv::Mat prox6 = cv::imread(cv::String{prox6_path});
-  const cv::Mat prox7 = cv::imread(cv::String{prox7_path});
-
   GLuint output_texture_id = create_texture(GL_BGRA, output_image);
 
-  GLuint centroid_0000_0000_texture = create_texture(GL_BGR, centroid_0000_0000);
-  GLuint centroid_1000_0000_texture = create_texture(GL_BGR, centroid_1000_0000);
-  GLuint centroid_0100_0000_texture = create_texture(GL_BGR, centroid_0100_0000);
-  GLuint centroid_0010_0000_texture = create_texture(GL_BGR, centroid_0010_0000);
-  GLuint centroid_0001_0000_texture = create_texture(GL_BGR, centroid_0001_0000);
-  GLuint centroid_0001_1000_texture = create_texture(GL_BGR, centroid_0001_1000);
-  GLuint centroid_0000_1000_texture = create_texture(GL_BGR, centroid_0000_1000);
-  GLuint centroid_0000_0100_texture = create_texture(GL_BGR, centroid_0000_0100);
-  GLuint centroid_0000_0010_texture = create_texture(GL_BGR, centroid_0000_0010);
-  GLuint centroid_0000_0001_texture = create_texture(GL_BGR, centroid_0000_0001);
-
-  GLuint prox0_texture = create_texture(GL_BGR, prox0);
-  GLuint prox1_texture = create_texture(GL_BGR, prox1);
-  GLuint prox2_texture = create_texture(GL_BGR, prox2);
-  GLuint prox3_texture = create_texture(GL_BGR, prox3);
-  GLuint prox4_texture = create_texture(GL_BGR, prox4);
-  GLuint prox5_texture = create_texture(GL_BGR, prox5);
-  GLuint prox6_texture = create_texture(GL_BGR, prox6);
-  GLuint prox7_texture = create_texture(GL_BGR, prox7);
-
   // -------------------- Init Video Input 
-  cv::Mat input_feed;
-  cv::Mat resized_input_feed;
-  // start default camera
+  cv::Mat input_feed;  // captured image
+  cv::Mat resized_input_feed; // resized image
+  cv::Mat gray_input_feed; // grayscale resized image
+  cv::Mat grayrgb_input_feed; // grayscale resized image, but with 3 channels for the texture
   cv::VideoCapture cap(0);
 
   double timed_fps;
@@ -453,45 +354,34 @@ int main(int argc, char **argv) {
 
   auto time_capture = std::chrono::high_resolution_clock::now();
   auto old_time_capture = std::chrono::high_resolution_clock::now();
-  cap >> input_feed; // capture image from camera
+  cap >> input_feed;
   cv::resize(input_feed,resized_input_feed,cv::Size(IMG_COLS,IMG_ROWS),cv::INTER_LINEAR);
+  cv::cvtColor(resized_input_feed, gray_input_feed, cv::COLOR_BGR2GRAY);
+  cv::cvtColor(gray_input_feed, grayrgb_input_feed, cv::COLOR_GRAY2BGR);
 
   // init dut, tracing and sim elements
-  Vcolor_proc *uut = initUUT(argc, argv);
+  Vedge_proc *uut = initUUT(argc, argv);
   VerilatedVcdC *m_trace = initTrace(uut);
 
-  const cv::Mat *input_image = &resized_input_feed;
+  const cv::Mat *input_image = &grayrgb_input_feed;
 
   // Our state
   bool done = false;
   bool show_demo_window = false;
   bool running = false;
   bool do_reset = false;
-  bool do_change_filter = false;
-  bool change_filter = false;
+  bool filter_on = false;
+  bool ver_filter_on = false;
   int step_n_cycles = 0;
   int frames_per_iteration = 1;
   int cycles_per_iteration = frames_per_iteration * IMG_PXLS;
-
-  // filter, it is a 3 bit signal, 
-  uint8_t rgb_filter   = 0x00;  // no filter, it is a 3 bit signal
-  bool red_filter_on   = false;
-  bool green_filter_on = false;
-  bool blue_filter_on  = false;
-
-  // proximity and centroid values of the detected object
-  uint8_t centroid  = 0;
-  uint8_t proximity = 0;
-  const int NBITS_CENTROID = 8;
 
   // create an array of simulation elements, which are the input driver
   // and the monitor of the outputs
   std::vector<SimElement *> simElements;
   // add these simulation elements to the array:
-  simElements.push_back(new InputDriver(uut, &input_image));
-  simElements.push_back(new FilterChange(uut, &change_filter));
-  simElements.push_back(new OutputMonitor(uut, output_image, &rgb_filter,
-                                          &centroid, &proximity));
+  simElements.push_back(new InputDriver(uut, &input_image, &filter_on, &ver_filter_on));
+  simElements.push_back(new OutputMonitor(uut, output_image));
 
   vluint64_t sim_time = 0;
   resetUUT(uut, simElements, &sim_time, m_trace); // reset unit under test
@@ -527,8 +417,7 @@ int main(int argc, char **argv) {
     if (show_demo_window) ImGui::ShowDemoWindow(&show_demo_window);
     // main window
     {
-      ImGui::Begin("Color processor");
-      //ImGui::Checkbox("Demo Window", &show_demo_window);
+      ImGui::Begin("Edge processor");
 
       ImGui::InputInt("Frames per iteration", &frames_per_iteration);
       running ^= ImGui::Button(running ? STOP_ICON " Stop" : START_ICON " Start");ImGui::SameLine();
@@ -538,56 +427,41 @@ int main(int argc, char **argv) {
         step_n_cycles = frames_per_iteration * IMG_PXLS;
       }
 
+      if (filter_on) {
+        if (ver_filter_on) {
+          ImGui::Text("Vertical Filter ON");
+        } else {
+          ImGui::Text("Horizontal Filter ON");
+        }
+      } else {
+        ImGui::Text("Filter OFF");
+      }
+
+      filter_on ^= ImGui::Button(filter_on ? CAMERA_ICON " Stop Filter" : FILTER_ICON " Set Filter");
+
+      if (filter_on) {
+        ImGui::SameLine();
+        ver_filter_on ^= ImGui::Button(ver_filter_on ? GRIP_LINES_HORIZONTAL_ICON " Set Horizontal" :
+                         GRIP_LINES_VERTICAL_ICON " Set Vertical");
+      }
+
       old_time_capture = time_capture; // save old capture
       time_capture = std::chrono::high_resolution_clock::now(); // new time capture
-      cap >> input_feed; // capture image from camera
+      cap >> input_feed;
       cv::resize(input_feed,resized_input_feed,cv::Size(IMG_COLS,IMG_ROWS),cv::INTER_LINEAR);
+      cv::cvtColor(resized_input_feed, gray_input_feed, cv::COLOR_BGR2GRAY);
+      cv::cvtColor(gray_input_feed, grayrgb_input_feed, cv::COLOR_GRAY2BGR);
 
 //      assert(input_feed.channels() == 3 && input_feed.cols == cols &&
 //         input_feed.rows == rows && input_feed.isContinuous());
-      input_image = &resized_input_feed;
+      input_image = &grayrgb_input_feed;
 
-      GLuint input_texture_vid_id = create_texture(GL_BGR, resized_input_feed);
+      // grayscale image in RGB format
+      GLuint input_texture_vid_id = create_texture(GL_BGR, grayrgb_input_feed);
 
-      if (change_filter == false) {
-        do_change_filter = ImGui::Button(FILTER_ICON " Change filter");
-        if (do_change_filter) {
-          // if we dont do this, the filter change will be lost if not running the simulation
-          change_filter = true;
-        }
-      } else {
-        ImGui::TextColored(ImVec4(1.0f,0,0,1.0f),"Step or Start simulation to change filter");
-      }
-
-      ImGui::Text("RGB filter: %x", rgb_filter);
-      red_filter_on   = ((rgb_filter & 0x04) != 0);
-      green_filter_on = ((rgb_filter & 0x02) != 0);
-      blue_filter_on  = ((rgb_filter & 0x01) != 0);
-      if (red_filter_on) {
-        ImGui::Text("Red ");
-        ImGui::SameLine();
-      } 
-      if (green_filter_on) {
-        ImGui::Text("Green ");
-        ImGui::SameLine();
-      } 
-      if (blue_filter_on) {
-        ImGui::Text("Blue ");
-        ImGui::SameLine();
-      } 
-      if (rgb_filter == 0) {
-        ImGui::Text("No ");
-        ImGui::SameLine();
-      } else {
-      }
-      ImGui::Text("Filter");
-
-
-      // -- test images
       ImGui::Text("Input video frame %d x %d (tex id=%p)", input_image->cols,
                   input_image->rows, (void *)(intptr_t)input_texture_vid_id);
 
-      // -- Input video
       ImGui::Image((void *)(intptr_t)input_texture_vid_id,
                              ImVec2(input_image->cols, input_image->rows));
 
@@ -595,102 +469,8 @@ int main(int argc, char **argv) {
                   output_image.rows, (void *)(intptr_t)output_texture_id);
       ImGui::Image((void *)(intptr_t)output_texture_id,
                    ImVec2(output_image.cols, output_image.rows));
-      ImGui::SameLine();
-      
-      switch (proximity) {
-        case 0:
-          ImGui::Image((void *)(intptr_t)prox0_texture,
-                       ImVec2(prox_img_cols, prox_img_rows));
-          break;
-        case 1:
-          ImGui::Image((void *)(intptr_t)prox1_texture,
-                       ImVec2(prox_img_cols, prox_img_rows));
-          break;
-        case 2:
-          ImGui::Image((void *)(intptr_t)prox2_texture,
-                       ImVec2(prox_img_cols, prox_img_rows));
-          break;
-        case 3:
-          ImGui::Image((void *)(intptr_t)prox3_texture,
-                       ImVec2(prox_img_cols, prox_img_rows));
-          break;
-        case 4:
-          ImGui::Image((void *)(intptr_t)prox4_texture,
-                       ImVec2(prox_img_cols, prox_img_rows));
-          break;
-        case 5:
-          ImGui::Image((void *)(intptr_t)prox5_texture,
-                       ImVec2(prox_img_cols, prox_img_rows));
-          break;
-        case 6:
-          ImGui::Image((void *)(intptr_t)prox6_texture,
-                       ImVec2(prox_img_cols, prox_img_rows));
-          break;
-        case 7:
-          ImGui::Image((void *)(intptr_t)prox7_texture,
-                       ImVec2(prox_img_cols, prox_img_rows));
-          break;
-        default:
-          ImGui::Text("Proximity wrong value %d", proximity);
-      }
-      
-
-      switch (centroid) {
-        case 0:
-          ImGui::Image((void *)(intptr_t)centroid_0000_0000_texture,
-                       ImVec2(centroid_img_cols, centroid_img_rows));
-          break;
-        case 1:
-          ImGui::Image((void *)(intptr_t)centroid_1000_0000_texture,
-                       ImVec2(centroid_img_cols, centroid_img_rows));
-          break;
-        case 2:
-          ImGui::Image((void *)(intptr_t)centroid_0100_0000_texture,
-                       ImVec2(centroid_img_cols, centroid_img_rows));
-          break;
-        case 4:
-          ImGui::Image((void *)(intptr_t)centroid_0010_0000_texture,
-                       ImVec2(centroid_img_cols, centroid_img_rows));
-          break;
-        case 8:
-          ImGui::Image((void *)(intptr_t)centroid_0001_0000_texture,
-                       ImVec2(centroid_img_cols, centroid_img_rows));
-          break;
-        case 16:
-          ImGui::Image((void *)(intptr_t)centroid_0000_1000_texture,
-                       ImVec2(centroid_img_cols, centroid_img_rows));
-          break;
-        case 24:
-          ImGui::Image((void *)(intptr_t)centroid_0001_1000_texture,
-                       ImVec2(centroid_img_cols, centroid_img_rows));
-          break;
-        case 32:
-          ImGui::Image((void *)(intptr_t)centroid_0000_0100_texture,
-                       ImVec2(centroid_img_cols, centroid_img_rows));
-          break;
-        case 64:
-          ImGui::Image((void *)(intptr_t)centroid_0000_0010_texture,
-                       ImVec2(centroid_img_cols, centroid_img_rows));
-          break;
-        case 128:
-          ImGui::Image((void *)(intptr_t)centroid_0000_0001_texture,
-                       ImVec2(centroid_img_cols, centroid_img_rows));
-          break;
-        default:
-          ImGui::Text("centroid wrong value %d", centroid);
-      }
-      // left leds are the least significat bits: bit 0 is the leftmost
-      for (int bit_i = NBITS_CENTROID-1; bit_i >= 0; bit_i--) {
-        bool led_on = centroid & (128 >> bit_i);
-        auto gb = led_on ? 0 : 255;
-        ImGui::TextColored(ImVec4(255, gb, gb, ALPHA_SOLID), LED_ICON);
-        //if (bit_i > 0) {
-        ImGui::SameLine();
-        //}
-      }
-      ImGui::Text("Centroid: 0x%x - Proximity: %i", centroid, proximity);
       //ImGui::SameLine();
-
+      
 
       // the 1st capture will be wrong, but just only the first
       auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -700,7 +480,6 @@ int main(int argc, char **argv) {
       ImGui::Text("Timed %i ms (%.1f FPS)", millis_elapsed, timed_fps);
       ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
                   1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-
       ImGui::Text("Maximum camera fps %.1f", cam_fps);
       ImGui::End();
     }
