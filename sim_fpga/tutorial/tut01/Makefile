@@ -9,7 +9,7 @@ SRC_DIR = $(EXAMPLE_DIR)/src
 ASSETS_DIR := $(SRC_DIR)
 SOURCES = $(SRC_DIR)/main.cpp
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
-SOURCES += $(IMGUI_DIR)/backends/imgui_impl_sdl.cpp $(IMGUI_DIR)/backends/imgui_impl_opengl3.cpp
+SOURCES += $(IMGUI_DIR)/backends/imgui_impl_sdl2.cpp $(IMGUI_DIR)/backends/imgui_impl_opengl3.cpp
 V_SOURCES = $(RTL_DIR)/color_proc.v
 UNAME_S := $(shell uname -s)
 LINUX_GL_LIBS = -lGL
@@ -61,4 +61,4 @@ obj_dir/Vcolor_proc: obj_dir/Vcolor_proc.h $(SOURCES)
 	make -j 4 -C obj_dir/ -f Vcolor_proc.mk Vcolor_proc LIBS="$(LIBS)"
 
 clean:
-	rm -rf obj_dir
+	rm -rf obj_dir sim.vcd

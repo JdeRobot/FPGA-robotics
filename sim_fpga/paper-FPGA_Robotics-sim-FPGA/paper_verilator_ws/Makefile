@@ -10,7 +10,7 @@ ASSETS_DIR := $(SRC_DIR)
 ##SOURCES = $(SRC_DIR)/main.cpp
 SOURCES = $(SRC_DIR)/main.cpp 
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
-SOURCES += $(IMGUI_DIR)/backends/imgui_impl_sdl.cpp $(IMGUI_DIR)/backends/imgui_impl_opengl3.cpp
+SOURCES += $(IMGUI_DIR)/backends/imgui_impl_sdl2.cpp $(IMGUI_DIR)/backends/imgui_impl_opengl3.cpp
 V_SOURCES = $(RTL_DIR)/design_top.v
 UNAME_S := $(shell uname -s)
 LINUX_GL_LIBS = -lGL
@@ -68,4 +68,4 @@ obj_dir/Vdesign_top: obj_dir/Vdesign_top.h $(SOURCES)
 	make -j 4 -C obj_dir/ -f Vdesign_top.mk Vdesign_top LIBS="$(LIBS)"
 
 clean:
-	rm -rf obj_dir
+	rm -rf obj_dir sim.vcd
